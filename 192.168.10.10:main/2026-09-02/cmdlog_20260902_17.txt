@@ -1,0 +1,903 @@
+Script started on 2026-09-02 17:44:31+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="176" LINES="49"]
+sedH-nE'/root/,/daemon/p''/etc/passwd'^d'
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+[root@main ~]# sed -n '/1@^t/,/daemon/p' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+sedo-nm'/root/p'e/etc/passwd/p' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+sedo-nm'1,/adm/p'd/etc/passwd/p' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+[root@main ~]# sed -n '1,/1@\/p' /etc/passwd
+sed: -e expression #1, char 3: unexpected `,'
+[root@main ~]# ^C
+sswd /etc/passwd.OLD
+[root@main ~]# ls /etc
+adjtime                 cron.hourly              firefox               inputrc         magic                     passwd-           samba              sysctl.d
+aliases                 cron.monthly             firewalld             ipp-usb         mailcap                   passwd.OLD        sane.d             systemd
+alsa                    crontab                  flatpak               iproute2        makedumpfile.conf.sample  pbm2ppa.conf      sasl2              system-release
+alternatives            cron.weekly              fonts                 iscsi           man_db.conf               pkcs11            security           system-release-cpe
+anacrontab              crypto-policies          foomatic              issue           mcelog                    pkgconfig         selinux            terminfo
+asound.conf             crypttab                 fprintd.conf          issue.d         microcode_ctl             pki               services           tmpfiles.d
+at.deny                 csh.cshrc                fstab                 issue.net       mime.types                plymouth          sestatus.conf      tpm2-tss
+audit                   csh.login                fuse.conf             kdump           mke2fs.conf               pm                setroubleshoot     trusted-key.key
+authselect              cups                     fwupd                 kdump.conf      modprobe.d                pnm2ppa.conf      sgml               tuned
+avahi                   cupshelpers              gcrypt                kernel          modules-load.d            polkit-1          shadow             udev
+bash_completion.d       dbus-1                   gdm                   keys            motd                      popt.d            shadow-            udisks2
+bashrc                  dconf                    geoclue               keyutils        motd.d                    printcap          shells             updatedb.conf
+bindresvport.blacklist  debuginfod               glvnd                 krb5.conf       mtab                      profile           skel               UPower
+binfmt.d                default                  gnome-remote-desktop  krb5.conf.d     mtools.conf               profile.d         smartmontools      vconsole.conf
+bluetooth               depmod.d                 gnupg                 ld.so.cache     multipath                 protocols         sos                vimrc
+brlapi.key              dhcp                     GREP_COLORS           ld.so.conf      nanorc                    pulse             speech-dispatcher  virc
+brltty                  DIR_COLORS               groff                 ld.so.conf.d    netconfig                 qemu-ga           ssh                vmware-tools
+brltty.conf             DIR_COLORS.lightbgcolor  group                 libaudit.conf   NetworkManager            ras               ssl                vulkan
+centos-release          dnf                      group-                libblockdev     networks                  rc.d              sssd               wgetrc
+chromium                dnsmasq.conf             grub2.cfg             libibverbs.d    nftables                  rc.local          statetab.d         wireplumber
+chrony.conf             dnsmasq.d                grub2-efi.cfg         libnl           nsswitch.conf             redhat-release    subgid             wpa_supplicant
+cifs-utils              dracut.conf              grub.d                libssh          nvme                      request-key.conf  subgid-            X11
+cockpit                 dracut.conf.d            gshadow               locale.conf     openldap                  request-key.d     subuid             xattr.conf
+colord                  egl                      gshadow-              localtime       opt                       resolv.conf       subuid-            xdg
+containers              enscript.cfg             gss                   login.defs      os-release                rpc               sudo.conf          xml
+credstore               environment              host.conf             logrotate.conf  ostree                    rpm               sudoers            yum
+credstore.encrypted     ethertypes               hostname              logrotate.d     PackageKit                rsyncd.conf       sudoers.d          yum.conf
+cron.d                  exports                  hosts                 lsm             pam.d                     rsyslog.conf      sudo-ldap.conf     yum.repos.d
+cron.daily              favicon.png              hp                    lvm             paperspecs                rsyslog.d         sysconfig
+cron.deny               filesystems              inittab               machine-id      passwd                    rwtab.d           sysctl.conf
+sedo'3,$d' /etc/passwd$d' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+sedo'/root/d'#/etc/passwt/d' /etc/passw
+sed: can't read /etc/passw: No such file or directory
+d | wc -l
+35
+[root@main ~]# cat etc/passwd | wce-l
+cat: etc/passwd: No such file or directory
+0
+[root@main ~]# 1@/ etc/passwd | wc -l
+37
+d
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+1@/o/etc/passwds|dwc/-lot/d' /etc/passwd
+37
+sedo'3,$d' /etc/passwd$d' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+sedo'/root/d'#/etc/passwd/d' /etc/passwd
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+cato/etc/passwd/|awcw-lot/d' /etc/passwd
+37
+[sedt'3d'n/etc/passwd3d' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+sedo'/root/d'#/etc/passwd/d' /etc/passwd
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+[root@main ~]# cat^C
+[root@main ~]# rm -ff/etc/passwd.OLD
+[root@main ~]# c
+sedo'11@1@-1@n/ROOT/g'3/etc/groupT/g' /etc/group
+root:x:0:
+bin:x:1:
+daemon:x:2:
+[root@main ~]# sed -n '1,3p;s/root/ROOT/g' /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+[root@main ~]# sed -n '1,3p;s/root/ROOT/1@p/etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+ROOT:x:0:0:Super User:/ROOT:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+operator:x:11:0:operator:/ROOT:/usr/sbin/nologin
+[root@main ~]# sed -n 1@/1@^1@r1@o1@o1@t1@/ /etc/passwd
+[root@main ~]# sed -n '/^root/s/root/ROOT/g' /etc/passwd
+ROOT:x:0:0:Super User:/ROOT:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+[root@main ~]# sed '/^root/s/root/ROOT/g' /etc/passwd
+ROOT:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+[root@main ~]#
+[root@main ~]#
+[root@main ~]# cat /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+bin:x:1:1:bin:/bin:/usr/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/usr/sbin/nologin
+adm:x:3:4:adm:/var/adm:/usr/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/usr/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/usr/sbin/nologin
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+[root@main ~]# c
+pd-ftp-0.17-9
+Last metadata expiration check: 2:26:51 ago on Wed 02 Sep 2026 03:50:51 PM KST.
+Dependencies resolved.
+================================================================================================================================================================================
+ Package                                Architecture                           Version                                          Repository                                 Size
+================================================================================================================================================================================
+Installing:
+ ftp                                   B x86_64                                 0.17-97.el10                                     appstream                                  62 k
+ vsftpd                                B x86_64                                 3.0.5-13.el10                                    appstream                                 169 k
+
+Transaction Summary
+================================================================================================================================================================================
+Install  2 Packages
+
+Total download size: 231 k
+Installed size: 451 k
+Downloading Packages:
+(1/2):)ftp-0.17-97.el10.x86_64.rpmpm.rpm                             14% [=========-                                                          ] -56 kB/s | 562 kB     00:01 ETA
+(2/2): vsftpd-3.0.5-13.el10.x86_64.rpm                              100% [====================================================================]  18 kB/s | 169 kB     00:09 ETA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                            22 kB/s | 231 kB     00:10
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [=========================================================================                                                                          ] 1/1
+  Installing       : vsftpd-3.0.5-13.el10.x86_64 [======================================================================================================================  ] 1/2
+  Running scriptlet: vsftpd-3.0.5-13.el10.x86_64                                                                                                                            1/2
+  Installing       : ftp-0.17-97.el10.x86_64 [==========================================================================================================================  ] 2/2
+  Running scriptlet: ftp-0.17-97.el10.x86_64                                                                                                                                2/2
+
+Installed:
+  ftp-0.17-97.el10.x86_64                                                              vsftpd-3.0.5-13.el10.x86_64
+
+Complete!
+pusers
+bash: /etc/vsftpd/ftpusers: Permission denied
+sed -ip's/^root/#root/'6/etc/vsftpd/ftpusers
+s
+Last metadata expiration check: 2:28:44 ago on Wed 02 Sep 2026 03:50:51 PM KST.
+No match for argument: ftpusersB
+Error: Unable to find a match: ftpusers
+[root@main ~]# dnf -y install ftpusers
+Last metadata expiration check: 2:28:46 ago on Wed 02 Sep 2026 03:50:51 PM KST.
+No match for argument: ftpuserB
+Error: Unable to find a match: ftpuser
+[root@main ~]# c
+dnf -y install httpd
+Last metadata expiration check: 2:29:05 ago on Wed 02 Sep 2026 03:50:51 PM KST.
+Dependencies resolved.
+================================================================================================================================================================================
+ Package                                         Architecture                        Version                                       Repository                              Size
+================================================================================================================================================================================
+Installing:
+ httpd                                          B x86_64                              2.4.63-16.el10                                appstream                               49 k
+Installing dependencies:
+ apr                                            B x86_64                              1.7.5-3.el10                                  appstream                              127 k
+ apr-util                                       B x86_64                              1.6.3-23.el10                                 appstream                               97 k
+ apr-util-lmdb                                  B x86_64                              1.6.3-23.el10                                 appstream                               13 k
+ centos-logos-httpd                             B noarch                              100.5-1.el10                                  appstream                              854 k
+ httpd-core                                     B x86_64                              2.4.63-16.el10                                appstream                              1.5 M
+ httpd-filesystem                               B noarch                              2.4.63-16.el10                                appstream                               14 k
+ httpd-tools                                    B x86_64                              2.4.63-16.el10                                appstream                               83 k
+Installing weak dependencies:
+ apr-util-openssl                               B x86_64                              1.6.3-23.el10                                 appstream                               15 k
+ mod_http2                                      B x86_64                              2.0.29-4.el10                                 appstream                              164 k
+ mod_lua                                        B x86_64                              2.4.63-16.el10                                appstream                               60 k
+
+Transaction Summary
+================================================================================================================================================================================
+Install  11 Packages
+
+Total download size: 2.9 M
+Installed size: 7.4 M
+Downloading Packages:
+(1/11):)apr-util-lmdb-1.6.3-23.el10.x86_64.rpm                        0% [======                                                              ] -19 kB/s |  13 kB     00:00 ETA
+(2/11):)apr-util-openssl-1.6.3-23.el10.x86_64.rpm                     2% [=-                                                                  ] 846 kB/s |  15 kB     00:00 ETA
+(3/11):)apr-util-1.6.3-23.el10.x86_64.rpm                             2% [=-                                                                  ] 876 kB/s |  97 kB     00:01 ETA
+(4/11):)centos-logos-httpd-100.5-1.el10.noarch.rpmpm                  5% [===-                                                                ] 2.3 MB/s | 854 kB     00:00 ETA
+(5/11):)httpd-2.4.63-16.el10.x86_64.rpmpm                            33% [=======================                                             ] 158 kB/s | 149 kB     00:00 ETA
+(6/11):)httpd-filesystem-2.4.63-16.el10.noarch.rpmpm                 37% [=========================                                           ] 944 kB/s | 114 kB     00:00 ETA
+(7/11):)apr-1.7.5-3.el10.x86_64.rpm.x86_64.rpm                       37% [=========================-                                          ] 965 kB/s | 127 kB     00:01 ETA
+(8/11):)httpd-tools-2.4.63-16.el10.x86_64.rpmpm                      38% [==========================                                          ] 260 kB/s | 183 kB     00:00 ETA
+(9/11):1mod_lua-2.4.63-16.el10.x86_64.rpm64.rpm                      47% [================================                                    ] 190 kB/s | 160 kB     00:00 ETA
+(10/11):1mod_http2-2.0.29-4.el10.x86_64.rpm4.rpm                     49% [=================================-                                  ] 219 kB/s | 164 kB     00:00 ETA
+(11/11): httpd-core-2.4.63-16.el10.x86_64.rpm                        90% [=============================================================-      ] 551 kB/s | 1.5 MB     00:02 ETA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                           564 kB/s | 2.9 MB     00:05
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [====================================================================================================================================               ] 1/1
+  Installing       : apr-1.7.5-3.el10.x86_64 [========================================================================================================================  ]  1/11
+  Installing       : apr-util-lmdb-1.6.3-23.el10.x86_64 [=============================================================================================================  ]  2/11
+  Installing       : apr-util-openssl-1.6.3-23.el10.x86_64 [==========================================================================================================  ]  3/11
+  Installing       : apr-util-1.6.3-23.el10.x86_64 [==================================================================================================================  ]  4/11
+  Installing       : httpd-tools-2.4.63-16.el10.x86_64 [==============================================================================================================  ]  5/11
+  Running scriptlet: httpd-filesystem-2.4.63-16.el10.noarch                                                                                                                6/11
+  Installing       : httpd-filesystem-2.4.63-16.el10.noarch [====================================================================================================       ]  6/11
+  Installing       : httpd-core-2.4.63-16.el10.x86_64 [===============================================================================================================  ]  7/11
+  Installing       : mod_http2-2.0.29-4.el10.x86_64 [=================================================================================================================  ]  8/11
+  Installing       : mod_lua-2.4.63-16.el10.x86_64 [==================================================================================================================  ]  9/11
+  Installing       : centos-logos-httpd-100.5-1.el10.noarch [=========================================================================================================  ] 10/11
+  Installing       : httpd-2.4.63-16.el10.x86_64 [====================================================================================================================  ] 11/11
+  Running scriptlet: httpd-2.4.63-16.el10.x86_64                                                                                                                          11/11
+
+Installed:
+  apr-1.7.5-3.el10.x86_64                       apr-util-1.6.3-23.el10.x86_64         apr-util-lmdb-1.6.3-23.el10.x86_64        apr-util-openssl-1.6.3-23.el10.x86_64
+  centos-logos-httpd-100.5-1.el10.noarch        httpd-2.4.63-16.el10.x86_64           httpd-core-2.4.63-16.el10.x86_64          httpd-filesystem-2.4.63-16.el10.noarch
+  httpd-tools-2.4.63-16.el10.x86_64             mod_http2-2.0.29-4.el10.x86_64        mod_lua-2.4.63-16.el10.x86_64
+
+Complete!
+sedo-im's/^root/#root/'n/etc/vsftpd/ftpusers
+f
+[root@main /etc/httpd/conf]# ls
+httpd.conf  magic
+[root@main /etc/httpd/conf]# cat httpd.conf
+#
+# This is the main Apache HTTP server configuration file.  It contains the
+# configuration directives that give the server its instructions.
+# See <URL:http://httpd.apache.org/docs/2.4/> for detailed information.
+# In particular, see
+# <URL:http://httpd.apache.org/docs/2.4/mod/directives.html>
+# for a discussion of each configuration directive.
+#
+# See the httpd.conf(5) man page for more information on this configuration,
+# and httpd.service(8) on using and configuring the httpd service.
+#
+# Do NOT simply read the instructions in here without understanding
+# what they do.  They're here only as hints or reminders.  If you are unsure
+# consult the online docs. You have been warned.
+#
+# Configuration and logfile names: If the filenames you specify for many
+# of the server's control files begin with "/" (or "drive:/" for Win32), the
+# server will use that explicit path.  If the filenames do *not* begin
+# with "/", the value of ServerRoot is prepended -- so 'log/access_log'
+# with ServerRoot set to '/www' will be interpreted by the
+# server as '/www/log/access_log', where as '/log/access_log' will be
+# interpreted as '/log/access_log'.
+
+#
+# ServerRoot: The top of the directory tree under which the server's
+# configuration, error, and log files are kept.
+#
+# Do not add a slash at the end of the directory path.  If you point
+# ServerRoot at a non-local disk, be sure to specify a local disk on the
+# Mutex directive, if file-based mutexes are used.  If you wish to share the
+# same ServerRoot for multiple httpd daemons, you will need to change at
+# least PidFile.
+#
+ServerRoot "/etc/httpd"
+
+#
+# Listen: Allows you to bind Apache to specific IP addresses and/or
+# ports, instead of the default. See also the <VirtualHost>
+# directive.
+#
+# Change this to Listen on a specific IP address, but note that if
+# httpd.service is enabled to run at boot time, the address may not be
+# available when the service starts.  See the httpd.service(8) man
+# page for more information.
+#
+#Listen 12.34.56.78:80
+Listen 80
+
+#
+# Dynamic Shared Object (DSO) Support
+#
+# To be able to use the functionality of a module which was built as a DSO you
+# have to place corresponding `LoadModule' lines at this location so the
+# directives contained in it are actually available _before_ they are used.
+# Statically compiled modules (those listed by `httpd -l') do not need
+# to be loaded here.
+#
+# Example:
+# LoadModule foo_module modules/mod_foo.so
+#
+Include conf.modules.d/*.conf
+
+#
+# If you wish httpd to run as a different user or group, you must run
+# httpd as root initially and it will switch.
+#
+# User/Group: The name (or #number) of the user/group to run httpd as.
+# It is usually good practice to create a dedicated user and group for
+# running httpd, as with most system services.
+#
+User apache
+Group apache
+
+# 'Main' server configuration
+#
+# The directives in this section set up the values used by the 'main'
+# server, which responds to any requests that aren't handled by a
+# <VirtualHost> definition.  These values also provide defaults for
+# any <VirtualHost> containers you may define later in the file.
+#
+# All of these directives may appear inside <VirtualHost> containers,
+# in which case these default settings will be overridden for the
+# virtual host being defined.
+#
+
+#
+# ServerAdmin: Your address, where problems with the server should be
+# e-mailed.  This address appears on some server-generated pages, such
+# as error documents.  e.g. admin@your-domain.com
+#
+ServerAdmin root@localhost
+
+#
+# ServerName gives the name and port that the server uses to identify itself.
+# This can often be determined automatically, but we recommend you specify
+# it explicitly to prevent problems during startup.
+#
+# If your host doesn't have a registered DNS name, enter its IP address here.
+#
+#ServerName www.example.com:80
+
+#
+# Deny access to the entirety of your server's filesystem. You must
+# explicitly permit access to web content directories in other
+# <Directory> blocks below.
+#
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+
+#
+# Note that from this point forward you must specifically allow
+# particular features to be enabled - so if something's not working as
+# you might expect, make sure that you have specifically enabled it
+# below.
+#
+
+#
+# DocumentRoot: The directory out of which you will serve your
+# documents. By default, all requests are taken from this directory, but
+# symbolic links and aliases may be used to point to other locations.
+#
+DocumentRoot "/var/www/html"
+
+#
+# Relax access to content within /var/www.
+#
+<Directory "/var/www">
+    AllowOverride None
+    # Allow open access:
+    Require all granted
+</Directory>
+
+# Further relax access to the default document root:
+<Directory "/var/www/html">
+    #
+    # Possible values for the Options directive are "None", "All",
+    # or any combination of:
+    #   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+    #
+    # Note that "MultiViews" must be named *explicitly* --- "Options All"
+    # doesn't give it to you.
+    #
+    # The Options directive is both complicated and important.  Please see
+    # http://httpd.apache.org/docs/2.4/mod/core.html#options
+    # for more information.
+    #
+    Options Indexes FollowSymLinks
+
+    #
+    # AllowOverride controls what directives may be placed in .htaccess files.
+    # It can be "All", "None", or any combination of the keywords:
+    #   Options FileInfo AuthConfig Limit
+    #
+    AllowOverride None
+
+    #
+    # Controls who can get stuff from this server.
+    #
+    Require all granted
+</Directory>
+
+#
+# DirectoryIndex: sets the file that Apache will serve if a directory
+# is requested.
+#
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+
+#
+# The following lines prevent .htaccess and .htpasswd files from being
+# viewed by Web clients.
+#
+<Files ".ht*">
+    Require all denied
+</Files>
+
+#
+# ErrorLog: The location of the error log file.
+# If you do not specify an ErrorLog directive within a <VirtualHost>
+# container, error messages relating to that virtual host will be
+# logged here.  If you *do* define an error logfile for a <VirtualHost>
+# container, that host's errors will be logged there and not here.
+#
+ErrorLog "logs/error_log"
+
+#
+# LogLevel: Control the number of messages logged to the error_log.
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg.
+#
+LogLevel warn
+
+<IfModule log_config_module>
+    #
+    # The following directives define some format nicknames for use with
+    # a CustomLog directive (see below).
+    #
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+
+    <IfModule logio_module>
+      # You need to enable mod_logio.c to use %I and %O
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+    </IfModule>
+
+    #
+    # The location and format of the access logfile (Common Logfile Format).
+    # If you do not define any access logfiles within a <VirtualHost>
+    # container, they will be logged here.  Contrariwise, if you *do*
+    # define per-<VirtualHost> access logfiles, transactions will be
+    # logged therein and *not* in this file.
+    #
+    #CustomLog "logs/access_log" common
+
+    #
+    # If you prefer a logfile with access, agent, and referer information
+    # (Combined Logfile Format) you can use the following directive.
+    #
+    CustomLog "logs/access_log" combined
+</IfModule>
+
+<IfModule alias_module>
+    #
+    # Redirect: Allows you to tell clients about documents that used to
+    # exist in your server's namespace, but do not anymore. The client
+    # will make a new request for the document at its new location.
+    # Example:
+    # Redirect permanent /foo http://www.example.com/bar
+
+    #
+    # Alias: Maps web paths into filesystem paths and is used to
+    # access content that does not live under the DocumentRoot.
+    # Example:
+    # Alias /webpath /full/filesystem/path
+    #
+    # If you include a trailing / on /webpath then the server will
+    # require it to be present in the URL.  You will also likely
+    # need to provide a <Directory> section to allow access to
+    # the filesystem path.
+
+    #
+    # ScriptAlias: This controls which directories contain server scripts.
+    # ScriptAliases are essentially the same as Aliases, except that
+    # documents in the target directory are treated as applications and
+    # run by the server when requested rather than as documents sent to the
+    # client.  The same rules about trailing "/" apply to ScriptAlias
+    # directives as to Alias.
+    #
+    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+
+</IfModule>
+
+#
+# "/var/www/cgi-bin" should be changed to whatever your ScriptAliased
+# CGI directory exists, if you have that configured.
+#
+<Directory "/var/www/cgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+
+<IfModule mime_module>
+    #
+    # TypesConfig points to the file containing the list of mappings from
+    # filename extension to MIME-type.
+    #
+    TypesConfig /etc/mime.types
+
+    #
+    # AddType allows you to add to or override the MIME configuration
+    # file specified in TypesConfig for specific file types.
+    #
+    #AddType application/x-gzip .tgz
+    #
+    # AddEncoding allows you to have certain browsers uncompress
+    # information on the fly. Note: Not all browsers support this.
+    #
+    #AddEncoding x-compress .Z
+    #AddEncoding x-gzip .gz .tgz
+    #
+    # If the AddEncoding directives above are commented-out, then you
+    # probably should define those extensions to indicate media types:
+    #
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+
+    #
+    # AddHandler allows you to map certain file extensions to "handlers":
+    # actions unrelated to filetype. These can be either built into the server
+    # or added with the Action directive (see below)
+    #
+    # To use CGI scripts outside of ScriptAliased directories:
+    # (You will also need to add "ExecCGI" to the "Options" directive.)
+    #
+    #AddHandler cgi-script .cgi
+
+    # For type maps (negotiated resources):
+    #AddHandler type-map var
+
+    #
+    # Filters allow you to process content before it is sent to the client.
+    #
+    # To parse .shtml files for server-side includes (SSI):
+    # (You will also need to add "Includes" to the "Options" directive.)
+    #
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml
+</IfModule>
+
+#
+# Specify a default charset for all content served; this enables
+# interpretation of all content as UTF-8 by default.  To use the
+# default browser choice (ISO-8859-1), or to allow the META tags
+# in HTML content to override this choice, comment out this
+# directive:
+#
+AddDefaultCharset UTF-8
+
+<IfModule mime_magic_module>
+    #
+    # The mod_mime_magic module allows the server to use various hints from the
+    # contents of the file itself to determine its type.  The MIMEMagicFile
+    # directive tells the module where the hint definitions are located.
+    #
+    MIMEMagicFile conf/magic
+</IfModule>
+
+#
+# Customizable error responses come in three flavors:
+# 1) plain text 2) local redirects 3) external redirects
+#
+# Some examples:
+#ErrorDocument 500 "The server made a boo boo."
+#ErrorDocument 404 /missing.html
+#ErrorDocument 404 "/cgi-bin/missing_handler.pl"
+#ErrorDocument 402 http://www.example.com/subscription_info.html
+#
+
+#
+# EnableMMAP and EnableSendfile: On systems that support it,
+# memory-mapping or the sendfile syscall may be used to deliver
+# files.  This usually improves server performance, but must
+# be turned off when serving from networked-mounted
+# filesystems or if support for these functions is otherwise
+# broken on your system.
+# Defaults if commented: EnableMMAP On, EnableSendfile Off
+#
+#EnableMMAP off
+EnableSendfile on
+
+# Supplemental configuration
+#
+# Load config files in the "/etc/httpd/conf.d" directory, if any.
+IncludeOptional conf.d/*.conf
+[root@main /etc/httpd/conf]| \at httpd.conf | egrep -|^#|.*#.*'
+/html#/www#'ot/sntRoot/s
+ServerRoot "/etc/httpd"
+Listen 80
+Include conf.modules.d/*.conf
+User apache
+Group apache
+ServerAdmin root@localhost
+<Directory />
+    AllowOverride none
+    Require all denied
+</Directory>
+DocumentRoot "/www"
+<Directory "/var/www">
+    AllowOverride None
+    Require all granted
+</Directory>
+<Directory "/var/www/html">
+    Options Indexes FollowSymLinks
+    AllowOverride None
+    Require all granted
+</Directory>
+<IfModule dir_module>
+    DirectoryIndex index.html
+</IfModule>
+<Files ".ht*">
+    Require all denied
+</Files>
+ErrorLog "logs/error_log"
+LogLevel warn
+<IfModule log_config_module>
+    LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\"" combined
+    LogFormat "%h %l %u %t \"%r\" %>s %b" common
+    <IfModule logio_module>
+      LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\" %I %O" combinedio
+    </IfModule>
+    CustomLog "logs/access_log" combined
+</IfModule>
+<IfModule alias_module>
+    ScriptAlias /cgi-bin/ "/var/www/cgi-bin/"
+</IfModule>
+<Directory "/var/www/cgi-bin">
+    AllowOverride None
+    Options None
+    Require all granted
+</Directory>
+<IfModule mime_module>
+    TypesConfig /etc/mime.types
+    AddType application/x-compress .Z
+    AddType application/x-gzip .gz .tgz
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml
+</IfModule>
+AddDefaultCharset UTF-8
+<IfModule mime_magic_module>
+    MIMEMagicFile conf/magic
+</IfModule>
+EnableSendfile on
+IncludeOptional conf.d/*.conf
+catohttpd.confc|hgrep/-Evf'^$|^#|.*#.*'c|nsed '/^DocumentRoot/s#/var/www/html#/www#'greporoot/var/www/html#/www#'
+[root@main /etc/httpd/conf]# grep root /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+[root@main /etc/httpd/conf]# exit
+exit
+
+Script done on 2026-09-02 19:15:29+09:00 [COMMAND_EXIT_CODE="0"]
