@@ -1,0 +1,247 @@
+Script started on 2026-09-02 19:15:33+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="176" LINES="49"]
+[root@main ~]# [root@main ~]# grep root /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+[root@main ~]# s
+[root@main ~]# sh
+[root@main ~]#
+[root@main ~]# ps
+    PID TTY          TIME CMD
+  13840 pts/4    00:00:00 bash
+  13867 pts/4    00:00:00 sh
+  13868 pts/4    00:00:00 ps
+[root@main ~]# date
+Wed Sep  2 07:16:22 PM KST 2026
+[root@main ~]#
+[root@main ~]# ls
+바탕화면  anaconda-ks.cfg  bin  Desktop  Documents  Downloads  LinuxLog  Music  Pictures  Public  shell  Templates  Videos  vscode
+[root@main ~]# exit
+exit
+[root@main ~]#
+[root@main ~]# ps
+    PID TTY          TIME CMD
+  13840 pts/4    00:00:00 bash
+  13874 pts/4    00:00:00 ps
+vio/usr/local/bin/cmdlog.shl/bin/cmdlog.sh
+#!/bin/bash# 기본 경로 및 시스템 정보 추출BASE_DIR="/root/LinuxLog"
+HOST_NAME=$(hostname -s)
+IP_ADDR=$(hostname -I | awk '{print $1}')
+HOST_DIR="$BASE_DIR/${IP_ADDR}:${HOST_NAME}"
+
+# 날짜 및 시간 변수 설정
+TODAY_DATE=$(date +%Y-%m-%d)
+DATE_DIR="$HOST_DIR/$TODAY_DATE"
+CURRENT_HOUR=$(date +%Y%m%d_%H)
+LOG_FILE="$DATE_DIR/cmdlog_${CURRENT_HOUR}.txt"
+NOW_EXACT=$(date +"%Y-%m-%d %H")
+
+# 1. 과거 파일 삭제
+find "$HOST_DIR" -type f -name "cmdlog_*.txt" ! -newermt "$NOW_EXACT" -exec rm -f {} + 2>/dev/null
+
+# 2. 빈 과거 날짜 폴더 삭제
+find "$HOST_DIR" -type d -empty -delete 2>/dev/null
+
+# 3. 당일 폴더 생성
+if [ ! -d "$DATE_DIR" ]; then
+    mkdir -p "$DATE_DIR"
+fi
+
+# 로그 기록 시작
+echo "로그 저장 위치: $LOG_FILE"
+echo "기록을 마치려면 'exit'를 입력하십시오."
+
+# 터미널 세션 누적 기록
+script -a -q "$LOG_FILE"
+
+# 특수문자 및 색상 코드 필터링
+sed -i -r 's/\x1B\[[0-9;?]*[a-zA-Z]//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x07]*\x07//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x1B]*\x1B\\//g' "$LOG_FILE"
+
+# 백스페이스 처리
+col -bx < "$LOG_FILE" > "${LOG_FILE}.tmp"
+mv "${LOG_FILE}.tmp" "$LOG_FILE"
+
+# Git 동기화 및 업로드
+echo "Git 업로드를 진행합니다."
+cd "$BASE_DIR" || exit
+
+git add "$LOG_FILE"
+>4;m>4;m[root@main:~]#dcat//usr/local/bin/cmdlog.sh}:${HOST_NAME})"1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+#!/bin/bash
+
+# 기본 경로 및 시스템 정보 추출
+BASE_DIR="/root/LinuxLog"
+HOST_NAME=$(hostname -s)
+IP_ADDR=$(hostname -I | awk '{print $1}')
+HOST_DIR="$BASE_DIR/${IP_ADDR}:${HOST_NAME}"
+
+# 날짜 및 시간 변수 설정
+TODAY_DATE=$(date +%Y-%m-%d)
+DATE_DIR="$HOST_DIR/$TODAY_DATE"
+CURRENT_HOUR=$(date +%Y%m%d_%H)
+LOG_FILE="$DATE_DIR/cmdlog_${CURRENT_HOUR}.txt"
+NOW_EXACT=$(date +"%Y-%m-%d %H")
+
+# 1. 과거 파일 삭제
+find "$HOST_DIR" -type f -name "cmdlog_*.txt" ! -newermt "$NOW_EXACT" -exec rm -f {} + 2>/dev/null
+
+# 2. 빈 과거 날짜 폴더 삭제
+find "$HOST_DIR" -type d -empty -delete 2>/dev/null
+
+# 3. 당일 폴더 생성
+if [ ! -d "$DATE_DIR" ]; then
+    mkdir -p "$DATE_DIR"
+fi
+
+# 로그 기록 시작
+echo "로그 저장 위치: $LOG_FILE"
+echo "기록을 마치려면 'exit'를 입력하십시오."
+
+# 터미널 세션 누적 기록
+script -a -q "$LOG_FILE"
+
+# 특수문자 및 색상 코드 필터링
+sed -i -r 's/\x1B\[[0-9;?]*[a-zA-Z]//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x07]*\x07//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x1B]*\x1B\\//g' "$LOG_FILE"
+
+# 백스페이스 처리
+col -bx < "$LOG_FILE" > "${LOG_FILE}.tmp"
+mv "${LOG_FILE}.tmp" "$LOG_FILE"
+
+# Git 동기화 및 업로드
+echo "Git 업로드를 진행합니다."
+cd "$BASE_DIR" || exit
+
+git add "$LOG_FILE"
+git commit -m "add: cmdlog $CURRENT_HOUR (${IP_ADDR}:${HOST_NAME})"
+
+# 충돌 방지 및 자동 임시 저장
+git pull --rebase --autostash origin main
+git push origin main
+
+echo "Git 처리가 완료되었습니다."
+vioot@main ~]# cat /usr/local/bin/cmdlog.sh
+#!/bin/bash# 기본 경로 및 시스템 정보 추출BASE_DIR="/root/LinuxLog"
+HOST_NAME=$(hostname -s)
+IP_ADDR=$(hostname -I | awk '{print $1}')
+HOST_DIR="$BASE_DIR/${IP_ADDR}:${HOST_NAME}"
+
+# 날짜 및 시간 변수 설정
+TODAY_DATE=$(date +%Y-%m-%d)
+DATE_DIR="$HOST_DIR/$TODAY_DATE"
+CURRENT_HOUR=$(date +%Y%m%d_%H)
+LOG_FILE="$DATE_DIR/cmdlog_${CURRENT_HOUR}.txt"
+NOW_EXACT=$(date +"%Y-%m-%d %H")
+
+# 1. 과거 파일 삭제
+find "$HOST_DIR" -type f -name "cmdlog_*.txt" ! -newermt "$NOW_EXACT" -exec rm -f {} + 2>/dev/null
+
+# 2. 빈 과거 날짜 폴더 삭제
+find "$HOST_DIR" -type d -empty -delete 2>/dev/null
+
+# 3. 당일 폴더 생성
+if [ ! -d "$DATE_DIR" ]; then
+    mkdir -p "$DATE_DIR"
+fi
+
+# 로그 기록 시작
+echo "로그 저장 위치: $LOG_FILE"
+echo "기록을 마치려면 'exit'를 입력하십시오."
+
+# 터미널 세션 누적 기록
+script -a -q "$LOG_FILE"
+
+# 특수문자 및 색상 코드 필터링
+sed -i -r 's/\x1B\[[0-9;?]*[a-zA-Z]//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x07]*\x07//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x1B]*\x1B\\//g' "$LOG_FILE"
+
+# 백스페이스 처리
+col -bx < "$LOG_FILE" > "${LOG_FILE}.tmp"
+mv "${LOG_FILE}.tmp" "$LOG_FILE"
+
+# Git 동기화 및 업로드
+echo "Git 업로드를 진행합니다."
+cd "$BASE_DIR" || exit
+
+git add "$LOG_FILE"
+git commit -m "add: cmdlog $CURRENT_HOUR (${IP_ADDR}:${HOST_NAME})"1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  gd  dG  ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               ~                                                                                                                                                                               --No lines in buffer--0,0-1All-- INSERT --0,1All#!/bin/bash# 기본 경로 및 시스템 정보 추출BASE_DIR="/root/LinuxLog"
+HOST_NAME=$(hostname -s)IP_ADDR=$(hostname -I | awk '{print $1}')
+HOST_DIR="$BASE_DIR/${IP_ADDR}:${HOST_NAME}"# 날짜 및 시간 변수 설정 (분 단위 포함)TODAY_DATE=$(date +%Y-%m-%d)
+DATE_DIR="$HOST_DIR/$TODAY_DATE"CURRENT_TIME=$(date +%Y%m%d_%H%M)
+LOG_FILE="$DATE_DIR/cmdlog_${CURRENT_TIME}.txt"
+NOW_EXACT=$(date +"%Y-%m-%d %H")# 1. 과거 파일 삭제 (시 단위 정각 기준 유지)
+find "$HOST_DIR" -type f -name "cmdlog_*.txt" ! -newermt "$NOW_EXACT" -exec rm -f {} + 2>/dev/null# 2. 빈 과거 날짜 폴더 삭제find "$HOST_DIR" -type d -empty -delete 2>/dev/null# 3. 당일 폴더 생성
+if [ ! -d "$DATE_DIR" ]; then    mkdir -p "$DATE_DIR"
+fi# 로그 기록 시작echo "로그 저장 위치: $LOG_FILE"
+echo "기록을 마치려면 'exit'를 입력하십시오."# 터미널 세션 기록 (분 단위 개별 파일 생성)
+script -q "$LOG_FILE"# 특수문자 및 색상 코드 필터링
+sed -i -r 's/\x1B\[[0-9;?]*[a-zA-Z]//g' "$LOG_FILE"sed -i -r 's/\x1B\][0-9]*;[^\x07]*\x07//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x1B]*\x1B\\//g' "$LOG_FILE"# 백스페이스 처리
+col -bx < "$LOG_FILE" > "${LOG_FILE}.tmp"mv "${LOG_FILE}.tmp" "$LOG_FILE"# Git 동기화 및 업로드echo "Git 업로드를 진행합니다."
+cd "$BASE_DIR" || exitgit add "$LOG_FILE"
+gi# 충
+git pull --rebase --autostash origin main(paste) --git push origin main
+
+>4;m"/usr/local/bin/cmdlog.sh" 54L,,1611B writtent^[  ^[  ::wq
+1@catroot@main ~]# vi /usr/local/bin/cmdlog.sh
+#!/bin/bash
+
+# 기본 경로 및 시스템 정보 추출
+BASE_DIR="/root/LinuxLog"
+HOST_NAME=$(hostname -s)
+IP_ADDR=$(hostname -I | awk '{print $1}')
+HOST_DIR="$BASE_DIR/${IP_ADDR}:${HOST_NAME}"
+
+# 날짜 및 시간 변수 설정 (분 단위 포함)
+TODAY_DATE=$(date +%Y-%m-%d)
+DATE_DIR="$HOST_DIR/$TODAY_DATE"
+CURRENT_TIME=$(date +%Y%m%d_%H%M)
+LOG_FILE="$DATE_DIR/cmdlog_${CURRENT_TIME}.txt"
+NOW_EXACT=$(date +"%Y-%m-%d %H")
+
+# 1. 과거 파일 삭제 (시 단위 정각 기준 유지)
+find "$HOST_DIR" -type f -name "cmdlog_*.txt" ! -newermt "$NOW_EXACT" -exec rm -f {} + 2>/dev/null
+
+# 2. 빈 과거 날짜 폴더 삭제
+find "$HOST_DIR" -type d -empty -delete 2>/dev/null
+
+# 3. 당일 폴더 생성
+if [ ! -d "$DATE_DIR" ]; then
+    mkdir -p "$DATE_DIR"
+fi
+
+# 로그 기록 시작
+echo "로그 저장 위치: $LOG_FILE"
+echo "기록을 마치려면 'exit'를 입력하십시오."
+
+# 터미널 세션 기록 (분 단위 개별 파일 생성)
+script -q "$LOG_FILE"
+
+# 특수문자 및 색상 코드 필터링
+sed -i -r 's/\x1B\[[0-9;?]*[a-zA-Z]//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x07]*\x07//g' "$LOG_FILE"
+sed -i -r 's/\x1B\][0-9]*;[^\x1B]*\x1B\\//g' "$LOG_FILE"
+
+# 백스페이스 처리
+col -bx < "$LOG_FILE" > "${LOG_FILE}.tmp"
+mv "${LOG_FILE}.tmp" "$LOG_FILE"
+
+# Git 동기화 및 업로드
+echo "Git 업로드를 진행합니다."
+cd "$BASE_DIR" || exit
+
+git add "$LOG_FILE"
+git commit -m "add: cmdlog $CURRENT_TIME (${IP_ADDR}:${HOST_NAME})"
+
+# 충돌 방지 및 자동 임시 저장
+git pull --rebase --autostash origin main
+git push origin main
+
+echo "Git 처리가 완료되었습니다."
+[root@main ~]# exit
+exit
+
+Script done on 2026-09-02 19:19:11+09:00 [COMMAND_EXIT_CODE="0"]
