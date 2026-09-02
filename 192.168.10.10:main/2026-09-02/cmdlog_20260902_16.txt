@@ -8,3 +8,84 @@ Script started on 2026-09-02 16:32:30+09:00 [TERM="xterm-256color" TTY="/dev/pts
 exit
 
 Script done on 2026-09-02 16:32:34+09:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-02 16:54:41+09:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="117" LINES="11"]
+[root@main ~/shell]# cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+[root@main ~/shell]#
+[root@main ~/shell]# chsh -l
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+[root@main ~/shell]# ps
+    PID TTY          TIME CMD
+   9953 pts/3    00:00:00 bash
+  10039 pts/3    00:00:00 ps
+[root@main ~/shell]# grep root /etc/passwd
+root:x:0:0:Super User:/root:/bin/bash
+operator:x:11:0:operator:/root:/usr/sbin/nologin
+clear
+sh
+[root@main ~/shell]# ps
+    PID TTY          TIME CMD
+   9953 pts/3    00:00:00 bash
+  10172 pts/3    00:00:00 sh
+  10173 pts/3    00:00:00 ps
+[root@main ~/shell]#
+[root@main ~/shell]#
+[root@main ~/shell]# ls -l
+total 4
+-rw-r--r-- 1 root root 12 Sep  2 16:53 test.sh
+[root@main ~/shell]# ls -l /bin/sh
+lrwxrwxrwx. 1 root root 4 Oct 29  2024 /bin/sh -> bash
+[root@main ~/shell]# ls -usr/bin/sh
+lrwxrwxrwx. 1 root root 4 Oct 29  2024 /usr/bin/sh -> bash
+[root@main ~/shell]# dnf install -y dash
+Last metadata expiration check: 1:06:50 ago on Wed 02 Sep 2026 03:50:51 PM KST.
+Dependencies resolved.
+=====================================================================================================================
+ Package                Architecture             Version                                Repository              Size
+=====================================================================================================================
+Installing:
+ dash                  B x86_64                   0.5.11.5-4.el10_1                      epel                    98 k
+
+Transaction Summary
+=====================================================================================================================
+Install  1 Package
+
+Total download size: 98 k
+Installed size: 171 k
+Downloading Packages:
+dash-0.5.11.5-4.el10_1.x86_64.rpm        0% [======                                ] 367 kB/s |  98 kB     00:00 ETA
+---------------------------------------------------------------------------------------------------------------------
+Total                                                                                 76 kB/s |  98 kB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                             1/1
+  Installing       : dash-0.5.11.5-4.el10_1.x86_64 [========================================================== ] 1/1
+  Running scriptlet: dash-0.5.11.5-4.el10_1.x86_64                                                               1/1
+
+Installed:
+  dash-0.5.11.5-4.el10_1.x86_64
+
+Complete!
+[root@main ~/shell]# ls -l /usrs,sh}/sh}ash/sh}h}
+ls: cannot access '/usr/bin/bass': No such file or directory
+-rwxr-xr-x  1 root root 128960 May  1  2023 /usr/bin/dash
+lrwxrwxrwx. 1 root root      4 Oct 29  2024 /usr/bin/sh -> bash
+[root@main ~/shell]# ls -l /usr/bash,dash,sh}}sh}}
+-rwxr-xr-x. 1 root root 1410656 Oct 29  2024 /usr/bin/bash
+-rwxr-xr-x  1 root root  128960 May  1  2023 /usr/bin/dash
+lrwxrwxrwx. 1 root root       4 Oct 29  2024 /usr/bin/sh -> bash
+[root@main ~/shell]# chsh -l
+/bin/sh
+/bin/bash
+/usr/bin/sh
+/usr/bin/bash
+/bin/dash
