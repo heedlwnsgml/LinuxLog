@@ -1,0 +1,903 @@
+Script started on 2026-09-03 17:08:32+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="172" LINES="51"]
+here.sh
+#!/bin/bash
+
+while true
+do
+    # here 문서를 이용한 메뉴 화면 출력
+    cat << EOF
+====================
+   SYSTEM MENU
+====================
+1. 현재 날짜와 시간 확인
+2. 디스크 사용량 확인
+3. 프로그램 종료
+====================
+EOF
+
+    read -p "선택하세요 [1-3]: " choice
+
+    # case 구문을 이용한 조건 분기
+    case "$choice" in
+        1)
+            echo "[실행] 현재 시간:"
+            date
+            ;;
+        2)
+            echo "[실행] 디스크 사용량:"
+            df -h
+            ;;
+        3)
+            echo "프로그램을 종료한다."
+            exit 0
+            ;;
+        *)
+            echo "[오류] 1에서 3 사이의 숫자를 입력해야 한다."
+            ;;
+    esac
+    echo ""
+done
+[root@main ~/shell]# here.sh
+====================
+   SYSTEM MENU
+====================
+1. 현재 날짜와 시간 확인
+2. 디스크 사용량 확인
+3. 프로그램 종료
+====================
+선택하세요 [1-3]: 1
+[실행] 현재 시간:
+Thu Sep  3 05:08:51 PM KST 2026
+
+====================
+   SYSTEM MENU
+====================
+1. 현재 날짜와 시간 확인
+2. 디스크 사용량 확인
+3. 프로그램 종료
+====================
+선택하세요 [1-3]: 2
+[실행] 디스크 사용량:
+Filesystem           Size  Used Avail Use% Mounted on
+/dev/mapper/cs-root   35G  7.0G   28G  21% /
+devtmpfs             3.8G     0  3.8G   0% /dev
+tmpfs                3.8G   84K  3.8G   1% /dev/shm
+efivarfs             256K   76K  176K  31% /sys/firmware/efi/efivars
+tmpfs                1.5G  9.7M  1.5G   1% /run
+tmpfs                1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+/dev/nvme0n1p2       2.0G  400M  1.6G  21% /boot
+/dev/mapper/cs-home   17G  369M   17G   3% /home
+/dev/nvme0n1p1       599M  8.9M  590M   2% /boot/efi
+tmpfs                765M  120K  765M   1% /run/user/0
+/dev/sr0             9.7G  9.7G     0 100% /run/media/root/CentOS-Stream-10-BaseOS-x86_64
+
+====================
+   SYSTEM MENU
+====================
+1. 현재 날짜와 시간 확인
+2. 디스크 사용량 확인
+3. 프로그램 종료
+====================
+선택하세요 [1-3]: 1
+[실행] 현재 시간:
+Thu Sep  3 05:08:52 PM KST 2026
+
+====================
+   SYSTEM MENU
+====================
+1. 현재 날짜와 시간 확인
+2. 디스크 사용량 확인
+3. 프로그램 종료
+====================
+선택하세요 [1-3]: 3
+프로그램을 종료한다.
+[root@main ~/shell]# c
+[root@main ~/shell]# vi for.sh
+>4;m"for.sh" [New] 6L, 76B written                                                                                                                                          ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  #E348: No string under cursor0,0-1All!i^[  ^[    i -- INSERT --0,1All#1,2132!3i4n543/4b5i6n7/8b9a10h10s1h22,1 3f2o3r45h6o7s8t910i1n23m4a5n65i6n78s9e20r1v2e3r4156s7e8r9v30e1r2234,1 d2o35,12-91  212-9s3-10s4-11h5-126-13"7-14$8-15h9-16o10-17s1-18t2-19"3-204-21h5-22o6-23s7-24t8-25m9-268-25n9-26a20-27m1-28e2-296,1    7~                                                                                                                                                                           6d2o3n4e55,1^[  5,1-8All::wq
+>4;mchmod 755 for.sh
+r.sh
+ssh: connect to host main port 22: Connection refused
+server1.example.com
+server2.example.com
+cat for.shj
+cat: for.shj: No such file or directory
+[root@main ~/shell]# cat for.shj
+#!/bin/bash
+
+for host in main server1 server2
+do
+        ssh "$host" hostname
+done
+[root@main ~/shell]# cat /etc/hosts
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+[root@main ~/shell]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:1d:75:8f brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c291d758f
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe1d:758f/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens224: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:1d:75:99 brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+    altname enx000c291d7599
+    inet 172.16.6.206/24 brd 172.16.6.255 scope global noprefixroute ens224
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4f:8c:3210:a4e6/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+[root@main ~/shelvi#for.shmods755ts
+#!/bin/bashfor host in main server1 server2dossh "$host" hostname
+done
+>4;m"for.sh" 6L, 74B written                                                                                                                                                ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   2~@k   4~@k   ~@k   ~@k   ~@k   5,1-8~@k   2-9~@k   3-10~@k   4-11~@k   5-12~@k   6-13~@k   7-14~@k   8-15i -- INSERT --5,8-15All9-168-157-1$host" hostname6-137-148-159-1610-171-182-19hostname1-18^[  5,10-17All::wq
+>4;m.sh
+ssh: connect to host main port 22: Connection refused
+server1.example.com
+server2.example.com
+[root@main ~/shell]# vitfor.shhosts
+#!/bin/bashfor host in main server1 server2dossh $host hostname
+done
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  gd  dG  ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           --No lines in buffer--0,0-1All-- INSERT --0,1All#!/bin/bashfor host in main server1 server2do    ssh $host hostname
+>4;m"for.sh" 6L, 77Bwwritten
+>4;m[root@main ~/shell]# for.sh.sh
+ssh: connect to host main port 22: Connection refused
+server1.example.com
+server2.example.com
+t-all
+Waiting on dbus connection...
+^CError:
+[root@main ~/shell]# systemctl restart httpd
+for.shll-cmd/--list-allstemctl restart httpd
+ssh: connect to host main port 22: Connection refused
+server1.example.com
+server2.example.com
+systemctlcrestartshttpdstemctl restart httpd
+Failed to restart http.service: Unit http.service not found.
+[root@main ~/shell]# c
+[root@main ~/shell]# for.shctl restart http
+ssh: connect to host main port 22: Connection refused
+server1.example.com
+server2.example.com
+[root@main ~/shell]# echo $-
+himBHs
+[root@main ~/shell]# systemctl status sshd
+○ sshd.service - OpenSSH server daemon
+     Loaded: loaded (/usr/lib/systemd/system/sshd.service; 0;1;38:5:185mdisabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+[root@main ~/shell]# systemctl start sshd
+[root@main ~/shell]# systemctl enable sshd
+Created symlink '/etc/systemd/system/multi-user.target.wants/sshd.service' → '/usr/lib/systemd/system/sshd.service'.
+[root@main ~/shell]# for.sh
+main.example.com
+server1.example.com
+server2.example.com
+[root@main ~/shell]# c
+[root@main ~/shell]# echo $-
+himBHs
+[root@main ~/shell]# echo ${-}
+himBHs
+[root@main ~/shell]# VAR='abc123'
+[root@main ~/shell]# VAR
+bash: VAR: command not found...
+[root@main ~/shell]# echo $VAR
+abc123
+[root@main ~/shell{#c*}"AR$VAR
+{abc123#c*}
+echo "${VAR#c*}"
+abc123
+[root@main ~/shell]# echo "${VAR#*c}"
+123
+[root@main ~/shell]# echo "${VAR#a*c}"
+123
+[root@main ~/shell]# echo "${VAR%c*}"
+ab
+dnfoinstall~-yhvsftpddftpinstall -y vsftpd ftp
+Last metadata expiration check: 2:04:10 ago on Thu 03 Sep 2026 03:18:24 PM KST.
+Package vsftpd-3.0.5-13.el10.x86_64 is already installed.
+Package ftp-0.17-97.el10.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@main ~/shell]# vi denyuser.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045-- INSERT --0,1All#!/bin/bashfor NAME in `cat /etc/vsftpd/ftpusers | egrep -v '^$|^#'`
+>4;m"denyuser.sh"Y[New]A6L,d105B,written ^[  ::wq
+>4;m[root@main ~/shell]# bbb
+[root@main ~/shell]# denyuser.sh
+egrep: warning: egrep is obsolescent; using grep -E
+[ DENY ] bin
+[ DENY ] daemon
+[ DENY ] adm
+[ DENY ] lp
+[ DENY ] sync
+[ DENY ] shutdown
+[ DENY ] halt
+[ DENY ] mail
+[ DENY ] news
+[ DENY ] uucp
+[ DENY ] operator
+[ DENY ] games
+[ DENY ] nobody
+[dnftinstall/-yevsftpddftpinstall -y vsftpd ftp
+Last metadata expiration check: 2:18:59 ago on Thu 03 Sep 2026 03:18:24 PM KST.
+Package vsftpd-3.0.5-13.el10.x86_64 is already installed.
+Package ftp-0.17-97.el10.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+tpusers
+# Users that are not allowed to login via ftp
+#root
+bin
+daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+news
+uucp
+operator
+games
+nobody
+[root@main ~/shell]# cat denyuser.sh
+#!/bin/bash
+
+for NAME in `cat /etc/vsftpd/ftpusers | egrep -v '^$|^#'`
+do
+    echo "[ DENY ] $NAME"
+done
+catt/etc/vsftpd/ate.sh
+ftpusers                user_list               vsftpd.conf             vsftpd_conf_migrate.sh
+[root@main ~/shell]# cat /etc/vsftpd/user_list
+# vsftpd userlist
+# If userlist_deny=NO, only allow users in this file
+# If userlist_deny=YES (default), never allow users in this file, and
+# do not even prompt for a password.
+# Note that the default vsftpd pam config also checks /etc/vsftpd/ftpusers
+# for users that are denied.
+root
+bin
+daemon
+adm
+lp
+sync
+shutdown
+halt
+mail
+news
+uucp
+operator
+games
+nobody
+[root@main ~/shell]# c
+[root@main ~/shell]# denyuser.sh
+egrep: warning: egrep is obsolescent; using grep -E
+[ DENY ] bin
+[ DENY ] daemon
+[ DENY ] adm
+[ DENY ] lp
+[ DENY ] sync
+[ DENY ] shutdown
+[ DENY ] halt
+[ DENY ] mail
+[ DENY ] news
+[ DENY ] uucp
+[ DENY ] operator
+[ DENY ] games
+[ DENY ] nobody
+echo "bin daemon;adm#lp sync" > test_source.txt
+rce.txt)
+> do
+> echo "$NAME"
+> done
+bin
+daemon;adm#lp
+sync
+1@1@
+foroNAMEiin~$(catl./test_source.txt); domechos"$NAME";edoneource.txt
+bin
+daemon
+adm
+lp
+sync
+vihcount.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1All#!/bin/bashseconds=3echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."while [ $seconds -gt 0 ]; do    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))    sleep 1
+>4;m"count.sh"F[New] 12L, 254B.written 는다!"12,51-41      All^[  ^[  ::wq
+>4;m[root@main ~/shell]# bbb
+[root@main ~/shell]# count.sh
+[ INFO ] 라면 물을 올린다. 잠시 대기한다.
+남은 시간: 3초
+남은 시간: 2초
+남은 시간: 1초
+[ INFO ] 물이 끓는다. 면을 넣는다!
+[root@main ~/shell]# catccount.sh
+#!/bin/bash
+
+seconds=3
+echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."
+
+while [ $seconds -gt 0 ]; do
+    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))
+    sleep 1
+done
+
+echo "[ INFO ] 물이 끓는다. 면을 넣는다!"
+[root@main ~/shell]# vi count.sh
+#!/bin/bashseconds=3echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."
+
+while [ $seconds -gt 0 ]; do
+    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))
+    sleep 1
+done
+
+echo "[ INFO ] 물이 끓는다. 면을 넣는다!"
+>4;m"count.sh" 12L, 255B written                                                                                                                                            ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,0-1~@k   6,1  ~@k   7~@k   6i -- INSERT --6,1Allhile [ $seconds -gt 0 ]; doile [ $seconds -gt 0 ]; dole [ $seconds -gt 0 ]; doe [ $seconds -gt 0 ]; do [ $seconds -gt 0 ]; dou [ $seconds -gt 0 ]; do2n [ $seconds -gt 0 ]; do3t [ $seconds -gt 0 ]; do4i [ $seconds -gt 0 ]; do5l [ $seconds -gt 0 ]; do6[ $seconds -gt 0 ]; do5[ $seconds -gt 0 ]; do4[ $seconds -gt 0 ]; do3i [ $seconds -gt 0 ]; do4t [ $seconds -gt 0 ]; do5i [ $seconds -gt 0 ]; do6l [ $seconds -gt 0 ]; do7^[  6,6All::wq
+>4;m[root@main ~/shell]# 1@catunt.sh
+[ INFO ] 라면 물을 올린다. 잠시 대기한다.
+/root/shell/count.sh: line 6: syntax error near unexpected token `do'
+/root/shell/count.sh: line 6: `unitil [ $seconds -gt 0 ]; do'
+[root@main ~/shell]# 3@vit.sh
+#!/bin/bashseconds=3echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."
+
+unitil [ $seconds -gt 0 ]; do
+    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))
+    sleep 1
+done
+
+echo "[ INFO ] 물이 끓는다. 면을 넣는다!"
+>4;m"count.sh" 12L, 254B written                                                                                                                                            ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,0-1~@k   6,1  ~@k   2~@k   3i -- INSERT --6,3Alltil [ $seconds -gt 0 ]; do3^[  6,2All::wq
+>4;m[root@main ~/shell]# vi count.sh
+[ INFO ] 라면 물을 올린다. 잠시 대기한다.
+[ INFO ] 물이 끓는다. 면을 넣는다!
+1@cat3@vin ~/shell]# 3@vit.sh
+#!/bin/bash
+
+seconds=3
+echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."
+
+until [ $seconds -gt 0 ]; do
+    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))
+    sleep 1
+done
+
+echo "[ INFO ] 물이 끓는다. 면을 넣는다!"
+[root@main ~/3@vil]# cat count.sh
+#!/bin/bashseconds=3echo "[ INFO ] 라면 물을 올린다. 잠시 대기한다."
+
+until [ $seconds -gt 0 ]; do
+    echo "남은 시간: ${seconds}초"
+    seconds=$((seconds - 1))
+    sleep 1
+done
+
+echo "[ INFO ] 물이 끓는다. 면을 넣는다!"
+>4;m"count.sh" 12L, 254B written                                                                                                                                            ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,0-1~@k   6,1  ~@k   dl  ntil [ $seconds -gt 0 ]; do~@k   dl  til [ $seconds -gt 0 ]; do~@k   dl  il [ $seconds -gt 0 ]; do~@k   dl  l [ $seconds -gt 0 ]; do~@k   dl   [ $seconds -gt 0 ]; dow 2h 1i -- INSERT --6,1Alll [ $seconds -gt 0 ]; do2e [ $seconds -gt 0 ]; do3[ $seconds -gt 0 ]; do2[ $seconds -gt 0 ]; do1w [ $seconds -gt 0 ]; do2h [ $seconds -gt 0 ]; do3l [ $seconds -gt 0 ]; do4i [ $seconds -gt 0 ]; do5e [ $seconds -gt 0 ]; do6^[  6,5All::wq
+>4;m[root@main ~/shell]# c
+visshift.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1All#!/bin/bashwhile [ $# -gt 0 ] do    echo "$# : $*"    shift
+>4;m"shift.sh"^[New]w7L, 71B written
+>4;m[root@main ~/shell]# bbb
+ift.sh 1 2 3 4 5
+5 : 1 2 3 4 5
+4 : 2 3 4 5
+3 : 3 4 5
+2 : 4 5
+1 : 5
+[root@main ~/shell]# shift.sh 1 2 3 4 5 6 7 8 9
+9 : 1 2 3 4 5 6 7 8 9
+8 : 2 3 4 5 6 7 8 9
+7 : 3 4 5 6 7 8 9
+6 : 4 5 6 7 8 9
+5 : 5 6 7 8 9
+4 : 6 7 8 9
+3 : 7 8 9
+2 : 8 9
+1 : 9
+[root@main ~/shell]# cat shift.sh
+#!/bin/bash
+
+while [ $# -gt 0 ]
+do
+    echo "$# : $*"
+    shift
+done
+[root@main ~/shell]# vi shift.sh
+#!/bin/bashwhile [ $# -gt 0 ] do
+    echo "$# : $*"
+    shift
+done
+>4;m>4;m[root@main ~/shell]# sed -i 's/-gt/-ge/pg' shift.sh                                                                                                                 ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4^[  ^[  ::q
+ift.sh
+#!/bin/bash
+
+while [ $# -ge 0 ]
+while [ $# -ge 0 ]
+do
+    echo "$# : $*"
+    shift
+done
+[root@main ~/shell]# vvi shift.sh
+bash: vvi: command not found...
+Similar command is: 'vi'
+[root@main ~/shell]# vvi shift.sh
+#!/bin/bashwhile [ $# -ge 0 ] while [ $# -ge 0 ]
+do
+    echo "$# : $*"
+    shift
+done
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12;4        +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045~@k   2,0-1~@k   3,1  dd
+>4;m"shift.sh" 7L, 71B written                                                                                                                                              3,1All^[  ^[  ::wq
+>4;m[root@main ~/shell]# vi shift.sh
+#!/bin/bashwhile [ $# -ge 0 ] do
+    echo "$# : $*"
+    shift
+done
+>4;m"shift.sh" 7L, 71B written                                                                                                                                              ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   4~@k   5i -- INSERT --3,15All0 ] 4t 0 ]5^[  3,14All::wq
+>4hift.sh a b c d eff
+6 : a b c d e f
+5 : b c d e f
+4 : c d e f
+3 : d e f
+2 : e f
+1 : f
+[root@main ~/shell]# cat shift.sh
+#!/bin/bash
+
+while [ $# -gt 0 ]
+do
+    echo "$# : $*"
+    shift
+done
+[root@main ~/shell]# viishift.shb c d e f
+#!/bin/bashwhile [ $# -gt 0 ] do
+    echo "$# : $*"
+    shift
+done
+>4;m"shift.sh" 7L, 73B written                                                                                                                                              ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@@   0i -- INSERT --6,10All122^[  6,11All::wq
+>4;m[root@main ~/ciishift.shbtcfd.ehf
+[root@main ~/shell]# cat shift.sh
+#!/bin/bash
+
+while [ $# -gt 0 ]
+do
+    echo "$# : $*"
+    shift 2
+done
+ift.sh  1 2 3 4 5 6 7 8 9 10
+10 : 1 2 3 4 5 6 7 8 9 10
+8 : 3 4 5 6 7 8 9 10
+6 : 5 6 7 8 9 10
+4 : 7 8 9 10
+2 : 9 10
+[root@main ~/shell]# c
+[root@main ~/shell]# vi continue_test.sh
+
+while [조건1]
+do
+    statement1
+    while [조건2]
+    do
+        statement2
+        while [조건3]
+        do
+            statement3
+            [조건4] && continue N              /* N is number (EX: 1, 2, 3) */
+            statement4
+        done
+    done
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vi continue_test.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1Allwhile [조건1]
+do    statement1    while [조건2]    do
+        statement2        while [조건3]        do            statement3
+            [조건4] && continue N              /* N is number (EX: 1, 2, 3) */
+>4;m"continue_test.sh" [New] 14L,e269Bdwritten14,4All^[  ^[  ::wq
+>4;m[root@main ~/shell]# vi break_test.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1Allwhile [조건1]3번
+do    statement1    while [조건2]2번
+    do        statement2        while [조건3]1번
+        do            statement3            [조건4] && break N/* N is number (EX: 1, 2, 3) */
+    statement4
+>4;m"break_test.sh"e[New]414L,l300B^written
+>4;m[root@main ~/shell]# bbb
+[r1@c1@a1@t~/sbreaki 3@continue.sh
+while [조건1]                                                           3번
+do
+    statement1
+    while [조건2]                                                       2번
+    do
+        statement2
+        while [조건3]                                           1번
+        do
+            statement3
+            [조건4] && break N              /* N is number (EX: 1, 2, 3) */
+            statement4
+        done
+    done
+done
+1@1@c1@a1@t~/shell]# 3@continueest.shh
+while [조건1]
+do
+    statement1
+    while [조건2]
+    do
+        statement2
+        while [조건3]
+        do
+            statement3
+            [조건4] && continue N              /* N is number (EX: 1, 2, 3) */
+            statement4
+        done
+    done
+done
+c
+[root@main ~/shell]# vi cont_break.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1All#!/bin/bashwhile truedo    echo "=============================="
+    echo " [오늘의 카페 메뉴판]"    echo " 1. 아메리카노"
+    echo " 2. 카페라테"    echo " 3. 바닐라라테 (품절)"
+    echo " 4. 주문 종료"    echo "=============================="
+    echo -n "원하는 메뉴 번호를 입력한다: "
+    read menu    # 아무것도 입력하지 않은 경우
+    if [ -z "$menu" ]; then        echo "[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다."
+        echo ""        continue    fi    # 주문 종료 (4번)
+    if [ "$menu" = "4" ]; then        echo "[ INFO ] 주문을 종료한다. 맛있게 드세요!"
+        break
+    fi    # 품절된 메뉴 번호를 고른 경우 (3번)
+    if [ "$menu" = "3" ]; then        echo "[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다."
+        echo ""        continue    fi    # 1, 2번 외의 잘못된 번호를 고른 경우
+    if [ "$menu" != "1" ] && [ "$menu" != "2" ]; then
+        echo "[ FAIL ] 잘못된 번호다. 1부터 4 사이의 번호만 입력한다."
+        echo ""        continue    fi    # 정상 주문 처리
+    case "$menu" in        1)  echo "[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다."
+            ;;
+        2)  echo "[  OK  ] 주문 접수: 고소한 카페라테를 준비한다."
+            ;;    esac    echo""
+>4;m"cont_break.sh":[New] 50L, 1453B written
+>4;m[root@main ~/shell]# bbb
+cont_break.sh
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 1
+[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 2
+[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 3
+[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 1
+[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 2
+[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 4
+[ INFO ] 주문을 종료한다. 맛있게 드세요!
+[root@main ~/shell]# c
+[root@main ~/shell]# vibcont_break.sh
+#!/bin/bashwhile truedo
+    echo "=============================="
+    echo " [오늘의 카페 메뉴판]"
+    echo " 1. 아메리카노"
+    echo " 2. 카페라테"
+    echo " 3. 바닐라라테 (품절)"
+    echo " 4. 주문 종료"
+    echo "=============================="
+    echo -n "원하는 메뉴 번호를 입력한다: "
+    read menu# 아무것도 입력하지 않은 경우
+    if [ -z "$menu" ]; thenecho "[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다."echo ""continue
+    fi# 주문 종료 (4번)
+    if [ "$menu" = "4" ]; thenecho "[ INFO ] 주문을 종료한다. 맛있게 드세요!"break
+    fi# 품절된 메뉴 번호를 고른 경우 (3번)
+    if [ "$menu" = "3" ]; thenecho "[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다."echo ""continue
+    fi# 1, 2번 외의 잘못된 번호를 고른 경우
+    if [ "$menu" != "1" ] && [ "$menu" != "2" ]; thenecho "[ FAIL ] 잘못된 번호다. 1부터 4 사이의 번호만 입력한다."echo ""continue
+    fi# 정상 주문 처리
+    case "$menu" in1)  echo "[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.";;2)  echo "[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.";;
+    esac
+    echo ""
+done1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 50,1o
+-- INSERT --51,1Bot
+>4;m"cont_break.sh"851L,01464B writtent::wq
+>4;m[root@main ~/shell]# cont_break.sh.sh
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다:
+[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 1
+[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 2
+[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 3
+[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 4
+[ INFO ] 주문을 종료한다. 맛있게 드세요!
+END
+[root@main ~/shell]# vincont_break.sh
+#!/bin/bashwhile truedo
+    echo "=============================="
+    echo " [오늘의 카페 메뉴판]"
+    echo " 1. 아메리카노"
+    echo " 2. 카페라테"
+    echo " 3. 바닐라라테 (품절)"
+    echo " 4. 주문 종료"
+    echo "=============================="
+    echo -n "원하는 메뉴 번호를 입력한다: "
+    read menu# 아무것도 입력하지 않은 경우
+    if [ -z "$menu" ]; thenecho "[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다."echo ""continue
+    fi# 주문 종료 (4번)
+    if [ "$menu" = "4" ]; thenecho "[ INFO ] 주문을 종료한다. 맛있게 드세요!"break
+    fi# 품절된 메뉴 번호를 고른 경우 (3번)
+    if [ "$menu" = "3" ]; thenecho "[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다."echo ""continue
+    fi# 1, 2번 외의 잘못된 번호를 고른 경우
+    if [ "$menu" != "1" ] && [ "$menu" != "2" ]; thenecho "[ FAIL ] 잘못된 번호다. 1부터 4 사이의 번호만 입력한다."echo ""continue
+    fi# 정상 주문 처리
+    case "$menu" in1)  echo "[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.";;2)  echo "[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.";;
+    esac
+    echo ""
+>4;m"cont_break.sh"b52L,61474B6written6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4,0-1~@k   5,1  ~@k   6~@k   7~@k   8~@k   9~@k   20~@k   1,0-1~@k   2,1  ~@k   1,0-1~@k   0,1  ~@k   19o -- INSERT --20,1Top20,1Top2-9e3-10c4-11h5-12o6-137-1418-157-14"8-1519-16"10-179-16 8-157-14"8-1519-16"10-17^[  20,9-16Top::wq
+>4;m[root@main ~/shell]# vincont_break.sh
+#!/bin/bashwhile truedo
+    echo "=============================="
+    echo " [오늘의 카페 메뉴판]"
+    echo " 1. 아메리카노"
+    echo " 2. 카페라테"
+    echo " 3. 바닐라라테 (품절)"
+    echo " 4. 주문 종료"
+    echo "=============================="
+    echo -n "원하는 메뉴 번호를 입력한다: "
+    read menu# 아무것도 입력하지 않은 경우
+    if [ -z "$menu" ]; thenecho "[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다."echo ""continueecho "1"
+    fi# 주문 종료 (4번)
+    if [ "$menu" = "4" ]; thenecho "[ INFO ] 주문을 종료한다. 맛있게 드세요!"break
+    fi# 품절된 메뉴 번호를 고른 경우 (3번)
+    if [ "$menu" = "3" ]; thenecho "[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다."echo ""continue
+    fi# 1, 2번 외의 잘못된 번호를 고른 경우
+    if [ "$menu" != "1" ] && [ "$menu" != "2" ]; thenecho "[ FAIL ] 잘못된 번호다. 1부터 4 사이의 번호만 입력한다."echo ""continue
+    fi# 정상 주문 처리
+    case "$menu" in1)  echo "[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.";;2)  echo "[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.";;
+    esac
+    echo ""1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4,0-1~@k   5,1  ~@k   6~@k   7~@k   8~@k   9~@k   20,1-8~@k   1,1  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@k   7~@k   6~@@   3i -- INSERT --26,13Topk27,1Top
+>4;m"cont_break.sh"o53L,,1481B-written4-11h5-12o6-1317-14^[  27,6-13Top::wq27,6-13Top::wq
+>4;m[root@main ~/shell]# cont_break.sh.sh
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다:
+[ FAIL ] 아무것도 입력하지 않았다. 번호를 다시 확인한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 1
+[  OK  ] 주문 접수: 시원한 아메리카노를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 2
+[  OK  ] 주문 접수: 고소한 카페라테를 준비한다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 3
+[ FAIL ] 죄송합니다. 바닐라라테는 현재 품절이다. 다른 번호를 고른다.
+
+==============================
+ [오늘의 카페 메뉴판]
+ 1. 아메리카노
+ 2. 카페라테
+ 3. 바닐라라테 (품절)
+ 4. 주문 종료
+==============================
+원하는 메뉴 번호를 입력한다: 4
+[ INFO ] 주문을 종료한다. 맛있게 드세요!
+END
+[root@main ~/shell]# c
+[root@main ~/shell]# vi chklog.sh
+~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  c -- INSERT --0,1All#!/bin/bashegrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1while truedo    sleep 30
+    egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp2
+    diff /tmp/.tmp1 /tmp/.tmp2 > /tmp/.tmp3 && continue
+    mailx -s "[WARN] Log Mail Check" root < /tmp/.tmp3
+    egrep -i '(warn|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+>4;m"chklog.sh"^[New]w12L, 391B written
+>4;m[root@main ~/shell]# bbb
+[root@main ~/shell]# cat chklog.sh
+#!/bin/bash
+
+egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+
+while true
+do
+    sleep 30
+    egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp2
+    diff /tmp/.tmp1 /tmp/.tmp2 > /tmp/.tmp3 && continue
+    mailx -s "[WARN] Log Mail Check" root < /tmp/.tmp3
+    egrep -i '(warn|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+done
+[root@main ~/shell]# vibchklog.shh
+#!/bin/bashegrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1while true
+do
+    sleep 30
+    egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp2
+    diff /tmp/.tmp1 /tmp/.tmp2 > /tmp/.tmp3 && continue
+    mailx -s "[WARN] Log Mail Check" root < /tmp/.tmp3
+    egrep -i '(warn|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+done
+>4;m"chklog.sh" 12L, 396B written                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           ~                                                                                                                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4,0-1~@k   5,1  ~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   1~@ý   5~@ý   11~@ý   4~@ý   46~@ý   64~@ý   46~@ý   14~@k   5~@k   6~@k   7~@k   8~@k   9~@k   20~@k   1fi  9l 30a -- INSERT --11,31Al|alert|emerg)' /var/log/messages > /tmp/.tmp1|alert|emerg)' /var/log/messages > /tmp/.tmp12|alert|emerg)' /var/log/messages > /tmp/.tmp18u|alert|emerg)' /var/log/messages > /tmp/.tmp19^[  11,28Allu1 change; before #1  2 seconds rit|alert|emerg)' /var/log/messages > /tmp/.tmp111,31All11,31AlluAlready at oldest change11,31All~@k   0~@k   29~@k   8~@k   7~@k   6~@k   5~@k   4i -- INSERT --11,24All321ferror|crit|alert|emerg)' /var/log/messages > /tmp/.tmp12aerror|crit|alert|emerg)' /var/log/messages > /tmp/.tmp13ierror|crit|alert|emerg)' /var/log/messages > /tmp/.tmp14lerror|crit|alert|emerg)' /var/log/messages > /tmp/.tmp15|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp16^[  11,25All::wq
+>4;m[root@main ~/shell]# catcchklog.sh
+#!/bin/bash
+
+egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+
+while true
+do
+    sleep 30
+    egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp2
+    diff /tmp/.tmp1 /tmp/.tmp2 > /tmp/.tmp3 && continue
+    mailx -s "[WARN] Log Mail Check" root < /tmp/.tmp3
+    egrep -i '(warn|fail|error|crit|alert|emerg)' /var/log/messages > /tmp/.tmp1
+done
+[root@main ~/shell]# c
+hklog.sh k
+bash: nohub: command not found...
+[root@main ~/shell]# nohu1@p&chklog.sh
+[1] 4829
+nohup: ignoring input and appending output to 'nohup.out'
+nohup ./chklog.sh &
+[2] 4835
+nohup: ignoring input and appending output to 'nohup.out'
+[root@main ~/shell]# ps
+    PID TTY          TIME CMD
+   3910 pts/1    00:00:00 bash
+   4829 pts/1    00:00:00 chklog.sh
+   4835 pts/1    00:00:00 chklog.sh
+   4838 pts/1    00:00:00 sleep
+   4841 pts/1    00:00:00 sleep
+   4842 pts/1    00:00:00 ps
+[root@main ~/shell]# exit
+exit
+
+Script done on 2026-09-03 18:12:40+09:00 [COMMAND_EXIT_CODE="0"]
