@@ -1,0 +1,783 @@
+Script started on 2026-09-03 20:55:16+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="117" LINES="63"]
+[root@main ~]# c
+t.sh
+bash: host.sh: command not found...
+[root@main ~]# hosts.sh
+/root/bin/hosts.sh: line 10: syntax error near unexpected token `||'
+/root/bin/hosts.sh: line 10: `    || cat <<'EOF' >> $HOSTS'
+[root@main ~]# hosts.sh
+You have new mail in /var/spool/mail/root
+[root@main ~]# cate /root/bin/hosts
+bash: cate: command not found...
+Similar command is: 'cat'
+[/root/bin/hostsate /root/bin/hosts
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+
+#
+# Linux Servers
+#
+
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+[root@main ~]# c
+[root@main ~]# ca
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+.sh
+#!/bin/bash
+
+/bin/cp -p /etc/hosts /root/bin/hosts
+
+#HOSTS=/etc/hosts 아래 걸로 정상 실행 될 경우 주석해제하고 아래 주석 해제
+HOSTS=/root/bin/hosts
+NET=172.16.6
+
+grep 'Linux Servers' $HOSTS > /dev/null 2>&1 \
+    || cat <<'EOF' >> $HOSTS
+
+#
+# Linux Servers
+#
+
+EOF
+
+START=200
+END=230
+
+for i in $(seq $START $END)
+do
+
+    echo "$NET.$i   linux$i.example.com   linux$1" >> $HOSTS
+
+done
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+ato/root/bin/hosts.shoot/bin/hosts.sh
+#!/bin/bash
+
+/bin/cp -p /etc/hosts /root/bin/hosts
+
+HOSTS=/etc/hosts
+NET=172.16.6
+
+grep 'Linux Servers' $HOSTS > /dev/null 2>&1 \
+    || cat <<'EOF' >> $HOSTS
+
+#
+# Linux Servers
+#
+
+EOF
+
+START=200
+END=230
+
+for i in $(seq $START $END)
+do
+
+    echo "$NET.$i   linux$i.example.com   linux$1" >> $HOSTS
+
+done
+[root@main ~]# c
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]# hosts.sh
+[root@main ~]# cat /etc/hosts
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+
+#
+# Linux Servers
+#
+
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+.sh
+#!/bin/bash
+
+/bin/cp -p /etc/hosts /root/bin/hosts
+
+HOSTS=/etc/hosts
+NET=172.16.6
+
+grep 'Linux Servers' $HOSTS > /dev/null 2>&1 \
+    || cat <<'EOF' > $HOSTS
+
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+
+
+#
+# Linux Servers
+#
+
+EOF
+
+START=200
+END=230
+
+for i in $(seq $START $END)
+do
+
+    echo "$NET.$i   linux$i.example.com   linux$1" >> $HOSTS
+
+done
+s.OLD
+[root@main ~]# hosts.sh
+[root@main ~]# cat /etc/hosts
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+
+#
+# Linux Servers
+#
+
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+[root@main ~]# rm -f /etc/hosts.OLD
+[root@main ~]# c
+[root@main ~]# hosts.sh
+[root@main ~]# cat /etc/hosts
+# Loopback entries; do not change.
+# For historical reasons, localhost precedes localhost.localdomain:
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+# See hosts(5) for proper format and other examples:
+# 192.168.1.10 foo.example.org foo
+# 192.168.1.13 bar.example.org bar
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Server List
+#
+192.168.10.10  main.example.com     main
+192.168.10.20  server1.example.com  server1
+192.168.10.30  server2.example.com  server2
+
+
+#
+# Linux Servers
+#
+
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+172.16.6.200   linux200.example.com   linux
+172.16.6.201   linux201.example.com   linux
+172.16.6.202   linux202.example.com   linux
+172.16.6.203   linux203.example.com   linux
+172.16.6.204   linux204.example.com   linux
+172.16.6.205   linux205.example.com   linux
+172.16.6.206   linux206.example.com   linux
+172.16.6.207   linux207.example.com   linux
+172.16.6.208   linux208.example.com   linux
+172.16.6.209   linux209.example.com   linux
+172.16.6.210   linux210.example.com   linux
+172.16.6.211   linux211.example.com   linux
+172.16.6.212   linux212.example.com   linux
+172.16.6.213   linux213.example.com   linux
+172.16.6.214   linux214.example.com   linux
+172.16.6.215   linux215.example.com   linux
+172.16.6.216   linux216.example.com   linux
+172.16.6.217   linux217.example.com   linux
+172.16.6.218   linux218.example.com   linux
+172.16.6.219   linux219.example.com   linux
+172.16.6.220   linux220.example.com   linux
+172.16.6.221   linux221.example.com   linux
+172.16.6.222   linux222.example.com   linux
+172.16.6.223   linux223.example.com   linux
+172.16.6.224   linux224.example.com   linux
+172.16.6.225   linux225.example.com   linux
+172.16.6.226   linux226.example.com   linux
+172.16.6.227   linux227.example.com   linux
+172.16.6.228   linux228.example.com   linux
+172.16.6.229   linux229.example.com   linux
+172.16.6.230   linux230.example.com   linux
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]# ifconfig
+ens160: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.10.10  netmask 255.255.255.0  broadcast 192.168.10.255
+        inet6 fe80::20c:29ff:fe1d:758f  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:1d:75:8f  txqueuelen 1000  (Ethernet)
+        RX packets 11903  bytes 6000347 (5.7 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 9888  bytes 7449016 (7.1 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+ens224: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.16.6.206  netmask 255.255.255.0  broadcast 172.16.6.255
+        inet6 fe80::4f:8c:3210:a4e6  prefixlen 64  scopeid 0x20<link>
+        ether 00:0c:29:1d:75:99  txqueuelen 1000  (Ethernet)
+        RX packets 6787  bytes 1099143 (1.0 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 234  bytes 32690 (31.9 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 145  bytes 21952 (21.4 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 145  bytes 21952 (21.4 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@main ~]# c
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]#
+[root@main ~]# c
+[root@main ~]# cd ~/bin/
+[root@main ~/bin]# aaa add_user.shj
+-rwx------ 1 root root 15 Sep  3 21:16 /root/bin/add_user.sh
+useradd user01
+[root@main ~/bin]# echo 'user01:user01' | chpasswd
+01@localhost
+The authenticity of host 'localhost (::1)' can't be established.
+ED25519 key fingerprint is SHA256:1bMkFk34LULVwr0CxxwoASCXwOmP5tYn0I1rehLQrOw.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: 192.168.10.20
+    ~/.ssh/known_hosts:4: 192.168.10.30
+    ~/.ssh/known_hosts:5: 192.168.10.10
+    ~/.ssh/known_hosts:6: server1
+    ~/.ssh/known_hosts:7: server2
+    ~/.ssh/known_hosts:8: main
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'localhost' (ED25519) to the list of known hosts.
+user01@localhost's password:
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+[user01@main ~]$ exit
+logout
+Connection to localhost closed.
+[root@main ~/bin]# c
+[root@main ~/bin]# add_user.sh
+user1:user1
+user2:user2
+user3:user3
+_user.sh
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+il /etc/passwd
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+user01:x:1001:1001::/home/user01:/bin/bash
+user1:x:1002:1002::/home/user1:/bin/bash
+user2:x:1003:1003::/home/user2:/bin/bash
+user3:x:1004:1004::/home/user3:/bin/bash
+calhost
+user1@localhost's password:
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+[user1@main ~]$ exit
+logout
+Connection to localhost closed.
+[root@main ~/bin]# ssh user2@localhost
+user2@localhost's password:
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+[user2@main ~]$ exit
+logout
+Connection to localhost closed.
+[root@main ~/bin]# c
+[root@main ~/bin]# chmod 700 /root/bin/del_user.sh
+[root@main ~/bin]# c
+[root@main ~/bin]# del_user.sh
+[root@main ~/bin]# tail /etc/passwd
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+user01:x:1001:1001::/home/user01:/bin/bash
+alhost
+user1@localhost's password:
+Permission denied, please try again.
+user1@localhost's password:
+
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]# c
+[root@main ~/bin]# aaaaadd_userlist.sh
+-rwx------ 1 root root 15 Sep  3 21:31 /root/bin/add_userlist.sh
+erlist.sh
+er.sh
+[root@main ~/bin]# tail -n 30 /etc/passwd
+user101:x:1003:1003::/home/user101:/bin/bash
+user102:x:1004:1004::/home/user102:/bin/bash
+user103:x:1005:1005::/home/user103:/bin/bash
+user104:x:1006:1006::/home/user104:/bin/bash
+user105:x:1007:1007::/home/user105:/bin/bash
+user106:x:1008:1008::/home/user106:/bin/bash
+user107:x:1009:1009::/home/user107:/bin/bash
+user108:x:1010:1010::/home/user108:/bin/bash
+user109:x:1011:1011::/home/user109:/bin/bash
+user110:x:1012:1012::/home/user110:/bin/bash
+user111:x:1013:1013::/home/user111:/bin/bash
+user112:x:1014:1014::/home/user112:/bin/bash
+user113:x:1015:1015::/home/user113:/bin/bash
+user114:x:1016:1016::/home/user114:/bin/bash
+user115:x:1017:1017::/home/user115:/bin/bash
+user116:x:1018:1018::/home/user116:/bin/bash
+user117:x:1019:1019::/home/user117:/bin/bash
+user118:x:1020:1020::/home/user118:/bin/bash
+user119:x:1021:1021::/home/user119:/bin/bash
+user120:x:1022:1022::/home/user120:/bin/bash
+user121:x:1023:1023::/home/user121:/bin/bash
+user122:x:1024:1024::/home/user122:/bin/bash
+user123:x:1025:1025::/home/user123:/bin/bash
+user124:x:1026:1026::/home/user124:/bin/bash
+user125:x:1027:1027::/home/user125:/bin/bash
+user126:x:1028:1028::/home/user126:/bin/bash
+user127:x:1029:1029::/home/user127:/bin/bash
+user128:x:1030:1030::/home/user128:/bin/bash
+user129:x:1031:1031::/home/user129:/bin/bash
+user130:x:1032:1032::/home/user130:/bin/bash
+[root@main ~/bin]# del_user.sh
+[root@main ~/bin]# tailu-nr30h/etc/passwd
+games:x:12:100:games:/usr/games:/usr/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/usr/sbin/nologin
+nobody:x:65534:65534:Kernel Overflow User:/:/usr/sbin/nologin
+tss:x:59:59:Account used for TPM access:/:/usr/sbin/nologin
+dbus:x:81:81:System Message Bus:/:/usr/sbin/nologin
+avahi:x:70:70:Avahi mDNS/DNS-SD Stack:/var/run/avahi-daemon:/usr/sbin/nologin
+systemd-oom:x:999:999:systemd Userspace OOM Killer:/:/sbin/nologin
+polkitd:x:114:114:User for polkitd:/:/sbin/nologin
+rtkit:x:172:172:RealtimeKit:/:/sbin/nologin
+colord:x:998:997:User for colord:/var/lib/colord:/sbin/nologin
+geoclue:x:997:996:User for geoclue:/var/lib/geoclue:/sbin/nologin
+sssd:x:996:995:User for sssd:/run/sssd/:/sbin/nologin
+libstoragemgmt:x:994:994:daemon account for libstoragemgmt:/:/usr/sbin/nologin
+systemd-coredump:x:993:993:systemd Core Dumper:/:/usr/sbin/nologin
+wsdd:x:992:992:Web Services Dynamic Discovery host daemon:/:/sbin/nologin
+clevis:x:991:991:Clevis Decryption Framework unprivileged user:/var/cache/clevis:/usr/sbin/nologin
+setroubleshoot:x:990:990:SELinux troubleshoot server:/var/lib/setroubleshoot:/usr/sbin/nologin
+flatpak:x:989:989:Flatpak system helper:/:/usr/sbin/nologin
+gdm:x:42:42:GNOME Display Manager:/var/lib/gdm:/usr/sbin/nologin
+gnome-initial-setup:x:988:987::/run/gnome-initial-setup/:/sbin/nologin
+dnsmasq:x:987:986:Dnsmasq DHCP and DNS server:/var/lib/dnsmasq:/usr/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/usr/sbin/nologin
+chrony:x:986:985:chrony system user:/var/lib/chrony:/sbin/nologin
+tcpdump:x:72:72:tcpdump:/:/usr/sbin/nologin
+gnome-remote-desktop:x:983:983:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+pipewire:x:982:982:PipeWire System Daemon:/run/pipewire:/usr/sbin/nologin
+fedora:x:1000:1000:fedora:/home/fedora:/bin/bash
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+postfix:x:89:89::/var/spool/postfix:/sbin/nologin
+user01:x:1001:1001::/home/user01:/bin/bash
+[root@main ~/bin]# c
+_user.sh
+[  OK  ] user100
+[  OK  ] user101
+[  OK  ] user102
+[  OK  ] user103
+[  OK  ] user104
+[  OK  ] user105
+[  OK  ] user106
+[  OK  ] user107
+[  OK  ] user108
+[  OK  ] user109
+[  OK  ] user110
+[  OK  ] user111
+[  OK  ] user112
+[  OK  ] user113
+[  OK  ] user114
+[  OK  ] user115
+[  OK  ] user116
+[  OK  ] user117
+[  OK  ] user118
+[  OK  ] user119
+[  OK  ] user120
+[  OK  ] user121
+[  OK  ] user122
+[  OK  ] user123
+[  OK  ] user124
+[  OK  ] user125
+[  OK  ] user126
+[  OK  ] user127
+[  OK  ] user128
+[  OK  ] user129
+[  OK  ] user130
+[root@main ~/bin]# del_user.sh
+/root/bin/del_user.sh: line 10: syntax error near unexpected token `&&'
+/root/bin/del_user.sh: line 10: `        && echo "[  OK  ] $UNAME" \ '
+[root@main ~/bin]# del_user.sh
+/root/bin/del_user.sh: line 10: syntax error near unexpected token `&&'
+/root/bin/del_user.sh: line 10: `        && echo "[  OK  ] $UNAME" \ '
+[root@main ~/bin]# del_user.sh
+/root/bin/del_user.sh: line 10: syntax error near unexpected token `&&'
+/root/bin/del_user.sh: line 10: `        && echo "[  OK  ] $UNAME" \'
+[root@main ~/bin]# del_user.sh
+[  OK  ] user100
+[  OK  ] user101
+[  OK  ] user102
+[  OK  ] user103
+[  OK  ] user104
+[  OK  ] user105
+[  OK  ] user106
+[  OK  ] user107
+[  OK  ] user108
+[  OK  ] user109
+[  OK  ] user110
+[  OK  ] user111
+[  OK  ] user112
+[  OK  ] user113
+[  OK  ] user114
+[  OK  ] user115
+[  OK  ] user116
+[  OK  ] user117
+[  OK  ] user118
+[  OK  ] user119
+[  OK  ] user120
+[  OK  ] user121
+[  OK  ] user122
+[  OK  ] user123
+[  OK  ] user124
+[  OK  ] user125
+[  OK  ] user126
+[  OK  ] user127
+[  OK  ] user128
+[  OK  ] user129
+[  OK  ] user130
+[root@main ~/bin]# c
+[root@main ~/bin]# aaa user_admin.sh
+-rwx------ 1 root root 15 Sep  3 21:37 /root/bin/user_admin.sh
+awk -F:: '$3 > 1000 && $3 < 60000 {print $1}' /etc/passwd | cat -n
+     1  user01
+[root@main ~/bin]#
+#
+[root@main ~/bin]#
+dnf install -y diaglog
+Last metadata expiration check: 2:01:40 ago on Thu 03 Sep 2026 07:41:11 PM KST.
+No match for argument: diaglogB
+Error: Unable to find a match: diaglog
+ll--y epel-release-10-e
+Last metadata expiration check: 2:01:56 ago on Thu 03 Sep 2026 07:41:11 PM KST.
+Package epel-release-10-9.el10_3.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+og-1.3-5
+Last metadata expiration check: 2:02:04 ago on Thu 03 Sep 2026 07:41:11 PM KST.
+Dependencies resolved.
+=================================================================================================================
+ Package               Architecture          Version                              Repository                Size
+=================================================================================================================
+Installing:
+ dialog               B x86_64                1.3-52.20240101.el10                 appstream                299 k
+
+Transaction Summary
+=================================================================================================================
+Install  1 Package
+
+Total download size: 299 k
+Installed size: 585 k
+Downloading Packages:
+dialog-1.3-52.20240101.el10.x86_64.rpm94% [==================================  ] 842 kB/s | 299 kB     00:07 ETA
+-----------------------------------------------------------------------------------------------------------------
+Total                                                                             36 kB/s | 299 kB     00:08
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                         1/1
+  Installing       : dialog-1.3-52.20240101.el10.x86_64 [================================================= ] 1/1
+  Running scriptlet: dialog-1.3-52.20240101.el10.x86_64                                                      1/1
+
+Installed:
+  dialog-1.3-52.20240101.el10.x86_64
+
+Complete!
+[root@main ~/bin]# vi /root/bin/nmtui.sh
+>4;m>4;m[root@main ~/bin]# aaa nmtui.sh                                                                          ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                ~                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+-rwx------ 1 root root 15 Sep  3 21:45 /root/bin/nmtui.sh
+You have new mail in /var/spool/mail/root
+[root@main ~/bin]# bbb
+nmtui.sh
+^Ctui.sh
+[root@main ~/bin]#
+[root@main ~/bin]# c
+.sh
+[root@main ~/bin]# aaa useradmin.sh
+-rwx------ 1 root root 15 Sep  3 21:48 /root/bin/useradmin.sh
+dmin.sh
+[root@main ~/bin]# bbbb
+[root@main ~/bin]# useradmin.sh
+eradmin.sh
+[root@main ~/bin]# exit
+exit
+
+Script done on 2026-09-03 21:49:57+09:00 [COMMAND_EXIT_CODE="0"]
