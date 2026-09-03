@@ -1,0 +1,43 @@
+Script started on 2026-09-03 18:14:23+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="129" LINES="46"]
+diff passwd1 passwd2
+[root@main ~/shell]# echo $?
+0
+[root@main ~/shell]# sed -i '$d'/./passwd1
+sswd1 passwd2
+  37 passwd1
+  38 passwd2
+  75 total
+sswd1 passwd2
+37a38
+> apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+[root@main ~/shell]# nohup ./chklog.sh
+nohup: ignoring input and appending output to 'nohup.out'
+^C
+[root@main ~/shell]# nohup ./chklog.sh &
+[1] 5146
+nohup: ignoring input and appending output to 'nohup.out'
+[root@main ~/shell]# ^Cho
+[root@main ~/shell]# ps
+    PID TTY          TIME CMD
+   5068 pts/1    00:00:00 bash
+   5146 pts/1    00:00:00 chklog.sh
+   5171 pts/1    00:00:00 sleep
+   5173 pts/1    00:00:00 ps
+[root@main ~/shell]# echo $?
+0
+[root@main ~/shell]# ls--l;/tmp/.tmp{1,2,3}
+-rw-r--r-- 1 root root 167656 Sep  3 18:16 /tmp/.tmp1
+-rw-r--r-- 1 root root 167656 Sep  3 18:20 /tmp/.tmp2
+-rw-r--r-- 1 root root      0 Sep  3 18:20 /tmp/.tmp3
+[root@main ~/shell]# ls -l /tmp/.tmp{1,2,3}
+-rw-r--r-- 1 root root 167656 Sep  3 18:16 /tmp/.tmp1
+-rw-r--r-- 1 root root 167656 Sep  3 18:21 /tmp/.tmp2
+-rw-r--r-- 1 root root      0 Sep  3 18:21 /tmp/.tmp3
+[root@main ~/shell]# jobs
+[1]+  Running                 nohup ./chklog.sh &
+[root@main ~/shell]# jobs -l
+[1]+  5146 Running                 nohup ./chklog.sh &
+[root@main ~/shell]# exit
+exit
+
+Script done on 2026-09-03 18:22:08+09:00 [COMMAND_EXIT_CODE="0"]
