@@ -1,0 +1,2640 @@
+Script started on 2026-09-04 17:34:46+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="101" LINES="51"]
+[root@main ~]# c
+_reboot.sh
+[ OK ]  192.168.10.20
+[ FAIL ] 192.168.10.21
+[ FAIL ] 192.168.10.22
+[ FAIL ] 192.168.10.23
+^C[ FAIL ] 192.168.10.24
+[ FAIL ] 192.168.10.25
+[ FAIL ] 192.168.10.26
+[ FAIL ] 192.168.10.27
+[ FAIL ] 192.168.10.28
+[ FAIL ] 192.168.10.29
+[ OK ]  192.168.10.30
+ 서버 목록 생성 완료
+192.168.10.20
+192.168.10.30
+Trying 192.168.10.20...
+telnet: connect to address 192.168.10.20: Connection refused
+Trying 192.168.10.30...
+telnet: connect to address 192.168.10.30: Connection refused
+[root@main ~]# auto_reboot.sh
+[ OK ]  192.168.10.20
+[ FAIL ] 192.168.10.21
+[ FAIL ] 192.168.10.22
+[ FAIL ] 192.168.10.23
+[ FAIL ] 192.168.10.24
+[ FAIL ] 192.168.10.25
+[ FAIL ] 192.168.10.26
+[ FAIL ] 192.168.10.27
+[ FAIL ] 192.168.10.28
+[ FAIL ] 192.168.10.29
+[ OK ]  192.168.10.30
+ 서버 목록 생성 완료
+192.168.10.20
+192.168.10.30
+ 리붓 시작
+Trying 192.168.10.20...
+telnet: connect to address 192.168.10.20: Connection refused
+192.168.10.20 리붓 실패
+Trying 192.168.10.30...
+telnet: connect to address 192.168.10.30: Connection refused
+192.168.10.30 리붓 실패
+[root@main ~]# c
+[root@main ~]# cd shell/
+[root@main ~/shell]# vi dns.sh
+~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    ~                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1All#!/bin/bashif [ $# -ne 4 ]; then    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "       (EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1fiSERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.comARPANET=$4     # 10.168.192LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')## (준비작업) 파일 생성
+#BASEDIR=$HOME/bin/DNSmkdir -p $BASEDIR# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.confoptions {
+        listen-on port 53 { any; };            listen-on-v6 port 53 { any; };
+        directory       "/var/named";        dump-file"/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { any; };
+        recursion yes;        dnssec-validation no;
+        managed-keys-directory "/var/named/dynamic";        geoip-directory "/usr/share/GeoIP";
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";
+ forwarders { 8.8.8.8; };
+            forward only;};
+logging {        channel default_debug {                file "data/named.run";
+                severity dynamic;        };
+};include "/etc/named.rfc1912.zones";include "/etc/named.root.key";EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf(paste) --# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zoneszone "DOMAIN" type master;file "DOMAIN.zone";
+};
+
+ztype"master;filea"DOMAIN.rev"; {
+};EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones# DOMAIN.zone, DOMAIN.rev 파일 준비cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (
+10      ; serial
+1D      ; refresh
+1H      ; retry
+3H )    ; minimum
+
+;; DNS ServeIN  NS      ns1
+ns1IN  ASERVERIPEOF
+chown root:named $BASEDIR/$DOMAIN.zonechmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev      $TTL 4
+@IN10OA  ns;.serial1Droot.D;Mrefresh
+1H      ; retry
+1W      ; expire
+3H )    ; minimum;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.EOF
+chown root:named $BASEDIR/$DOMAIN.rev
+chmod 640 $BASEDIR/$DOMAIN.rev#
+# 원격 서버 설정
+#
+ssh -T "$SERVER" dnf install -y -q bind bind-utilsscp -p $BASEDIR/named.conf $SERVER:/etc/named.conf
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones
+scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone
+scsshp-TB"$SERVER"Obash.-e<<EOFRVER:/var/named/$DOMAIN.rev
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zonessed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zonesed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rEOF
+
+ssh -T "$SERVER" systemctl restart#named
+# DNS Client 설정
+#
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8nmcli con up eth0
+
+sleep 3
+
+echo; echo   echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"144,0-1Bot^[  ^[  ::wq144,0-1Bot3,1  210,0-139,1  ~@k   8,0-17,1  6543~@k   2,0-11,1  0,0-129,1  87~@k   65,0-14,1  321,0-1~@k   0,1  1987,0-16,1  5~@k   432,0-11,1  009~@k   87,0-16,1  543,0-1~@k   2,1  1010      ; serial99,0-198%@IN SOA  ns1.DOMAIN. root.DOMAIN. (98,197%$TTL 497,196%~@k   cat <<'EOF' > $BASEDIR/$DOMAIN.rev96,195%95,194%chmod 640 $BASEDIR/$DOMAIN.zone94,193%chown root:named $BASEDIR/$DOMAIN.zone93,192%EOF92,191%91,190%~@k   ns1IN  ASERVERIP90,0-189%IN  NS      ns189,188%;; DNS Server88,187%87,186%3H )    ; minimum86,0-185%1W      ; expire85,184%~@k   1H      ; retry84,182%1D      ; refresh83,181%10      ; serial82,0-180%@IN SOA  DOMAIN. root.DOMAIN. (81,179%$TTL 480,178%cat <<'EOF' > $BASEDIR/$DOMAIN.zone79,177%~@k   # DOMAIN.zone, DOMAIN.rev 파일 준비78,176%77,175%chmod 640 $BASEDIR/named.rfc1912.zones76,174%chown root:named $BASEDIR/named.rfc1912.zones75,173%EOF74,172%73,171%};72,0-170%file "DOMAIN.rev";71,169%type master;70,168%zone "ARPANET.in-addr.arpa"  IN {69,167%68,0-165%};67,164%~@k   file "DOMAIN.zone";66,163%type master;65,162%zone "DOMAIN" IN {64,161%63,0-160%cat <<'EOF' >> $BASEDIR/named.rfc1912.zones62,159%/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones61,158%~@k   # /etc/named.rfc1912.zones 파일 준비60,157%59,156%chmod 640 $BASEDIR/named.conf58,0-155%chown root:named $BASEDIR/named.conf57,154%EOF56,153%include "/etc/named.root.key";55,152%~@k   include "/etc/named.rfc1912.zones";54,0-151%53,150%};52,148%};51,147%severity dynamic;50,146%file "data/named.run";49,145%~@k   channel default_debug {48,0-144%logging {47,143%};46,142%forward only;45,141%forwarders { 8.8.8.8; };44,140%include "/etc/crypto-policies/back-ends/bind.config";43,139%~@k   session-keyfile "/run/named/session.key";42,138%pid-file "/run/named/named.pid";41,137%geoip-directory "/usr/share/GeoIP";40,136%managed-keys-directory "/var/named/dynamic";39,135%dnssec-validation no;38,134%recursion yes;37,132%~@k   allow-query     { any; };36,131%recursing-file  "/var/named/data/named.recursing";35,130%secroots-file   "/var/named/data/named.secroots";34,129%memstatistics-file "/var/named/data/named_mem_stats.txt";33,128%statistics-file "/var/named/data/named_stats.txt";32,127%dump-file"/var/named/data/cache_dump.db";31,126%~@k   directory"/var/named";30,125%listen-on-v6 port 53 { any; };29,124%listen-on port 53 { any; };28,123%options {27,122%cat <<'EOF' > $BASEDIR/named.conf26,121%# /etc/named.conf 파일 준비25,120%~@k   mkdir -p $BASEDIR24,1-819%23,118%BASEDIR=$HOME/bin/DNS22,117%#21,115%# (준비작업) 파일 생성20,114%#19,113%~@k   18,0-112%LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')17,111%ARPANET=$4     # 10.168.19216,110%DOMAIN=$3      # example.com15,19%SERVERIP=$2    # 192.168.10.2014,18%SERVER=$1      # server1(192.168.10.20)13,0-17%~@k   fi12,16%exit 111,15%echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"10,14%echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"9,13%if [ $# -ne 4 ]; then8,12%7,11%~@k   #!/bin/bash6,1Top5432,0-11,1  ~@k   ~@k   ~@k   2,0-13,1  456~@k   78910,112~@k   3,0-14,1  5678,0-1~@k   9,1  201234,1-8~@k   5,1  678930~@k   1029876~@k   54,1-83,1  210~@k   198,0-17,1  654~@k   3,0-14,1  5678,0-1~@k   9,1  ~@k   20~@k   19i -- INSERT --19,1Top78910"$BASEDIR19"20253125193,1 7,3 1,137,3 13,19,2025317125193,1 7,3 1,137,3 13,19,2031743EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;55,2010%4933712519SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com13,17%if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi7,31%#!/bin/bash1,13Top7,3 19,203143EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;55,2010%49337125192531743955file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";61,2017%};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones67,323%# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh73,2029%1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns179,2036%ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone85,2042%cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry91,2048%1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.97,2055%EOF
+chown root:named $BASEDIR/$DOMAIN.rev
+chmod 640 $BASEDIR/$DOMAIN.rev
+
+#103,161%# 원격 서버 설정
+#
+ssh -T "$SERVER" dnf install -y -q bind bind-utils
+
+scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones109,23-17     68%scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone
+scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev
+
+ssh -T "$SERVER" bash - <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones115,2074%sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zone
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev121,180%sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rev
+EOF
+
+ssh -T "$SERVER" systemctl restart named127,2087%#
+# DNS Client 설정
+#
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8
+nmcli con up eth0133,293%sleep 3
+
+echo; echo
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"139,8Bot44,138226,2001408,2 2,20cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial96,2095%102,208,2 2,203,1 4,45,2012345678930123456786,315,384,4 3,12,3810,1499,1  8,387695,3894%chmod 640 $BASEDIR/$DOMAIN.zone94,3893%chown root:named $BASEDIR/$DOMAIN.zone93,3892%EOF92,791%91,3590%ns1IN  ASERVERIP90,189%IN  NS      ns189,3288%;; DNS Server88,3887%87,486%3H )    ; minimum86,185%1W      ; expire85,3884%1H      ; retry84,3782%1D      ; refresh83,1481%10      ; serial82,180%@IN SOA  DOMAIN. root.DOMAIN. (81,3879%$TTL 480,3878%cat <<'EOF' > $BASEDIR/$DOMAIN.zone79,3877%8079# DOMAIN.zone, DOMAIN.rev 파일 준비78,3876%77,3875%chmod 640 $BASEDIR/named.rfc1912.zones76,3874%chown root:named $BASEDIR/named.rfc1912.zones75,773%EOF74,3672%73,40-36      71%};72,170%file "DOMAIN.rev";71,3869%type master;70,3868%zone "ARPANET.in-addr.arpa"  IN {69,467%68,165%};67,364%file "DOMAIN.zone";66,2463%type master;65,1862%zone "DOMAIN" IN {64,3461%63,160%cat <<'EOF' >> $BASEDIR/named.rfc1912.zones62,359%/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones61,2558%# /etc/named.rfc1912.zones 파일 준비60,1857%59,1956%chmod 640 $BASEDIR/named.conf58,155%chown root:named $BASEDIR/named.conf57,3854%EOF56,3853%include "/etc/named.root.key";55,41-37      52%include "/etc/named.rfc1912.zones";54,151%53,3050%};52,3748%};51,447%severity dynamic;50,3146%file "data/named.run";49,3645%channel default_debug {48,144%logging {47,343%};46,1142%forward only;45,3441%forwarders { 8.8.8.8; };44,3840%include "/etc/crypto-policies/back-ends/bind.config";43,3239%session-keyfile "/run/named/session.key";42,1038%pid-file "/run/named/named.pid";41,337%geoip-directory "/usr/share/GeoIP";40,2636%managed-keys-directory "/var/named/dynamic";39,3735%dnssec-validation no;38,3834%recursion yes;37,3832%allow-query     { any; };36,3831%recursing-file  "/var/named/data/named.recursing";35,3830%secroots-file   "/var/named/data/named.secroots";34,3829%memstatistics-file "/var/named/data/named_mem_stats.txt";33,3028%statistics-file "/var/named/data/named_stats.txt";32,2327%dump-file"/var/named/data/cache_dump.db";31,3426%directory"/var/named";30,3825%listen-on-v6 port 53 { any; };29,3824%listen-on port 53 { any; };28,3823%options {27,3822%cat <<'EOF' > $BASEDIR/named.conf26,3821%# /etc/named.conf 파일 준비25,3820%mkdir -p "$BASEDIR"24,31-38      19%23,3618%4,31-385,38   6789301,342,233,304,3856789,3740,261,3 2,103,324,385,346,117,3 8,19,3650,3149,368,1 7,36,115,344,383,322,101,3 0,2639,378,3876543,304,3856789,3740,261,3 2,103,324,385,346,117,3 8,19,3650,311,4 2,378,1 EOF64,3420%chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 470,3826%@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum76,3832%;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF82,139%chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (88,3845%10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum94,3852%;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.rev100,1458%chmod 640 $BASEDIR/$DOMAIN.rev
+
+#
+# 원격 서버 설정
+#
+ssh -T "$SERVER" dnf install -y -q bind bind-utils106,3164%scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones
+scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone
+scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev112,171%ssh -T "$SERVER" bash - <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone118,3077%chown root:named /var/named/$DOMAIN.zone
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rev
+EOF124,3884%ssh -T "$SERVER" systemctl restart named
+
+#
+# DNS Client 설정
+#130,190%nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8
+nmcli con up eth0
+
+sleep 3
+
+echo; echo136,3896%echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"142,44-38     Bot4,1    38226,3801408,2 2,38cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial96,3895%ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone90,189%1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns184,3782%# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh78,3876%};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones72,170%# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";60,1857%channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf48,144%session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {42,1038%allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";36,3831%directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";30,3825%mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };listen-on-v6 port 53 { any; };24,31-38      19%#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS18,112%fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')12,386%#!/bin/bash
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 16,11Top1,13i42,1Top3,1Top
+include "/etc/named.rfc1912.zones";2,1Top
+#!/bin/bash iinclude "/etc/named.root.key";1,14Top2,1 3,14456,117,3 8,14910,14123,1 4,25,18-146,2    7,148,1 7,146,2 17,1Top18,1Top19,1Top878d2n3f45-6y78i9n10s1t2a3l4l56b7i8n9d201b2i3n4d5-6u7t8i9l30s124306,30include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";48,313%EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones54,49%cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};66,121%EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone72,427%$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP84,3140%EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 490,446%@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum96,3152%;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.
+
+EOF102,158%chown root:named $BASEDIR/$DOMAIN.rev
+chmod 640 $BASEDIR/$DOMAIN.rev
+
+#
+# 원격 서버 설정
+#108,3164%ssh -T "$SERVER" dnf install -y -q bind bind-utils
+
+scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones
+scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone
+scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev114,3171%ssh -T "$SERVER" bash - <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone120,177%sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zone
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rev126,3183%EOF
+
+ssh -T "$SERVER" systemctl restart named
+
+#
+# DNS Client 설정132,489%#
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8
+nmcli con up eth0
+
+sleep 3
+
+echo; echo
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"144,11Bot7,1 13529,313171,2 05,31cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial99,3195%ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone93,189%1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns187,3183%# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh81,3177%};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones75,171%81,31799105,3111,2 ssh -T "$SERVER" bash - <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones117,3174%sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zone123,3180%sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rev
+EOF
+
+ssh -T "$SERVER" systemctl restart named129,3186%#
+# DNS Client 설정
+#
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8
+nmcli con up eth0135,192%sleep 3
+
+echo; echo
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"141,198%
+147,1Bot6,235,34-314,11   3,1 2,81,1142,198%
+143,1Bot2
+~                                                                                                    141,1Bot23144,1Bot3
+144,1Botd2n3f45432s321s2y3s4t5e6,m876m7c8t9l101r2e3s4t5a6r7t89n20a1m2e3d4
+145,1Bots2y3s4t5e6m7c8t9l101e2n3a4l5b654b5l6e78n9a20m1e2d3393,1 27,231091D      ; refresh1H      ; retry1W      ; expire103,1497%chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial97,2391%;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone91,2385%10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum85,179%chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (79,2373%type master;file "DOMAIN.rev";
+};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones73,2367%zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {67,2361%chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones61,155%};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf55,2349%};
+logging {channel default_debug {file "data/named.run";severity dynamic;};49,1143%geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;43,2337%secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";37,2331%listen-on port 53 { any; };listen-on-v6 port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";31,2325%BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {25,1019%#
+# (준비작업) 파일 생성
+#
+
+dnf -y install bind bind-utils19,113%SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')13,17%if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi7,31%#!/bin/bash i1,14Top7,3 13,1925,1031,23743include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF49,114%chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones55,2310%zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};61,116%zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF67,2322%chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 473,2328%@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum79,2334%;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF853840%79,233geoip-directory1"/usr/share/GeoIP";sr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";43,2337%9,1155,23:DIR/named.conf4sDIR/named.confDIR/named.confDIR/named.conf3^[  55,2237%::set nu
+     39         pid-file "/run/named/named.pid";
+     40         session-keyfile "/run/named/session.key";
+     41         include "/etc/crypto-policies/back-ends/bind.config";
+     42             forwarders { 8.8.8.8; };
+     43             forward only;
+     44 };
+     45 logging {
+     46         channel default_debug {
+     47         file "data/named.run";
+     48         severity dynamic;
+     49         };
+     50 };
+     51
+     52 include "/etc/named.rfc1912.zones";
+     53 include "/etc/named.root.key";
+     54 EOF
+     55 chown root:named $BASEDIR/named.conf
+     56 chmod 640 $BASEDIR/named.conf
+     57
+     58 # /etc/named.rfc1912.zones 파일 준비
+     59 /bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+     60 cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+     61
+     62 zone "DOMAIN" IN {
+     63      type master;
+     64      file "DOMAIN.zone";
+     65 };
+     66
+     67 zone "ARPANET.in-addr.arpa"  IN {
+     68      type master;
+     69      file "DOMAIN.rev";
+     70 };
+     71
+     72 EOF
+     73 chown root:named $BASEDIR/named.rfc1912.zones
+     74 chmod 640 $BASEDIR/named.rfc1912.zones
+     75
+     76 # DOMAIN.zone, DOMAIN.rev 파일 준비
+     77 cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+     78 $TTL 4
+     79 @       IN SOA  DOMAIN. root.DOMAIN. (
+     80         10      ; serial
+     81         1D      ; refresh
+     82         1H      ; retry
+     83         1W      ; expire
+     84         3H )    ; minimum
+     85
+     86 ;; DNS Server
+     87         IN  NS      ns155,2237%~@k   6~@k   7,0-1~@k   8,22 ~@k   9~@k   60~@k   1,0-1~@k   2,18 ~@k   3,17~@k   2,18~@k   1,0-1~@k   0,22 ~@k   59~@k   8~@k   7,0-1~@k   6,22 ~@k   5~@k   4,3 ~@k   3,22~@k   2~@k   1,0-1~@k   0,2  ~@k   49,10~@k   8,22~@k   7~@k   6~@k   5,9 ~@k   6,22~@k   7~@k   8~@k   9,10~@k   50,2 ~@k   1,0-1~@k   2,22 ~@k   3~@k   4,3 ~@k   5,22~@k   6~@k   7,0-1~@k   8,22 ~@k   9~@k   60~@k   1,0-1~@k   2,18 ~@k   3,17~@k   4,22~@k   5,2 ~@k   6,0-1~@k   5,2  ~@k   4,22~@k   5,2 ~@k   6,0-1~@k   7,22 ~@k   8,17~@k   9,22~@k   70,2 ~@k   1,0-1~@k   2,3  ~@k   1,0-1~@k   0,2  ~@k   69,22~@k   8,17~@k   7,22~@k   6,0-1~@k   5,2  ~@k   4,22~@k   3,17~@k   2,18~@k   1,0-1~@k   0,22 ~@k   59~@k   8~@k   7,0-1~@k   6,22 ~@k   5~@k   4,3 i -- INSERT --54,337%521#chown root:named $BASEDIR/named.conf267,18,29601,12,23456,17,289701,12,23431#chown root:named $BASEDIR/named.rfc1912.zones245,16,27898012
+     88 ns1IN  ASERVERIP83,238%
+     89 84,239%
+     90 EOF85,140%
+     91 chown root:named $BASEDIR/$DOMAIN.zone86,241%
+     92 chmod 640 $BASEDIR/$DOMAIN.zone87,242%
+     93 88,243%
+     94 cat <<'EOF' > $BASEDIR/$DOMAIN.rev89,144%
+     95 $TTL 490,245%
+     96 @IN SOA  ns1.DOMAIN. root.DOMAIN. (91,246%
+     97 10      ; serial92,247%
+     98 1D      ; refresh93,148%
+     99 1H      ; retry94,249%
+    100 1W      ; expire95,250%
+    101 3H )    ; minimum96,251%
+    102 97,252%6543,12,211#chown root:named $BASEDIR/$DOMAIN.zone223,14,2567
+    103 ;; DNS Server98,253%
+    104 IN  NSns1.DOMAIN.99,254%
+    105 LASTIPIN  PTRns1.DOMAIN.100,255%
+    106 101,256%
+    107 EOF102,157%
+    108 chown root:named $BASEDIR/$DOMAIN.rev103,258%
+    109 chmod 640 $BASEDIR/$DOMAIN.rev104,259%
+    110 105,260%
+    111 #106,161%
+    112 # 원격 서버 설정107,262%
+    113 #108,263%
+    114 ssh -T "$SERVER" dnf install -y -q bind bind-utils109,264%
+    115 110,165%
+    116 scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf111,266%
+    117 scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones112,267%
+    118 scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone113,268%
+    119 scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev114,269%
+    120 115,170%4,23210,109,281#chown root:named $BASEDIR/$DOMAIN.rev2910,11,22345,1
+    121 ssh -T "$SERVER" bash - <<EOF116,271%
+    122 sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones117,272%
+    123 sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones118,273%
+    124 119,274%
+    125 sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone120,175%
+    126 sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone121,276%
+    127 chown root:named /var/named/$DOMAIN.zone122,277%
+    128 123,278%
+    129 sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev124,179%
+    130 sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev125,280%
+    131 chown root:named /var/named/$DOMAIN.rev126,281%
+    132 EOF127,282%
+    133 128,183%
+    134 ssh -T "$SERVER" systemctl restart named129,284%
+    135 130,285%
+    136 #131,286%0298,17,2654,13,2210,119,28765,14,23210,109,2876,15,2432,11,2099,2 876543,12,2     86 ;; DNS Server91,285%     85 90,284%     84 3H )    ; minimum89,183%     83 1W      ; expire88,282%     82 1H      ; retry87,281%     81 1D      ; refresh86,280%     80 10      ; serial85,179%     79 @IN SOA  DOMAIN. root.DOMAIN. (84,278%     78 $TTL 483,277%     77 cat <<'EOF' > $BASEDIR/$DOMAIN.zone82,276%     76 # DOMAIN.zone, DOMAIN.rev 파일 준비81,275%     75 80,274%     74 chmod 640 $BASEDIR/named.rfc1912.zones79,273%     73 #chown root:named $BASEDIR/named.rfc1912.zones78,272%     72 EOF77,271%     71 76,270%     70 };75,169%     69      file "DOMAIN.rev";74,268%     68      type master;73,267%     67 zone "ARPANET.in-addr.arpa"  IN {72,266%     66 71,165%     65 };70,264%     64      file "DOMAIN.zone";69,263%     63      type master;68,262%     62 zone "DOMAIN" IN {67,261%     61 66,160%     60 cat <<'EOF' >> $BASEDIR/named.rfc1912.zones65,259%     59 /bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones64,258%     58 # /etc/named.rfc1912.zones 파일 준비63,257%     57 62,256%     56 chmod 640 $BASEDIR/named.conf61,155%     55 #chown root:named $BASEDIR/named.conf60,254%     54 EOF59,253%     53 include "/etc/named.root.key";58,252%^[  58,152%u1 change; before #15  24 seconds ago    103 ;; DNS Server
+    104 IN  NSns1.DOMAIN.
+    105 LASTIPIN  PTRns1.DOMAIN.
+    106
+    107 EOF
+    108 chown root:named $BASEDIR/$DOMAIN.rev
+    109 chmod 640 $BASEDIR/$DOMAIN.rev
+    110
+    111 #
+    112 # 원격 서버 설정
+1 change;1before%#15  24 seconds ago108,163%u4  29chown root:named $BASEDIR/$DOMAIN.zone91,163%91,163%u3  32chown root:named $BASEDIR/named.rfc1912.zones73,163%73,163%u2  3550};5152include "/etc/named.rfc1912.zones";53include "/etc/named.root.key";54EOF55chown root:named $BASEDIR/named.conf56chmod 640 $BASEDIR/named.conf5758# /etc/named.rfc1912.zones 파일 준비59/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones60at <<'EOF' >> $BASEDIR/named.rfc1912.zones6162zone "DOMAIN" IN {63     type master;64     file "DOMAIN.zone";65};6667zone "ARPANET.in-addr.arpa"  IN {68type master;69file "DOMAIN.rev";70};7172EOF73chown root:named $BASEDIR/named.rfc1912.zones74chmod 640 $BASEDIR/named.rfc1912.zones7576# DOMAIN.zone, DOMAIN.rev 파일 준비77at <<'EOF' > $BASEDIR/$DOMAIN.zone78$TTL 479@IN SOA  DOMAIN. root.DOMAIN. (80                                        10      ; serial81      1D      ; refresh82                                 1H      ; retry83Wexpire843H )    ; minimum85 86;; DNS Server 87IN  NS      ns1 88ns1IN  ASERVERIP 89 90EOF 91chown root:named $BASEDIR/$DOMAIN.zone 92chmod 640 $BASEDIR/$DOMAIN.zone 93 94at <<'EOF' > $BASEDIR/$DOMAIN.rev 95$TTL 4 96@IN SOA  ns1.DOMAIN. root.DOMAIN. ( 97 10      ; serial 98                1D      ; refresh 99 1H      ; retry55,149%55,149%~@k        49 };54,148%~@k        48 severity dynamic;53,147%~@k        47 file "data/named.run";52,146%~@k        46 channel default_debug {51,0-145%~@k        45 logging {50,144%~@k        44 };49,143%~@k        43 forward only;48,142%~@k        42 forwarders { 8.8.8.8; };47,141%~@k        41 include "/etc/crypto-policies/back-ends/bind.config";46,140%~@k        40 session-keyfile "/run/named/session.key";45,139%~@k        39 pid-file "/run/named/named.pid";44,138%~@k        38 geoip-directory "/usr/share/GeoIP";43,137%~@k        37 managed-keys-directory "/var/named/dynamic";42,136%~@k        36 dnssec-validation no;41,135%~@k        35 recursion yes;40,134%~@k        34 allow-query     { any; };39,133%~@k        33 recursing-file  "/var/named/data/named.recursing";38,132%~@k        32 secroots-file   "/var/named/data/named.secroots";37,131%~@k        31 memstatistics-file "/var/named/data/named_mem_stats.txt";36,130%~@k        30 statistics-file "/var/named/data/named_stats.txt";35,129%~@k        29 dump-file"/var/named/data/cache_dump.db";34,128%~@k        28 directory"/var/named";33,127%~@k        27 listen-on-v6 port 53 { any; };32,126%~@k        26 listen-on port 53 { any; };31,125%~@k        25 options {30,124%~@k        24 cat <<'EOF' > $BASEDIR/named.conf29,123%~@k        23 # /etc/named.conf 파일 준비28,122%~@k        22 mkdir -p "$BASEDIR"27,1-821%~@k        21 26,120%~@k        20 BASEDIR=$HOME/bin/DNS25,119%~@k        19 24,118%~@k        18 dnf -y install bind bind-utils23,117%~@k        17 22,116%~@k        16 #21,0-115%~@k        15 # (준비작업) 파일 생성20,114%~@k        14 #19,0-113%~@k        13 18,112%~@k        12 LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')17,0-111%~@k        11 ARPANET=$4     # 10.168.19216,110%~@k   7,0-1dd
+781901234567829012345678390123456784901234567859
+     60 17,110%dd
+781901234567829012345678390123456784901234567859
+     60 zone "DOMAIN" IN {17,0-110%dd
+781901234567829012345678390123456784901234567859
+     60      type master;17,110%~@k   8,0-1~@k   9,1  ~@k   20~@k   1~@k   2~@k   3~@k   4,1-8~@k   5,1  ~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   40~@k   1~@k   2~@k   3~@k   2~@k   1~@k   0~@k   39~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   29~@k   8~@k   7~@k   6~@k   5~@k   4,1-8~@k   3,1  ~@k   2~@k   1~@k   0~@k   19~@k   8,0-1dd
+81901234567829012345678390123456784901234567859
+     60      file "DOMAIN.zone";18,110%~@k   9~@k   20~@k   1~@k   2~@k   3,1-8~@k   4,1  ~@k   5~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   40~@k   1~@k   2~@k   3~@k   4~@k   3~@k   2~@k   1~@k   0~@k   39~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   29~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3,1-8dd
+34567829012345678390123456784901234567859
+     60 };23,910%~@k   2~@k   1~@k   0~@k   19~@k   8O -- INSERT --18,110%     18 9201234567893012345678940123456789501234567896018,110%^[  18,0-110%~@k   9,1  ~@k   20~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   40~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   50~@k   1~@k   2~@k   3,0-1~@k   4,1  ~@k   5~@k
+     61 };56,111%~@k
+     62 57,0-112%~@k
+     63 zone "ARPANET.in-addr.arpa"  IN {58,113%~@k
+     64      type master;59,114%~@k
+     65      file "DOMAIN.rev";60,115%~@k
+     66 };61,116%~@k
+     67 62,0-117%~@k
+     68 EOF63,118%~@k
+     69 chown root:named $BASEDIR/named.rfc1912.zones64,119%~@k
+     70 chmod 640 $BASEDIR/named.rfc1912.zones65,120%~@k
+     71 66,121%~@k
+     72 # DOMAIN.zone, DOMAIN.rev 파일 준비67,0-122%~@k
+     73 cat <<'EOF' > $BASEDIR/$DOMAIN.zone68,123%~@k
+     74 $TTL 469,125%~@k
+     75 @IN SOA  DOMAIN. root.DOMAIN. (70,126%~@k
+     76 10      ; serial71,0-127%~@k
+     77 1D      ; refresh72,128%~@k
+     78 1H      ; retry73,129%~@k
+     79 1W      ; expire74,130%~@k
+     80 3H )    ; minimum75,131%~@k
+     81 76,132%~@k
+     82 ;; DNS Server77,133%~@k
+     83 IN  NS      ns178,134%~@k
+     84 ns1IN  ASERVERIP79,135%~@k
+     85 80,136%~@k
+     86 EOF81,0-137%~@k
+     87 chown root:named $BASEDIR/$DOMAIN.zone82,138%~@k
+     88 chmod 640 $BASEDIR/$DOMAIN.zone83,139%~@k
+     89 84,140%~@k
+     90 cat <<'EOF' > $BASEDIR/$DOMAIN.rev85,0-141%~@k
+     91 $TTL 486,142%~@k
+     92 @IN SOA  ns1.DOMAIN. root.DOMAIN. (87,143%~@k
+     93 10      ; serial88,144%~@k
+     94 1D      ; refresh89,0-145%~@k
+     95 1H      ; retry90,146%~@k
+     96 1W      ; expire91,147%~@k
+     97 3H )    ; minimum92,148%~@k
+     98 93,150%~@k
+     99 ;; DNS Server94,151%~@k
+    100 IN  NSns1.DOMAIN.95,152%~@k
+    101 LASTIPIN  PTRns1.DOMAIN.96,153%~@k
+    102 97,154%~@k
+    103 EOF98,0-155%~@k
+    104 chown root:named $BASEDIR/$DOMAIN.rev99,156%~@k
+    105 chmod 640 $BASEDIR/$DOMAIN.rev100,157%~@k
+    106 101,158%~@k
+    107 #102,0-159%~@k
+    108 # 원격 서버 설정103,160%~@k
+    109 #104,161%~@k
+    110 ssh -T "$SERVER" dnf install -y -q bind bind-utils105,162%~@k
+    111 106,0-163%~@k
+    112 scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf107,164%~@k
+    113 scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones108,165%~@k
+    114 scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone109,166%~@k
+    115 scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev110,167%~@k
+    116 111,0-168%~@k
+    117 ssh -T "$SERVER" bash - <<EOF112,169%~@k
+    118 sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones113,170%~@k   2~@k   1,0-12,1  3
+    119 sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones114,171%
+    120 115,172%
+    121 sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone116,0-173%~@k
+    122 sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone117,175%
+    123 chown root:named /var/named/$DOMAIN.zone118,176%
+    124 119,177%
+    125 sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev120,0-178%
+    126 sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev121,179%
+    127 chown root:named /var/named/$DOMAIN.rev122,180%~@k
+    128 EOF123,181%
+    129 124,0-182%
+    130 ssh -T "$SERVER" systemctl restart named125,183%
+    131 126,184%
+    132 #127,185%
+    133 # DNS Client 설정128,186%~@k
+    134 #129,0-187%
+    135 nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8130,188%
+    136 nmcli con up eth0131,0-189%
+    137 132,190%
+    138 sleep 3133,191%
+    139 134,192%~@k
+    140 systemctl restart named135,193%
+    141 systemctl enable named136,194%
+    142 137,0-195%
+    143 echo; echo138,196%
+    144 echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%
+    145 nslookup ns1."$DOMAIN"140,198%~@k
+    146 141,1Bot2,0-13,1  456,0-1~@k   ~@k   ~@k   5,1  432,0-11,1  ~@k   039,0-18,1  7,0-16,1  5~@k   4321,0-10,1  29,0-1~@k   8,1  7654,0-13,1  ~@k   210,0-119,1  87~@k   6,0-17,1  8920,0-11,1  ~@k   234,0-15,1  67~@k   87654,0-13,1  ~@k   210,0-119,1  87~@k   6,0-17,1  8920,0-11,1  ~@k   234,0-15,1  67~@k   89,0-130,1  1,0-12,1  3~@k   4567,0-18,1  9,0-1~@k   40,1  12,0-13,1  45~@k   6,0-1~@k   5,1  432,0-11,1  ~@k   039,0-18,1  7,0-16,1  5~@k   4321,0-10,1  29,0-1~@k   8,1  7654,0-13,1  ~@k   210,0-119,1  87~@k   6,0-15,1  4321,0-1~@k   0,1  09876,0-15,1  ~@k   432,0-1     96 1W      ; expire101,198%     95 1H      ; retry100,197%     94 1D      ; refresh99,196%~@k        93 10      ; serial98,0-195%9,1  100,112,0-13,1  ~@k   456,0-17,1  89~@k   101,0-12,1  345~@k   6,0-17,1  8920,0-11,1  ~@k   234,0-15,1  67~@k   89,0-130,1  1,0-12,1  3~@k   4567,0-1
+    143 echo; echo138,196%
+    144 echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%~@k
+    145 nslookup ns1."$DOMAIN"140,198%
+    146 141,1Bot2,0-13,1  456,0-1~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   5,1  432,0-11,1  ~@k   039,0-18,1  7,0-16,1  5~@k   4321,0-10,1  29,0-1~@k   8,1  7654,0-13,1  ~@k   210,0-119,1  87~@k   6,0-15,1  4321,0-1~@k   0,1  09876,0-15,1  432,0-1     96 1W      ; expire101,198%     95 1H      ; retry100,197%     94 1D      ; refresh99,196%~@k        93 10      ; serial98,0-195%     92 @IN SOA  ns1.DOMAIN. root.DOMAIN. (97,194%     91 $TTL 496,193%     90 cat <<'EOF' > $BASEDIR/$DOMAIN.rev95,192%     89 94,191%     88 chmod 640 $BASEDIR/$DOMAIN.zone93,190%~@k        87 chown root:named $BASEDIR/$DOMAIN.zone92,189%     86 EOF91,188%     85 90,187%     84 ns1IN  ASERVERIP89,0-186%     83 IN  NS      ns188,185%     82 ;; DNS Server87,184%~@k        81 86,183%     80 3H )    ; minimum85,0-182%     79 1W      ; expire84,181%     78 1H      ; retry83,180%     77 1D      ; refresh82,179%     76 10      ; serial81,0-178%~@k        75 @IN SOA  DOMAIN. root.DOMAIN. (80,177%1,0-12,1  345,0-1~@k   6,1  789,0-190,1  1~@k   234567~@k   8,0-19,1  100,112,0-13,1  ~@k   456,0-17,1  89~@k   101,0-12,1  3456,0-17,1  89
+    125 sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev120,0-178%
+    126 sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev121,179%~@k
+    127 chown root:named /var/named/$DOMAIN.rev122,180%
+    128 EOF123,181%
+    129 124,0-182%
+    130 ssh -T "$SERVER" systemctl restart named125,183%
+    131 126,184%
+    132 #127,185%~@k
+    133 # DNS Client 설정128,186%
+    134 #129,0-187%
+    135 nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8130,188%
+    136 nmcli con up eth0131,0-189%
+    137 132,190%
+    138 sleep 3133,191%~@k
+    139 134,192%
+    140 systemctl restart named135,193%
+    141 systemctl enable named136,194%
+    142 137,0-195%
+    143 echo; echo138,196%
+    144 echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%~@k
+    145 nslookup ns1."$DOMAIN"140,198%
+    146 141,1Bot2,0-13,1  45~@k   6,0-1~@k   ~@k   ~@k   ~@k   5,1  432,0-11,1  ~@k   039,0-18,1  7,0-16,1  5~@k   4321,0-10,1  29,0-1~@k   8,1  7654,0-13,1  ~@k   210,0-119,1  87~@k   6,0-15,1  4321,0-1~@k   0,1  1,0-12,1  345~@k   6,0-17,1  8920,0-11,1  ~@k   234,0-15,1  67~@k   89,0-130,1  1,0-12,1  3~@k   4567,0-18,1  9,0-1~@k   40,1  12,0-13,1  45~@k   6,0-1~@k   ~@k   ~@k   ~@k   ~@k   5,1  432,0-11,1  ~@k   039,0-18,1  7,0-16,1  5~@k   4321,0-10,1  29,0-1~@k   8,1  7654,0-13,1  210,0-119,1  87~@k   6,0-15,1  4321,0-1~@k   0,1  09876,0-15,1  ~@k   432,0-1     96 1W      ; expire101,198%     95 1H      ; retry100,197%     94 1D      ; refresh99,196%~@k        93 10      ; serial98,0-195%     92 @IN SOA  ns1.DOMAIN. root.DOMAIN. (97,194%     91 $TTL 496,193%     90 cat <<'EOF' > $BASEDIR/$DOMAIN.rev95,192%     89 94,191%     88 chmod 640 $BASEDIR/$DOMAIN.zone93,190%~@k        87 chown root:named $BASEDIR/$DOMAIN.zone92,189%34567~@k   8,0-19,1  100,112,0-13,1  ~@k   456,0-17,1  89~@k   101,0-12,1  345~@k   6,0-17,1  8920,0-11,1  ~@k   234,0-15,1  6789,0-130,1  1,0-1
+    137 132,190%
+    138 sleep 3133,191%~@k
+    139 134,192%
+    140 systemctl restart named135,193%
+    141 systemctl enable named136,194%
+    142 137,0-195%
+    143 echo; echo138,196%
+    144 echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%~@k
+    145 nslookup ns1."$DOMAIN"140,198%
+>4;m"dns.sh"1[New]0146L, 4118Bkwritten1~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ^[  ^[  ::wq
+>4;m[root@main ~/shell]#  chmod +x dns.sh
+dns.shmserver1h192.168.10.20sexample.com110.168.192xample.com 10.168.192
+/bin/bash: i: No such file or directory
+oup | grep named
+named:x:25:
+[root@main ~/shell]# chmox dns.sh
+dns.shmserver1h192.168.10.20sexample.com110.168.192xample.com 10.168.192
+/bin/bash: i: No such file or directory
+[root@main ~/shell]# vi dns.sh
+#!/bin/bash iif [ $# -ne 4 ]; thenecho "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,0-13,1  456~@k   78910,112~@k   3,0-14,1  5678,0-1~@k   9,1  201234~@k   5678930~@k   123456~@k   7894012~@k   345
+chown root:named $BASEDIR/named.conf46,11%
+chmod 640 $BASEDIR/named.conf47,0-12%
+48,13%~@k
+>4;m>4;mviedns.sh912.zones 파일 준비49,14%87,0-16,1  54~@k   3210398~@k   7^[  ^[  ::q
+#!/bin/bash iif [ $# -ne 4 ]; thenecho "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  #!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 41,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF
+chown root:named $BASEDIR/named.rfc1912.zones
+chmod 640 $BASEDIR/named.rfc1912.zones
+
+# DOMAIN.zone, DOMAIN.rev 파일 준비
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh1H      ; retry1W      ; expire3H )    ; minimum
+
+;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIP
+
+EOF
+chown root:named $BASEDIR/$DOMAIN.zone
+chmod 640 $BASEDIR/$DOMAIN.zone
+
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev
+$TTL 41,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+
+EOF1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.1192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF1,1Top#!/bin/bash i
+
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+SERVER=$1      # server1(192.168.10.20)
+SERVERIP=$2    # 192.168.10.20
+DOMAIN=$3      # example.com
+ARPANET=$4     # 10.168.192
+LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')
+
+#
+# (준비작업) 파일 생성
+#
+BASEDIR=$HOME/bin/DNS
+
+mkdir -p "$BASEDIR"
+# /etc/named.conf 파일 준비
+cat <<'EOF' > $BASEDIR/named.conf
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+chown root:named $BASEDIR/named.conf
+chmod 640 $BASEDIR/named.conf
+
+# /etc/named.rfc1912.zones 파일 준비
+/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones
+cat <<'EOF' >> $BASEDIR/named.rfc1912.zones
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};1,1Top2,0-13,1  4567~@k   8910,1123,0-14,1  ~@k   5678,0-19,1  201~@k   2345678~@k   93012345~@k   67894012~@k   32103987~@k   6543210~@k   29876543~@k   210198,0-17,1  6543,0-12,1  109,1 ~@k   8765432,0-1~@k   1,1  ~@k   2,0-13,1  4567~@k   8910,1123,0-14,1  ~@k   5678,0-19,1  201~@k   2345678~@k   93012345~@k   67894012~@k   34567,0-18,1  9~@k   504987,0-16,1  54~@k   32103987~@k   654321029876543~@k   210198,0-17,1  6~@k   543,0-12,1  109,1 ~@k   8765432,0-1~@k   1,1  ~@k   2,0-13,1  4567~@k   8910,1123,0-14,1  5678,0-19,1  201~@k   2345678~@k   93012345~@k   67894012~@k   34567,0-18,1  9~@k   50123,0-14,1  56~@k   7,0-1
+zone "ARPANET.in-addr.arpa"  IN {58,11%
+type master;59,12%
+file "DOMAIN.rev";60,13%
+};61,14%
+62,0-15%
+EOF63,17%
+chown root:named $BASEDIR/named.rfc1912.zones64,18%
+chmod 640 $BASEDIR/named.rfc1912.zones65,19%
+66,110%
+# DOMAIN.zone, DOMAIN.rev 파일 준비67,0-111%
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone68,113%
+$TTL 469,114%
+@IN SOA  DOMAIN. root.DOMAIN. (70,115%~@k
+10      ; serial71,0-116%
+1D      ; refresh72,117%
+1H      ; retry73,119%
+1W      ; expire74,120%
+3H )    ; minimum75,121%
+76,122%
+;; DNS Server77,123%~@k
+IN  NS      ns178,125%
+ns1IN  ASERVERIP79,126%
+80,127%
+EOF81,0-128%
+chown root:named $BASEDIR/$DOMAIN.zone82,129%
+chmod 640 $BASEDIR/$DOMAIN.zone83,130%
+84,132%~@k
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev85,0-133%
+$TTL 486,134%
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (87,135%
+10      ; serial88,136%
+1D      ; refresh89,0-138%
+1H      ; retry90,139%
+1W      ; expire91,140%~@k
+3H )    ; minimum92,141%
+93,142%
+;; DNS Server94,144%
+IN  NSns1.DOMAIN.95,145%
+LASTIPIN  PTRns1.DOMAIN.96,146%
+97,147%
+EOF98,0-148%~@k
+chown root:named $BASEDIR/$DOMAIN.rev99,150%
+chmod 640 $BASEDIR/$DOMAIN.rev100,151%
+101,152%
+#102,0-153%
+# 원격 서버 설정103,154%
+#104,155%
+ssh -T "$SERVER" dnf install -y -q bind bind-utils105,157%~@k
+106,0-158%
+scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf107,159%
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones108,160%
+scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone109,161%
+scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev110,163%
+111,0-164%
+ssh -T "$SERVER" bash - <<EOF112,165%~@k
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones113,166%
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones114,167%
+115,169%
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone116,0-170%
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone117,171%
+chown root:named /var/named/$DOMAIN.zone118,172%
+119,173%~@k
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev120,0-175%
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev121,176%
+chown root:named /var/named/$DOMAIN.rev122,177%
+EOF123,178%
+124,0-179%
+ssh -T "$SERVER" systemctl restart named125,180%
+126,182%
+#127,183%
+# DNS Client 설정128,184%
+#129,0-185%
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8130,186%
+nmcli con up eth0131,0-188%
+132,189%
+sleep 3133,190%~@k
+134,191%
+systemctl restart named135,192%
+systemctl enable named136,194%
+137,0-195%
+echo; echo138,196%
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%
+nslookup ns1."$DOMAIN"140,198%~@k
+141,1Bot2,0-13,1  456,0-1~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   5,1  432,0-11,1  0~@k   39,0-18,1  7,0-16,1  543~@k   21,0-10,1  29,0-18,1  76~@k   54,0-13,1  210,0-119,1  ~@k   876,0-15,1  432~@k   1,0-10,1  09876,0-15,1  ~@k   432,0-11,1  099,1 8,0-1~@k   7,1  654321~@k   0ns1IN  ASERVERIP89,0-198%IN  NS      ns188,197%;; DNS Server87,196%86,195%3H )    ; minimum85,0-194%1W      ; expire84,192%~@k   1H      ; retry83,191%1D      ; refresh82,190%10      ; serial81,0-189%@IN SOA  DOMAIN. root.DOMAIN. (80,188%$TTL 479,186%cat <<'EOF' > $BASEDIR/$DOMAIN.zone78,185%# DOMAIN.zone, DOMAIN.rev 파일 준비77,184%~@k   76,183%chmod 640 $BASEDIR/named.rfc1912.zones75,182%chown root:named $BASEDIR/named.rfc1912.zones74,180%EOF73,179%72,178%};71,0-177%file "DOMAIN.rev";70,176%~@k   type master;69,175%zone "ARPANET.in-addr.arpa"  IN {68,173%67,0-172%};66,171%file "DOMAIN.zone";65,170%type master;64,169%zone "DOMAIN" IN {63,167%~@k   62,0-166%cat <<'EOF' >> $BASEDIR/named.rfc1912.zones61,165%/bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones60,164%# /etc/named.rfc1912.zones 파일 준비59,163%58,161%chmod 640 $BASEDIR/named.conf57,0-160%chown root:named $BASEDIR/named.conf56,159%~@k   EOF55,158%include "/etc/named.root.key";54,157%include "/etc/named.rfc1912.zones";53,0-155%52,154%};51,153%};50,152%severity dynamic;49,151%~@k   file "data/named.run";48,150%channel default_debug {47,0-148%logging {46,147%};45,146%forward only;44,145%forwarders { 8.8.8.8; };43,144%include "/etc/crypto-policies/back-ends/bind.config";42,142%~@k   session-keyfile "/run/named/session.key";41,141%pid-file "/run/named/named.pid";40,140%geoip-directory "/usr/share/GeoIP";39,139%managed-keys-directory "/var/named/dynamic";38,138%dnssec-validation no;37,136%recursion yes;36,135%allow-query     { any; };35,134%~@k   recursing-file  "/var/named/data/named.recursing";34,133%secroots-file   "/var/named/data/named.secroots";33,132%memstatistics-file "/var/named/data/named_mem_stats.txt";32,130%statistics-file "/var/named/data/named_stats.txt";31,129%dump-file"/var/named/data/cache_dump.db";30,128%directory"/var/named";29,127%listen-on port 53 { any; };28,126%~@k   options {27,125%cat <<'EOF' > $BASEDIR/named.conf26,123%# /etc/named.conf 파일 준비25,122%mkdir -p "$BASEDIR"24,121%23,120%BASEDIR=$HOME/bin/DNS22,119%#21,117%~@k   # (준비작업) 파일 생성20,116%#19,115%18,0-114%LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')17,113%ARPANET=$4     # 10.168.19216,111%DOMAIN=$3      # example.com15,110%SERVERIP=$2    # 192.168.10.2014,19%~@k   SERVER=$1      # server1(192.168.10.20)13,0-18%fi12,17%exit 111,15%echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"10,14%echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"9,13%if [ $# -ne 4 ]; then8,12%7,11%~@k   #!/bin/bash i6,1Top5432,0-11,1  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,0-13,1  4567~@k   8910,1123,0-14,1  ~@k   5678,0-19,1  201~@k   234567893012345~@k   67894012~@k   34567,0-18,1  950123,0-14,1  56~@k   7,0-1
+zone "ARPANET.in-addr.arpa"  IN {58,11%
+type master;59,12%
+file "DOMAIN.rev";60,13%
+};61,14%
+62,0-15%
+EOF63,17%~@k
+chown root:named $BASEDIR/named.rfc1912.zones64,18%
+chmod 640 $BASEDIR/named.rfc1912.zones65,19%
+66,110%
+# DOMAIN.zone, DOMAIN.rev 파일 준비67,0-111%
+cat <<'EOF' > $BASEDIR/$DOMAIN.zone68,113%
+$TTL 469,114%
+@IN SOA  DOMAIN. root.DOMAIN. (70,115%~@k
+10      ; serial71,0-116%
+1D      ; refresh72,117%
+1H      ; retry73,119%
+1W      ; expire74,120%
+3H )    ; minimum75,121%
+76,122%
+;; DNS Server77,123%~@k
+IN  NS      ns178,125%
+ns1IN  ASERVERIP79,126%
+80,127%
+EOF81,0-128%
+chown root:named $BASEDIR/$DOMAIN.zone82,129%
+chmod 640 $BASEDIR/$DOMAIN.zone83,130%
+84,132%
+cat <<'EOF' > $BASEDIR/$DOMAIN.rev85,0-133%
+$TTL 486,134%
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (87,135%
+10      ; serial88,136%
+1D      ; refresh89,0-138%
+1H      ; retry90,139%
+1W      ; expire91,140%~@k
+3H )    ; minimum92,141%
+93,142%
+;; DNS Server94,144%
+IN  NSns1.DOMAIN.95,145%
+LASTIPIN  PTRns1.DOMAIN.96,146%
+97,147%
+EOF98,0-148%~@k
+chown root:named $BASEDIR/$DOMAIN.rev99,150%
+chmod 640 $BASEDIR/$DOMAIN.rev100,151%
+101,152%
+#102,0-153%
+# 원격 서버 설정103,154%
+#104,155%
+ssh -T "$SERVER" dnf install -y -q bind bind-utils105,157%~@k
+106,0-158%
+scp -p $BASEDIR/named.conf $SERVER:/etc/named.conf107,159%
+scp -p $BASEDIR/named.rfc1912.zones $SERVER:/etc/named.rfc1912.zones108,160%
+scp -p $BASEDIR/$DOMAIN.zone $SERVER:/var/named/$DOMAIN.zone109,161%
+scp -p $BASEDIR/$DOMAIN.rev $SERVER:/var/named/$DOMAIN.rev110,163%
+111,0-164%
+ssh -T "$SERVER" bash - <<EOF112,165%~@k
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones113,166%
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones114,167%
+115,169%
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone116,0-170%
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone117,171%
+chown root:named /var/named/$DOMAIN.zone118,172%
+119,173%
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev120,0-175%
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev121,176%
+chown root:named /var/named/$DOMAIN.rev122,177%
+EOF123,178%
+124,0-179%
+ssh -T "$SERVER" systemctl restart named125,180%
+126,182%~@k
+#127,183%
+# DNS Client 설정128,184%
+#129,0-185%
+nmcli con modify eth0 ipv4.dns $SERVERIP +ipv4.dns 8.8.8.8130,186%
+nmcli con up eth0131,0-188%
+132,189%
+sleep 3133,190%~@k
+134,191%
+systemctl restart named135,192%
+systemctl enable named136,194%
+137,0-195%
+echo; echo138,196%
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"139,0-197%
+nslookup ns1."$DOMAIN"140,198%
+141,1Bot2,0-13,1  456,0-1~@k   ~@k   ~@k   v1
+-- VISUAL --1146,0-1Boti<20>1    gd
+E349: No identifier under cursor
+-- VISUAL --146,0-1Bot146,0-1BotG ^[  ^[  dd
+~                                                                                                                         5,1  gG  g^[  ^[   g^M   ^[  ^[  dd
+~                                                                                                                         4gG  dd
+~                                                                                                                         3dd
+~                                                                                                                         2,0-1dd
+~                                                                                                                         1,1  dd
+~                                                                                                                         0dd
+~                                                                                                                         39,0-1dd
+~                                                                                                                         8,1  dd
+~                                                                                                                         7,0-1dd
+~                                                                                                                         6,1  dd
+~                                                                                                                         5dd
+~                                                                                                                         4dd
+~                                                                                                                         3dd
+~                                                                                                                         2dd
+~                                                                                                                         1,0-1dd
+~                                                                                                                         0,1  dd
+~                                                                                                                         29,0-1dd
+~                                                                                                                         8,1  dd
+~                                                                                                                         7dd
+~                                                                                                                         6dd
+~                                                                                                                         5dd
+~                                                                                                                         4,0-1dd
+~                                                                                                                         3,1  dd
+~                                                                                                                         2dd
+~                                                                                                                         1dd
+~                                                                                                                         0,0-1dd
+~                                                                                                                         19,1  dd
+~                                                                                                                         8dd
+~                                                                                                                         7dd
+~                                                                                                                         6,0-1dd
+~                                                                                                                         5,1  dd
+~                                                                                                                         4dd
+~                                                                                                                         3dd
+~                                                                                                                         2dd
+~                                                                                                                         1,0-1dd
+~                                                                                                                         0,1  dd
+~                                                                                                                         09dd
+~                                                                                                                         8dd
+~                                                                                                                         7dd
+~                                                                                                                         6,0-1dd
+~                                                                                                                         5,1  dd
+~                                                                                                                         4dd
+~                                                                                                                         3dd
+~                                                                                                                         2,0-1dd
+~                                                                                                                         1,1  dd
+~                                                                                                                         0,17dd
+~                                                                                                                         99,1  dd
+~                                                                                                                         8,0-1dd
+~                                                                                                                         7,41 dd
+~                                                                                                                         6dd
+~                                                                                                                         5dd
+~                                                                                                                         4dd
+~                                                                                                                         3dd
+~                                                                                                                         2,1 dd
+~                                                                                                                         1dd
+~                                                                                                                         0dd  ns1IN  ASERVERIP~                                                                                                                         89,0-1Botdd  IN  NS      ns1~                                                                                                                         88,1Botdd  ;; DNS Server~                                                                                                                         87,1Botdd  ~                                                                                                                         86,1Botdd  3H )    ; minimum~                                                                                                                         85,0-1Botdd  1W      ; expire~                                                                                                                         84,1Botdd  1H      ; retry~                                                                                                                         83,22Botdd  1D      ; refresh~                                                                                                                         82,1Botdd  10      ; serial~                                                                                                                         81,0-1Botdd  @IN SOA  DOMAIN. root.DOMAIN. (~                                                                                                                         80,41Botdd  $TTL 4~                                                                                                                         79,41Botdd  cat <<'EOF' > $BASEDIR/$DOMAIN.zone~                                                                                                                         78,41Botdd  # DOMAIN.zone, DOMAIN.rev 파일 준비~                                                                                                                         77,41Botdd  ~                                                                                                                         76,41Botdd  chmod 640 $BASEDIR/named.rfc1912.zones~                                                                                                                         75,1Botdd  chown root:named $BASEDIR/named.rfc1912.zones~                                                                                                                         74,1Botdd  EOF~                                                                                                                         73,1Botdd  ~                                                                                                                         72,1Botdd  };~                                                                                                                         71,0-1Botdd  file "DOMAIN.rev";~                                                                                                                         70,1Botdd  type master;~                                                                                                                         69,1Botdd  zone "ARPANET.in-addr.arpa"  IN {~                                                                                                                         68,1Botdd  ~                                                                                                                         67,0-1Botdd  };~                                                                                                                         66,1Botdd  file "DOMAIN.zone";~                                                                                                                         65,6Botdd  type master;~                                                                                                                         64,6Botdd  zone "DOMAIN" IN {~                                                                                                                         63,1Botdd  ~                                                                                                                         62,0-1Botdd  cat <<'EOF' >> $BASEDIR/named.rfc1912.zones~                                                                                                                         61,1Botdd  /bin/cp -f /etc/named.rfc1912.zones $BASEDIR/named.rfc1912.zones~                                                                                                                         60,6Botdd  # /etc/named.rfc1912.zones 파일 준비~                                                                                                                         59,6Botdd  ~                                                                                                                         58,1Botdd  chmod 640 $BASEDIR/named.conf~                                                                                                                         57,0-1Botdd  chown root:named $BASEDIR/named.conf~                                                                                                                         56,1Botdd  EOF~                                                                                                                         55,1Botdd  include "/etc/named.root.key";~                                                                                                                         54,1Botdd  include "/etc/named.rfc1912.zones";~                                                                                                                         53,0-1Botdd  ~                                                                                                                         52,1Botdd  };~                                                                                                                         51,1Botdd  };~                                                                                                                         50,1Botdd  severity dynamic;~                                                                                                                         49,1Botdd  file "data/named.run";~                                                                                                                         48,1Botdd  channel default_debug {~                                                                                                                         47,0-1Botdd  logging {~                                                                                                                         46,1Botdd  };~                                                                                                                         45,9Botdd  forward only;~                                                                                                                         44,17Botdd  forwarders { 8.8.8.8; };~                                                                                                                         43,17Botdd  include "/etc/crypto-policies/back-ends/bind.config";~                                                                                                                         42,9Botdd  session-keyfile "/run/named/session.key";~                                                                                                                         41,1Botdd  pid-file "/run/named/named.pid";~                                                                                                                         40,1Botdd  geoip-directory "/usr/share/GeoIP";~                                                                                                                         39,13Botd dnssec-validation no;managed-keys-directory "/var/named/dynamic";~                                                                                                                         ~                                                                                                                         37,9Botrecursion yes;36,9Botallow-query     { any; };35,9Botrecursing-file  "/var/named/data/named.recursing";34,9Botsecroots-file   "/var/named/data/named.secroots";33,9Botmemstatistics-file "/var/named/data/named_mem_stats.txt";32,9Bot~@k   statistics-file "/var/named/data/named_stats.txt";31,9Botdump-file"/var/named/data/cache_dump.db";30,9Botdirectory"/var/named";29,9Botlisten-on port 53 { any; };28,9Botoptions {27,9Botcat <<'EOF' > $BASEDIR/named.conf26,9Bot# /etc/named.conf 파일 준비25,9Bot~@k   mkdir -p "$BASEDIR"24,9Bot23,9BotBASEDIR=$HOME/bin/DNS22,9Bot#21,9Bot# (준비작업) 파일 생성20,9Bot#19,9Bot18,0-1Bot~@k   LASTIP=$(echo $SERVERIP | awk -F. '{print $4}')17,9BotARPANET=$4     # 10.168.19216,1BotDOMAIN=$3      # example.com15,10-8BotSERVERIP=$2    # 192.168.10.2014,1BotSERVER=$1      # server1(192.168.10.20)13,0-1Botfi12,9Botexit 111,9Bot~@k   echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"10,9Botecho "Usage: $0 <server> <serverip> <domain> <arpa domain>"9,9Botif [ $# -ne 4 ]; then8,9Bot7,2Bot#!/bin/bash i6,9All54~@k   32,0-11,9  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   dd
+~                                                                                                                         1,0-1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,5Alldd
+~                                                                                                                         1,5Alldd
+~                                                                                                                         1,5Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,0-1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,0-1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,1Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd
+~                                                                                                                         1,9Alldd  --No lines in buffer--0,0-1Alldd  dd  dd  dd  dd  -- INSERT --0,1All#!/bin/bash# 인자값 개수 확인if [ $# -ne 4 ]; then    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"    exit 1
+fiSERVER=$1SERVERIP=$2DOMAIN=$3ARPANET=$4LASTIP=$(echo "$SERVERIP" | awk -F. '{print $4}')# DNS 파일 생성 디렉토리 준비
+BASEDIR=$HOME/bin/DNSmkdir -p "$BASEDIR"# /etc/named.conf 파일 생성
+cat <<'EOF' > "$BASEDIR/named.conf"
+options {        listen-on port 53 { any; };        directory"/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { any; };        recursion yes;
+        dnssec-validation no;        managed-keys-directory "/var/named/dynamic";
+        geoip-directory "/usr/share/GeoIP";
+        pid-file "/run/named/named.pid";        session-keyfile "/run/named/session.key";
+        include "/etc/crypto-policies/back-ends/bind.config";
+            forwarders { 8.8.8.8; };
+            forward only;};logging {        channel default_debug {
+                file "data/named.run";                severity dynamic;
+        };};include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";EOFchown root:named "$BASEDIR/named.conf"
+chmod 640 "$BASEDIR/named.conf"# /etc/named.rfc1912.zones 파일 복사 및 추가
+/bin/cp -f /etc/named.rfc1912.zones "$BASEDIR/named.rfc1912.zones"
+cat <<'EOF' >> "$BASEDIR/named.rfc1912.zones"zone "DOMAIN" IN {     type master;
+zonetypeemaster;filen"DOMAIN.rev";PANET.in-addr.arp(paste) --a"  IN {
+};
+EOF
+
+chown root:named "$BASEDIR/named.rfc1912.zones"
+chmod 640 "$BASEDIR/named.rfc1912.zones"# 정방향 영역(DOMAIN.zone) 파일 생성cat <<'EOF' > "$BASEDIR/$DOMAIN.zone"
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (
+10      ; serial
+1D      ; refresh
+1H      ; retry
+13H )   ;;eminimum
+
+;; DNS ServerIN  NS      ns1
+ns1IN  ASERVERIPEOF
+
+chown root:named "$BASEDIR/$DOMAIN.zone"chmod 640 "$BASEDIR/$DOMAIN.zone"
+
+# 역방향 영역(DOMAIN.rev) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.rev"$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (10      ; serial
+1D      ; refresh
+1H      ; retry
+1W      ; expire
+3H )    ; minimum;; DNS ServerIN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.EOF
+
+chown root:named "$BASEDIR/$DOMAIN.rev"
+chmod 640 "$BASEDIR/$DOMAIN.rev"# 원격 서버 패키지 설치
+#s설정
+scp -p "$BASEDIR/named.conf" "$SERVER:/etc/named.conf"
+scp -p "$BASEDIR/named.rfc1912.zones" "$SERVER:/etc/named.rfc1912.zones"
+scp -p "$BASEDIR/$DOMAIN.zone" "$SERVER:/var/named/$DOMAIN.zone"
+scp -p "$BASEDIR/$DOMAIN.rev" "$SERVER:/var/named/$DOMAIN.rev"# 원격 서버 내부 설정 파일 치환 및 데몬 재시작ssh -T "$SERVER" <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sesedi-is's/SERVERIP/$SERVERIP/g'c/var/named/$DOMAIN.zone -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zonesed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.revchown root:named /var/named/$DOMAIN.rev
+
+systemctl restart namedEOF
+
+# 로컬 클라이언트 DNS 설정 및 확인
+nmcli con modify eth0 ipv4.dns "$SERVERIP" +ipv4.dns 8.8.8.8nmcli con up eth0
+
+sleep 3
+
+echo
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+>4;m"dns.sh".142L,A4210B2written[  ^[  ::wq
+>4;m[root@main ~/shell]# dns.sh.server1 192.168.10.20 example.com 10.168.192
+
+Upgraded:
+  bind-libs-32:9.18.33-26.el10.x86_64   bind-license-32:9.18.33-26.el10.noarch
+  bind-utils-32:9.18.33-26.el10.x86_64
+Installed:
+  bind-32:9.18.33-26.el10.x86_64   bind-dnssec-utils-32:9.18.33-26.el10.x86_64
+
+named.conf                                                                              100%  983     1.3MB/s   00:00 ETA
+named.rfc1912.zones                                                                     100% 1180     1.8MB/s   00:00 ETA
+example.com.zone                                                                        100%  426   636.5KB/s   00:00 ETA
+example.com.rev                                                                         100%  439   658.6KB/s   00:00 ETA
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://server1.example.com:9090/ or https://192.168.10.20:9090/
+
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)
+
+[ INFO ] DNS 서버에 DNS 쿼리 요청:
+Server:         192.168.10.20
+Address:        192.168.10.20#53
+
+Name:   ns1.example.com
+Address: 192.168.10.20
+
+
+[root@main ~/shell]# nmtui
+B
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                ┌─┤ NetworkManager TUI ├──┐
+                                                │                         │
+                                                │ Please select an option │
+                                                │                         │
+                                                │ Edit a connection       │
+                                                │ Activate a connection   │
+                                                │ Set system hostname     │
+                                                │ Radio                   │
+                                                │                         │
+                                                │ Quit                    │
+                                                │                         │
+                                                │                         │
+                                                └─────────────────────────┘
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+B
+nm                    nmcli                 nmtui                 nmtui-hostname
+nmbd                  nm-connection-editor  nmtui-connect         nmtui.sh
+nmblookup             nm-online             nmtui-edit
+[root@main ~/shell]# nmtui.sh
+[root@main ~/shell]#
+[root@main ~/shell]# cd /root/bin
+[root@main ~/bin]# vi setup_tui.sh
+~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^A  c^M   ^M  i -- INSERT --0,1All2~                                                                                                                         1#!/bin/bash# 임시 파일 정의TEMP_FILE="/tmp/tui_menu.$$"
+FORM_FILE="/tmp/tui_form.$$"# 스크립트 종료 시 임시 파일 삭제 및 원래 화면 복구 (조건 4)
+trap "rm -f $TEMP_FILE $FORM_FILE; clear" EXITwhile true; do
+    # 메인 메뉴 구성 (nmtui 스타일)    dialog --clear --title "System Configuration TUI" \
+           --menu "원하는 작업을 선택하세요:" 15 50 4 \
+           "1" "Web Server 설정 (web.sh)" \
+           "2" "FTP Server 설정 (ftp.sh)" \
+           "3" "DNS Server 설정 (dns.sh)" \    "4" "종료" 2> $TEMP_FILE
+               # 취소(Cancel) 선택 시 루프 종료
+    if [ $? -ne 0 ]; then        break
+    fi        CHOICE=$(cat $TEMP_FILE)        case $CHOICE in
+        1)            # Web Server 설정 입력란 dialog --clear --title "Web Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+            if [ $? -eq 0 ]; then
+                SERVER=$(cat $TEMP_FILE)                clear
+                web.sh "$SERVER"                echo  read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi            ;;        2)            # FTP Server 설정 입력란
+            dialog --clear --title "FTP Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+            if [ $? -eq 0 ]; then                SERVER=$(cat $TEMP_FILE)
+                clear                ftp.sh "$SERVER"
+                echo                read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi            ;;
+        3)            # DNS Server 설정 폼            dialog --clear --title "DNS Server Configuration" \
+       --form "DNS 서버 설정을 확인 및 수정하세요:" 15 50 0 \
+                   "Server Name:" 1 1 "server1"1 15 20 0 \
+                   "Server IP:"   2 1 "192.168.10.20" 2 15 20 0 \
+                   "Domain:"      3 1 "example.com"   3 15 20 0 \
+                   "ARPA Domain:" 4 1 "10.168.192"    4 15 20 0 \
+                   2> $FORM_FILEif [ $? -eq 0 ]; then
+                # 폼에서 입력된 각 라인별 데이터 추출
+SERVER=$(sed -n '1p' $FORM_FILE)(paste) --
+IP=$(clearn '2p' $FORM_FILE)DOMAIN=$(sed -n '3p' $FORM_FILE)ARPA=$(sed -n '4p' $FORM_FILE)
+dn4)#i종
+    esac
+>4;m"setup_tui.sh"7[New]t79L, 2775B written
++x;setup_tui.sh
+p_tui.sh
+[root@main ~/bin]# setup_tui.sh
+s
+bash: s: command not found...
+[root@main ~/bin]# s
+bash: s: command not found...
+[root@main ~/bin]# s
+bash: s: command not found...
+[root@main ~/bin]# setup_tui.sh
+[root@main ~/bin]# ls
+1                add_user.sh     auto_telnet2.sh     DNS       nmtui.sh      server.list    user.list
+aaa              auto_ftp2.sh    auto_telnet.sh      hosts     ping.sh       setup_tui.sh
+add_dir.sh       auto_ftp.sh     calculator_ver1.sh  hosts.sh  position.txt  user_admin.sh
+add_userlist.sh  auto_reboot.sh  del_user.sh         jump.sh   reboot.txt    useradmin.sh
+[root@main ~/bin]# nmtui
+B
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                ┌─┤ NetworkManager TUI ├──┐
+                                                │                         │
+                                                │ Please select an option │
+                                                │                         │
+                                                │ Edit a connection       │
+                                                │ Activate a connection   │
+                                                │ Set system hostname     │
+                                                │ Radio                   │
+                                                │                         │
+                                                │ Quit                    │
+                                                │                         │
+                                                │                         │
+                                                └─────────────────────────┘
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+viosetup_tui.shn]# 9@chmodu+xsh
+#!/bin/bash# 임시 파일 정의TEMP_FILE="/tmp/tui_menu.$$"
+FORM_FILE="/tmp/tui_form.$$"
+
+# 스크립트 종료 시 임시 파일 삭제 및 원래 화면 복구 (조건 4)
+trap "rm -f $TEMP_FILE $FORM_FILE; clear" EXIT
+
+while true; do
+    # 메인 메뉴 구성 (nmtui 스타일)
+    dialog --clear --title "System Configuration TUI" \--menu "원하는 작업을 선택하세요:" 15 50 4 \"1" "Web Server 설정 (web.sh)" \"2" "FTP Server 설정 (ftp.sh)" \"3" "DNS Server 설정 (dns.sh)" \"4" "종료" 2> $TEMP_FILE# 취소(Cancel) 선택 시 루프 종료
+    if [ $? -ne 0 ]; thenbreak
+    fiCHOICE=$(cat $TEMP_FILE)case $CHOICE in1)# Web Server 설정 입력란dialog --clear --title "Web Server Configuration" \--inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILEif [ $? -eq 0 ]; thenSERVER=$(cat $TEMP_FILE)clearweb.sh "$SERVER"echoread -p "엔터를 누르면 메뉴로 돌아갑니다..."fi;;2)# FTP Server 설정 입력란dialog --clear --title "FTP Server Configuration" \--inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILEif [ $? -eq 0 ]; thenSERVER=$(cat $TEMP_FILE)clearftp.sh "$SERVER"echoread -p "엔터를 누르면 메뉴로 돌아갑니다..."fi;;3)# DNS Server 설정 폼dialog --clear --title "DNS Server Configuration" \--form "DNS 서버 설정을 확인 및 수정하세요:" 15 50 0 \"Server Name:" 1 1 "server1"1 15 20 0 \"Server IP:"   2 1 "192.168.10.20" 2 15 20 0 \"Domain:"      3 1 "example.com"   3 15 20 0 \"ARPA Domain:" 4 1 "10.168.192"    4 15 20 0 \2> $FORM_FILEif [ $? -eq 0 ]; then# 폼에서 입력된 각 라인별 데이터 추출1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  dd
+SERVER=$(sed -n '1p' $FORM_FILE)1,0-1TopgG  gdE349: No identifier under cursor1,0-1TopdG
+~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         --No lines in buffer--0,0-1All-- INSERT --0,1All#!/bin/bash# 임시 파일 정의TEMP_FILE="/tmp/tui_menu.$$"
+FORM_FILE="/tmp/tui_form.$$"# 종료 시 화면을 지우지 않고 터미널 색상/속성만 초기화
+trap "rm -f $TEMP_FILE $FORM_FILE; tput sgr0" EXITwhile true; do    # --clear 옵션 제거 및 메인 메뉴 구성
+    dialog --title "System Configuration TUI" \
+           --menu "원하는 작업을 선택하세요:" 15 50 4 \
+           "1" "Web Server 설정 (web.sh)" \
+           "2" "FTP Server 설정 (ftp.sh)" \
+           "3" "DNS Server 설정 (dns.sh)" \           "4" "종료" 2> $TEMP_FILE
+               # 취소 선택 시 루프 종료
+    if [ $? -ne 0 ]; then        break    fi        CHOICE=$(cat $TEMP_FILE)
+        case $CHOICE in        1)
+            # Web Server 설정            dialog --title "Web Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+    if [ $? -eq 0 ]; then
+                SERVER=$(cat $TEMP_FILE)
+                tput sgr0                web.sh "$SERVER"
+                echo                read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi            ;;
+        2)            # FTP Server 설정            dialog --title "FTP Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+            if [ $? -eq 0 ]; then                SERVER=$(cat $TEMP_FILE)
+                tput sgr0                ftp.sh "$SERVER"
+                echo                read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi
+            ;;        3)            # DNS Server 설정dialog --title "DNS Server Configuration" \
+       --form "DNS 서버 설정을 확인 및 수정하세요:" 15 50 0 \
+                   "Server Name:" 1 1 "server1"1 15 20 0 \
+                   "Server IP:"   2 1 "192.168.10.20" 2 15 20 0 \
+                   "Domain:"      3 1 "example.com"   3 15 20 0 \
+                   "ARPA Domain:" 4 1 "10.168.192"    4 15 20 0 \
+                   2> $FORM_FILEif [ $? -eq 0 ]; then
+                SERVER=$(sed -n '1p' $FORM_FILE)
+IP=$(sed -n '2p' $FORM_FILE)(paste) --DOMAIN=$(sed -n '3p' $FORM_FILE)ARPA=$(sed -n '4p' $FORM_FILE)tput sgr0
+dns.4)#"종
+    esac
+>4;m"setup_tui.sh" 78L, 2660B written
+>4;m[root@main ~/bin]# setup_tui.sh.sh
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]#
+[root@main ~/bin]# celar
+bash: celar: command not found...
+Similar command is: 'clear'
+[root@main ~/bin]# c
+cat << EOF TOOLS_AI_QUESTION_IP206.txt1
+> 조건
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+조
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+>
+bash: warning: here-document at line 40 delimited by end-of-file (wanted `EOF')
+[root@main ~/bin]# cat << EOF > TOOLS_AI_QUESTION_IP206.txt
+조건
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+at << EOF > TOOLS_AI_QUESTION_IP206.txt
+조건
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+EOF
+whichhsetup
+setup-nsssysinit     setup-nsssysinit.sh  setup_tui.sh
+[root@main ~/bin]# which setup_tui.sh
+/root/bin/setup_tui.sh
+[root@main ~/bin]# vi setup_tui.sh
+#!/bin/bash# 임시 파일 정의TEMP_FILE="/tmp/tui_menu.$$"
+FORM_FILE="/tmp/tui_form.$$"
+
+# 종료 시 화면을 지우지 않고 터미널 색상/속성만 초기화
+trap "rm -f $TEMP_FILE $FORM_FILE; tput sgr0" EXIT
+
+while true; do
+    # --clear 옵션 제거 및 메인 메뉴 구성
+    dialog --title "System Configuration TUI" \--menu "원하는 작업을 선택하세요:" 15 50 4 \"1" "Web Server 설정 (web.sh)" \"2" "FTP Server 설정 (ftp.sh)" \"3" "DNS Server 설정 (dns.sh)" \"4" "종료" 2> $TEMP_FILE# 취소 선택 시 루프 종료
+    if [ $? -ne 0 ]; thenbreak
+    fiCHOICE=$(cat $TEMP_FILE)case $CHOICE in1)# Web Server 설정dialog --title "Web Server Configuration" \--inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILEif [ $? -eq 0 ]; thenSERVER=$(cat $TEMP_FILE)tput sgr0web.sh "$SERVER"echoread -p "엔터를 누르면 메뉴로 돌아갑니다..."fi;;2)# FTP Server 설정dialog --title "FTP Server Configuration" \--inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILEif [ $? -eq 0 ]; thenSERVER=$(cat $TEMP_FILE)tput sgr0ftp.sh "$SERVER"echoread -p "엔터를 누르면 메뉴로 돌아갑니다..."fi;;3)# DNS Server 설정dialog --title "DNS Server Configuration" \--form "DNS 서버 설정을 확인 및 수정하세요:" 15 50 0 \"Server Name:" 1 1 "server1"1 15 20 0 \"Server IP:"   2 1 "192.168.10.20" 2 15 20 0 \"Domain:"      3 1 "example.com"   3 15 20 0 \"ARPA Domain:" 4 1 "10.168.192"    4 15 20 0 \2> $FORM_FILEif [ $? -eq 0 ]; thenSERVER=$(sed -n '1p' $FORM_FILE)1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  dd
+IP=$(sed -n '2p' $FORM_FILE)1,0-1TopgG  gdE349: No identifier under cursor1,0-1TopdG
+~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         --No lines in buffer--0,0-1All-- INSERT --0,1All#!/bin/bash# 임시 파일 정의TEMP_FILE="/tmp/tui_menu.$$"
+FORM_FILE="/tmp/tui_form.$$"# 종료 시 임시 파일 삭제 및 터미널 속성 초기화
+trap "rm -f $TEMP_FILE $FORM_FILE; tput sgr0" EXITwhile true; do    # 1. UI를 띄우기 전 대체 화면으로 전환 (현재 화면 저장)
+    tput smcup        dialog --title "System Configuration TUI" \
+           --menu "원하는 작업을 선택하세요:" 15 50 4 \
+           "1" "Web Server 설정 (web.sh)" \
+           "2" "FTP Server 설정 (ftp.sh)" \           "3" "DNS Server 설정 (dns.sh)" \
+           "4" "종료" 2> $TEMP_FILE
+               # 2. 메뉴 선택 후 원래 화면으로 복귀 (UI 사라짐)
+    tput rmcup        # 취소 선택 시 루프 종료
+    if [ $? -ne 0 ]; then        break    fi
+        CHOICE=$(cat $TEMP_FILE)        case $CHOICE in
+        1)            tput smcup            dialog --title "Web Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+  RET=$?
+            tput rmcup                        if [ $RET -eq 0 ]; then
+                SERVER=$(cat $TEMP_FILE)
+                tput sgr0                web.sh "$SERVER"
+                echo                read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi            ;;
+        2)            tput smcup            dialog --title "FTP Server Configuration" \
+                   --inputbox "대상 서버를 입력하세요:" 8 40 "server1" 2> $TEMP_FILE
+  RET=$?
+            tput rmcup                        if [ $RET -eq 0 ]; then
+                SERVER=$(cat $TEMP_FILE)
+                tput sgr0                ftp.sh "$SERVER"
+                echo                read -p "엔터를 누르면 메뉴로 돌아갑니다..."
+            fi            ;;
+        3)tput smcupdialog --title "(paste) --DNS Server Configuration" \
+--form "DNS 서버 설정을 확인 및 수정하세요:" 15 50 0 \
+"Server Name:" 1 1 "server1"1 15 20 0 \
+"Server IP:"   2 1 "192.168.10.20" 2 15 20 0 \
+"Domain:"      3 1 "example.com"   3 15 20 0 \
+"ARPA Domain:" 4 1 "10.168.192"    4 15 20 0 \2> $FORM_FILERET=$?tput rmcupif [ $RET -eq 0 ]; thenSERVER=$(sed -n '1p' $FORM_FILE)
+IP=$(sed -n '2p' $FORM_FILE)
+DOMAIN=$(sed -n '3p' $FORM_FILE)ARPA=$(sed -n '4p' $FORM_FILE)tput sgr0dns.sh "$SERVER" "$IP" "$DOMAIN" "$ARPA"echoread -p "엔터를 누르면 메뉴로 돌아갑니다..."
+;;4)break;;
+    esac
+>4;m"setup_tui.sh" 90L, 2893B written
+>4;m[root@mvin ~/bin]# 3@whichp_tui.sh
+[root@main ~/bin]# clear
+vioTOOLS_AI_QUESTION_IP206.txtI_QUESTION_IP206.txt 172.16.6.235:/test
+조건1. dialog CMD를 사용한다.2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         ~                                                                                                                         1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 5,1^M  ^M  o -- INSERT --16,1All78920#!/bin/bash# 인자값 개수 확인if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "       (EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1fiSERVER=$1SERVERIP=$2DOMAIN=$3
+ARPANET=$4LASTIP=$(echo "$SERVERIP" | awk -F. '{print $4}')# DNS 파일 생성 디렉토리 준비BASEDIR=$HOME/bin/DNS
+mkdir -p "$BASEDIR"# /etc/named.conf 파일 생성cat <<'EOF' > "$BASEDIR/named.conf"
+options {        listen-on port 53 { any; };
+        directory       "/var/named";        dump-file"/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { any; };
+        recursion yes;        dnssec-validation no;        managed-keys-directory "/var/named/dynamic";
+        geoip-directory "/usr/share/GeoIP";
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";        include "/etc/crypto-policies/back-ends/bind.config";
+    forwarders { 8.8.8.8; };
+            forward only;};logging {
+ severityhdynamic;};ult_debug {                file "data/named.run";
+};(paste) --include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";EOF
+
+chown root:named "$BASEDIR/named.conf"
+chmod 640 "$BASEDIR/named.conf"      # /etc/named.rfc1912.zones 파일 복사 및 추가
+/cat/<<'EOF'e>>/"$BASEDIR/named.rfc1912.zones"named.rfc1912.zones"
+
+ztype"master;file{"DOMAIN.zone";
+};      zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";};
+EOF
+
+chown root:named "$BASEDIR/named.rfc1912.zones"chmod 640 "$BASEDIR/named.rfc1912.zones"
+
+# 정방향 영역(DOMAIN.zone) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.zone"$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial
+1D      ; refresh
+1H      ; retry
+1W      ; expire
+3ns1IN  ASERVERIP;; DNS ServerIN  NS      ns1
+EOF
+
+chown root:named "$BASEDIR/$DOMAIN.zone"
+chmod 640 "$BASEDIR/$DOMAIN.zone"# 역방향 영역(DOMAIN.rev) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.rev"$TTL 4
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (
+10      ; serial
+1H      ; retry1W      ; expire
+3H )    ; minimum;; DNS Server  IN  NSns1.DOMAIN.
+LASTIPIN  PTRns1.DOMAIN.EOF
+
+chown root:named "$BASEDIR/$DOMAIN.rev"chmod 640 "$BASEDIR/$DOMAIN.rev"
+
+# 원격 서버 패키지 설치
+ssh -T "$SERVER" dnf install -y -q bind bind-utils# 설정 파일 전송
+scp -p "$BASEDIR/named.conf" "$SERVER:/etc/named.conf"
+scp -p "$BASEDIR/named.rfc1912.zones" "$SERVER:/etc/named.rfc1912.zones"
+scp -p "$BASEDIR/$DOMAIN.zone" "$SERVER:/var/named/$DOMAIN.zone"
+scp -p "$BASEDIR/$DOMAIN.rev" "$SERVER:/var/named/$DOMAIN.rev"# 원격 서버 내부 설정 파일 치환 및 데몬 재시작ssh -T "$SERVER" <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zonessed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zonesed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.revsystemctl restart named
+EOF
+
+# 로컬 클라이언트 DNS 설정 및 확인
+nmnmclioconoupfeth0h0 ipv4.dns "$SERVERIP" +ipv4.dns 8.8.8.8
+
+sleep 3
+
+echoecho "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"--a161,23Bot^[O   1H      ; retry1W      ; expire103,2397%^[O   forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";severity dynamic;};
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+
+chown root:named "$BASEDIR/named.conf"
+chmod 640 "$BASEDIR/named.conf"
+
+# /etc/named.rfc1912.zones 파일 복사 및 추가
+/bin/cp -f /etc/named.rfc1912.zones "$BASEDIR/named.rfc1912.zones"
+cat <<'EOF' >> "$BASEDIR/named.rfc1912.zones"
+
+zone "DOMAIN" IN {type master;file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {type master;file "DOMAIN.rev";
+};
+EOF
+
+chown root:named "$BASEDIR/named.rfc1912.zones"
+chmod 640 "$BASEDIR/named.rfc1912.zones"
+
+# 정방향 영역(DOMAIN.zone) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.zone"
+$TTL 4
+@IN SOA  DOMAIN. root.DOMAIN. (10      ; serial1D      ; refresh62,2356%^[O   dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";49,2343%mkdir -p "$BASEDIR"
+
+# /etc/named.conf 파일 생성
+cat <<'EOF' > "$BASEDIR/named.conf"
+options {listen-on port 53 { any; };directory"/var/named";42,2336%SERVERIP=$2
+DOMAIN=$3
+ARPANET=$4
+LASTIP=$(echo "$SERVERIP" | awk -F. '{print $4}')
+
+# DNS 파일 생성 디렉토리 준비
+BASEDIR=$HOME/bin/DNS35,30-23      29%if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+
+SERVER=$128,122%#!/bin/bash
+
+# 인자값 개수 확인21,115%* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.14,18%1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+>4;m"TOOLS_AI_QUESTION_IP206.txt"p161L,34522B3written5,30-226,1    7,178,1 9,1710,11,232,1 3,28-234,1    5,30-236,1    7^[  17,0-1Top::wq
+1@s1@c1@p172.16.6.235:/test
+The authenticity of host '172.16.6.235 (172.16.6.235)' can't be established.
+ED25519 key fingerprint is SHA256:OAWQ+FE6ODs9frzT1V6hi3w5gYG+ESAgcEKknkXztKQ.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '172.16.6.235' (ED25519) to the list of known hosts.
+root@172.16.6.235's password:
+TOOLS_AI_QUESTION_IP206.txt                                                             100% 4522     2.8MB/s   00:00 ETA
+[root@main ~/bin]# cat TOOLS_AI_QUESTION_IP206.txt
+조건
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+
+
+
+
+#!/bin/bash
+
+# 인자값 개수 확인
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "       (EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+
+SERVER=$1
+SERVERIP=$2
+DOMAIN=$3
+ARPANET=$4
+LASTIP=$(echo "$SERVERIP" | awk -F. '{print $4}')
+
+# DNS 파일 생성 디렉토리 준비
+BASEDIR=$HOME/bin/DNS
+mkdir -p "$BASEDIR"
+
+# /etc/named.conf 파일 생성
+cat <<'EOF' > "$BASEDIR/named.conf"
+options {
+        listen-on port 53 { any; };
+        directory       "/var/named";
+        dump-file       "/var/named/data/cache_dump.db";
+        statistics-file "/var/named/data/named_stats.txt";
+        memstatistics-file "/var/named/data/named_mem_stats.txt";
+        secroots-file   "/var/named/data/named.secroots";
+        recursing-file  "/var/named/data/named.recursing";
+        allow-query     { any; };
+        recursion yes;
+        dnssec-validation no;
+        managed-keys-directory "/var/named/dynamic";
+        geoip-directory "/usr/share/GeoIP";
+        pid-file "/run/named/named.pid";
+        session-keyfile "/run/named/session.key";
+        include "/etc/crypto-policies/back-ends/bind.config";
+            forwarders { 8.8.8.8; };
+            forward only;
+};
+logging {
+        channel default_debug {
+                file "data/named.run";
+                severity dynamic;
+        };
+};
+
+include "/etc/named.rfc1912.zones";
+include "/etc/named.root.key";
+EOF
+
+chown root:named "$BASEDIR/named.conf"
+chmod 640 "$BASEDIR/named.conf"
+
+# /etc/named.rfc1912.zones 파일 복사 및 추가
+/bin/cp -f /etc/named.rfc1912.zones "$BASEDIR/named.rfc1912.zones"
+cat <<'EOF' >> "$BASEDIR/named.rfc1912.zones"
+
+zone "DOMAIN" IN {
+     type master;
+     file "DOMAIN.zone";
+};
+
+zone "ARPANET.in-addr.arpa"  IN {
+     type master;
+     file "DOMAIN.rev";
+};
+EOF
+
+chown root:named "$BASEDIR/named.rfc1912.zones"
+chmod 640 "$BASEDIR/named.rfc1912.zones"
+
+# 정방향 영역(DOMAIN.zone) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.zone"
+$TTL 4
+@       IN SOA  DOMAIN. root.DOMAIN. (
+                                        10      ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+;; DNS Server
+                     IN  NS      ns1
+ns1                  IN  A       SERVERIP
+EOF
+
+chown root:named "$BASEDIR/$DOMAIN.zone"
+chmod 640 "$BASEDIR/$DOMAIN.zone"
+
+# 역방향 영역(DOMAIN.rev) 파일 생성
+cat <<'EOF' > "$BASEDIR/$DOMAIN.rev"
+$TTL 4
+@       IN SOA  ns1.DOMAIN. root.DOMAIN. (
+                                        10      ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+;; DNS Server
+                IN  NS          ns1.DOMAIN.
+LASTIP          IN  PTR         ns1.DOMAIN.
+EOF
+
+chown root:named "$BASEDIR/$DOMAIN.rev"
+chmod 640 "$BASEDIR/$DOMAIN.rev"
+
+# 원격 서버 패키지 설치
+ssh -T "$SERVER" dnf install -y -q bind bind-utils
+
+# 설정 파일 전송
+scp -p "$BASEDIR/named.conf" "$SERVER:/etc/named.conf"
+scp -p "$BASEDIR/named.rfc1912.zones" "$SERVER:/etc/named.rfc1912.zones"
+scp -p "$BASEDIR/$DOMAIN.zone" "$SERVER:/var/named/$DOMAIN.zone"
+scp -p "$BASEDIR/$DOMAIN.rev" "$SERVER:/var/named/$DOMAIN.rev"
+
+# 원격 서버 내부 설정 파일 치환 및 데몬 재시작
+ssh -T "$SERVER" <<EOF
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone
+chown root:named /var/named/$DOMAIN.zone
+
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev
+chown root:named /var/named/$DOMAIN.rev
+
+systemctl restart named
+EOF
+
+# 로컬 클라이언트 DNS 설정 및 확인
+nmcli con modify eth0 ipv4.dns "$SERVERIP" +ipv4.dns 8.8.8.8
+nmcli con up eth0
+
+sleep 3
+
+echo
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"
+nslookup ns1."$DOMAIN"
+OOLS_AI_QUESTION_IP206.txt
+조건1. dialog CMD를 사용한다.2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.#!/bin/bash
+
+# 인자값 개수 확인
+if [ $# -ne 4 ]; then
+    echo "Usage: $0 <server> <serverip> <domain> <arpa domain>"
+    echo "(EX) $0 server1 192.168.10.20 example.com 10.168.192"
+    exit 1
+fi
+
+SERVER=$1
+SERVERIP=$2
+DOMAIN=$3
+ARPANET=$4
+LASTIP=$(echo "$SERVERIP" | awk -F. '{print $4}')
+
+# DNS 파일 생성 디렉토리 준비
+BASEDIR=$HOME/bin/DNS
+mkdir -p "$BASEDIR"
+
+# /etc/named.conf 파일 생성
+cat <<'EOF' > "$BASEDIR/named.conf"
+options {listen-on port 53 { any; };directory"/var/named";dump-file"/var/named/data/cache_dump.db";statistics-file "/var/named/data/named_stats.txt";memstatistics-file "/var/named/data/named_mem_stats.txt";secroots-file   "/var/named/data/named.secroots";recursing-file  "/var/named/data/named.recursing";allow-query     { any; };recursion yes;dnssec-validation no;managed-keys-directory "/var/named/dynamic";geoip-directory "/usr/share/GeoIP";pid-file "/run/named/named.pid";session-keyfile "/run/named/session.key";include "/etc/crypto-policies/back-ends/bind.config";forwarders { 8.8.8.8; };forward only;
+};
+logging {channel default_debug {file "data/named.run";1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4,0-1~@k   5,1  ~@k   6,0-1~@k   7,1  ~@k   8,0-1~@k   9,1  ~@k   10,0-1~@k   1,1  ~@k   2,0-1~@k   3,1  ~@k   4,0-1~@k   5,1  ~@k   6,0-1~@k   7~@k   8~@k   9~@k   20,1  dd
+severity dynamic;20,0-1Topdd
+};20,1Topdd
+};20,1Topdd
+20,5Topdd
+include "/etc/named.rfc1912.zones";20,5Topdd
+include "/etc/named.root.key";20,5Topdd
+EOF20,1Topdd
+20,0-1Topdd
+chown root:named "$BASEDIR/named.conf"20,1Topdd
+chmod 640 "$BASEDIR/named.conf"20,1Topdd
+20,1Topdd
+# /etc/named.rfc1912.zones 파일 복사 및 추가20,1Topdd
+/bin/cp -f /etc/named.rfc1912.zones "$BASEDIR/named.rfc1912.zones"20,1Topdd
+cat <<'EOF' >> "$BASEDIR/named.rfc1912.zones"20,0-1Topdd
+20,1Topdd
+zone "DOMAIN" IN {20,1Topdd
+type master;20,1Topdd
+file "DOMAIN.zone";20,0-1Topdd
+};20,1Topdd
+20,1Topdd
+zone "ARPANET.in-addr.arpa"  IN {20,1Topdd
+type master;20,9Topdd
+file "DOMAIN.rev";20,9Topdd
+};20,9Topdd
+EOF20,9Topdd
+20,9Topdd
+chown root:named "$BASEDIR/named.rfc1912.zones"20,9Topdd
+chmod 640 "$BASEDIR/named.rfc1912.zones"20,9Topdd
+20,9Topdd
+# 정방향 영역(DOMAIN.zone) 파일 생성20,9Topdd
+cat <<'EOF' > "$BASEDIR/$DOMAIN.zone"20,9Topdd
+$TTL 420,9Topdd
+@IN SOA  DOMAIN. root.DOMAIN. (20,9Topdd
+10      ; serial20,9Topdd
+1D      ; refresh20,9Topdd
+1H      ; retry20,9Topdd
+1W      ; expire20,13Topdd
+3H )    ; minimum20,13Topdd
+20,1Topdd
+;; DNS Server20,1Topdd
+IN  NS      ns120,9Topdd
+ns1IN  ASERVERIP20,17Topdd
+EOF20,17Topdd
+20,9Topdd
+chown root:named "$BASEDIR/$DOMAIN.zone"20,1Topdd
+chmod 640 "$BASEDIR/$DOMAIN.zone"20,0-1Topdd
+20,1Topdd
+# 역방향 영역(DOMAIN.rev) 파일 생성20,1Topdd
+cat <<'EOF' > "$BASEDIR/$DOMAIN.rev"20,1Topdd
+$TTL 420,0-1Topdd
+@IN SOA  ns1.DOMAIN. root.DOMAIN. (20,1Topdd
+10      ; serial20,1Topdd
+1D      ; refresh20,0-1Topdd
+1H      ; retry20,1Topdd
+1W      ; expire20,1Topdd
+3H )    ; minimum20,1Topdd
+20,0-1Topdd
+;; DNS Server20,1Topdd
+IN  NSns1.DOMAIN.20,6Topdd
+LASTIPIN  PTRns1.DOMAIN.20,6Topdd
+EOF20,1Topdd
+20,0-1Topdd
+chown root:named "$BASEDIR/$DOMAIN.rev"20,1Topdd
+chmod 640 "$BASEDIR/$DOMAIN.rev"20,6Topdd
+20,6Topdd
+# 원격 서버 패키지 설치20,1Topdd
+ssh -T "$SERVER" dnf install -y -q bind bind-utils20,1Topdd
+20,0-1Topdd
+# 설정 파일 전송20,1Topdd
+scp -p "$BASEDIR/named.conf" "$SERVER:/etc/named.conf"20,1Topdd
+scp -p "$BASEDIR/named.rfc1912.zones" "$SERVER:/etc/named.rfc1912.zones"20,0-1Topdd
+scp -p "$BASEDIR/$DOMAIN.zone" "$SERVER:/var/named/$DOMAIN.zone"20,1Topdd
+scp -p "$BASEDIR/$DOMAIN.rev" "$SERVER:/var/named/$DOMAIN.rev"20,1Topdd
+20,1Topdd
+# 원격 서버 내부 설정 파일 치환 및 데몬 재시작20,1Topdd
+ssh -T "$SERVER" <<EOF20,41Topdd
+sed -i 's/DOMAIN/$DOMAIN/g' /etc/named.rfc1912.zones20,41Topdd
+sed -i 's/ARPANET/$ARPANET/g' /etc/named.rfc1912.zones20,41Topdd
+20,41Topdd
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.zone20,41Topdd
+sed -i 's/SERVERIP/$SERVERIP/g' /var/named/$DOMAIN.zone20,0-1Topdd
+chown root:named /var/named/$DOMAIN.zone20,1Topdd
+20,22Topdd
+sed -i 's/DOMAIN/$DOMAIN/g' /var/named/$DOMAIN.rev20,1Topdd
+sed -i 's/LASTIP/$LASTIP/g' /var/named/$DOMAIN.rev20,1Topdd
+chown root:named /var/named/$DOMAIN.rev20,0-1Topdd
+20,1Topdd
+systemctl restart named20,1Topdd
+EOF20,0-1Topdd
+20,1Topdd
+# 로컬 클라이언트 DNS 설정 및 확인20,1Topdd
+nmcli con modify eth0 ipv4.dns "$SERVERIP" +ipv4.dns 8.8.8.820,1Topdd
+nmcli con up eth020,1Topdd
+20,41Topdd
+sleep 320,41Topdd
+20,41Topdd
+echo20,41Topdd
+echo "[ INFO ] DNS 서버에 DNS 쿼리 요청:"20,41Topdd
+nslookup ns1."$DOMAIN"20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,17Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,0-1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         20,1Alldd
+~                                                                                                                         19,0-1dd
+~                                                                                                                         8dd
+~                                                                                                                         7dd
+>4;m"TOOLS_AI_QUESTION_IP206.txt",16L,l309B writtenq                                                                      6^[  ^[  ; ::Wq
+scpTTOOLS_AI_QUESTION_IP206.txtO172.16.6.235:/test06.txt
+root@172.16.6.235's password:
+TOOLS_AI_QUESTION_IP206.txt                                                             100%  309   213.6KB/s   00:00 ETA
+.sh
+[  OK  ] 172.16.6.200
+[  OK  ] 172.16.6.201
+[  OK  ] 172.16.6.202
+[ FAIL ] 172.16.6.203
+[ FAIL ] 172.16.6.204
+[ FAIL ] 172.16.6.205
+[  OK  ] 172.16.6.206
+[ FAIL ] 172.16.6.207
+[  OK  ] 172.16.6.208
+[ FAIL ] 172.16.6.209
+[ FAIL ] 172.16.6.210
+[ FAIL ] 172.16.6.211
+[ FAIL ] 172.16.6.212
+[  OK  ] 172.16.6.213
+[  OK  ] 172.16.6.214
+[  OK  ] 172.16.6.215
+[  OK  ] 172.16.6.216
+[  OK  ] 172.16.6.217
+[ FAIL ] 172.16.6.218
+[ FAIL ] 172.16.6.219
+[  OK  ] 172.16.6.220
+[ FAIL ] 172.16.6.221
+[ FAIL ] 172.16.6.222
+[  OK  ] 172.16.6.223
+[  OK  ] 172.16.6.224
+[  OK  ] 172.16.6.225
+[  OK  ] 172.16.6.226
+[  OK  ] 172.16.6.227
+[  OK  ] 172.16.6.228
+[  OK  ] 172.16.6.229
+[  OK  ] 172.16.6.230
+=======================================================
+------------------------------------------
+229 228 227 226 225 224    223 222 221 220
+219 218 217 216 215 214    213 212 211 210
+209 208 207 206 205 204    203 202 201 200
+------------------------------------------
+              강사(230)
+=======================================================
+------------------------------------------
+000 000 000 000 000 000    000 XXX XXX 000
+XXX XXX 000 000 000 000    000 XXX XXX XXX
+XXX 000 XXX 000 XXX XXX    XXX 000 000 000
+------------------------------------------
+              강사(000)
+=======================================================
+19
+[root@main ~/bin]# exit
+exit
+
+Script done on 2026-09-04 18:18:14+09:00 [COMMAND_EXIT_CODE="0"]
