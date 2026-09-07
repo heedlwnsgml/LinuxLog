@@ -1,0 +1,47 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+PATH=$PATH:/root/shell
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+ 
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w\[\e[34;1m\]]\$ \[\e[m\]'
+
+alias code='code --user-data-dir $HOME/vscode --no-sandbox --password-store="basic"'
+alias vscode='code'
+
+
+#
+# Temporary Alias
+#
+#alias aaa='~/shell/aaa'
+#alias bbb='chmod 700 /root/shell/*.sh'
+alias aaa='/root/bin/aaa'
+alias bbb='chmod 700 /root/bin/*.sh'
+
+alias grep='grep -i'
+alias tree='env LANG=C tree -C -F'
+alias vi='/usr/bin/vim'
+alias c='clear'
+

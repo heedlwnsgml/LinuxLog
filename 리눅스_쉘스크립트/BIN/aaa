@@ -1,0 +1,15 @@
+#!/bin/bash
+
+BASEDIR=/root/bin
+[ ! -d "$BASEDIR" ] && exit 1
+
+cat <<'EOF' > $BASEDIR/"$1"
+#!/bin/bash
+
+
+
+EOF
+
+chmod 700 $BASEDIR/*.sh
+ls -l $BASEDIR/"$1"
+

@@ -1,0 +1,2 @@
+192.168.10.20  root   soldesk1. 
+192.168.10.30  root   soldesk1. 

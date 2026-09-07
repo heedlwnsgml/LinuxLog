@@ -1,0 +1,4 @@
+#!/bin/bash
+/test/file.sh
+/usr/local/test/file.sh
+cp /test/file.sh /backup/file.sh

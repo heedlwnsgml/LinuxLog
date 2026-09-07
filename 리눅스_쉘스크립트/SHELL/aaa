@@ -1,0 +1,14 @@
+#!/bin/bash
+
+[ ! -d ~/shell/ ] && exit 1
+
+cat <<'EOF' > ~/shell/"$1"
+#!/bin/bash
+
+
+
+EOF
+
+chmod 700 ~/shell/*.sh
+ls -l ~/shell/"$1"
+

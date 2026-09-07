@@ -1,0 +1,16 @@
+조건
+
+1. dialog CMD를 사용한다.
+
+2. 다음 프로그램을 실행할 수 있는 UI를 제작한다.
+
+* web.sh server1
+
+* ftp.sh server1
+
+* dns.sh server1 192.168.10.20 example.com 10.168.192
+
+3. UI는 nmtui를 기본으로 제작한다.
+
+4. UI가 종료되고 원래 화면으로 돌아와야 한다.
+

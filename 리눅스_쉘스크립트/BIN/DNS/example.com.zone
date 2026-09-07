@@ -1,0 +1,11 @@
+$TTL 4
+@       IN SOA  DOMAIN. root.DOMAIN. (
+                                        10      ; serial
+                                        1D      ; refresh
+                                        1H      ; retry
+                                        1W      ; expire
+                                        3H )    ; minimum
+
+;; DNS Server
+                     IN  NS      ns1
+ns1                  IN  A       SERVERIP
