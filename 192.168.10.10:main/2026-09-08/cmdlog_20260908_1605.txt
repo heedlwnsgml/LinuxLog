@@ -1,0 +1,641 @@
+Script started on 2026-09-08 16:05:22+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="75" LINES="27"]
+[root@main ~]# mask
+bash: mask: command not found...
+[root@main ~]# umaskk
+0022
+touch testfile2.txt
+[root@main ~]# ll
+total 16
+drwxr-xr-x.  2 root root  105 Jul 22 15:32 바탕화면
+-rw-------.  1 root root 1198 Jul 21 18:24 anaconda-ks.cfg
+drwxr-xr-x   3 root root 4096 Sep  7 18:16 bin
+drwxr-xr-x   2 root root  105 Jul 22 16:46 Desktop
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Documents
+drwxr-xr-x   2 root root   52 Sep  2 16:04 Downloads
+drwxr-xr-x   4 root root   61 Sep  8 16:05 LinuxLog
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Music
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Pictures
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Public
+drwxr-xr-x   4 root root 4096 Sep  4 17:54 shell
+drwxr-xr-x   5 root root   41 Sep  4 21:46 ShellScript
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Templates
+-rw-r--r--   1 root root    0 Sep  8 16:05 testfile2.txt
+drwxr-xr-x   2 root root    6 Jul 22 16:40 Videos
+drwx------  22 root root 4096 Sep  7 19:34 vscode
+[root@main ~]# rm -f testfile2.txt
+[root@main ~]# clear
+[root@main ~]# vi /etc/login.defs
+#
+# Please note that the parameters in this configuration file control the# behavior of the tools from the shadow-utils component. None of these# tools uses the PAM mechanism, and the utilities that use PAM (such as the# passwd command) should therefore be configured elsewhere. Refer to
+# /etc/pam.d/system-auth for more information.
+#
+
+#
+# Delay in seconds before being allowed another attempt after a login failuure
+# Note: When PAM is used, some modules may enforce a minimum delay (e.g.
+#       pam_unix(8) enforces a 2s delay)
+#
+#FAIL_DELAY             3
+
+# Currently FAILLOG_ENAB is not supported
+
+#
+# Enable display of unknown usernames when login(1) failures are recorded.
+#
+#LOG_UNKFAIL_ENAB       no
+
+# Currently LOG_OK_LOGINS is not supported
+
+# Currently LASTLOG_ENAB is not supported1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        23~@k   456~@k   78,0-19,1  ~@k   10,112~@k   345,0-1~@k   6,1  7,0-18,1  ~@k   920
+21,10%~@k
+#22,0-10%
+# Limit the highest user ID number for which the lastlog entries should23,11%
+# be updated.24,0-11%
+#25,11%
+# No LASTLOG_UID_MAX means that there is no user ID limit for writing26,0-12%
+# lastlog entries.27,12%~@k
+#28,12%
+#LASTLOG_UID_MAX29,13%# Currently MAIL_CHECK_ENAB is not supported30,13%1
+32,13%
+# Currently OBSCURE_CHECKS_ENAB is not supported33,14%~@k
+34,14%
+# Currently PORTTIME_CHECKS_ENAB is not supported35,0-14%
+36,15%~@k
+# Currently QUOTAS_ENAB is not supported37,0-15%
+38,15%
+# Currently SYSLOG_SU_ENAB is not supported39,0-16%~@k
+40,16%
+#41,0-16%
+# Enable "syslog" logging of newgrp(1) and sg(1) activity.42,17%~@k
+#43,0-17%
+#SYSLOG_SG_ENAB         yes44,17%
+45,0-18%~@k
+# Currently CONSOLE is not supported46,18%
+47,18%
+# Currently SULOG_FILE is not supported48,19%~@k
+49,19%
+# Currently MOTD_FILE is not supported50,0-110%
+51,110%~@k
+# Currently ISSUE_FILE is not supported52,0-110%
+53,111%
+# Currently TTYTYPE_FILE is not supported54,0-111%~@k
+55,111%
+# Currently FTMP_FILE is not supported56,0-112%
+57,112%~@k
+# Currently NOLOGINS_FILE is not supported58,0-112%
+59,113%
+# Currently SU_NAME is not supported60,0-113%~@k
+61,113%
+# *REQUIRED*62,0-114%
+#   Directory where mailboxes reside, _or_ name of file, relative to the63,114%~@k
+#   home directory.  If you _do_ define both, MAIL_DIR takes precedence.64,0-114%
+#65,115%
+MAIL_DIR/var/spool/mail66,0-115%~@k
+#MAIL_FILE      .mail67,115%
+68,116%
+#69,116%~@k
+# If defined, file which inhibits all the usual chatter during the login70,116%
+# sequence.  If a full pathname, then hushed mode will be enabled if the71,117%
+# user's name or shell are found in the file.  If not a full pathname, then72,117%# hushed mode will be enabled if the file exists in the user's home directoory.73,0-118%4,1
+#75,118%~@k
+#HUSHLOGIN_FILE .hushlogin76,118%
+#HUSHLOGIN_FILE /etc/hushlogins77,119%# Currently ENV_TZ is not supported78,120%~@k
+79,120%
+# Currently ENV_HZ is not supported80,120%
+81,121%~@k
+#82,0-121%
+# The default PATH settings, for superuser and normal users.83,121%
+#84,0-122%~@k
+# (they are minimal, add the rest in the shell startup files)85,122%
+#ENV_SUPATH     PATH=/sbin:/bin:/usr/sbin:/usr/bin86,0-122%
+#ENV_PATH       PATH=/bin:/usr/bin87,123%
+88,123%
+#89,123%
+# Terminal permissions90,124%~@k
+#91,124%
+#       TTYGROUP        Login tty will be assigned this group ownership.92,124%
+#       TTYPERM         Login tty will be set to this permission.93,0-125%
+#94,125%
+# If you have a write(1) program which is "setgid" to a special group95,125%
+# which owns the terminals, define TTYGROUP as the number of such group96,126%~@k
+# and TTYPERM as 0620.  Otherwise leave TTYGROUP commented out and97,126%# set TTYPERM to either 622 or 600.
+#98,126%9~@k
+#TTYGROUP       tty100,127%
+#TTYPERM                0600101,127%
+102,128%~@k
+# Currently ERASECHAR, KILLCHAR and ULIMIT are not supported103,128%
+104,128%# Default initial "umask" value used by login(1) on non-PAM enabled systemss.105,129%~@k   6
+# Default "umask" value for pam_umask(8) on PAM enabled systems.107,0-129%
+# UMASK is also used by useradd(8) and newusers(8) to set the mode for new108,130%~@k
+# home directories if HOME_MODE is not set.109,0-130%# 022 is the default value, but 027, or even 077, could be considered
+# for increased privacy. There is no One True Answer here: each sysadmin110,131%
+# must make up their mind.111,131%~@k
+UMASK022112,131%
+113,132%
+# HOME_MODE is used by useradd(8) and newusers(8) to set the mode for new114,132%~@k
+# home directories.115,132%
+# If HOME_MODE is not set, the value of UMASK is used to create the mode.116,133%
+HOME_MODE0700117,133%~@k
+118,0-133%
+# Password aging controls:119,134%
+#120,134%~@k
+#       PASS_MAX_DAYS   Maximum number of days a password may be used.121,134%#       PASS_MIN_DAYS   Minimum number of days allowed between password chaanges.122,135%3,0-1~@k
+#       PASS_MIN_LEN    Minimum acceptable password length.124,135%#       PASS_WARN_AGE   Number of days warning given before a password expiires.125,136%6~@k   #
+PASS_MAX_DAYS   99999127,136%
+PASS_MIN_DAYS   0128,137%PASS_MIN_LEN    8
+PASS_WARN_AGE   7129,137%~@k
+130,138%
+# Currently SU_WHEEL_ONLY is not supported131,138%
+132,138%~@k
+# Currently CRACKLIB_DICTPATH is not supported133,139%
+134,139%
+#135,0-139%~@k
+# Min/max values for automatic uid selection in useradd(8)136,140%
+#137,0-140%
+UID_MIN1000138,140%~@k
+UID_MAX60000139,0-141%
+# System accounts140,141%
+SYS_UID_MIN201141,141%~@k
+SYS_UID_MAX999142,142%10~@k   39,0-18,1  7,0-1~@k   6,1  5,0-14,1  ~@k   321~@k   0298HOME_MODE0700127,141%# If HOME_MODE is not set, the value of UMASK is used to create the mode.126,141%# home directories.125,140%~@k   # HOME_MODE is used by useradd(8) and newusers(8) to set the mode for new124,140%123,0-140%UMASK022122,139%~@k   # must make up their mind.121,139%# for increased privacy. There is no One True Answer here: each sysadmin120,139%# 022 is the default value, but 027, or even 077, could be considered119,138%~@k   # home directories if HOME_MODE is not set.118,0-138%# UMASK is also used by useradd(8) and newusers(8) to set the mode for new117,138%# Default "umask" value for pam_umask(8) on PAM enabled systems.116,137%~@k   # Default initial "umask" value used by login(1) on non-PAM enabled systemss.115,137%4113,136%~@k   # Currently ERASECHAR, KILLCHAR and ULIMIT are not supported112,136%111,136%#TTYGROUP       tty
+#TTYPERM                0600110,135%~@k   #109,0-135%# set TTYPERM to either 622 or 600.@@@                                                                        108,135%# and TTYPERM as 0620.  Otherwise leave TTYGROUP commented out and107,0-134%~@k   # which owns the terminals, define TTYGROUP as the number of such group106,134%7,0-18,1  ~@k   9,0-110,1  1~@k   234~@k   567~@k   8,0-19,1  20~@k
+#       PASS_MAX_DAYS   Maximum number of days a password may be used.121,134%#       PASS_MIN_DAYS   Minimum number of days allowed between password chaanges.122,135%3,0-1~@k
+#       PASS_MIN_LEN    Minimum acceptable password length.124,135%#       PASS_WARN_AGE   Number of days warning given before a password expiires.125,136%6~@k   #
+PASS_MAX_DAYS   99999127,136%
+PASS_MIN_DAYS   0128,137%PASS_MIN_LEN    8
+PASS_WARN_AGE   7129,137%~@k
+130,138%
+# Currently SU_WHEEL_ONLY is not supported131,138%
+132,138%~@k
+# Currently CRACKLIB_DICTPATH is not supported133,139%
+134,139%
+#135,0-139%~@k
+# Min/max values for automatic uid selection in useradd(8)136,140%
+#137,0-140%
+UID_MIN1000138,140%~@k
+UID_MAX60000139,0-141%8,1  7,0-1~@k   6,1  5,0-14,1  ~@k   321~@k   012~@k   345,0-1~@k   6,1  7,0-18,1  ~@k   9,0-1
+# System accounts140,141%
+SYS_UID_MIN201141,141%~@k
+SYS_UID_MAX999142,142%
+# Extra per user uids143,142%
+SUB_UID_MIN524288144,142%~@k
+SUB_UID_MAX600100000145,143%SUB_UID_COUNT65536146,143%7~@k
+#148,144%# Min/max values for automatic gid selection in groupadd(8)
+#149,144%50~@k
+GID_MIN1000151,144%049~@k   876~@k   543~@k   210~@k   39,0-18,1  7,0-1~@k   6,1  #135,0-144%#       PASS_WARN_AGE   Number of days warning given before a password expiires.134,144%~@k   3#       PASS_MIN_LEN    Minimum acceptable password length.132,143%#       PASS_MIN_DAYS   Minimum number of days allowed between password chaanges.131,143%~@k   012~@k   345,0-1~@k   6,1  7,0-18,1  ~@k   9,0-140,1  1~@k   234~@k   5SUB_UID_COUNT65536146,143%7~@k
+#148,144%# Min/max values for automatic gid selection in groupadd(8)
+#149,144%50~@k
+GID_MIN1000151,144%
+GID_MAX60000152,0-145%
+# System accounts153,145%~@k
+SYS_GID_MIN201154,146%
+SYS_GID_MAX999155,146%
+# Extra per user group ids156,146%~@k
+SUB_GID_MIN524288157,147%
+SUB_GID_MAX600100000158,147%
+SUB_GID_COUNT65536159,147%~@k
+160,148%
+#161,148%
+# Max number of login(1) retries if password is bad162,148%~@k
+#163,149%
+#LOGIN_RETRIES          3164,149%
+165,0-149%~@k
+#166,150%
+# Max time in seconds for login(1)167,150%
+#168,150%~@k
+#LOGIN_TIMEOUT          60169,151%
+170,0-151%
+#171,151%~@k
+# Maximum number of attempts to change password if rejected (too easy)172,152%
+#173,152%
+PASS_CHANGE_TRIES5174,152%~@k
+175,0-153%
+#176,153%
+# Warn about weak passwords (but still allow them) if you are root.177,153%~@k
+#178,154%
+PASS_ALWAYS_WARNyes179,154%
+180,0-155%~@k
+#181,155%
+# Number of significant characters in the password for crypt().182,155%
+# Default is 8, don't change unless your crypt() is better.183,156%~@k
+# Ignored if MD5_CRYPT_ENAB set to "yes".184,156%32~@k   10,0-179,1  ~@k   876~@k   5,0-16,1  7~@k   8980,0-1~@k   1,1  23~@k   4
+#185,0-156%
+#PASS_MAX_LEN           8186,157%~@k
+187,157%
+# Currently CHFN_AUTH is not supported188,157%
+189,158%~@k
+#190,158%
+# Which fields may be changed by regular users using chfn(1) - use191,158%
+# any combination of letters "frwh" (full name, room number, work192,0-159%~@k
+# phone, home phone).  If not defined, no changes are allowed.193,159%
+# For backward compatibility, "yes" = "rwh" and "no" = "frwh".194,0-159%
+# 195,160%~@k
+#CHFN_RESTRICT          rwh196,160%
+197,160%
+# Currently LOGIN_STRING is not supported198,161%~@k
+199,161%
+# Currently MD5_CRYPT_ENAB is not supported200,161%
+201,162%~@k
+#202,0-162%
+# If set to MD5, MD5-based algorithm will be used for encrypting password203,162%# If set to SHA256, SHA256-based algorithm will be used for encrypting passsword204,0-163%~@k   5,1  # If set to SHA512, SHA512-based algorithm will be used for encrypting passsword206,0-163%7,1  ~@k   # If set to BCRYPT, BCRYPT-based algorithm will be used for encrypting passsword208,164%# If set to YESCRYPT, YESCRYPT-based algorithm will be used for encrypting  password209,164%# If set to DES, DES-based algorithm will be used for encrypting password ((default)210,165%~@k
+#211,165%ENCRYPT_METHOD YESCRYPT212,166%#
+# Only works if ENCRYPT_METHOD is set to SHA256 or SHA512.213,167%~@k
+#214,167%
+# Define the number of SHA rounds.215,167%
+# With a lot of rounds, it is more difficult to brute-force the password.216,0-168%~@k
+# However, more CPU resources will be needed to authenticate users if217,168%
+# this value is increased.218,168%
+#219,169%~@k   # If not specified, the libc will choose the default number of rounds (50000).220,169%1
+# The values must be within the 1000-999999999 range.222,169%~@k
+#223,170%
+#SHA_CRYPT_MAX_ROUNDS 5000224,170%# Currently SHA_CRYPT_MIN_ROUNDS is not supported225,171%~@k   #226,171%7# Only works if ENCRYPT_METHOD is set to BCRYPT.
+#228,172%~@k   9,0-1# Define the number of BCRYPT rounds.
+# With a lot of rounds, it is more difficult to brute-force the password.230,172%1,0-1~@k   # However, more CPU resources will be needed to authenticate users if
+# this value is increased.232,173%3
+#234,173%~@k
+# If not specified, 13 rounds will be attempted.235,174%# If only one of the MIN or MAX values is set, then this value will be usedd.236,174%7~@k
+# If MIN > MAX, the highest value will be used.238,174%
+#239,175%
+#BCRYPT_MIN_ROUNDS 13240,175%~@k   #BCRYPT_MAX_ROUNDS 31241,176%
+#242,176%
+# Only works if ENCRYPT_METHOD is set to YESCRYPT.243,176%~@k   #
+# Define the YESCRYPT cost factor.244,177%5# With a higher cost factor, it is more difficult to brute-force the passwoord.246,0-178%7,1  # However, more CPU time and more memory will be needed to authenticate useers248,178%9~@k
+# if this value is increased.250,178%#
+# If not specified, a cost factor of 5 will be used.251,179%# The value must be within the 1-11 range.
+#252,180%~@k
+#YESCRYPT_COST_FACTOR 5253,180%
+254,180%
+# Currently CONSOLE_GROUPS is not supported255,181%~@k
+256,181%
+#257,181%
+# Should login be allowed if we can't cd to the home directory?258,182%~@k   # Default is yes.
+#259,0-182%60,1
+#DEFAULT_HOME   yes261,0-183%~@k
+262,183%
+# Currently ENVIRON_FILE is not supported263,183%
+264,184%~@k
+#265,184%
+# If defined, this command is run when removing a user.266,184%
+# It should remove any at/cron/print jobs etc. owned by267,0-185%~@k
+# the user to be removed (passed as the first argument).268,185%
+#269,0-185%#USERDEL_CMD    /usr/sbin/userdel_local270,186%~@k   1#
+# Enables userdel(8) to remove user groups if no members exist.272,187%3~@k
+#274,187%
+USERGROUPS_ENAB yes275,187%
+276,0-188%
+#277,188%
+# If set to a non-zero number, the shadow utilities will make sure that278,188%
+# groups never have more than this number of users on one line.279,189%~@k
+# This permits to support split groups (groups split into multiple lines,280,189%
+# with the same group ID, to avoid limitation of the line length in the281,0-189%
+# group file).282,190%~@k
+#283,190%
+# 0 is the default value and disables this feature.284,191%
+#285,191%~@k
+#MAX_MEMBERS_PER_GROUP  0286,191%
+287,192%
+#288,192%~@k
+# If useradd(8) should create home directories for users by default (non289,192%
+# system users only).290,193%
+# This option is overridden with the -M or -m flags on the useradd(8)291,193%~@k
+# command-line.292,0-193%
+#293,194%
+CREATE_HOME     yes294,194%~@k
+295,194%~@k   4~@k   5//uuuuuuuuuuuuuuuuuuuuuuuuuuu295,1094%yuuuuuuuuuuuuuuuuuult valuuuuuuuu295,194%uuuuuuuuuuuuuuuuuuuuuuuuuu295,1094%m# Please note that the parameters in this configuration file control the
+# behavior of the tools from the shadow-utils component. None of these
+# tools uses the PAM mechanism, and the utilities that use PAM (such as the passwd command) should therefore be configured elsewhere. Refer to
+# /etc/pam.d/system-auth for more information.
+#Delay in seconds before being allowed another attempt after a login failuureNote: When PAM is used, some modules may enforce a minimum delay (e.g.
+#       pam_unix(8) enforces a 2s delay)
+
+#FAIL_DELAY             3 Currently FAILLOG_ENAB is not supportedEnable display of unknown usernames when login(1) failures are recorded.LOG_UNKFAIL_ENAB       no Currently LOG_OK_LOGINS is not supported# Currently LASTLOG_ENAB is not supported11,59Topa       TTYPERM         Login tty will be set to this permission.If you have a write(1) program which is "setgid" to a special groupwhich owns the terminals, define TTYGROUP as the number of such groupand TTYPERM as 0620.  Otherwise leave TTYGROUP commented out andset TTYPERM to either 622 or 600.#TTYGROUP       tty
+#TTYPERM                0600# Currently ERASECHAR, KILLCHAR and ULIMIT are not supportedDefault initial "umask" value used by login(1) on non-PAM enabled systemss.
+# Default "umask" value for pam_umask(8) on PAM enabled systems.
+# UMASK is also used by useradd(8) and newusers(8) to set the mode for new
+# home directories if HOME_MODE is not set.
+# 022 is the default value, but 027, or even 077, could be considered
+# for increased privacy. There is no One True Answer here: each sysadmin
+# must make up their mind.UMASK022# HOME_MODE is used by useradd(8) and newusers(8) to set the mode for new
+# home directories.# If HOME_MODE is not set, the value of UMASK is used to create the mode.
+HOME_MODE       0700110,2033%ssss.ss110,2033%kkss.kk110,2033%USERDEL_CMD    /usr/sbin/userdel_localEnables userdel(8) to remove user groups if no members exist.USERGROUPS_ENAB yes If set to a non-zero number, the shadow utilities will make sure that
+# groups never have more than this number of users on one line.
+# This permits to support split groups (groups split into multiple lines,
+# with the same group ID, to avoid limitation of the line length in the
+# group file).#
+# 0 is the default value and disables this feature.MAX_MEMBERS_PER_GROUP  0If useradd(8) should create home directories for users by default (non
+# system users only).
+# This option is overridden with the -M or -m flags on the useradd(8)
+# command-line.CREATE_HOME     yes295,194%//UU#
+# Force use shadow, even if shadow passwd & shadow group files are
+# missing.
+#
+#FORCE_SHADOW    yes
+
+#
+# Select the HMAC cryptography algorithm.
+# Used in pam_timestamp module to calculate the keyed-hash message
+# authentication code.
+#
+# Note: It is recommended to check hmac(3) to see the possible algorithms
+# that are available in your system.
+/UMwhich%owns the terminals, define TTYGROUP as the number of such group
+# and TTYPERM as 0620.  Otherwise leave TTYGROUP commented out and
+# set TTYPERM to either 622 or 600.
+#
+#TTYGROUP       tty
+#TTYPERM                0600Currently ERASECHAR, KILLCHAR and ULIMIT are not supported Default initial "umask" value used by login(1) on non-PAM enabled systemss.# Default "umask" value for pam_umask(8) on PAM enabled systems.
+# UMASK is also used by useradd(8) and newusers(8) to set the mode for new
+# home directories if HOME_MODE is not set.022 is the default value, but 027, or even 077, could be considered
+# for increased privacy. There is no One True Answer here: each sysadmin
+# must make up their mind.
+UMASK022HOME_MODE is used by useradd(8) and newusers(8) to set the mode for new
+# home directories.If HOME_MODE is not set, the value of UMASK is used to create the mode.
+>4;m>4;mrc7BOTTOM,ocontinuingoatrTOPUMASK112,334%112,334%n/UMASK,117,134%^[2,^[4%::q
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    if [ -z "$PROMPT_COMMAND" ]; then
+      declare -a PROMPT_COMMAND
+      case $TERM in
+      xterm*)
+        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
+        else
+            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+#u/etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    if [ -z "$PROMPT_COMMAND" ]; then
+      declare -a PROMPT_COMMAND
+      case $TERM in
+      xterm*)
+        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
+        else
+            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+# /etc/bashrc
+
+# System wide functions and aliases
+# Environment stuff goes in /etc/profile
+
+# It's NOT a good idea to change this file unless you know what you
+# are doing. It's much better to create a custom.sh shell script in
+# /etc/profile.d/ to make custom changes to your environment, as this
+# will prevent the need for merging in future updates.
+
+# Prevent doublesourcing
+if [ -z "$BASHRCSOURCED" ]; then
+  BASHRCSOURCED="Y"
+
+  # are we an interactive shell?
+  if [ "$PS1" ]; then
+    if [ -z "$PROMPT_COMMAND" ]; then
+      declare -a PROMPT_COMMAND
+      case $TERM in
+      xterm*)
+        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
+            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
+        else
+            PROMPT_COMMAND='printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/\~}"'
+        fi
+...skipping...
+    # Set default umask for non-login shell only if it is set to 0
+    [ `umask` -eq 0 ] && umask 022
+
+    SHELL=/bin/bash
+    # Only display echos from profile.d scripts if we are no login shell
+    # and interactive - otherwise just process them to set envvars
+    for i in /etc/profile.d/*.sh; do
+        if [ -r "$i" ]; then
+            if [ "$PS1" ]; then
+                . "$i"
+            else
+                . "$i" >/dev/null
+            fi
+        fi
+    done
+
+    unset i
+    unset -f pathmunge
+  fi
+
+fi
+# vim:ts=4:sw=4
+~
+~
+~
+~
+[root@main ~]#
+[root@main ~]# su -fedora
+su: invalid option -- 'e'
+Try 'su --help' for more information.
+[root@main ~]# su -ffedora
+Last login: Wed Jul 22 16:00:25 KST 2026 on tty7
+[fedora@main ~]$ cp /etc/passwd file1
+[fedora@main ~]$ ll
+total 4
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 서식
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 공개
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 문서
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 음악
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 사진
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 비디오
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 바탕화면
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 다운로드
+-rw-r--r-- 1 fedora fedora 2488 Sep  8 17:00 file1
+[fedora@main ~]$ cp /etc/passwd passwd
+[fedora@main ~]$ ll
+total 8
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 서식
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 공개
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 문서
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 음악
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 사진
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 비디오
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 바탕화면
+drwxr-xr-x 2 fedora fedora    6 Jul 22 16:00 다운로드
+-rw-r--r-- 1 fedora fedora 2488 Sep  8 17:00 file1
+-rw-r--r-- 1 fedora fedora 2488 Sep  8 17:00 passwd
+[fedora@main ~]$ getfacl file1d
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+group::r--
+other::r--
+
+[fedora@main ~]$ setfacl -m u:user01:rw file1
+[fedora@main ~]$ getfacl file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user01:rw-
+group::r--
+mask::rw-
+other::r--
+
+[fedora@main ~]$ setfacl -m u:user02:0 file1
+getfacl@file1~]$ setfacl -m u:user02:0 file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user01:rw-
+user:user02:---
+group::r--
+mask::rw-
+other::r--
+
+[fedora@main ~]$ setfacl -x u:student file1
+setfacl: Option -x: Invalid argument near character 3
+getfacl@main ~]$ setfacl -x u:student file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user01:rw-
+user:user02:---
+group::r--
+mask::rw-
+other::r--
+
+[fedora@main ~]$ 13@setfac1@u1@s1@e1@r1@01@1
+getfacl@main ~]$ setfacl -x u:user01 file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user02:---
+group::r--
+mask::r--
+other::r--
+
+[fedora@main ~]$ setfacl -m g:user03:0 file1
+[fedora@main ~]$ getfacl file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user02:---
+group::r--
+group:user03:---
+mask::r--
+other::r--
+
+[fedora@main ~]$ setfacl -m u:user01:rw file1
+[fedora@main ~]$ getfacl file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user01:rw-
+user:user02:---
+group::r--
+group:user03:---
+mask::rw-
+other::r--
+
+[fedora@main ~]$ setfacl -m mask:rw file1
+[fedora@main ~]$ getfacl file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+user:user01:rw-
+user:user02:---
+group::r--
+group:user03:---
+mask::rw-
+other::r--
+
+[fedora@main ~]$ setfacl -x u:user02 file1
+[fedora@main ~]$ setfacl -x u:user01@1ile1
+[fedora@main ~]$ getfacl file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+group::r--
+group:user03:---
+mask::r--
+other::r--
+
+[fedora@main ~]$ 12@setf1@1@1@3u:user01
+getfacl@main ~]$ setfacl -x g:user03 file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+group::r--
+mask::r--
+other::r--
+
+[fedora@main ~]$ setfacl -b file1
+[fedora@main ~]$ getfacl -b file1
+# file: file1
+# owner: fedora
+# group: fedora
+user::rw-
+group::r--
+other::r--
+
+[fedora@main ~]$ vi /etc/skel/.
+./             ../            .bash_logout   .bash_profile  .bashrc        .mozilla/
+[fedora@main ~]$ vi /etc/skel/.
+./             ../            .bash_logout   .bash_profile  .bashrc        .mozilla/
+[fedora@main ~]$ vi /etc/skel/.
+./             ../            .bash_logout   .bash_profile  .bashrc        .mozilla/
+[fedora@main ~]$ vi /etc/skel/.bashrc
+>4;2m"/etc/skel/.bashrc" [readonly] 25L, 522B▽  zz0%m           >c# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; doif [ -f "$rc" ]; then. "$rc"fi
+    done
+fi
+unset rc
+>4;m>4;m[fedora@maino~]$sexit (add ! to override)1,1All::q!                                                          ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    ~                                                                                                                    1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::wq
+logout
+[root@main ~]# exit
+exit
+
+Script done on 2026-09-08 17:40:12+09:00 [COMMAND_EXIT_CODE="0"]
