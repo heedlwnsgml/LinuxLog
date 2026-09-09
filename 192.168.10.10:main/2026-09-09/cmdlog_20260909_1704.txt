@@ -1,0 +1,501 @@
+Script started on 2026-09-09 17:04:46+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="114" LINES="27"]
+ctl status timers.target
+● timers.target - Timer Units
+     Loaded: loaded (/usr/lib/systemd/system/timers.target; static0;1;38:5:185m)
+     Active: active since Wed 2026-09-09 17:04:26 KST; 31s ago
+ Invocation: 31f8b5724f004ab5a01e2ccfec0e1380
+       Docs: man:systemd.special(7)
+
+Sep 09 17:04:26 main.example.com systemd[1]: Reached target timers.target - Timer Units.
+systemctl --failed --type=service
+  UNIT LOAD ACTIVE SUB DESCRIPTION
+
+0 loaded units listed.
+/system/
+bash: ce: command not found...
+[root@main ~]# cd//usr/bin/systemd/system/
+bash: cd: /usr/bin/systemd/system/: No such file or directory
+[root@main ~]# cd /usr/lib/systemd/system
+[root@main /usr/lib/systemd/system]# ls
+ accounts-daemon.service                      logrotate.timer                          suspend-then-hibernate.target
+ alsa-card-wait@.service                      low-memory-monitor.service               swap.target
+ alsa-restore.service                         lvm2-lvmpolld.service                    switcheroo-control.service
+ alsa-state.service                           lvm2-lvmpolld.socket                     sys-fs-fuse-connections.mount
+ arp-ethers.service                           lvm2-monitor.service                     sysinit.target
+ atd.service                                  lvm-devices-import.path                  sysinit.target.wants
+ auditd.service                               lvm-devices-import.service               sys-kernel-config.mount
+ audit-rules.service                          man-db-cache-update.service              sys-kernel-debug.mount
+ autovt@.service                              man-db-restart-cache-update.service      sys-kernel-tracing.mount
+ avahi-daemon.service                         mcelog.service                           syslog.socket
+ avahi-daemon.socket                          mdadm-grow-continue@.service             syslog.target.wants
+ basic.target                                 mdadm-last-resort@.service               system-cockpithttps.slice
+ basic.target.wants                           mdadm-last-resort@.timer                 systemd-ask-password-console.path
+ blk-availability.service                     mdcheck_continue.service                 systemd-ask-password-console.service
+ blockdev@.target                             mdcheck_continue.timer                   systemd-ask-password-plymouth.path
+ bluetooth.service                            mdcheck_start.service                    systemd-ask-password-plymouth.service
+ bluetooth.target                             mdcheck_start.timer                      systemd-ask-password-wall.path
+ bolt.service                                 mdmonitor-oneshot.service                systemd-ask-password-wall.service
+ boot-complete.target                         mdmonitor-oneshot.timer                  systemd-backlight@.service
+ brltty.service                               mdmonitor.service                        systemd-battery-check.service
+ canberra-system-bootup.service               mdmon@.service                           systemd-binfmt.service
+ canberra-system-shutdown-reboot.service      microcode.service                        systemd-bless-boot.service
+ canberra-system-shutdown.service             ModemManager.service                     systemd-boot-check-no-failures.service
+ capsule@.service                             modprobe@.service                        systemd-bootctl@.service
+ capsule.slice                                multipathd.service                       systemd-bootctl.socket
+ chronyd-restricted.service                   multipathd.socket                        systemd-boot-random-seed.service
+ chronyd.service                              multi-user.target                        systemd-boot-update.service
+ chrony-wait.service                          multi-user.target.wants                  systemd-confext.service
+ cockpit-issue.service                        named.service                            systemd-coredump@.service
+ cockpit.service                              named-setup-rndc.service                 systemd-coredump.socket
+ cockpit-session@.service                     netavark-dhcp-proxy.service              systemd-creds@.service
+ cockpit-session.socket                       netavark-dhcp-proxy.socket               systemd-creds.socket
+ cockpit-session-socket-user.service          netavark-firewalld-reload.service        systemd-exit.service
+ cockpit.socket                               netavark-nftables-reload.service         systemd-firstboot.service
+ cockpit-wsinstance-http.service              NetworkManager-dispatcher.service        systemd-fsck-root.service
+ cockpit-wsinstance-https-factory@.service    NetworkManager.service                   systemd-fsck@.service
+ cockpit-wsinstance-https-factory.socket      NetworkManager-wait-online.service       systemd-growfs-root.service
+ cockpit-wsinstance-http.socket               network-online.target                    systemd-growfs@.service
+ cockpit-wsinstance-https@.service            network-pre.target                       systemd-halt.service
+ cockpit-wsinstance-https@.socket             network.target                           systemd-hibernate-clear.service
+ cockpit-wsinstance-socket-user.service       nftables.service                         systemd-hibernate-resume.service
+ colord.service                               nis-domainname.service                   systemd-hibernate.service
+ configure-printer@.service                   nmb.service                              systemd-hostnamed.service
+ console-getty.service                        nm-priv-helper.service                   systemd-hostnamed.socket
+ container-getty@.service                     nss-lookup.target                        systemd-hwdb-update.service
+ crond.service                                nss-user-lookup.target                   systemd-hybrid-sleep.service
+ cryptsetup-pre.target                        nvmefc-boot-connections.service          systemd-initctl.service
+ cryptsetup.target                            nvmf-autoconnect.service                 systemd-initctl.socket
+ ctrl-alt-del.target                          nvmf-connect-nbft.service                systemd-journal-catalog-update.service
+ cups-browsed.service                         nvmf-connect@.service                    systemd-journald-audit.socket
+ cups.path                                    nvmf-connect.target                      systemd-journald-dev-log.socket
+ cups.service                                 packagekit-offline-update.service        systemd-journald.service
+ cups.service.d                               packagekit.service                       systemd-journald@.service
+ cups.socket                                  pam_namespace.service                    systemd-journald.socket
+ dbus-broker.service                          paths.target                             systemd-journald@.socket
+ dbus-daemon.service                          plocate-updatedb.service                 systemd-journald-sync@.service
+ dbus-org.freedesktop.hostname1.service       plocate-updatedb.timer                   systemd-journald-varlink@.socket
+ dbus-org.freedesktop.locale1.service         plymouth-halt.service                    systemd-journal-flush.service
+ dbus-org.freedesktop.login1.service          plymouth-kexec.service                   systemd-kexec.service
+ dbus-org.freedesktop.timedate1.service       plymouth-poweroff.service                systemd-localed.service
+ dbus.socket                                  plymouth-quit.service                    systemd-logind.service
+ dbus.target.wants                            plymouth-quit-wait.service               systemd-logind.service.d
+ debug-shell.service                          plymouth-read-write.service              systemd-machine-id-commit.service
+ default.target                               plymouth-reboot.service                  systemd-modules-load.service
+ default.target.wants                         plymouth-start.service                   systemd-network-generator.service
+ dev-hugepages.mount                          plymouth-switch-root-initramfs.service   systemd-pcrextend@.service
+ dev-mqueue.mount                             plymouth-switch-root.service             systemd-pcrextend.socket
+ dm-event.service                             podman-auto-update.service               systemd-pcrfs-root.service
+ dm-event.socket                              podman-auto-update.timer                 systemd-pcrfs@.service
+ dnf-makecache.service                        podman-clean-transient.service           systemd-pcrlock-file-system.service
+ dnf-makecache.timer                          podman-kube@.service                     systemd-pcrlock-firmware-code.service
+ dnf-system-upgrade-cleanup.service           podman-restart.service                   systemd-pcrlock-firmware-config.service
+ dnf-system-upgrade.service                   podman.service                           systemd-pcrlock-machine-id.service
+ dnsmasq.service                              podman.socket                            systemd-pcrlock-make-policy.service
+ dracut-cmdline.service                       polkit.service                           systemd-pcrlock-secureboot-authority.service
+ dracut-initqueue.service                     postfix.service                          systemd-pcrlock-secureboot-policy.service
+ dracut-mount.service                         poweroff.target                          systemd-pcrlock@.service
+ dracut-pre-mount.service                     poweroff.target.wants                    systemd-pcrlock.socket
+ dracut-pre-pivot.service                     printer.target                           systemd-pcrmachine.service
+ dracut-pre-trigger.service                   proc-sys-fs-binfmt_misc.automount        systemd-pcrphase-initrd.service
+ dracut-pre-udev.service                      proc-sys-fs-binfmt_misc.mount            systemd-pcrphase.service
+ dracut-shutdown-onfailure.service            psacct.service                           systemd-pcrphase-sysinit.service
+ dracut-shutdown.service                      qemu-guest-agent.service                 systemd-poweroff.service
+ emergency.service                            quotaon-root.service                     systemd-pstore.service
+ emergency.target                             quotaon@.service                         systemd-quotacheck-root.service
+ exit.target                                  raid-check.service                       systemd-quotacheck@.service
+ factory-reset.target                         raid-check.timer                         systemd-random-seed.service
+ final.target                                 rasdaemon.service                        systemd-reboot.service
+ fips-crypto-policy-overlay.service           ras-mc-ctl.service                       systemd-remount-fs.service
+ firewalld.service                            rc-local.service                         systemd-repart.service
+ first-boot-complete.target                   realmd.service                           systemd-rfkill.service
+ flatpak-system-helper.service                reboot.target                            systemd-rfkill.socket
+ foomaticrip-upgrade.service                  reboot.target.wants                      systemd-soft-reboot.service
+ fprintd.service                              remote-cryptsetup.target                 systemd-suspend.service
+ fstrim.service                               remote-fs-pre.target                     systemd-suspend-then-hibernate.service
+ fstrim.timer                                 remote-fs.target                         systemd-sysctl.service
+ fwupd-refresh.service                        remote-fs.target.wants                   systemd-sysext.service
+ fwupd-refresh.timer                          remote-veritysetup.target                systemd-sysext@.service
+ fwupd.service                                rescue.service                           systemd-sysext.socket
+ gdm.service                                  rescue.target                            systemd-sysupdate-reboot.service
+ geoclue.service                              rescue.target.wants                      systemd-sysupdate-reboot.timer
+ getty-pre.target                             rpcbind.target                           systemd-sysupdate.service
+ getty@.service                               rpmdb-migrate.service                    systemd-sysupdate.timer
+ getty.target                                 rpmdb-rebuild.service                    systemd-sysusers.service
+ gnome-headless-session@.service              rsyslog.service                          systemd-timedated.service
+ gnome-remote-desktop-configuration.service   rtkit-daemon.service                     systemd-tmpfiles-clean.service
+ gnome-remote-desktop.service                 runlevel0.target                         systemd-tmpfiles-clean.timer
+ graphical.target                             runlevel1.target                         systemd-tmpfiles-setup-dev-early.service
+ graphical.target.wants                       runlevel1.target.wants                   systemd-tmpfiles-setup-dev.service
+ grub2-systemd-integration.service            runlevel2.target                         systemd-tmpfiles-setup.service
+ grub-boot-indeterminate.service              runlevel2.target.wants                   systemd-tpm2-setup-early.service
+ halt.target                                  runlevel3.target                         systemd-tpm2-setup.service
+ halt.target.wants                            runlevel3.target.wants                   systemd-udevd-control.socket
+ hibernate.target                             runlevel4.target                         systemd-udevd-kernel.socket
+ htcacheclean.service                         runlevel4.target.wants                   systemd-udevd.service
+ httpd.service                                runlevel5.target                         systemd-udev-load-credentials.service
+ httpd@.service                               runlevel5.target.wants                   systemd-udev-settle.service
+ httpd.service.d                              runlevel6.target                         systemd-udev-trigger.service
+ httpd.socket                                'run-vmblock\x2dfuse.mount'               systemd-udev-trigger.service.d
+ httpd.socket.d                               samba-bgqd.service                       systemd-update-done.service
+ hybrid-sleep.target                          selinux-autorelabel-mark.service         systemd-update-utmp-runlevel.service
+ hypervfcopyd.service                         selinux-autorelabel.service              systemd-update-utmp.service
+ hypervkvpd.service                           selinux-autorelabel.target               systemd-userdbd.service
+ hypervvssd.service                           selinux-check-proper-disable.service     systemd-userdbd.socket
+ iio-sensor-proxy.service                     serial-getty@.service                    systemd-user-sessions.service
+ initrd-cleanup.service                       setroubleshootd.service                  systemd-vconsole-setup.service
+ initrd-fs.target                             shutdown.target                          systemd-volatile-root.service
+ initrd-parse-etc.service                     sigpwr.target                            system.slice.d
+ initrd-root-device.target                    sleep.target                            'system-systemd\x2dcryptsetup.slice'
+ initrd-root-device.target.wants              slices.target                           'system-systemd\x2dveritysetup.slice'
+ initrd-root-fs.target                        smartcard.target                         system-update-cleanup.service
+ initrd-root-fs.target.wants                  smartd.service                           system-update-pre.target
+ initrd-switch-root.service                   smb.service                              system-update.target
+ initrd-switch-root.target                    sockets.target                           system-update.target.wants
+ initrd-switch-root.target.wants              sockets.target.wants                     system-xfs_scrub.slice
+ initrd.target                                soft-reboot.target                       telnet@.service
+ initrd.target.wants                          sound.target                             telnet.socket
+ initrd-udevadm-cleanup-db.service            sound.target.wants                       timers.target
+ initrd-usr-fs.target                         speech-dispatcherd.service               timers.target.wants
+ integritysetup-pre.target                    spice-vdagentd.service                   time-set.target
+ integritysetup.target                        spice-vdagentd.socket                    time-sync.target
+ ipp-usb.service                              ssh-access.target                        tmp.mount
+ irqbalance.service                           sshd-keygen@.service                     tpm2.target
+ iscsid.service                               sshd-keygen.target                       tuned-ppd.service
+ iscsid.socket                                sshd.service                             tuned.service
+ iscsi-init.service                           sshd@.service                            udisks2.service
+ iscsi-onboot.service                         sshd.socket                              umount.target
+ iscsi.service                                ssh-host-keys-migration.service          upower.service
+ iscsi-shutdown.service                       sssd-autofs.service                      usb-gadget.target
+ iscsi-starter.service                        sssd-autofs.socket                       user@0.service.d
+ iscsiuio.service                             sssd-kcm.service                         user-runtime-dir@.service
+ iscsiuio.socket                              sssd-kcm.socket                          user@.service
+ kdump.service                                sssd-nss.service                         user@.service.d
+ kexec.target                                 sssd-nss.socket                          user.slice
+ kexec.target.wants                           sssd-pac.service                         user-.slice.d
+ kmod-static-nodes.service                    sssd-pac.socket                          veritysetup-pre.target
+ kpatch.service                               sssd-pam.service                         veritysetup.target
+ kvm_stat.service                             sssd-pam.socket                          vgauthd.service
+ ldconfig.service                             sssd.service                             vmtoolsd.service
+ ledmon.service                               sssd-ssh.service                         vsftpd.service
+ libstoragemgmt.service                       sssd-ssh.socket                          vsftpd@.service
+ local-fs-pre.target                          sssd-sudo.service                        vsftpd.target
+ local-fs.target                              sssd-sudo.socket                         wpa_supplicant.service
+ logrotate.service                            suspend.target                           wsdd.service
+[root@main /usr/lib/systemd/system]# ls -alS *.service
+-rw-r--r--. 1 root root 2833 Jul  7 09:00 systemd-journald.service
+-rw-r--r--. 1 root root 2119 Jul  2 09:00 nm-priv-helper.service
+-rw-r--r--. 1 root root 2090 Jul  7 09:00 getty@.service
+-rw-r--r--. 1 root root 2088 Jul  7 09:00 systemd-logind.service
+-rw-r--r--. 1 root root 1966 Jan  6  2026 auditd.service
+-rw-r--r--. 1 root root 1964 Apr 25  2025 accounts-daemon.service
+-rw-r--r--. 1 root root 1836 Nov 20  2025 chronyd-restricted.service
+-rw-r--r--. 1 root root 1663 Dec 23  2025 fwupd.service
+-rw-r--r--. 1 root root 1655 Jul  7 09:00 serial-getty@.service
+-rw-r--r--. 1 root root 1568 Aug 27  2025 chronyd.service
+-rw-r--r--. 1 root root 1552 Dec 11  2024 systemd-firstboot.service
+-rw-r--r--. 1 root root 1525 Dec 11  2024 system-update-cleanup.service
+-rw-r--r--. 1 root root 1512 Jul  2 09:00 NetworkManager.service
+-rw-r--r--. 1 root root 1458 Jul  7 09:00 systemd-journald@.service
+-rw-r--r--. 1 root root 1427 Jul  2 09:00 sssd.service
+-rw-r--r--. 1 root root 1387 Jul  7 09:00 container-getty@.service
+-rw-r--r--. 1 root root 1368 Jul  7 09:00 systemd-udevd.service
+-rw-r--r--  1 root root 1340 Aug 25 09:00 httpd.service
+-rw-r--r--. 1 root root 1318 Dec 11  2024 systemd-repart.service
+-rw-r--r--. 1 root root 1310 Dec 11  2024 systemd-sysusers.service
+-rw-r--r--. 1 root root 1280 Oct 29  2024 colord.service
+-rw-r--r--. 1 root root 1231 Jul  7 09:00 console-getty.service
+-rw-r--r--. 1 root root 1224 Jul  7 09:00 systemd-hostnamed.service
+-rw-r--r--. 1 root root 1204 Jul  7 09:00 systemd-userdbd.service
+-rw-r--r--. 1 root root 1196 Jul  7 09:00 systemd-vconsole-setup.service
+-rw-r--r--. 1 root root 1194 Jul  7 09:00 systemd-localed.service
+-rw-r--r--. 1 root root 1187 Jul  7 09:00 systemd-random-seed.service
+-rw-r--r--  1 root root 1184 Aug 25 09:00 httpd@.service
+-rw-r--r--. 1 root root 1184 Jul  7 09:00 systemd-binfmt.service
+-rw-r--r--. 1 root root 1174 Jul  2 09:00 mdmon@.service
+-rw-r--r--. 1 root root 1174 Jul  7 09:00 systemd-timedated.service
+-rw-r--r--. 1 root root 1173 Jul  2 09:00 NetworkManager-wait-online.service
+-rw-r--r--. 1 root root 1143 Jul  7 09:00 systemd-coredump@.service
+-rw-r--r--. 1 root root 1129 Jul  7 09:00 capsule@.service
+-rw-r--r--. 1 root root 1116 Jul  7 09:00 initrd-parse-etc.service
+-rw-r--r--. 1 root root 1104 Jul  7 09:00 systemd-modules-load.service
+-rw-r--r--. 1 root root 1100 Jul  7 09:00 debug-shell.service
+-rw-r--r--. 1 root root 1089 Dec 11  2024 systemd-confext.service
+-rw-r--r--. 1 root root 1087 Jul  2 09:00 sssd-kcm.service
+-rw-r--r--. 1 root root 1081 Aug 27  2025 chrony-wait.service
+-rw-r--r--. 1 root root 1072 Jul  7 09:00 systemd-sysupdate.service
+-rw-r--r--. 1 root root 1070 Oct 29  2024 rtkit-daemon.service
+-rw-r--r--. 1 root root 1069 Sep 30  2025 irqbalance.service
+-rw-r--r--. 1 root root 1046 Dec 11  2024 systemd-sysext.service
+-rw-r--r--. 1 root root 1044 Mar 10  2026 avahi-daemon.service
+-rw-r--r--. 1 root root 1039 Jul  7 09:00 user@.service
+-rw-r--r--. 1 root root 1029 Dec 11  2024 systemd-boot-random-seed.service
+-rw-r--r--. 1 root root 1003 Dec 11  2024 systemd-tmpfiles-setup.service
+-rw-r--r--. 1 root root 1001 Oct 29  2024 speech-dispatcherd.service
+-rw-r--r--. 1 root root  999 Apr 29 09:00 rsyslog.service
+-rw-r--r--. 1 root root  996 Jul  2 09:00 sssd-nss.service
+-rw-r--r--. 1 root root  994 Nov 28  2025 upower.service
+-rw-r--r--. 1 root root  982 Jun 26 09:00 firewalld.service
+-rw-r--r--. 1 root root  954 Jul  7 09:00 systemd-tpm2-setup.service
+-rw-r--r--. 1 root root  952 Dec 11  2024 ldconfig.service
+-rw-r--r--. 1 root root  943 Dec 11  2024 systemd-journal-flush.service
+-rw-r--r--. 1 root root  939 Jan  6  2026 audit-rules.service
+-rw-r--r--. 1 root root  928 Apr 10  2025 fprintd.service
+-rw-r--r--. 1 root root  921 Jun 23 09:00 cockpit.service
+-rw-r--r--. 1 root root  919 May 27 09:00 gdm.service
+-rw-r--r--. 1 root root  909 Jul  7 09:00 systemd-pcrphase-initrd.service
+-rw-r--r--. 1 root root  908 Jul  7 09:00 systemd-battery-check.service
+-rw-r--r--. 1 root root  902 Jul  7 09:00 systemd-tpm2-setup-early.service
+-rw-r--r--. 1 root root  893 Jul  7 09:00 systemd-network-generator.service
+-rw-r--r--. 1 root root  880 Dec 11  2024 systemd-journald-sync@.service
+-rw-r--r--  1 root root  878 Aug 19 09:00 named.service
+-rw-r--r--. 1 root root  877 Dec 11  2024 systemd-tmpfiles-setup-dev.service
+-rw-r--r--. 1 root root  870 Nov  3  2020 logrotate.service
+-rw-r--r--. 1 root root  864 Jul  7 09:00 systemd-pcrlock-secureboot-authority.service
+-rw-r--r--. 1 root root  863 Dec 11  2024 systemd-udev-settle.service
+-rw-r--r--. 1 root root  858 Jul  7 09:00 systemd-pcrlock-secureboot-policy.service
+-rw-r--r--. 1 root root  856 Jul  7 09:00 systemd-update-utmp.service
+-rw-r--r--. 1 root root  852 Dec 11  2024 systemd-tmpfiles-setup-dev-early.service
+-rw-r--r--. 1 root root  850 Jul  7 09:00 systemd-pcrlock-firmware-config.service
+-rw-r--r--. 1 root root  849 Jul  7 09:00 systemd-update-utmp-runlevel.service
+-rw-r--r--. 1 root root  840 Mar  6  2026 multipathd.service
+-rw-r--r--. 1 root root  839 Jul  7 09:00 systemd-pcrlock-firmware-code.service
+-rw-r--r--. 1 root root  834 Dec 11  2024 systemd-ask-password-console.service
+-rw-r--r--. 1 root root  834 Jul  7 09:00 systemd-hwdb-update.service
+-rw-r--r--. 1 root root  832 Dec 11  2024 systemd-udev-load-credentials.service
+-rw-r--r--. 1 root root  823 Dec 11  2024 initrd-udevadm-cleanup-db.service
+-rw-r--r--. 1 root root  822 Oct 29  2024 wsdd.service
+-rw-r--r--. 1 root root  815 Jul  7 09:00 systemd-pstore.service
+-rw-r--r--. 1 root root  809 Jul  7 09:00 systemd-pcrlock-file-system.service
+-rw-r--r--. 1 root root  806 Jul  7 09:00 systemd-pcrlock-machine-id.service
+-rw-r--r--. 1 root root  805 Jul  7 09:00 systemd-pcrphase-sysinit.service
+-rw-r--r--. 1 root root  804 Jul  7 09:00 emergency.service
+-rw-r--r--. 1 root root  800 Jul  7 09:00 systemd-pcrlock-make-policy.service
+-rw-r--r--. 1 root root  795 Jul  7 09:00 rescue.service
+-rw-r--r--. 1 root root  786 Jul  7 09:00 rc-local.service
+-rw-r--r--. 1 root root  783 May 13 09:00 polkit.service
+-rw-r--r--. 1 root root  782 Jul  7 09:00 systemd-hibernate-clear.service
+-rw-r--r--. 1 root root  778 Nov 19  2025 nvmf-connect-nbft.service
+-rw-r--r--. 1 root root  777 Jul  7 09:00 systemd-backlight@.service
+-rw-r--r--. 1 root root  773 Jul  7 09:00 systemd-pcrfs@.service
+-rw-r--r--. 1 root root  772 Jul  2 09:00 bluetooth.service
+-rw-r--r--. 1 root root  771 Jul  7 09:00 systemd-fsck@.service
+-rw-r--r--. 1 root root  771 Jul  7 09:00 systemd-rfkill.service
+-rw-r--r--. 1 root root  767 Jul  7 09:00 systemd-pcrphase.service
+-rw-r--r--. 1 root root  758 Jul  7 09:00 systemd-remount-fs.service
+-rw-r--r--. 1 root root  758 Dec 11  2024 systemd-udev-trigger.service
+-rw-r--r--. 1 root root  750 Dec 11  2024 systemd-journal-catalog-update.service
+-rw-r--r--. 1 root root  749 Jul  7 09:00 systemd-pcrfs-root.service
+-rw-r--r--. 1 root root  747 Dec 11  2024 systemd-ask-password-wall.service
+-rw-r--r--. 1 root root  747 Dec 11  2024 systemd-tmpfiles-clean.service
+-rw-r--r--. 1 root root  744 Dec 11  2024 systemd-machine-id-commit.service
+-rw-r--r--. 1 root root  743 Jul  7 09:00 systemd-volatile-root.service
+-rw-r--r--  1 root root  736 Jun 25 09:00 postfix.service
+-rw-r--r--. 1 root root  733 Dec 11  2024 systemd-boot-update.service
+-rw-r--r--. 1 root root  732 Jul  7 09:00 systemd-quotacheck@.service
+-rw-r--r--. 1 root root  731 Jul  7 09:00 systemd-sysctl.service
+-rw-r--r--. 1 root root  728 Jul  7 09:00 systemd-pcrmachine.service
+-rw-r--r--. 1 root root  724 Jul  7 09:00 systemd-fsck-root.service
+-rw-r--r--. 1 root root  716 May 27 09:00 gnome-headless-session@.service
+-rw-r--r--. 1 root root  712 Jul  7 09:00 systemd-quotacheck-root.service
+-rw-r--r--. 1 root root  711 Jul  7 09:00 kmod-static-nodes.service
+-rw-r--r--. 1 root root  710 Nov 19  2025 nvmf-connect@.service
+-rw-r--r--. 1 root root  708 Jul  7 09:00 quotaon@.service
+-rw-r--r--. 1 root root  696 Jul  2 09:00 NetworkManager-dispatcher.service
+-rw-r--r--. 1 root root  690 Jul  7 09:00 systemd-bless-boot.service
+-rw-r--r--. 1 root root  688 Oct 29  2024 low-memory-monitor.service
+-rw-r--r--. 1 root root  685 Nov 19  2025 nvmf-autoconnect.service
+-rw-r--r--. 1 root root  682 Jul  7 09:00 systemd-update-done.service
+-rw-r--r--. 1 root root  681 Jul  7 09:00 systemd-boot-check-no-failures.service
+-rw-r--r--. 1 root root  676 Jul  7 09:00 user-runtime-dir@.service
+-rw-r--r--. 1 root root  670 Dec 11  2024 initrd-cleanup.service
+-rw-r--r--. 1 root root  667 Jun 26 09:00 podman-clean-transient.service
+-rw-r--r--. 1 root root  667 Jul  7 09:00 systemd-growfs-root.service
+-rw-r--r--. 1 root root  666 Jul  7 09:00 quotaon-root.service
+-rw-r--r--. 1 root root  666 Jul  7 09:00 systemd-hibernate-resume.service
+-rw-r--r--. 1 root root  664 Jul  7 09:00 systemd-growfs@.service
+-rw-r--r--. 1 root root  655 Jul  7 09:00 systemd-user-sessions.service
+-rw-r--r--. 1 root root  651 Jun 14  2025 plymouth-switch-root-initramfs.service
+-rw-r--r--. 1 root root  648 Jul  7 09:00 systemd-pcrlock@.service
+-rw-r--r--. 1 root root  634 Apr 24  2024 dnf-system-upgrade.service
+-rw-r--r--. 1 root root  629 Jul  2 09:00 sssd-pam.service
+-rw-r--r--. 1 root root  628 Nov 19  2025 nvmefc-boot-connections.service
+-rw-r--r--. 1 root root  625 Jul  7 09:00 systemd-pcrextend@.service
+-rw-r--r--. 1 root root  623 Jun 25 09:00 iscsi-init.service
+-rw-r--r--. 1 root root  621 Jun 23 09:00 netavark-nftables-reload.service
+-rw-r--r--. 1 root root  619 Jun 23 09:00 cockpit-wsinstance-https@.service
+-rw-r--r--. 1 root root  614 Dec 11  2024 initrd-switch-root.service
+-rw-r--r--. 1 root root  613 Oct 23  2025 bolt.service
+-rw-r--r--. 1 root root  612 Dec 11  2024 systemd-sysext@.service
+-rw-r--r--. 1 root root  612 Jul  7 09:00 systemd-sysupdate-reboot.service
+-rw-r--r--. 1 root root  601 Jul  7 09:00 systemd-suspend-then-hibernate.service
+-rw-r--r--. 1 root root  588 Dec 11  2024 systemd-soft-reboot.service
+-rw-r--r--. 1 root root  587 Dec 11  2024 systemd-creds@.service
+-rw-r--r--. 1 root root  585 Jun 14  2025 plymouth-start.service
+-rw-r--r--. 1 root root  583 Jul  7 09:00 systemd-hybrid-sleep.service
+-rw-r--r--. 1 root root  578 Jul  7 09:00 systemd-initctl.service
+-rw-r--r--. 1 root root  576 Jun 23 09:00 cockpit-wsinstance-http.service
+-rw-r--r--. 1 root root  575 Dec 11  2024 systemd-poweroff.service
+-rw-r--r--. 1 root root  573 Dec 11  2024 modprobe@.service
+-rw-r--r--. 1 root root  569 Dec 11  2024 systemd-kexec.service
+-rw-r--r--. 1 root root  568 Dec 11  2024 systemd-reboot.service
+-rw-r--r--. 1 root root  564 Dec 11  2024 systemd-exit.service
+-rw-r--r--. 1 root root  562 Dec 11  2024 systemd-halt.service
+-rw-r--r--. 1 root root  562 Jul  7 09:00 systemd-hibernate.service
+-rw-r--r--. 1 root root  560 Oct 29  2024 dbus-daemon.service
+-rw-r--r--. 1 root root  557 Jul  2 09:00 mdcheck_continue.service
+-rw-r--r--. 1 root root  556 Jul  7 09:00 systemd-suspend.service
+-rw-r--r--. 1 root root  555 Apr 14 09:00 sshd.service
+-rw-r--r--. 1 root root  552 Jul  2 09:00 mdmonitor-oneshot.service
+-rw-r--r--. 1 root root  551 Jul  2 09:00 lvm2-monitor.service
+-rw-r--r--. 1 root root  550 Dec 23  2025 fwupd-refresh.service
+-rw-r--r--. 1 root root  547 Aug 14  2025 dbus-broker.service
+-rw-r--r--. 1 root root  540 Jul  2 09:00 sssd-sudo.service
+-rw-r--r--. 1 root root  538 Jul  4 09:00 selinux-check-proper-disable.service
+-rw-r--r--. 1 root root  532 Dec 11  2024 systemd-bootctl@.service
+-rw-r--r--. 1 root root  529 Jul  2 09:00 sssd-autofs.service
+-rw-r--r--. 1 root root  520 Jul  2 09:00 sssd-pac.service
+-rw-r--r--. 1 root root  520 Jul  2 09:00 sssd-ssh.service
+-rw-r--r--. 1 root root  515 Oct 29  2024 ModemManager.service
+-rw-r--r--. 1 root root  509 Oct 29  2024 canberra-system-shutdown-reboot.service
+-rw-r--r--. 1 root root  509 Jul  2 09:00 mdcheck_start.service
+-rw-r--r--. 1 root root  507 Feb 12  2025 geoclue.service
+-rw-r--r--  1 root root  505 Aug 17 09:00 smb.service
+-rw-r--r--. 1 root root  498 Jul  2 09:00 mdadm-grow-continue@.service
+-rw-r--r--. 1 root root  498 Oct 29  2024 switcheroo-control.service
+-rw-r--r--. 1 root root  491 Oct 29  2024 canberra-system-bootup.service
+-rw-r--r--. 1 root root  491 Jul 10 09:00 qemu-guest-agent.service
+-rw-r--r--. 1 root root  481 May 25 09:00 fstrim.service
+-rw-r--r--. 1 root root  480 Jan 22  2026 alsa-restore.service
+-rw-r--r--. 1 root root  470 Jun 26 09:00 podman-restart.service
+-rw-r--r--. 1 root root  466 Oct 29  2024 canberra-system-shutdown.service
+-rw-r--r--. 1 root root  466 Jun 25 09:00 iscsi.service
+-rw-r--r--. 1 root root  465 Jan 22  2026 alsa-state.service
+-rw-r--r--. 1 root root  464 Jun 19 09:00 rpmdb-rebuild.service
+-rw-r--r--. 1 root root  464 Dec  8  2025 smartd.service
+-rw-r--r--  1 root root  460 Aug 17 09:00 samba-bgqd.service
+-rw-r--r--  1 root root  459 Aug 17 09:00 nmb.service
+-rw-r--r--. 1 root root  457 Apr 24  2024 dnf-makecache.service
+-rw-r--r--. 1 root root  457 Jun 24 09:00 hypervfcopyd.service
+-rw-r--r--. 1 root root  446 Feb  2  2026 kdump.service
+-rw-r--r--. 1 root root  445 Jun 25 09:00 iscsid.service
+-rw-r--r--. 1 root root  443 Jun 26 09:00 podman-kube@.service
+-rw-r--r--. 1 root root  441 Apr 14 09:00 sshd@.service
+-rw-r--r--. 1 root root  439 Feb 23  2026 tuned.service
+-rw-r--r--  1 root root  435 Aug 25 09:00 htcacheclean.service
+-rw-r--r--. 1 root root  435 Jun 14  2025 systemd-ask-password-plymouth.service
+-rw-r--r--. 1 root root  433 Jun 25 09:00 iscsi-shutdown.service
+-rw-r--r--. 1 root root  424 Oct 29  2024 iio-sensor-proxy.service
+-rw-r--r--. 1 root root  418 Jun 23 09:00 netavark-firewalld-reload.service
+-rw-r--r--. 1 root root  418 Jun 14  2025 plymouth-kexec.service
+-rw-r--r--. 1 root root  413 Jun 14  2025 plymouth-poweroff.service
+-rw-r--r--. 1 root root  412 Jun 19 09:00 rpmdb-migrate.service
+-rw-r--r--. 1 root root  411 Apr 14 09:00 ssh-host-keys-migration.service
+-rw-r--r--. 1 root root  406 Jun 14  2025 plymouth-reboot.service
+-rw-r--r--. 1 root root  406 May 25 09:00 selinux-autorelabel-mark.service
+-rw-r--r--. 1 root root  404 Jun 14  2025 plymouth-halt.service
+-rw-r--r--. 1 root root  400 Apr 27 09:00 packagekit-offline-update.service
+-rw-r--r--. 1 root root  393 May 21 09:00 nftables.service
+-rw-r--r--. 1 root root  392 Apr 27 09:00 packagekit.service
+-rw-r--r--. 1 root root  385 Jun 25 09:00 iscsiuio.service
+-rw-r--r--. 1 root root  384 Jul  2 09:00 blk-availability.service
+-rw-r--r--. 1 root root  378 Oct 29  2024 nis-domainname.service
+-rw-r--r--. 1 root root  374 Feb 16  2026 vmtoolsd.service
+-rw-r--r--. 1 root root  371 Jan 14  2026 crond.service
+-rw-r--r--. 1 root root  368 Jul  8 09:00 kvm_stat.service
+-rw-r--r--. 1 root root  366 Jun 25 09:00 iscsi-onboot.service
+-rw-r--r--. 1 root root  363 Oct 29  2024 rasdaemon.service
+-rw-r--r--. 1 root root  358 Jun 10  2025 man-db-cache-update.service
+-rw-r--r--. 1 root root  351 Feb  7  2022 spice-vdagentd.service
+-rw-r--r--. 1 root root  350 Sep 11  2025 psacct.service
+-rw-r--r--. 1 root root  347 Jan 22  2026 alsa-card-wait@.service
+-rw-r--r--. 1 root root  347 Oct  9  2025 wpa_supplicant.service
+-rw-r--r--. 1 root root  345 Jul  2 09:00 dm-event.service
+-rw-r--r--. 1 root root  331 Apr  7 09:00 pam_namespace.service
+-rw-r--r--. 1 root root  329 May  5 09:00 dnsmasq.service
+-rw-r--r--. 1 root root  327 Jul  2 09:00 lvm2-lvmpolld.service
+-rw-r--r--. 1 root root  324 Jun 26 09:00 podman.service
+-rw-r--r--. 1 root root  323 Jun 24 09:00 hypervkvpd.service
+-rw-r--r--. 1 root root  322 Apr 24  2024 dnf-system-upgrade-cleanup.service
+-rw-r--r--. 1 root root  316 Jun 22 09:00 cups.service
+-rw-r--r--. 1 root root  315 Jun 14  2025 plymouth-switch-root.service
+-rw-r--r--. 1 root root  315 Feb 23  2026 tuned-ppd.service
+-rw-r--r--. 1 root root  311 Jul  2 09:00 mdmonitor.service
+-rw-r--r--. 1 root root  309 Jun 23 09:00 cockpit-session@.service
+-rw-r--r--. 1 root root  309 Jun 25 09:00 iscsi-starter.service
+-rw-r--r--. 1 root root  301 Jun 10  2025 man-db-restart-cache-update.service
+-rw-r--r--. 1 root root  301 May 25 09:00 selinux-autorelabel.service
+-rw-r--r--. 1 root root  290 Sep 30  2025 foomaticrip-upgrade.service
+-rw-r--r--. 1 root root  287 Jan 14  2026 mcelog.service
+-rw-r--r--. 1 root root  284 Feb 25  2026 microcode.service
+-rw-r--r--. 1 root root  284 Jun 26 09:00 podman-auto-update.service
+-rw-r--r--. 1 root root  278 Sep 23  2023 cups-browsed.service
+-rw-r--r--. 1 root root  275 Oct 29  2024 arp-ethers.service
+-rw-r--r--. 1 root root  275 Jul  8 09:00 fips-crypto-policy-overlay.service
+-rw-r--r--. 1 root root  274 Sep 19  2025 atd.service
+-rw-r--r--. 1 root root  268 Jun 23 09:00 cockpit-wsinstance-socket-user.service
+-rw-r--r--. 1 root root  268 Jun 14  2025 plymouth-read-write.service
+-rw-r--r--. 1 root root  265 May  6 09:00 gnome-remote-desktop-configuration.service
+-rw-r--r--. 1 root root  264 Jun 23 09:00 cockpit-session-socket-user.service
+-rw-r--r--. 1 root root  264 Oct 29  2024 kpatch.service
+-rw-r--r--. 1 root root  264 Feb 16  2026 vgauthd.service
+-rw-r--r--. 1 root root  263 Jun 11 09:00 flatpak-system-helper.service
+-rw-r--r--. 1 root root  263 Jul  2 09:00 grub2-systemd-integration.service
+-rw-r--r--. 1 root root  263 Jul  2 09:00 grub-boot-indeterminate.service
+-rw-r--r--. 1 root root  252 Jun 23 09:00 netavark-dhcp-proxy.service
+-rw-r--r--. 1 root root  248 May  7 09:00 setroubleshootd.service
+-rw-r--r--. 1 root root  247 Apr 14 09:00 sshd-keygen@.service
+-rw-r--r--. 1 root root  241 Jul  2 09:00 mdadm-last-resort@.service
+-rw-r--r--. 1 root root  235 May  6 09:00 gnome-remote-desktop.service
+-rw-r--r--. 1 root root  232 May 15 20:23 lvm-devices-import.service
+-rw-r--r--. 1 root root  225 Jun 23 09:00 cockpit-issue.service
+-rw-r--r--. 1 root root  224 Jun 14  2025 plymouth-quit-wait.service
+-rw-r--r--. 1 root root  221 Apr  8 09:00 plocate-updatedb.service
+-rw-r--r--. 1 root root  218 Jun 14  2025 plymouth-quit.service
+-rw-r--r--. 1 root root  217 Oct 30  2024 brltty.service
+-rw-r--r--. 1 root root  207 Jul 23  2024 ipp-usb.service
+-rw-r--r--. 1 root root  207 Mar  9  2026 udisks2.service
+-rw-r--r--. 1 root root  202 Oct 29  2024 ras-mc-ctl.service
+-rw-r--r--. 1 root root  191 Jun 24 09:00 hypervvssd.service
+-rw-r--r--  1 root root  191 Aug 18 09:00 vsftpd@.service
+-rw-r--r--. 1 root root  178 Oct 14  2025 realmd.service
+-rw-r--r--  1 root root  178 Aug 18 09:00 vsftpd.service
+-rw-r--r--. 1 root root  177 Jun 29  2023 libstoragemgmt.service
+-rw-r--r--. 1 root root  173 Jun  9  2025 ledmon.service
+-rw-r--r--. 1 root root  165 Jun 23 09:00 cockpit-wsinstance-https-factory@.service
+-rw-r--r--. 1 root root  154 Oct 29  2024 configure-printer@.service
+-rw-r--r--  1 root root  121 Aug 19 09:00 named-setup-rndc.service
+-rw-r--r--  1 root root  119 Oct 29  2024 telnet@.service
+-rw-r--r--. 1 root root   98 Jul  2 09:00 raid-check.service
+lrwxrwxrwx. 1 root root   73 Jul  2 09:00 dracut-shutdown-onfailure.service -> ../../dracut/modules.d/98dracut-systemd/dracut-shutdown-onfailure.service
+lrwxrwxrwx. 1 root root   66 Jul  2 09:00 dracut-pre-trigger.service -> ../../dracut/modules.d/98dracut-systemd/dracut-pre-trigger.service
+lrwxrwxrwx. 1 root root   64 Jul  2 09:00 dracut-initqueue.service -> ../../dracut/modules.d/98dracut-systemd/dracut-initqueue.service
+lrwxrwxrwx. 1 root root   64 Jul  2 09:00 dracut-pre-mount.service -> ../../dracut/modules.d/98dracut-systemd/dracut-pre-mount.service
+lrwxrwxrwx. 1 root root   64 Jul  2 09:00 dracut-pre-pivot.service -> ../../dracut/modules.d/98dracut-systemd/dracut-pre-pivot.service
+lrwxrwxrwx. 1 root root   63 Jul  2 09:00 dracut-pre-udev.service -> ../../dracut/modules.d/98dracut-systemd/dracut-pre-udev.service
+lrwxrwxrwx. 1 root root   63 Jul  2 09:00 dracut-shutdown.service -> ../../dracut/modules.d/98dracut-systemd/dracut-shutdown.service
+lrwxrwxrwx. 1 root root   62 Jul  2 09:00 dracut-cmdline.service -> ../../dracut/modules.d/98dracut-systemd/dracut-cmdline.service
+lrwxrwxrwx. 1 root root   60 Jul  2 09:00 dracut-mount.service -> ../../dracut/modules.d/98dracut-systemd/dracut-mount.service
+lrwxrwxrwx. 1 root root   25 Jul  7 09:00 dbus-org.freedesktop.hostname1.service -> systemd-hostnamed.service
+lrwxrwxrwx. 1 root root   25 Jul  7 09:00 dbus-org.freedesktop.timedate1.service -> systemd-timedated.service
+lrwxrwxrwx. 1 root root   23 Jul  7 09:00 dbus-org.freedesktop.locale1.service -> systemd-localed.service
+lrwxrwxrwx. 1 root root   22 Jul  7 09:00 dbus-org.freedesktop.login1.service -> systemd-logind.service
+lrwxrwxrwx. 1 root root   14 Jul  7 09:00 autovt@.service -> getty@.service
+eck.service
+[Unit]
+Description=RAID setup health check[Service]
+Type=oneshot
+ExecStart=/usr/sbin/raid-check
+>4;m>4;m[root@main /usr/lib/systemd/system]# vi udisks2.service                                                                     ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+[Unit]
+Description=Disk ManagerDocumentation=man:udisks(8)[Service]
+Type=dbus
+BusName=org.freedesktop.UDisks2
+ExecStart=/usr/libexec/udisks2/udisksd
+KillSignal=SIGINT
+
+[Install]
+WantedBy=graphical.target
+>4;m>4;m[root@main /usr/lib/systemd/system]# exit                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   ~                                                                                                                                   1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+exit
+
+Script done on 2026-09-09 20:52:32+09:00 [COMMAND_EXIT_CODE="0"]
