@@ -1,0 +1,110 @@
+Script started on 2026-09-11 19:17:29+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="75" LINES="27"]
+[root@main ~]# clear
+[root@main ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:1d:75:8f brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c291d758f
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe1d:758f/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens224: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:1d:75:99 brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+    altname enx000c291d7599
+    inet 172.16.6.206/24 brd 172.16.6.255 scope global noprefixroute ens224
+       valid_lft forever preferred_lft forever
+    inet6 fe80::4f:8c:3210:a4e6/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+[root@main ~]# mount -o1default1:/rusers/rusers1 /home/rusers1
+mount: /home/rusers1: fsconfig system call failed: nfs: Unknown parameter 'default'.
+       dmesg(1) may have more information after failed mount system call.
+dnfsinstallo-y nfs-utils autofs
+CentOS Stream 10 - BaseOS                             [===========================                     ] 1.2 kB/s | 5.0 kB     00:04 ETA
+CentOS Stream 10 - AppStream                          [===                        ==================   ] 1.4 kB/s | 5.1 kB     00:03 ETA
+CentOS Stream 10 - Extras packages                    [   ==============================               ] 1.1 kB/s | 5.1 kB     00:04 ETA
+Extra Packages for Enterprise Linux 10 - x86_64       [===============                  ============   ] 1.8 kB/s | 7.9 kB     00:04 ETA
+Extra Packages for Enterprise Linux 10 - x86_64       [=============================================   ] 725 kB/s | 7.2 MB     00:10 ETA
+Dependencies resolved.
+=========================================================================================================================================
+ Package                             Architecture                Version                               Repository                   Size
+=========================================================================================================================================
+Installing:
+ autofs                             B x86_64                      1:5.1.9-15.el10                       baseos                      388 k
+ nfs-utils                          B x86_64                      1:2.8.3-9.el10                        baseos                      489 k
+Installing dependencies:
+ gssproxy                           B x86_64                      0.9.2-10.el10                         baseos                      114 k
+ libev                              B x86_64                      4.33-15.el10                          baseos                       52 k
+ libnfsidmap                        B x86_64                      1:2.8.3-9.el10                        baseos                       63 k
+ libsss_autofs                      B x86_64                      2.13.1-2.el10                         baseos                       38 k
+ libverto-libev                     B x86_64                      0.3.2-10.el10                         baseos                       14 k
+ rpcbind                            B x86_64                      1.2.9-0.el10                          baseos                       58 k
+ sssd-nfs-idmap                     B x86_64                      2.13.1-2.el10                         baseos                       41 k
+
+Transaction Summary
+=========================================================================================================================================
+Install  9 Packages
+
+Total download size: 1.2 M
+Installed size: 3.1 M
+Downloading Packages:
+(1/9):)libev-4.33-15.el10.x86_64.rpmpm.rpm         0% [===============                  ============   ] -15 kB/s |  52 kB     00:03 ETA
+(2/9):)libnfsidmap-2.8.3-9.el10.x86_64.rpm         4% [=-                                              ] 493 kB/s |  63 kB     00:00 ETA
+(3/9):)libsss_autofs-2.13.1-2.el10.x86_64.rpm      9% [====                                            ] 480 kB/s | 138 kB     00:00 ETA
+(4/9):)libverto-libev-0.3.2-10.el10.x86_64.rpm    12% [=====-                                          ] 186 kB/s | 114 kB     00:00 ETA
+(5/9):)nfs-utils-2.8.3-9.el10.x86_64.rpmpm        13% [======                                          ] 2.0 MB/s | 489 kB     00:00 ETA
+(6/9):)rpcbind-1.2.9-0.el10.x86_64.rpm.rpm        52% [=========================                       ] 775 kB/s | 658 kB     00:00 ETA
+(7/9):)sssd-nfs-idmap-2.13.1-2.el10.x86_64.rpm    56% [===========================                     ] 594 kB/s | 741 kB     00:00 ETA
+(8/9):)gssproxy-0.9.2-10.el10.x86_64.rpmpm        79% [=====================================-          ] 322 kB/s | 114 kB     00:05 ETA
+(9/9): autofs-5.1.9-15.el10.x86_64.rpm            95% [==============================================  ] 369 kB/s | 388 kB     00:05 ETA
+-----------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                    124 kB/s | 1.2 MB     00:10
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [===============================================================================================             ] 1/1
+  Installing       : libnfsidmap-1:2.8.3-9.el10.x86_64 [========================================================================== ] 1/9
+  Running scriptlet: rpcbind-1.2.9-0.el10.x86_64                                                                                     2/9
+  Installing       : rpcbind-1.2.9-0.el10.x86_64 [================================================================================ ] 2/9
+  Running scriptlet: rpcbind-1.2.9-0.el10.x86_64                                                                                     2/9
+  Installing       : libev-4.33-15.el10.x86_64 [================================================================================== ] 3/9
+  Installing       : libverto-libev-0.3.2-10.el10.x86_64 [======================================================================== ] 4/9
+  Running scriptlet: gssproxy-0.9.2-10.el10.x86_64                                                                                   5/9
+  Installing       : gssproxy-0.9.2-10.el10.x86_64 [============================================================================== ] 5/9
+  Running scriptlet: gssproxy-0.9.2-10.el10.x86_64                                                                                   5/9
+  Running scriptlet: nfs-utils-1:2.8.3-9.el10.x86_64                                                                                 6/9
+  Installing       : nfs-utils-1:2.8.3-9.el10.x86_64 [============================================================================ ] 6/9
+  Running scriptlet: nfs-utils-1:2.8.3-9.el10.x86_64                                                                                 6/9
+Created symlink '/etc/systemd/system/multi-user.target.wants/nfs-client.target' → '/usr/lib/systemd/system/nfs-client.target'.
+Created symlink '/etc/systemd/system/remote-fs.target.wants/nfs-client.target' → '/usr/lib/systemd/system/nfs-client.target'.
+
+Warning: The unit file, source configuration file or drop-ins of gssproxy.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+Warning: The unit file, source configuration file or drop-ins of gssproxy.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+  Installing       : sssd-nfs-idmap-2.13.1-2.el10.x86_64 [======================================================================== ] 7/9
+  Installing       : libsss_autofs-2.13.1-2.el10.x86_64 [========================================================================= ] 8/9
+  Installing       : autofs-1:5.1.9-15.el10.x86_64 [============================================================================== ] 9/9
+  Running scriptlet: autofs-1:5.1.9-15.el10.x86_64                                                                                   9/9
+
+Installed:
+  autofs-1:5.1.9-15.el10.x86_64               gssproxy-0.9.2-10.el10.x86_64                libev-4.33-15.el10.x86_64
+  libnfsidmap-1:2.8.3-9.el10.x86_64           libsss_autofs-2.13.1-2.el10.x86_64           libverto-libev-0.3.2-10.el10.x86_64
+  nfs-utils-1:2.8.3-9.el10.x86_64             rpcbind-1.2.9-0.el10.x86_64                  sssd-nfs-idmap-2.13.1-2.el10.x86_64
+
+Complete!
+ter.d/home.autofs
+>4;m>4;m[root@main ~]# vi /etc/auto.home                                                                                                 ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        //r0,0-1Allu0,0-1Alls0,0-1Alle0,0-1All0,0-1All0,0-1All0,0-1All0,0-1All0,0-1All~@k   ^[  ^[  o -- INSERT --2,1All/2r3u4s5e6r7s89/10e1t2c3/4r54a5u6t7o8.9h20o1m2e33,1 4*21~                                                                                                                                        3^[  3,0-1All::q!
+>4;m>4;m[root@main ~]# exit                                                                                                              ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        ~                                                                                                                                        0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        *E348: No string under cursor0,0-1Allo -- INSERT --2,1All^[  2,0-1All~@k   1*E348: No string under cursor1,0-1All^[  ^[  i -- INSERT --1,1All*2323-914-1095-1126-12.7-1318-1469-15810-16.1-1712-1803-19.4-2025-2126-2207-23:8-24/9-25r20-26s1-27u2-28s3-29e4-30r5-314-303-292-281-270-26u1-27s2-28e3-29r4-30s5-31/6-32&7-33^[  1,26-32All::q!
+exit
+
+Script done on 2026-09-11 19:22:42+09:00 [COMMAND_EXIT_CODE="0"]
