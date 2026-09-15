@@ -1,0 +1,1442 @@
+Script started on 2026-09-15 16:12:52+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="148" LINES="43"]
+[ansible@ansible ~]$ clea
+bash: c: command not found...
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; doif [ -f "$rc" ]; then. "$rc"fi
+    done
+fi
+unset rc
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+export PATH=$HOME/.local/bin:$PATH
+~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   ~                                                                                                                                                   1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  o -- INSERT --2,1All2,1All
+>4;m".bashrc" 28L, 631B written                                                                                                                              1,10All^[  1,9AllG 27,1o -- INSERT --28,1Alla2l3i4a5s67c8=9'10c1l2e3a4r5'6^[  28,15All::wq
+>4;mashrc
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ c
+[ansible@ansible ~]$ echo '\n\n clear'
+\n\n clear
+[ansible@ansible ~]$ exec '\n\n clear'
+bash: exec: \n\n clear: not found
+[ansible@ansible ~]$ exec 1@}\n clear'
+bash: exec: {nn: not found
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ \n
+bash: n: command not found...
+[ansible@ansible ~]$ c
+cleartall,package 2jsystemcsetting 3. system start 4. systemctlsstart firewall 5. SELinux
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; doif [ -f "$rc" ]; then. "$rc"fi
+    done
+fi
+unset rc
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+export PATH=$HOME/.local/bin:$PATH
+alias c='clear'
+>4;m>4;m[ansible@ansible ~]$nvim(1dd ! to override)29,0-1All::q!                                                                                                                                     ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 28,1o -- INSERT --29,1All^[  29,0-1All::q
+>4;m>4;m[ansible@ansible ~]$ vi 1                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+>4;m>4;m[ansible@ansible ~]$ ls -l /usr/{vi,vim}                                                                                                                                                     ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+ls: cannot access '/usr/vi': No such file or directory
+ls: cannot access '/usr/vim': No such file or directory
+[ansible@ansible ~]$ which vi
+/usr/bin/vi
+[ansible@ansible ~]$ lsi-l /usr/bin/{vi,vim}
+-rwxr-xr-x. 1 root root 1691344 May 27 09:00 /usr/bin/vi
+-rwxr-xr-x. 1 root root 4151160 May 27 09:00 /usr/bin/vim
+[ansible@ansible ~]$ ls -h /usr/bin/{vi,vim}
+-rwxr-xr-x. 1 root root 1.7M May 27 09:00 /usr/bin/vi
+-rwxr-xr-x. 1 root root 4.0M May 27 09:00 /usr/bin/vim
+[ansible@ansible ~]$ haed vi --version
+bash: haed: command not found...
+Similar command is: 'head'
+[ansible@ansible ~]$ vi --version | head
+VIM - Vi IMproved 9.1 (2024 Jan 02, compiled May 27 2026 00:00:00)
+Included patches: 1-83
+Modified by <bugzilla@redhat.com>
+Compiled by <bugzilla@redhat.com>
+Tiny version without GUI.  Features included (+) or not (-):
++acl               +file_in_path      -mouse_urxvt       -tcl
+-arabic            -find_in_path      +mouse_xterm       -termguicolors
++autocmd           +float             +multi_byte        -terminal
+-autochdir         -folding           -multi_lang        +terminfo
+-autoservername    -footer            -mzscheme          +termresponse
+[ansible@ansible ~]$ clear
+vi~~/.bashe
+>4;m>4;rc                                                                                                                                                                                            ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  L q^M   ::q
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; doif [ -f "$rc" ]; then. "$rc"fi
+    done
+fi
+unset rc
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+export PATH=$HOME/.local/bin:$PATH
+alias c='clear'
+>4;m".bashrc" 29L, 655B written                                                                                                                                                                      ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 28,1o -- INSERT --29,1Alla2l3i4a5s67v8i9=10'1/2u3s4r5/6b7i8n9/20v1m2i321i2m3'4^[  29,23All::wq
+>4;mashrc
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ vi ~/.vimrcfo r
+>4;m".vimrc"6[New]n2L,,60B2written6m7d89F10i1l2T32e3T4y5p6FileType78y9a20m1l23sse5t6l7o8c9a30l12aai45nnu78tts40-122t39=403ts40=1223ssw5=6278eet50^[  2,49All::wq                                     ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        s cl  -- INSERT --0,1Ally1,yn3
+>4;mimrc
+bash: syntax: command not found...
+bash: autocmd: command not found...
+imrc
+syntax on
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    2,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        dd
+>4;m".vimrc" 0L, 0B written                                                                                                                                                                          1dd  --No lines in buffer--0,0-1Alldd  dd  dd  d^[  ^[   ::qwq
+>4;mvif~/.vimrckddo whcl
+>4;m>4;m[ansible@ansible ~]$ vi ~/.vimrc                                                                                                                                                             ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1Allsyntax on
+>4;m".vimrc"T2L, 60Blwrittenal ai nu ts=2 sw=2 eet2,49All^[  ^[  ::wq
+>4;mmrc
+bash: syntax: command not found...
+bash: autocmd: command not found...
+mrc
+bash: syntax: command not found...
+bash: autocmd: command not found...
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ vi /etc/fstab
+## /etc/fstab# Created by anaconda on Tue Jul 21 09:17:35 2026
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+UUID=f9655feb-8162-4827-b992-db69f379272e /xfs     defaults0 0
+UUID=5fbb955b-a34d-4ac7-9f0b-67103b9c5119 /bootxfs     defaults0 0
+UUID=92D7-2447/boot/efivfat    umask=0077,shortname=winnt 0 2
+UUID=960c242e-6c55-482a-ad4e-683ceabf59fb /homexfs     defaults0 0
+UUID=dae72d55-87fd-48a8-a135-4e117be78d2f noneswap    defaults0 0
+>4;m>4;msible-doc dnf                                                                                                                                                                                ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    ~                                                                                                                                                                                                    1,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+> MODULE ansible.builtin.dnf (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/dnf.py)
+
+  Installs, upgrade, removes, and lists packages and groups with the dnf package manager.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   allow_downgrade  Specify if the named package and version is allowed to downgrade a maybe already installed higher version of that package. Note that
+                    setting `allow_downgrade=true' can make this module behave in a non-idempotent way. The task could end up with a set of packages that
+                    does not match the complete list of specified packages to install (because dependencies between the downgraded package and others can
+                    cause changes to the packages which were in the earlier transaction).
+                    Since this feature is not provided by `dnf' itself but by ansible.builtin.dnf module, using this in combination
+                    with wildcard characters in `name' may result in an unexpected results.
+        default: 'no'
+        type: bool
+
+   allowerasing  If `true' it allows erasing of installed packages to resolve dependencies.
+        default: 'no'
+        type: bool
+
+   autoremove  If `true', removes all "leaf" packages from the system that were originally installed as dependencies of user-installed packages but which are
+               no longer required by any such package. Should be used alone or when `state=absent'.
+        default: 'no'
+        type: bool
+
+   best    When set to `true', either use a package with the highest version available or fail.
+           When set to `false', if the latest version cannot be installed go with the lower version.
+           Default is set by the operating system distribution.
+        default: null
+        type: bool
+
+   bugfix  If set to `true', and `state=latest' then only installs updates that have been marked bugfix related.
+           Note that, similar to `dnf upgrade-minimal', this filter applies to dependencies as well.
+        default: 'no'
+        type: bool
+
+   cacheonly  Tells dnf to run entirely from system cache; does not download or update metadata.
+        default: 'no'
+        type: bool
+
+   conf_file  The remote dnf configuration file to use for the transaction.
+        default: null
+        type: str
+
+   disable_excludes  Disable the excludes defined in DNF config files.
+                     If set to `all', disables all excludes.
+                     If set to `main', disable excludes defined in `[main]' in `dnf.conf'.
+                     If set to `repoid', disable excludes defined for given repo id.
+        default: null
+        type: str
+
+   disable_gpg_check  Whether to disable the GPG checking of signatures of packages being installed. Has an effect only if `state=present' or `state=latest'.
+                      This setting affects packages installed from a repository as well as "local" packages installed from the filesystem or a URL.
+        default: 'no'
+        type: bool
+
+   disable_plugin  `Plugin' name to disable for the install/update operation. The disabled plugins will not persist beyond the transaction.
+        default: []
+        elements: str
+        type: list
+
+:  disablerepo  `Repoid' of repositories to disable for the install/update operation. These repos will not persist beyond the transaction. When
+[ansible@ansible ~]$
+ver.yml
+cat: webserver.yml: No such file or directory
+[ansible@ansible ~]$ lear\
+bash: lear: command not found...
+[ansible@ansible ~]$ c
+[ansible@ansible ~]$ c
+ble-playbook --help
+usage: ansible-playbook [-h] [--version] [-v] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+                        [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+                        [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+                        [--ssh-extra-args SSH_EXTRA_ARGS]
+                        [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+                        [--force-handlers] [-b] [--become-method BECOME_METHOD]
+                        [--become-user BECOME_USER]
+                        [-K | --become-password-file BECOME_PASSWORD_FILE] [-t TAGS]
+                        [--skip-tags SKIP_TAGS] [-C] [-D] [-i INVENTORY] [--list-hosts]
+                        [-l SUBSET] [--flush-cache] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+                        [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+                        [-M MODULE_PATH] [--syntax-check] [--list-tasks] [--list-tags] [--step]
+                        [--start-at-task START_AT_TASK]
+                        playbook [playbook ...]
+
+Runs Ansible playbooks, executing the defined tasks on the targeted hosts.
+
+positional arguments:
+  playbook              Playbook(s)
+
+options:
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --flush-cache         clear the fact cache for every host in inventory
+  --force-handlers      run handlers even if a task fails
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --list-tags           list all available tags
+  --list-tasks          list all tasks that would be executed
+  --skip-tags SKIP_TAGS
+                        only run plays and tasks whose tags do not match these values. This
+                        argument may be specified multiple times.
+  --start-at-task START_AT_TASK
+                        start the playbook at the task matching this name
+  --step                one-step-at-a-time: confirm each task before running
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --vault-id VAULT_IDS  the vault identity to use. This argument may be specified multiple
+                        times.
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module
+                        search path, module location, executable location and exit
+  -C, --check           don't make any changes; instead, try to predict some of the changes
+                        that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in
+                        those files; works great with --check
+  -J, --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library (default={{
+                        ANSIBLE_HOME ~ "/plugins/modules:/usr/share/ansible/plugins/modules"
+                        }}). This argument may be specified multiple times.
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend
+                        with @. This argument may be specified multiple times.
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. This argument
+                        may be specified multiple times.
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -t TAGS, --tags TAGS  only run plays and tasks tagged with these values. This argument may be
+                        specified multiple times.
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will
+                        increase the verbosity, the builtin plugins currently evaluate up to
+                        -vvvvvv. A reasonable level to start is -vvv, connection debugging
+                        might require -vvvv. This argument may be specified multiple times.
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default depends on
+                        connection)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=ssh)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t
+                        become -l` to list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+cleaible@ansible ~]$ ansible-playbook --help
+# (ansible)
+# ~/.vimrc 파일 생성
+touch ~/.vimrc
+# ~/.vimrc 파일에 내용이 없는 경우에만 등록
+grep -q -w yaml ~/.vimrc || cat << EOF >> ~/.vimrc
+syntax on
+set ai nu ts=2 sw=2
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+EOF
+# (ansible)
+# ~/.vimrc 파일 생성
+touch ~/.vimrc
+# ~/.vimrc 파일에 내용이 없는 경우에만 등록
+grep -q -w yaml ~/.vimrc || cat << EOF >> ~/.vimrc
+syntax on
+set ai nu ts=2 sw=2
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+EOF
+
+imrc
+syntax on
+>4;m>4;m>i~/.vimrca'l setlocal ai nu ts=2 sw=2 et~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                2,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[P1$r0       +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+[ansible@ansigrep~-q -wvyamlm~/.vimrc || cat << EOF >> ~/.vimrc
+syntax on
+set ai nu ts=2 sw=2
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+EOF
+
+imrc ]
+  1 syntax on
+>4;m>4;mimrcu ts=2 sw=2  3 autocmd FileType yaml setlocal ai nu ts=2 sw=2 et~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                2,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+  1 syntax on
+>4;m".vimrc"u3L,=80Bwwrittenutocmd FileType yaml setlocal ai nu ts=2 sw=2 et~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                2,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::wq
+>4;m[ansible@ansible ~]$
+[ansible@ansible ~]$
+[ansible@ansible ~]$ c
+mrc
+bash: syntax: command not found...
+bash: autocmd: command not found...
+[ansible@ansible ~]$ clear
+ashrc
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+    for rc in ~/.bashrc.d/*; do
+        if [ -f "$rc" ]; then
+            . "$rc"
+        fi
+    done
+fi
+unset rc
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+export PATH=$HOME/.local/bin:$PATH
+alias c='clear'
+alias vi='/usr/bin/vim'
+#a(ansible)sible ~]$ alias ls='ls --color=true'
+# ~/.bashrc 파일에 내용이 없는 경우에 추가
+grep -q -w '^alias ans' ~/.bashrc || cat <<'EOF' >> ~/.bashrc
+
+#
+# Ansible Alias
+#
+alias ans='ansible'
+alias anp='ansible-playbook'
+#alias anp='ansible-navigator run -m stdout'
+alias and='ansible-doc'
+alias anpr='ansible-playbook -C'
+alias anpchk='ansible-playbook --syntax-check'
+#alias anpchk='ansible-navigator run -m stdout --syntax-check'
+alias anx='ansible-galaxy'
+alias anv='ansible-vault'
+alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+
+EOF
+source ~/.bashrc
+# (ansible)
+# ~/.bashrc 파일에 내용이 없는 경우에 추가
+grep -q -w '^alias ans' ~/.bashrc || cat <<'EOF' >> ~/.bashrc
+
+#
+# Ansible Alias
+#
+alias ans='ansible'
+alias anp='ansible-playbook'
+#alias anp='ansible-navigator run -m stdout'
+alias and='ansible-doc'
+alias anpr='ansible-playbook -C'
+alias anpchk='ansible-playbook --syntax-check'
+#alias anpchk='ansible-navigator run -m stdout --syntax-check'
+alias anx='ansible-galaxy'
+alias anv='ansible-vault'
+alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+
+EOF
+source ~/.bashrc
+
+bashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5     . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+ 10     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 11 fi
+ 12 export PATH
+ 13
+ 14 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 15 # export SYSTEMD_PAGER=
+ 16
+ 17 # User specific aliases and functions
+ 18 if [ -d ~/.bashrc.d ]; then
+ 19     for rc in ~/.bashrc.d/*; do
+ 20 if [ -f "$rc" ]; then
+ 21  . "$rc"
+ 22 fi
+ 23     done
+ 24 fi
+ 25 unset rc
+ 26 export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+ 27 export PATH=$HOME/.local/bin:$PATH
+ 28 alias c='clear'
+ 29 alias vi='/usr/bin/vim'
+ 30
+ 31 #
+ 32 # Ansible Alias
+ 33 #
+ 34 alias ans='ansible'
+ 35 alias anp='ansible-playbook'
+ 36 #alias anp='ansible-navigator run -m stdout'
+ 37 alias and='ansible-doc'
+ 38 alias anpr='ansible-playbook -C'
+ 39 alias anpchk='ansible-playbook --syntax-check'
+ 40 #alias anpchk='ansible-navigator run -m stdout --syntax-check'
+ 41 alias anx='ansible-galaxy'
+ 42 alias anv='ansible-vault'
+ 43 alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+ 44 alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+ 45
+~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   10,1~@k   1~@k   2~@k   3,0-1~@k   4,1  ~@k   5~@k   6,0-1~@k   7,1  ~@k   8~@k   9~@k   20~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   8O -- INSERT --28,1Top 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+>4;m".bashrc" 46L,-1133B:written
+>4;m[ansible@ansible ~]$ clea
+bash: clea: command not found...
+[ansible@ansible ~]$ cle
+clearhellkdlsdlT
+mkdir -p ~/bin
+
+# ansible documentation example
+cat <<'EOF' > ~/bin/ande
+#!/bin/bash
+
+if [ $# -ne 1 ] ; then
+        echo "Usage: $0 <module name>"
+        exit 1
+fi
+ANSIBLE_MODULE="$1"
+
+ANSIBLE_PAGER=""
+ansible-doc $ANSIBLE_MODULE | sed -n '/EXAMPLES:/,$p' | more
+EOF
+
+chmod 755 ~/bin/ande
+mkdir -p ~/bin
+
+# ansible documentation example
+cat <<'EOF' > ~/bin/ande
+#!/bin/bash
+
+if [ $# -ne 1 ] ; then
+        echo "Usage: $0 <module name>"
+        exit 1
+fi
+ANSIBLE_MODULE="$1"
+
+ANSIBLE_PAGER=""
+ansible-doc $ANSIBLE_MODULE | sed -n '/EXAMPLES:/,$p' | more
+EOF
+
+chmod 755 ~/bin/ande
+
+[ansible@ansible ~]$ ande dnf
+EXAMPLES:
+- name: Install the latest version of Apache
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+- name: Install Apache >= 2.4
+  ansible.builtin.dnf:
+    name: httpd >= 2.4
+    state: present
+
+- name: Install the latest version of Apache and MariaDB
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - mariadb-server
+    state: latest
+
+- name: Remove the Apache package
+  ansible.builtin.dnf:
+    name: httpd
+    state: absent
+
+- name: Install the latest version of Apache from the testing repo
+  ansible.builtin.dnf:
+    name: httpd
+    enablerepo: testing
+    state: present
+
+- name: Upgrade all packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Update the webserver, depending on which is installed on the system. Do not install the o
+ther one
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - nginx
+    state: latest
+    update_only: yes
+
+- name: Install the nginx rpm from a remote repo
+  ansible.builtin.dnf:
+    name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch
+.rpm'
+    state: present
+
+- name: Install nginx rpm from a local file
+  ansible.builtin.dnf:
+    name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+
+- name: Install Package based upon the file it provides
+  ansible.builtin.dnf:
+    name: /usr/bin/cowsay
+    state: present
+
+- name: Install the 'Development tools' package group
+  ansible.builtin.dnf:
+    name: '@Development tools'
+cleare-n
+ble-doc dnf
+> MODULE ansible.builtin.dnf (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/>
+
+  Installs, upgrade, removes, and lists packages and groups with the
+  dnf package manager.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   allow_downgrade  Specify if the named package and version is allowed to
+                    downgrade a maybe already installed higher version of
+                    that package. Note that setting `allow_downgrade=true'
+                    can make this module behave in a non-idempotent way. The
+                    task could end up with a set of packages that does not
+                    match the complete list of specified packages to install
+                    (because dependencies between the downgraded package and
+                    others can cause changes to the packages which were in
+                    the earlier transaction).
+                    Since this feature is not provided by `dnf'
+                    itself but by ansible.builtin.dnf module,
+                    using this in combination with wildcard characters in
+                    `name' may result in an unexpected results.
+        default: 'no'
+        type: bool
+
+   allowerasing  If `true' it allows erasing of installed packages to resolve
+                 dependencies.
+        default: 'no'
+        type: bool
+
+   autoremove  If `true', removes all "leaf" packages from the system that
+               were originally installed as dependencies of user-installed
+               packages but which are no longer required by any such package.
+               Should be used alone or when `state=absent'.
+        default: 'no'
+        type: bool
+
+   best    When set to `true', either use a package with the highest version
+           available or fail.
+           When set to `false', if the latest version cannot be installed go
+           with the lower version.
+           Default is set by the operating system distribution.
+        default: null
+        type: bool
+
+   bugfix  If set to `true', and `state=latest' then only installs updates
+           that have been marked bugfix related.
+           Note that, similar to `dnf upgrade-minimal', this
+           filter applies to dependencies as well.
+        default: 'no'
+        type: bool
+
+   cacheonly  Tells dnf to run entirely from system cache; does not download
+              or update metadata.
+        default: 'no'
+        type: bool
+
+   conf_file  The remote dnf configuration file to use for the transaction.
+        default: null
+        type: str
+
+   disable_excludes  Disable the excludes defined in DNF config files.
+>EMODULE ansible.builtin.dnf (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/>
+
+  Installs, upgrade, removes, and lists packages and groups with the
+  dnf package manager.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   allow_downgrade  Specify if the named package and version is allowed to
+                    downgrade a maybe already installed higher version of
+                    that package. Note that setting `allow_downgrade=true'
+                    can make this module behave in a non-idempotent way. The
+                    task could end up with a set of packages that does not
+                    match the complete list of specified packages to install
+                    (because dependencies between the downgraded package and
+                    others can cause changes to the packages which were in
+                    the earlier transaction).
+                    Since this feature is not provided by `dnf'
+                    itself but by ansible.builtin.dnf module,
+                    using this in combination with wildcard characters in
+                    `name' may result in an unexpected results.
+        default: 'no'
+        type: bool
+
+   allowerasing  If `true' it allows erasing of installed packages to resolve
+                 dependencies.
+        default: 'no'
+        type: bool
+
+   autoremove  If `true', removes all "leaf" packages from the system that
+               were originally installed as dependencies of user-installed
+               packages but which are no longer required by any such package.
+               Should be used alone or when `state=absent'.
+        default: 'no'
+        type: bool
+
+   best    When set to `true', either use a package with the highest version
+           available or fail.
+           When set to `false', if the latest version cannot be installed go
+           with the lower version.
+           Default is set by the operating system distribution.
+        default: null
+        type: bool
+
+   bugfix  If set to `true', and `state=latest' then only installs updates
+           that have been marked bugfix related.
+           Note that, similar to `dnf upgrade-minimal', this
+           filter applies to dependencies as well.
+        default: 'no'
+        type: bool
+
+   cacheonly  Tells dnf to run entirely from system cache; does not download
+              or update metadata.
+        default: 'no'
+        type: bool
+
+   conf_file  The remote dnf configuration file to use for the transaction.
+        default: null
+        type: str
+
+   disable_excludes  Disable the excludes defined in DNF config files.
+> MODULE ansible.builtin.dnf (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/>
+
+  Installs, upgrade, removes, and lists packages and groups with the
+  dnf package manager.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   allow_downgrade  Specify if the named package and version is allowed to
+                    downgrade a maybe already installed higher version of
+                    that package. Note that setting `allow_downgrade=true'
+                    can make this module behave in a non-idempotent way. The
+                    task could end up with a set of packages that does not
+                    match the complete list of specified packages to install
+                    (because dependencies between the downgraded package and
+                    others can cause changes to the packages which were in
+                    the earlier transaction).
+                    Since this feature is not provided by `dnf'
+                    itself but by ansible.builtin.dnf module,
+                    using this in combination with wildcard characters in
+                    `name' may result in an unexpected results.
+        default: 'no'
+        type: bool
+
+   allowerasing  If `true' it allows erasing of installed packages to resolve
+                 dependencies.
+        default: 'no'
+        type: bool
+
+   autoremove  If `true', removes all "leaf" packages from the system that
+               were originally installed as dependencies of user-installed
+               packages but which are no longer required by any such package.
+               Should be used alone or when `state=absent'.
+        default: 'no'
+        type: bool
+
+   best    When set to `true', either use a package with the highest version
+           available or fail.
+           When set to `false', if the latest version cannot be installed go
+           with the lower version.
+           Default is set by the operating system distribution.
+        default: null
+        type: bool
+
+   bugfix  If set to `true', and `state=latest' then only installs updates
+           that have been marked bugfix related.
+           Note that, similar to `dnf upgrade-minimal', this
+           filter applies to dependencies as well.
+        default: 'no'
+        type: bool
+
+   cacheonly  Tells dnf to run entirely from system cache; does not download
+              or update metadata.
+        default: 'no'
+        type: bool
+
+   conf_file  The remote dnf configuration file to use for the transaction.
+        default: null
+        type: str
+
+   disable_excludes  Disable the excludes defined in DNF config files.
+...skipping...
+EXAMPLES:
+- name: Install the latest version of Apache
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+- name: Install Apache >= 2.4
+  ansible.builtin.dnf:
+    name: httpd >= 2.4
+    state: present
+
+- name: Install the latest version of Apache and MariaDB
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - mariadb-server
+    state: latest
+
+- name: Remove the Apache package
+  ansible.builtin.dnf:
+    name: httpd
+    state: absent
+
+- name: Install the latest version of Apache from the testing repo
+  ansible.builtin.dnf:
+    name: httpd
+    enablerepo: testing
+    state: present
+
+- name: Upgrade all packages
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+
+- name: Update the webserver, depending on which is installed on the system. Do not install the >
+  ansible.builtin.dnf:
+    name:
+      - httpd
+      - nginx
+    state: latest
+    update_only: yes
+
+- name: Install the nginx rpm from a remote repo
+  ansible.builtin.dnf:
+    name: 'http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarc>
+    state: present
+
+- name: Install nginx rpm from a local file
+  ansible.builtin.dnf:
+    name: /usr/local/src/nginx-release-centos-6-0.el6.ngx.noarch.rpm
+    state: present
+
+- name: Install Package based upon the file it provides
+  ansible.builtin.dnf:
+    name: /usr/bin/cowsay
+    state: present
+
+- name: Install the 'Development tools' package group
+  ansible.builtin.dnf:
+    name: '@Development tools'
+    state: present
+
+ansible-con firewalldETURN)
+bash: ansible-con: command not found...
+ble-con firewalld
+bash: ansible-con: command not found...
+[ansible@ansible ~]$ ande firewalld
+EXAMPLES:
+- name: Permanently enable https service, also enable it immediately if possible
+  ansible.posix.firewalld:
+    service: https
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+
+- name: Permit traffic in default zone for https service
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+
+- name: Permit ospf traffic
+  ansible.posix.firewalld:
+    protocol: ospf
+    permanent: true
+    state: enabled
+
+- name: Do not permit traffic in default zone on port 8081/tcp
+  ansible.posix.firewalld:
+    port: 8081/tcp
+    permanent: true
+    state: disabled
+
+- name: Permit traffic in default zone on port 161-162/ucp
+  ansible.posix.firewalld:
+    port: 161-162/udp
+    permanent: true
+    state: enabled
+
+- name: Permit traffic in dmz zone on http service
+  ansible.posix.firewalld:
+    zone: dmz
+    service: http
+    permanent: true
+    state: enabled
+
+- name: Enable FTP service with rate limiting using firewalld rich rule
+  ansible.posix.firewalld:
+    rich_rule: rule service name="ftp" audit limit value="1/m" accept
+    permanent: true
+    state: enabled
+
+- name: Allow traffic from 192.0.2.0/24 in internal zone
+  ansible.posix.firewalld:
+    source: 192.0.2.0/24
+    zone: internal
+    state: enabled
+
+- name: Assign eth2 interface to trusted zone
+  ansible.posix.firewalld:
+    zone: trusted
+    interface: eth2
+    permanent: true
+    state: enabled
+
+- name: Enable forwarding in internal zone
+  ansible.posix.firewalld:
+    forward: true
+[ansible@ansible ~]$ rpm -qa | grep ansible
+ansible-core-2.16.19-2.el10.noarch
+ansible-collection-community-general-10.7.3-1.el10_1.noarch
+ansible-collection-community-crypto-2.26.7-2.el10_3.noarch
+ansible-collection-ansible-utils-6.0.1-1.el10_3.noarch
+ansible-collection-ansible-posix-2.2.1-1.el10_3.noarch
+[ansible@ansible ~]$ firefox http://www.google.com &
+[1] 5324
+[ansible@ansible ~]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+^C
+[1]+  Done                    firefox http://www.google.com
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ id
+uid=1001(ansible) gid=1001(ansible) groups=1001(ansible) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+ashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5     . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+ 10     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 11 fi
+ 12 export PATH
+ 13
+ 14 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 15 # export SYSTEMD_PAGER=
+ 16
+ 17 # User specific aliases and functions
+ 18 if [ -d ~/.bashrc.d ]; then
+ 19     for rc in ~/.bashrc.d/*; do
+ 20 if [ -f "$rc" ]; then
+ 21  . "$rc"
+ 22 fi
+ 23     done
+ 24 fi
+ 25 unset rc
+ 26 export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+ 27 export PATH=$HOME/.local/bin:$PATH
+ 28
+ 29 alias c='clear'
+ 30 alias vi='/usr/bin/vim'
+ 31
+ 32 #
+ 33 # Ansible Alias
+ 34 #
+ 35 alias ans='ansible'
+ 36 alias anp='ansible-playbook'
+ 37 #alias anp='ansible-navigator run -m stdout'
+ 38 alias and='ansible-doc'
+ 39 alias anpr='ansible-playbook -C'
+ 40 alias anpchk='ansible-playbook --syntax-check'
+ 41 #alias anpchk='ansible-navigator run -m stdout --syntax-check'
+ 42 alias anx='ansible-galaxy'
+ 43 alias anv='ansible-vault'
+ 44 alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+ 45 alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+ 46
+>4;m".bashrc" 46L, 1161B written                                                                 ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                28,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        G 46i -- INSERT --46,1Alla2l3alias67c8h9r10o1m2e3=4'5g6o7o8g9l20e1=2c3h4r5o6m7e8'9^[  46,28All::wq
+>4;mashrc
+firefoxehttp://www.google.comhttp://www.google.com
+Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+[ansible@ansible ~]$ clear
+ashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5     . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+ 10     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 11 fi
+ 12 export PATH
+ 13
+ 14 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 15 # export SYSTEMD_PAGER=
+ 16
+ 17 # User specific aliases and functions
+ 18 if [ -d ~/.bashrc.d ]; then
+ 19     for rc in ~/.bashrc.d/*; do
+ 20 if [ -f "$rc" ]; then
+ 21  . "$rc"
+ 22 fi
+ 23     done
+ 24 fi
+ 25 unset rc
+ 26 export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+ 27 export PATH=$HOME/.local/bin:$PATH
+ 28
+ 29 alias c='clear'
+ 30 alias vi='/usr/bin/vim'
+ 31
+ 32 #
+ 33 # Ansible Alias
+ 34 #
+ 35 alias ans='ansible'
+ 36 alias anp='ansible-playbook'
+ 37 #alias anp='ansible-navigator run -m stdout'
+ 38 alias and='ansible-doc'
+ 39 alias anpr='ansible-playbook -C'
+ 40 alias anpchk='ansible-playbook --syntax-check'
+ 41 #alias anpchk='ansible-navigator run -m stdout --syntax-check'
+ 42 alias anx='ansible-galaxy'
+ 43 alias anv='ansible-vault'
+ 44 alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+ 45 alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+ 46 alias chrome='google=chrome'
+>4;m".bashrc" 47L, 1181B written                                                                 ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                ~                                                                                                46,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12      +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        o -- INSERT --47,1All 47 a2l3alias67c7v8s9c10o1d2e3=4'5c6o7d8e9'20^[  47,19All::wq
+>4;mashrc
+[ansible@ansible ~]$ code
+[ansible@ansible ~]$ alias
+alias and='ansible-doc'
+alias anp='ansible-playbook'
+alias anpchk='ansible-playbook --syntax-check'
+alias anpr='ansible-playbook -C'
+alias ans='ansible'
+alias ansdefault='ansible-config init --disable | egrep -v "^#|^$" | grep -i $1'
+alias ansfs='ansible localhost -m setup | grep "ansible_*"'
+alias anv='ansible-vault'
+alias anx='ansible-galaxy'
+alias c='clear'
+alias chrome='google=chrome'
+alias egrep='grep -E --color=auto'
+alias fgrep='grep -F --color=auto'
+alias grep='grep --color=auto'
+alias l.='ls -d .* --color=auto'
+alias ll='ls -l --color=auto'
+alias ls='ls --color=auto'
+alias vi='/usr/bin/vim'
+alias vscode='code'
+alias which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+alias xzegrep='xzegrep --color=auto'
+alias xzfgrep='xzfgrep --color=auto'
+alias xzgrep='xzgrep --color=auto'
+alias zegrep='zegrep --color=auto'
+alias zfgrep='zfgrep --color=auto'
+alias zgrep='zgrep --color=auto'
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ which code
+/usr/bin/code
+[ansible@ansible ~]$ clear
+[ansible@ansible ~]$ vscode 안
+# (ansible)
+# ansible1, ansible2, ansible3에 대해서만 방화벽을 켜는 작업을 진행한다.
+# ansible 시스템은 방화벽을 올려 놓지 않는다.
+for i in ansible1 ansible2 ansible3 ansible4
+do
+  ssh "$i" sudo systemctl enable firewalld
+  ssh "$i" sudo systemctl restart firewalld
+done
+# (ansible)
+# ansible1, ansible2, ansible3에 대해서만 방화벽을 켜는 작업을 진행한다.
+# ansible 시스템은 방화벽을 올려 놓지 않는다.
+for i in ansible1 ansible2 ansible3 ansible4
+do
+  ssh "$i" sudo systemctl enable firewalld
+  ssh "$i" sudo systemctl restart firewalld
+done
+
+Created symlink '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/firewalld.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/firewalld.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/firewalld.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/dbus-org.fedoraproject.FirewallD1.service' → '/usr/lib/systemd/system/firewalld.service'.
+Created symlink '/etc/systemd/system/multi-user.target.wants/firewalld.service' → '/usr/lib/systemd/system/firewalld.service'.
+[ansible@ansible ~]$ cat /etc/hosts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Ansible Server List
+#
+192.168.10.10  ansible.example.com      ansible      control.example.com  control
+192.168.10.11  ansible1.example.com     ansible1     web1.example.com     web1
+192.168.10.12  ansible2.example.com     ansible2     web2.example.com     web2
+192.168.10.13  ansible3.example.com     ansible3     web3.example.com     web3    db1
+192.168.10.14  ansible4.example.com     ansible4     web4.example.com     web4    db2
+
+[ansible@ansible ~]$ curl http://web1.example.com/index.html
+curl: (7) Failed to connect to web1.example.com port 80 after 0 ms: Could not connect to server
+ansible-con service
+bash: ansible-con: command not found...
+[ansible@ansible ~]$ ansible-con dnfvice
+bash: ansible-con: command not found...
+sible-
+ansible-builder     ansible-console     ansible-inventory   ansible-playbook    ansible-test
+ansible-config      ansible-doc         ansible-lint        ansible-pull        ansible-vault
+ansible-connection  ansible-galaxy      ansible-navigator   ansible-runner
+[ansible@ansible ~]$ ansible-doc service
+> MODULE ansible.builtin.service (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/service.p>
+
+  Controls services on remote hosts. Supported init systems include BSD init, OpenRC,
+  SysV, Solaris SMF, systemd, upstart.
+  This module acts as a proxy to the underlying service manager module. While all
+  arguments will be passed to the underlying module, not all modules support the same
+  arguments. This documentation only covers the minimum intersection of module arguments
+  that all service manager modules support.
+  This module is a proxy for multiple more specific service manager modules (such as
+  ansible.builtin.systemd and ansible.builtin.sysvinit). This
+  allows management of a heterogeneous environment of machines without creating a
+  specific task for each service manager. The module to be executed is determined by the
+  `use' option, which defaults to the service manager discovered by
+  ansible.builtin.setup.  If ansible.builtin.setup was not yet
+  run, this module may run it.
+  For Windows targets, use the ansible.windows.win_service module instead.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   arguments  Additional arguments provided on the command line.
+              While using remote hosts with systemd this setting will be ignored.
+        aliases: [args]
+        default: ''
+        type: str
+
+   enabled  Whether the service should start on boot.
+            At least one of `state' and `enabled' are required.
+        default: null
+        type: bool
+
+   name    Name of the service.
+        type: str
+
+   pattern  If the service does not respond to the status command, name a substring to
+            look for as would be found in the output of the `ps' command as a
+            stand-in for a status result.
+            If the string is found, the service will be assumed to be started.
+            While using remote hosts with systemd this setting will be ignored.
+        default: null
+        type: str
+
+   runlevel  For OpenRC init scripts (e.g. Gentoo) only.
+             The runlevel that this service belongs to.
+             While using remote hosts with systemd this setting will be ignored.
+        default: default
+        type: str
+
+   sleep   If the service is being `restarted' then sleep this many seconds between the
+           stop and start command.
+           This helps to work around badly-behaving init scripts that exit immediately
+           after signaling a process to stop.
+           Not all service managers support sleep, i.e when using systemd this setting
+           will be ignored.
+        default: null
+        type: int
+
+   state   `started'/`stopped' are idempotent actions that will not run commands unless
+           necessary.
+           `restarted' will always bounce the service.
+           `reloaded' will always reload.
+>EMODULE ansible.builtin.service (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/service.p>
+
+  Controls services on remote hosts. Supported init systems include BSD init, OpenRC,
+  SysV, Solaris SMF, systemd, upstart.
+  This module acts as a proxy to the underlying service manager module. While all
+  arguments will be passed to the underlying module, not all modules support the same
+  arguments. This documentation only covers the minimum intersection of module arguments
+  that all service manager modules support.
+  This module is a proxy for multiple more specific service manager modules (such as
+  ansible.builtin.systemd and ansible.builtin.sysvinit). This
+  allows management of a heterogeneous environment of machines without creating a
+  specific task for each service manager. The module to be executed is determined by the
+  `use' option, which defaults to the service manager discovered by
+  ansible.builtin.setup.  If ansible.builtin.setup was not yet
+  run, this module may run it.
+  For Windows targets, use the ansible.windows.win_service module instead.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   arguments  Additional arguments provided on the command line.
+              While using remote hosts with systemd this setting will be ignored.
+        aliases: [args]
+        default: ''
+        type: str
+
+   enabled  Whether the service should start on boot.
+            At least one of `state' and `enabled' are required.
+        default: null
+        type: bool
+
+   name    Name of the service.
+        type: str
+
+   pattern  If the service does not respond to the status command, name a substring to
+            look for as would be found in the output of the `ps' command as a
+            stand-in for a status result.
+            If the string is found, the service will be assumed to be started.
+            While using remote hosts with systemd this setting will be ignored.
+        default: null
+        type: str
+
+   runlevel  For OpenRC init scripts (e.g. Gentoo) only.
+             The runlevel that this service belongs to.
+             While using remote hosts with systemd this setting will be ignored.
+        default: default
+        type: str
+
+   sleep   If the service is being `restarted' then sleep this many seconds between the
+           stop and start command.
+           This helps to work around badly-behaving init scripts that exit immediately
+           after signaling a process to stop.
+           Not all service managers support sleep, i.e when using systemd this setting
+           will be ignored.
+        default: null
+        type: int
+
+   state   `started'/`stopped' are idempotent actions that will not run commands unless
+           necessary.
+           `restarted' will always bounce the service.
+           `reloaded' will always reload.
+> MODULE ansible.builtin.service (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/service.p>
+
+  Controls services on remote hosts. Supported init systems include BSD init, OpenRC,
+  SysV, Solaris SMF, systemd, upstart.
+  This module acts as a proxy to the underlying service manager module. While all
+  arguments will be passed to the underlying module, not all modules support the same
+  arguments. This documentation only covers the minimum intersection of module arguments
+  that all service manager modules support.
+  This module is a proxy for multiple more specific service manager modules (such as
+  ansible.builtin.systemd and ansible.builtin.sysvinit). This
+  allows management of a heterogeneous environment of machines without creating a
+  specific task for each service manager. The module to be executed is determined by the
+  `use' option, which defaults to the service manager discovered by
+  ansible.builtin.setup.  If ansible.builtin.setup was not yet
+  run, this module may run it.
+  For Windows targets, use the ansible.windows.win_service module instead.
+
+  * note: This module has a corresponding action plugin.
+
+OPTIONS (red indicates it is required):
+
+   arguments  Additional arguments provided on the command line.
+              While using remote hosts with systemd this setting will be ignored.
+        aliases: [args]
+        default: ''
+        type: str
+
+   enabled  Whether the service should start on boot.
+            At least one of `state' and `enabled' are required.
+        default: null
+        type: bool
+
+   name    Name of the service.
+        type: str
+
+   pattern  If the service does not respond to the status command, name a substring to
+            look for as would be found in the output of the `ps' command as a
+            stand-in for a status result.
+            If the string is found, the service will be assumed to be started.
+            While using remote hosts with systemd this setting will be ignored.
+        default: null
+        type: str
+
+   runlevel  For OpenRC init scripts (e.g. Gentoo) only.
+             The runlevel that this service belongs to.
+             While using remote hosts with systemd this setting will be ignored.
+        default: default
+        type: str
+
+   sleep   If the service is being `restarted' then sleep this many seconds between the
+           stop and start command.
+           This helps to work around badly-behaving init scripts that exit immediately
+           after signaling a process to stop.
+           Not all service managers support sleep, i.e when using systemd this setting
+           will be ignored.
+        default: null
+        type: int
+
+   state   `started'/`stopped' are idempotent actions that will not run commands unless
+           necessary.
+           `restarted' will always bounce the service.
+           `reloaded' will always reload.
+...skipping...
+EXAMPLES:
+- name: Start service httpd, if not started
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: Stop service httpd, if started
+  ansible.builtin.service:
+    name: httpd
+    state: stopped
+
+- name: Restart service httpd, in all cases
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+
+- name: Reload service httpd, in all cases
+  ansible.builtin.service:
+    name: httpd
+    state: reloaded
+
+- name: Enable service httpd, and not touch the state
+  ansible.builtin.service:
+    name: httpd
+    enabled: yes
+
+- name: Start service foo, based on running process /usr/bin/foo
+  ansible.builtin.service:
+    name: foo
+    pattern: /usr/bin/foo
+    state: started
+
+- name: Restart network service for interface eth0
+  ansible.builtin.service:
+    name: network
+    state: restarted
+    args: eth0
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)EXAMPLES:
+- name: Start service httpd, if not started
+  ansible.builtin.service:
+    name: httpd
+    state: started
+
+- name: Stop service httpd, if started
+  ansible.builtin.service:
+    name: httpd
+    state: stopped
+
+- name: Restart service httpd, in all cases
+  ansible.builtin.service:
+    name: httpd
+    state: restarted
+
+- name: Reload service httpd, in all cases
+  ansible.builtin.service:
+    name: httpd
+    state: reloaded
+
+- name: Enable service httpd, and not touch the state
+  ansible.builtin.service:
+    name: httpd
+    enabled: yes
+
+- name: Start service foo, based on running process /usr/bin/foo
+  ansible.builtin.service:
+    name: foo
+    pattern: /usr/bin/foo
+    state: started
+
+- name: Restart network service for interface eth0
+  ansible.builtin.service:
+    name: network
+    state: restarted
+    args: eth0
+
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(END)
+bash: leaq: command not found...
+[ansible@ansible ~]$
+bash: :cl:q: command not found...
+[ansible@ansible ~]$
+bash: :q: command not found...
+[ansible@ansible ~]$
+bash: :q: command not found...
+[ansible@ansible ~]$
+exit
+
+Script done on 2026-09-15 19:12:38+09:00 [COMMAND_EXIT_CODE="127"]
