@@ -1,0 +1,7 @@
+Script started on 2026-09-15 16:01:30+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="148" LINES="43"]
+[ansible@ansible ~/LinuxLog]$ 1
+bash: 1: command not found...
+[ansible@ansible ~/LinuxLog]$ exit
+exit
+
+Script done on 2026-09-15 16:01:33+09:00 [COMMAND_EXIT_CODE="127"]
