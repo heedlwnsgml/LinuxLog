@@ -1,0 +1,354 @@
+Script started on 2026-09-15 19:12:43+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="97" LINES="63"]
+[ansible@ansible ~]$ cx
+ble-doc firewall
+[WARNING]: firewall was not found
+d
+> MODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collections/ansible/pos>
+
+  This module allows for addition or deletion of services and ports (either
+  TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable to/from
+            zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or later.
+            Note that the option type is changed to bool in ansible.posix
+            version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a zone in
+               firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a zone
+                         in firewalld.
+                         Note that the option type is changed to bool in
+                         ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a zone in
+              firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in ansible.posix
+               version 2.0.0 and later.
+        default: null
+        type: bool
+
+   offline  Ignores `immediate' if `permanent=true' and firewalld is not
+            running.
+        default: false
+        type: bool
+
+   permanent  Whether to apply this change to the permanent firewalld
+              configuration.
+              As of Ansible 2.3, permanent operations can operate on
+              firewalld configs when it is not running (requires firewalld >=
+              0.3.9).
+              Note that if this is `false', `immediate=true' by default.
+        default: false
+        type: bool
+
+   port    Name of a port or port range to add/remove to/from firewalld.
+           Must be in the form PORT/PROTOCOL or PORT-PORT/PROTOCOL for port
+           ranges.
+>EMODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collections/ansible/pos>
+
+  This module allows for addition or deletion of services and ports (either
+  TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable to/from
+            zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or later.
+            Note that the option type is changed to bool in ansible.posix
+            version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a zone in
+               firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a zone
+                         in firewalld.
+                         Note that the option type is changed to bool in
+                         ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a zone in
+              firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in ansible.posix
+               version 2.0.0 and later.
+        default: null
+        type: bool
+
+   offline  Ignores `immediate' if `permanent=true' and firewalld is not
+            running.
+        default: false
+        type: bool
+
+   permanent  Whether to apply this change to the permanent firewalld
+              configuration.
+              As of Ansible 2.3, permanent operations can operate on
+              firewalld configs when it is not running (requires firewalld >=
+              0.3.9).
+              Note that if this is `false', `immediate=true' by default.
+        default: false
+        type: bool
+
+   port    Name of a port or port range to add/remove to/from firewalld.
+           Must be in the form PORT/PROTOCOL or PORT-PORT/PROTOCOL for port
+           ranges.
+> MODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collections/ansible/pos>
+
+  This module allows for addition or deletion of services and ports (either
+  TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable to/from
+            zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or later.
+            Note that the option type is changed to bool in ansible.posix
+            version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a zone in
+               firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a zone
+                         in firewalld.
+                         Note that the option type is changed to bool in
+                         ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a zone in
+              firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in ansible.posix
+               version 2.0.0 and later.
+        default: null
+        type: bool
+
+   offline  Ignores `immediate' if `permanent=true' and firewalld is not
+            running.
+        default: false
+        type: bool
+
+   permanent  Whether to apply this change to the permanent firewalld
+              configuration.
+              As of Ansible 2.3, permanent operations can operate on
+              firewalld configs when it is not running (requires firewalld >=
+              0.3.9).
+              Note that if this is `false', `immediate=true' by default.
+        default: false
+        type: bool
+
+   port    Name of a port or port range to add/remove to/from firewalld.
+           Must be in the form PORT/PROTOCOL or PORT-PORT/PROTOCOL for port
+           ranges.
+...skipping...
+EXAMPLES:
+- name: Permanently enable https service, also enable it immediately if possible
+  ansible.posix.firewalld:
+    service: https
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+
+- name: Permit traffic in default zone for https service
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+
+- name: Permit ospf traffic
+  ansible.posix.firewalld:
+    protocol: ospf
+    permanent: true
+    state: enabled
+
+- name: Do not permit traffic in default zone on port 8081/tcp
+  ansible.posix.firewalld:
+    port: 8081/tcp
+    permanent: true
+    state: disabled
+
+- name: Permit traffic in default zone on port 161-162/ucp
+  ansible.posix.firewalld:
+    port: 161-162/udp
+    permanent: true
+    state: enabled
+
+- name: Permit traffic in dmz zone on http service
+  ansible.posix.firewalld:
+    zone: dmz
+    service: http
+    permanent: true
+    state: enabled
+
+- name: Enable FTP service with rate limiting using firewalld rich rule
+  ansible.posix.firewalld:
+    rich_rule: rule service name="ftp" audit limit value="1/m" accept
+    permanent: true
+    state: enabled
+
+- name: Allow traffic from 192.0.2.0/24 in internal zone
+  ansible.posix.firewalld:
+    source: 192.0.2.0/24
+    zone: internal
+    state: enabled
+
+- name: Assign eth2 interface to trusted zone
+  ansible.posix.firewalld:
+    zone: trusted
+    interface: eth2
+    permanent: true
+    state: enabled
+
+- name: Enable forwarding in internal zone
+  ansible.posix.firewalld:
+    forward: true
+:EXAMPLES:
+- name: Permanently enable https service, also enable it immediately if possible
+  ansible.posix.firewalld:
+    service: https
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+
+- name: Permit traffic in default zone for https service
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+
+- name: Permit ospf traffic
+  ansible.posix.firewalld:
+    protocol: ospf
+    permanent: true
+    state: enabled
+
+- name: Do not permit traffic in default zone on port 8081/tcp
+  ansible.posix.firewalld:
+    port: 8081/tcp
+    permanent: true
+    state: disabled
+
+- name: Permit traffic in default zone on port 161-162/ucp
+  ansible.posix.firewalld:
+    port: 161-162/udp
+    permanent: true
+    state: enabled
+
+- name: Permit traffic in dmz zone on http service
+  ansible.posix.firewalld:
+    zone: dmz
+    service: http
+    permanent: true
+    state: enabled
+
+- name: Enable FTP service with rate limiting using firewalld rich rule
+  ansible.posix.firewalld:
+    rich_rule: rule service name="ftp" audit limit value="1/m" accept
+    permanent: true
+    state: enabled
+
+- name: Allow traffic from 192.0.2.0/24 in internal zone
+  ansible.posix.firewalld:
+    source: 192.0.2.0/24
+    zone: internal
+    state: enabled
+
+- name: Assign eth2 interface to trusted zone
+  ansible.posix.firewalld:
+    zone: trusted
+    interface: eth2
+    permanent: true
+    state: enabled
+
+- name: Enable forwarding in internal zone
+  ansible.posix.firewalld:
+    forward: true
+:[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+bash: qq: command not found...
+[ansible@ansible ~]$
+[ansible@ansible ~]$
+    PID TTY          TIME CMD
+  12201 pts/1    00:00:00 bash
+  12311 pts/1    00:00:00 ps
+[ansible@ansible ~]$
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+[ansible@ansible ~]$
+bash: :q: command not found...
+[ansible@ansible ~]$
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 14 21:48:44 2026 from 192.168.10.10
+[ansible@ansible1 ~]$
+logout
+Connection to 192.168.10.11 closed.
+[ansible@ansible ~]$
+bash: q: command not found...
+[ansible@ansible ~]$
+exit
+
+Script done on 2026-09-15 19:16:24+09:00 [COMMAND_EXIT_CODE="127"]
