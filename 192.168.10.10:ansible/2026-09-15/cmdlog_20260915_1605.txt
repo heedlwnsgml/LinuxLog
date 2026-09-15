@@ -1,0 +1,6 @@
+Script started on 2026-09-15 16:05:51+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="148" LINES="43"]
+[ansible@ansible ~/LinuxLog]$ clear
+[ansible@ansible ~/LinuxLog]$ exit
+exit
+
+Script done on 2026-09-15 16:05:54+09:00 [COMMAND_EXIT_CODE="0"]
