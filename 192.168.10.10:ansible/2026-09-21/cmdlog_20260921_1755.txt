@@ -1,0 +1,345 @@
+Script started on 2026-09-21 17:55:41+09:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="145" LINES="41"]
+ble.cfg
+  1
+~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All[defaults]
+>4;m"ansible.cfg"/[New]t6L, 74B writtenvilege_escalation]  5 become = true  6 6,0-1All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/07_files]$ vi inventory
+  1
+~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1Allansible1.example.com
+  2 ansible2.example.com  3 ansible3.example.com
+>4;m"inventory"a[New]c5L, 85B,written[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/07_files]$ vi secure_log_backups.yml
+  1
+~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        - - - i -- INSERT --0,1All-1,2-----4
+  2 2,1-- 3n4a5name:89로12-11그5-136-14파9-16일22-183-19수6-21집9-2330-24-1-252-26f3-27e4-28t5-29c6-30h7-318-32모41-34듈4-36
+  3 3,1    3a4n5s6i7l876543h4o5shosts:910a1l2l3
+  4   4,3 t4a5stasks:9
+  5   5,35-- 7n8a9mname:23f43로6-15그9-1720-18수3-20집6-227-23-8-249-25/30-26v1-27a2-28r3-29/4-30l5-31o6-32g7-33/8-34s9-35e40-36c1-37u2-38r3-39e4-405-41-6-42-7-43-8-447-43>8-449-45s50-46e1-47c2-48u3-49r4-50e5-51-6-52b7-53a8-54c9-55k60-56u1-57p2-58s3-59/4-60
+  6     6,5    7a8n9s10i1b2l3e4.5b6u7i8l9t20i1n2.3f4e5t6c7h8ansible.builtin.fetch:9
+  7       7,7 9s10rsrc:34/5v6a7r8/9l20oi2g321g2/3s4e5c6u7r8e9
+  8         8,9 d10e1dest:45s6e7c8u9r20e1-2b3a4k54c5k6u7p8s9/30
+  9         9,9 f10l1flat:45n6o7
+~10         10,9756\767654321                                                                                                                    9,17
+ 10         10,97\8989d10\1dest:45s6e7c8u98765secure-backups/30^[O   ^[O   ^[O   ^[O   {1{23i4n5v6e7n8t9o40r1y2_3h4o5s6t7m87n8a9m50e12}{}3}{{}}4-{}5s6e7c8u9r60e1
+>4;m"secure_log_backups.yml"a[New]f11L,4320B7written1,17All~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   9 ~@k   8~@k   7~@k   8~@k   0~@k   7x dl   dest: secure-backups/{{ inventory_hostname }}-secure~@k   1x dl   flat: yesi -- INSERT --11,7All  flat: yes8078 dest: secure-backups/{{ inventory_hostname }}-secure9#dest: secure-backups/{{ inventory_hostname }}-secure1019 #flat: yes10^[  11,9All::wq
+>4;mble-playbook --syntax-check secure_log_backups.yml
+
+playbook: secure_log_backups.yml
+[ansible@ansible ~/ansible/07_files]$ ansible-playbook --syntax-check secure_log_backups.yml
+
+PLAY [로그 파일 수집 - fetch 모듈] **************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible4.example.com]
+ok: [ansible3.example.com]
+ok: [ansible1.example.com]
+ok: [ansible2.example.com]
+
+TASK [로그 수집 - /var/log/secure --> secure-backups/] ******************************************************************************************
+changed: [ansible2.example.com]
+changed: [ansible1.example.com]
+changed: [ansible4.example.com]
+changed: [ansible3.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+secure-backups/ansible
+ansible1.example.com/ ansible2.example.com/ ansible3.example.com/ ansible4.example.com/
+[ansible@ansible ~/ansible/07_files]$ tree secure-backups/ansible
+secure-backups
+├── ansible1.example.com
+│   └── var
+│       └── log
+│           └── secure
+├── ansible2.example.com
+│   └── var
+│       └── log
+│           └── secure
+├── ansible3.example.com
+│   └── var
+│       └── log
+│           └── secure
+└── ansible4.example.com
+    └── var
+        └── log
+            └── secure
+
+13 directories, 4 files
+ure
+secure-backups/         secure_log_backups.yml
+[ansible@ansible ~/ansible/07_files]$ rm 1@esecure-backups/
+rm: invalid option -- 'e'
+Try 'rm --help' for more information.
+[ansible@ansible ~/ansible/07_files]$ rm -1@rsecure-backups/
+[ansible@ansible ~/ansible/07_files]$ vi secure_log_backups.yml
+  1 ---
+  2 - name: 로그 파일 수집 - fetch 모듈  3   hosts: all  4   tasks:
+  5     - name: 로그 수집 - /var/log/secure --> secure-backups/
+  6       ansible.builtin.fetch:
+  7 src: /var/log/secure
+  8 dest: secure-backups/
+  9 flat: no
+ 10  #dest: secure-backups/{{ inventory_hostname }}-secure
+ 11  #flat: yes
+>4;m>4;m[ansible@ansible ~/anansible-playbookusecure_log_backups.ymlyml                                                                          ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                11,9All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+
+PLAY [로그 파일 수집 - fetch 모듈] **************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible3.example.com]
+ok: [ansible4.example.com]
+ok: [ansible1.example.com]
+ok: [ansible2.example.com]
+
+TASK [로그 수집 - /var/log/secure --> secure-backups/] ******************************************************************************************
+changed: [ansible2.example.com]
+changed: [ansible4.example.com]
+changed: [ansible1.example.com]
+changed: [ansible3.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ecure
+secure  [error opening dir]
+
+0 directories, 0 files
+
+secure-backups/         secure_log_backups.yml
+[ansible@ansible ~/ansible/07_files]$ tree secure-backups/
+secure-backups/
+├── ansible1.example.com
+│   └── var
+│       └── log
+│           └── secure
+├── ansible2.example.com
+│   └── var
+│       └── log
+│           └── secure
+├── ansible3.example.com
+│   └── var
+│       └── log
+│           └── secure
+└── ansible4.example.com
+    └── var
+        └── log
+            └── secure
+
+13 directories, 4 files
+cure-backups/
+[ansible@ansible ~/ansible/07_files]$ tree
+.
+├── ansible.cfg
+├── inventory
+└── secure_log_backups.yml
+
+1 directory, 3 files
+[ansible@ansible ~/ansible/07_files]$ vi secure_log_backups.yml
+  1 ---
+  2 - name: 로그 파일 수집 - fetch 모듈  3   hosts: all  4   tasks:
+  5     - name: 로그 수집 - /var/log/secure --> secure-backups/
+  6       ansible.builtin.fetch:
+  7 src: /var/log/secure
+  8 dest: secure-backups/
+  9 flat: no
+ 10  #dest: secure-backups/{{ inventory_hostname }}-secure
+ 11  #flat: yes
+>4;m"secure_log_backups.yml" 11L, 320B written                                                                                                   ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                11,9All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        i -- INSERT --11,9All09,9 #flat: no1010,1dest: secure-backups/{{ inventory_hostname }}-secure9 1flat: yes^[  11,8All::w11,8All~@k   0~@k   9,8 ~@k   8#?\<dest\>search hit TOP, continuing at BOTTOMdestdest10,9All10,9All^[  ^[  i -- INSERT --10,9All9,9 8#dest: secure-backups/10^[  8,9All::noh
+ansible-playbooku15@--syntax-checks.ymlooktsecure_log_backups.ymlml
+
+playbook: secure_log_backups.yml
+[ansible@ansible ~/ansible/07_files]$ ansible-playbook --syntax-check secure_log_backups.yml
+
+PLAY [로그 파일 수집 - fetch 모듈] **************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible3.example.com]
+ok: [ansible2.example.com]
+ok: [ansible1.example.com]
+ok: [ansible4.example.com]
+
+TASK [로그 수집 - /var/log/secure --> secure-backups/] ******************************************************************************************
+changed: [ansible2.example.com]
+changed: [ansible3.example.com]
+changed: [ansible1.example.com]
+changed: [ansible4.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+cure-backups/
+secure-backups/
+├── ansible1.example.com-secure
+├── ansible2.example.com-secure
+├── ansible3.example.com-secure
+└── ansible4.example.com-secure
+
+1 directory, 4 files
+cure-backups/
+[ansible@ansible ~/ansible/07_files]$ vi create_user2.yml
+  1
+~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 #################################  3 # 1) 사용자 추가 및 암호 설정 - devops/soldesk1.
+  4 # 2) /etc/sudoers.d/devops
+  5 # 3) $HOME/.ssh/authorized_keys  6 #################################6,33All^M  o -- INSERT --7,2All  7 #
+  8 #8
+  9 #9
+~10 #10,21                                                                                                                                       7,211
+  8 8
+  9 9
+ 10 10,1
+ 11 109,1 8711121^[  7,0-1All1G  1,1  g gdE349: No identifier under cursor1,1AlldG  ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                --No lines in buffer--0,0-1All-- INSERT --0,1All---
+  2 #################################  3 # 1) 사용자 추가 및 암호 설정 - devops/soldesk1.
+  4 # 2) /etc/sudoers.d/devops
+  5 # 3) $HOME/.ssh/authorized_keys  6 #################################
+  7 - name: 0) 사용자 추가 - devops  8   hosts: all  9   remote_user: ansible
+ 10   vars: 11     username: devops 12     pwhash: soldesk1.
+ 13   tasks: 14     - name: 1) 사용자 추가 및 암호 설정
+ 15       ansible.builtin.user: 16         name: "{{ username }}" 17 password: "{{ pwhash | password_hash('sha512') }}"
+ 18  19     - name: 2) 파일 배포 - /etc/sudoers.d/devops
+ 20       ansible.builtin.copy:
+ 21         src: files/devops 22         dest: /etc/sudoers.d/devops
+ 23         mode: '0644' 24  25     - name: 3) SSH Public Key 배포
+ 26       ansible.posix.authorized_key: 27         user: devops
+ 28         state: present 29         #key: "{{ lookup('file', '/home/ansible/.ssh/id_ed25519.pub') }}"
+>4;m"create_user2.yml"o[New]'30L,'917Bhwrittenible/.ssh/id_rsa.pub') }}"30,68All^[  ^[  ::wq
+>4;mmkdir -p files
+[ansible@ansible ~/ansible/07_files]$ echo 'devops ALL=(ALL) NOPASSWD: ALL' > files/devops
+[ansible@ansible ~/ansible/07_files]$ cat files/devops
+devops ALL=(ALL) NOPASSWD: ALL
+ansible-playbook --syntax-checkicreate_user2.ymlaybook --syntax-check create_user2.yml
+
+playbook: create_user2.yml
+ible-playbook create_user2.ymlreate_user2.yml
+
+PLAY [0) 사용자 추가 - devops] ******************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible1.example.com]
+ok: [ansible3.example.com]
+ok: [ansible4.example.com]
+ok: [ansible2.example.com]
+
+TASK [1) 사용자 추가 및 암호 설정] **************************************************************************************************************
+changed: [ansible1.example.com]
+changed: [ansible2.example.com]
+changed: [ansible3.example.com]
+changed: [ansible4.example.com]
+
+TASK [2) 파일 배포 - /etc/sudoers.d/devops] *****************************************************************************************************
+changed: [ansible2.example.com]
+changed: [ansible1.example.com]
+changed: [ansible3.example.com]
+changed: [ansible4.example.com]
+
+TASK [3) SSH Public Key 배포] *******************************************************************************************************************
+ok: [ansible3.example.com]
+ok: [ansible2.example.com]
+ok: [ansible1.example.com]
+ok: [ansible4.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/07_files]$ ansible-playbook create_user2.yml
+
+PLAY [0) 사용자 추가 - devops] ******************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible3.example.com]
+ok: [ansible4.example.com]
+ok: [ansible1.example.com]
+ok: [ansible2.example.com]
+
+TASK [1) 사용자 추가 및 암호 설정] **************************************************************************************************************
+changed: [ansible1.example.com]
+changed: [ansible2.example.com]
+changed: [ansible3.example.com]
+changed: [ansible4.example.com]
+
+TASK [2) 파일 배포 - /etc/sudoers.d/devops] *****************************************************************************************************
+ok: [ansible3.example.com]
+ok: [ansible1.example.com]
+ok: [ansible2.example.com]
+ok: [ansible4.example.com]
+
+TASK [3) SSH Public Key 배포] *******************************************************************************************************************
+ok: [ansible2.example.com]
+ok: [ansible1.example.com]
+ok: [ansible3.example.com]
+ok: [ansible4.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/07_files]$ clear
+[ansible@ansible ~/ansible/07_files]$ ls
+ansible.cfg  create_user2.yml  files  inventory  secure_log_backups.yml
+echoi"Thisnisbaetestnfile"/>7files/users.txtThis is a test file" > files/users.txt
+[ansible@ansible ~/ansible/07_files]$ vi copy_file.yml
+  1
+~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                ~                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: 모듈 테스트 - copy  3   hosts: all  4   tasks:  5     - name: 대상 호스트에 파일 배포
+  6       # ~/files/users.txt --- 배포 ---> ~devops/users.txt
+  7       ansible.builtinansible.builtin.copy:
+  8         src: files/users.txt  9         dest: /home/devops/users.txt
+ 10         owner: devops 11         group: devops 12         mmode: '0640'
+>4;m"copy_file.yml" [New] 13L, 324B written
+ansible-playbooki--syntax-check0copy_file.ymlible-playbook --syntax-check copy_file.yml
+
+playbook: copy_file.yml
+[ansible@ansible ~/ansible/07_files]$ ansible-playbook copy_file.yml
+
+PLAY [모듈 테스트 - copy] ***********************************************************************************************************************
+
+TASK [Gathering Facts] **************************************************************************************************************************
+ok: [ansible2.example.com]
+ok: [ansible3.example.com]
+ok: [ansible4.example.com]
+ok: [ansible1.example.com]
+
+TASK [대상 호스트에 파일 배포] ******************************************************************************************************************
+changed: [ansible3.example.com]
+changed: [ansible1.example.com]
+changed: [ansible2.example.com]
+changed: [ansible4.example.com]
+
+PLAY RECAP **************************************************************************************************************************************
+ansible1.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ble all 1@c1@o1@m1@m1@a1@n1@dhome/devops'
+ansible1.example.com | CHANGED | rc=0 >>
+total 4
+-rw-r-----. 1 devops devops 20 Sep 21 18:12 users.txt
+ansible3.example.com | CHANGED | rc=0 >>
+total 4
+-rw-r-----. 1 devops devops 20 Sep 21 18:12 users.txt
+ansible2.example.com | CHANGED | rc=0 >>
+total 4
+-rw-r-----. 1 devops devops 20 Sep 21 18:12 users.txt
+ansible4.example.com | CHANGED | rc=0 >>
+total 4
+-rw-r-----. 1 devops devops 20 Sep 21 18:12 users.txt
+[ansible@ansible ~/ansible/07_files]$ exit
+exit
+
+Script done on 2026-09-21 18:52:40+09:00 [COMMAND_EXIT_CODE="0"]
