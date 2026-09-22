@@ -1,0 +1,930 @@
+Script started on 2026-09-22 15:46:39+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="155" LINES="43"]
+ble all -m command -a 'cat /home/devops/users.txt'
+ansible3.example.com | CHANGED | rc=0 >>
+This is a test file
+추가된 라인
+추가된
+# BEGIN ANSIBLE MANAGED BLOCK
+블록 라인 시작2
+블록 라인 내용2
+블록 라인 끝
+# END ANSIBLE MANAGED BLOCK
+ansible2.example.com | CHANGED | rc=0 >>
+This is a test file
+추가된 라인
+추가된
+# BEGIN ANSIBLE MANAGED BLOCK
+블록 라인 시작2
+블록 라인 내용2
+블록 라인 끝
+# END ANSIBLE MANAGED BLOCK
+ansible4.example.com | CHANGED | rc=0 >>
+This is a test file
+추가된 라인
+추가된
+# BEGIN ANSIBLE MANAGED BLOCK
+블록 라인 시작2
+블록 라인 내용2
+블록 라인 끝
+# END ANSIBLE MANAGED BLOCK
+ansible1.example.com | CHANGED | rc=0 >>
+This is a test file
+추가된 라인
+추가된
+# BEGIN ANSIBLE MANAGED BLOCK
+블록 라인 시작2
+블록 라인 내용2
+블록 라인 끝
+# END ANSIBLE MANAGED BLOCK
+[ansible@ansible ~/ansible/07_files]$ cat add_block.yml
+---
+- name: 모듈 테스트 - blockinfile
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: 파일에 여러라인 추가
+      ansible.builtin.blockinfile:
+        path: /home/devops/users.txt
+        block: |
+          블록 라인 시작2
+          블록 라인 내용2
+          블록 라인 끝
+        state: present
+
+[ansible@ansible ~/ansible/07_files]$ c
+1@v1@id_block.yml~/ansible/07_files]$ ansible_allc-mycommand -a 'cat /home/devops/users.txt'
+  1 ---
+  2 - name: 모듈 테스트 - blockinfile  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 파일에 여러라인 추가
+  7       ansible.builtin.blockinfile:
+  8 path: /home/devops/users.txt
+  9 block: |
+ 10 블록 라인 시작2
+ 11 블록 라인 내용2
+ 12 블록 라인 끝
+ 13 state: present
+ 14
+~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          12,11All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   1~@k   0~@k   9,11 O -- INSERT --9,9Top  9
+ 10
+ 11
+ 12
+ 13
+ 14
+>4;m"add_block.yml"m15L,r365Brwrittenarker:6marker:'7{8m9k2019a20k1r2e321e21e2'32}'{ma{make}10{make}87#{make}'        block: |          블록 라인 시작2          블록 라인 내용2          블록 라인 끝        state: present#{make}8{make}{make}34 '{make}5A'        block: |          블록 라인 시작2          블록 라인 내용2          블록 라인 끝        state: present6A''6D'7D'8e'9d'30298765{ma{make}e} ADDed'1re} ADDed'2ke} ADDed'3} ADDed'{mar{mark}9,22All::wq
+vi;add_block.yml
+  1 ---
+  2 - name: 모듈 테스트 - blockinfile  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 파일에 여러라인 추가
+  7       ansible.builtin.blockinfile:
+  8 path: /home/devops/users.txt
+  9 marker:'#{mark} ADDed'
+ 10 block: |
+ 11 블록 라인 시작2
+ 12 블록 라인 내용2
+ 13 블록 라인 끝
+ 14 state: present
+ 15
+>4;m"add_block.yml" 15L, 365B written                                                                                                                      ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          9,9All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   {mark}8~@k  {mark}9~@k   20~@k   1~@k   2~{mark}3^[  ^[  ::wq
+>4;mcpsadd_line.yml remove_file.yml
+[ansible@ansible ~/ansible/07_files]$ vi remove_file.yml
+  1 ---
+  2 - name: 0) 모듈 테스트 - lineinfile  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) 파일에 라인 추가
+  7       ansible.builtin.lineinfile:
+  8 path: /home/devops/users.txt
+  9 line: '추가된 '
+ 10 state: present
+ 11
+~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   2~@@   40-35i -- INSERT --2,40-35Ale39-3e8-3e7-3e6-3e5-304-2e3-282-271-26파4-28일8-31삭41-33제4-355-363,13   4,225,9 6,39-327,34   6,39-326-303-282-2729-256-235-222-203-21삭6-23제9-257,25   87678930123432102file:file:file:file:file:file:389,26-23^[  9,25-22Alldd
+ 9
+>4;m"remove_file.yml" 10L, 211B written                                                                                                                       9,9All~@@   22~@k   1~@k   0~@k   8~@k   19~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   4~@k   5~@k   9^[  ^[  ::wq
+>4;mble-doc file
+> MODULE ansible.builtin.file (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/file.py)
+
+  Set attributes of files, directories, or symlinks and their targets.
+  Alternatively, remove files, symlinks or directories.
+  Many other modules support the same options as the ansible.builtin.file module - including
+  ansible.builtin.copy, ansible.builtin.template, and ansible.builtin.assemble.
+  For Windows targets, use the ansible.windows.win_file module instead.
+
+OPTIONS (red indicates it is required):
+
+   access_time  This parameter indicates the time the file's access time should be set to.
+                Should be `preserve' when no modification is required, `YYYYMMDDHHMM.SS' when using default time
+                format, or `now'.
+                Default is `None' meaning that `preserve' is the default for `state=[file,directory,link,hard]' and `now' is
+                default for `state=touch'.
+        default: null
+        type: str
+
+   access_time_format  When used with `access_time', indicates the time format that must be used.
+                       Based on default Python format (see time.strftime doc).
+        default: '%Y%m%d%H%M.%S'
+        type: str
+
+   attributes  The attributes the resulting filesystem object should have.
+               To get supported flags look at the man page for `chattr' on the target system.
+               This string should contain the attributes in the same order as the one displayed by `lsattr'.
+               The `=' operator is assumed as default, otherwise `+' or `-' operators need
+               to be included in the string.
+        aliases: [attr]
+        default: null
+        type: str
+
+   follow  This flag indicates that filesystem links, if they exist, should be followed.
+           `follow=yes' and `state=link' can modify `src' when combined with parameters such as `mode'.
+           Previous to Ansible 2.5, this was `false' by default.
+           While creating a symlink with a non-existent destination, set `follow=false' to avoid a warning message related
+           to permission issues. The warning message is added to notify the user that we can not set permissions to the
+           non-existent destination.
+        default: true
+        type: bool
+
+   force   Force the creation of the links in two cases: if the link type is symbolic and the source file does not exist
+>EMODULE ansible.builtin.file (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/file.py)
+
+  Set attributes of files, directories, or symlinks and their targets.
+  Alternatively, remove files, symlinks or directories.
+  Many other modules support the same options as the ansible.builtin.file module - including
+  ansible.builtin.copy, ansible.builtin.template, and ansible.builtin.assemble.
+  For Windows targets, use the ansible.windows.win_file module instead.
+
+OPTIONS (red indicates it is required):
+
+   access_time  This parameter indicates the time the file's access time should be set to.
+                Should be `preserve' when no modification is required, `YYYYMMDDHHMM.SS' when using default time
+                format, or `now'.
+                Default is `None' meaning that `preserve' is the default for `state=[file,directory,link,hard]' and `now' is
+                default for `state=touch'.
+        default: null
+        type: str
+
+   access_time_format  When used with `access_time', indicates the time format that must be used.
+                       Based on default Python format (see time.strftime doc).
+        default: '%Y%m%d%H%M.%S'
+        type: str
+
+   attributes  The attributes the resulting filesystem object should have.
+               To get supported flags look at the man page for `chattr' on the target system.
+               This string should contain the attributes in the same order as the one displayed by `lsattr'.
+               The `=' operator is assumed as default, otherwise `+' or `-' operators need
+               to be included in the string.
+        aliases: [attr]
+        default: null
+        type: str
+
+   follow  This flag indicates that filesystem links, if they exist, should be followed.
+           `follow=yes' and `state=link' can modify `src' when combined with parameters such as `mode'.
+           Previous to Ansible 2.5, this was `false' by default.
+           While creating a symlink with a non-existent destination, set `follow=false' to avoid a warning message related
+           to permission issues. The warning message is added to notify the user that we can not set permissions to the
+           non-existent destination.
+        default: true
+        type: bool
+
+   force   Force the creation of the links in two cases: if the link type is symbolic and the source file does not exist
+> MODULE ansible.builtin.file (/home/ansible/.local/lib/python3.12/site-packages/ansible/modules/file.py)
+
+  Set attributes of files, directories, or symlinks and their targets.
+  Alternatively, remove files, symlinks or directories.
+  Many other modules support the same options as the ansible.builtin.file module - including
+  ansible.builtin.copy, ansible.builtin.template, and ansible.builtin.assemble.
+  For Windows targets, use the ansible.windows.win_file module instead.
+
+OPTIONS (red indicates it is required):
+
+   access_time  This parameter indicates the time the file's access time should be set to.
+                Should be `preserve' when no modification is required, `YYYYMMDDHHMM.SS' when using default time
+                format, or `now'.
+                Default is `None' meaning that `preserve' is the default for `state=[file,directory,link,hard]' and `now' is
+                default for `state=touch'.
+        default: null
+        type: str
+
+   access_time_format  When used with `access_time', indicates the time format that must be used.
+                       Based on default Python format (see time.strftime doc).
+        default: '%Y%m%d%H%M.%S'
+        type: str
+
+   attributes  The attributes the resulting filesystem object should have.
+               To get supported flags look at the man page for `chattr' on the target system.
+               This string should contain the attributes in the same order as the one displayed by `lsattr'.
+               The `=' operator is assumed as default, otherwise `+' or `-' operators need
+               to be included in the string.
+        aliases: [attr]
+        default: null
+        type: str
+
+   follow  This flag indicates that filesystem links, if they exist, should be followed.
+           `follow=yes' and `state=link' can modify `src' when combined with parameters such as `mode'.
+           Previous to Ansible 2.5, this was `false' by default.
+           While creating a symlink with a non-existent destination, set `follow=false' to avoid a warning message related
+           to permission issues. The warning message is added to notify the user that we can not set permissions to the
+           non-existent destination.
+        default: true
+        type: bool
+
+   force   Force the creation of the links in two cases: if the link type is symbolic and the source file does not exist
+...skipping...
+EXAMPLES:
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /etc/foo.conf
+    owner: foo
+    group: foo
+    mode: '0644'
+
+- name: Change file group using gid
+  ansible.builtin.file:
+    path: /etc/bar.conf
+    group: "1000"
+
+- name: Give insecure permissions to an existing file
+  ansible.builtin.file:
+    path: /work
+    owner: root
+    group: root
+    mode: '1777'
+
+- name: Create a symbolic link
+  ansible.builtin.file:
+    src: /file/to/link/to
+    dest: /path/to/symlink
+    owner: foo
+    group: foo
+    state: link
+
+- name: Create two hard links
+  ansible.builtin.file:
+    src: '/tmp/{{ item.src }}'
+    dest: '{{ item.dest }}'
+    state: hard
+  loop:
+    - { src: x, dest: y }
+    - { src: z, dest: k }
+
+- name: Touch a file, using symbolic modes to set the permissions (equivalent to 0644)
+  ansible.builtin.file:
+    path: /etc/foo.conf
+    state: touch
+    mode: u=rw,g=r,o=r
+[ansible@ansible ~/ansible/07_files]$
+[ansible@ansible ~/ansible/07_files]$ cpsadd_line.ymlyremove_file.yml
+[ansible@ansible ~/ansible/07_files]$ visremove_file.ymlmove_file.yml
+  1 ---
+  2 - name: 0) 모듈 테스트 - lineinfile  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) 파일에 라인 추가
+  7       ansible.builtin.lineinfile:
+  8 path: /home/devops/users.txt
+  9 line: '추가된 '
+ 10 state: present
+ 11
+~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          9,9All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   8~@k   7~@k   6~@k   5,8~@k   4,9~@k   3~@k   2i -- INSERT --2,9All41-360-3539-348-337-326-315-304-293-282-271-260-2529-24파32-26일5-286-29삭9-31제42-3339-316-295-283,13   4,225,9 6,33-286-309-326-303-282-2729-256-235-222-203-21삭6-23제9-257,25   87678930102file:file:file:file:file:file:384567899,27-24^[  9,26-23Alldd
+ 9
+ 10~                                                                                                                                                          9,9All~@k   10u1 more line; before #4  1 second ago  9 line: '추가된 '10
+11moreAline; before #4  1 second ago9,9All^Rline less; after #4  3 seconds
+ 9
+>4;m"remove_file.yml" 10L,e207BswrittenAll~@k   10~@k   1~@k   2i -- INSERT --9,12All34567esentesent6sentasent7bsent8^[  9,17All::wq                          9,9All
+>4;mble-playbook --syntax-check remove_file.yml m
+
+playbook: remove_file.yml
+[ansible@ansible ~/ansible/07_files]$ ansible-playbook --syntax-check add_block.ymlml
+[ERROR]: YAML parsing failed: While scanning a simple key could not find expected ':'.
+Origin: /home/ansible/ansible/07_files/add_block.yml:10:9
+
+ 8         path: /home/devops/users.txt
+ 9         marker:'#{mark} ADDed'
+10         block: |
+           ^ column 9
+
+block.yml
+  1 ---
+  2 - name: 모듈 테스트 - blockinfile  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 파일에 여러라인 추가
+  7       ansible.builtin.blockinfile:
+  8 path: /home/devops/users.txt
+  9 marker:'#{mark} ADDed'
+ 10 block: |
+ 11 블록 라인 시작2
+ 12 블록 라인 내용2
+ 13 블록 라인 끝
+ 14 state: present
+ 15
+~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          ~                                                                                                                                                          9,9All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        yy  yd  dd
+ 9
+ 10
+ 11
+ 12
+ 13
+ 14~                                                                                                                                                          9,9Alld~@k     8
+  9
+ 10
+ 11
+ 12~                                                                                                                                                          ~                                                                                                                                                          8,11All~@k   7u2 more lines; before #2  1 second ago  8 path: /home/devops/users.txt
+  9 block: |10
+ 11
+ 12
+ 13
+21moreAlines; before #2  1 second ago8,9All~@k   7~@k   8~@k   7p   8 path: /home/devops/users.txt
+  9 block: |10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 168,9Allu2 fewer lines; before #3  3 seconds ago 8
+  9
+ 10
+ 11
+ 12
+ 13
+21fewer lines; before #3  3 seconds ago7,7Allu1 more line; before #1  7 seconds ago  9 marker:'#{mark} ADDed'10                                               ~                                                                                                                                                          7,7All
+ 11
+ 12
+ 13
+ 14
+11moreAline; before #1  7 seconds ago9,9All~@k   10~@k   1yy  dd
+ 9
+ 10
+ 11
+ 12
+ 13
+ 14~                                                                                                                                                          9,9All~@k   8~@k   7~@k   8~@k   7^M  8,9~@k   7O -- INSERT --7,7Top  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 157,7All^[  7,0-1Allp   8 marker:'#{mark} ADDed'9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 168,9Allu1 line less; before #6  1 second ago
+8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+11line less; before #6  1 second ago7,0-1Allu5  3s ago                                                                                                        7,0-1All
+7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+11line less; before #5  3 seconds ago7,9Allumore line4  6  9 marker:'#{mark} ADDed'10                                                                         7,9All
+ 11
+ 12
+ 13
+ 14
+11moreAline; before #4  6 seconds ago9,9AlluAlready at oldest change9,9All~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   {mark}8~@k  {mark}9~@k   20~@k   1~@k   2~{mark}3{mark}4~{mark}3~@{mark}2~@k   1~@k   0~@k   19u9,19Alli -- INSERT --9,19All mark} ADDed'{0mark}4 } ADDed' }5{ mark }432{0mark }198{ mark }765432109 ^[  9,8Alldd
+ 9
+ 10
+ 11
+ 12
+ 13
+ 14~                                                                                                                                                          9,9All~@k   8~@k   7~@k   8O -- INSERT --8,9Top  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 158,9All7^[  8,0-1Allp   9 marker:'#{ mark } ADDed'10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 169,9Alli -- INSERT --9,9Amarker:'#{ mark } ADDedmarker:'#{ mark } ADDed'5 marker:'#{ mark } ADDed'6 marker:'#{ mark } ADDed'7^[  9,6Alldd
+ 9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15~                                                                                                                                                          9,9Alld~@k     8
+  9
+ 10
+ 11
+ 12
+ 13~                                                                                                                                                          ~                                                                                                                                                          8,9Alldu  u2 more lines; before #14  2 seconds ago  8
+  9 path: /home/devops/users.txt10
+ 11
+ 12
+ 13
+ 14
+21more-lines; before #14  2 seconds ago8,0-1Alldd
+8
+  9
+ 10
+ 11
+ 12
+ 13
+>4;m"add_block.yml" 14L, 334B written                                                                                                                         8,9Alld^[  ^[   ::wq
+>4;m[ansible@ansible ~/ansible/07_files]$ 29@ansible-playbook --syntax-check
+
+playbook: add_block.yml
+[ansible@ansible ~/ansible/07_files]$ c;ear
+bash: ear: command not found...
+le-playbook remove_file.yml m
+
+PLAY [0) 모듈 테스트 파일 삭제] ***************************************************************************************************************************
+
+TASK [1) 파일 삭제] ***************************************************************************************************************************************
+changed: [ansible3.example.com]
+changed: [ansible1.example.com]
+changed: [ansible2.example.com]
+changed: [ansible4.example.com]
+
+PLAY RECAP ************************************************************************************************************************************************
+ansible1.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+le all - command -a 'cat /home/devops/users.txt'
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K | --become-password-file BECOME_PASSWORD_FILE]
+               [-i INVENTORY] [--list-hosts] [-l SUBSET] [--flush-cache] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS] [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS] [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [-C] [-D]
+               [-e EXTRA_VARS] [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: unrecognized arguments: - command
+
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER] [-K | --become-password-file BECOME_PASSWORD_FILE]
+               [-i INVENTORY] [--list-hosts] [-l SUBSET] [--flush-cache] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS] [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS] [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [-C] [-D]
+               [-e EXTRA_VARS] [--vault-id VAULT_IDS] [-J | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+options:
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --flush-cache         clear the fact cache for every host in inventory
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory. This sets the relative path for many
+                        features including roles/ group_vars/ etc.
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use. This argument may be specified multiple times.
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path, module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works great with --check
+  -J, --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library (default={{ ANSIBLE_HOME ~
+                        "/plugins/modules:/usr/share/ansible/plugins/modules" }}). This argument may be specified multiple times.
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2' or a json string: -a '{"opt1": "val1", "opt2":
+                        "val2"}'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @. This argument may be specified multiple times.
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. This argument may be specified multiple times.
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently
+                        evaluate up to -vvvvvv. A reasonable level to start is -vvv, connection debugging might require -vvvv. This argument may be
+                        specified multiple times.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default depends on connection)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=ssh)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+[ansible@ansible ~/ansible/07_files]$ 1@mible all - command -a 'cat /home/devops/users.txt'
+[ERROR]: Task failed: Module failed: The command exited with a non-zero return code.
+Origin: <adhoc 'command' task>
+
+{'action': 'command', 'args': {'_raw_params': 'cat /home/devops/users.txt'}, 'timeout': 0, 'async_val': 0, 'poll': 15}
+
+ansible4.example.com | FAILED | rc=1 >>
+cat: /home/devops/users.txt: No such file or directoryThe command exited with a non-zero return code.
+ansible2.example.com | FAILED | rc=1 >>
+cat: /home/devops/users.txt: No such file or directoryThe command exited with a non-zero return code.
+ansible3.example.com | FAILED | rc=1 >>
+cat: /home/devops/users.txt: No such file or directoryThe command exited with a non-zero return code.
+ansible1.example.com | FAILED | rc=1 >>
+cat: /home/devops/users.txt: No such file or directoryThe command exited with a non-zero return code.
+[ansible@ansible ~/ansible/07_files]$ clear
+linux/config
+
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+# See also:
+# https://docs.fedoraproject.org/en-US/quick-docs/getting-started-with-selinux/#getting-started-with-selinux-selinux-states-and-modes
+#
+# NOTE: In earlier Fedora kernel builds, SELINUX=disabled would also
+# fully disable SELinux during boot. If you need a system with SELinux
+# fully disabled instead of SELinux running with no policy loaded, you
+# need to pass selinux=0 to the kernel command line. You can use grubby
+# to persistently set the bootloader to boot with selinux=0:
+#
+#    grubby --update-kernel ALL --args selinux=0
+#
+# To revert back to SELinux enabled:
+#
+#    grubby --update-kernel ALL --remove-args selinux
+#
+SELINUX=permissive
+# SELINUXTYPE= can take one of these three values:
+#     targeted - Targeted processes are protected,
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted
+
+
+[ansible@ansible ~/ansible/07_files]$ vi selinux.yml
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        i -- INSERT --0,1All-1,2---4
+  2 2,1-- 3n4a5name:89010)12S3E4L5i6n7u8x920M1o2d3e45변8-27경
+  3 3,1    3h4o5shosts:910a1l2l3
+  4   4,3 t4a5s6k7tasks:910
+  5   5,3 5-- 7n8a9mname:2311)56S7E8L9i20n1u2x34M5O65o6d7e89-301p2e3r4m5i6s7s8i9v40e12=3>45e6n7f8r9o50498o9r50c1i2n3g4
+  6     6,5 7a8n9i109 s10i1b2l3e4.5p6o7s8i9x20.1e2s321s2e3l4i5n6u7x8ansible.posix.selinux:9
+  7       7,7 9i10p1o2109 p10o1l2policy:67t8a9r20g1e2t3e4d5
+>4;m"selinux.yml"1[New]t8L,:191Bnwritten1019o20r1c2i3n4g5^[  8,24All::wq
+>4;m[ansible@ansible ~/ansible/07_files]$ semanage port -l | grep http
+ValueError: SELinux policy is not managed or store cannot be accessed.
+[ansible@ansible ~/ansible/07_files]$ semanage port -l | grep http
+ValueError: SELinux policy is not managed or store cannot be accessed.
+
+Unit nfs-ut.service could not be found.
+[ansible@ansible ~/ansible/07_files]$ systemctl status nfs-utiles
+Unit nfs-utiles.service could not be found.
+[ansible@ansible ~/ansible/07_files]$ systemctl status nfs-utilss
+Unit nfs-utils.service could not be found.
+[ansible@ansible ~/ansible/07_files]$ mkdir -p ~/ansible/07_template-motd && cd ~/ansible/07_template-motd
+[ansible@ansible ~/ansible/07_template-motd]$ vi ansible.cfg
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All[defaults]
+>4;m"ansible.cfg"/[New]t6L, 74B writtenvilege_escalation]  5 become = true  6 6,0-1All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/07_template-motd]$ vi inventory
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All[prodsystems]
+  2 ansible1.example.com  3 ansible2.example.com  4 ansible3.example.com
+>4;m"inventory"a[New]c6L, 99B,written[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/07_template-motd]$ mkdir -p templates
+[ansible@ansible ~/ansible/07_template-motd]$  vi templates/motd.j2
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1AllThis is the system {{ ansible_facts['fqdn'] }}.
+  2 This is a {{ ansible_facts['distribution'] }} version {{ ansible_facts[''    distribution_version'] }} system.
+  3   4 Only use this system with permission.
+  5 You can request access from {{ system_owner }}.  6   7 Welcome to {{ ansible_facts['hostname'] }}
+  8 Today's date is: {{ ansible_facts['date_time']['date'] }}.8,58All^M  #?}}\.}}.{}}.}}.5,45All^[  ^[  ~@k   {}6,0-1~@k   {}7,42 ~@k   {}8,45o -- INSERT --9,1All  9
+ 10 10,1
+>4;m"templates/motd.j2"#[New]#12L,#474B#written####################2,1#^[4#^[6#::wq9#40#1#2#3#4#5#6#7#8#9#50#1#2#3#4#5#6#7#8#9#60#1#2#3#4^[  11,63Allyy  p
+>4;m[ansible@ansible ~/ansible/07_template-motd]$ vi motd.yml
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: 0) /etc/motd 파일 배포  3   hosts: all  4   gather_facts: true
+  5   vars:  6     system_owner: webmaster@example.com  7   tasks:
+  8     - name: 1) 관리 호스트에 /etc/motd 파일 배포
+  9       ansible.builtin.template: 10         src: templates/motd.j2
+ 11         dest: /etc/motd 12         owner: root 13         group: root
+>4;m>4;mble-playbook,--syntax-ceck15,0-1All15,0-1All^[  ^[  ::q
+khmotd.yml
+
+playbook: motd.yml
+[ansible@ansible ~/ansible/07_template-motmotd.ymllle-playbook --syntax-check motd.yml
+
+
+PLAY [0) /etc/motd 파일 배포] **************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [ansible1.example.com]
+ok: [ansible3.example.com]
+ok: [ansible2.example.com]
+ok: [ansible4.example.com]
+
+TASK [1) 관리 호스트에 /etc/motd 파일 배포] ************************************
+changed: [ansible1.example.com]
+changed: [ansible3.example.com]
+changed: [ansible2.example.com]
+changed: [ansible4.example.com]
+
+PLAY RECAP *********************************************************************
+ansible1.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/07_template-motd]$ c
+omble1.example.c
+This is the system ansible1.example.com.
+This is a CentOS version 10 system.
+
+Only use this system with permission.
+You can request access from webmaster@example.com.
+
+Welcome to ansible1
+Today's date is: 2026-09-22.
+
+
+###############################################################
+###############################################################
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Tue Sep 22 16:21:16 2026 from 192.168.10.10
+[ansible@ansible1 ~]$ eixt
+bash: eixt: command not found...
+e[ansible@ansible1 ~]$ exit
+logout
+Connection to ansible1.example.com closed.
+c
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$
+[ansible@ansible ~/ansible/07_template-motd]$ c
+[ansible@ansibleu~/ansible/07_template-motd]$ i am gruuuuuuuuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansibleu~/ansible/07_template-motd]$
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuu
+gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+ppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+
+
+
+ppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+
+
+
+ppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+
+
+
+
+
+
+
+
+
+[ansible@ansiblea~/ansible/07_template-motd]$uuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuppppppppppppppi am gruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuugruuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a/etc/motd' -m shell -a 'ls -l
+ansible1.example.com | CHANGED | rc=0 >>
+-rw-r--r--. 1 root root 347 Sep 22 16:21 /etc/motd
+ansible3.example.com | CHANGED | rc=0 >>
+-rw-r--r--. 1 root root 347 Sep 22 16:21 /etc/motd
+ansible4.example.com | CHANGED | rc=0 >>
+-rw-r--r--. 1 root root 347 Sep 22 16:21 /etc/motd
+ansible2.example.com | CHANGED | rc=0 >>
+-rw-r--r--. 1 root root 347 Sep 22 16:21 /etc/motd
+cle
+[ansible@ansible ~/ansible/07_template-motd]$ vi restore_motd.yml
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: Restore motd.yml  3   hosts: all  4   gather_facts: false
+  5   tasks:  6     - name: 1) /etc/motd 파일 비우기  7       aansible.builtin.shell:
+>4;m"restore_motd.yml"t[New]d9L,9172B-written ^[  ::wq
+ansible-playbook restore_motd.yml
+
+PLAY [Restore motd.yml] ********************************************************
+
+TASK [1) /etc/motd 파일 비우기] ************************************************
+changed: [ansible3.example.com]
+changed: [ansible2.example.com]
+changed: [ansible1.example.com]
+changed: [ansible4.example.com]
+
+PLAY RECAP *********************************************************************
+ansible1.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible2.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible3.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+ansible4.example.com       : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+vi restore_motd.yml
+  1 ---
+  2 - name: Restore motd.yml  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.shell:
+  8 cmd: '> /etc/motd'
+  9
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           9,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   8,1  ~@k   7~@@   28i -- INSERT --7,28Al:::::3c:4o:5p:6y:7865432101987cmd2109 c10o1n2t3e4n5t6'7'876=76content:78'9'20  9
+>4;m"restore_motd.yml"610L,7188B/written3d4^[  9,23All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/07_template-motd]$ mv restore_motd.yml restore_motd1@2l
+[ansible@ansible ~/ansible/07_template-motd]$ vi restore_motd.yml restore_motd2.yml
+
+  1
+>4;m>4;m[ansible@ansible ~/ansible/07_template-motd]$ vi restore_motd.yml   ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        i -- INSERT --0,1All^[  0,0-1All::q
+  1
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12      +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All0,0-1Alli -- INSERT --0,1All-1,2---4
+E37:2No-writeasince:last changel(add ! to override)
+>4;m>4;m[ansible@ansiblea~/ansible/07_template-motd]$ cp restore_motd2.yml restore_motd2.yml
+store_motd
+  1
+>4;m>4;m[ansible@ansible ~/ansible/07_template-motd]$ vi restore_motd.yml   ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+  1 ---
+  2 - name: Restore motd.yml  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.copy:
+  8 content: ''
+  9 dest: /etc/motd
+ 10
+~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           2,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   1~@k   g gdE349: No identifier under cursor1,1AlldG  ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           --No lines in buffer--0,0-1All-- INSERT --0,1All0,0-1All^[  ^[  u10 more lines; before #1  4 seconds ago---
+  2 - name: Restore motd.yml  3   hosts: all  4   gather_facts: false  5   tasks:  6     - name: 1) /etc/motd 파일 비우기  7       ansible.builtin.copy:  8         content: ''  9         dest: /etc/motd 10 1,1All1,1All~@k   2~@k   3~@k   4~@k   5~@k   6y~@k    ~@k   7^[  ^[  i -- INSERT --7,1All28ansible.builtin.copy76543s4h5e6l7l8ansible.builtin.shell:98,209,24^[  9,23Alldd
+ 9~                                                                           9,0-1All~@k   8,1  dd
+>4;m"restore_motd.yml" 8L, 171B written                                      8,0-1Alli -- INSERT --8,1All3579c10mcmd:34'5?65>6 7/8e9t20c1/2m3o4t5d6'7^[  8,26All::wq
+>4;mstore_motd2.yml
+  1 ---
+  2 - name: Restore motd.yml  3   hosts: all  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.copy:
+  8 content: ''
+  9 dest: /etc/motd
+ 10
+>4;m>4;m[ansible@ansible ~/ansible/07_template-motd]$  1 ---                ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           ~                                                                           1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  g gy  yG10 lines yanked1,1All^[  ^[  ::q
+  2 - name: Restore motd.yml
+  3   hosts: all
+  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.copy:
+  8         content: ''
+  9         dest: /etc/motd
+ 10
+ 1 ---
+  2 - name: Restore motd.yml
+  3   hosts: all
+  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.copy:
+  8         content: ''
+  9         dest: /etc/motd
+ 10
+
+bash: 1: command not found...
+bash: 2: command not found...
+bash: 3: command not found...
+bash: 4: command not found...
+bash: 5: command not found...
+bash: syntax error near unexpected token `)'
+bash: 7: command not found...
+bash: 8: command not found...
+bash: 9: command not found...
+bash: 10: command not found...
+[ansible@ansible ~/ansible/07_template-motd]$  1 ---
+  2 - name: Restore motd.yml
+  3   hosts: all
+  4   gather_facts: false
+  5   tasks:
+  6     - name: 1) /etc/motd 파일 비우기
+  7       ansible.builtin.copy:
+  8         content: ''
+  9         dest: /etc/motd
+ 10
+
+
+
+
+
+
+
+
+
+
+exit
+exit
+
+Script done on 2026-09-22 16:43:07+09:00 [COMMAND_EXIT_CODE="127"]
