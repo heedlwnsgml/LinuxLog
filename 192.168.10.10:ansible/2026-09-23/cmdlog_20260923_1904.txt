@@ -1,0 +1,607 @@
+Script started on 2026-09-23 19:04:48+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="143" LINES="43"]
+cdn~/ansible/09_roles_create/rolesansible/09_roles_create/roles
+[ansible@ansible ~/ansible/09_roles_create/roles]$ systemctl status firewalld.service
+○ firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; 0;1;38:5:185mdisabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:firewalld(1)
+[ansible@ansible ~/ansible/09_roles_create/roles]$ getsebool
+usage:  getsebool -a or getsebool boolean...
+25@systemctl statusselinux-id.service
+Unit selinux.service could not be found.
+-
+selinux-autorelabel-mark.service      selinux-autorelabel.target
+selinux-autorelabel.service           selinux-check-proper-disable.service
+[ansible@ansible ~/ansible/09_roles_create/roles]$ systemctl status selinux-
+selinux-autorelabel-mark.service      selinux-autorelabel.target
+selinux-autorelabel.service           selinux-check-proper-disable.service
+[ansible@ansible ~/ansible/09_roles_create/roles]$ systemctl status selinux-autorelabel
+○ selinux-autorelabel.service - Relabel all filesystems
+     Loaded: loaded (/usr/lib/systemd/system/selinux-autorelabel.service; static0;1;38:5:185m)
+     Active: inactive (dead)
+[ansible@ansible ~/ansible/09_roles_create/roles]$ clear
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible-galaxy init myfirewall
+- Role myfirewall was created successfully
+[ansible@ansible ~/ansible/09_roles_create/roles]$ lssible-galaxy init myfirewall
+myfirewall  myvhost
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree
+.
+├── myfirewall
+│   ├── defaults
+│   │   └── main.yml
+│   ├── files
+│   ├── handlers
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   ├── tests
+│   │   ├── inventory
+│   │   └── test.yml
+│   └── vars
+│       └── main.yml
+└── myvhost
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    └── templates
+        └── vhost.conf.j2
+
+16 directories, 13 files
+firewall/{files,templates,tests,vars,handlers}
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree
+.
+├── myfirewall
+│   ├── defaults
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   └── tasks
+│       └── main.yml
+└── myvhost
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    └── templates
+        └── vhost.conf.j2
+
+11 directories, 9 files
+[ansible@ansible ~/ansible/09_roles_create/roles]$ clear
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree
+.
+├── myfirewall
+│   ├── defaults
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   └── tasks
+│       └── main.yml
+└── myvhost
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    └── templates
+        └── vhost.conf.j2
+
+11 directories, 9 files
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree -ugp
+[drwxr-xr-x ansible  ansible ]  .
+├── [drwxr-xr-x ansible  ansible ]  myfirewall
+│   ├── [drwxr-xr-x ansible  ansible ]  defaults
+│   │   └── [-rw-r--r-- ansible  ansible ]  main.yml
+│   ├── [drwxr-xr-x ansible  ansible ]  meta
+│   │   └── [-rw-r--r-- ansible  ansible ]  main.yml
+│   ├── [-rw-r--r-- ansible  ansible ]  README.md
+│   └── [drwxr-xr-x ansible  ansible ]  tasks
+│       └── [-rw-r--r-- ansible  ansible ]  main.yml
+└── [drwxr-xr-x ansible  ansible ]  myvhost
+    ├── [drwxr-xr-x ansible  ansible ]  files
+    ├── [drwxr-xr-x ansible  ansible ]  handlers
+    │   └── [-rw-r--r-- ansible  ansible ]  main.yml
+    ├── [drwxr-xr-x ansible  ansible ]  meta
+    │   └── [-rw-r--r-- ansible  ansible ]  main.yml
+    ├── [-rw-r--r-- ansible  ansible ]  README.md
+    ├── [drwxr-xr-x ansible  ansible ]  tasks
+    │   └── [-rw-r--r-- ansible  ansible ]  main.yml
+    └── [drwxr-xr-x ansible  ansible ]  templates
+        └── [-rw-r--r-- ansible  ansible ]  vhost.conf.j2
+
+11 directories, 9 files
+[ansible@ansible ~/ansible/09_roles_create/roles]$ c
+tre
+bash: tre: command not found...
+[ansible@ansible ~/ansible/09_roles_create/roles]$ c
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree
+.
+├── myfirewall
+│   ├── defaults
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   └── tasks
+│       └── main.yml
+└── myvhost
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    └── templates
+        └── vhost.conf.j2
+
+11 directories, 9 files
+viemyvhost/meta/main.yml
+  1 #SPDX-License-Identifier: MIT-0
+  2 galaxy_info:  3   author: your name  4   description: your role description
+  5   company: your company (optional)
+  6
+  7   # If the issue tracker for your role is not on github, uncomment the
+  8   # next line and provide a value
+  9   # issue_tracker_url: http://example.com/issue/tracker
+ 10
+ 11   # Choose a valid license ID from https://spdx.org - some suggested licenses:
+ 12   # - BSD-3-Clause (default)
+ 13   # - MIT
+ 14   # - GPL-2.0-or-later
+ 15   # - GPL-3.0-only
+ 16   # - Apache-2.0
+ 17   # - CC-BY-4.0
+ 18   license: license (GPL-2.0-or-later, MIT, etc)
+ 19
+ 20   min_ansible_version: 2.2
+ 21
+ 22   # If this a Container Enabled role, provide the minimum Ansible Container version.
+ 23   # min_ansible_container_version:
+ 24
+ 25   galaxy_tags: []
+ 26     # List tags for your role here, one per line. A tag is a keyword that describes
+ 27     # and categorizes the role. Users find roles by searching for tags. Be sure to
+ 28     # remove the '[]' above, if you add tags to this list.
+ 29     #
+ 30     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
+ 31     #       Maximum 20 tags per role.
+ 32
+ 33 dependencies: []
+ 34   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+ 35   # if you add dependencies to this list.
+~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   2~@k   3~@@   9i -- INSERT --3,19Aleee654321L2e3,4543e4,56J7U8N9H20E1E243765432102987654321019876C7o8n9f20i1g2u3r4i5n6g78t9h30e12w3e4b56s7e8r9v40e1r21()5,35(432102987654321019876543212s3o4l5d6e7s8k96,1 7,198910,11,1923,104,1956,177,168,199,1 20,191,1 2,1934,1 []5,[]6,197[]8[]9,6 30,1912,1 []3,[]4,19542
+~36   # 6,5  37   # 731                                                                                                                        6,3-- 5r6l76o7l8rroles09 876554313[]5[]4,3 213[]7- [6
+3dependencies: [  # List your role dependencies here, one per line. Be sure to remove the '[]' above,4
+ 35~                                                                                                                                              33,16All # List your role dependencies here, one per line. Be sure to remove the '[]' above,- 5 34 # List your role dependencies here, one per line. Be sure to remove the '[]' above,5
+ 3634,1All # List your role dependencies here, one per line. Be sure to remove the '[]' above,35645{67r8o9lrole:23m4y5f6i7r8e9w20a1l2l3,45p6r7o8t9s3029876o7r8ports:1h2t3t4p5,67h8t9t40p1s2]32375125742432103987ports0298765432101987role109 87-- 5r6o7role:10
+~37   7,3 1                                                                                                                                    6,101m2y3f4i5r6e7w8a9l20l1
+ 37   7,3 5p6o7r8ports:1
+ 38     ~                                                                                                                                              38,5Bot7-8h9t10t1p2
+ 39       ~                                                                                                                                              39,7Bot9-109 7-8h9t10t1p2s32109 - https98- http998101923429,6 4,1194,139,13   1 #SPDX-License-Identifier: MIT-0
+>4;m"myvhost/meta/main.yml"539L,31256BNwrittenNHEE5JUNHE456,1 7,158910,11,1523,104,155678ense ()48(74239721298765410^[  18,19Allu1 change; before #11  8 seconds ago(GPL-2.0-or-later, MIT, etc)18,47All18,47All^[  ^[  ~@k   ~@k   ()6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   39~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   29~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   ()0~@k  ()1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9^[  ^[  ::wq
+>4;mansible-playbook --syntax-check myvhost/meta/main.yml
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not match 'all'
+[ERROR]: A playbook must be a list of plays, got a <class 'ansible.module_utils._internal._datatag._AnsibleTaggedDict'> instead: /home/ansible/ansible/09_roles_create/roles/myvhost/meta/main.yml
+Origin: /home/ansible/ansible/09_roles_create/roles/myvhost/meta/main.yml:2:1
+
+1 #SPDX-License-Identifier: MIT-0
+2 galaxy_info:
+  ^ column 1
+
+vinsible@ansible ~/ansible/09_roles_create/roles]$ ansible-playbook --syntax-check myvhost/meta/main.yml
+  1 #SPDX-License-Identifier: MIT-0
+  2 galaxy_info:  3   author: Lee,JUNHEE  4   description: Configuring the web server
+  5   company: soldesk
+  6
+  7   # If the issue tracker for your role is not on github, uncomment the
+  8   # next line and provide a value
+  9   # issue_tracker_url: http://example.com/issue/tracker
+ 10
+ 11   # Choose a valid license ID from https://spdx.org - some suggested licenses:
+ 12   # - BSD-3-Clause (default)
+ 13   # - MIT
+ 14   # - GPL-2.0-or-later
+ 15   # - GPL-3.0-only
+ 16   # - Apache-2.0
+ 17   # - CC-BY-4.0
+ 18   license: license (GPL-2.0-or-later, MIT, etc)
+ 19
+ 20   min_ansible_version: 2.2
+ 21
+ 22   # If this a Container Enabled role, provide the minimum Ansible Container version.
+ 23   # min_ansible_container_version:
+ 24
+ 25   galaxy_tags: []
+ 26     # List tags for your role here, one per line. A tag is a keyword that describes
+ 27     # and categorizes the role. Users find roles by searching for tags. Be sure to
+ 28     # remove the '[]' above, if you add tags to this list.
+ 29     #
+ 30     # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
+ 31     #       Maximum 20 tags per role.
+ 32
+ 33 dependencies:
+ 34   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+ 35   # if you add dependencies to this list.
+ 36   - role: myfirewall
+ 37     ports:
+ 38       - http
+ 39       - https
+>4;m>4;m1@c1@a1@t1@                                                                                                                            ~                                                                                                                                              ~                                                                                                                                              18,3All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        76543210,0-19,3   ~@k   876,0-15,3  4~@k   321~@k   ^[  ^[  ::q
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: Lee,JUNHEE
+  description: Configuring the web server
+  company: soldesk
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  # Choose a valid license ID from https://spdx.org - some suggested licenses:
+  # - BSD-3-Clause (default)
+  # - MIT
+  # - GPL-2.0-or-later
+  # - GPL-3.0-only
+  # - Apache-2.0
+  # - CC-BY-4.0
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.2
+
+  # If this a Container Enabled role, provide the minimum Ansible Container version.
+  # min_ansible_container_version:
+
+  galaxy_tags: []
+    # List tags for your role here, one per line. A tag is a keyword that describes
+    # and categorizes the role. Users find roles by searching for tags. Be sure to
+    # remove the '[]' above, if you add tags to this list.
+    #
+    # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
+    #       Maximum 20 tags per role.
+
+dependencies:
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.
+  - role: myfirewall
+    ports:
+      - http
+      - https
+cd ..
+ls
+ansible.cfg  files  inventory  roles  use-vhost-role.yml
+cat roles/myfirewall/tasks/main.yml
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for myfirewall
+
+########################################
+# 1) 패키지 설치 - firewalld
+# 2) 서비스 기동 - firewalld.service
+# 3) 방화벽 서비스 등록 - http, https = myvhost-ports
+########################################
+
+# 1) 패키지 설치 - firewalld
+- name: 1) 패키지 설치 - firewalld
+  ansible.builtin.dnf:
+    name: firewalld
+    state: present
+
+# 2) 서비스 기동 - firewalld.service
+- name: 2) 서비스 기동 - firewalld.service
+  ansible.builtin.systemd_service:
+    name: firewalld
+    state: started
+    enabled: true
+
+# 3) 방화벽 서비스 등록 - http, https = myvhost-ports
+- name : 3) 방화벽 서비스 등록 - http, https
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: enabled
+    permanet: true
+    immediate: true
+  loop: "{{ ports }}"
+
+le-playbook use-vhost-role.yml
+
+PLAY [가상 호스트 설정] ***********************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [가상 호스트 설정 역할] ******************************************************************************************************************
+included: myvhost for ansible1.example.com
+
+TASK [myfirewall : 1) 패키지 설치 - firewalld] ************************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myfirewall : 2) 서비스 기동 - firewalld.service] ****************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myfirewall : 3) 방화벽 서비스 등록 - http, https] ***************************************************************************************
+[ERROR]: Task failed: Module failed: Unsupported parameters for (ansible.posix.firewalld) module: permanet. Supported parameters include: forward, icmp_block, icmp_block_inversion, immediate, interface, masquerade, offline, permanent, port, port_forward, protocol, rich_rule, service, source, state, target, timeout, zone.
+Origin: /home/ansible/ansible/09_roles_create/roles/myfirewall/tasks/main.yml:25:3
+
+23
+24 # 3) 방화벽 서비스 등록 - http, https = myvhost-ports
+25 - name : 3) 방화벽 서비스 등록 - http, https
+     ^ column 3
+
+failed: [ansible1.example.com] (item=http) => {"ansible_loop_var": "item", "changed": false, "item": "http", "msg": "Unsupported parameters for (ansible.posix.firewalld) module: permanet. Supported parameters include: forward, icmp_block, icmp_block_inversion, immediate, interface, masquerade, offline, permanent, port, port_forward, protocol, rich_rule, service, source, state, target, timeout, zone."}
+failed: [ansible1.example.com] (item=https) => {"ansible_loop_var": "item", "changed": false, "item": "https", "msg": "Unsupported parameters for (ansible.posix.firewalld) module: permanet. Supported parameters include: forward, icmp_block, icmp_block_inversion, immediate, interface, masquerade, offline, permanent, port, port_forward, protocol, rich_rule, service, source, state, target, timeout, zone."}
+
+PLAY RECAP ************************************************************************************************************************************
+ansible1.example.com       : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/09_roles_create]$ ansible-playbook use-vhost-role.yml
+
+PLAY [가상 호스트 설정] ***********************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [가상 호스트 설정 역할] ******************************************************************************************************************
+included: myvhost for ansible1.example.com
+
+TASK [myfirewall : 1) 패키지 설치 - firewalld] ************************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myfirewall : 2) 서비스 기동 - firewalld.service] ****************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myfirewall : 3) 방화벽 서비스 등록 - http, https] ***************************************************************************************
+ok: [ansible1.example.com] => (item=http)
+ok: [ansible1.example.com] => (item=https)
+
+TASK [myvhost : 패키지 설치 - httpd, mod_ssl] *************************************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myvhost : 서비스 설정 - /var/www/vhosts/ansible1 디렉토리 생성] *************************************************************************
+ok: [ansible1.example.com]
+
+TASK [myvhost : 서비스 설정 - /var/www/vhosts/ansible1/index.html 파일 생성] ******************************************************************
+ok: [ansible1.example.com]
+
+TASK [myvhost : 서비스 기동 - httpd] **********************************************************************************************************
+ok: [ansible1.example.com] => (item=httpd)
+
+TASK [myvhost : 서비스 설정 - /etc/httpd/conf.d/vhost.conf] ***********************************************************************************
+ok: [ansible1.example.com]
+
+PLAY RECAP ************************************************************************************************************************************
+ansible1.example.com       : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+curl http://ansible1.example.com
+My Home Page
+[ansible@ansible ~/ansible/09_roles_create]$ ls
+ansible.cfg  files  inventory  roles  use-vhost-role.yml
+[ansible@ansible ~/ansible/09_roles_create]$ cd roles/
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ls
+myfirewall  myvhost
+[ansible@ansible ~/ansible/09_roles_create/roles]$ tree
+.
+├── myfirewall
+│   ├── defaults
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   └── tasks
+│       └── main.yml
+└── myvhost
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    └── templates
+        └── vhost.conf.j2
+
+11 directories, 9 files
+[ansible@ansible ~/ansible/09_roles_create/roles]$ cd ..
+[ansible@ansible ~/ansible/09_roles_create]$ cat use-vhost-role.yml
+- name: 가상 호스트 설정
+  hosts: webservers
+  gather_facts: true
+  tasks:
+    - name: 가상 호스트 설정 역할
+      ansible.builtin.include_role:
+        name: myvhost
+ls rollbacksvc
+ansible.cfg  files  inventory  roles  use-vhost-role.yml
+touch restore_user-vhost-role.yml
+[ansible@ansible ~/ansible/09_roles_create]$ cd roles/
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible-galaxy init rollbacksvc
+- Role rollbacksvc was created successfully
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ll
+total 0
+drwxr-xr-x.  5 ansible ansible  64 Sep 23 19:07 myfirewall
+drwxr-xr-x.  7 ansible ansible  94 Sep 23 18:07 myvhost
+drwxr-xr-x. 10 ansible ansible 135 Sep 23 19:35 rollbacksvc
+cat rollbacksvc/tasks/main.yml
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for rollbacksvc
+#####################################
+#
+# * 방화벽 포트 제거: http, https     -> 변수
+# * 서비스 종료: httpd, firewalld     -> 변수
+# * 디렉토리/파일 삭제:
+#       - /var/www/html/index.html      -> 변수
+#       - /etc/httpd/conf.d/vhost.conf  -> 변수
+#       - /var/www/vhosts               -> 변수
+# * 패키지 삭제: httpd, mod_ssl
+#
+#####################################
+- name: 1) 방화벽 포트 제거 - {{ fw_svcs }}
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    state: disabled
+    permanent: true
+    immediate: true
+  loop: "{{ fw_svcs }}"
+  ignore_errors: true
+
+- name: 2) 서비스 종료 - {{ svcs }}
+  ansible.builtin.systemd_service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop: "{{ svcs }}"
+  ignore_errors: true
+
+- name: 3) 디렉토리 파일 삭제 - {{ myfiles }}
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ myfiles }}"
+
+- name: 4) 패키지 삭제 - {{ pkgs }}
+  ansible.builtin.dnf:
+    name: "{{ pkgs }}"
+    state: absent
+defaults/  meta/      README.md  tasks/     tests/
+[ansible@ansible ~/ansible/09_roles_create/roles]$ cat rollbacksvc/meta/main.yml
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: your name
+  description: your role description
+  company: your company (optional)
+
+  # If the issue tracker for your role is not on github, uncomment the
+  # next line and provide a value
+  # issue_tracker_url: http://example.com/issue/tracker
+
+  # Choose a valid license ID from https://spdx.org - some suggested licenses:
+  # - BSD-3-Clause (default)
+  # - MIT
+  # - GPL-2.0-or-later
+  # - GPL-3.0-only
+  # - Apache-2.0
+  # - CC-BY-4.0
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.2
+
+  # If this a Container Enabled role, provide the minimum Ansible Container version.
+  # min_ansible_container_version:
+
+  galaxy_tags: []
+    # List tags for your role here, one per line. A tag is a keyword that describes
+    # and categorizes the role. Users find roles by searching for tags. Be sure to
+    # remove the '[]' above, if you add tags to this list.
+    #
+    # NOTE: A tag is limited to a single word comprised of alphanumeric characters.
+    #       Maximum 20 tags per role.
+
+dependencies: []
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.
+
+
+[ansible@ansible ~/ansible/09_roles_create/roles]$ cat rollbacksvc/defaults/main.yml
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for rollbacksvc
+
+fw_svcs:
+  - http
+  - https
+
+svcs:
+  - httpd
+  - firewalld
+
+pkgs:
+  - httpd
+  - mod_ssl[ansible@ansible ~/ansible/09_roles_create/roles]$ c
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$
+[ansible@ansible ~/ansible/09_roles_create/roles]$ c
+https://galaxy.ansible.com &
+[1] 18766
+[ansible@ansible ~/ansible/09_roles_create/roles]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+^C
+[1]+  Done                    firefox https://galaxy.ansible.com
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible --
+myfirewall/  myvhost/     rollbacksvc/
+[ansible@ansible ~/ansible/09_roles_create/roles]$ firefox https://galaxy.ansible.com &
+[1] 19551
+[ansible@ansible ~/ansible/09_roles_create/roles]$ pip3 inst[1]+  Done                    firefox https://galaxy.ansible.com
+^Cl
+complete
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: argcomplete in /usr/lib/python3.12/site-packages (3.2.2)
+Collecting argcomplete
+  Downloading argcomplete-3.7.2-py3-none-any.whl.metadata (16 kB)
+Downloading argcomplete-3.7.2-py3-none-any.whl (43 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.3/43.3kkB?12.7 MB/s:eta 0:00:00
+Installing collected packages: argcomplete
+Successfully installed argcomplete-3.7.2
+i
+ansible             ansible-connection  ansible-galaxy      ansible-navigator   ansible-runner      ansinit
+ansible-builder     ansible-console     ansible-inventory   ansible-playbook    ansible-test
+ansible-config      ansible-doc         ansible-lint        ansible-pull        ansible-vault
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible --
+--args                      --become-password-file      --forks                     --one-line                  --timeout
+--ask-become-pass           --become-user               --help                      --playbook-dir              --tree
+--ask-pass                  --check                     --inventory                 --poll                      --user
+--ask-vault-pass            --connection                --inventory-file            --private-key               --vault-id
+--ask-vault-password        --connection-password-file  --key-file                  --scp-extra-args            --vault-pass-file
+--background                --conn-pass-file            --limit                     --sftp-extra-args           --vault-password-file
+--become                    --diff                      --list-hosts                --ssh-common-args           --verbose
+--become-method             --extra-vars                --module-name               --ssh-extra-args            --version
+--become-pass-file          --flush-cache               --module-path               --task-timeout
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible --
+--args                      --become-password-file      --forks                     --one-line                  --timeout
+--ask-become-pass           --become-user               --help                      --playbook-dir              --tree
+--ask-pass                  --check                     --inventory                 --poll                      --user
+--ask-vault-pass            --connection                --inventory-file            --private-key               --vault-id
+--ask-vault-password        --connection-password-file  --key-file                  --scp-extra-args            --vault-pass-file
+--background                --conn-pass-file            --limit                     --sftp-extra-args           --vault-password-file
+--become                    --diff                      --list-hosts                --ssh-common-args           --verbose
+--become-method             --extra-vars                --module-name               --ssh-extra-args            --version
+--become-pass-file          --flush-cache               --module-path               --task-timeout
+[ansible@ansible ~/ansible/09_roles_create/roles]$ ansible --
+--args                      --become-password-file      --forks                     --one-line                  --timeout
+--ask-become-pass           --become-user               --help                      --playbook-dir              --tree
+--ask-pass                  --check                     --inventory                 --poll                      --user
+--ask-vault-pass            --connection                --inventory-file            --private-key               --vault-id
+--ask-vault-password        --connection-password-file  --key-file                  --scp-extra-args            --vault-pass-file
+--background                --conn-pass-file            --limit                     --sftp-extra-args           --vault-password-file
+--become                    --diff                      --list-hosts                --ssh-common-args           --verbose
+--become-method             --extra-vars                --module-name               --ssh-extra-args            --version
+--become-pass-file          --flush-cache               --module-path               --task-timeout
+[ansible@ansible ~/ansible/09_roles_create/roles]$ clearle --
+exit
+exit
+
+Script done on 2026-09-23 20:29:23+09:00 [COMMAND_EXIT_CODE="0"]
