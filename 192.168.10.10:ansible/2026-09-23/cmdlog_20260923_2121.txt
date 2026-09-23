@@ -1,0 +1,317 @@
+Script started on 2026-09-23 21:21:45+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="143" LINES="43"]
+[ansible@ansible ~]$ 인증 정보 생성 vi ~/.git-credential > https://ID:Token@github.com
+bash: https://ID:Token@github.com: No such file or directory
+[ansible@ansible ~]$ c
+-credentials
+iconfig --global credential.helper store
+[ansible@ansible ~]$ git config --list
+user.email=heedlwnsgml@naver.com
+user.name=heedlwnsgml
+credential.helper=store
+[ansible@ansible ~]$ git push -u origin main
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+[ansible@ansible ~]$ git config --list
+user.email=heedlwnsgml@naver.com
+user.name=heedlwnsgml
+credential.helper=store
+[ansible@ansible ~]$ git push -u origin main
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+cdn/home/ansible/ansible/09_roles_download/roles/demoweb2wnload/roles/demoweb2
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ git/push/-usoriginnmaine/09_roles_download/roles/demoweb2
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 473 bytes | 473.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/heedlwnsgml/ljh_ansible_web.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ git add .
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ git commit -m '2nd commit'
+[main d7682c8] 2nd commit
+ 8 files changed, 129 insertions(+)
+ create mode 100644 meta/.galaxy_install_info
+ create mode 100644 meta/main.yml
+ create mode 100644 tasks/main.yml
+ create mode 100644 templates/index.html
+ create mode 100644 tests/inventory
+ create mode 100644 tests/restore_test.yml
+ create mode 100644 tests/test.yml
+ create mode 100644 vars/main.yml
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ git push origin main
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (15/15), 2.20 KiB | 2.20 MiB/s, done.
+Total 15 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/heedlwnsgml/ljh_ansible_web.git
+   26f0199..d7682c8  main -> main
+cd ..
+[ansible@ansible ~/ansible/09_roles_download/roles]$ cd ..
+[ansible@ansible ~/ansible/09_roles_download]$ cd ..
+[ansible@ansible ~/ansible]$ git add .
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+cd 09_roles_download/
+[ansible@ansible ~/ansible/09_roles_download]$ cd roles/
+emoweb
+emoweb2
+ansible-galaxy sear
+collection  -h          --help      role        -v          --verbose   --version
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ ansible-galaxy
+collection  -h          --help      role        -v          --verbose   --version
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ ansible-galaxy search
+collection  -h          --help      role        -v          --verbose   --version
+[ansible@ansible ~/ansible/09_roles_download/roles/demoweb2]$ ansible-galaxy install ljhweb5
+ljhweb5
+
+Starting galaxy role install process
+- downloading role 'ljhweb5', owned by
+- downloading role from https://github.com/heedlwnsgml/ljh_ansible_web/archive/main.tar.gz
+- extracting ljhweb5 to /home/ansible/.ansible/roles/ljhweb5
+- ljhweb5 (main) was installed successfully
+cd ..hw
+[ansible@ansible ~/ansible/09_roles_download/roles]$ ls
+croissant.git  demoweb  demoweb2  requirements2.yml  requirements.yml  student.example
+[ansible@ansible ~/ansible/09_roles_download/roles]$ which ljhweb5
+/usr/bin/which: no ljhweb5 in (/home/ansible/.local/bin:/home/ansible/.local/bin:/home/ansible/.local/bin:/home/ansible/.local/bin:/home/ansible/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin)
+[ansible@ansible ~/ansible/09_roles_download/roles]$ cd ..
+[ansible@ansible ~/ansible/09_roles_download]$ cd /home/ansible/ansible/09_roles_download
+ansible-galaxy instal1@l1@j1@h1@5roles
+Starting galaxy role install process
+- downloading role 'ljhweb5', owned by
+- downloading role from https://github.com/heedlwnsgml/ljh_ansible_web/archive/main.tar.gz
+- extracting ljhweb5 to /home/ansible/ansible/09_roles_download/roles/ljhweb5
+- ljhweb5 (main) was installed successfully
+[ansible@ansible ~/ansible/09_roles_download]$ vi test.yml
+  1 ---
+  2 - name: Demo Web  3   hosts: all  4   tasks:
+  5     - name: Demo Web Start
+  6       ansible.builtin.include_role:
+  7 name: demoweb
+>4;m"test.yml" 7L, 129B written                                                                                                                ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              ~                                                                                                                                              1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@@   21i -- INSERT --7,21Albb1b8765l6j7h8w9e20b152^[  7,21All::wq
+>4;m[ansible@ansible ~/ansible/09_roles_download]$ anp restore_test.yml
+
+PLAY [Restore Demo Web] ***********************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+ok: [web1]
+
+TASK [1) 방화벽 포트 제거] ********************************************************************************************************************
+changed: [web1] => (item=http)
+changed: [web1] => (item=https)
+
+TASK [2) 서비스 종료] *************************************************************************************************************************
+changed: [web1] => (item=httpd)
+
+TASK [3) 서비스 설정 삭제] ********************************************************************************************************************
+changed: [web1]
+
+TASK [4) 패키지 삭제] *************************************************************************************************************************
+changed: [web1]
+
+PLAY RECAP ************************************************************************************************************************************
+web1                       : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/09_roles_download]$ # (ansible)
+# 역할 복사
+cd ~/ansible/09_roles_download
+cp -r ~/ansible/09_roles_create/roles/rollbacksvc ~/ansible/09_roles_download/roles/
+
+# 플레이북 생성 및 실행
+cat << EOF > restore_test.yml
+---
+- name: Restore test.yml
+  hosts: all
+  roles:
+    - rollbacksvc
+  vars:
+    web_files:
+      - /var/www/html/index.html
+
+EOF
+ansible-playbook restore_test.yml
+# (ansible)
+# 역할 복사
+cd ~/ansible/09_roles_download
+cp -r ~/ansible/09_roles_create/roles/rollbacksvc ~/ansible/09_roles_download/roles/
+
+# 플레이북 생성 및 실행
+cat << EOF > restore_test.yml
+---
+- name: Restore test.yml
+  hosts: all
+  roles:
+    - rollbacksvc
+  vars:
+    web_files:
+      - /var/www/html/index.html
+
+EOF
+ansible-playbook restore_test.yml
+
+
+PLAY [Restore test.yml] ***********************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************
+ok: [web1]
+
+TASK [rollbacksvc : 1) 방화벽 포트 제거 - ['http', 'https']] **********************************************************************************
+ok: [web1] => (item=http)
+ok: [web1] => (item=https)
+
+TASK [rollbacksvc : 2) 서비스 종료 - ['httpd', 'firewalld']] **********************************************************************************
+[ERROR]: Task failed: Module failed: Could not find the requested service httpd: host
+Origin: /home/ansible/ansible/09_roles_download/roles/rollbacksvc/tasks/main.yml:24:3
+
+22   ignore_errors: true
+23
+24 - name: 2) 서비스 종료 - {{ svcs }}
+     ^ column 3
+
+failed: [web1] (item=httpd) => {"ansible_loop_var": "item", "changed": false, "item": "httpd", "msg": "Could not find the requested service httpd: host"}
+changed: [web1] => (item=firewalld)
+...ignoring
+[WARNING]: Encountered 1 template error.
+error 1 - 'myfiles' is undefined
+Origin: /home/ansible/ansible/09_roles_download/roles/rollbacksvc/tasks/main.yml:32:9
+
+30   ignore_errors: true
+31
+32 - name: 3) 디렉토리 파일 삭제 - {{ myfiles }}
+           ^ column 9
+
+
+TASK [rollbacksvc : 3) 디렉토리 파일 삭제 - << error 1 - 'myfiles' is undefined >>] ***********************************************************
+[ERROR]: Task failed: 'myfiles' is undefined
+
+Task failed.
+Origin: /home/ansible/ansible/09_roles_download/roles/rollbacksvc/tasks/main.yml:32:3
+
+30   ignore_errors: true
+31
+32 - name: 3) 디렉토리 파일 삭제 - {{ myfiles }}
+     ^ column 3
+
+<<< caused by >>>
+
+'myfiles' is undefined
+Origin: /home/ansible/ansible/09_roles_download/roles/rollbacksvc/tasks/main.yml:36:9
+
+34     path: "{{ item }}"
+35     state: absent
+36   loop: "{{ myfiles }}"
+           ^ column 9
+
+fatal: [web1]: FAILED! => {"changed": false, "msg": "Task failed: 'myfiles' is undefined"}
+
+PLAY RECAP ************************************************************************************************************************************
+web1                       : ok=3    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=1
+
+[ansible@ansible ~/ansible/09_roles_download]$ c
+ansible-galaxy collection list
+
+# /home/ansible/.ansible/collections/ansible_collections
+Collection        Version
+----------------- -------
+ansible.mysql     5.2.0
+
+# /usr/share/ansible/collections/ansible_collections
+Collection        Version
+----------------- -------
+ansible.posix     2.2.1
+ansible.utils     6.0.1
+community.crypto  2.26.7
+community.general 10.7.3
+ansible-galaxyncollection install /tmp/community-dns-1.2.0.tar.gz \
+[ansible@ansible ~/ansible/09_roles_download]$ ansible-galaxy collection install /tmp/community-dns-1.2.0.tar.gz \
+  -p collections
+[ERROR]: Neither the collection requirement entry key 'name', nor 'source' point to a concrete resolvable collection artifact. Also 'name' is not an FQCN. A valid collection name must be in the format <namespace>.<collection>. Please make sure that the namespace and the collection name contain characters from [a-zA-Z0-9_] only.
+
+Could not find /tmp/community-dns-1.2.0.tar.gz.
+
+ansible-galaxy collection install http://www.example.com/redhat-insights-1.0.5.tar.gz \
+[ansible@ansible ~/ansible/09_roles_download]$ ansible-galaxy collection install http://www.example.com/redhat-insights-1.0.5.tar.gz \
+  -p collections
+Downloading http://www.example.com/redhat-insights-1.0.5.tar.gz to /home/ansible/.ansible/tmp/ansible-local-22074q_rn4xnt/tmpyya9euru/redhat-insights-1.0.5-urubkew1
+[ERROR]: Failed to download collection tar from 'http://www.example.com/redhat-insights-1.0.5.tar.gz': HTTP Error 404: Not Found
+
+Failed to download collection tar from 'http://www.example.com/redhat-insights-1.0.5.tar.gz': HTTP Error 404: Not Found
+
+<<< caused by >>>
+
+HTTP Error 404: Not Found
+
+[ansible@ansible ~/ansible/09_roles_download]$ . ansible-galaxy collection isntall git@git.example.com:organization/repo_name.git \
+[ansible@ansible ~/ansible/09_roles_download]$  ansible-galaxy collection isntall git@git.example.com:organization/repo_name.git \
+  -p collections
+bash: import: command not found...
+Install package 'ImageMagick' to provide command 'import'? [N/y] n
+
+
+bash: import: command not found...
+Install package 'ImageMagick' to provide command 'import'? [N/y] n
+
+
+bash: from: command not found...
+bash: /home/ansible/.local/bin/ansible-galaxy: line 7: syntax error near unexpected token `('
+bash: /home/ansible/.local/bin/ansible-galaxy: line 7: `    sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])'
+[ansible@ansible ~/ansible/09_roles_download]$ ansible-galaxyycollectionnisntalllgit@git.example.com:organization/repo_name.gittt -ppcollectionsss
+
+usage: ansible-galaxy collection [-h] COLLECTION_ACTION ...
+ansible-galaxy collection: error: argument COLLECTION_ACTION: invalid choice: 'isntall' (choose from download, init, build, publish, install, list, verify)
+
+usage: ansible-galaxy [-h] [--version] [-v] TYPE ...
+
+Perform various Role and Collection related operations.
+
+positional arguments:
+  TYPE
+    collection   Manage an Ansible Galaxy collection.
+    role         Manage an Ansible Galaxy role.
+
+options:
+  --version      show program's version number, config file location, configured module search path, module location, executable location and
+                 exit
+  -h, --help     show this help message and exit
+  -v, --verbose  Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently
+                 evaluate up to -vvvvvv. A reasonable level to start is -vvv, connection debugging might require -vvvv. This argument may be
+                 specified multiple times.
+[ansible@ansible ~/ansible/09_roles_download]$ ansible-galaxy collection isntall git@git.example.com:organization/repo_name.git \
+[ansible@ansible ~/ansible/09_roles_download]$ ansible-galaxy collection isntall git@git.example.com:organization/repo_name.git \
+  -p collections
+usage: ansible-galaxy collection [-h] COLLECTION_ACTION ...
+ansible-galaxy collection: error: argument COLLECTION_ACTION: invalid choice: 'isntall' (choose from download, init, build, publish, install, list, verify)
+
+usage: ansible-galaxy [-h] [--version] [-v] TYPE ...
+
+Perform various Role and Collection related operations.
+
+positional arguments:
+  TYPE
+    collection   Manage an Ansible Galaxy collection.
+    role         Manage an Ansible Galaxy role.
+
+options:
+  --version      show program's version number, config file location, configured module search path, module location, executable location and
+                 exit
+  -h, --help     show this help message and exit
+  -v, --verbose  Causes Ansible to print more debug messages. Adding multiple -v will increase the verbosity, the builtin plugins currently
+                 evaluate up to -vvvvvv. A reasonable level to start is -vvv, connection debugging might require -vvvv. This argument may be
+                 specified multiple times.
+[ansible@ansible ~/ansible/09_roles_download]$ mkdir -p collections
+[ansible@ansible ~/ansible/09_roles_download]$ vi collections/requirements.ymlansibel-galaxy collection install -r collections/requirements.yml -p collections
+ansibel-galaxy collection install -r collections/requirements.yml -p collections
+bash: ansibel-galaxy: command not found...
+Similar command is: 'ansible-galaxy'
+el-galaxy collection install -r collections/requirements.yml -p collectionsansible-galaxy collection install -r collections/requirements.yml -p collections
+ansible-galaxy collection install -r collections/requirements.yml -p collections
+[ERROR]: The requirements file '/home/ansible/ansible/09_roles_download/collections/requirements.yml' does not exist.
+exit
+exit
+
+Script done on 2026-09-23 21:51:27+09:00 [COMMAND_EXIT_CODE="1"]
