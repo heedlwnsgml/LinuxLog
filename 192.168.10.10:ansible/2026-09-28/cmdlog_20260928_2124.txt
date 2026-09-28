@@ -1,0 +1,664 @@
+Script started on 2026-09-28 21:24:19+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="157" LINES="37"]
+clearemoteuset-urlaoriginehttps://github.com/heedlwnsgml/ansible.git
+_
+10_pkgadmin/ 10_selinux/  10_users/
+[ansible@ansible ~]$ cd ~/ansible/10_users/
+[ansible@ansible ~/ansible/10_users]$ clear
+e localhost -m setup -a 'filter=ansible_*' | grep -i redhat
+        "ansible_os_family": "RedHat",
+
+reboot             reenable           reload             reload-or-restart  rescue             reset-failed       restart            revert
+[ansible@ansible ~/ansible/10_users]$ sudo systemctl reload sshd
+[ansible@ansible ~/ansible/10_users]$ sshd -ystemctl reload sshd
+unknown option -- y
+OpenSSH_9.9p1, OpenSSL 3.5.7 9 Jun 2026
+usage: sshd [-46DdeGiqTtV] [-C connection_spec] [-c host_cert_file]
+            [-E log_file] [-f config_file] [-g login_grace_time]
+            [-h host_key_file] [-o option] [-p port] [-u len]
+[ansible@ansible ~/ansible/10_users]$ sshd -t
+/etc/ssh/sshd_config: Permission denied
+[ansible@ansible ~/ansible/10_users]$ sudo sshd -t
+[ansible@ansible ~/ansible/10_users]$ c
+mkdirb-p@~/ansible/10_boot_scheduling &&dcd ~/ansible/10_boot_schedulinging && cd ~/ansible/10_boot_scheduling
+[ansible@ansible ~/ansible/10_boot_scheduling]$ cat <<'EOF' > ansible.cfg
+[defaults]
+inventory = ./inventory
+
+[privilege_escalation]
+become = true
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ cat <<'EOF' > ansible.cfg
+[defaults]
+inventory = ./inventory
+
+[privilege_escalation]
+become = true
+
+EOF
+[ansible@ansible ~/ansible/10_boot_scheduling]$ cat <<'EOF' > inventory
+[webservers]
+web4
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ cat <<'EOF' > inventory
+[webservers]
+web4
+
+EOF
+[ansible@ansible ~/ansible/10_boot_scheduling]$  vi crontab.yml
+  1
+>4;m"crontab.yml" [New] 0L, 0B written                                                                                                                    ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ::wq
+>4;m[ansible@ansible ~/ansible/10_boot_scheduling]$ cat crontab.yml
+---
+####################################################
+# 작업 요구 사항:
+# 요구사항:
+# * CMD: date >> /tmp/mydate.txt
+# * 작업 = devops 사용자가 월요일부터 금요일까지 5분마다
+#   실행하도록 cron 작업을 구성한다
+####################################################
+- name: Cron 작업 구성
+  hosts: webservers
+  tasks:
+    - name: Crontab 작업 추가
+      ansible.builtin.cron:
+        # cat /etc/cron.d/add-date-file
+        # => */5 * * * 1-5 devops date >> /tmp/mydate.txt
+        name: "나의 cron 작업이당"
+        job: date >> /tmp/mydate.txt
+        user: devops
+        minute: "*/5"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: 1-5
+        cron_file: add-date-file
+        state: present
+le-playbook crontab.yml --syntax-check
+
+playbook: crontab.yml
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ansible-playbook crontab.yml --syntax-check
+
+PLAY [Cron 작업 구성] ************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [Crontab 작업 추가] *********************************************************************************************************************************
+changed: [web4]
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+e webservers -m shell -a 'cat /etc/cron.d/add-date-file'
+web4 | CHANGED | rc=0 >>
+#Ansible: 나의 cron 작업이당
+*/5 * * * 1-5 devops date >> /tmp/mydate.txt
+[ansible@ansible ~/ansible/10_boot_scheduling]$ vi restore_crontab.yml
+  1
+~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: Restore crontab.yml  3   hosts: webservers  4   become: true
+  5   tasks:  6     - name: Crontab 작업 추가  7       ansible.builtin.cron:
+  8         name: "나의 cron 작업이당"  9         job: date >> /tmp/mydate.txt
+ 10         user: devops 11         crocron_file: add-date-file
+>4;m"restore_crontab.yml" [New],13L,l293B writtenq\
+>4;m[ansible@ansible ~/ansible/10_boot_scheduling]$ cat restore_crontab.yml
+---
+- name: Restore crontab.yml
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Crontab 작업 추가
+      ansible.builtin.cron:
+        name: "나의 cron 작업이당"
+        job: date >> /tmp/mydate.txt
+        user: devops
+        cron_file: add-date-file
+        state: absent
+
+e-playbook restore_crontab.yml --syntax-check
+
+playbook: restore_crontab.yml
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ansible-playbook restore_crontab.yml --syntax-check
+
+PLAY [Restore crontab.yml] *******************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [Crontab 작업 추가] *********************************************************************************************************************************
+changed: [web4]
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ vi at.yml
+  1
+~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 ######################################################
+  3 # at 작업 요구 사항:  4 # 요구사항:  5 # * CMD: date >> ~/myat.txt
+  6 # * 작업:   7 #   - 향후 1분 뒤에 devops 사용자로 실행되는 작업 스케줄링을 진행한다.
+  8 #   - 작업이 존재하는 경우 다시 등록되지 않도록 한다.
+  9 ###################################################### 10 - name: at 작업 구성
+ 11   hosts: webservers 12   become: true 13   become_user: devops
+ 14   tasks: 15     - name: at 작업 추가 16       ansible.builtin.at:
+ 17         command: date > /tmp/myat.txt 18         count: 1
+ 19         units: minutes 20         unique: true 21         ststate: present
+>4;m"at.yml"l[New][22L,w636B written
+>4;mt.yml
+---
+######################################################
+# at 작업 요구 사항:
+# 요구사항:
+# * CMD: date >> ~/myat.txt
+# * 작업:
+#   - 향후 1분 뒤에 devops 사용자로 실행되는 작업 스케줄링을 진행한다.
+#   - 작업이 존재하는 경우 다시 등록되지 않도록 한다.
+######################################################
+- name: at 작업 구성
+  hosts: webservers
+  become: true
+  become_user: devops
+  tasks:
+    - name: at 작업 추가
+      ansible.builtin.at:
+        command: date > /tmp/myat.txt
+        count: 1
+        units: minutes
+        unique: true
+        state: present
+
+le-playbook at.yml --syntax-check
+
+playbook: at.yml
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ansible-playbook at.yml --syntax-check
+
+PLAY [at 작업 구성] **************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [at 작업 추가] **************************************************************************************************************************************
+changed: [web4]
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ssh devops@web4
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 28 19:09:58 2026 from 192.168.10.10
+devops@ansible4:~$ at -l
+devops@ansible4:~$ at -l
+devops@ansible4:~$ exti
+bash: exti: command not found...
+devops@ansible4:~$ ssh devops@web4
+The authenticity of host 'web4 (192.168.10.14)' can't be established.
+ED25519 key fingerprint is SHA256:1bMkFk34LULVwr0CxxwoASCXwOmP5tYn0I1rehLQrOw.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? ^C^[
+devops@ansible4:~$ exit
+logout
+Connection to web4 closed.
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ssh devops@web4
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 28 21:41:08 2026 from 192.168.10.10
+devops@ansible4:~$ at -ll
+watchslsn-lb/tmp/my*.txt ls -l /tmp/my*.txt
+devops@ansible4:~$ exit/mydate.txtansible4.example.com: Mon Sep 28 21:41:47 2026-rw-r--r--. 1 devops devops 32 Sep 28 21:40 /tmp/mydate.txt9
+logout
+Connection to web4 closed.
+[ansible@ansible ~/ansible/10_boot_scheduling]$ clear
+[ansible@ansible ~/ansible/10_boot_scheduling]$ vi target.yml
+  1
+~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 ############################################################
+  3 # 타겟(target) 변경  4 # 요구사항:  5 # * 현재 기본 systemd 부팅 타겟을 가져오고
+  6 # * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+  7 # * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+  8 # * 이를 설정하는 작업을 추가한다.
+  9 ############################################################
+ 10 - name: 타겟 변경 11   hosts: webservers 12   become: true
+ 13   vars: 14     # default_target: "multi-user.target" 15     default_target: "graphical.target"
+ 16   tasks: 17     - name: 현재 기본 systemd 부팅 타겟 가져오기
+ 18       ansible.builtansible.builtin.command:
+ 19         cmd: systemctl get-default 20       changedchanged_when: false
+ 21       register: output1 22  23     - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 24       ansible.ansible.builtin.command:
+ 25         cmd: systemctl set-default {{ default_target }}
+ 26       when:  default_target not in output1["stdout"]
+ 27       changed_when: true 28       register: output_set_default
+ 29  30     # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 31     #   ansible.builtin.file: 32     #     src: /usr/lib/systemd/system/{{ default_target }}
+ 33     #     dest: /etc/systemd/system/default.target
+ 34     #     state: link 35     #     force: true
+>4;m"target.yml":[New]a38L,t1377B writtenoutput["stdout"] 37     #   changed_when: true 38 38,0-1All^[  ^[  ::wq
+>4;mble-playbook target.yml --syntax-check
+
+playbook: target.yml
+[ansible@ansible ~/ansible/10_boot_scheduling]$ catitarget.ymlok target.yml --syntax-check
+---
+############################################################
+# 타겟(target) 변경
+# 요구사항:
+# * 현재 기본 systemd 부팅 타겟을 가져오고
+# * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+# * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+# * 이를 설정하는 작업을 추가한다.
+############################################################
+- name: 타겟 변경
+  hosts: webservers
+  become: true
+  vars:
+    # default_target: "multi-user.target"
+    default_target: "graphical.target"
+  tasks:
+    - name: 현재 기본 systemd 부팅 타겟 가져오기
+      ansible.builtin.command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: output1
+
+    - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+      ansible.builtin.command:
+        cmd: systemctl set-default {{ default_target }}
+      when:  default_target not in output1["stdout"]
+      changed_when: true
+      register: output_set_default
+
+    # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+    #   ansible.builtin.file:
+    #     src: /usr/lib/systemd/system/{{ default_target }}
+    #     dest: /etc/systemd/system/default.target
+    #     state: link
+    #     force: true
+    #   when:  default_target not in output["stdout"]
+    #   changed_when: true
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ 28@ansible-playbook target.yml --syntax-check
+
+PLAY [타겟 변경] *****************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟을 graphical.target으로 설정] *****************************************************************************************************
+changed: [web4]
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ webservers -m shell -a 'systemctl get-default'
+web4 | CHANGED | rc=0 >>
+graphical.target
+[ansible@ansible ~/ansible/10_boot_scheduling]$ vi target.yml
+  1 ---
+  2 ############################################################  3 # 타겟(target) 변경  4 # 요구사항:
+  5 # * 현재 기본 systemd 부팅 타겟을 가져오고
+  6 # * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+  7 # * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+  8 # * 이를 설정하는 작업을 추가한다.
+  9 ############################################################
+ 10 - name: 타겟 변경
+ 11   hosts: webservers
+ 12   become: true
+ 13   vars:
+ 14     # default_target: "multi-user.target"
+ 15     default_target: "graphical.target"
+ 16   tasks:
+ 17     - name: 현재 기본 systemd 부팅 타겟 가져오기
+ 18       ansible.builtin.command:
+ 19 cmd: systemctl get-default
+ 20       changed_when: false
+ 21       register: output1
+ 22
+ 23     - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 24       ansible.builtin.command:
+ 25 cmd: systemctl set-default {{ default_target }}
+ 26       when:  default_target not in output1["stdout"]
+ 27       changed_when: true
+ 28       register: output_set_default
+ 29
+ 30     # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 31     #   ansible.builtin.file:
+ 32     #     src: /usr/lib/systemd/system/{{ default_target }}
+ 33     #     dest: /etc/systemd/system/default.target
+ 34     #     state: link
+ 35     #     force: true
+ 36     #   when:  default_target not in output["stdout"]
+ 37     #   changed_when: true
+ 38
+~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         38,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        1G  1,1   g gdE349: No identifier under cursor1,1AlldG  ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         ~                                                                                                                                                         --No lines in buffer--0,0-1All-- INSERT --0,1All---
+  2 ############################################################
+  3 # 타겟(target) 변경  4 # 요구사항:  5 # * 현재 기본 systemd 부팅 타겟을 가져오고
+  6 # * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+  7 # * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+  8 # * 이를 설정하는 작업을 추가한다.
+  9 ############################################################
+ 10 - name: 타겟 변경 11   hosts: webservers 12   become: true
+ 13   vars: 14     # default_target: "multi-user.target" 15     default_target: "graphical.target"
+ 16   tasks: 17     - name: 현재 기본 systemd 부팅 타겟 가져오기
+ 18       ansibleansible.builtin.command:
+ 19         cmd: systemctl get-default 20       changed_when: false
+ 21       register: output1 22  23     - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 24       ansible.builtin.command:
+ 25         cmd: systemctl set-default {{ default_target }}
+ 26       when:  default_target not in output1["stdout"]
+ 27       changed_when: true 28       register: output_set_default
+ 29  30     # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 31     #   ansible.builtin.file: 32     #     src: /usr/lib/systemd/system/{{ default_target }}
+ 33     #     dest: /etc/systemd/system/default.target
+ 34     #     state: link 35     #     force: true
+ 36     #   when:  default_target not in output["stdout"]
+ 37     #   changed_when: true 38  39     - name: 재부팅 40       ansible.builtin.reboot:
+ 41         reboot_timeout: 300 42       when: output_set_default is changed 43
+ 44     - name: 현재 기본 systemd 부팅 타겟 가져오기(paste) -- 45       ansible.builtin.command:
+ 46 cmd: systemctl get-default 47       changed_when: false
+ 48       register: output2 49
+ 50     - name: 기본 systemd 타겟 확인 51       ansible.builtin.debug:
+ 52 msg: |
+ 53 "OLD Target - {{ output1.stdout }}" 54 "NEW Target - {{ output2.stdout }}"
+>4;m"target.yml" 55L,:1856B written
+>4;m[ansible@ansible ~/ansible/10_boot_scheduling]$ cat target.yml
+---
+############################################################
+# 타겟(target) 변경
+# 요구사항:
+# * 현재 기본 systemd 부팅 타겟을 가져오고
+# * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+# * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+# * 이를 설정하는 작업을 추가한다.
+############################################################
+- name: 타겟 변경
+  hosts: webservers
+  become: true
+  vars:
+    # default_target: "multi-user.target"
+    default_target: "graphical.target"
+  tasks:
+    - name: 현재 기본 systemd 부팅 타겟 가져오기
+      ansible.builtin.command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: output1
+
+    - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+      ansible.builtin.command:
+        cmd: systemctl set-default {{ default_target }}
+      when:  default_target not in output1["stdout"]
+      changed_when: true
+      register: output_set_default
+
+    # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+    #   ansible.builtin.file:
+    #     src: /usr/lib/systemd/system/{{ default_target }}
+    #     dest: /etc/systemd/system/default.target
+    #     state: link
+    #     force: true
+    #   when:  default_target not in output["stdout"]
+    #   changed_when: true
+
+    - name: 재부팅
+      ansible.builtin.reboot:
+        reboot_timeout: 300
+      when: output_set_default is changed
+
+    - name: 현재 기본 systemd 부팅 타겟 가져오기
+      ansible.builtin.command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: output2
+
+    - name: 기본 systemd 타겟 확인
+      ansible.builtin.debug:
+        msg: |
+          "OLD Target - {{ output1.stdout }}"
+          "NEW Target - {{ output2.stdout }}"
+
+e-playbook target.yml --syntax-check
+
+playbook: target.yml
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ansible-playbook target.yml --syntax-check
+
+PLAY [타겟 변경] *****************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟을 graphical.target으로 설정] *****************************************************************************************************
+skipping: [web4]
+
+TASK [재부팅] ********************************************************************************************************************************************
+skipping: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟 확인] ****************************************************************************************************************************
+ok: [web4] => {
+    "msg": "\"OLD Target - graphical.target\"\n\"NEW Target - graphical.target\"\n"
+}
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=4    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$ ansible-playbook target.yml
+
+PLAY [타겟 변경] *****************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟을 graphical.target으로 설정] *****************************************************************************************************
+skipping: [web4]
+
+TASK [재부팅] ********************************************************************************************************************************************
+skipping: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟 확인] ****************************************************************************************************************************
+ok: [web4] => {
+    "msg": "\"OLD Target - graphical.target\"\n\"NEW Target - graphical.target\"\n"
+}
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=4    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_boot_scheduling]$viatarget.ymlmlok target.yml --syntax-check
+ 14     # default_target: "multi-user.target"
+ 15     default_target: "graphical.target"     16   tasks: 17     - name: 현재 기본 systemd 부팅 타겟 가져오기
+ 18       ansible.builtin.command:
+ 19 cmd: systemctl get-default
+ 20       changed_when: false
+ 21       register: output1
+ 22
+ 23     - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 24       ansible.builtin.command:
+ 25 cmd: systemctl set-default {{ default_target }}
+ 26       when:  default_target not in output1["stdout"]
+ 27       changed_when: true
+ 28       register: output_set_default
+ 29
+ 30     # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+ 31     #   ansible.builtin.file:
+ 32     #     src: /usr/lib/systemd/system/{{ default_target }}
+ 33     #     dest: /etc/systemd/system/default.target
+ 34     #     state: link
+ 35     #     force: true
+ 36     #   when:  default_target not in output["stdout"]
+ 37     #   changed_when: true
+ 38
+ 39     - name: 재부팅
+ 40       ansible.builtin.reboot:
+ 41 reboot_timeout: 300
+ 42       when: output_set_default is changed
+ 43
+ 44     - name: 현재 기본 systemd 부팅 타겟 가져오기
+ 45       ansible.builtin.command:
+ 46 cmd: systemctl get-default
+ 47       changed_when: false
+ 48       register: output2
+ 49
+ 50     - name: 기본 systemd 타겟 확인
+ 51       ansible.builtin.debug:
+ 52 msg: |
+ 53 "OLD Target - {{ output1.stdout }}"
+ 54 "NEW Target - {{ output2.stdout }}"
+>4;m"target.yml"355L,61855B6written72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        4,1  321~@k   049,0-18,1  76~@k   543,0-12,1  1~@k   0398,0-17,1  6~@k   54321~@k   029,0-18,1  76~@k   5432,0-11,1  ~@k   019 13   vars:18,192% 12   become: true17,184% 11   hosts: webservers16,176%~@k    10 - name: 타겟 변경15,169%  9 ############################################################14,161%  8 # * 이를 설정하는 작업을 추가한다.13,153%  7 # * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우12,146%  6 # * output 이라는 변수에 출력을 등록하는 작업을 추가한다.11,138%~@k     5 # * 현재 기본 systemd 부팅 타겟을 가져오고 10,130%  4 # 요구사항:9,123%  3 # 타겟(target) 변경8,115%  2 ############################################################7,17%  1 ---6,1Top~@k   54321~@k   ~@k   ~@k   ~@k   2345~@k   678910,1~@k   12345~@k   65432~@k   12345~@k   6~@k   5~@k   2~@k   3~@k   4~@k   5i -- INSERT --15,5Top#default_target: "graphical.target"    64default_target: "multi-user.target"5default_target: "multi-user.target"^[  14,4Top::wq
+>4;m[ansible@ansible ~/ansible/10_boot_scheduling]$ cat target.yml
+---
+############################################################
+# 타겟(target) 변경
+# 요구사항:
+# * 현재 기본 systemd 부팅 타겟을 가져오고
+# * output 이라는 변수에 출력을 등록하는 작업을 추가한다.
+# * 기본 systemd 타겟을 graphical.target으로 설정하지 않은 경우
+# * 이를 설정하는 작업을 추가한다.
+############################################################
+- name: 타겟 변경
+  hosts: webservers
+  become: true
+  vars:
+    default_target: "multi-user.target"
+    #default_target: "graphical.target"
+  tasks:
+    - name: 현재 기본 systemd 부팅 타겟 가져오기
+      ansible.builtin.command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: output1
+
+    - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+      ansible.builtin.command:
+        cmd: systemctl set-default {{ default_target }}
+      when:  default_target not in output1["stdout"]
+      changed_when: true
+      register: output_set_default
+
+    # - name: 기본 systemd 타겟을 {{ default_target }}으로 설정
+    #   ansible.builtin.file:
+    #     src: /usr/lib/systemd/system/{{ default_target }}
+    #     dest: /etc/systemd/system/default.target
+    #     state: link
+    #     force: true
+    #   when:  default_target not in output["stdout"]
+    #   changed_when: true
+
+    - name: 재부팅
+      ansible.builtin.reboot:
+        reboot_timeout: 300
+      when: output_set_default is changed
+
+    - name: 현재 기본 systemd 부팅 타겟 가져오기
+      ansible.builtin.command:
+        cmd: systemctl get-default
+      changed_when: false
+      register: output2
+
+    - name: 기본 systemd 타겟 확인
+      ansible.builtin.debug:
+        msg: |
+          "OLD Target - {{ output1.stdout }}"
+          "NEW Target - {{ output2.stdout }}"
+
+ble-playbook target.yml
+
+PLAY [타겟 변경] *****************************************************************************************************************************************
+
+TASK [Gathering Facts] ***********************************************************************************************************************************
+ok: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟을 multi-user.target으로 설정] ****************************************************************************************************
+changed: [web4]
+
+TASK [재부팅] ********************************************************************************************************************************************
+changed: [web4]
+
+TASK [현재 기본 systemd 부팅 타겟 가져오기] **************************************************************************************************************
+ok: [web4]
+
+TASK [기본 systemd 타겟 확인] ****************************************************************************************************************************
+ok: [web4] => {
+    "msg": "\"OLD Target - graphical.target\"\n\"NEW Target - multi-user.target\"\n"
+}
+
+PLAY RECAP ***********************************************************************************************************************************************
+web4                       : ok=6    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+ible1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 28 17:00:49 2026 from 192.168.10.10
+sudoidnf@-ysinstall]ansible-*f -y install ansible-*
+Last metadata expiration check: 3:47:03 ago on Mon 28 Sep 2026 06:00:42 PM KST.
+Error:
+ Problem: conflicting requests
+  - nothing provides python3dist(pytest) needed by ansible-packaging-tests-1-21.el10_3.noarch from epel
+(try to add '--skip-broken' to skip uninstallable packages or '--nobest' to use not only best candidate packages)
+[ansible@ansible1 ~]$ sudo dnf -y install ansible-core
+Last metadata expiration check: 3:47:14 ago on Mon 28 Sep 2026 06:00:42 PM KST.
+Dependencies resolved.
+==========================================================================================================================================================
+ Package                                     Architecture                  Version                                 Repository                        Size
+==========================================================================================================================================================
+Installing:
+ ansible-core                               B noarch                        1:2.16.19-2.el10                        appstream                        2.9 M
+Installing dependencies:
+ git-core                                   B x86_64                        2.52.0-1.el10                           appstream                        5.1 M
+ python3-cffi                               B x86_64                        1.16.0-7.el10                           baseos                           308 k
+ python3-cryptography                       B x86_64                        49.0.0-1.el10                           baseos                           1.8 M
+ python3-jinja2                             B noarch                        3.1.6-1.el10                            appstream                        327 k
+ python3-markupsafe                         B x86_64                        2.1.3-6.el10                            appstream                         32 k
+ python3-ply                                B noarch                        3.11-25.el10                            baseos                           134 k
+ python3-pycparser                          B noarch                        2.20-16.el10                            baseos                           158 k
+ python3-resolvelib                         B noarch                        1.0.1-6.el10                            appstream                         45 k
+
+Transaction Summary
+==========================================================================================================================================================
+Install  9 Packages
+
+Total download size: 11 M
+Installed size: 45 M
+Downloading Packages:
+^C                                                            [===                                                      ] ---  B/s |   0  B     --:-- ETA
+The downloaded packages were saved in cache until the next successful transaction.
+You can remove cached packages by executing 'dnf clean packages'.
+Error: Error downloading packages:
+  Interrupted by a SIGINT signal
+[ansible@ansible1 ~]$ exit
+logout
+Connection to ansible1 closed.
+ible4
+Last login: Mon Sep 28 21:47:08 2026 from 192.168.10.10
+[ansible@ansible4 ~]$ rpm -qip | grep ansible
+rpm: no arguments given for query
+[ansible@ansible4 ~]$ dnf list | grep ansible
+Repository example is listed more than once in the configuration
+^C[ansible@ansible4 ~]$ dnf -l | grep ansible
+[ansible@ansible4 ~]$ exit
+logout
+Connection to ansible4 closed.
+[ansible@ansible ~/ansible/10_boot_scheduling]$ exit
+exit
+
+Script done on 2026-09-28 21:49:07+09:00 [COMMAND_EXIT_CODE="1"]
