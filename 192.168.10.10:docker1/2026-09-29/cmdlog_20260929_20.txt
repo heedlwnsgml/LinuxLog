@@ -1,0 +1,7 @@
+Script started on 2026-09-29 20:26:59+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="206" LINES="51"]
+[root@docker1 ~/LinuxLog]# 1
+bash: 1: command not found...
+[root@docker1 ~/LinuxLog]# exit
+exit
+
+Script done on 2026-09-29 20:27:02+09:00 [COMMAND_EXIT_CODE="127"]
