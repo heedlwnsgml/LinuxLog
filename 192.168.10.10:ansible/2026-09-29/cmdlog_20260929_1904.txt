@@ -1,0 +1,1651 @@
+Script started on 2026-09-29 19:04:18+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="81" LINES="43"]
+[ansible@ansible ~/ansible]$ clear
+[ansible@ansible ~/ansible]$ ansible-galaxy collection list
+
+# /home/ansible/.ansible/collections/ansible_collections
+Collection               Version
+------------------------ -------
+ansible.mysql            5.2.0
+
+# /usr/share/ansible/collections/ansible_collections
+Collection               Version
+------------------------ -------
+ansible.posix            2.2.1
+ansible.utils            6.0.1
+community.crypto         2.26.7
+community.general        10.7.3
+redhat.rhel_system_roles 2.4.2
+[ansible@ansible ~/ansible]$ ansible-galaxy listection list
+# /home/ansible/.ansible/roles
+- ljhweb5, main
+# /usr/share/ansible/roles
+- linux-system-roles.aide, (unknown version)
+- linux-system-roles.auditd, (unknown version)
+- linux-system-roles.bootloader, (unknown version)
+- linux-system-roles.certificate, (unknown version)
+- linux-system-roles.cockpit, (unknown version)
+- linux-system-roles.crypto_policies, (unknown version)
+- linux-system-roles.fapolicyd, (unknown version)
+- linux-system-roles.firewall, (unknown version)
+- linux-system-roles.gfs2, (unknown version)
+- linux-system-roles.ha_cluster, (unknown version)
+- linux-system-roles.journald, (unknown version)
+- linux-system-roles.kdump, (unknown version)
+- linux-system-roles.kernel_settings, (unknown version)
+- linux-system-roles.keylime_server, (unknown version)
+- linux-system-roles.logging, (unknown version)
+- linux-system-roles.metrics, (unknown version)
+- linux-system-roles.nbde_client, (unknown version)
+- linux-system-roles.nbde_server, (unknown version)
+- linux-system-roles.network, (unknown version)
+- linux-system-roles.podman, (unknown version)
+- linux-system-roles.postfix, (unknown version)
+- linux-system-roles.postgresql, (unknown version)
+- linux-system-roles.rhc, (unknown version)
+- linux-system-roles.selinux, (unknown version)
+- linux-system-roles.snapshot, (unknown version)
+- linux-system-roles.ssh, (unknown version)
+- linux-system-roles.sshd, (unknown version)
+- linux-system-roles.storage, (unknown version)
+- linux-system-roles.sudo, (unknown version)
+- linux-system-roles.systemd, (unknown version)
+- linux-system-roles.timesync, (unknown version)
+- linux-system-roles.tlog, (unknown version)
+- linux-system-roles.trustee_client, (unknown version)
+- linux-system-roles.trustee_server, (unknown version)
+- linux-system-roles.vpn, (unknown version)
+- rhel-system-roles.ad_integration, (unknown version)
+- rhel-system-roles.aide, (unknown version)
+- rhel-system-roles.auditd, (unknown version)
+- rhel-system-roles.bootloader, (unknown version)
+- rhel-system-roles.certificate, (unknown version)
+- rhel-system-roles.cockpit, (unknown version)
+- rhel-system-roles.crypto_policies, (unknown version)
+- rhel-system-roles.fapolicyd, (unknown version)
+- rhel-system-roles.firewall, (unknown version)
+- rhel-system-roles.gfs2, (unknown version)
+- rhel-system-roles.ha_cluster, (unknown version)
+- rhel-system-roles.journald, (unknown version)
+- rhel-system-roles.kdump, (unknown version)
+- rhel-system-roles.kernel_settings, (unknown version)
+- rhel-system-roles.keylime_server, (unknown version)
+- rhel-system-roles.logging, (unknown version)
+- rhel-system-roles.metrics, (unknown version)
+- rhel-system-roles.nbde_client, (unknown version)
+- rhel-system-roles.nbde_server, (unknown version)
+- rhel-system-roles.network, (unknown version)
+- rhel-system-roles.podman, (unknown version)
+- rhel-system-roles.postfix, (unknown version)
+- rhel-system-roles.postgresql, (unknown version)
+- rhel-system-roles.rhc, (unknown version)
+- rhel-system-roles.selinux, (unknown version)
+- rhel-system-roles.snapshot, (unknown version)
+- rhel-system-roles.ssh, (unknown version)
+- rhel-system-roles.sshd, (unknown version)
+- rhel-system-roles.storage, (unknown version)
+- rhel-system-roles.sudo, (unknown version)
+- rhel-system-roles.systemd, (unknown version)
+- rhel-system-roles.timesync, (unknown version)
+- rhel-system-roles.tlog, (unknown version)
+- rhel-system-roles.trustee_client, (unknown version)
+- rhel-system-roles.trustee_server, (unknown version)
+- rhel-system-roles.vpn, (unknown version)
+- linux-system-roles.ad_integration, (unknown version)
+# /etc/ansible/roles
+[ansible@ansible ~/ansible]$ c
+torage/
+[ansible@ansible ~/ansible/10_storage]$ cat ansible.cfg
+[defaults]
+inventory = ./inventory
+collections_path = collections:/usr/share/ansible/collections
+
+[privilege_escalation]
+become = true
+[ansible@ansible ~/ansible/10_storage]$ ls
+ansible.cfg  playbook2.yml  restore_playbook2.yml
+inventory    playbook.yml   restore_playbook.yml
+cd /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolss/storage/RE
+cd /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rode/usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/role/usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolec//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolea//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolet//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/R
+atD/usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rote/usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/role/usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolef//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolei//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roler//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolee//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolef//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roleo//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/rolex//usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/README.html
+ &
+[1] 12984
+[ansible@ansible ~/ansible/10_storage]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+firefox /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/README.html &
+[2] 13390
+[1]   Done                    firefox /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/README.html
+[ansible@ansible ~/ansible/10_storage]$ firefox /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/README.html &
+firefox /usr/share/ansible/roles/
+linux-system-roles.ad_integration/  rhel-system-roles.ad_integration/
+linux-system-roles.aide/            rhel-system-roles.aide/
+linux-system-roles.auditd/          rhel-system-roles.auditd/
+linux-system-roles.bootloader/      rhel-system-roles.bootloader/
+linux-system-roles.certificate/     rhel-system-roles.certificate/
+linux-system-roles.cockpit/         rhel-system-roles.cockpit/
+linux-system-roles.crypto_policies/ rhel-system-roles.crypto_policies/
+linux-system-roles.fapolicyd/       rhel-system-roles.fapolicyd/
+linux-system-roles.firewall/        rhel-system-roles.firewall/
+linux-system-roles.gfs2/            rhel-system-roles.gfs2/
+linux-system-roles.ha_cluster/      rhel-system-roles.ha_cluster/
+linux-system-roles.journald/        rhel-system-roles.journald/
+linux-system-roles.kdump/           rhel-system-roles.kdump/
+linux-system-roles.kernel_settings/ rhel-system-roles.kernel_settings/
+linux-system-roles.keylime_server/  rhel-system-roles.keylime_server/
+linux-system-roles.logging/         rhel-system-roles.logging/
+linux-system-roles.metrics/         rhel-system-roles.metrics/
+linux-system-roles.nbde_client/     rhel-system-roles.nbde_client/
+linux-system-roles.nbde_server/     rhel-system-roles.nbde_server/
+linux-system-roles.network/         rhel-system-roles.network/
+linux-system-roles.podman/          rhel-system-roles.podman/
+linux-system-roles.postfix/         rhel-system-roles.postfix/
+linux-system-roles.postgresql/      rhel-system-roles.postgresql/
+linux-system-roles.rhc/             rhel-system-roles.rhc/
+linux-system-roles.selinux/         rhel-system-roles.selinux/
+linux-system-roles.snapshot/        rhel-system-roles.snapshot/
+linux-system-roles.ssh/             rhel-system-roles.ssh/
+linux-system-roles.sshd/            rhel-system-roles.sshd/
+linux-system-roles.storage/         rhel-system-roles.storage/
+linux-system-roles.sudo/            rhel-system-roles.sudo/
+linux-system-roles.systemd/         rhel-system-roles.systemd/
+linux-system-roles.timesync/        rhel-system-roles.timesync/
+linux-system-roles.tlog/            rhel-system-roles.tlog/
+linux-system-roles.trustee_client/  rhel-system-roles.trustee_client/
+linux-system-roles.trustee_server/  rhel-system-roles.trustee_server/
+linux-system-roles.vpn/             rhel-system-roles.vpn/
+[ansible@ansible ~/ansible/10_storage]$ firefox /usr/share/ansible/roles/rhel-system-roles.storage//
+ansible_pytest_extra_requirements.txt  pylint_extra_requirements.txt
+defaults/                              pytest_extra_requirements.txt
+library/                               README.html
+meta/                                  tasks/
+module_utils/                          tests/
+.ostree/                               vars/
+[ansible@ansible ~/ansible/10_storage]$ firefox /usr/share/ansible/roles/rhel-system-roles.storage/README.html
+[ansible@ansible ~/ansible/10_storage]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+^C
+[2]+  Done                    firefox /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/storage/README.html
+[ansible@ansible ~/ansible/10_storage]$ cl
+[ansible@ansible ~/ansible/10_storage]$ jobs
+ansible-doc firewalld
+> MODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collect>
+
+  This module allows for addition or deletion of services and ports
+  (either TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable
+            to/from zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or
+            later.
+            Note that the option type is changed to bool in
+            ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a
+               zone in firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a
+                         zone in firewalld.
+                         Note that the option type is changed to bool
+                         in ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a
+              zone in firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in
+>EMODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collect>
+
+  This module allows for addition or deletion of services and ports
+  (either TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable
+            to/from zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or
+            later.
+            Note that the option type is changed to bool in
+            ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a
+               zone in firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a
+                         zone in firewalld.
+                         Note that the option type is changed to bool
+                         in ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a
+              zone in firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in
+> MODULE ansible.posix.firewalld (/usr/share/ansible/collections/ansible_collect>
+
+  This module allows for addition or deletion of services and ports
+  (either TCP or UDP) in either running or permanent firewalld rules.
+
+OPTIONS (red indicates it is required):
+
+   forward  The forward setting you would like to enable/disable
+            to/from zones within firewalld.
+            This option only is supported by firewalld v0.9.0 or
+            later.
+            Note that the option type is changed to bool in
+            ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   icmp_block  The ICMP block you would like to add/remove to/from a
+               zone in firewalld.
+        default: null
+        type: str
+
+   icmp_block_inversion  Enable/Disable inversion of ICMP blocks for a
+                         zone in firewalld.
+                         Note that the option type is changed to bool
+                         in ansible.posix version 2.0.0 and later.
+        default: null
+        type: bool
+
+   immediate  Whether to apply this change to the runtime firewalld
+              configuration.
+              Defaults to `true' if `permanent=false'.
+        default: false
+        type: bool
+
+   interface  The interface you would like to add/remove to/from a
+              zone in firewalld.
+        default: null
+        type: str
+
+   masquerade  The masquerade setting you would like to enable/disable
+               to/from zones within firewalld.
+               Note that the option type is changed to bool in
+...skipping...
+EXAMPLES:
+- name: Permanently enable https service, also enable it immediately if possible
+  ansible.posix.firewalld:
+    service: https
+    state: enabled
+    permanent: true
+    immediate: true
+    offline: true
+
+- name: Permit traffic in default zone for https service
+  ansible.posix.firewalld:
+    service: https
+    permanent: true
+    state: enabled
+
+- name: Permit ospf traffic
+  ansible.posix.firewalld:
+    protocol: ospf
+    permanent: true
+    state: enabled
+
+- name: Do not permit traffic in default zone on port 8081/tcp
+  ansible.posix.firewalld:
+    port: 8081/tcp
+    permanent: true
+    state: disabled
+
+- name: Permit traffic in default zone on port 161-162/ucp
+  ansible.posix.firewalld:
+    port: 161-162/udp
+    permanent: true
+    state: enabled
+
+- name: Permit traffic in dmz zone on http service
+  ansible.posix.firewalld:
+    zone: dmz
+    service: http
+    permanent: true
+    state: enabled
+
+- name: Enable FTP service with rate limiting using firewalld rich rule
+  ansible.posix.firewalld:
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$ pwd
+/home/ansible/ansible/10_storage
+'n>i./e all -m setup -a 'filter=ansible_*
+ansible.cfg            playbook2.yml          restore_playbook2.yml
+inventory              playbook.yml           restore_playbook.yml
+[ansible@ansible ~/ansible/10_storage]$ ansible all -m setup -a 'filter=ansible_*' > ./fact_vars
+[ansible@ansible ~/ansible/10_storage]$ c
+ts
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+#
+# Ansible Server List
+#
+192.168.10.10  ansible.example.com      ansible      control.example.com  control
+192.168.10.11  ansible1.example.com     ansible1     web1.example.com     web1
+192.168.10.12  ansible2.example.com     ansible2     web2.example.com     web2
+192.168.10.13  ansible3.example.com     ansible3     web3.example.com     web3    db1
+192.168.10.14  ansible4.example.com     ansible4     web4.example.com     web4    db2
+
+ssh ansible1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+[ansible@ansible1 ~]$ nmcli c
+NAME  UUID                                  TYPE      DEVICE
+eth0  a459e410-2925-3a65-b843-b1afd951943d  ethernet  ens160
+lo    cc5abbc8-8947-4018-b0a9-097fe9ce223f  loopback  lo
+[ansible@ansible1 ~]$ nmcli dd
+DEVICE  TYPE      STATE                   CONNECTION
+ens160  ethernet  connected               eth0
+lo      loopback  connected (externally)  lo
+[ansible@ansible1 ~]$ exit
+logout
+Connection to ansible1 closed.
+sible1 sudo poweroff
+[ansible@ansible ~/ansible/10_storage]$ cnsi
+[ansible@ansible ~/ansible/10_storage]$ ansible-galaxy collection list
+
+# /usr/share/ansible/collections/ansible_collections
+Collection               Version
+------------------------ -------
+ansible.posix            2.2.1
+ansible.utils            6.0.1
+community.crypto         2.26.7
+community.general        10.7.3
+redhat.rhel_system_roles 2.4.2
+[ansible@ansible ~/ansible/10_storage]$ ls
+ansible.cfg  inventory      playbook.yml           restore_playbook.yml
+fact_vars    playbook2.yml  restore_playbook2.yml
+which anx
+alias anx='ansible-galaxy'
+        ~/.local/bin/ansible-galaxy
+[ansible@ansible ~/ansible/10_storage]$ ls ~/.local/bin/
+activate-global-python-argcomplete  ansible-pull
+ansible                             ansible-runner
+ansible-builder                     ansible-test
+ansible-config                      ansible-vault
+ansible-console                     bindep
+ansible-doc                         black
+ansible-galaxy                      blackd
+ansible-inventory                   cffi-gen-src
+ansible-lint                        pbr
+ansible-navigator                   register-python-argcomplete
+ansible-playbook                    yamllint
+[ansible@ansible ~/ansible/10_storage]$ c
+[ansible@ansible ~/ansible/10_storage]$ ansible-galaxyncollection list
+
+# /usr/share/ansible/collections/ansible_collections
+Collection               Version
+------------------------ -------
+ansible.posix            2.2.1
+ansible.utils            6.0.1
+community.crypto         2.26.7
+community.general        10.7.3
+redhat.rhel_system_roles 2.4.2
+hel-system-roles.storage/README.md
+  1 # Linux Storage Role
+  2   3   4 This role allows users to configure local storage with minimal input.
+  5
+  6 As of now, the role supports managing file systems and mount entries on
+  7
+  8 - disks
+  9 - LVM volume groups
+ 10 - Stratis pools (with Stratis v3 and newer)
+ 11
+ 12 Encryption (using LUKS) and RAID (using MD) is also supported. Support
+ 13 for managing pre-existing devices is limited, but new LVM volumes and
+ 14 Stratis filesystems can be added to existing setups and mount points
+ 15 and some other features can be added to (or removed from) existing
+ 16 devices.
+ 17
+ 18 ## Requirements
+ 19
+ 20 None
+ 21
+ 22 ## Role Variables
+ 23
+ 24 __NOTE__: Beginning with version 1.3.0, unspecified parameters are interpretee    d
+ 25 differently for existing and non-existing pools/volumes. For new/non-existent 26 pools and volumes, any omitted parameters will use the default value as
+ 27 described in `defaults/main.yml`. For existing pools and volumes, omitted
+ 28 parameters will inherit whatever setting the pool or volume already has.
+ 29 This means that to change/override role defaults in an existing pool or volumm    e,
+ 30 you must explicitly specify the new values/settings in the role variables.
+ 31
+ 32 ### `storage_pools`
+ 33
+ 34 The `storage_pools` variable is a list of pools to manage. Each pool containss     a
+ 35 nested list of `volume` dicts as described below, as well as the following
+ 36 keys:
+ 37
+ 38 - `name`
+ 39 1,1Top+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q50452,0-134,1  5,0-16,1  7,0-18,1  910,11,0-12,1  34567,0-18,1  9,0-120,1  1,0-12,1  ^[  3,0-14,1  56789301,0-12,1  3,0-14,1
+ 40   This specifies the name of the pool to manage/create as a string. (One35,10%
+ 41   example of a pool is an LVM volume group.)36,10%
+ 42 37,0-10%
+ 43 - `type`38,11%
+ 44 39,0-11%
+ 45   This specifies the type of pool to manage.40,11%
+ 46   Valid values for `type`: `lvm`, `stratis`.41,11%
+ 47 42,0-12%
+ 48 - `state`43,12%^[O
+ 49 44,0-12%
+ 50   Valid values are `present` (default behavior) or `absent`. Pools marked as45,12% 51   `absent` will be removed by the role. Pools marked as `present` will be eitt    her46,13%7,0-1 52   created (if pool with the specified `name` doesn't already exist) or preserr    ved.48,13%9,0-1
+ 53 50,14% 54 - `grow_to_fill`
+ 55 51,14% 56   When set, the pool Physical Volumes will be resized to match their respectii    ve device sizes.52,15%
+ 57   (e.g. after Virtual Machine disk size increase)53,0-15%
+ 58 54,15%
+ 59   Default: `false`55,0-15% 60
+ 61   __NOTE__: This argument is valid only for LVM pools.56,16%
+ 62 57,16%
+ 63 - `shared`58,0-16%
+ 64 59,16% 65   If set to `true`, the role creates or manages a shared volume group. Requirr    es lvmlockd and
+ 66   dlm services configured and running.60,0-17%1,1  2,0-1
+ 67 63,17%
+ 68   Default: `false`64,0-17%^[O    69
+ 70   __WARNING__: Modifying the `shared` value on an existing pool is a65,18% 71 destructive operation. The pool itself will be removed as part      of the66,18%7,0-1
+ 72 process.68,18%
+ 73 69,0-19%
+ 74   __NOTE__: This argument is valid only for LVM pools.70,19% 75
+ 76 - `disks`71,19%
+ 77 72,110% 78   A list which specifies the set of disks to use as backing storage for the pp    ool.73,0-110%4,1   79   Supported identifiers include: device node (like `/dev/sda` or `/dev/mapperr    /mpathb`),75,0-111%6,1
+ 80   device node basename (like `sda` or `mpathb`), /dev/disk/ symlink77,0-111% 81   (like `/dev/disk/by-id/wwn-0x5000c5005bc37f3f`).
+ 82 78,111% 83   For LVM pools this can be also used to add and remove disks to/from an exiss    ting pool.79,112%
+ 84   Disks in the list that are not used by the pool will be added to the pool.80,112% 85   Disks that are currently used by the pool but not present in the list will      be removed81,112%2,0-1 86   from the pool only if `storage_safe_mode` is set to `false`.
+ 87 83,113%
+ 88 - `raid_level`84,113% 89
+ 90   When used with `type: lvm` it manages a volume group with a mdraid array off     given level
+ 91   on it. Input `disks` are in this case used as RAID members.85,114%^[O   67,0-1 92   Accepted values are: `linear`, `raid0`, `raid1`, `raid4`, `raid5`, `raid6`,,     `raid10`88,114%9,0-1 93
+ 94 - `volumes`90,115%
+ 95 91,115% 96   This is a list of volumes that belong to the current pool. It follows the
+ 97   same pattern as the `storage_volumes` variable, explained below.92,115%
+ 98 93,0-116% 99 - `encryption`
+100 94,116%5,0-1
+101   This specifies whether the pool will be encrypted using LUKS.96,116%102   __WARNING__: Toggling encryption for a pool is a destructive operation, meaa    ning97,117%8,0-1
+103 the pool itself will be removed as part of the process of99,117%
+104 adding/removing the encryption layer.100,0-117%105
+106 - `encryption_password`101,117%
+107 102,118%108   This string specifies a password or passphrase used to unlock/open the LUKSS     volume(s).103,118%4
+109 105,0-118%
+110 - `encryption_key`106,119%^[O
+111 107,0-119%112   This string specifies the full path to the key file on the managed nodes uss    ed to unlock108,119%113   the LUKS volume(s).  It is the responsibility of the user of this role to ss    ecurely copy109,0-119%10,1  114   this file to the managed nodes, or otherwise ensure that the file is on thee     managed111,0-120%
+115   nodes.112,120%116
+117 - `encryption_cipher`113,120%118
+119   This string specifies a non-default cipher to be used by LUKS.
+120 114,121%5
+121 - `encryption_key_size`116,0-121%
+122 117,121%
+123   This integer specifies the LUKS key size (in bytes).118,0-122%
+124 119,122%125 - `encryption_luks_version`
+126 120,0-122%1,1
+127   This integer specifies the LUKS version to use.122,0-122%128
+129 - `encryption_clevis_pin`123,123%4,0-1
+130 125,123%131   For Stratis pools, the clevis method that should be used to encrypt the cree    ated pool.126,0-123%7,1  ^[O
+132   Accepted values are: `tang` and `tpm2`128,0-124%
+133 129,124%
+134 - `encryption_tang_url`130,0-124%135
+136   When creating a Stratis pool encrypted via NBDE using a tang server,131,125%
+137   specifies the URL of the server.132,125%138
+139 - `encryption_tang_thumbprint`133,0-125%4,1
+140 135,0-126%
+141   When creating a Stratis pool encrypted via NBDE using a tang server,136,126%
+142   specifies the thumbprint of the server.137,126%
+143 138,0-126%
+144 ### `storage_volumes`139,127%145
+146 The `storage_volumes` variable is a list of volumes to manage. Each volume ha@@@                                                                              140,0-127%1,1
+146 The `storage_volumes` variable is a list of volumes to manage. Each volume haa    s the following142,127%
+147 variables:143,0-127%
+148 144,128%149 - `name`
+150 145,0-128%151   This specifies the name of the volume.
+152 146,128%7153 - `type`
+154 148,0-129%^[O   9,1
+155   This specifies the type of volume on which the file system will reside.150,0-129%
+156   Valid values for `type`: `lvm`, `disk`, `partition` or `raid`.151,129%157   The default is determined according to the OS and release (currently `lvm`))    .152,0-130%3,1
+158 154,0-130%
+159 - `state`155,130%
+160 156,130%161   Valid values are `present` (default behavior) or `absent`. Volumes marked aa    s157,131%162   `absent` will be removed by the role. Volumes marked as `present` will be ee    ither158,0-131%9,1  163   created (if volume with specified `name` doesn't exist) or preserved and poo    ssibly160,0-132%164   changed to match other values (for example if a volume with the specified ``    name`161,132%165   exists but doesn't have the required `size` it will be resized if possible))    .
+166 162,132%3167 - `disks`
+168 164,133%169   This specifies the set of disks to use as backing storage for the file systt    em.165,133%
+170   This is currently only relevant for volumes of type `disk`, where the list166,0-134%
+171   must contain only a single item.167,134%
+172 168,0-134%173 - `size`
+174 169,135%^[O   175   The `size` specifies the size of the file system. The format for this is inn    tended to170,135%1176   be human-readable, e.g.: "10g", "50 GiB". The size of LVM volumes can be spp    ecified as a172,0-136%3,1
+177   percentage of the pool/VG size, eg: "50%" as of v1.4.2.174,0-136%178
+179   When using `compression` or `deduplication`, `size` can be set higher than      actual available space,175,136%180   e.g.: 3 times the size of the volume, based on duplicity and/or compressibii    lity of stored data.176,137%7
+181 178,0-137%182   If `size` is not specified, it will be the same as if you specified `size:      100%` - it will use179,137%183   all available space in the pool.
+184 180,138%185   __NOTE__: The requested volume size may be reduced as necessary so the voluu    me can181,0-138%186 fit in the available pool space, but only if the required reductii    on is182,138%3
+187 not more than 2% of the requested volume size.184,0-139%188
+189 - `fs_type`185,139%190
+191   This indicates the desired file system type to use, e.g.: "xfs", "ext4", "ss    wap".
+192   The default is determined according to the OS and release186,140%78,0-1193   (currently `xfs` for all the supported systems).
+194   Use "unformatted" if you do not want file system to be present.189,140%90,0-1^[O   195   __WARNING__: Using "unformatted" file system type on an existing filesystem196 is a destructive operation and will destroy all data on the voo    lume.
+197 191,141%23
+198 - `fs_label`194,141%
+199 195,141%~@k   200   The `fs_label` is a string to be used for a file system label.
+201
+202 - `fs_create_options`196,142%7,0-1
+203 198,142%
+204   The `fs_create_options` specifies custom arguments to `mkfs` as a string.199,0-142%
+205 200,143%~@k
+206 - `mount_point`201,0-143%
+207 202,143%208   The `mount_point` specifies the directory on which the file system will be      mounted.203,0-143%4,1  209
+210 - `mount_options`205,0-144%~@k   6,1
+211 207,0-144%212   The `mount_options` specifies custom mount options as a string, e.g.: 'ro'.213
+214 - `mount_user`208,145%9,0-1215
+216   The `mount_user` specifies desired owner of the mount directory.210,145%1,0-1
+217 212,145%218 - `mount_group`
+219 213,0-146%4,1
+220   The `mount_group` specifies desired group of the mount directory.215,0-146%~@k
+221 216,146%222 - `mount_mode`
+223 217,0-146%8,1  224   The `mount_mode` specifies desired permissions of the mount directory.
+225 219,0-147%20,1  ~@k
+226 - `raid_level`221,0-147%
+227 222,147%
+228   Specifies RAID level. LVM RAID can be created as well.223,0-148%
+229   "Regular" RAID volume requires type to be `raid`.224,148%230   LVM RAID needs that volume has `storage_pools` parent with type `lvm`,
+231   `raid_disks` need to be specified as well.225,0-148%~@k   6,1
+232   Accepted values are:227,0-148%
+233 228,149%234   - for LVM RAID volume: `raid0`, `raid1`, `raid4`, `raid5`, `raid6`, `raid100    `, `striped`, `mirror`229,149%30~@k   235   - for RAID volume: `linear`, `raid0`, `raid1`, `raid4`, `raid5`, `raid6`, ``    raid10`231,149%2
+236 233,0-150%237   __WARNING__: Changing `raid_level` for a volume is a destructive operation,,     meaning234,150%238 all data on that volume will be lost as part of the process of
+239 removing old and adding new RAID. RAID reshaping is currently nn    ot235,151%~@k   6,0-1240 supported.
+241 237,151%
+242 - `raid_device_count`238,151%243
+244   When type is `raid` specifies number of active RAID devices.239,152%245
+246 - `raid_spare_count`240,152%~@k   1,0-1
+247 242,153%
+248   When type is `raid` specifies number of spare RAID devices.243,0-153%
+249 244,153%
+250 - `raid_metadata_version`245,0-153%
+251 246,154%252   When type is `raid` specifies RAID metadata version as a string, e.g.: '1.00    '.247,0-154%8,1
+253 249,0-154%
+254 - `raid_chunk_size`250,154%~@k
+255 251,0-155%256   When type is `raid` specifies RAID chunk size as a string, e.g.: '512 KiB'.257   Chunk size has to be multiple of 4 KiB.252,155%
+258 253,0-155%
+259 - `raid_stripe_size`254,156%
+260 255,0-156%~@k   261   When type is `lvm` specifies LVM RAID stripe size as a string, e.g.: '512 KK    iB'.256,156%7
+262 258,0-157%
+263 - `raid_disks`259,157%
+264 260,0-157%~@k   265   Specifies which disks should be used for LVM RAID volume.
+266   `raid_level` needs to be specified and volume has to have `storage_pools` pp    arent with type `lvm`.261,158%2,0-1
+267   Accepts sublist of `disks` of parent `storage_pools`.263,158%268   In case multiple LVM RAID volumes within the same storage pool, the same dii    sk can be used
+269   in multiple `raid_disks`.264,0-158%5,1  ~@k   270
+271 - `encryption`266,159%7272
+273   This specifies whether the volume will be encrypted using LUKS.
+274   __WARNING__: Toggling encryption for a volume is a destructive operation, m@@@                                                                              268,159%9
+274   __WARNING__: Toggling encryption for a volume is a destructive operation, mm    eaning270,0-160%~@k   275 all data on that volume will be removed as part of the process      of271,160%2,0-1
+276 adding/removing the encryption layer.273,160%277
+278 - `encryption_password`274,161%279
+280   This string specifies a password or passphrase used to unlock/open the LUKSS     volume.275,161%~@k   6
+281 277,0-161%
+282 - `encryption_key`278,162%
+283 279,0-162%284   This string specifies the full path to the key file on the managed nodes uss    ed to unlock280,162%285   the LUKS volume(s).  It is the responsibility of the user of this role to ss    ecurely copy
+286   this file to the managed nodes, or otherwise ensure that the file is on the@@@                                                                              281,0-163%2,1  3,0-1286   this file to the managed nodes, or otherwise ensure that the file is on thee     managed
+287   nodes.284,163%288
+289 - `encryption_cipher`285,164%~@k   290
+291   This string specifies a non-default cipher to be used by LUKS.286,164%
+292 287,164%
+293 - `encryption_key_size`288,0-165%294
+295   This integer specifies the LUKS key size (in bits).289,165%90,0-1~@k
+296 291,165%
+297 - `encryption_luks_version`292,0-166%
+298 293,166%
+299   This integer specifies the LUKS version to use.294,0-166%300
+301 - `deduplication`295,167%~@k   6,0-1
+302 297,167%303   This specifies whether the Virtual Data Optimizer (VDO) will be used.
+304   When set, duplicate data stored on storage volume will be298,0-167%9,1
+305   deduplicated resulting in more storage capacity.300,0-167%
+306   Can be used together with `compression` and `vdo_pool_size`.301,168%
+307   Volume has to be part of the LVM `storage_pool`.302,0-168%
+308   Limit one VDO `storage_volume` per `storage_pool`.303,168%
+309   Underlying volume has to be at least 9 GB (bare minimum is around 5 GiB).304,168%310
+311 - `compression`305,169%~@k   6312
+313   This specifies whether the Virtual Data Optimizer (VDO) will be used.307,169%8
+314   When set, data stored on storage volume will be309,170%
+315   compressed resulting in more storage capacity.310,0-170%~@k
+316   Volume has to be part of the LVM `storage_pool`.311,170%
+317   Can be used together with `deduplication` and `vdo_pool_size`.312,0-170%318   Limit one VDO `storage_volume` per `storage_pool`.
+319 313,171%4
+320 - `vdo_pool_size`315,171%~@k
+321 316,171%322   When Virtual Data Optimizer (VDO) is used, this specifies the actual size tt    he volume
+323   will take on the device. Virtual size of VDO volume is set by `size` parame@@@                                                                              317,172%89,0-1323   will take on the device. Virtual size of VDO volume is set by `size` paramee    ter.
+324   `vdo_pool_size` format is intended to be human-readable,320,172%~@k   1,0-1325   e.g.: "30g", "50GiB".
+326   Default value is equal to the size of the volume.322,172%327
+328 - `cached`323,173%
+329 324,173%
+330   This specifies whether the volume should be cached or not.325,173%~@k
+331   This is currently supported only for LVM volumes where dm-cache326,174%
+332   is used.327,0-174%
+333 328,174%
+334 - `cache_size`329,0-175%
+335 330,175%~@k
+336   Size of the cache. `cache_size` format is intended to be human-readable,331,175%
+337   e.g.: "30g", "50GiB".332,175%
+338 333,0-176%
+339 - `cache_mode`334,176%
+340 335,0-176%~@k   341   Mode for the cache. Supported values include `writethrough` (default) and ``    writeback`.336,176%7
+342 338,0-177%
+343 - `cache_devices`339,177%
+344 340,0-177%~@k   345   List of devices that will be used for the cache. These should be either phyy    sical volumes or341,177%346   drives these physical volumes are allocated on. Generally you want to selecc    t fast devices like342,0-178%3,1
+347   SSD or NVMe drives for cache.344,0-178%348
+349 - `thin`345,178%350
+351   Whether the volume should be thinly provisioned or not.346,179%
+352   This is supported only for LVM volumes.347,179%
+353 348,0-180%
+354 - `thin_pool_name`349,180%
+355 350,0-180%~@k   356   For `thin` volumes, this can be used to specify the name of the LVM thin poo    ol that will be used351,180%2357   for the volume. If the pool with the provided name already exists, the voluu    me will be added to that
+358   pool. If it doesn't exist a new pool named `thin_pool_name` will be created@@@                                                                              353,0-181%4,1  5,0-1~@k   358   pool. If it doesn't exist a new pool named `thin_pool_name` will be createdd    .
+359   If not specified:356,181%360   - if there are no existing thin pools present, a new thin pool will be creaa    ted with an automatically357,181%361       generated name,
+362   - if there is exactly one existing thin pool, the thin volume will be addedd     to it and358,182%9363   - if there are multiple thin pools present an exception will be raised.
+364 360,182%
+365 - `thin_pool_size`361,183%366
+367   Size for the thin pool. `thin_pool_size` format is intended to be human-reaa    dable,362,183%3
+368   e.g.: "30g", "50GiB".364,0-183%
+369 365,184%~@k
+370 - `part_type`366,0-184%371
+372   This specifies partition type for newly created partitions on MSDOS/MBR parr    tition table.367,185%8373   Supported values include `primary`, `extended` and `logical`.
+374   If not specified, first three partitions on the disk will be created as pri@@@                                                                              369,0-185%70,1  ~@k
+374   If not specified, first three partitions on the disk will be created as prii    mary and fourth371,0-185%375   one will be created as logical inside a newly created extended partition.
+376   `part_type` is ignored on GPT partition table.372,186%377
+378 ### `storage_safe_mode`373,186%379
+380 When true (the default), an error will occur instead of automatically removin@@@                                                                              374,186%5
+380 When true (the default), an error will occur instead of automatically removinn    g existing devices and/or formatting.376,186%
+381 377,0-187%
+382 ### `storage_udevadm_trigger`378,187%
+383 379,0-187%384 When true (the default is false), the role will use udevadm trigger
+385 to cause udev changes to take effect immediately.  This may help on some380,188%~@k
+386 platforms with "buggy" udev.381,0-188%
+387 382,188%
+388 ## Example Playbook383,0-188%389
+390 ```yaml384,189%5391 - name: Manage storage
+392   hosts: all386,189%7,0-1393   roles:
+394     - name: rhel-system-roles.storage388,190%9,0-1
+395       storage_pools:390,190%~@k   396 - name: app
+397 disks:391,191%2
+398 - sdb393,191%399 - sdc
+400 volumes:394,191%5~@k
+401 - name: shared396,192%
+402 size: "100 GiB"397,192%
+403 mount_point: "/mnt/app/shared"398,192%
+404 #fs_type: xfs399,192%405 state: present
+406 - name: users400,193%~@k   1
+407 size: "400g"402,193%
+408 fs_type: ext4403,193%
+409 mount_point: "/mnt/app/users"404,194%
+410       storage_volumes:405,194%~@k   411 - name: images
+412 type: disk406,194%7
+413 disks: ["mpathc"]408,195%414 mount_point: /opt/images
+415 fs_label: images409,195%10~@k
+416 411,195%
+417 ```412,196%
+418 413,196%
+419 ## rpm-ostree414,196%
+420 415,196%~@k   421 If you are not managing stratis pools or volumes, remove `stratisd` and
+422 `stratis-cli` from the ostree image package list generated from416,0-197%7,1
+423 `.ostree/get_ostree_data.sh`.418,0-197%
+424 419,197%
+425 If you do not want to use VDO, remove the vdo related packages from420,0-198%~@k
+426 the ostree image package list.421,198%
+427 422,198%
+428 For more information, see README-ostree.md423,198%
+429 424,0-199%
+430 ## License425,199%~@k
+431 426,199%
+>4;m>4;m[ansible@ansible0~/ansible/10_storage]$ clear  ~@k   1,0-10,1  29,0-18,1  ~@k   7,0-16,1  54,0-13,1  ~@k   210,0-119,1  8,0-1~@k   7,1  6,0-15,1  43~@k   210098~@k   76543~@k   2103998~@k   76390 ```yaml395,199%389 394,199%388 ## Example Playbook393,199%~@k   387 392,198%386 platforms with "buggy" udev.391,198%385 to cause udev changes to take effect immediately.  This may help on some390,198%384 When true (the default is false), the role will use udevadm trigger389,0-198%383 388,197%~@k   382 ### `storage_udevadm_trigger`387,0-197%^[  ^[  ::q
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$
+[ansible@ansible ~/ansible/10_storage]$ c
+[ansible@ansible ~/ansible/10_storage]$ mkdir -p ~/ansible/10_network && cd ~/ansible/10_network
+mkdir -p ~/ansible/10_network && cd ~/ansible/10_network
+
+[ansible@ansible ~/ansible/10_network]$ ls
+[ansible@ansible ~/ansible/10_network]$ vi ansible.cfg
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        i -- INSERT --0,1All[1,2d3e4f5u65a6u7l8t9defaults10[defaults][]1
+  2 []2,1
+  3 3
+  4 4[2p3r4i5v6i7l8e9g10e1_2s32e3s4c5a6l7a8t9i20o1n2[privilege_escalation][]3[]3,1 2i2n3v4n5e654e5n6t7o8r9y101=2 3.4/5i6n7v8e9n20t1o2r3y4  3
+  4
+  53,1Allr2o3l4e5s64[]236
+  6 []6,1
+  7 7
+  8 876[]5[]6b2e3c4o5m6e78=9 10t1u2r3e4321rtrue4^[  6,13All~@k   5~@k   4,0-1~@k   3,5  o -- INSERT --4,1All  4
+  5
+  6
+  7
+  8
+  94,1All
+3roles4
+  5
+  6
+  7
+  8~                                                                                3,6All^[  3,5Alldd
+3
+  4
+  5
+  6
+>4;m"ansible.cfg" [New] 7L, 75B written                                             3,0-1All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/10_network]$ vi inventory
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12      +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All[servers]
+>4;m"inventory"A[New] 2L, 19Bqwritten
+>4;mmkdir -p group_vars/servers
+[ansible@ansible ~/ansible/10_network]$ vi group_vars/servers/vars.yml
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 network_connections:  3   - name: ens224  4     type: ethernet
+  5     ip:  6       address:  7         - 192.168.10.21/24  8     state: up
+>4;m"group_vars/servers/vars.yml" [New] 9L, 126B written
+'nsiblelservers -m shell -a 'sudo nmcli d
+ansible1 | CHANGED | rc=0 >>
+DEVICE  TYPE      STATE                   CONNECTION
+ens160  ethernet  connected               eth0
+lo      loopback  connected (externally)  lo
+ens224  ethernet  disconnected            --
+[ansible@ansible ~/ansible/10_network]$ visgroup_vars/servers/vars.ymludo nmcli d'
+catggroup_vars/servers/vars.yml
+---
+network_connections:
+  - name: ens224
+    type: ethernet
+    ip:
+      address:
+        - 192.168.10.21/24
+    state: up
+
+'ansible@ansible ~/ansible/10_network]$ ansibleuserverss-mvshella-a.'sudo nmcli d'
+ip'a'
+ansible1 | CHANGED | rc=0 >>
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:d0:db:3d brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29d0db3d
+    inet 192.168.10.11/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fed0:db3d/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens224: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:d0:db:47 brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+    altname enx000c29d0db47
+[ansible@ansible ~/ansible/10_network]$ c
+aybook.yml
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        i -- INSERT --0,1All-1,2-----4
+  2 2,1-- 3n4a5name:89네12-11트5-13워8-15크21-172-18정5-20보8-229-23확32-25인5-27
+  3 3,1    3h4o5shosts:910s1e2er4v5e65432r3v4e5r6s7
+  4   4,3 t4a5s6s7k87tasks:9
+  5   5,35-- 7n8a9mname:23네6-15트9-17워22-19크5-216-22정9-24보32-263-27확6-29인9-31
+  6     6,5    7a8n9a10i109 s10i1b2l353e4.5b6u7i8l9t20i1n2.3d4e5b6u7g8ansible.builtin.debug:9
+  7       7,7 9v10avar:34a5n6s7i8b9l2019l20e1_2f3a4c5t6s7[8'9e30n1s2232445'6][]7
+>4;m"playbook.yml"7[New]w8L,:216Bnwrittenl9e20_1f2a3c4t5s6[7'8e9n30s1222344'5][]6[]7i8d98s940d1e2f3i4n5d6^[  8,45All::qwq
+>4;me-playbook playbook.yml --syntax-check
+
+playbook: playbook.yml
+[ansible@ansible ~/ansible/10_network]$check
+
+
+PLAY [네트워크 정보 확인] *******************************************************
+
+TASK [Gathering Facts] **********************************************************
+ok: [ansible1]
+
+TASK [네트워크 정보 확인] *******************************************************
+[ERROR]: Task failed: A 'when' expression failed: Syntax error in expression: No test named 'defind'.
+
+Task failed.
+Origin: /home/ansible/ansible/10_network/playbook.yml:5:7
+
+3   hosts: servers
+4   tasks:
+5     - name: 네트워크 정보 확인
+        ^ column 7
+
+<<< caused by >>>
+
+A 'when' expression failed: Syntax error in expression: No test named 'defind'.
+Origin: /home/ansible/ansible/10_network/playbook.yml:8:13
+
+6       ansible.builtin.debug:
+7         var: ansible_facts['ens224']
+8       when: ansible_facts['ens224'] is defind
+              ^ column 13
+
+fatal: [ansible1]: FAILED! => {"msg": "Task failed: A 'when' expression failed: Syntax error in expression: No test named 'defind'."}
+
+PLAY RECAP **********************************************************************
+ansible1                   : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_network]$ visplaybook.ymlk playbook.yml --syntax-check
+
+  1 ---
+  2 - name: 네트워크 정보 확인  3   hosts: servers  4   tasks:
+  5     - name: 네트워크 정보 확인
+  6       ansible.builtin.debug:
+  7 var: ansible_facts['ens224']
+  8       when: ansible_facts['ens224'] is defind
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                8,7All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   6~@k   5~@k   1,3~@k   2~@k   1~@k   g gdE349: No identifier under cursor1,1AlldG  ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                --No lines in buffer--0,0-1All-- INSERT --0,1All---
+  2 - name: 네트워크 정보 확인  3   hosts: servers
+  4   tasks:  5     - name: 네트워크 정보 확인
+  6       ansible.builtin.debug:  7         var: ansible_facts['ens224']
+>4;m"playbook.yml"s9L,e218Btwritten24'] is defined  9 9,0-1All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/10_network]$ ansible-playbook playbook.yml
+
+PLAY [네트워크 정보 확인] *******************************************************
+
+TASK [Gathering Facts] **********************************************************
+ok: [ansible1]
+
+TASK [네트워크 정보 확인] *******************************************************
+ok: [ansible1] => {
+    "ansible_facts['ens224']": {
+        "active": true,
+        "device": "ens224",
+        "features": {
+            "esp_hw_offload": "off [fixed]",
+            "esp_tx_csum_hw_offload": "off [fixed]",
+            "generic_receive_offload": "on",
+            "generic_segmentation_offload": "on",
+            "highdma": "on",
+            "hsr_dup_offload": "off [fixed]",
+            "hsr_fwd_offload": "off [fixed]",
+            "hsr_tag_ins_offload": "off [fixed]",
+            "hsr_tag_rm_offload": "off [fixed]",
+            "hw_tc_offload": "off [fixed]",
+            "l2_fwd_offload": "off [fixed]",
+            "large_receive_offload": "on",
+            "loopback": "off [fixed]",
+            "macsec_hw_offload": "off [fixed]",
+            "ntuple_filters": "off [fixed]",
+            "receive_hashing": "on",
+            "rx_all": "off [fixed]",
+            "rx_checksumming": "on",
+            "rx_fcs": "off [fixed]",
+            "rx_gro_hw": "off [fixed]",
+            "rx_gro_list": "off",
+            "rx_udp_gro_forwarding": "off",
+            "rx_udp_tunnel_port_offload": "off [fixed]",
+            "rx_vlan_filter": "on [fixed]",
+            "rx_vlan_offload": "on",
+            "rx_vlan_stag_filter": "off [fixed]",
+            "rx_vlan_stag_hw_parse": "off [fixed]",
+            "scatter_gather": "on",
+            "tcp_segmentation_offload": "on",
+            "tls_hw_record": "off [fixed]",
+            "tls_hw_rx_offload": "off [fixed]",
+            "tls_hw_tx_offload": "off [fixed]",
+            "tx_checksum_fcoe_crc": "off [fixed]",
+            "tx_checksum_ip_generic": "on",
+            "tx_checksum_ipv4": "off [fixed]",
+            "tx_checksum_ipv6": "off [fixed]",
+            "tx_checksum_sctp": "off [fixed]",
+            "tx_checksumming": "on",
+            "tx_esp_segmentation": "off [fixed]",
+            "tx_fcoe_segmentation": "off [fixed]",
+            "tx_gre_csum_segmentation": "off [fixed]",
+            "tx_gre_segmentation": "off [fixed]",
+            "tx_gso_list": "off [fixed]",
+            "tx_gso_partial": "off [fixed]",
+            "tx_gso_robust": "off [fixed]",
+            "tx_ipxip4_segmentation": "off [fixed]",
+            "tx_ipxip6_segmentation": "off [fixed]",
+            "tx_nocache_copy": "off",
+            "tx_scatter_gather": "on",
+            "tx_scatter_gather_fraglist": "off [fixed]",
+            "tx_sctp_segmentation": "off [fixed]",
+            "tx_tcp6_segmentation": "on",
+            "tx_tcp_ecn_segmentation": "off [fixed]",
+            "tx_tcp_mangleid_segmentation": "off",
+            "tx_tcp_segmentation": "on",
+            "tx_tunnel_remcsum_segmentation": "off [fixed]",
+            "tx_udp_segmentation": "off [fixed]",
+            "tx_udp_tnl_csum_segmentation": "off [fixed]",
+            "tx_udp_tnl_segmentation": "off [fixed]",
+            "tx_vlan_offload": "on",
+            "tx_vlan_stag_hw_insert": "off [fixed]",
+            "vlan_challenged": "off [fixed]"
+        },
+        "hw_timestamp_filters": [],
+        "macaddress": "00:0c:29:d0:db:47",
+        "module": "vmxnet3",
+        "mtu": 1500,
+        "pciid": "0000:13:00.0",
+        "promisc": false,
+        "speed": 10000,
+        "timestamping": [],
+        "type": "ether"
+    }
+}
+
+PLAY RECAP **********************************************************************
+ansible1                   : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+[ansible@ansible ~/ansible/10_network]$ vi test1
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: 네트워크 정보 확인  3   hosts: servers  4   tasks:
+  5     - name: 네트워크 정보 확인  6       ansible.builtin.debug:
+>4;m"test1" [New]a8L,b217Bawrittens224']  8       when: ansible_facts['ens224'] is defined8,46All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/10_network]$ vi test2
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All  2 ---  3 - name: 네트워크 정보 확인  4    hosts: servers  5    tasks:
+  6      - name: 네트워크 정보 확인  7        ansible.builtin.debug:
+  8          var: ansible_facts['ens224']  9        when: ansible_facts['ens224'] is defind9,46All~@k   []8,37~@k   []7,29~@k   6,37-30~@k   5,9    ~@k   4,17~@k   3,32-25~@k   2,3    ~@k   1,0-1~@k   dd
+1
+  2
+  3
+  4
+  5
+  6
+  7
+>4;m"test2" [New] 8L, 222B written                                                  1,1All^[  ^[  ::wq
+>4;m[ansible@ansible ~/ansible/10_network]$ vi playbook.yml
+  1 ---
+  2 - name: 네트워크 정보 확인  3   hosts: servers  4   tasks:
+  5     - name: 네트워크 정보 확인
+  6       ansible.builtin.debug:
+  7 var: ansible_facts['ens224']
+  8       when: ansible_facts['ens224'] is defined
+  9
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                9,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   8,1  ~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   ~@k   g gdE349: No identifier under cursor1,1AlldG  ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                --No lines in buffer--0,0-1All-- INSERT --0,1All---
+  2 - name: 네트워크 정보 확인  3   hosts: servers
+  4   tasks:  5     - name: 네트워크 설정 확인 및 설정
+  6       block:  7         - name: 네트워크 정보 확인
+  8           ansible.builtin.debug:  9             var: ansible_facts['ens224']
+ 10  11         - name: 네트워크 설정 12 ansible.builtin.include_role:
+ 13             name: redhat.rhel_system_roles.network
+ 14       when: ansible_facts['ens224'] is defined
+>4;m"playbook.yml"[15L,w421B written
+>4;m[ansible@ansible ~/ansible/10_network]$ ansible-playbook playbook.yml
+
+PLAY [네트워크 정보 확인] *******************************************************
+
+TASK [Gathering Facts] **********************************************************
+ok: [ansible1]
+
+TASK [네트워크 정보 확인] *******************************************************
+ok: [ansible1] => {
+    "ansible_facts['ens224']": {
+        "active": true,
+        "device": "ens224",
+        "features": {
+            "esp_hw_offload": "off [fixed]",
+            "esp_tx_csum_hw_offload": "off [fixed]",
+            "generic_receive_offload": "on",
+            "generic_segmentation_offload": "on",
+            "highdma": "on",
+            "hsr_dup_offload": "off [fixed]",
+            "hsr_fwd_offload": "off [fixed]",
+            "hsr_tag_ins_offload": "off [fixed]",
+            "hsr_tag_rm_offload": "off [fixed]",
+            "hw_tc_offload": "off [fixed]",
+            "l2_fwd_offload": "off [fixed]",
+            "large_receive_offload": "on",
+            "loopback": "off [fixed]",
+            "macsec_hw_offload": "off [fixed]",
+            "ntuple_filters": "off [fixed]",
+            "receive_hashing": "on",
+            "rx_all": "off [fixed]",
+            "rx_checksumming": "on",
+            "rx_fcs": "off [fixed]",
+            "rx_gro_hw": "off [fixed]",
+            "rx_gro_list": "off",
+            "rx_udp_gro_forwarding": "off",
+            "rx_udp_tunnel_port_offload": "off [fixed]",
+            "rx_vlan_filter": "on [fixed]",
+            "rx_vlan_offload": "on",
+            "rx_vlan_stag_filter": "off [fixed]",
+            "rx_vlan_stag_hw_parse": "off [fixed]",
+            "scatter_gather": "on",
+            "tcp_segmentation_offload": "on",
+            "tls_hw_record": "off [fixed]",
+            "tls_hw_rx_offload": "off [fixed]",
+            "tls_hw_tx_offload": "off [fixed]",
+            "tx_checksum_fcoe_crc": "off [fixed]",
+            "tx_checksum_ip_generic": "on",
+            "tx_checksum_ipv4": "off [fixed]",
+            "tx_checksum_ipv6": "off [fixed]",
+            "tx_checksum_sctp": "off [fixed]",
+            "tx_checksumming": "on",
+            "tx_esp_segmentation": "off [fixed]",
+            "tx_fcoe_segmentation": "off [fixed]",
+            "tx_gre_csum_segmentation": "off [fixed]",
+            "tx_gre_segmentation": "off [fixed]",
+            "tx_gso_list": "off [fixed]",
+            "tx_gso_partial": "off [fixed]",
+            "tx_gso_robust": "off [fixed]",
+            "tx_ipxip4_segmentation": "off [fixed]",
+            "tx_ipxip6_segmentation": "off [fixed]",
+            "tx_nocache_copy": "off",
+            "tx_scatter_gather": "on",
+            "tx_scatter_gather_fraglist": "off [fixed]",
+            "tx_sctp_segmentation": "off [fixed]",
+            "tx_tcp6_segmentation": "on",
+            "tx_tcp_ecn_segmentation": "off [fixed]",
+            "tx_tcp_mangleid_segmentation": "off",
+            "tx_tcp_segmentation": "on",
+            "tx_tunnel_remcsum_segmentation": "off [fixed]",
+            "tx_udp_segmentation": "off [fixed]",
+            "tx_udp_tnl_csum_segmentation": "off [fixed]",
+            "tx_udp_tnl_segmentation": "off [fixed]",
+            "tx_vlan_offload": "on",
+            "tx_vlan_stag_hw_insert": "off [fixed]",
+            "vlan_challenged": "off [fixed]"
+        },
+        "hw_timestamp_filters": [],
+        "macaddress": "00:0c:29:d0:db:47",
+        "module": "vmxnet3",
+        "mtu": 1500,
+        "pciid": "0000:13:00.0",
+        "promisc": false,
+        "speed": 10000,
+        "timestamping": [],
+        "type": "ether"
+    }
+}
+
+TASK [네트워크 설정] ************************************************************
+included: redhat.rhel_system_roles.network for ansible1
+
+TASK [redhat.rhel_system_roles.network : Ensure ansible_facts used by role] *****
+included: /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/network/tasks/set_facts.yml for ansible1
+
+TASK [redhat.rhel_system_roles.network : Ensure ansible_facts used by role are present] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Record role begin fingerprint] *********
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Check if system is ostree] *************
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Set flag to indicate system is ostree] ***
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Check which services are running] ******
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Check which packages are installed] ****
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Print network provider] ****************
+ok: [ansible1] => {
+    "msg": "Using network provider: nm"
+}
+
+TASK [redhat.rhel_system_roles.network : Abort applying the network state configuration if using the `network_state` variable with the initscripts provider] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Abort applying the network state configuration if the system version of the managed host is below 8] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Abort applying teaming configuration if the system version of the managed host is EL10 or later, or SUSE 16 or later] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Check if updates for network packages are available through the DNF package manager due to wireless or team interfaces] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Check if updates for network packages are available through the YUM package manager due to wireless or team interfaces] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Ask user's consent to restart NetworkManager due to wireless or team interfaces] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Install packages] **********************
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Install NetworkManager and nmstate when using network_state variable] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Install python3-libnmstate when using network_state variable] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Restart NetworkManager due to wireless or team interfaces] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Enable and start NetworkManager] *******
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Enable and start wpa_supplicant] *******
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Enable network service] ****************
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Ensure initscripts network file dependency is present] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Configure networking connection profiles] ***
+changed: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Configure networking state] ************
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Show stderr messages for the network_connections] ***
+ok: [ansible1] => {
+    "__network_connections_result.stderr_lines": [
+        "[003] <info>  #0, state:up persistent_state:present, 'ens224': Starting transaction",
+        "[004] <info>  #0, state:up persistent_state:present, 'ens224': Started transaction",
+        "[005] <info>  #0, state:up persistent_state:present, 'ens224': add connection ens224, 5beffb82-fa79-425e-bf03-81be785be0fa",
+        "[006] <info>  #0, state:up persistent_state:present, 'ens224': up connection ens224, 5beffb82-fa79-425e-bf03-81be785be0fa (is-modified)",
+        "[007] <info>  #0, state:up persistent_state:present, 'ens224': Finishing transaction",
+        "[008] <info>  #0, state:up persistent_state:present, 'ens224': Finished transaction",
+        "[009] <info>  #0, state:up persistent_state:present, 'ens224': Exiting"
+    ]
+}
+
+TASK [redhat.rhel_system_roles.network : Show debug messages for the network_connections] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Show debug messages for the network_state] ***
+skipping: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Re-test connectivity] ******************
+ok: [ansible1]
+
+TASK [redhat.rhel_system_roles.network : Record role success fingerprint] *******
+ok: [ansible1]
+
+PLAY RECAP **********************************************************************
+ansible1                   : ok=15   changed=1    unreachable=0    failed=0    skipped=17   rescued=0    ignored=0
+
+st1 test2
+3,8c3,8
+<   hosts: servers
+<   tasks:
+<     - name: 네트워크 정보 확인
+<       ansible.builtin.debug:
+<         var: ansible_facts['ens224']
+<       when: ansible_facts['ens224'] is defined
+---
+>    hosts: servers
+>    tasks:
+>      - name: 네트워크 정보 확인
+>        ansible.builtin.debug:
+>          var: ansible_facts['ens224']
+>        when: ansible_facts['ens224'] is defind
+[ansible@ansible ~/ansible/10_network]$ c
+sible2 sudo poweroff
+[ansible@ansible ~/ansible/10_network]$ mkdir -p ~/ansible/10_bond && cd ~/ansible/10_bond
+mkdir -p ~/ansible/10_bond && cd ~/ansible/10_bond
+
+[ansible@ansible ~/ansible/10_bond]$ cat <<'EOF' > ansible.cfg
+> [defaults]
+inventory = ./inventory
+
+[privilege_escalation]
+become=true
+
+EO[defaults]
+inventory = ./inventory
+
+[privilege_escalation]
+become=true
+
+EOF
+[ansible@ansible ~/ansible/10_bond]$ cat <<'EOF' > inventory
+[servers]
+ansible2
+
+[ansible@ansible ~/ansible/10_bond]$ cat <<'EOF' > inventory
+[servers]
+ansible2
+
+EOF
+[ansible@ansible ~/ansible/10_bond]$ vi playbook.yml
+  1
+~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        -- INSERT --0,1All---
+  2 - name: CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성
+  3   hosts: servers  4   become: true  5   gather_facts: true
+  6   7   vars:  8     network_connections:  9       # 1. Bond 마스터 인터페이스 설정
+ 10       - name: bond0 11         interface_interface_name: bond0
+ 12         type: bond 13         state: present 14         autoconnect: true
+ 15         ip: 16           address: 17             - "192.168.10.22/24"
+ 18         bond: 19           mode: active-backup 20  miimon: 100
+ 21           downdelay: 0 22           updelay: 0
+ 23           primary: ens160 24           fail_over_mac: active 25  26       # 2. Slave 인터페이스 1 (ens192)
+ 27       - name: bond0-port1
+ 28         interface_name: ens192 29         type: ethernet 30         controller: bond0
+ 31         port_type: bond 32         state: present
+ 33         autoconnect: true 34  35       # 3. Slave 인터페이스 2 (ens224)
+ 36       - name: bond0-port2 37         interface_name: ens224
+ 38         type: ethernet 39         controller: bond0 40         port_type: bond
+ 41         state: present 42         autoconnect: true 43
+ 44   tasks:
+ 45     - name: 네트워크 시스템 역할 실행
+ 46       ansible.builtin.include_role:(paste) --
+>4;m"playbook.yml"h[New]s47L,r1150Bnwritten7,46Bot^[  ^[  ::wq
+>4;me-playbook playbook.yml --syntax-check
+
+playbook: playbook.yml
+[ansible@ansible ~/ansible/10_bond]$ ansible-playbook playbook.yml --syntax-check
+vi playbook.yml
+  6
+  7   vars:  8     network_connections:  9       # 1. Bond 마스터 인터페이스 설정
+ 10       - name: bond0
+ 11 interface_name: bond0
+ 12 type: bond
+ 13 state: present
+ 14 autoconnect: true
+ 15 ip:
+ 16 address:
+ 17 - "192.168.10.22/24"
+ 18 bond:
+ 19 mode: active-backup
+ 20 miimon: 100
+ 21 downdelay: 0
+ 22 updelay: 0
+ 23 primary: ens160
+ 24 fail_over_mac: active
+ 25
+ 26       # 2. Slave 인터페이스 1 (ens192)
+ 27       - name: bond0-port1
+ 28 interface_name: ens192
+ 29 type: ethernet
+ 30 controller: bond0
+ 31 port_type: bond
+ 32 state: present
+ 33 autoconnect: true
+ 34
+ 35       # 3. Slave 인터페이스 2 (ens224)
+ 36       - name: bond0-port2
+ 37 interface_name: ens224
+ 38 type: ethernet
+ 39 controller: bond0
+ 40 port_type: bond
+ 41 state: present
+ 42 autoconnect: true
+ 43
+ 44   tasks:
+ 45     - name: 네트워크 시스템 역할 실행
+ 46       ansible.builtin.include_role:
+ 47 name: redhat.rhel_system_roles.network47,9Bot+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12      +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        654,83,0-1~@k   2,9  10398~@k   7654,0-13,9  ~@k   210298~@k   765,0-14,9  3~@k   210198~@k   76543~@k   21  5   gather_facts: true10,980%  4   become: true9,960%  3   hosts: servers8,940%~@k     2 - name: CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성7,720%  1 ---6,0-1Top5,9  43~@k   21,3~@k   2,9345~@k   6,0-17,7  8,9910,9~@k   12345~@k   678920~@k   12345,0-1~@k   6,9  78930~@k   1234,0-15,9  ~@k   654,0-13,9  2~@k   102987~@k   65,0-14,9  32~@k   101987~@k   678920~@k   1~@k   2345,0-16,9  ~@k   789301~@k   2~@k   1~@k   0~@k   29~@k   8i -- INSERT --28,9Top101234567892012345678930102982953061^[  28,30Top9,2230,251,232,22~@k   3,254,0-15,35-306,25   7,30
+ 43 38,2220%
+ 44   tasks:39,2540%
+ 45     - name: 네트워크 시스템 역할 실행40,2360%
+ 46       ansible.builtin.include_role:41,2280%
+ 47 name: redhat.rhel_system_roles.network42,25Bot~@k   3,0-14,8  5,36-296,30   7~@k   ~@k   ~@k   ~@k   65,36-294,8    3,0-1~@k   2,25 1,220,2339,258,22~@k   7,306,255,35-304,0-1  3,25 ~@k   2,223,254,0-15,35-306,25   ~@k   7,308,229,2540,231,22~@k   2,253,0-14,8  5,36-296,30   ~@k   7~@k   ~@k   ~@k   ~@k   65,36-294,8    3,0-1~@k   2,25 1,220,2339,258,22~@k   7,306,255,35-304,0-1  3,25 ~@k   2,221,230,2529,228,30~@k   7,256,35-305,0-1  4,30 3,25~@k   2,201,220,2119,298,13~@k   7,306,185,114,253,22~@k   2,181,29  5   gather_facts: true10,1980%  4   become: true9,36-3060%  3   hosts: servers8,2440%~@k     2 - name: CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성7,720%  1 ---6,0-1Top5,20 4,143,16~@k   2,301,3 ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,303,164,145,20~@k   6,0-17,7  8,249,36-3010,19  ~@k   1,22,183,224,255,11~@k   6,187,308,139,2920,21~@k   1,222,203,254,305,0-1~@k   6,35-30~@k   5,0-1  ~@k   4,30 ~@k   3,25u1 change; before #1  35 seconds a19228,30Top28,30Top^Rafter #1  38 seconds a25628,30Top28,30Top~@k   7,25~@k   6,35-30~@k   5,0-1  ~@k   4,30 ~@k   3,25~@k   2,20~@k   1,22~@k   0,21~@k   19,29~@k   8,13~@k   7,30~@k   6,18~@k   5,11~@k   4,25~@k   3,22~@k   2,18~@k   1,29~@k   0,1~@k   9,36-30~@k   8,24   o -- INSERT --9,5Top  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 429,5Top67#8 9110.1 2109 N10I1C213(4e5n6s72829420)()1,(ens224)2 3N4I5C627(8e9n30s1225344)()5(4364)()5(ens256)10,43-351,20   2,33,194,235,266,127,198,339,1420,301,222,233,214,265,326,1 7,40-358,26   7,40-351-()3-3))2-3))1-3))0-352)1-365)2-376)3-38(ens256)8,26   9,3130,2329,318,26()7,43-38(ens256)6,1    5,324,2654324254656,1 7,30-268,26   930,231,262,243,234,265,1 6,30-267,26
+ 43 autoconnect: true38,2616%
+ 44 39,2333%
+ 45   tasks:40,2650%
+ 46     - name: 네트워크 시스템 역할 실행41,2466%
+ 47       ansible.builtin.include_role:42,2383%
+ 48 name: redhat.rhel_system_roles.network43,26Bot4,1 5,96,32-267,26   876,32-265,9    4,13,262,231,240,2639,238,2676,30-265,1    4,263,232,241,260,2329,2687,30-266,1    5,2643,212,231,220,2619,148,267,196,125,264,233,192,26  6 11,2083%  5   gather_facts: true10,30-26      66%1,20   2,263,194,235,266,127,198,269,1420,261,222,233,214,2656,1 7,30-268,26   930,231,262,243,234,265,1 6,30-267,26   89,2340,261,24
+ 47       ansible.builtin.include_role:42,2383%
+ 48 name: redhat.rhel_system_roles.network43,26Bot4,1 5,96,32-267,26   876,32-265,9    4,13,262,231,240,2639,238,2676,30-265,1    4,263,232,241,260,2329,2687,30-266,1    5,2643,212,231,220,2619,148,267,196,125,264,233,192,26  6 11,2083%  5   gather_facts: true10,30-26      66%  4   become: true9,2650%  3   hosts: servers8,2533%  2 - name: CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성7,816%  1 ---6,1Top5,214,153,172,263,174,155,216,1 7,88,259,2610,30-261,20   2,263,194,235,266,127,198,269,1420,261,222,233,214,2656,1 7,30-268,26   930,231,262,243,234,265,1 6,30-267,26
+ 43 autoconnect: true38,2616%
+ 44 39,2333%8,2676,30-265,1    4,263,232,241,260,2329,2689789301029230418,26()7,36-31(ens256)6,1    ()7,36-317-3(ens256)8-339-3440-351-362-36)1-36)0-3526)1-3646)(ens24)1-3624)2-378,26   9,3130,231,262,243,234,265,1 6()3-3))2-3))1-365)2-376)3-38(ens256)7,26   8,3102953061 45   tasks:
+ 46     - name: 네트워크 시스템 역할 실행
+ 47       ansible.builtin.include_role:
+>4;m"playbook.yml"h48L,y1185Brwrittentwork43,26Bot8,31^[  48,30Bot::wq
+[ansible@ansiblei~/ansible/10_bond]$nd]$ ansible-playbook playbook.yml --syntax-check
+catp<<'EOF'.>minventory
+[servers]
+ansible2
+
+EOF
+vi playbook.yml
+
+
+
+
+14@ansible-playbook--syntax-check
+
+playbook: playbook.yml
+[ansible@ansible ~/ansible/10_bond]$ visplaybook.ymlk playbook.yml --syntax-check
+[ansible@ansible ~/ansible/10_bond]$avicplaybook.yml
+
+  7   vars:
+  8     network_connections:  9       # NIC1(ens224), NIC2(ens256) 10       # 1. Bond 마스터 인터페이스 설정
+ 11       - name: bond0
+ 12 interface_name: bond0
+ 13 type: bond
+ 14 state: present
+ 15 autoconnect: true
+ 16 ip:
+ 17 address:
+ 18 - "192.168.10.22/24"
+ 19 bond:
+ 20 mode: active-backup
+ 21 miimon: 100
+ 22 downdelay: 0
+ 23 updelay: 0
+ 24 primary: ens224
+ 25 fail_over_mac: active
+ 26
+ 27       # 2. Slave 인터페이스 1 (ens224)
+ 28       - name: bond0-port1
+ 29 interface_name: ens224
+ 30 type: ethernet
+ 31 controller: bond0
+ 32 port_type: bond
+ 33 state: present
+ 34 autoconnect: true
+ 35
+ 36       # 3. Slave 인터페이스 2 (ens256)
+ 37       - name: bond0-port2
+ 38 interface_name: ens256
+ 39 type: ethernet
+ 40 controller: bond0
+ 41 port_type: bond
+ 42 state: present
+ 43 autoconnect: true
+ 44
+ 45   tasks:
+ 46     - name: 네트워크 시스템 역할 실행
+ 47       ansible.builtin.include_role:
+[ansible@ansible@~/ansible/10_bond]$0_bond]$,ansible-playbook+playbook.ymlq--syntax-check34+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+
+
+PLAY [CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성] *********************
+
+TASK [Gathering Facts] **********************************************************
+ok: [ansible2]
+
+TASK [네트워크 시스템 역할 실행] ************************************************
+included: redhat.rhel_system_roles.network for ansible2
+
+TASK [redhat.rhel_system_roles.network : Ensure ansible_facts used by role] *****
+included: /usr/share/ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/network/tasks/set_facts.yml for ansible2
+
+TASK [redhat.rhel_system_roles.network : Ensure ansible_facts used by role are present] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Record role begin fingerprint] *********
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Check if system is ostree] *************
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Set flag to indicate system is ostree] ***
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Check which services are running] ******
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Check which packages are installed] ****
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Print network provider] ****************
+ok: [ansible2] => {
+    "msg": "Using network provider: nm"
+}
+
+TASK [redhat.rhel_system_roles.network : Abort applying the network state configuration if using the `network_state` variable with the initscripts provider] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Abort applying the network state configuration if the system version of the managed host is below 8] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Abort applying teaming configuration if the system version of the managed host is EL10 or later, or SUSE 16 or later] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Check if updates for network packages are available through the DNF package manager due to wireless or team interfaces] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Check if updates for network packages are available through the YUM package manager due to wireless or team interfaces] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Ask user's consent to restart NetworkManager due to wireless or team interfaces] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Install packages] **********************
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Install NetworkManager and nmstate when using network_state variable] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Install python3-libnmstate when using network_state variable] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Restart NetworkManager due to wireless or team interfaces] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Enable and start NetworkManager] *******
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Enable and start wpa_supplicant] *******
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Enable network service] ****************
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Ensure initscripts network file dependency is present] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Configure networking connection profiles] ***
+changed: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Configure networking state] ************
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Show stderr messages for the network_connections] ***
+ok: [ansible2] => {
+    "__network_connections_result.stderr_lines": [
+        "[004] <info>  #0, state:None persistent_state:present, 'bond0': Starting transaction",
+        "[005] <info>  #0, state:None persistent_state:present, 'bond0': Started transaction",
+        "[006] <info>  #0, state:None persistent_state:present, 'bond0': add connection bond0, cbd72f9c-e0fd-47b4-8647-e2d8c4c00bcf",
+        "[007] <info>  #1, state:None persistent_state:present, 'bond0-port1': add connection bond0-port1, c03e215e-cfec-4271-9dba-809d37d5b636",
+        "[008] <info>  #2, state:None persistent_state:present, 'bond0-port2': add connection bond0-port2, a345f307-7051-40ab-a019-75e77e0fd6b4",
+        "[009] <info>  #0, state:None persistent_state:present, 'bond0': Finishing transaction",
+        "[010] <info>  #0, state:None persistent_state:present, 'bond0': Finished transaction",
+        "[011] <info>  #0, state:None persistent_state:present, 'bond0': Exiting"
+    ]
+}
+
+TASK [redhat.rhel_system_roles.network : Show debug messages for the network_connections] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Show debug messages for the network_state] ***
+skipping: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Re-test connectivity] ******************
+ok: [ansible2]
+
+TASK [redhat.rhel_system_roles.network : Record role success fingerprint] *******
+ok: [ansible2]
+
+PLAY RECAP **********************************************************************
+ansible2                   : ok=14   changed=1    unreachable=0    failed=0    skipped=17   rescued=0    ignored=0
+
+sible@ansible2
+Last login: Tue Sep 29 19:37:46 2026 from 192.168.10.10
+[ansible@ansible2 ~]$ exit
+logout
+Connection to ansible2 closed.
+[ansible@ansible ~/ansible/10_bond]$ cat playbook.ymlble2
+---
+- name: CentOS Stream 10 NIC 본딩(Bonding) 및 상세 옵션 구성
+  hosts: servers
+  become: true
+  gather_facts: true
+
+  vars:
+    network_connections:
+      # NIC1(ens224), NIC2(ens256)
+      # 1. Bond 마스터 인터페이스 설정
+      - name: bond0
+        interface_name: bond0
+        type: bond
+        state: present
+        autoconnect: true
+        ip:
+          address:
+            - "192.168.10.22/24"
+        bond:
+          mode: active-backup
+          miimon: 100
+          downdelay: 0
+          updelay: 0
+          primary: ens224
+          fail_over_mac: active
+
+      # 2. Slave 인터페이스 1 (ens224)
+      - name: bond0-port1
+        interface_name: ens224
+        type: ethernet
+        controller: bond0
+        port_type: bond
+        state: present
+        autoconnect: true
+
+      # 3. Slave 인터페이스 2 (ens256)
+      - name: bond0-port2
+        interface_name: ens256
+        type: ethernet
+        controller: bond0
+        port_type: bond
+        state: present
+        autoconnect: true
+
+  tasks:
+    - name: 네트워크 시스템 역할 실행
+      ansible.builtin.include_role:
+        name: redhat.rhel_system_roles.network
+sible@192.168.10.22
+The authenticity of host '192.168.10.22 (192.168.10.22)' can't be established.
+ED25519 key fingerprint is SHA256:1bMkFk34LULVwr0CxxwoASCXwOmP5tYn0I1rehLQrOw.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: 192.168.10.12
+    ~/.ssh/known_hosts:2: 192.168.10.13
+    ~/.ssh/known_hosts:3: web1.example.com
+    ~/.ssh/known_hosts:4: 192.168.10.10
+    ~/.ssh/known_hosts:5: 192.168.10.11
+    ~/.ssh/known_hosts:6: 192.168.10.14
+    ~/.ssh/known_hosts:7: ansible.example.com
+    ~/.ssh/known_hosts:8: ansible
+    (20 additional names omitted)
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.10.22' (ED25519) to the list of known hosts.
+Last login: Tue Sep 29 19:37:55 2026 from 192.168.10.10
+[ansible@ansible2 ~]$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:30:6f:f1 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29306ff1
+    inet 192.168.10.12/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe30:6ff1/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: ens224: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link/ether 00:0c:29:30:6f:fb brd ff:ff:ff:ff:ff:ff
+    altname enp19s0
+    altname enx000c29306ffb
+4: ens256: <BROADCAST,MULTICAST,SLAVE,UP,LOWER_UP> mtu 1500 qdisc mq master bond0 state UP group default qlen 1000
+    link/ether 00:0c:29:30:6f:05 brd ff:ff:ff:ff:ff:ff
+    altname enp27s0
+    altname enx000c29306f05
+5: bond0: <BROADCAST,MULTICAST,MASTER,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 00:0c:29:30:6f:fb brd ff:ff:ff:ff:ff:ff
+    inet 192.168.10.22/24 brd 192.168.10.255 scope global noprefixroute bond0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::41e5:b1b4:b8e:7da4/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+[ansible@ansible2 ~]$ exit
+logout
+Connection to 192.168.10.22 closed.
+[ansible@ansible ~/ansible/10_bond]$ clear
+rc
+  1
+>4;m>4;m[ansible@ansible ~/ansible/10_bond]$ cd                                  ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+[ansible@ansible ~]$ ls
+ansible                Desktop    facts.txt  Music     Public
+ansible-navigator.log  Documents  ist        myrole    Templates
+bin                    Downloads  LinuxLog   Pictures  Videos
+[ansible@ansible ~]$ ls -a
+.                      .bashrc    Downloads         .mozilla   Videos
+..                     bin        facts.txt         Music      .viminfo
+.ansible               .cache     .fontconfig       myrole     .vimrc
+ansible                .config    .gitconfig        Pictures   .vscode
+ansible-navigator.log  .copilot   .git-credentials  Public     .vscode-server
+.bash_history          Desktop    ist               .redhat    .vscode-shared
+.bash_logout           Documents  LinuxLog          .ssh       .wget-hsts
+.bash_profile          .dotnet    .local            Templates
+[ansible@ansible ~]$ cd .redhat/
+[ansible@ansible ~/.redhat]$ lss
+anonymousId
+[ansible@ansible ~/.redhat]$ ll
+total 4
+-rw-r--r--. 1 ansible ansible 36 Sep 23 19:45 anonymousId
+[ansible@ansible ~/.redhat]$ vi anonymousId
+  1 0f5733cb-a3b9-4986-86b4-eaf232f3184b
+>4;m>4;m[ansible@ansible ~/.redhat]$ exit                                        ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                ~                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+exit
+
+Script done on 2026-09-29 19:45:06+09:00 [COMMAND_EXIT_CODE="0"]
