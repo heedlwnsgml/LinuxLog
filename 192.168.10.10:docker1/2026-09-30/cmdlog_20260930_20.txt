@@ -662,3 +662,929 @@ Login Succeeded
 exit
 
 Script done on 2026-09-30 20:28:50+09:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-09-30 20:28:54+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="177" LINES="48"]
+er logout
+Removing login credentials for https://index.docker.io/v1/
+er login -u leejunhee021210
+
+i Info → A Personal Access Token (PAT) can be used instead.
+         To create a PAT, visit https://app.docker.com/settings
+
+
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+
+46243d3234ed: Pulling fs layer
+2056b40bae09: Pulling fs layer
+afa8dec48454: Pulling fs layer
+f1169c633cbc: Pulling fs layer
+3326c3817340: Pulling fs layer
+f802f27d954b: Pulling fs layer
+6b37362b3da7: Extractingo1psete=======================================>=>     ]  26.21MB/29.83MB
+6b37362b3da7: Pullacompletesete
+Digest:2sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+docker tag leejunhee021210/webserver:1.0
+docker: 'docker tag' requires 2 arguments
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Run 'docker tag --help' for more information
+[root@docker1 ~]# docker tag leejunhee021210/webserver:1.0
+docker: 'docker tag' requires 2 arguments
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Run 'docker tag --help' for more information
+er tag leejunhee021210/webserver
+docker: 'docker tag' requires 2 arguments
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Run 'docker tag --help' for more information
+[root@docker1 ~]# docker tag leejunhee021210/webserver:1.0
+docker: 'docker tag' requires 2 arguments
+
+Usage:  docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+
+Run 'docker tag --help' for more information
+[root@docker1 ~]# docker tag nginxlleejunhee021210/webserver
+er image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                              ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:latest   abe47724e466        239MB         66.3MB
+nginx:latest                       abe47724e466        239MB         66.3MB
+[root@docker1 ~]# c
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                              ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:latest   abe47724e466        239MB         66.3MB
+nginx:latest                       abe47724e466        239MB         66.3MB
+er tag nginx:leejunhee021210/webserver:1.0est
+er image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                              ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0      abe47724e466        239MB         66.3MB
+leejunhee021210/webserver:latest   abe47724e466        239MB         66.3MB
+nginx:latest                       abe47724e466        239MB         66.3MB
+ker rmi leejunhee021210/webserver:latest
+Untagged: leejunhee021210/webserver:latest
+er imgaes
+docker: unknown command: docker imgaes
+
+Run 'docker --help' for more information
+ages
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+[root@docker1 ~]# clear
+r push leejunhee021210/webserver:1.0
+The push refers to repository [docker.io/leejunhee021210/webserver]
+
+f802f27d954b: Unavailable
+6b37362b3da7: Unavailable
+2056b40bae09: Unavailable
+f1169c633cbc: Unavailablem library/nginx
+3326c3817340: Unavailable
+f802f27d954b: Unavailable
+1.0:3digest::sha256:9c0f39aa1c46f5062ba080555a067ebb82d5f63a8cf4d63f6ef2e76fc9ff2d0c size: 2290
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2 -> sha256:9c0f39aa1c46f5062ba080555a067ebb82d5f63a8cf4d63f6ef2e76fc9ff2d0c
+er search leejunhee021210/webserver
+NAME                                 DESCRIPTION                                     STARS     OFFICIAL
+leejunhee021210/webserver            Educational Server                              0
+ddev/ddev-webserver                  DDEV's ddev-webserver image                     2
+ddev/ddev-webserver-prod             DDEV's ddev-webserver image                     0
+manageiq/manageiq-webserver-worker   ManageIQ worker which exposes a webserver on…   1
+itisfoundation/webserver                                                             2
+webserverhu/spamassassin             Mail filter to identify spam using a wide ra…   1
+wilfahrt/gatling-webserver           gatling - a high performance web server         12
+netresearch/node-webserver           Head over to https://github.com/netresearch/…   2
+itisfoundation/static-webserver                                                      0
+robwolff3/ga-webserver               Google Assistant Webserver in a Docker conta…   0
+algram/ytdl-webserver                📻 Webserver for downloading youtube videos.…   5
+grupovoalle/webserver                Generic webserver (nginx) with certbot.         0
+e2eteam/test-webserver                                                               0
+goeuc/webserver                      A webserver that serves random sites that is…   0
+kamilprzp/webserver-image                                                            0
+ak413/webserver                                                                      0
+stefanscherer/webserver-windows      A minimal webserver written in Go to run in …   1
+vimal13/apache-webserver-php                                                         22
+navjotk/my_webserver                                                                 0
+tobilg/mini-webserver                Provides a server (via Express.js) to expose…   3
+jack1007533560/webserver                                                             0
+lovelearnlinux/webserver                                                             0
+vivek95/webserver                    This is the image which has ping utility ins…   0
+wodanio/webserver                                                                    0
+dwebserver/scan2pay_command_center                                                   0
+er search leejunhee021210
+NAME                        DESCRIPTION          STARS     OFFICIAL
+leejunhee021210/mynginx                          0
+leejunhee021210/webserver   Educational Server   0
+podmannsearch2--
+--authfile    (Path of the authentication file. Use REGISTRY_AUTH_FILE environment variable to override)
+--cert-dir    (`Pathname` of a directory containing TLS certificates and keys)
+--compatible  (List stars, official and automated columns (Docker compatibility))
+--creds       (`Credentials` (USERNAME:PASSWORD) to use for authenticating to a registry)
+--filter      (Filter output based on conditions provided (default []))
+--format      (Change the output format to JSON or a Go template)
+--limit       (Limit the number of results)
+--list-tags   (List the tags of the input registry)
+--no-trunc    (Do not truncate the output)
+--tls-verify  (Require HTTPS and verify certificates when contacting registries)
+[root@docker1 ~]# podman search --list-tags leejunhee021210
+Error: 3 errors occurred:
+        * getting repository tags: fetching tags list: name unknown: Repo not found
+        * getting repository tags: getting repository tags: unable to retrieve auth token: invalid username/password: unauthorized: Please login to the Red Hat Registry using your Customer Portal credentials. Further instructions can be found here: https://access.redhat.com/RegistryAuthentication
+        * getting repository tags: fetching tags list: requested access to the resource is denied
+
+
+podmandsearch --list-tagssleejunhee021210/webserveree021210/webserver
+NAME                                 TAG
+docker.io/leejunhee021210/webserver  1.0
+mon.js
+>4;m>4;m[root@docker1 ~]# mkdir -p /data/docker                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+vio/etc/docker/daemon.js-p /data/docker
+>4;m"/etc/docker/daemon.js" [New] 3L, 34B written                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  i -- INSERT --0,1All{1,22,12-9"3-10d4-11a5-12t6-13a7-148-159-16-10-171-180-179-16 8-15-9-168-157-14-8-15r9-16o10-17o1-18t2-19"3-204-21:5-226-23"7-24"8-257-24d8-25a9-26t20-27a1-280-2719-268-257-24/8-25d9-26a20-27t1-28a2-29"3-30d4-31o5-32c6-33k7-34e8-35r9-368-357-346-335-324-313-302-29/3-30'4-313-30d4-31o5-32c6-33k7-34e8-35r9-36"30-37^[  2,29-36All::w2,29-36Allo -- INSERT --3,1All}2^[  3,1All::wq
+>4;mcker.s
+Failed to restart docker.s.service: Unit docker.s.service not found.
+[root@docker1 ~]# systemctl restart docker.service
+cker Root Dir:'
+ Docker Root Dir: /var/lib/docker
+systemctlkrestart docker.servicegrep 'Docker Root Dir:'
+dockerdinfor| greps'DockerlRoottDir:'ocker
+ Docker Root Dir: /var/lib/docker
+[root@docker1 ~]# vi /etc/docker/daemon.js
+{
+>4;m>4;mocker/daemon.jsonata/docker"}~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::wwqq
+systemctlfrestartpdockererdRootrDir:'on.js /etc/docker/daemon.json
+dockercinfoe|tgrepd'DockereRootoDir:'daemon.json
+ Docker Root Dir: /data/docker
+[root@docker1 ~]# clear
+lsattro/etc/passwd
+---------------------- /etc/passwd
+[root@docker1 ~]# docker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+r create --name webserver nginx
+96825cb39bdd0a606c962585a968f99ff33f9c1d1c95fcffe3c0fca7576946da
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS    PORTS     NAMES
+96825cb39bdd   nginx     "/docker-entrypoint.…"   5 seconds ago   Created             webserver
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+>4;m>4;m[root@docker1 ~]# c                                                                                                                                                      ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS    PORTS     NAMES
+96825cb39bdd   nginx     "/docker-entrypoint.…"   41 seconds ago   Created             webserver
+foroi@inc{1..10}#;fdo docker1create;nginxo;kdonereate nginx ; done
+d73e450e397970df21043ad2287e712f114b2dff4cdccc3083df3c1e2506700c
+2a97d5045a8b3ae705dd6ddddc3ccf7c6b026bb13790aef10c0ae3799d25760c
+421568918f45fa1e8b3f5c2b28d5eeedd7c9f58edca264e99e5f272cdbb85a48
+8237adbbea1b628e3572ed9dcfffaac16d1b04bf36015fddc9eb4c6380c29d60
+853ed56bee173ec78c71f2583f71a92c48a53ff2cb0077d5c5f478533db09397
+eaf5c120694bfb30b98f9ca8c8ffeff5b9a1fa843c965b3897ba9c8020afda5c
+25a60352561a92cd7e90c7b8482d4b68b2ce723a653b3e444782726db6089d9f
+726346bd628911bf54566ffc4efd9c14176c5a1ad2997a508b71d194a9755e3a
+fa1c8421c79ecc77cf371666ec5b8929f0f8cb6c4a91f758bd7938eee773515e
+149429e7fbc381655c22bbd5db6ab081822478060a49b224365e1e6fa271cca5
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS    PORTS     NAMES
+149429e7fbc3   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             infallible_lamarr
+fa1c8421c79e   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             eager_mirzakhani
+726346bd6289   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             goofy_bhabha
+25a60352561a   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             gallant_blackburn
+eaf5c120694b   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             reverent_robinson
+853ed56bee17   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             keen_bell
+8237adbbea1b   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             distracted_vaughan
+421568918f45   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             recursing_spence
+2a97d5045a8b   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             awesome_mendeleev
+d73e450e3979   nginx     "/docker-entrypoint.…"   3 seconds ago   Created             quirky_roentgen
+96825cb39bdd   nginx     "/docker-entrypoint.…"   4 minutes ago   Created             webserver
+er rm -f $(docker -qa)
+unknown shorthand flag: 'q' in -qa
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+[root@docker1 ~]# docker rm -f $(docker q)))
+unknown shorthand flag: 'a' in -aq
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+[root@docker1 ~]# docker rm -f $(docker ps--aq)
+149429e7fbc3
+fa1c8421c79e
+726346bd6289
+25a60352561a
+eaf5c120694b
+853ed56bee17
+8237adbbea1b
+421568918f45
+2a97d5045a8b
+d73e450e3979
+96825cb39bdd
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+[root@docker1 ~]# c
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+cker-run
+DOCKER(1)                                                                    Docker User Manuals                                                                   DOCKER(1)
+
+NAME
+       docker-run - Create and run a new container from an image
+
+SYNOPSIS
+       docker  run  [-a|--attach[=[]]]  [--add-host[=[]]]  [--annotation[=[]]]  [--blkio-weight[=[BLKIO-WEIGHT]]] [--blkio-weight-device[=[]]] [-c|--cpu-shares[=0]] [--cap-
+       add[=[]]] [--cap-drop[=[]]] [--cgroupns[=[]]] [--cgroup-parent[=CGROUP-PATH]] [--cidfile[=CIDFILE]] [--cpu-count[=0]] [--cpu-percent[=0]] [--cpu-period[=0]]  [--cpu-
+       quota[=0]] [--cpu-rt-period[=0]] [--cpu-rt-runtime[=0]] [--cpus[=0.0]] [--cpuset-cpus[=CPUSET-CPUS]] [--cpuset-mems[=CPUSET-MEMS]] [-d|--detach] [--detach-keys[=[]]]
+       [--device[=[]]]  [--device-cgroup-rule[=[]]]  [--device-read-bps[=[]]]  [--device-read-iops[=[]]]  [--device-write-bps[=[]]]  [--device-write-iops[=[]]] [--dns[=[]]]
+       [--dns-option[=[]]] [--dns-search[=[]]] [--domainname[=DOMAINNAME]] [-e|--env[=[]]] [--entrypoint[=ENTRYPOINT]] [--env-file[=[]]] [--expose[=[]]]  [--group-add[=[]]]
+       [-h|--hostname[=HOSTNAME]]  [--help] [--init] [-i|--interactive] [--ip[=IPv4-ADDRESS]] [--ip6[=IPv6-ADDRESS]] [--ipc[=IPC]] [--isolation[=default]] [-l|--label[=[]]]
+       [--label-file[=[]]] [--link[=[]]] [--link-local-ip[=[]]] [--log-driver[=[]]] [--log-opt[=[]]] [-m|--memory[=MEMORY]] [--mac-address[=MAC-ADDRESS]] [--memory-reserva‐
+       tion[=MEMORY-RESERVATION]]  [--memory-swap[=LIMIT]]  [--memory-swappiness[=MEMORY-SWAPPINESS]]  [--mount[=[MOUNT]]]  [--name[=NAME]]  [--network-alias[=[]]]  [--net‐
+       work[="bridge"]]  [--oom-kill-disable]  [--oom-score-adj[=0]]  [-P|--publish-all]  [-p|--publish[=[]]]  [--pid[=[PID]]]  [--userns[=[]]]  [--pids-limit[=PIDS_LIMIT]]
+       [--privileged] [--read-only] [--restart[=RESTART]] [--rm]  [--security-opt[=[]]]  [--storage-opt[=[]]]  [--stop-signal[=SIGNAL]]  [--stop-timeout[=TIMEOUT]]  [--shm-
+       size[=[]]] [--sig-proxy[=true]] [--sysctl[=[]]] [-t|--tty] [--tmpfs[=[CONTAINER-DIR[:OPTIONS]]] [-u|--user[=USER]] [--ulimit[=[]]] [--uts[=[]]] [-v|--volume[=[[HOST-
+       DIR:]CONTAINER-DIR[:OPTIONS]]]] [--volume-driver[=DRIVER]] [--volumes-from[=[]]] [-w|--workdir[=WORKDIR]] IMAGE [COMMAND] [ARG...]
+
+DESCRIPTION
+       Run a process in a new container. docker run starts a process with its own file system, its own networking, and its own isolated process tree. The IMAGE which starts
+       the  process  may define defaults related to the process that will be run in the container, the networking to expose, and more, but docker run gives final control to
+       the operator or administrator who starts the container from the image. For that reason docker run has more options than any other Docker command.
+
+       If the IMAGE is not already loaded then docker run will pull the IMAGE, and all image dependencies, from the repository in the same way running  docker  pull  IMAGE,
+       before it starts the container from that image.
+
+OPTIONS
+       -a, --attach=[]
+          Attach to STDIN, STDOUT or STDERR.
+
+       In foreground mode (the default when -d is not specified), docker run
+          can start the process in the container and attach the console to the process's
+          standard input, output, and standard error. It can even pretend to be a TTY
+          (this is what most commandline executables expect) and pass along signals.
+          The -a option can be set for each of stdin, stdout, and stderr.
+
+       --add-host=[]
+          Add a custom host-to-IP mapping (host=ip, or host:ip)
+
+       Add a line to /etc/hosts. The format is hostname=ip, or hostname:ip.
+          The --add-host option can be set multiple times.
+
+       --annotation=[]
+          Add an annotation to the container (passed through to the OCI runtime).
+
+       The annotations are provided to the OCI runtime.
+ ESCOBl page docker-run(1) line 1 (press h for help or q to quit)
+ ESCOBl--blkio-weight=0(1) line 2 (press h for help or q to quit)
+ ESCOBl paBlockcIOrweight)(relativepweight)faccepts arweightqvalue between 10 and 1000.
+ ESCOBl page docker-run(1) line 4 (press h for help or q to quit)
+ ESCOBl--blkio-weight-device=[] 5 (press h for help or q to quit)
+ ESCOBl paBlockcIOrweight)(relativepdevice weight,pformat:oDEVICE_NAME:WEIGHT).
+ ESCOBl page docker-run(1) line 7 (press h for help or q to quit)
+ ESCOBl-c,g--cpu-shares=0) line 8 (press h for help or q to quit)
+ ESCOBl paCPUdsharesr(relativeeweight)ss h for help or q to quit)
+ ESCOBl page docker-run(1) line 10 (press h for help or q to quit)
+ ESCOBlByadefault,rallncontainers1getrthe samerproportion of CPUtcycles. This proportion
+ ESCOBl pacandbekmodified)byichangingrthe container'soCPU shareiweighting relative
+ ESCOBl pato thekweighting ofnall3othersrunning containers.o quit)
+ ESCOBl page docker-run(1) line 14 (press h for help or q to quit)
+ ESCOBlToamodifyktherproportion frompthesdefaulthofp1024, useqthe)-c or --cpu-shares
+ ESCOBl paflagotoesetuthe)weighting(toe2sor higher.p or q to quit)
+ ESCOBl page docker-run(1) line 17 (press h for help or q to quit)
+ ESCOBlThegproportionuwill only applyrwhenhCPU-intensiveqprocesses are running.
+ ESCOBl paWhenotasksrin(onelcontainerrare idle, otherocontainerstcan use the
+ ESCOBl paleft-over-CPU(time.nThe0actualsamount oflCPUrtimeowilltvary depending on
+ ESCOBl pathednumberrof(containers runninghonotheesystem. to quit)
+ ESCOBl page docker-run(1) line 22 (press h for help or q to quit)
+ ESCOBlForgexample,-considerithree containers,ronelhasraqcpu-share of 1024 and
+ ESCOBl patwodothersrhave)alcpu-sharersettingoofh512.oWhentprocesses in all three
+ ESCOBl pacontainersrattemptito use(100%sof CPU,hthe firsttcontainer would receive
+ ESCOBl pa50%dofkthertotal CPUetime.pIfsyou add aefourthqcontainer with a cpu-share
+ ESCOBl paof 1024,rthenfirsticontainereonly getsh33% of theoCPU.tThe remaining containers
+ ESCOBl pareceivee16.5%,116.5%eand 33%eof theoCPU.lp or q to quit)
+ ESCOBl page docker-run(1) line 29 (press h for help or q to quit)
+ ESCOBlOnaaemulti-corensystem,ethe shares offCPUhtimeoare distributed over all CPU
+ ESCOBl pacores.kEvenuif1a containerpisslimited tolless than 100%)of CPU time, it can
+ ESCOBl paused100%rofueach individualrCPU core. help or q to quit)
+ ESCOBl page docker-run(1) line 33 (press h for help or q to quit)
+ ESCOBlForgexample,-consideriaesystemrwithhmore than threetcores.)If you start one
+ ESCOBl pacontainer-{C0}1withn-c=512prunningfonehprocess, andqanother container
+ ESCOBl pa{C1}owith--c=1024lrunning(twosprocesses,lthis canoresult in the following
+ ESCOBl padivisionrofuCPU)shares:7 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 38 (press h for help or q to quit)
+ ESCOBlPIDge dcontainer(1) CPUe CPU(share h for help or q to quit)
+ ESCOBl100ge d{C0}r-run(1) 0ine 100%pofsCPU0for help or q to quit)
+ ESCOBl101ge d{C1}r-run(1) 1ine 100%pofsCPU1for help or q to quit)
+ ESCOBl102ge d{C1}r-run(1) 2ine 100%pofsCPU2for help or q to quit)
+ ESCOBl page docker-run(1) line 43 (press h for help or q to quit)
+ ESCOBl--cap-add=[]-run(1) line 44 (press h for help or q to quit)
+ ESCOBl paAdddLinux-capabilities45 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 46 (press h for help or q to quit)
+ ESCOBl--cap-drop=[]run(1) line 47 (press h for help or q to quit)
+ ESCOBl paDropoLinuxrcapabilities8 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 49 (press h for help or q to quit)
+ ESCOBl--cgroupns=""run(1) line 50 (press h for help or q to quit)
+ ESCOBl paSetdtheecgroup1namespace modesfor the container.to quit)
+ ESCOBl pagehost:er-rrun1theicontainerein theohost's cgrouponamespace
+ ESCOB      private: run the container in its own private cgroup namespace
+ ESCOBl page"":cker-r(unset)iuse5thepdaemon'sodefaultoconfiguration (host on cgroup v1, private on cgroup v2)
+ ESCOBl page docker-run(1) line 55 (press h for help or q to quit)
+ ESCOBl--cgroup-parent="") line 56 (press h for help or q to quit)
+ ESCOBl paPathotoecgroups)under whichrthe cgrouphfor theqcontainer will be created.
+ ESCOBl paIf thekpathuis1notiabsolute,ethehpath islconsideredqtotbe relative to the
+ ESCOBl pacgroupsepathnof)theninit process. Cgroupspwillqbeocreated if they do not
+ ESCOBl paalreadyeexist.1) line 60 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 61 (press h for help or q to quit)
+ ESCOBl--cidfile=""-run(1) line 62 (press h for help or q to quit)
+ ESCOBl paWritecthe-containernID6to(thesfilefor help or q to quit)
+ ESCOBl page docker-run(1) line 64 (press h for help or q to quit)
+ ESCOBl--cpu-count=0run(1) line 65 (press h for help or q to quit)
+ ESCOBl paLimitcthe-number ofnCPUs availablefforhexecutiontbyqthe)container.
+ ESCOBl page docker-run(1) line 67 (press h for help or q to quit)
+ ESCOBlOnaWindowseServer1containers,pthis isfapproximated as aupercentage of total
+ ESCOBl paCPUdusage.rOn(Windows Serverecontainers,ltherprocessortresource controls
+ ESCOBl paaredmutuallynexclusive,0therorder ofrprecedence is CPUCount first, then
+ ESCOBl paCPUShares,rand1CPUPercent(last. h for help or q to quit)
+ ESCOBl page docker-run(1) line 72 (press h for help or q to quit)
+ ESCOBl--cpu-percent=0n(1) line 73 (press h for help or q to quit)
+ ESCOBl paLimitcthe-percentageeof4CPUravailable forpexecutionqbyta container running
+ ESCOBl paon aoWindowsndaemon.e 75 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 76 (press h for help or q to quit)
+ ESCOBlOnaWindowseServer1containers,pthesprocessorlresourceocontrols are mutually
+ ESCOBl paexclusive,rthe1ordereof8precedencefis CPUCountqfirst,ithen CPUShares, and
+ ESCOBl paCPUPercentrlast. line 79 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 80 (press h for help or q to quit)
+ ESCOBl--cpu-period=0un(1) line 81 (press h for help or q to quit)
+ ESCOBl paLimitcthe-CPU(CFSl(CompletelysFairfScheduler) perioduit)
+ ESCOBl page docker-run(1) line 83 (press h for help or q to quit)
+ ESCOBlLimit thekcontainer'siCPU8usage.sThisfflagetellrthetkernel)to restrict the
+ ESCOBl pacontainer'suCPU)usage to theeperiodoyouespecify.to quit)
+ ESCOBl page docker-run(1) line 86 (press h for help or q to quit)
+ ESCOBl--cpuset-cpus=""(1) line 87 (press h for help or q to quit)
+ ESCOBl paCPUsoinewhich(to allow8executionh(0-3,h0,1)or q to quit)
+ ESCOBl page docker-run(1) line 89 (press h for help or q to quit)
+ ESCOBl--cpuset-mems=""(1) line 90 (press h for help or q to quit)
+ ESCOBl paMemoryknodesn(MEMs)nin9whicheto allow execution (0-3,i0,1). Only effective
+ ESCOBl paon NUMAesystems. line 92 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 93 (press h for help or q to quit)
+ ESCOBlIfagyouochaverufour lmemory (nodes onfyouresystemq(0-3),iuse --cpuset-mems=0,1 then processes in your Docker container will only use memory from the first two memory
+ ESCOBlnodes.docker-run(1) line 95 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 96 (press h for help or q to quit)
+ ESCOBl--cpu-quota=0run(1) line 97 (press h for help or q to quit)
+ ESCOBl paLimitcthe-CPU(CFSl(CompletelysFairfScheduler) quotaquit)
+ ESCOBl page docker-run(1) line 99 (press h for help or q to quit)
+ ESCOBlLimit thekcontainer'siCPU1usage.eBy default,lcontainersqrun)with the full
+ ESCOBl paCPUdresource.(Thisiflag0tellrthe kernelhtoprestrict thetcontainer's CPU
+ ESCOBl pausagectorthenquotaiyou1specify.s h for help or q to quit)
+ ESCOBl page docker-run(1) line 103 (press h for help or q to quit)
+ ESCOBl--cpu-rt-period=01) line 104 (press h for help or q to quit)
+ ESCOBl paLimitcthe-CPU(real-time0periodsinhmicroseconds q to quit)
+ ESCOBl page docker-run(1) line 106 (press h for help or q to quit)
+ ESCOBlLimit thekcontainer'siReal0TimerCPU usage.hThisoflagttellithe kernel to
+ ESCOBl parestrictrthencontainer's8RealeTime CPU usageotoqthe period you specify.
+ ESCOBl page docker-run(1) line 109 (press h for help or q to quit)
+ ESCOBl--cpu-rt-runtime=0) line 110 (press h for help or q to quit)
+ ESCOBl paLimitcthe-CPU(real-time1runtimesin microsecondsq to quit)
+ ESCOBl page docker-run(1) line 112 (press h for help or q to quit)
+ ESCOBlLimit thekcontainerslReal1TimepCPUsusage. This flag tellsithe kernel to
+ ESCOBl palimitcthe-amount ofntime4inpaegivenfCPUhperiod Real Time)tasks may consume.
+ ESCOBl paFordexample,na1period of51,000,000usoandeRuntime of 950,000us means that
+ ESCOBl pathisocontainer1couldeconsumer95% offavailablerCPUtanduleave the remaining
+ ESCOBl pa5% tocnormalnpriority tasks.ress h for help or q to quit)
+ ESCOBl page docker-run(1) line 118 (press h for help or q to quit)
+ ESCOBlThegsumoofealluruntimeseacrosspcontainers cannotrexceedqthe)amount allotted
+ ESCOBl pato thekparent(cgroup. 120 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 121 (press h for help or q to quit)
+ ESCOBl--cpus=0.0er-run(1) line 122 (press h for help or q to quit)
+ ESCOBl paNumberkof-CPUs.)Thendefaultpiss0.0 whichemeans notlimit.)
+ ESCOBl page docker-run(1) line 124 (press h for help or q to quit)
+ ESCOBl-d,g--detach=true|falsee 125 (press h for help or q to quit)
+ ESCOBl paDetachedrmode:1runithe1container infthehbackgroundoandiprint the new
+ ESCOBl pacontainer-ID.(Theldefault isrfalse.for help or q to quit)
+ ESCOBl page docker-run(1) line 128 (press h for help or q to quit)
+ ESCOBlAtaanydtimeryouncan runedockerppssinhtherother shellttoqview a list
+ ESCOBl paof thekrunning1containers.(Youscan reattach to a detached container with
+ ESCOBl padockerkattach.1) line 131 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 132 (press h for help or q to quit)
+ ESCOBlWheneattachedrin(theltty mode,pyouscanfdetachpfromqthe container (and leave
+ ESCOBl pait running)uusinglanconfigurable keyosequence. Theodefault sequence is
+ ESCOBl paCTRL-pkCTRL-q.1) line 135 (press h for help or q to quit)
+ ESCOBl paYoudconfigure(thelkey sequencesusingothee--detach-keysioption or a
+ ESCOBl paconfiguration(file.nSee3config-json(5) forpdocumentation)on using a
+ ESCOBl paconfiguration(file.ne 138 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 139 (press h for help or q to quit)
+ ESCOBl--detach-keys=key1) line 140 (press h for help or q to quit)
+ ESCOBl paOverriderthenkey sequence foredetachinghalcontainer;qkey)is a single
+ ESCOBl pacharacter-from1thei[a-Z]2range,sor ctrl-value, whereqvalue is
+ ESCOBl paonedof:ea-z,n@,)^,i[, ,,3orp_.ss h for help or q to quit)
+ ESCOBl page docker-run(1) line 144 (press h for help or q to quit)
+ ESCOBl--device=onhost:incontainer[:mode]s h for help or q to quit)
+ ESCOBl paAdddachostrdevicelonhost6topthescontainerlunderqthe incontainer name.
+ ESCOBl paOptionalrmode(parameter4canpbesusedfto specify deviceupermissions, it is
+ ESCOBl paaecombination(of ri(for4read),sw (forrwrite),randtm (for)
+ ESCOBl pamknod(2)).run(1) line 149 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 150 (press h for help or q to quit)
+ ESCOBlForgexample,---device=/dev/sdc:/dev/xvdc:rwmlwill give aucontainer all
+ ESCOBl papermissionsufor)thenhost2devices/dev/sdc,lseen ast/dev/xvdc inside
+ ESCOBl pathedcontainer.1) line 153 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 154 (press h for help or q to quit)
+ ESCOBl--device-cgroup-rule="type5major:minorfmode"lp or q to quit)
+ ESCOBl paAdddacrulerto(thelcgroup6allowed deviceselist. Theoruletis expected to be
+ ESCOBl pain thekformat(specified5in(thesLinuxokernel documentation
+ ESCOBl pa(Documentation/cgroup-v1/devices.txt): help or q to quit)
+ ESCOBl page-dtype:-au(all),ice(char),rorsbh(block);p or q to quit)
+ ESCOBl page-dmajor-and(minor:eeitherpaenumber,rore*pfor all; quit)
+ ESCOBl page-dmode:-aucomposition6of(rr(read),ow (write),qand mu(mknod(2)).
+ ESCOBl page docker-run(1) line 162 (press h for help or q to quit)
+ ESCOBlExample:c--device-cgroup-rule("ce1:3hmr": allowofor aocharacter device
+ ESCOBl paidentifiedrby(1:3lito be4created andoread.p or q to quit)
+ ESCOBl page docker-run(1) line 165 (press h for help or q to quit)
+ ESCOBl--device-read-bps=[]line 166 (press h for help or q to quit)
+ ESCOBl paLimitcreadrrate)fromea1devicee(e.g.f--device-read-bps=/dev/sda:1mb)
+ ESCOBl page docker-run(1) line 168 (press h for help or q to quit)
+ ESCOBl--device-read-iops=[]ine 169 (press h for help or q to quit)
+ ESCOBl paLimitcreadrrate)fromea1devicee(e.g.f--device-read-iops=/dev/sda:1000)
+ ESCOBl page docker-run(1) line 171 (press h for help or q to quit)
+ ESCOBl--device-write-bps=[]ine 172 (press h for help or q to quit)
+ ESCOBl paLimitcwriteurate tona devicer(e.g. --device-write-bps=/dev/sda:1mb)
+ ESCOBl page docker-run(1) line 174 (press h for help or q to quit)
+ ESCOBl--device-write-iops=[]ne 175 (press h for help or q to quit)
+ ESCOBl paLimitcwriteurate tona devicer(e.g. --device-write-iops=/dev/sda:1000)
+ ESCOBl page docker-run(1) line 177 (press h for help or q to quit)
+ ESCOBl--dns-search=[]n(1) line 178 (press h for help or q to quit)
+ ESCOBl paSetdcustomrDNS1search domainse(Use --dns-search=.tifqyou)don't wish to set
+ ESCOBl pathedsearchrdomain)ine 180 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 181 (press h for help or q to quit)
+ ESCOBl--dns-option=[]n(1) line 182 (press h for help or q to quit)
+ ESCOBl paSetdcustomrDNS1options183 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 184 (press h for help or q to quit)
+ ESCOBl--dns=[]cker-run(1) line 185 (press h for help or q to quit)
+ ESCOBl paSetdcustomrDNS1servers186 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 187 (press h for help or q to quit)
+ ESCOBlThiseoptionrcannbe)usedeto8override theoDNSeconfigurationipassed to the
+ ESCOBl pacontainer.rTypicallyethis isrnecessary when theqhostqDNS)configuration
+ ESCOBl pais invalidrfor1theicontainerr(e.g.,f127.0.0.1).qWhenqthis is the case
+ ESCOBl pathed--dns-flags)isinecessaryrfor every run. or q to quit)
+ ESCOBl page docker-run(1) line 192 (press h for help or q to quit)
+ ESCOBl--domainname=""n(1) line 193 (press h for help or q to quit)
+ ESCOBl paContainer-NIS(domainename (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 195 (press h for help or q to quit)
+ ESCOBlSetsetheccontainer'slNIS domainrnameh(see also setdomainname(2)) that is
+ ESCOBl paavailable-inside theecontainer.s h for help or q to quit)
+ ESCOBl page docker-run(1) line 198 (press h for help or q to quit)
+ ESCOBl-e,g--env=[]-run(1) line 199 (press h for help or q to quit)
+ ESCOBl paSetdenvironment)variables (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 201 (press h for help or q to quit)
+ ESCOBlThiseoptionrallows)younto2specifysarbitraryeenvironmentqvariables that are available for the process that will be launched inside of the container.
+ ESCOBl page docker-run(1) line 203 (press h for help or q to quit)
+ ESCOBl--entrypoint=""n(1) line 204 (press h for help or q to quit)
+ ESCOBl paOverwrite-the(default ENTRYPOINT offthehimager q to quit)
+ ESCOBl page docker-run(1) line 206 (press h for help or q to quit)
+ ESCOBlThiseoptionrallows)younto2overwrite theodefaultoentrypointtof the image that
+ ESCOBl pais setkin-the(Dockerfile. TheeENTRYPOINTeof an imageqistsimilar to a COMMAND
+ ESCOBl pabecauseeitrspecifiesewhat executableotohrun when theqcontainer starts, but it is
+ ESCOBl pa(purposely)umore difficult(toeoverride.hThe ENTRYPOINTigives a container its
+ ESCOBl padefaultenature1orlbehavior,psosthatfwheneyouoset an ENTRYPOINT you can run the
+ ESCOBl pacontainer-asnif)itiwere1thatrbinary,ocompleterwithodefault options, and you can
+ ESCOBl papassoinemorenoptionsevia3therCOMMAND.rBut,psometimesqantoperator may want to run
+ ESCOBl pasomething-else1inside the container,osohyou canqoverride)the default ENTRYPOINT
+ ESCOBl paat runtimerby(usingna --entrypoint and aestringqtoospecify the new
+ ESCOBl paENTRYPOINT.un(1) line 216 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 217 (press h for help or q to quit)
+ ESCOBl--env-file=[]run(1) line 218 (press h for help or q to quit)
+ ESCOBl paReadoinea-line1delimited9fileeof environmentovariablesit)
+ ESCOBl page docker-run(1) line 220 (press h for help or q to quit)
+ ESCOBl--expose=[]r-run(1) line 221 (press h for help or q to quit)
+ ESCOBl paExposekarport,1orlanrange ofrports (e.g.e--expose=3300-3310) informs the
+ ESCOBl padockerkdaemon(thatithe2container listenseon theqspecified network ports at
+ ESCOBl paruntime.rThendockerndaemon(usessthisoinformation to interconnect containers
+ ESCOBl pausingclinksuand)toiset2up portsredirectionponrthethostisystem.
+ ESCOBl page docker-run(1) line 226 (press h for help or q to quit)
+ ESCOBl--group-add=[]un(1) line 227 (press h for help or q to quit)
+ ESCOBl paAdddadditional1groups to8runrass h for help or q to quit)
+ ESCOBl page docker-run(1) line 229 (press h for help or q to quit)
+ ESCOBl-h,g--hostname=""1) line 230 (press h for help or q to quit)
+ ESCOBl paContainer-host1namene 231 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 232 (press h for help or q to quit)
+ ESCOBlSetsetheccontainer)hostename thatsishavailable insideotheicontainer.
+ ESCOBl page docker-run(1) line 234 (press h for help or q to quit)
+ ESCOBl--helpdocker-run(1) line 235 (press h for help or q to quit)
+ ESCOBl paPrintcusageustatement 236 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 237 (press h for help or q to quit)
+ ESCOBl--initdocker-run(1) line 238 (press h for help or q to quit)
+ ESCOBl paRundankinituinsideithe2container thatrforwards signalsiand reaps processes
+ ESCOBl page docker-run(1) line 240 (press h for help or q to quit)
+ ESCOBl-i,g--interactive=true|false (press h for help or q to quit)
+ ESCOBl paKeepoSTDINropen)eveneif4notpattached.rTheldefaulttisqfalse.
+ ESCOBl page docker-run(1) line 243 (press h for help or q to quit)
+ ESCOBlWhenesetctortrue,1keepnstdin opensevenfif notpattached.quit)
+ ESCOBl page docker-run(1) line 245 (press h for help or q to quit)
+ ESCOBl--ip=""ocker-run(1) line 246 (press h for help or q to quit)
+ ESCOBl paSetsothercontainer'seinterfacesIPv4faddress (e.g.,o172.23.0.9)
+ ESCOBl page docker-run(1) line 248 (press h for help or q to quit)
+ ESCOBlItacandonlyrbeuused innconjunctionswitho--network forouser-defined networks
+ ESCOBl page docker-run(1) line 250 (press h for help or q to quit)
+ ESCOBl--ip6=""cker-run(1) line 251 (press h for help or q to quit)
+ ESCOBl paSetsothercontainer'seinterfacesIPv6faddress (e.g.,o2001:db8::1b99)
+ ESCOBl page docker-run(1) line 253 (press h for help or q to quit)
+ ESCOBlItacandonlyrbeuused innconjunctionswitho--network forouser-defined networks
+ ESCOBl page docker-run(1) line 255 (press h for help or q to quit)
+ ESCOBl--ipc=""cker-run(1) line 256 (press h for help or q to quit)
+ ESCOBl paSetsotherIPCnmodelfor the container.oTheefollowingovalues are accepted:
+ ESCOBl page docker-run(1) line 258 (press h for help or q to quit)
+ ESCOBl┌──────────────────────┬───────────────────────────────────────────────────────────┐
+ ESCOBl│pValueocker-run(1) lin│ Descriptionh for help or q to quit)                       │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│p(empty)ker-run(1) lin│ Use daemon's default. or q to quit)                       │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│pnonedocker-run(1) lin│ Own privatehIPCrnamespace, withu/dev/shm not mounted.     │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│pprivateker-run(1) lin│ Own privatehIPCrnamespace. to quit)                       │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│pshareabler-run(1) lin│ Own privatehIPCrnamespace, withuatpossibility to share it │
+ ESCOBl│page docker-run(1) lin│ with(other containers.or q to quit)                       │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│pcontainer:name-or-IDn│ Join(another ("shareable") container's IPC namespace.     │
+ ESCOBl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOBl│phostdocker-run(1) lin│ Use theehost system's IPCqnamespace.                      │
+ ESCOBl└──────────────────────┴───────────────────────────────────────────────────────────┘
+ ESCOBl page docker-run(1) line 275 (press h for help or q to quit)
+ ESCOBlIfanotdspecified,1daemon defaulteis used, whichocan eithertbe private or shareable, depending on the daemon version and configuration.
+ ESCOBl page docker-run(1) line 277 (press h for help or q to quit)
+ ESCOBl--isolation="default"ine 278 (press h for help or q to quit)
+ ESCOBl paIsolation-specifiesnthe7typerofsisolationltechnologyqused by containers. Note that the default on Windows server is process, and the default on Windows client  is
+ ESCOBlhyperv.oLinuxronly)supports0default.h for help or q to quit)
+ ESCOBl page docker-run(1) line 281 (press h for help or q to quit)
+ ESCOBl-l,g--labelrkey=valueine 282 (press h for help or q to quit)
+ ESCOBl paSetdmetadatanon)thencontainere(for example, --label com.example.key=value).
+ ESCOBl page docker-run(1) line 284 (press h for help or q to quit)
+ ESCOBl--label-file=[]n(1) line 285 (press h for help or q to quit)
+ ESCOBl paReadoinea-line1delimited6fileeof labelshelp or q to quit)
+ ESCOBl page docker-run(1) line 287 (press h for help or q to quit)
+ ESCOBl--link=name-or-id[:alias]288 (press h for help or q to quit)
+ ESCOBl paAdddlinkrtouanotherncontainer.ss h for help or q to quit)
+ ESCOBl page docker-run(1) line 290 (press h for help or q to quit)
+ ESCOBlIfagtheooperator(usesi--link whensstartinghthe newqclienticontainer, then the client container can access the exposed port via a private networking interface. Docker
+ ESCOBlwillesetcsomerenvironment2variables infthehclient container)to help indicate which interface and port to use.
+ ESCOBl page docker-run(1) line 293 (press h for help or q to quit)
+ ESCOBl--link-local-ip=[]) line 294 (press h for help or q to quit)
+ ESCOBl paAdddoneeorrmore)link-local(IPv4/IPv6oaddresses tottheucontainer's interface
+ ESCOBl page docker-run(1) line 296 (press h for help or q to quit)
+ ESCOBl--log-driver="json-file|syslog|journald|gelf|fluentd|awslogs|splunk|etwlogs|gcplogs|none"
+ ESCOBl pLoggingkdriver(forlthe container. Defaulteis defined byidaemon --log-driver flag.
+ ESCOBl pWarning:etheudockerilogs9commandsworksronlypfor theojson-file and
+ ESCOBl pjournaldelogging)drivers.0 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 301 (press h for help or q to quit)
+ ESCOBl--log-opt=[]-run(1) line 302 (press h for help or q to quit)
+ ESCOBl pLoggingkdriver(specific3options.s h for help or q to quit)
+ ESCOBl page docker-run(1) line 304 (press h for help or q to quit)
+ ESCOBl-m,g--memory=number[*S]e 305 (press h for help or q to quit)
+ ESCOBl paMemoryklimit;(S)isian optionalssuffixrwhich canqbeooneiof b, k, m, or g.
+ ESCOBl page docker-run(1) line 307 (press h for help or q to quit)
+ ESCOBlAllowsdyouetorconstrainethe8memorysavailableltooa container. If the host
+ ESCOBl pasupportsrswap(memory, then(thes-mhmemoryesetting canqbetlarger than physical
+ ESCOBl paRAM.oIfea-limit)ofi0eis1specifiedh(not usingo-m),ttheucontainer's memory is
+ ESCOBl panotdlimited.nThe actual1limitemayhbeoroundedoupqtooaqmultiple of the operating
+ ESCOBl pasystem'srpage(sizei(the1valueewouldfbe very large,othat's millions of trillions).
+ ESCOBl page docker-run(1) line 313 (press h for help or q to quit)
+ ESCOBl--memory-reservation=number[*S]ress h for help or q to quit)
+ ESCOBl paMemoryksoftulimit;iSeis1an(optionalfsuffixpwhich canqbetone of b, k, m, or g.
+ ESCOBl page docker-run(1) line 316 (press h for help or q to quit)
+ ESCOBlAfter settingrmemorylreservation,swhenfthehsystem detectsimemory contention
+ ESCOBl paor lowkmemory,1containers areeforcedotohrestrict theiriconsumption to their
+ ESCOBl pareservation.nSo)younshould(alwayshsetrthelvalueqbelowu--memory, otherwise the
+ ESCOBl pahardolimitrwill)takeeprecedence. Byfdefault,omemory reservation will be the same
+ ESCOBl paas memory-limit. line 321 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 322 (press h for help or q to quit)
+ ESCOBl--memory-swap=number[S]e 323 (press h for help or q to quit)
+ ESCOBl paCombinedrmemory)pluseswap limit; S israneoptionaltsuffix)which can be
+ ESCOBl paonedofkb,-k,nm,)orig. 325 (press h for help or q to quit)
+ ESCOBl page docker-run(1) line 326 (press h for help or q to quit)
+ ESCOBlThiseoptionrcannonlylbeeused together withh--memory.tTheuargument
+ ESCOBl pashouldkalways(be larger2thanrthathofo--memory. Defaultiis double the
+ ESCOBl pavaluecofr--memory.iSet3to -1rtosenable unlimited swap.it)
+ ESCOBl page docker-run(1) line 330 (press h for help or q to quit)
+ ESCOBl--mac-address=""(1) line 331 (press h for help or q to quit)
+ ESCOBl paContainer-MAC(address (e.g.,r92:d0:c6:0a:29:33)q to quit)
+ ESCOBl page docker-run(1) line 333 (press h for help or q to quit)
+ ESCOBlRemembercthatrthe1MACiaddress(inean Ethernetlnetworktmustibe unique.  The IPv6 link-local address will be based on the device's MAC address according to RFC4862.
+ ESCOB
+ ESCOBl--mountotype=TYPE,TYPE-SPECIFIC-OPTION[,...]lp or q to quit)
+ ESCOBl paAttachkarfilesystemnmount torthe containerp or q to quit)
+ ESCOBl page docker-run(1) line 338 (press h for help or q to quit)
+ ESCOBlCurrentosupported1mounteTYPES(aresbind,ovolume,oand tmpfs.t)
+ ESCOBl page docker-run(1) line 340 (press h for help or q to quit)
+ ESCOAl page docker-run(1) line 341 (press h for help or q to quit)
+ ESCOAlwillesetcsomerenvironment3variables infthehclient container)to help indicate which interface and port to use.
+ ESCOAlIfagtheooperator(usesi--link whensstartinghthe newqclienticontainer, then the client container can access the exposed port via a private networking interface. Docker
+ ESCOAl page docker-run(1) line 338 (press h for help or q to quit)
+ ESCOAl paAdddlinkrtouanotherncontainer.ss h for help or q to quit)
+ ESCOAl--link=name-or-id[:alias]336 (press h for help or q to quit)
+ ESCOAl page docker-run(1) line 335 (press h for help or q to quit)
+ ESCOAl paReadoinea-line1delimited4fileeof labelshelp or q to quit)
+ ESCOAl--label-file=[]n(1) line 333 (press h for help or q to quit)
+ ESCOAl page docker-run(1) line 332 (press h for help or q to quit)
+ ESCOAl paSetdmetadatanon)thencontainere(for example, --label com.example.key=value).
+ ESCOAl-l,g--labelrkey=valueine 330 (press h for help or q to quit)
+ ESCOAl page docker-run(1) line 329 (press h for help or q to quit)
+ ESCOAlhyperv.oLinuxronly)supports8default.h for help or q to quit)
+ ESCOAl paIsolation-specifiesnthe2typerofsisolationltechnologyqused by containers. Note that the default on Windows server is process, and the default on Windows client  is
+ ESCOAl--isolation="default"ine 326 (press h for help or q to quit)
+ ESCOAl page docker-run(1) line 325 (press h for help or q to quit)
+ ESCOAlIfanotdspecified,1daemon defaulteis used, whichocan eithertbe private or shareable, depending on the daemon version and configuration.
+ ESCOAl page docker-run(1) line 323 (press h for help or q to quit)
+ ESCOAl└──────────────────────┴───────────────────────────────────────────────────────────┘
+ ESCOAl│phostdocker-run(1) lin│ Use theehost system's IPCqnamespace.                      │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│pcontainer:name-or-IDn│ Join(another ("shareable") container's IPC namespace.     │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│page docker-run(1) lin│ with(other containers.or q to quit)                       │
+ ESCOAl│pshareabler-run(1) lin│ Own privatehIPCrnamespace, withuatpossibility to share it │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│pprivateker-run(1) lin│ Own privatehIPCrnamespace. to quit)                       │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│pnonedocker-run(1) lin│ Own privatehIPCrnamespace, withu/dev/shm not mounted.     │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│p(empty)ker-run(1) lin│ Use daemon's default. or q to quit)                       │
+ ESCOAl├──────────────────────┼───────────────────────────────────────────────────────────┤
+ ESCOAl│pValueocker-run(1) lin│ Descriptionh for help or q to quit)                       │
+ ESCOAl┌──────────────────────┬───────────────────────────────────────────────────────────┐
+erarunl--namedtest1-quay.io/centos/centos:90 for help or q to quit)
+Unable to find image 'quay.io/centos/centos:9' locally
+9: Pulling from centos/centos
+
+bd9ddc54bea9: Pulling fs layer
+Digest:3sha256:a90eef8141b93b50ca9525de1b87da228acc241532a29d286a11d64e494162b8  666.5MB/66.5MB
+Status: Downloaded newer image for quay.io/centos/centos:9
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB    U
+[dockerorunr--name "test1"rquay.io/centos/centos:9icate/etc/os-release.t /etc/os-release
+docker: Error response from daemon: Conflict. The container name "/test1" is already in use by container "8231db5d973bb52777bd879009ba4d6dedc4eee74ee68310deaafd6614901e76". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+dockerdrune--name "test1"rquay.io/centos/centos:9icate/etc/os-releaseat /etc/os-release
+docker: Error response from daemon: Conflict. The container name "/test1" is already in use by container "8231db5d973bb52777bd879009ba4d6dedc4eee74ee68310deaafd6614901e76". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE                     COMMAND       CREATED              STATUS                      PORTS     NAMES
+8231db5d973b   quay.io/centos/centos:9   "/bin/bash"   About a minute ago   Exited (0) 39 seconds ago             test1
+dockerdpullrquay.io/centos/centos:9io/centos/centos:9
+9: Pulling from centos/centos
+Digest: sha256:a90eef8141b93b50ca9525de1b87da228acc241532a29d286a11d64e494162b8
+Status: Image is up to date for quay.io/centos/centos:9
+quay.io/centos/centos:9
+dockerdrune--name "test1"rquay.io/centos/centos:9icate/etc/os-releaseat /etc/os-release
+docker: Error response from daemon: Conflict. The container name "/test1" is already in use by container "8231db5d973bb52777bd879009ba4d6dedc4eee74ee68310deaafd6614901e76". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+er run -itt--name  test2 quay.io/centos/centos:9 /bin/bas
+bash-5.1# id
+uid=0(root) gid=0(root) groups=0(root)
+bash-5.1# pwd
+/
+bash-5.1# whliegtrue ;odo
+bash: syntax error near unexpected token `do'
+bash-5.1# whlie true ; do sleep 1;; done
+bash: syntax error near unexpected token `do'
+bash-5.1# whi1@ltrue ; do sleep 1 ; done
+^C
+bash-5.1# ls
+afs  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+bash-5.1# ls /
+afs  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+bash-5.1# cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::  ip6-localnet
+ff00::  ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.2      87e7c133b26c
+bash-5.1# hostname
+bash: hostname: command not found
+bash-5.1# exit
+exit
+croot@docker1 ~]# lllllkjklkjlkjjjlklk
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+er ps -a
+CONTAINER ID   IMAGE                     COMMAND       CREATED         STATUS                            PORTS     NAMES
+87e7c133b26c   quay.io/centos/centos:9   "/bin/bash"   4 minutes ago   Exited (127) About a minute ago             test2
+8231db5d973b   quay.io/centos/centos:9   "/bin/bash"   6 minutes ago   Exited (0) 6 minutes ago                    test1
+er rm $(docker ps -aq)
+87e7c133b26c
+8231db5d973b
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+er run --rm --name test3 quay.io/centos/centos:9 uname--a
+Linux ff3e841f9499 6.12.0-271.el10.x86_64 #1 SMP PREEMPT_DYNAMIC Thu Sep 24 08:35:01 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+1@dy
+ae5aa5945fd38e4d9136b940bfe7f8388c5e5d40ebfc28be8f6a5fcb220dbb45
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+s
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+r ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+edocker run --rm -d quay.io/centos/centos:9 sleep infinity
+9274c0a133bcd8cca7f16b0b5731f081129af19f821cf5baf60d9cc6e3dacd9a
+er pss-a
+CONTAINER ID   IMAGE                     COMMAND            CREATED         STATUS         PORTS     NAMES
+9274c0a133bc   quay.io/centos/centos:9   "sleep infinity"   6 seconds ago   Up 5 seconds             adoring_herschel
+er stop adoring_herschel
+adoring_herschel
+er rm -f $(docker ps -aq)
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+dockerdrmk-f1$(dockerkps -aq)f $(docker ps -aq)
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+vic~/.bashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+>4;m".bashrc" 34L, 647B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 32,0-1o -- INSERT --33,1Alla2l3i4a5s67c8r9m10=1'2d3o4c5k6e7r89r20m1-212-3f45$6I76(7d8o9c30e1k2r3210kj2e3r4321e2r34p5s67-8a9q40)1'24,1 a2l3i4a5s67r8m987i8r9m10=1'2d3o4c5k6e7r89r20m1i23-454f56#76$7(8d9o30c1k2e3r45p6s78765i6m7a8g9e40s12-3q43a4q5)6'7^[  34,46All::wq
+>4;mrce ~/.bashrc
+docker rm -f $(docker ps -aq)
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-09-30 21:52:12+09:00 [COMMAND_EXIT_CODE="0"]
