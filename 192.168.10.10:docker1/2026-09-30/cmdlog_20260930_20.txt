@@ -655,7 +655,7 @@ Login Succeeded
 {
         "auths": {
                 "https://index.docker.io/v1/": {
-                        "auth": "bGVlanVuaGVlMDIxMjEwOmRja3JfcGF0X0tXNHBhNTlKR09ZQUdqNkxQenpsS1kzRnotSQ=="
+                        "auth": "base64"
                 }
         }
 }[root@docker1 ~]# exit
