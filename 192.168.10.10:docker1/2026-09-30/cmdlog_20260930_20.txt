@@ -1,0 +1,664 @@
+Script started on 2026-09-30 20:04:23+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="180" LINES="41"]
+dockerpullqquay.io/centos/centos:stream10
+stream10: Pulling from centos/centos
+
+bd9ddc54bea9: Pulling fs layer
+Digest:fsha256:a946db5352840d41d0de13d50e3510228f25b7ba1e8b657291c652f762b12532  63.96MB/67.09MB
+Status: Downloaded newer image for quay.io/centos/centos:stream10
+quay.io/centos/centos:stream10
+en-vm-tools-desktop
+open-vm-tools-desktop-13.1.0-1.el10.x86_64
+olsd
+Unknown command verb 'vmtoolsd'.
+[root@docker1 ~]# c
+er image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker images
+                                                                                                                                                                i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest               5e2309035332       21.8kB         9.49kB
+nginx:latest                     abe47724e466        239MB         66.3MB
+quay.io/centos/centos:stream10   a946db535284        256MB         67.1MB
+ubuntu:latest                    da6fc2be5478        158MB         45.3MB
+[root@docker1 ~]# ^C
+er inspect ubuntu
+[
+    {
+        "Id": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78",
+        "RepoTags": [
+            "ubuntu:latest"
+        ],
+        "RepoDigests": [
+            "ubuntu@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78"
+        ],
+        "Comment": "Add rock control metadata",
+        "Created": "2026-09-12T10:24:38.361673881Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Labels": {
+                "org.opencontainers.image.created": "2026-09-12T10:25:59.825539+00:00",
+                "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+                "org.opencontainers.image.title": "ubuntu",
+                "org.opencontainers.image.version": "26.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 154264224,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9",
+                "sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-30T11:01:31.02546341Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78",
+            "size": 6694
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "docker.io/library/ubuntu"
+                }
+            ]
+        }
+    }
+]
+r quay.io/centos/centos:stream10
+docker: unknown command: docker quay.io/centos/centos:stream10
+
+Run 'docker --help' for more information
+er inspect quay.io/centos/centos:stream10
+[
+    {
+        "Id": "sha256:a946db5352840d41d0de13d50e3510228f25b7ba1e8b657291c652f762b12532",
+        "RepoTags": [
+            "quay.io/centos/centos:stream10"
+        ],
+        "RepoDigests": [
+            "quay.io/centos/centos@sha256:a946db5352840d41d0de13d50e3510228f25b7ba1e8b657291c652f762b12532"
+        ],
+        "Comment": "FROM oci-archive",
+        "Created": "2026-09-29T00:51:03.4403207Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Labels": {
+                "io.buildah.version": "1.33.15",
+                "org.label-schema.build-date": "20260928",
+                "org.label-schema.license": "GPLv2",
+                "org.label-schema.name": "CentOS Stream 10 Base Image",
+                "org.label-schema.schema-version": "1.0",
+                "org.label-schema.vendor": "CentOS"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 255686583,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:d6a393a5caa99513d61b0e520b772ec643696e388afca21a690148cf0c4bfba8",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-30T11:04:40.580051664Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:a946db5352840d41d0de13d50e3510228f25b7ba1e8b657291c652f762b12532",
+            "size": 912
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "quay.io/centos/centos"
+                }
+            ]
+        }
+    }
+]
+[root@docker1 ~]# clear
+er inspect ubuntu --format "{{}1@.fig}}}"
+{{ map[] [PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin] [] [/bin/bash] map[]  map[org.opencontainers.image.created:2026-09-12T10:25:59.825539+00:00 org.opencontainers.image.description:The Ubuntu container image maintained by Canonical
+
+Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+It is the world's most popular operating system across public clouds and OpenStack clouds.
+It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+ org.opencontainers.image.title:ubuntu org.opencontainers.image.version:26.04]  false} {<nil> [] []}}
+ ubuntu
+{{ map[] [PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin] [] [/bin/bash] map[]  map[org.opencontainers.image.created:2026-09-12T10:25:59.825539+00:00 org.opencontainers.image.description:The Ubuntu container image maintained by Canonical
+
+Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+It is the world's most popular operating system across public clouds and OpenStack clouds.
+It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+ org.opencontainers.image.title:ubuntu org.opencontainers.image.version:26.04]  false} {<nil> [] []}}
+[root@docker1 ~]# docker insp'uubuntuormat "{{ .Config }}" ubuntu
+{{ map[] [PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin] [] [/bin/bash] map[]  map[org.opencontainers.image.created:2026-09-12T10:25:59.825539+00:00 org.opencontainers.image.description:The Ubuntu container image maintained by Canonical
+
+Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+It is the world's most popular operating system across public clouds and OpenStack clouds.
+It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+ org.opencontainers.image.title:ubuntu org.opencontainers.image.version:26.04]  false} {<nil> [] []}}
+[root@docker1 ~]# docker inspect  --format '{{ 1@"1@"g }}' ubuntu
+.Config
+[B#k필
+docker inspect ubuntu --format '{{ .Config }}'
+# 필드 접근
+docker inspect ubuntu --format '{{ .Config }}'
+docker inspect ubuntu --format '{{ .Config }}'
+{{ map[] [PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin] [] [/bin/bash] map[]  map[org.opencontainers.image.created:2026-09-12T10:25:59.825539+00:00 org.opencontainers.image.description:The Ubuntu container image maintained by Canonical
+
+Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+It is the world's most popular operating system across public clouds and OpenStack clouds.
+It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+ org.opencontainers.image.title:ubuntu org.opencontainers.image.version:26.04]  false} {<nil> [] []}}
+er inspect ubuntu | grep "Config" -A 5
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+er inspect -f "{{ .Config.Cmd }}" ubuntu:latest
+[/bin/bash]
+[root@docker1 ~]# docker inspect -f "{{ .Config.Cmd }}" ubuntu:latest | jq
+jq: parse error: Invalid numeric literal at line 1, column 11
+[root@docker1 ~]# dnf install jq -y
+Last metadata expiration check: 0:22:11 ago on Wed 30 Sep 2026 07:51:40 PM KST.
+Package jq-1.7.1-13.el10.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@docker1 ~]# dnf install -y jq
+Last metadata expiration check: 0:22:16 ago on Wed 30 Sep 2026 07:51:40 PM KST.
+Package jq-1.7.1-13.el10.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+er inspect -f "{{ .Config.Cmd}}}" $(docker images -aq)
+[/bin/bash]
+[nginx -g daemon off;]
+[/bin/bash]
+[/hello]
+[root@docker1 ~]# docker i1@1@J1@S1@O1@N.|ojqeg.Cmd }}" $(docker images -aq)
+template parsing error: template: :1: function "JSON" not defined
+[root@docker1 ~]# docker inspect -f "{{1@j1@s1@o1@ng.Cmd }}" $(docker images -aq) | jq
+[
+  "/bin/bash"
+]
+[
+  "nginx",
+  "-g",
+  "daemon off;"
+]
+[
+  "/bin/bash"
+]
+[
+  "/hello"
+]
+[root@docker1 ~]# dnf install -y yq
+Last metadata expiration check: 0:23:50 ago on Wed 30 Sep 2026 07:51:40 PM KST.
+Dependencies resolved.
+====================================================================================================================================================================================
+ Package                               Architecture                              Version                                              Repository                               Size
+====================================================================================================================================================================================
+Installing:
+ yq                                   B x86_64                                    4.53.3-1.el10_3                                      epel                                    4.6 M
+
+Transaction Summary
+====================================================================================================================================================================================
+Install  1 Package
+
+Total download size: 4.6 M
+Installed size: 14 M
+Downloading Packages:
+yq-4.53.3-1.el10_3.x86_64.rpm                                           0% [=========                                                             ] -22 MB/s | 4.6 MB     00:00 ETA
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                               2.9 MB/s | 4.6 MB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                            1/1
+  Installing       : yq-4.53.3-1.el10_3.x86_64 [============================================================================================================================  ] 1/1
+  Running scriptlet: yq-4.53.3-1.el10_3.x86_64                                                                                                                                  1/1
+
+Installed:
+  yq-4.53.3-1.el10_3.x86_64
+
+Complete!
+[root@docker1 ~]# dockersinspect -f "{{ 1@y1@a1@m1@1yqmd }}" $(docker images -aq) | jq
+template parsing error: template: :1: function "yaml" not defined
+
+[root@docker1 ~]# clear
+dnf install -y epel-release-10-l
+Last metadata expiration check: 0:24:36 ago on Wed 30 Sep 2026 07:51:40 PM KST.
+Package epel-release-10-9.el10_3.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@docker1 ~]# clear
+er inspect ubuntu | jq
+[
+  {
+    "Id": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78",
+    "RepoTags": [
+      "ubuntu:latest"
+    ],
+    "RepoDigests": [
+      "ubuntu@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78"
+    ],
+    "Comment": "Add rock control metadata",
+    "Created": "2026-09-12T10:24:38.361673881Z",
+    "Config": {
+      "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+      ],
+      "Cmd": [
+        "/bin/bash"
+      ],
+      "Labels": {
+        "org.opencontainers.image.created": "2026-09-12T10:25:59.825539+00:00",
+        "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n",
+        "org.opencontainers.image.title": "ubuntu",
+        "org.opencontainers.image.version": "26.04"
+      }
+    },
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Size": 154264224,
+    "RootFS": {
+      "Type": "layers",
+      "Layers": [
+        "sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9",
+        "sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa"
+      ]
+    },
+    "Metadata": {
+      "LastTagTime": "2026-09-30T11:01:31.02546341Z"
+    },
+    "Descriptor": {
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "digest": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78",
+      "size": 6694
+    },
+    "Identity": {
+      "Pull": [
+        {
+          "Repository": "docker.io/library/ubuntu"
+        }
+      ]
+    }
+  }
+]
+[root@docker1 ~]# docker inspect ubuntu | yq-P
+- Id: sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+  RepoTags:
+    - ubuntu:latest
+  RepoDigests:
+    - ubuntu@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+  Comment: Add rock control metadata
+  Created: "2026-09-12T10:24:38.361673881Z"
+  Config:
+    Env:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    Cmd:
+      - /bin/bash
+    Labels:
+      org.opencontainers.image.created: "2026-09-12T10:25:59.825539+00:00"
+      org.opencontainers.image.description: |
+        The Ubuntu container image maintained by Canonical
+
+        Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+        It is the world's most popular operating system across public clouds and OpenStack clouds.
+        It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+        Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+      org.opencontainers.image.title: ubuntu
+      org.opencontainers.image.version: "26.04"
+  Architecture: amd64
+  Os: linux
+  Size: 154264224
+  RootFS:
+    Type: layers
+    Layers:
+      - sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9
+      - sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa
+  Metadata:
+    LastTagTime: "2026-09-30T11:01:31.02546341Z"
+  Descriptor:
+    mediaType: application/vnd.oci.image.index.v1+json
+    digest: sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+    size: 6694
+  Identity:
+    Pull:
+      - Repository: docker.io/library/ubuntu
+[root@docker1 ~]# docker inspect ubuntu | yq -P
+[{"Id": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78", "RepoTags": ["ubuntu:latest"], "RepoDigests": ["ubuntu@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78"], "Comment": "Add rock control metadata", "Created": "2026-09-12T10:24:38.361673881Z", "Config": {"Env": ["PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"], "Cmd": ["/bin/bash"], "Labels": {"org.opencontainers.image.created": "2026-09-12T10:25:59.825539+00:00", "org.opencontainers.image.description": "The Ubuntu container image maintained by Canonical\n\nUbuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.\nIt is the world's most popular operating system across public clouds and OpenStack clouds.\nIt is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.\nFast, secure and simple, Ubuntu powers millions of PCs worldwide.\n", "org.opencontainers.image.title": "ubuntu", "org.opencontainers.image.version": "26.04"}}, "Architecture": "amd64", "Os": "linux", "Size": 154264224, "RootFS": {"Type": "layers", "Layers": ["sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9", "sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa"]}, "Metadata": {"LastTagTime": "2026-09-30T11:01:31.02546341Z"}, "Descriptor": {"mediaType": "application/vnd.oci.image.index.v1+json", "digest": "sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78", "size": 6694}, "Identity": {"Pull": [{"Repository": "docker.io/library/ubuntu"}]}}]
+[root@docker1 ~]# docker inspect ubuntu | yq -P
+- Id: sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+  RepoTags:
+    - ubuntu:latest
+  RepoDigests:
+    - ubuntu@sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+  Comment: Add rock control metadata
+  Created: "2026-09-12T10:24:38.361673881Z"
+  Config:
+    Env:
+      - PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+    Cmd:
+      - /bin/bash
+    Labels:
+      org.opencontainers.image.created: "2026-09-12T10:25:59.825539+00:00"
+      org.opencontainers.image.description: |
+        The Ubuntu container image maintained by Canonical
+
+        Ubuntu is a Debian-based Linux operating system that runs from the desktop to the cloud, to all your internet connected things.
+        It is the world's most popular operating system across public clouds and OpenStack clouds.
+        It is the number one platform for containers; from Docker to Kubernetes to LXD, Ubuntu can run your containers at scale.
+        Fast, secure and simple, Ubuntu powers millions of PCs worldwide.
+      org.opencontainers.image.title: ubuntu
+      org.opencontainers.image.version: "26.04"
+  Architecture: amd64
+  Os: linux
+  Size: 154264224
+  RootFS:
+    Type: layers
+    Layers:
+      - sha256:485d137fd3bfb545f1b417ea708e2281594be7a334e8a85ab75c5332db6089e9
+      - sha256:598e8330e2e633ea6b06bbf1e8b80c275553b7c1de53899af154d1f480a7eefa
+  Metadata:
+    LastTagTime: "2026-09-30T11:01:31.02546341Z"
+  Descriptor:
+    mediaType: application/vnd.oci.image.index.v1+json
+    digest: sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+    size: 6694
+  Identity:
+    Pull:
+      - Repository: docker.io/library/ubuntu
+[root@docker1 ~]# docker inspect ubuntu | yq -P '.[0].Os'
+linux
+[root@docker1 ~]# docker inspect ubuntu | yq -P '.[0].Id'
+sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+[root@docker1 ~]# docker inspect ubuntu | yq -P '.[0].ID'
+null
+[root@docker1 ~]# docker inspect ubuntu | yq --i'ID'0].''
+Error: write in place flag only applicable when giving an expression and at least one file
+[root@docker1 ~]# rmc--helps|egrepbfn-C 5 yq -P -'.[0].ID'''
+Usage: rm [OPTION]... [FILE]...
+Remove (unlink) the FILE(s).
+
+  -f, --force           ignore nonexistent files and arguments, never prompt
+  -i                    prompt before every removal
+  -I                    prompt once before removing more than three files, or
+                          when removing recursively; less intrusive than -i,
+                          while still giving protection against most mistakes
+      --interactive[=WHEN]  prompt according to WHEN: never, once (-I), or
+                          always (-i); without WHEN, prompt always
+      --one-file-system  when removing a hierarchy recursively, skip any
+                          directory that is on a file system different from
+                          that of the corresponding command line argument
+      --no-preserve-root  do not treat '/' specially
+      --preserve-root[=all]  do not remove '/' (default);
+                              with 'all', reject any command line argument
+                              on a separate device from its parent
+  -r, -R, --recursive   remove directories and their contents recursively
+  -d, --dir             remove empty directories
+  -v, --verbose         explain what is being done
+      --help        display this help and exit
+      --version     output version information and exit
+
+By default, rm does not remove directories.  Use the --recursive (-r or -R)
+option to remove each listed directory, too, along with all of its contents.
+
+Any attempt to remove a file whose last file name component is '.' or '..'
+is rejected with a diagnostic.
+
+To remove a file whose name starts with a '-', for example '-foo',
+use one of these commands:
+  rm -- -foo
+
+  rm ./-foo
+
+If you use rm to remove a file, it might be possible to recover
+some of its contents, given sufficient expertise and/or time.  For greater
+assurance that the contents are unrecoverable, consider using shred(1).
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Full documentation <https://www.gnu.org/software/coreutils/rm>
+or available locally via: info '(coreutils) rm invocation'
+[root@docker1 ~]# grep --help
+Usage: grep [OPTION]... PATTERNS [FILE]...
+Search for PATTERNS in each FILE.
+Example: grep -i 'hello world' menu.h main.c
+PATTERNS can contain multiple patterns separated by newlines.
+
+Pattern selection and interpretation:
+  -E, --extended-regexp     PATTERNS are extended regular expressions
+  -F, --fixed-strings       PATTERNS are strings
+  -G, --basic-regexp        PATTERNS are basic regular expressions
+  -P, --perl-regexp         PATTERNS are Perl regular expressions
+  -e, --regexp=PATTERNS     use PATTERNS for matching
+  -f, --file=FILE           take PATTERNS from FILE
+  -i, --ignore-case         ignore case distinctions in patterns and data
+      --no-ignore-case      do not ignore case distinctions (default)
+  -w, --word-regexp         match only whole words
+  -x, --line-regexp         match only whole lines
+  -z, --null-data           a data line ends in 0 byte, not newline
+
+Miscellaneous:
+  -s, --no-messages         suppress error messages
+  -v, --invert-match        select non-matching lines
+  -V, --version             display version information and exit
+      --help                display this help text and exit
+
+Output control:
+  -m, --max-count=NUM       stop after NUM selected lines
+  -b, --byte-offset         print the byte offset with output lines
+  -n, --line-number         print line number with output lines
+      --line-buffered       flush output on every line
+  -H, --with-filename       print file name with output lines
+  -h, --no-filename         suppress the file name prefix on output
+      --label=LABEL         use LABEL as the standard input file name prefix
+  -o, --only-matching       show only nonempty parts of lines that match
+  -q, --quiet, --silent     suppress all normal output
+      --binary-files=TYPE   assume that binary files are TYPE;
+                            TYPE is 'binary', 'text', or 'without-match'
+  -a, --text                equivalent to --binary-files=text
+  -I                        equivalent to --binary-files=without-match
+  -d, --directories=ACTION  how to handle directories;
+                            ACTION is 'read', 'recurse', or 'skip'
+  -D, --devices=ACTION      how to handle devices, FIFOs and sockets;
+                            ACTION is 'read' or 'skip'
+  -r, --recursive           like --directories=recurse
+  -R, --dereference-recursive
+                            likewise, but follow all symlinks
+      --include=GLOB        search only files that match GLOB (a file pattern)
+      --exclude=GLOB        skip files that match GLOB
+      --exclude-from=FILE   skip files that match any file pattern from FILE
+      --exclude-dir=GLOB    skip directories that match GLOB
+  -L, --files-without-match print only names of FILEs with no selected lines
+  -l, --files-with-matches  print only names of FILEs with selected lines
+  -c, --count               print only a count of selected lines per FILE
+  -T, --initial-tab         make tabs line up (if needed)
+  -Z, --null                print 0 byte after FILE name
+
+Context control:
+  -B, --before-context=NUM  print NUM lines of leading context
+  -A, --after-context=NUM   print NUM lines of trailing context
+  -C, --context=NUM         print NUM lines of output context
+  -NUM                      same as --context=NUM
+      --group-separator=SEP  print SEP on line between matches with context
+      --no-group-separator  do not print separator for matches with context
+      --color[=WHEN],
+      --colour[=WHEN]       use markers to highlight the matching strings;
+                            WHEN is 'always', 'never', or 'auto'
+  -U, --binary              do not strip CR characters at EOL (MSDOS/Windows)
+
+When FILE is '-', read standard input.  With no FILE, read '.' if
+recursive, '-' otherwise.  With fewer than two FILEs, assume -h.
+Exit status is 0 if any line is selected, 1 otherwise;
+if any error occurs and -q is not given, the exit status is 2.
+
+Report bugs to: bug-grep@gnu.org
+GNU grep home page: <https://www.gnu.org/software/grep/>
+General help using GNU software: <https://www.gnu.org/gethelp/>
+[root@docker1 ~]# c
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest               5e2309035332       21.8kB         9.49kB
+nginx:latest                     abe47724e466        239MB         66.3MB
+quay.io/centos/centos:stream10   a946db535284        256MB         67.1MB
+ubuntu:latest                    da6fc2be5478        158MB         45.3MB
+er rmi ubuntu:latest
+Untagged: ubuntu:latest
+Deleted: sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78
+[root@docker1 ~]# docker imagesuntu:latest
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest               5e2309035332       21.8kB         9.49kB
+nginx:latest                     abe47724e466        239MB         66.3MB
+quay.io/centos/centos:stream10   a946db535284        256MB         67.1MB
+er rmi hello-world:abe47724e466
+Untagged: hello-world:latest
+Deleted: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+Untagged: nginx:latest
+Deleted: sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2
+er image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+quay.io/centos/centos:stream10   a946db535284        256MB         67.1MB
+er rmi $(docker ps -ap)
+unknown shorthand flag: 'p' in -p
+
+Usage:  docker ps [OPTIONS]
+
+Run 'docker ps --help' for more information
+docker: 'docker rmi' requires at least 1 argument
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+See 'docker rmi --help' for more information
+[root@docker1 ~]# docker rmi $(docker ps -aq)
+docker: 'docker rmi' requires at least 1 argument
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+See 'docker rmi --help' for more information
+er pss-aq
+[root@docker1 ~]# docker ps -aq
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+es
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                            ID             DISK USAGE   CONTENT SIZE   EXTRA
+quay.io/centos/centos:stream10   a946db535284        256MB         67.1MB
+es)-q)
+Untagged: quay.io/centos/centos:stream10
+Deleted: sha256:a946db5352840d41d0de13d50e3510228f25b7ba1e8b657291c652f762b12532
+r images -q
+[root@docker1 ~]# docker images -aq
+[root@docker1 ~]# docker images -aq
+                                                                                                                                                             i Info →   U  In Use
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+[root@docker1 ~]# clear
+r login -u leejunhee021210
+
+i Info → A Personal Access Token (PAT) can be used instead.
+         To create a PAT, visit https://app.docker.com/settings
+
+
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[root@docker1 ~]# logout
+bash: logout: not login shell: use `exit'
+er logout
+Removing login credentials for https://index.docker.io/v1/
+[root@docker1 ~]# docker logint-u leejunhee021210
+
+i Info → A Personal Access Token (PAT) can be used instead.
+         To create a PAT, visit https://app.docker.com/settings
+
+
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[root@docker1 ~]# cat /root/.docker/config.json
+{
+        "auths": {
+                "https://index.docker.io/v1/": {
+                        "auth": "bGVlanVuaGVlMDIxMjEwOmRja3JfcGF0X0tXNHBhNTlKR09ZQUdqNkxQenpsS1kzRnotSQ=="
+                }
+        }
+}[root@docker1 ~]# exit
+exit
+
+Script done on 2026-09-30 20:28:50+09:00 [COMMAND_EXIT_CODE="0"]
