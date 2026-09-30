@@ -1,0 +1,485 @@
+Script started on 2026-09-30 16:05:40+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="177" LINES="48"]
+sctl -ap | grep ip_forward
+net.ipv4.ip_forward = 1
+net.ipv4.ip_forward_update_priority = 1
+net.ipv4.ip_forward_use_pmtu = 0
+dnfcrepolist1grep ip_forward | grep ip_forward
+repo id                                                                  repo name
+appstream                                                                CentOS Stream 10 - AppStream
+baseos                                                                   CentOS Stream 10 - BaseOS
+docker-ce-stable                                                         Docker CE Stable - x86_64
+epel                                                                     Extra Packages for Enterprise Linux 10 - x86_64
+extras-common                                                            CentOS Stream 10 - Extras packages
+ker.s
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Wed 2026-09-30 15:56:17 KST; 9min ago
+ Invocation: e9a8e08357b34956b4c653bccac4ce46
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1478 (dockerd)
+      Tasks: 13
+     Memory: 127.4M (peak: 129.4M)
+        CPU: 470ms
+     CGroup: /system.slice/docker.service
+             └─1478 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.228729718+09:00" level=info msg="Restoring containers: start."
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.273931038+09:00" level=info msg="Deleting nftables IPv4 rules" error="running nft: /dev/stdin:1:17->
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.283887060+09:00" level=info msg="Deleting nftables IPv6 rules" error="running nft: /dev/stdin:1:18->
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.600116825+09:00" level=info msg="Loading containers: done."
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.612991203+09:00" level=info msg="Docker daemon" commit=464cd50 containerd-snapshotter=true storage->
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.613186138+09:00" level=info msg="Initializing buildkit"
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.699744410+09:00" level=info msg="Completed buildkit initialization"
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.713944418+09:00" level=info msg="Daemon has completed initialization"
+Sep 30 15:56:17 docker1.example.com dockerd[1478]: time="2026-09-30T15:56:17.714086521+09:00" level=info msg="API listen on /run/docker.sock"
+Sep 30 15:56:17 docker1.example.com Script started on 2026-09-30 16:25:29+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="176" LINES="48"]
+[root@docker1 ~]# systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Wed 2026-09-30 16:22:02 KST; 6min ago
+ Invocation: 34accb6fa0e64b3eb2294daedf51209b
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1626 (dockerd)
+      Tasks: 14
+     Memory: 127.7M (peak: 128.6M)
+        CPU: 702ms
+     CGroup: /system.slice/docker.service
+             └─1626 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Sep 30 16:22:01 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:01.699511274+09:00" level=info msg="Restoring containers: start."
+Sep 30 16:22:01 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:01.751639623+09:00" level=info msg="Deleting nftables IPv4 rules" error="running nft: /dev/stdin:1:17>
+Sep 30 16:22:01 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:01.761368714+09:00" level=info msg="Deleting nftables IPv6 rules" error="running nft: /dev/stdin:1:18>
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.145583311+09:00" level=info msg="Loading containers: done."
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.157044482+09:00" level=info msg="Docker daemon" commit=464cd50 containerd-snapshotter=true storage>
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.157444152+09:00" level=info msg="Initializing buildkit"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.311652895+09:00" level=info msg="Completed buildkit initialization"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.323852526+09:00" level=info msg="Daemon has completed initialization"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.323983038+09:00" level=info msg="API listen on /run/docker.sock"
+Sep 30 16:22:02 docker1.example.com systemd[1]: Started docker.service - Docker Application Container Engine.
+[root@docker1 ~]#Dc
+er run -
+Display all 118 possibilities? (y or n)
+[root@docker1 ~]# docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+
+4f55086f7dd0: Pullacompletesete
+Digest:4sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8  4.742kB/4.742kB
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+cker.--no-pager
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Wed 2026-09-30 16:22:02 KST; 18min ago
+ Invocation: 34accb6fa0e64b3eb2294daedf51209b
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1626 (dockerd)
+      Tasks: 14
+     Memory: 135.8M (peak: 141.2M)
+        CPU: 977ms
+     CGroup: /system.slice/docker.service
+             └─1626 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.145583311+09:00" level=info msg="Loading containers: done."
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.157044482+09:00" level=info msg="Docker daemon" commit=464cd50 containerd-snapshotter=…rsion=29.8.1
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.157444152+09:00" level=info msg="Initializing buildkit"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.311652895+09:00" level=info msg="Completed buildkit initialization"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.323852526+09:00" level=info msg="Daemon has completed initialization"
+Sep 30 16:22:02 docker1.example.com dockerd[1626]: time="2026-09-30T16:22:02.323983038+09:00" level=info msg="API listen on /run/docker.sock"
+Sep 30 16:22:02 docker1.example.com systemd[1]: Started docker.service - Docker Application Container Engine.
+Sep 30 16:30:19 docker1.example.com dockerd[1626]: time="2026-09-30T16:30:19.285044060+09:00" level=info msg="image pulled" digest="sha256:5e23090353324d887c48ad5e…orld:latest"
+Sep 30 16:30:19 docker1.example.com dockerd[1626]: time="2026-09-30T16:30:19.452360430+09:00" level=info msg="sbJoin: gwep4 ''->'f519afcc6add', gwep6 ''->''" eid=f…a9fcd7f493c2
+Sep 30 16:30:19 docker1.example.com dockerd[1626]: time="2026-09-30T16:30:19.498281197+09:00" level=info msg="received task-delete event from containerd" container….TaskDelete"
+Hint: Some lines were ellipsized, use -l to show in full.
+ntu /bin/echo 'hello world'
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+
+d9b985643753: Pulling fs layer
+09923199ca0e: Extractingo1psete====================================>          ]  33.55MB/41.57MB
+Digest:9sha256:da6fc2be547864451aa253836dd926da33623312df4a9a243e35dc877c378a78  2.097MB/3.704MB
+Status: Downloaded newer image for ubuntu:latest
+hello world
+[root@docker1 ~]# docker run ubuntu /bin/echo 'By'world''''
+By world
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+282a3512aaec   ubuntu        "/bin/echo 'By world'"   5 seconds ago    Exited (0) 4 seconds ago              nostalgic_robinson
+4a58f9775abc   ubuntu        "/bin/echo 'hello wo…"   22 seconds ago   Exited (0) 21 seconds ago             condescending_ishizaka
+31f4e7d7f957   hello-world   "/hello"                 22 minutes ago   Exited (0) 22 minutes ago             modest_antonelli
+docker run ubuntu /bin/sleep 600
+exit
+^C^C^C
+got 3 SIGTERM/SIGINTs, forcefully exiting
+er run -d ubntu /bin/sleep 600
+Unable to find image 'ubntu:latest' locally
+docker: Error response from daemon: pull access denied for ubntu, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# docker run -d ub1@u /bin/sleep 600
+2233658cb310c0d8f3403996fc57fdab7ed3870161684a354e9e87e940a44cae
+er ps
+CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+2233658cb310   ubuntu    "/bin/sleep 600"   6 seconds ago   Up 6 seconds             serene_pike
+69da51e1c17c   ubuntu    "/bin/sleep 600"   2 minutes ago   Up 2 minutes             beautiful_cerf
+[root@docker1 ~]# ^C
+[root@docker1 ~]# ^C
+[root@docker1 ~]# c
+ker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED          STATUS                      PORTS     NAMES
+2233658cb310   ubuntu        "/bin/sleep 600"         39 seconds ago   Up 39 seconds                         serene_pike
+69da51e1c17c   ubuntu        "/bin/sleep 600"         3 minutes ago    Up 3 minutes                          beautiful_cerf
+282a3512aaec   ubuntu        "/bin/echo 'By world'"   3 minutes ago    Exited (0) 3 minutes ago              nostalgic_robinson
+4a58f9775abc   ubuntu        "/bin/echo 'hello wo…"   4 minutes ago    Exited (0) 4 minutes ago              condescending_ishizaka
+31f4e7d7f957   hello-world   "/hello"                 26 minutes ago   Exited (0) 26 minutes ago             modest_antonelli
+ker rm
+condescending_ishizaka  modest_antonelli        nostalgic_robinson
+[root@docker1 ~]# docker rm 6
+Error response from daemon: cannot remove container "6": container is running: stop the container before removing or force remove
+[root@docker1 ~]# docker rm 5
+Error response from daemon: No such container: 5
+[root@docker1 ~]# docker rm 3
+3
+[root@docker1 ~]# docker rm 4
+4
+docker pss-a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+2233658cb310   ubuntu    "/bin/sleep 600"         2 minutes ago   Up 2 minutes                         serene_pike
+69da51e1c17c   ubuntu    "/bin/sleep 600"         5 minutes ago   Up 5 minutes                         beautiful_cerf
+282a3512aaec   ubuntu    "/bin/echo 'By world'"   5 minutes ago   Exited (0) 5 minutes ago             nostalgic_robinson
+docker rm 2
+Error response from daemon: multiple IDs found with provided prefix: 2
+[root@docker1 ~]# docker rm 282a3512aaec
+282a3512aaec
+[root@docker1 ~]# docker rm 69da51e1c17c
+Error response from daemon: cannot remove container "69da51e1c17c": container is running: stop the container before removing or force remove
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE     COMMAND            CREATED         STATUS         PORTS     NAMES
+2233658cb310   ubuntu    "/bin/sleep 600"   3 minutes ago   Up 3 minutes             serene_pike
+69da51e1c17c   ubuntu    "/bin/sleep 600"   5 minutes ago   Up 5 minutes             beautiful_cerf
+[root@docker1 ~]# docker ps -aq
+2233658cb310
+69da51e1c17c
+ker rm 1@-1@f1@)ps)-aq)
+2233658cb310
+69da51e1c17c
+r ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+b
+[root@docker1 ~]# c
+arch nginx
+NAME                                     DESCRIPTION                                     STARS     OFFICIAL
+nginx                                    Official build of Nginx.                        21396     [OK]
+nginx/nginx-ingress                      NGINX and  NGINX Plus Ingress Controllers fo…   122
+nginx/nginx-prometheus-exporter          NGINX Prometheus Exporter for NGINX and NGIN…   52
+nginx/nginx-ingress-operator             NGINX Ingress Operator for NGINX and NGINX P…   4
+nginx/nginxaas-loadbalancer-kubernetes                                                   1
+bitnamicharts/nginx                      Bitnami Helm chart for NGINX Open Source        4
+ubuntu/nginx                             Nginx, a high-performance reverse proxy & we…   143
+kasmweb/nginx                            An Nginx image based off nginx:alpine and in…   9
+rancher/nginx                                                                            4
+linuxserver/nginx                        An Nginx container, brought to you by LinuxS…   236
+dtagdevsec/nginx                         T-Pot Nginx                                     0
+paketobuildpacks/nginx                                                                   0
+cleanstart/nginx                         Secure by Design, Built for Speed, Hardened …   0
+vmware/nginx                                                                             3
+activestate/nginx                        ActiveState's customizable, low-to-no vulner…   0
+gluufederation/nginx                      A customized NGINX image containing a consu…   1
+antrea/nginx                             Nginx server used for Antrea e2e testing        0
+intel/nginx                                                                              0
+docksal/nginx                            Nginx service image for Docksal                 1
+geokrety/nginx                           Our customized nginx image                      0
+ilios/nginx                              Nginx customized to run Ilios along with the…   0
+circleci/nginx                           This image is for internal use                  2
+dockette/nginx                           Nginx SSL / HSTS / HTTP2                        3
+wayofdev/nginx                           Nginx Docker image for PHP development. SSL-…   0
+corpusops/nginx                          https://github.com/corpusops/docker-images/     1
+r
+attach      (Attach local standard input, output, and error streams to a running container)
+bake        (Build from a file)
+build       (Build an image from a Dockerfile)
+builder     (Manage builds)
+buildx      (Docker Buildx)
+checkpoint  (Manage checkpoints)
+commit      (Create a new image from a container's changes)
+compose     (Docker Compose)
+config      (Manage Swarm configs)
+container   (Manage containers)
+context     (Manage contexts)
+cp          (Copy files/folders between a container and the local filesystem)
+create      (Create a new container)
+diff        (Inspect changes to files or directories on a container's filesystem)
+events      (Get real time events from the server)
+exec        (Execute a command in a running container)
+export      (Export a container's filesystem as a tar archive)
+help        (Help about the command)
+history     (Show the history of an image)
+image       (Manage images)
+images      (List images)
+import      (Import the contents from a tarball to create a filesystem image)
+info        (Display system-wide information)
+inspect     (Return low-level information on Docker objects)
+kill        (Kill one or more running containers)
+load        (Load an image from a tar archive or STDIN)
+login       (Authenticate to a registry)
+logout      (Log out from a registry)
+logs        (Fetch the logs of a container)
+manifest    (Manage Docker image manifests and manifest lists)
+model       (Docker Model Runner)
+network     (Manage networks)
+node        (Manage Swarm nodes)
+pause       (Pause all processes within one or more containers)
+plugin      (Manage plugins)
+port        (List port mappings or a specific mapping for the container)
+ps          (List containers)
+pull        (Download an image from a registry)
+push        (Upload an image to a registry)
+rename      (Rename a container)
+restart     (Restart one or more containers)
+rmi         (Remove one or more images)
+rm          (Remove one or more containers)
+run         (Create and run a new container from an image)
+save        (Save one or more images to a tar archive (streamed to STDOUT by default))
+search      (Search Docker Hub for images)
+secret      (Manage Swarm secrets)
+[root@docker1 ~]# cocker
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+r pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+
+3326c3817340: Pulling fs layer
+f1169c633cbc: Pulling fs layer
+46243d3234ed: Pulling fs layer
+2056b40bae09: Pulling fs layer
+f802f27d954b: Pulling fs layer
+6b37362b3da7: Pulling fs layer
+afa8dec48454: Pullacompletesete=======================================>       ]  26.21MB/29.83MB
+37d8c7707e42: Download complete
+Digest:5sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2  2.097MB/2.824MB
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+r images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   5e2309035332       21.8kB         9.49kB
+nginx:latest         abe47724e466        239MB         66.3MB
+ubuntu:latest        da6fc2be5478        158MB         45.3MB
+[root@docker1 ~]# docker version n
+Client: Docker Engine - Community
+ Version:           29.8.1
+ API version:       1.56
+ Go version:        go1.26.8
+ Git commit:        4a63305
+ Built:             Tue Sep 15 16:29:05 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          29.8.1
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.8
+  Git commit:       464cd50
+  Built:            Tue Sep 15 16:25:53 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.3.6
+  GitCommit:        ee2735368117d2eb259779949d5e75cdafec9761
+ runc:
+  Version:          1.5.1
+  GitCommit:        v1.5.1-0-g8f2685a4
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# docker info
+Client: Docker Engine - Community
+ Version:    29.8.1
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+  model: Docker Model Runner (Docker Inc.)
+    Version:  v1.2.6
+    Path:     /usr/libexec/docker/cli-plugins/docker-model
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 3
+ Server Version: 29.8.1
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: runc io.containerd.runc.v2
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: ee2735368117d2eb259779949d5e75cdafec9761
+ runc version: v1.5.1-0-g8f2685a4
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 6.12.0-271.el10.x86_64
+ Operating System: CentOS Stream 10 (Coughlan)
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 7.468GiB
+ Name: docker1.example.com
+ ID: f3c75d42-860c-4ce0-80e2-e082aa19f75a
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Experimental: false
+ Insecure Registries:
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Firewall Backend: iptables
+  EnableUserlandProxy: true
+  UserlandProxyPath: /usr/bin/docker-proxy
+
+[root@docker1 ~]# docker system df
+TYPE            TOTAL     ACTIVE    SIZE      RECLAIMABLE
+Images          3         0         396.8MB   396.7MB (99%)
+Containers      0         0         0B        0B
+Local Volumes   0         0         0B        0B
+Build Cache     0         0         0B        0B
+docker container
+attach   (Attach local standard input, output, and error streams to a running container)
+commit   (Create a new image from a container's changes)
+cp       (Copy files/folders between a container and the local filesystem)
+create   (Create a new container)
+diff     (Inspect changes to files or directories on a container's filesystem)
+exec     (Execute a command in a running container)
+export   (Export a container's filesystem as a tar archive)
+inspect  (Display detailed information on one or more containers)
+kill     (Kill one or more running containers)
+logs     (Fetch the logs of a container)
+ls       (List containers)
+pause    (Pause all processes within one or more containers)
+port     (List port mappings or a specific mapping for the container)
+prune    (Remove all stopped containers)
+rename   (Rename a container)
+restart  (Restart one or more containers)
+rm       (Remove one or more containers)
+run      (Create and run a new container from an image)
+start    (Start one or more stopped containers)
+stats    (Display a live stream of container(s) resource usage statistics)
+stop     (Stop one or more running containers)
+top      (Display the running processes of a container)
+unpause  (Unpause all processes within one or more containers)
+update   (Update configuration of one or more containers)
+wait     (Block until one or more containers stop, then print their exit codes)
+[root@docker1 ~]# docker imageiner
+image   (Manage images)  images  (List images)
+[root@docker1 ~]# docker image
+image   (Manage images)  images  (List images)
+[root@docker1 ~]# docker image
+build    (Build an image from a Dockerfile)                                          prune    (Remove unused images)
+history  (Show the history of an image)                                              pull     (Download an image from a registry)
+import   (Import the contents from a tarball to create a filesystem image)           push     (Upload an image to a registry)
+inspect  (Display detailed information on one or more images)                        rm       (Remove one or more images)
+load     (Load an image from a tar archive or STDIN)                                 save     (Save one or more images to a tar archive (streamed to STDOUT by default))
+ls       (List images)                                                               tag      (Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE)
+[root@docker1 ~]# podman image
+artifact     (Manage OCI artifacts)
+attach       (Attach to a running container)
+auto-update  (Auto update containers according to their auto-update policy)
+build        (Build an image using instructions from Containerfiles)
+commit       (Create new image based on the changed container)
+compose      (Run compose workloads via an external provider such as docker-compose or podman-compose)
+container    (Manage containers)
+cp           (Copy files/folders between a container and the local filesystem)
+create       (Create but do not start a container)
+diff         (Display the changes to the object's file system)
+events       (Show podman system events)
+exec         (Run a process in a running container)
+export       (Export container's filesystem contents as a tar archive)
+farm         (Farm out builds to remote machines)
+generate     (Generate structured data based on containers, pods or volumes)
+healthcheck  (Manage health checks on containers)
+help         (Help about any command)
+history      (Show history of a specified image)
+image        (Manage images)
+images       (List images in local storage)
+import       (Import a tarball to create a filesystem image)
+info         (Display podman system information)
+init         (Initialize one or more containers)
+inspect      (Display the configuration of object denoted by ID)
+kill         (Kill one or more running containers with a specific signal)
+kube         (Play containers, pods or volumes from a structured file)
+load         (Load image(s) from a tar archive)
+login        (Log in to a container registry)
+logout       (Log out of a container registry)
+logs         (Fetch the logs of one or more containers)
+machine      (Manage a virtual machine)
+manifest     (Manipulate manifest lists and image indexes)
+mount        (Mount a working container's root filesystem)
+network      (Manage networks)
+pause        (Pause all the processes in one or more containers)
+pod          (Manage pods)
+port         (List port mappings or a specific mapping for the container)
+ps           (List containers)
+pull         (Pull an image from a registry)
+push         (Push an image to a specified destination)
+quadlet      (Allows users to manage Quadlets)
+rename       (Rename an existing container)
+restart      (Restart one or more containers)
+rmi          (Remove one or more images from local storage)
+rm           (Remove one or more containers)
+run          (Run a command in a new container)
+save         (Save image(s) to an archive)
+[root@docker1 ~]# clearn
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-09-30 17:42:24+09:00 [COMMAND_EXIT_CODE="0"]
