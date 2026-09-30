@@ -1,0 +1,926 @@
+Script started on 2026-09-30 17:47:08+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="180" LINES="41"]
+server
+Unable to find image 'webserver:latest' locally
+docker: Error response from daemon: pull access denied for webserver, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# docker run -d --namevwebserver -p 80:80 nginx
+docker: Error response from daemon: Conflict. The container name "/webserver" is already in use by container "48ed1d99ff52655591af644c1372f7c042e140abd234e4dbddc40abca1c88fd7". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+er rm 4
+4
+[root@docker1 ~]# docker run4-d --name webserver -p 80:80 nginx
+6be41473daa4618834c6bbfff76879e61e15d9cbc5b46d8bbf81cc5173765693
+[root@docker1 ~]# clear
+ker ps a
+docker: 'docker ps' accepts no arguments
+
+Usage:  docker ps [OPTIONS]
+
+Run 'docker ps --help' for more information
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                 NAMES
+6be41473daa4   nginx     "/docker-entrypoint.…"   8 seconds ago   Up 7 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   webserver
+r stats webservs
+Error response from daemon: No such container: webservs
+[root@docker1 ~]# docker stats webservers
+Error response from daemon: No such container: webservers
+[root@docker1 ~]# docker stats webservers
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.06%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.06%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.37kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 101kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.44kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.51kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+dCONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+CONTAINER ID   NAME        CPU %     MEM USAGE / LIMIT     MEM %     NET I/O         BLOCK I/O        PIDS
+6be41473daa4   webserver   0.00%     22.81MiB / 7.469GiB   0.30%     5.58kB / 126B   33.9MB / 118kB   9
+
+ocker stop webserver
+webserver
+[root@docker1 ~]# docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+6be41473daa4   nginx     "/docker-entrypoint.…"   2 minutes ago   Exited (0) 3 seconds ago             webserver
+er start webserver
+webserver
+[root@docker1 ~]# docker psa-a webserver
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                 NAMES
+6be41473daa4   nginx     "/docker-entrypoint.…"   2 minutes ago   Up 5 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   webserver
+[root@docker1 ~]# curl http://localhost:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@docker1 ~]# docker stop webserver
+webserver
+ rm -f $(docker ps -aq)
+6be41473daa4
+arch ngnix
+NAME                  DESCRIPTION                                     STARS     OFFICIAL
+userxy2015/ngnix      ngnix                                           18
+theburi/ngnix         ngnix                                           0
+ssvreddy/ngnix                                                        1
+davidju17/ngnix       This is a test on how to push docker. I have…   0
+syedsdocker/ngnix     In my small project i used reveresed proxy s…   0
+alamalhoda/ngnix                                                      0
+bharath2012/ngnix                                                     0
+accuknoxns/ngnix                                                      0
+sitek/ngnix           Just ngnix                                      0
+snehagupta83/ngnix    Test setup                                      0
+jenorish/ngnix                                                        0
+kurthorvath/ngnix                                                     0
+050544117/ngnix                                                       0
+ganeshghube23/ngnix                                                   0
+praticeuser/ngnix     For Ngnix                                       0
+emeaaeme/ngnix                                                        0
+covenant/ngnix                                                        0
+odidev/ngnix                                                          0
+harshjain12/ngnix                                                     0
+ygohamon/ngnix                                                        0
+mgaggutur/ngnix                                                       0
+gvpmahesh/ngnix                                                       0
+sunlitweb/ngnix                                                       0
+hpvsdemo/ngnix                                                        0
+bcaparoon/ngnix                                                       0
+[root@docker1 ~]# docker search ninxx
+NAME                                     DESCRIPTION                                     STARS     OFFICIAL
+nginx                                    Official build of Nginx.                        21396     [OK]
+nginx/nginx-ingress                      NGINX and  NGINX Plus Ingress Controllers fo…   122
+nginx/nginx-prometheus-exporter          NGINX Prometheus Exporter for NGINX and NGIN…   52
+nginx/nginx-ingress-operator             NGINX Ingress Operator for NGINX and NGINX P…   4
+nginx/nginxaas-loadbalancer-kubernetes                                                   1
+bitnamicharts/nginx                      Bitnami Helm chart for NGINX Open Source        4
+ubuntu/nginx                             Nginx, a high-performance reverse proxy & we…   143
+kasmweb/nginx                            An Nginx image based off nginx:alpine and in…   9
+rancher/nginx                                                                            4
+linuxserver/nginx                        An Nginx container, brought to you by LinuxS…   236
+dtagdevsec/nginx                         T-Pot Nginx                                     0
+activestate/nginx                        ActiveState's customizable, low-to-no vulner…   0
+paketobuildpacks/nginx                                                                   0
+cleanstart/nginx                         Secure by Design, Built for Speed, Hardened …   0
+vmware/nginx                                                                             3
+gluufederation/nginx                      A customized NGINX image containing a consu…   1
+antrea/nginx                             Nginx server used for Antrea e2e testing        0
+intel/nginx                                                                              0
+docksal/nginx                            Nginx service image for Docksal                 1
+geokrety/nginx                           Our customized nginx image                      0
+ilios/nginx                              Nginx customized to run Ilios along with the…   0
+circleci/nginx                           This image is for internal use                  2
+dockette/nginx                           Nginx SSL / HSTS / HTTP2                        3
+wayofdev/nginx                           Nginx Docker image for PHP development. SSL-…   0
+corpusops/nginx                          https://github.com/corpusops/docker-images/     1
+-trunc
+NAME                                     DESCRIPTION                                                                                            STARS     OFFICIAL
+nginx                                    Official build of Nginx.                                                                               21396     [OK]
+nginx/nginx-ingress                      NGINX and  NGINX Plus Ingress Controllers for Kubernetes                                               122
+nginx/nginx-prometheus-exporter          NGINX Prometheus Exporter for NGINX and NGINX Plus                                                     52
+nginx/nginx-ingress-operator             NGINX Ingress Operator for NGINX and NGINX Plus Ingress Controllers. Based on the Helm chart for NGI   4
+nginx/nginxaas-loadbalancer-kubernetes                                                                                                          1
+bitnamicharts/nginx                      Bitnami Helm chart for NGINX Open Source                                                               4
+ubuntu/nginx                             Nginx, a high-performance reverse proxy & web server. Long-term tracks maintained by Canonical.        143
+kasmweb/nginx                            An Nginx image based off nginx:alpine and includes logrotate.                                          9
+rancher/nginx                                                                                                                                   4
+linuxserver/nginx                        An Nginx container, brought to you by LinuxServer.io.                                                  236
+dtagdevsec/nginx                         T-Pot Nginx                                                                                            0
+paketobuildpacks/nginx                                                                                                                          0
+cleanstart/nginx                         Secure by Design, Built for Speed, Hardened Container Images on a minimal base CleanStart OS.          0
+vmware/nginx                                                                                                                                    3
+activestate/nginx                        ActiveState's customizable, low-to-no vulnerability container image for Nginx.                         0
+gluufederation/nginx                      A customized NGINX image containing a consul-template and an NGINX server.                            1
+antrea/nginx                             Nginx server used for Antrea e2e testing                                                               0
+intel/nginx                                                                                                                                     0
+docksal/nginx                            Nginx service image for Docksal                                                                        1
+geokrety/nginx                           Our customized nginx image                                                                             0
+ilios/nginx                              Nginx customized to run Ilios along with the php-fpm image.                                            0
+circleci/nginx                           This image is for internal use                                                                         2
+dockette/nginx                           Nginx SSL / HSTS / HTTP2                                                                               3
+wayofdev/nginx                           Nginx Docker image for PHP development. SSL-ready, lightweight Alpine-based, multi-arch support.       0
+corpusops/nginx                          https://github.com/corpusops/docker-images/                                                            1
+[root@docker1 ~]# docker search nginx --no-trunc --limit 5
+NAME                                     DESCRIPTION                                                                                            STARS     OFFICIAL
+nginx                                    Official build of Nginx.                                                                               21396     [OK]
+nginx/nginx-ingress                      NGINX and  NGINX Plus Ingress Controllers for Kubernetes                                               122
+nginx/nginx-prometheus-exporter          NGINX Prometheus Exporter for NGINX and NGINX Plus                                                     52
+nginx/nginx-ingress-operator             NGINX Ingress Operator for NGINX and NGINX Plus Ingress Controllers. Based on the Helm chart for NGI   4
+nginx/nginxaas-loadbalancer-kubernetes                                                                                                          1
+tars=10
+docker: 'docker search' requires 1 argument
+
+Usage:  docker search [OPTIONS] TERM
+
+Run 'docker search --help' for more information
+clear@docker1 ~]# docker search nginx --no-trunc --limit 5 stars=10
+arch quay.io/nginx
+NAME                                                     DESCRIPTION                                     STARS     OFFICIAL
+nginx/nginx-unprivileged                                                                                 0
+kubernetes-ingress-controller/nginx-ingress-controller   NGINX Ingress controller built around the [K…   0
+openshifttest/nginxolm-operator-bundle                                                                   0
+nginx/nginx-ingress                                                                                      0
+cloud-bulldozer/nginx                                                                                    0
+ukhomeofficedigital/nginx-proxy                          # OpenResty Docker Container  [![Build Statu…   0
+redhattraining/hello-world-nginx                                                                         0
+olmqe/nginxolm-operator-bundle                                                                           0
+olmqe/nginx-ok-bundle                                                                                    0
+kata-containers/nginx                                                                                    0
+martinhelmich/prometheus-nginxlog-exporter               Export metrics from Nginx access log files t…   0
+openshifttest/nginxolm-operator-index                                                                    0
+olmqe/nginx-ok-index                                                                                     0
+olmqe/nginxolm-operator-index                                                                            0
+centos7/nginx-116-centos7                                **This image is no longer being rebuilt. The…   0
+openshifttest/nginxolm-operator-base                                                                     0
+olmqe/nginx-operator-base                                                                                0
+telco5gci/nginx                                                                                          0
+openshifttest/nginx-alpine                                                                               0
+hummingbird/nginx                                        # Project Hummingbird nginx Image  High-perf…   0
+dtan4/nginx-basic-auth-proxy                                                                             0
+jitesoft/nginx                                           # Nginx    [![Docker Pulls](https://img.shie…   0
+olmqe/nginxolm-operator-base                                                                             0
+nginx/nginx-ingress-operator                                                                             0
+flysangel/library/nginx                                                                                  0
+y.io/nginx
+NAME                                                            DESCRIPTION
+quay.io/nginx/nginx-unprivileged
+quay.io/kubernetes-ingress-controller/nginx-ingress-controller  NGINX Ingress controller built around the [K...
+quay.io/openshifttest/nginxolm-operator-bundle
+quay.io/nginx/nginx-ingress
+quay.io/cloud-bulldozer/nginx
+quay.io/ukhomeofficedigital/nginx-proxy                         # OpenResty Docker Container  [![Build Statu...
+quay.io/redhattraining/hello-world-nginx
+quay.io/olmqe/nginxolm-operator-bundle
+quay.io/olmqe/nginx-ok-bundle
+quay.io/kata-containers/nginx
+quay.io/martinhelmich/prometheus-nginxlog-exporter              Export metrics from Nginx access log files t...
+quay.io/openshifttest/nginxolm-operator-index
+quay.io/olmqe/nginx-ok-index
+quay.io/olmqe/nginxolm-operator-index
+quay.io/centos7/nginx-116-centos7                               **This image is no longer being rebuilt. The...
+quay.io/openshifttest/nginxolm-operator-base
+quay.io/olmqe/nginx-operator-base
+quay.io/telco5gci/nginx
+quay.io/openshifttest/nginx-alpine
+quay.io/hummingbird/nginx                                       # Project Hummingbird nginx Image  High-perf...
+quay.io/dtan4/nginx-basic-auth-proxy
+q[![DockertPulls](https://img.shie...                           # Nginx
+quay.io/olmqe/nginxolm-operator-base
+quay.io/nginx/nginx-ingress-operator
+quay.io/flysangel/library/nginx
+1@podmanck|rwc~-l podman  search quay.io/nginx
+26
+quay.io/nginx/nginx-unprivilegedd
+[root@docker1 ~]# podman search --list-tags quay.io/nginx/nginx-unprivileged
+NAME                              TAG
+quay.io/nginx/nginx-unprivileged  1
+quay.io/nginx/nginx-unprivileged  1.24
+quay.io/nginx/nginx-unprivileged  1.24.0
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine3.18
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine3.18-perl
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine3.18-slim
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine-perl
+quay.io/nginx/nginx-unprivileged  1.24.0-alpine-slim
+quay.io/nginx/nginx-unprivileged  1.24.0-bullseye
+quay.io/nginx/nginx-unprivileged  1.24.0-bullseye-perl
+quay.io/nginx/nginx-unprivileged  1.24.0-perl
+quay.io/nginx/nginx-unprivileged  1.24-alpine
+quay.io/nginx/nginx-unprivileged  1.24-alpine3.18
+quay.io/nginx/nginx-unprivileged  1.24-alpine3.18-perl
+quay.io/nginx/nginx-unprivileged  1.24-alpine3.18-slim
+quay.io/nginx/nginx-unprivileged  1.24-alpine-perl
+quay.io/nginx/nginx-unprivileged  1.24-alpine-slim
+quay.io/nginx/nginx-unprivileged  1.24-bullseye
+quay.io/nginx/nginx-unprivileged  1.24-bullseye-perl
+quay.io/nginx/nginx-unprivileged  1.24-perl
+quay.io/nginx/nginx-unprivileged  1.25
+quay.io/nginx/nginx-unprivileged  1.25.3
+quay.io/nginx/nginx-unprivileged  1.25.3-alpine
+quay.io/nginx/nginx-unprivileged  1.25.3-alpine3.18
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-09-30 19:21:23+09:00 [COMMAND_EXIT_CODE="0"]
