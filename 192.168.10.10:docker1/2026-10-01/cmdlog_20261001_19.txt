@@ -1,0 +1,908 @@
+Script started on 2026-10-01 19:10:14+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="177" LINES="48"]
+kerkps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+cker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+mysql:5.7                       4bc6bc963e6d        696MB          149MB
+mysql:8.4                       6ea90827b110       1.12GB          255MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+ker volume ls
+DRIVER    VOLUME NAME
+dockerlvolumeecreated--driverclocal \
+  --opt type=nfs \
+  --opt o=addr=192.168.10.20,rw,nfsvers=4 \
+  --opt device=:/ndocker\volume ls
+
+
+create --driver local \
+  --opt type=nfs \
+  --opt o=addr=192.168.10.20,rw,nfsvers=4 \
+--optpdevice=:/naswebeb \
+\ --opt o=addr=192.168.10.20,rw,nfsvers=4 --opt device=:/nasweb
+[root@docke\1--opt type=nfs --opt o=addr=192.168.10.20,rw,nfsvers=4 --opt device=:/nasweb
+
+96ec6afce3f1c8c93dedac5ef08c48b9e4c1959dceeaaf5ad6183519d0161704
+kerlvolume inspect nasweb
+[]
+Error response from daemon: get nasweb: no such volume
+lsoot@docker1 ~]# docker volume createt--driver local --opt type=nfs --opt o=addr=192.168.10.20,rw,nfsvers=4 --opt device=:/nasweb
+DRIVER    VOLUME NAME
+local     96ec6afce3f1c8c93dedac5ef08c48b9e4c1959dceeaaf5ad6183519d0161704
+ker volume  rm 96ec6afce3f1c8c93dedac5ef08c48b9e4c1959dceeaaf5ad6183519d0161704
+96ec6afce3f1c8c93dedac5ef08c48b9e4c1959dceeaaf5ad6183519d0161704
+[root@docker1 ~]# docker volume create --driver local \
+  --opt type=nfs \
+  --opt o=addr=192.168.10.20,rw,nfsvers=4 \
+  --opt device=:/nasweb \
+[root@docker1 ~]# docker volume create --driver local \
+  --opt type=nfs \
+  --opt o=addr=192.168.10.20,rw,nfsvers=4 \
+  --opt device=:/nasweb \
+  nasweb
+nasweb
+cker volume ls
+DRIVER    VOLUME NAME
+local     nasweb
+[root@docker1 ~]# c
+
+
+
+er run -d --name web -p 80:80 -v nasweb:/usr/share/nginx/html nginx
+03633e632e5385d0f715059a868a629efdf85383f4f7838ce60c61eb04400a39
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                                 NAMES
+03633e632e53   nginx     "/docker-entrypoint.…"   2 seconds ago   Up 2 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   web
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                 NAMES
+03633e632e53   nginx     "/docker-entrypoint.…"   15 seconds ago   Up 15 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   web
+[root@docker1 ~]# dfr-hT | grep nasweb
+:/nasweb            nfs4       35G  6.2G   29G  18% /var/lib/docker/volumes/nasweb/_data
+[root@docker1 ~]# curllhttp://localhost
+NAS web directory
+New Contents
+[root@docker1 ~]# ls /
+afs  bin  boot  data  dev  etc  home  lib  lib64  media  mnt  mydb  opt  proc  root  run  sbin  srv  sys  tmp  usr  var  web  www
+er rm -f $(docker ps -aq)
+03633e632e53
+ker volume rm -f nasweb \
+nasweb
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias c='printf "\n\n\n"; clear'
+>4;m".bashrc" 38L, 738B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 35,1O -- INSERT --35,1Top35,1Alla2l3i4s54a5s67b8r9m1010=1'2d3o4c5k6e7r89v20o1l2u3m4e56r7m89-30f12$3(4d5o6c7k8e9r401v2o3l4u5m6e78l9s501-2a3q4)5'64,473,422,1 33,1All34,1All3^[  33,0-1All::wq
+>4;mashrc
+[root@docker1 ~]# crm
+docker: 'docker rm' requires at least 1 argument
+
+Usage:  docker rm [OPTIONS] CONTAINER [CONTAINER...]
+
+See 'docker rm --help' for more information
+vrm
+bash: vrm: command not found...
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias brm='docker volume rm -f $(docker volume ls -aq)'
+alias c='printf "\n\n\n"; clear'
+>4;m".bashrc" 38L, 737B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[P1$r0[P1$r0<20>P1$r0<20>q          +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,1-8~@k   6,1  ~@k   7,0-1~@k   8,1  ~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4,0-1~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   20~@k   1~@k   2~@k   3,0-1~@k   4~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   30~@k   1~@k   2,0-1~@k   3~@k   4~@k   5,1  ~@k   6~@k   7~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7rv  ^[  ^[  ~@k   8~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   20~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   40~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   50~@k   1~@k   2x dl  q)'^[  ^[  ::wq
+>4;m[root@docker1 ~]# vrm
+bash: vrm: command not found...
+urce ~/.bashrc
+[root@docker1 ~]# vrm
+docker: 'docker volume rm' requires at least 1 argument
+
+Usage:  docker volume rm [OPTIONS] VOLUME [VOLUME...]
+
+See 'docker volume rm --help' for more information
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# alias vrm
+alias vrm='docker volume rm -f $(docker volume ls -q)'
+[root@docker1 ~]# alias ?rm
+bash: alias: ?rm: not found
+[root@docker1 ~]# aliascrmm
+alias crm='docker rm -f $(docker ps -aq)'
+[root@docker1 ~]# c
+
+
+
+kerknetwork ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:a3:1d:3e brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29a31d3e
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fea3:1d3e/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether f6:a2:4e:1d:19:a4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f4a2:4eff:fe1d:19a4/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+docker run --rm busybox ip addr
+Unable to find image 'busybox:latest' locally
+latest: Pulling from library/busybox
+
+37bb94b0940b: Pullacompletesete
+Digest:4sha256:fd7dc98638c8e305f4dc34e979f1c0fdfdcaeb0fbf8fcff77ae834b6da3d7e6e
+Status: Downloaded newer image for busybox:latest
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if28: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 26:57:d9:ea:b7:14 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+[root@docker1 ~]# c
+
+
+
+er run -d --name myserver nginx
+f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+f992e4095ca3   nginx     "/docker-entrypoint.…"   9 seconds ago   Up 9 seconds   80/tcp    myserver
+ker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# docker volumeklss
+DRIVER    VOLUME NAME
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+busybox:latest                  fd7dc98638c8       6.74MB         2.23MB
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB    U
+mysql:5.7                       4bc6bc963e6d        696MB          149MB
+mysql:8.4                       6ea90827b110       1.12GB          255MB
+nginx:latest                    abe47724e466        239MB         66.3MB    U
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+er network inspect bridge | grep -i 'containers' -A 10
+        "Containers": {
+            "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b": {
+                "Name": "myserver",
+                "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                "MacAddress": "8e:f9:1b:f2:58:d9",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+er inspect myserver
+[
+    {
+        "Id": "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b",
+        "Created": "2026-10-01T10:32:49.33752258Z",
+        "Path": "/docker-entrypoint.sh",
+        "Args": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 14503,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-01T10:32:49.354141193Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2",
+        "ResolvConfPath": "/var/lib/docker/containers/f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b/hostname",
+        "HostsPath": "/var/lib/docker/containers/f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b/hosts",
+        "LogPath": "/var/lib/docker/containers/f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b/f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b-json.log",
+        "Name": "/myserver",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "bridge",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                48,
+                177
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "f992e4095ca3",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.31.6",
+                "NJS_VERSION=1.0.1",
+                "NJS_RELEASE=1~trixie",
+                "ACME_VERSION=0.4.1",
+                "PKG_RELEASE=1~trixie",
+                "DYNPKG_RELEASE=1~trixie"
+            ],
+            "Cmd": [
+                "nginx",
+                "-g",
+                "daemon off;"
+            ],
+            "Image": "nginx",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/docker-entrypoint.sh"
+            ],
+            "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+            },
+            "StopSignal": "SIGQUIT"
+        },
+        "NetworkSettings": {
+            "SandboxID": "06299b90ee5d3d4728f0b75301131a3be9bd251506c0ceac03177570bd3cc7d5",
+            "SandboxKey": "/var/run/docker/netns/06299b90ee5d",
+            "Ports": {
+                "80/tcp": null
+            },
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea",
+                    "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.2",
+                    "MacAddress": "8e:f9:1b:f2:58:d9",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:9c0f39aa1c46f5062ba080555a067ebb82d5f63a8cf4d63f6ef2e76fc9ff2d0c",
+            "size": 2290,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "amd64",
+                "org.opencontainers.image.base.digest": "sha256:7792b1f7702a86946cd518db72b6a407302c3e9bc1635634368b878189e8221c",
+                "org.opencontainers.image.base.name": "debian:trixie-slim",
+                "org.opencontainers.image.created": "2026-09-19T00:19:58Z",
+                "org.opencontainers.image.revision": "a16f1329e13e7273c4103f75d863ca625b75109e",
+                "org.opencontainers.image.source": "https://github.com/nginx/docker-nginx.git#a16f1329e13e7273c4103f75d863ca625b75109e:mainline/debian",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/nginx",
+                "org.opencontainers.image.version": "1.31.6"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+c
+
+
+
+er inspect bridge
+[
+    {
+        "Name": "bridge",
+        "Id": "bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea",
+        "Created": "2026-10-01T16:35:48.738868338+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {},
+        "Containers": {
+            "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b": {
+                "Name": "myserver",
+                "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                "MacAddress": "8e:f9:1b:f2:58:d9",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.17.0.0/16": {
+                        "IPsInUse": 4,
+                        "DynamicIPsAvailable": 65532
+                    }
+                }
+            }
+        }
+    }
+]
+[root@docker1 ~]# docker inspect bridge | less
+[
+    {
+        "Name": "bridge",
+        "Id": "bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea",
+        "Created": "2026-10-01T16:35:48.738868338+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {},
+        "Containers": {
+            "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b": {
+                "Name": "myserver",
+                "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                "MacAddress": "8e:f9:1b:f2:58:d9",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+[enable_ip
+    {
+        "Name": "bridge",
+        "Id": "bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea",
+        "Created": "2026-10-01T16:35:48.738868338+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {},
+        "Containers": {
+            "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b": {
+                "Name": "myserver",
+                "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                "MacAddress": "8e:f9:1b:f2:58:d9",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+[
+    {
+        "Name": "bridge",
+        "Id": "bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea",
+        "Created": "2026-10-01T16:35:48.738868338+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {},
+        "Containers": {
+            "f992e4095ca36888fad75c3fde61de8af250bf4033fb4a9029c1f140a660198b": {
+                "Name": "myserver",
+                "EndpointID": "66832398e17e1bf5ecb402f3f78e520cd0b29b9f71e86762fd33f1853fd8630d",
+                "MacAddress": "8e:f9:1b:f2:58:d9",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.17.0.0/16": {
+                        "IPsInUse": 4,
+                        "DynamicIPsAvailable": 65532
+                    }
+                }
+            }
+        }
+    }
+]
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+~
+(ESCOA      "com.docker.network.bridge.enable_icc": "true",
+(ESCOA      "com.docker.network.bridge.default_bridge": "true",
+(ESCOA  "Options": {
+(ESCOA  "ConfigOnly": false,
+(ESCOA  },
+(ESCOA      "Network": ""
+(ESCOA  "ConfigFrom": {
+(ESCOA  "Ingress": false,
+(ESCOA  "Attachable": false,
+(ESCOA  "Internal": false,
+(ESCOA  },
+(ESCOA      ]
+(ESCOA          }
+(ESCOA              "Gateway": "172.17.0.1"
+(ESCOA              "Subnet": "172.17.0.0/16",
+(ESCOA          {
+(ESCOA      "Config": [
+(ESCOA      "Options": null,
+(ESCOA      "Driver": "default",
+(ESCOA  "IPAM": {
+[root@docker1 ~]#
+er rm -f $(docker ps -aq)
+f992e4095ca3
+[root@docker1 ~]# c
+
+
+
+er image
+image   (Manage images)  images  (List images)
+[root@docker1 ~]# cocker conge
+
+
+
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]#
+c
+
+
+
+er run --rm -d -p 8080:80 nginx
+0b76a92e62c6a3fe70681f6f8c28fae0a5d0f5bfc8184225c628a047a64b0a78
+dockernpsd-a-dn
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+0b76a92e62c6   nginx     "/docker-entrypoint.…"   14 seconds ago   Up 14 seconds   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   elastic_herschel
+er port elastic_herschel
+80/tcp -> 0.0.0.0:8080
+80/tcp -> [::]:8080
+ker stop 0b
+0
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+edocker-run --rm--its\name
+--hostname www.test.com \
+--add-host node1.test.com:172.17.0.10 \
+--dns 192.168.10.2 \
+[root@docker1 ~]#  docker run --rm -it \
+--hostname www.test.com \
+--add-host node1.test.com:172.17.0.10 \
+--dns 192.168.10.2 \
+busybox
+/ # hostname
+www.test.com
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if34: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 36:8c:28:bf:e4:33 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+/ # ip r
+default via 172.17.0.1 dev eth0
+172.17.0.0/16 dev eth0 scope link  src 172.17.0.2
+/ # cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::  ip6-localnet
+ff00::  ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.10     node1.test.com
+172.17.0.2      www.test.com www
+/ # cat /etc/hostname
+www.test.com
+/ # df -hT
+Filesystem           Type            Size      Used Available Use% Mounted on
+overlay              overlay        34.5G      8.7G     25.8G  25% /
+tmpfs                tmpfs          64.0M         0     64.0M   0% /dev
+shm                  tmpfs          64.0M         0     64.0M   0% /dev/shm
+/dev/mapper/cs-root  xfs            34.5G      8.7G     25.8G  25% /etc/hostname
+/dev/mapper/cs-root  xfs            34.5G      8.7G     25.8G  25% /etc/hosts
+/dev/mapper/cs-root  xfs            34.5G      8.7G     25.8G  25% /etc/resolv.conf
+tmpfs                tmpfs           4.0K         0      4.0K   0% /proc/acpi
+tmpfs                tmpfs           4.0K         0      4.0K   0% /proc/asound
+tmpfs                tmpfs          64.0M         0     64.0M   0% /proc/interrupts
+tmpfs                tmpfs          64.0M         0     64.0M   0% /proc/kcore
+tmpfs                tmpfs          64.0M         0     64.0M   0% /proc/keys
+tmpfs                tmpfs           4.0K         0      4.0K   0% /proc/scsi
+tmpfs                tmpfs          64.0M         0     64.0M   0% /proc/timer_list
+tmpfs                tmpfs           4.0K         0      4.0K   0% /sys/firmware
+/ # cat /etc/resolv.conf
+# Generated by Docker Engine.
+# This file can be edited; Docker Engine will not make further changes once it
+# has been modified.
+
+nameserver 192.168.10.2
+search example.com
+
+# Based on host file: '/etc/resolv.conf' (legacy)
+# Overrides: [nameservers]
+/ # exit
+er run --rm -it --mac-address="92:d0:c6:0a:29:33" busybox:latest
+/ # host name
+sh: host: not found
+/ # hostnamee
+7e578d85338b
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if36: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 92:d0:c6:0a:29:33 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.2/16 brd 172.17.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+/ # ip r
+default via 172.17.0.1 dev eth0
+172.17.0.0/16 dev eth0 scope link  src 172.17.0.2
+/ # cat /etc/hosts
+127.0.0.1       localhost
+::1     localhost ip6-localhost ip6-loopback
+fe00::  ip6-localnet
+ff00::  ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+172.17.0.2      7e578d85338b
+/ # cat /etc/resolv.conf
+# Generated by Docker Engine.
+# This file can be edited; Docker Engine will not make further changes once it
+# has been modified.
+
+nameserver 8.8.8.8
+search example.com
+
+# Based on host file: '/etc/resolv.conf' (legacy)
+# Overrides: []
+/ # exit
+ker network create mynet
+86e4238161c6989b6dbaa19dc214ea182b69b42b3b3ef2075a3e4153b73e1062
+ker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+86e4238161c6   mynet     bridge    local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:a3:1d:3e brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29a31d3e
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fea3:1d3e/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether f6:a2:4e:1d:19:a4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f4a2:4eff:fe1d:19a4/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+38: br-86e4238161c6: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether ea:8e:4c:44:2d:de brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-86e4238161c6
+       valid_lft forever preferred_lft forever
+er run --rm -it --network=mynet busybox:latest
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if39: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 9e:90:14:2b:d0:c3 brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.2/16 brd 172.18.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+/ # exit
+er network rm mynet
+mynet
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-10-01 19:55:19+09:00 [COMMAND_EXIT_CODE="0"]
