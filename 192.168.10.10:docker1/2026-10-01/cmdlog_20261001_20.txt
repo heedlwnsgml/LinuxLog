@@ -1,0 +1,1224 @@
+Script started on 2026-10-01 20:13:05+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="177" LINES="48"]
+er network ls --no-trunc
+NETWORK ID                                                         NAME      DRIVER    SCOPE
+bc91f811d60f5e2069cd9da4826a900aaa2de0c23a401c74fbaa2ec5cd03c5ea   bridge    bridge    local
+e5b021ab15065eef87d63e85d9452edb086726c3f4f7189ed8a385024494a0bf   host      host      local
+6a9bb560db251a5664b86f75441bb094fd17b505bf20e2367db23ee17d9685de   none      null      local
+er network create br0
+1b5cd2118586a11670e4d38657fdd3b680ff01cad9e953c0970c3c58f6fad32e
+ker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1b5cd2118586   br0       bridge    local
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:a3:1d:3e brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29a31d3e
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fea3:1d3e/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether f6:a2:4e:1d:19:a4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f4a2:4eff:fe1d:19a4/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+41: br-1b5cd2118586: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 9a:75:01:9b:2b:ac brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-1b5cd2118586
+       valid_lft forever preferred_lft forever
+dockertnetworkecreate -d bridge --subnet 172.20.0.0/16 --gateway 172.20.0.1 br1
+8b66ef231acd5c0e90dbcdfd807115e3ababae71a1c1dc37b71b087ebad45963
+er network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1b5cd2118586   br0       bridge    local
+8b66ef231acd   br1       bridge    local
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:a3:1d:3e brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c29a31d3e
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fea3:1d3e/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether f6:a2:4e:1d:19:a4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f4a2:4eff:fe1d:19a4/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+41: br-1b5cd2118586: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether 9a:75:01:9b:2b:ac brd ff:ff:ff:ff:ff:ff
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-1b5cd2118586
+       valid_lft forever preferred_lft forever
+42: br-8b66ef231acd: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default
+    link/ether ba:38:7d:dc:93:59 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.0.1/16 brd 172.20.255.255 scope global br-8b66ef231acd
+       valid_lft forever preferred_lft forever
+cer network ins
+
+
+
+ker network inspect br0
+[
+    {
+        "Name": "br0",
+        "Id": "1b5cd2118586a11670e4d38657fdd3b680ff01cad9e953c0970c3c58f6fad32e",
+        "Created": "2026-10-01T20:15:41.396251025+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {},
+        "Labels": {},
+        "Containers": {},
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.18.0.0/16": {
+                        "IPsInUse": 3,
+                        "DynamicIPsAvailable": 65533
+                    }
+                }
+            }
+        }
+    }
+]
+sible/roles/rhel-system-roles.storage/README.md
+# Linux Storage Role
+
+
+This role allows users to configure local storage with minimal input.
+
+As of now, the role supports managing file systems and mount entries on
+
+- disks
+- LVM volume groups
+- Stratis pools (with Stratis v3 and newer)
+
+Encryption (using LUKS) and RAID (using MD) is also supported. Support
+for managing pre-existing devices is limited, but new LVM volumes and
+Stratis filesystems can be added to existing setups and mount points
+and some other features can be added to (or removed from) existing
+devices.
+
+## Requirements
+
+None
+
+## Role Variables
+
+__NOTE__: Beginning with version 1.3.0, unspecified parameters are interpreted
+differently for existing and non-existing pools/volumes. For new/non-existent
+pools and volumes, any omitted parameters will use the default value as
+described in `defaults/main.yml`. For existing pools and volumes, omitted
+parameters will inherit whatever setting the pool or volume already has.
+This means that to change/override role defaults in an existing pool or volume,
+you must explicitly specify the new values/settings in the role variables.
+
+### `storage_pools`
+
+The `storage_pools` variable is a list of pools to manage. Each pool contains a
+nested list of `volume` dicts as described below, as well as the following
+keys:
+
+- `name`
+
+  This specifies the name of the pool to manage/create as a string. (One
+  example of a pool is an LVM volume group.)
+
+- `type`
+
+  This specifies the type of pool to manage.
+  Valid values for `type`: `lvm`, `stratis`.
+
+- `state`
+
+  Valid values are `present` (default behavior) or `absent`. Pools marked as
+  `absent` will be removed by the role. Pools marked as `present` will be either
+  created (if pool with the specified `name` doesn't already exist) or preserved.
+
+- `grow_to_fill`
+
+  When set, the pool Physical Volumes will be resized to match their respective device sizes.
+  (e.g. after Virtual Machine disk size increase)
+
+  Default: `false`
+
+  __NOTE__: This argument is valid only for LVM pools.
+
+- `shared`
+
+  If set to `true`, the role creates or manages a shared volume group. Requires lvmlockd and
+  dlm services configured and running.
+
+  Default: `false`
+
+  __WARNING__: Modifying the `shared` value on an existing pool is a
+              destructive operation. The pool itself will be removed as part of the
+              process.
+
+  __NOTE__: This argument is valid only for LVM pools.
+
+- `disks`
+
+  A list which specifies the set of disks to use as backing storage for the pool.
+  Supported identifiers include: device node (like `/dev/sda` or `/dev/mapper/mpathb`),
+  device node basename (like `sda` or `mpathb`), /dev/disk/ symlink
+  (like `/dev/disk/by-id/wwn-0x5000c5005bc37f3f`).
+
+  For LVM pools this can be also used to add and remove disks to/from an existing pool.
+  Disks in the list that are not used by the pool will be added to the pool.
+  Disks that are currently used by the pool but not present in the list will be removed
+  from the pool only if `storage_safe_mode` is set to `false`.
+
+- `raid_level`
+
+  When used with `type: lvm` it manages a volume group with a mdraid array of given level
+  on it. Input `disks` are in this case used as RAID members.
+  Accepted values are: `linear`, `raid0`, `raid1`, `raid4`, `raid5`, `raid6`, `raid10`
+
+- `volumes`
+
+  This is a list of volumes that belong to the current pool. It follows the
+  same pattern as the `storage_volumes` variable, explained below.
+
+- `encryption`
+
+  This specifies whether the pool will be encrypted using LUKS.
+  __WARNING__: Toggling encryption for a pool is a destructive operation, meaning
+              the pool itself will be removed as part of the process of
+              adding/removing the encryption layer.
+
+- `encryption_password`
+
+  This string specifies a password or passphrase used to unlock/open the LUKS volume(s).
+
+- `encryption_key`
+
+  This string specifies the full path to the key file on the managed nodes used to unlock
+  the LUKS volume(s).  It is the responsibility of the user of this role to securely copy
+  this file to the managed nodes, or otherwise ensure that the file is on the managed
+  nodes.
+
+- `encryption_cipher`
+
+  This string specifies a non-default cipher to be used by LUKS.
+
+- `encryption_key_size`
+
+  This integer specifies the LUKS key size (in bytes).
+
+- `encryption_luks_version`
+
+  This integer specifies the LUKS version to use.
+
+- `encryption_clevis_pin`
+
+  For Stratis pools, the clevis method that should be used to encrypt the created pool.
+  Accepted values are: `tang` and `tpm2`
+
+- `encryption_tang_url`
+
+  When creating a Stratis pool encrypted via NBDE using a tang server,
+  specifies the URL of the server.
+
+- `encryption_tang_thumbprint`
+
+  When creating a Stratis pool encrypted via NBDE using a tang server,
+  specifies the thumbprint of the server.
+
+### `storage_volumes`
+
+The `storage_volumes` variable is a list of volumes to manage. Each volume has the following
+variables:
+
+- `name`
+
+  This specifies the name of the volume.
+
+- `type`
+
+  This specifies the type of volume on which the file system will reside.
+  Valid values for `type`: `lvm`, `disk`, `partition` or `raid`.
+  The default is determined according to the OS and release (currently `lvm`).
+
+- `state`
+
+  Valid values are `present` (default behavior) or `absent`. Volumes marked as
+  `absent` will be removed by the role. Volumes marked as `present` will be either
+  created (if volume with specified `name` doesn't exist) or preserved and possibly
+  changed to match other values (for example if a volume with the specified `name`
+  exists but doesn't have the required `size` it will be resized if possible).
+
+- `disks`
+
+  This specifies the set of disks to use as backing storage for the file system.
+  This is currently only relevant for volumes of type `disk`, where the list
+  must contain only a single item.
+
+- `size`
+
+  The `size` specifies the size of the file system. The format for this is intended to
+  be human-readable, e.g.: "10g", "50 GiB". The size of LVM volumes can be specified as a
+  percentage of the pool/VG size, eg: "50%" as of v1.4.2.
+
+  When using `compression` or `deduplication`, `size` can be set higher than actual available space,
+  e.g.: 3 times the size of the volume, based on duplicity and/or compressibility of stored data.
+
+  If `size` is not specified, it will be the same as if you specified `size: 100%` - it will use
+  all available space in the pool.
+
+  __NOTE__: The requested volume size may be reduced as necessary so the volume can
+            fit in the available pool space, but only if the required reduction is
+            not more than 2% of the requested volume size.
+
+- `fs_type`
+
+  This indicates the desired file system type to use, e.g.: "xfs", "ext4", "swap".
+  The default is determined according to the OS and release
+  (currently `xfs` for all the supported systems).
+  Use "unformatted" if you do not want file system to be present.
+  __WARNING__: Using "unformatted" file system type on an existing filesystem
+               is a destructive operation and will destroy all data on the volume.
+
+- `fs_label`
+
+  The `fs_label` is a string to be used for a file system label.
+
+- `fs_create_options`
+
+  The `fs_create_options` specifies custom arguments to `mkfs` as a string.
+
+- `mount_point`
+
+  The `mount_point` specifies the directory on which the file system will be mounted.
+
+- `mount_options`
+
+  The `mount_options` specifies custom mount options as a string, e.g.: 'ro'.
+
+- `mount_user`
+
+  The `mount_user` specifies desired owner of the mount directory.
+
+- `mount_group`
+
+  The `mount_group` specifies desired group of the mount directory.
+
+- `mount_mode`
+
+  The `mount_mode` specifies desired permissions of the mount directory.
+
+- `raid_level`
+
+  Specifies RAID level. LVM RAID can be created as well.
+  "Regular" RAID volume requires type to be `raid`.
+  LVM RAID needs that volume has `storage_pools` parent with type `lvm`,
+  `raid_disks` need to be specified as well.
+  Accepted values are:
+
+  - for LVM RAID volume: `raid0`, `raid1`, `raid4`, `raid5`, `raid6`, `raid10`, `striped`, `mirror`
+  - for RAID volume: `linear`, `raid0`, `raid1`, `raid4`, `raid5`, `raid6`, `raid10`
+
+  __WARNING__: Changing `raid_level` for a volume is a destructive operation, meaning
+              all data on that volume will be lost as part of the process of
+              removing old and adding new RAID. RAID reshaping is currently not
+              supported.
+
+- `raid_device_count`
+
+  When type is `raid` specifies number of active RAID devices.
+
+- `raid_spare_count`
+
+  When type is `raid` specifies number of spare RAID devices.
+
+- `raid_metadata_version`
+
+  When type is `raid` specifies RAID metadata version as a string, e.g.: '1.0'.
+
+- `raid_chunk_size`
+
+  When type is `raid` specifies RAID chunk size as a string, e.g.: '512 KiB'.
+  Chunk size has to be multiple of 4 KiB.
+
+- `raid_stripe_size`
+
+  When type is `lvm` specifies LVM RAID stripe size as a string, e.g.: '512 KiB'.
+
+- `raid_disks`
+
+  Specifies which disks should be used for LVM RAID volume.
+  `raid_level` needs to be specified and volume has to have `storage_pools` parent with type `lvm`.
+  Accepts sublist of `disks` of parent `storage_pools`.
+  In case multiple LVM RAID volumes within the same storage pool, the same disk can be used
+  in multiple `raid_disks`.
+
+- `encryption`
+
+  This specifies whether the volume will be encrypted using LUKS.
+  __WARNING__: Toggling encryption for a volume is a destructive operation, meaning
+              all data on that volume will be removed as part of the process of
+              adding/removing the encryption layer.
+
+- `encryption_password`
+
+  This string specifies a password or passphrase used to unlock/open the LUKS volume.
+
+- `encryption_key`
+
+  This string specifies the full path to the key file on the managed nodes used to unlock
+  the LUKS volume(s).  It is the responsibility of the user of this role to securely copy
+  this file to the managed nodes, or otherwise ensure that the file is on the managed
+  nodes.
+
+- `encryption_cipher`
+
+  This string specifies a non-default cipher to be used by LUKS.
+
+- `encryption_key_size`
+
+  This integer specifies the LUKS key size (in bits).
+
+- `encryption_luks_version`
+
+  This integer specifies the LUKS version to use.
+
+- `deduplication`
+
+  This specifies whether the Virtual Data Optimizer (VDO) will be used.
+  When set, duplicate data stored on storage volume will be
+  deduplicated resulting in more storage capacity.
+  Can be used together with `compression` and `vdo_pool_size`.
+  Volume has to be part of the LVM `storage_pool`.
+  Limit one VDO `storage_volume` per `storage_pool`.
+  Underlying volume has to be at least 9 GB (bare minimum is around 5 GiB).
+
+- `compression`
+
+  This specifies whether the Virtual Data Optimizer (VDO) will be used.
+  When set, data stored on storage volume will be
+  compressed resulting in more storage capacity.
+  Volume has to be part of the LVM `storage_pool`.
+  Can be used together with `deduplication` and `vdo_pool_size`.
+  Limit one VDO `storage_volume` per `storage_pool`.
+
+- `vdo_pool_size`
+
+  When Virtual Data Optimizer (VDO) is used, this specifies the actual size the volume
+  will take on the device. Virtual size of VDO volume is set by `size` parameter.
+  `vdo_pool_size` format is intended to be human-readable,
+  e.g.: "30g", "50GiB".
+  Default value is equal to the size of the volume.
+
+- `cached`
+
+  This specifies whether the volume should be cached or not.
+  This is currently supported only for LVM volumes where dm-cache
+  is used.
+
+- `cache_size`
+
+  Size of the cache. `cache_size` format is intended to be human-readable,
+  e.g.: "30g", "50GiB".
+
+- `cache_mode`
+
+  Mode for the cache. Supported values include `writethrough` (default) and `writeback`.
+
+- `cache_devices`
+
+  List of devices that will be used for the cache. These should be either physical volumes or
+  drives these physical volumes are allocated on. Generally you want to select fast devices like
+  SSD or NVMe drives for cache.
+
+- `thin`
+
+  Whether the volume should be thinly provisioned or not.
+  This is supported only for LVM volumes.
+
+- `thin_pool_name`
+
+  For `thin` volumes, this can be used to specify the name of the LVM thin pool that will be used
+  for the volume. If the pool with the provided name already exists, the volume will be added to that
+  pool. If it doesn't exist a new pool named `thin_pool_name` will be created.
+  If not specified:
+  - if there are no existing thin pools present, a new thin pool will be created with an automatically
+      generated name,
+  - if there is exactly one existing thin pool, the thin volume will be added to it and
+  - if there are multiple thin pools present an exception will be raised.
+
+- `thin_pool_size`
+
+  Size for the thin pool. `thin_pool_size` format is intended to be human-readable,
+  e.g.: "30g", "50GiB".
+
+- `part_type`
+
+  This specifies partition type for newly created partitions on MSDOS/MBR partition table.
+  Supported values include `primary`, `extended` and `logical`.
+  If not specified, first three partitions on the disk will be created as primary and fourth
+  one will be created as logical inside a newly created extended partition.
+  `part_type` is ignored on GPT partition table.
+
+### `storage_safe_mode`
+
+When true (the default), an error will occur instead of automatically removing existing devices and/or formatting.
+
+### `storage_udevadm_trigger`
+
+When true (the default is false), the role will use udevadm trigger
+to cause udev changes to take effect immediately.  This may help on some
+platforms with "buggy" udev.
+
+## Example Playbook
+
+```yaml
+- name: Manage storage
+  hosts: all
+  roles:
+    - name: rhel-system-roles.storage
+      storage_pools:
+        - name: app
+          disks:
+            - sdb
+            - sdc
+          volumes:
+            - name: shared
+              size: "100 GiB"
+              mount_point: "/mnt/app/shared"
+              #fs_type: xfs
+              state: present
+            - name: users
+              size: "400g"
+              fs_type: ext4
+              mount_point: "/mnt/app/users"
+      storage_volumes:
+        - name: images
+          type: disk
+          disks: ["mpathc"]
+          mount_point: /opt/images
+          fs_label: images
+
+```
+
+## rpm-ostree
+
+If you are not managing stratis pools or volumes, remove `stratisd` and
+`stratis-cli` from the ostree image package list generated from
+`.ostree/get_ostree_data.sh`.
+
+If you do not want to use VDO, remove the vdo related packages from
+the ostree image package list.
+
+For more information, see README-ostree.md
+
+## License
+
+MIT
+[root@docker1 ~]#
+[root@docker1 ~]# c
+
+
+
+dockerdnetwork~inspect/br1/share/ansible/roles/rhel-system-roles.storage/README.md
+[
+    {
+        "Name": "br1",
+        "Id": "8b66ef231acd5c0e90dbcdfd807115e3ababae71a1c1dc37b71b087ebad45963",
+        "Created": "2026-10-01T20:16:32.324599402+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {},
+        "Labels": {},
+        "Containers": {},
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.20.0.0/16": {
+                        "IPsInUse": 3,
+                        "DynamicIPsAvailable": 65533
+                    }
+                }
+            }
+        }
+    }
+]
+er run --rm -it --name myserver --network=br1 busybox
+/ # ipa
+sh: ipa: not found
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if43: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 76:ff:c6:88:85:e5 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.0.2/16 brd 172.20.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+/ # docker network inspect br1
+sh: docker: not found
+/ # docker network inspect br1sdocker network inspect br1sdocker network inspect br1hdocker network inspect br1 docker network inspect br1rdocker network inspect br1odocker network inspect br1odocker network inspect br1tdocker network inspect br1@docker network inspect br11docker network inspect br19docker network inspect br12docker network inspect br1.docker network inspect br11docker network inspect br16docker network inspect br18docker network inspect br1.docker network inspect br11docker network inspect br10docker network inspect br1.docker network inspect br11docker network inspect br10docker network inspect br1 docker network inspect br1docker network inspect br1
+sh: ssh: not found
+/ # exit
+ker run --rm -1@1@-1@-1@n1@a1@m1@e1@1@m1@y1@s1@e1@r1@v1@e1@r--ip 172.20.0.100 busybox
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0@if45: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue
+    link/ether 72:6e:34:2b:63:d3 brd ff:ff:ff:ff:ff:ff
+    inet 172.20.0.100/16 brd 172.20.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+/ # exit
+er images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+busybox:latest                  fd7dc98638c8       6.74MB         2.23MB
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+mysql:5.7                       4bc6bc963e6d        696MB          149MB
+mysql:8.4                       6ea90827b110       1.12GB          255MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+er network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1b5cd2118586   br0       bridge    local
+8b66ef231acd   br1       bridge    local
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+kerkrun -d --name=myweb --net=br0 nginx:latest
+3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2
+er inspect myweb | grep -i 'networks' -A 20
+        "NetworkSettings": {
+            "SandboxID": "87311bbc38b9baeefe4b43506d4262473903be0351dd50ca8cd4cc69135e2a2f",
+            "SandboxKey": "/var/run/docker/netns/87311bbc38b9",
+            "Ports": {
+                "80/tcp": null
+            },
+            "Networks": {
+                "br0": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "1b5cd2118586a11670e4d38657fdd3b680ff01cad9e953c0970c3c58f6fad32e",
+                    "EndpointID": "a0a88f82298a89d13eb55c7d2c473ea2318db1cc33b7869d09dd74bb3481983d",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.2",
+                    "MacAddress": "36:b6:a3:8e:e4:be",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "myweb",
+                        "3f4a0812653d"
+                    ]
+                }
+er network connect br1 myweb
+ker inspect myweb | grep 'Networks' -A 40
+            "Networks": {
+                "br0": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "1b5cd2118586a11670e4d38657fdd3b680ff01cad9e953c0970c3c58f6fad32e",
+                    "EndpointID": "a0a88f82298a89d13eb55c7d2c473ea2318db1cc33b7869d09dd74bb3481983d",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.2",
+                    "MacAddress": "36:b6:a3:8e:e4:be",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "myweb",
+                        "3f4a0812653d"
+                    ]
+                },
+                "br1": {
+                    "IPAMConfig": {},
+                    "Links": null,
+                    "Aliases": [],
+                    "DriverOpts": {},
+                    "GwPriority": 0,
+                    "NetworkID": "8b66ef231acd5c0e90dbcdfd807115e3ababae71a1c1dc37b71b087ebad45963",
+                    "EndpointID": "c1972386960d5c08f9f792ee750c760e43844c089e53aa05d2c962b4af29d9ce",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.2",
+                    "MacAddress": "ea:7f:f2:86:47:bd",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "myweb",
+                        "3f4a0812653d"
+                    ]
+                }
+er network inspect br1
+[
+    {
+        "Name": "br1",
+        "Id": "8b66ef231acd5c0e90dbcdfd807115e3ababae71a1c1dc37b71b087ebad45963",
+        "Created": "2026-10-01T20:16:32.324599402+09:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.20.0.0/16",
+                    "Gateway": "172.20.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {},
+        "Labels": {},
+        "Containers": {
+            "3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2": {
+                "Name": "myweb",
+                "EndpointID": "c1972386960d5c08f9f792ee750c760e43844c089e53aa05d2c962b4af29d9ce",
+                "MacAddress": "ea:7f:f2:86:47:bd",
+                "IPv4Address": "172.20.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.20.0.0/16": {
+                        "IPsInUse": 4,
+                        "DynamicIPsAvailable": 65532
+                    }
+                }
+            }
+        }
+    }
+]
+ker network disconnect br0 myweb
+er inspect myweb
+[
+    {
+        "Id": "3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2",
+        "Created": "2026-10-01T11:31:09.494393119Z",
+        "Path": "/docker-entrypoint.sh",
+        "Args": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 19225,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-10-01T11:31:09.510787179Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:abe47724e466aeab9a345d8e46a221c2fa8953c7848bb4a3bd9976a7199f8cf2",
+        "ResolvConfPath": "/var/lib/docker/containers/3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2/hostname",
+        "HostsPath": "/var/lib/docker/containers/3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2/hosts",
+        "LogPath": "/var/lib/docker/containers/3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2/3f4a0812653d031f64a91c98da3d4fd84b3ba0dad87c28aa55b5787527d2c1d2-json.log",
+        "Name": "/myweb",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "br0",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                46,
+                177
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "3f4a0812653d",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.31.6",
+                "NJS_VERSION=1.0.1",
+                "NJS_RELEASE=1~trixie",
+                "ACME_VERSION=0.4.1",
+                "PKG_RELEASE=1~trixie",
+                "DYNPKG_RELEASE=1~trixie"
+            ],
+            "Cmd": [
+                "nginx",
+                "-g",
+                "daemon off;"
+            ],
+            "Image": "nginx",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/docker-entrypoint.sh"
+            ],
+            "Labels": {
+                "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>"
+            },
+            "StopSignal": "SIGQUIT"
+        },
+        "NetworkSettings": {
+            "SandboxID": "87311bbc38b9baeefe4b43506d4262473903be0351dd50ca8cd4cc69135e2a2f",
+            "SandboxKey": "/var/run/docker/netns/87311bbc38b9",
+            "Ports": {
+                "80/tcp": null
+            },
+            "Networks": {
+                "br1": {
+                    "IPAMConfig": {},
+                    "Links": null,
+                    "Aliases": [],
+                    "DriverOpts": {},
+                    "GwPriority": 0,
+                    "NetworkID": "8b66ef231acd5c0e90dbcdfd807115e3ababae71a1c1dc37b71b087ebad45963",
+                    "EndpointID": "c1972386960d5c08f9f792ee750c760e43844c089e53aa05d2c962b4af29d9ce",
+                    "Gateway": "172.20.0.1",
+                    "IPAddress": "172.20.0.2",
+                    "MacAddress": "ea:7f:f2:86:47:bd",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "myweb",
+                        "3f4a0812653d"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:9c0f39aa1c46f5062ba080555a067ebb82d5f63a8cf4d63f6ef2e76fc9ff2d0c",
+            "size": 2290,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "amd64",
+                "org.opencontainers.image.base.digest": "sha256:7792b1f7702a86946cd518db72b6a407302c3e9bc1635634368b878189e8221c",
+                "org.opencontainers.image.base.name": "debian:trixie-slim",
+                "org.opencontainers.image.created": "2026-09-19T00:19:58Z",
+                "org.opencontainers.image.revision": "a16f1329e13e7273c4103f75d863ca625b75109e",
+                "org.opencontainers.image.source": "https://github.com/nginx/docker-nginx.git#a16f1329e13e7273c4103f75d863ca625b75109e:mainline/debian",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/nginx",
+                "org.opencontainers.image.version": "1.31.6"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+ker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+1b5cd2118586   br0       bridge    local
+8b66ef231acd   br1       bridge    local
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+kernnetwork connectebridge myweb
+ker network disconnect br1
+docker: 'docker network disconnect' requires 2 arguments
+
+Usage:  docker network disconnect [OPTIONS] NETWORK CONTAINER
+
+Run 'docker network disconnect --help' for more information
+[root@docker1 ~]# docker network disconnect br1 myweb
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+3f4a0812653d   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 7 minutes   80/tcp    myweb
+dockertrmr-frmyweb
+myweb
+ker network rm br1
+br1
+[root@docker1 ~]# docker network rm br0
+br0
+cockerdnetwork~rm br0ker network rm br0
+
+
+
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias vrm='docker volume rm -f $(docker volume ls -q)'
+alias c='printf "\n\n\n"; clear'
+>4;m".bashrc" 39L, 794B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 38,1O -- INSERT --38,1Top38,1Alla2l3i4a5s67n8r9m10=1'2d3o4c5e6k765k6e7r89n20e1t2w3o4r5k67r8m930-1f23$4(5d6o7c8k9e40r12n3e4t5s65w6o7r8k950l1s2-34323-4q5)6;76'7^[  38,56All::wq
+>4;mrce ~/.bashrc
+docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# nrm
+Error response from daemon: bridge is a pre-defined network and cannot be removed
+Error response from daemon: host is a pre-defined network and cannot be removed
+Error response from daemon: none is a pre-defined network and cannot be removed
+exit status 1
+[root@docker1 ~]# alias nrm
+alias nrm='docker network rm -f $(docker network ls -q)'
+[root@docker1 ~]# c
+
+
+
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]# dockercps -a
+bash: dockerc: command not found...
+Similar command is: 'docker'
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]# c
+
+
+
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+cker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+s
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+busybox:latest                  fd7dc98638c8       6.74MB         2.23MB
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+mysql:5.7                       4bc6bc963e6d        696MB          149MB
+mysql:8.4                       6ea90827b110       1.12GB          255MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+docker run -d --name mynginx --network host nginx
+30074667caecc50d4014c9df9d4d8d7df3bc936d6b3ac06d807105cc1c4df1e4
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+30074667caec   nginx     "/docker-entrypoint.…"   4 seconds ago   Up 4 seconds             mynginx
+[root@docker1 ~]# curl localhost
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+stat -plunts| rep :80
+bash: rep: command not found...
+[root@docker1 ~]# netstat -plunt | 1@g :80
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      21246/nginx: master
+tcp6       0      0 :::80                   :::*                    LISTEN      21246/nginx: master
+er run -d --name myapache --network host httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+
+7a3bdd751d95: Pulling fs layer
+1320c4426edf: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+6db0cf540580: Pulling fs layer
+7a3bdd751d95: Pullacompletesete======================================>        ]  11.53MB/13.45MB
+fdff2e4882b0: Download complete
+Digest:3sha256:03f858efb82c25cb0f9962946615cdcdaf26927cb971722149b563197cfd0fdd
+Status: Downloaded newer image for httpd:latest
+ffac7e00cb0195fc6eb1e9b195d565d93d305378f954ecd8b2f30bf272dc8ad7
+er pst-ark
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+ffac7e00cb01   httpd     "httpd-foreground"       7 seconds ago   Exited (1) 6 seconds ago             myapache
+30074667caec   nginx     "/docker-entrypoint.…"   2 minutes ago   Up 2 minutes                         mynginx
+kerklogs myapache
+(98)Address already in use: AH00072: make_sock: could not bind to address [::]:80
+(98)Address already in use: AH00072: make_sock: could not bind to address 0.0.0.0:80
+no listening sockets available, shutting down
+AH00015: Unable to open logs
+[root@docker1 ~]# doc
+[root@docker1 ~]#
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+ffac7e00cb01   httpd     "httpd-foreground"       42 seconds ago   Exited (1) 42 seconds ago             myapache
+30074667caec   nginx     "/docker-entrypoint.…"   2 minutes ago    Up 2 minutes                          mynginx
+er rm -f $(docker ps -aq)
+ffac7e00cb01
+30074667caec
+
+[root@docker1 ~]#
+[root@docker1 ~]# c
+
+
+
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]# docker images
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+busybox:latest                  fd7dc98638c8       6.74MB         2.23MB
+httpd:latest                    03f858efb82c        175MB         47.6MB
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB
+mysql:5.7                       4bc6bc963e6d        696MB          149MB
+mysql:8.4                       6ea90827b110       1.12GB          255MB
+nginx:latest                    abe47724e466        239MB         66.3MB
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+[root@docker1 ~]# docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+bc91f811d60f   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~]# docker volumeklss
+DRIVER    VOLUME NAME
+exit
+exit
+
+Script done on 2026-10-01 21:08:58+09:00 [COMMAND_EXIT_CODE="0"]
