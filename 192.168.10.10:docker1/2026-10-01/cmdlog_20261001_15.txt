@@ -1,0 +1,692 @@
+Script started on 2026-10-01 15:31:34+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="177" LINES="48"]
+tail
+바탕화면/        .bash_logout     .cache/          Desktop/         Downloads/       LinuxLog/        Music/           .ssh/            tools/
+anaconda-ks.cfg  .bash_profile    .config/         .docker/         .gitconfig       .local/          Pictures/        .tcshrc          Videos/
+.bash_history    .bashrc          .cshrc           Documents/       .lesshst         .mozilla/        Public/          Templates/       .viminfo
+[root@docker1 ~]# tail ~/.bashrc
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+er create --name demoweb nginx:latest
+ca185831cdb66898107ccb1f4120d5161f0a47de6f830875d488c4e858028cb4
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS    PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   8 seconds ago   Created             demoweb
+cker st
+stack  (Manage Swarm stacks)                                              stats  (Display a live stream of container(s) resource usage statistics)
+start  (Start one or more stopped containers)                             stop   (Stop one or more running containers)
+[root@docker1 ~]# docker start demoweb
+demoweb
+kerkimages
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB    U
+nginx:latest                    abe47724e466        239MB         66.3MB    U
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED              STATUS          PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   About a minute ago   Up 11 seconds   80/tcp    demoweb
+vi ~/.bashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+>4;m".bashrc" 35L, 681B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  G 34,1o -- INSERT --35,1Allalias j='printf "\n\n\n\n\n\n\n"'34^[  35,33All::qwwwq
+>4;mashrc
+[root@docker1 ~]# j
+
+
+
+
+
+
+
+er stop demoweb o
+demoweb
+[root@docker1 ~]# docker st1@a1@r1@t-aa
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: IPv6 listen already enabled
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/10/01 06:38:58 [notice] 1#1: using the "epoll" event method
+2026/10/01 06:38:58 [notice] 1#1: nginx/1.31.6
+2026/10/01 06:38:58 [notice] 1#1: built by gcc 14.2.0 (Debian 14.2.0-19)
+2026/10/01 06:38:58 [notice] 1#1: OS: Linux 6.12.0-271.el10.x86_64
+2026/10/01 06:38:58 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026/10/01 06:38:58 [notice] 1#1: start worker processes
+2026/10/01 06:38:58 [notice] 1#1: start worker process 22
+2026/10/01 06:38:58 [notice] 1#1: start worker process 23
+2026/10/01 06:38:58 [notice] 1#1: start worker process 24
+2026/10/01 06:38:58 [notice] 1#1: start worker process 25
+2026/10/01 06:38:58 [notice] 1#1: start worker process 26
+2026/10/01 06:38:58 [notice] 1#1: start worker process 27
+2026/10/01 06:38:58 [notice] 1#1: start worker process 28
+2026/10/01 06:38:58 [notice] 1#1: start worker process 29
+^C[root@docker1 ~]# ^C
+[root@docker1 ~]# ^C
+docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                      PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   2 minutes ago   Exited (0) 11 seconds ago             demoweb
+jocker start
+
+
+
+
+
+
+
+er start demoweb
+demoweb
+[root@docker1 ~]# docker top demoweb
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                5488                5463                0                   15:41               ?                   00:00:00            nginx: master process nginx -g daemon off;
+101                 5554                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5555                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5556                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5557                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5558                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5559                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5560                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+101                 5561                5488                0                   15:41               ?                   00:00:00            nginx: worker process
+
+artifact     (Manage OCI artifacts)
+attach       (Attach to a running container)
+auto-update  (Auto update containers according to their auto-update policy)
+build        (Build an image using instructions from Containerfiles)
+commit       (Create new image based on the changed container)
+compose      (Run compose workloads via an external provider such as docker-compose or podman-compose)
+container    (Manage containers)
+cp           (Copy files/folders between a container and the local filesystem)
+create       (Create but do not start a container)
+diff         (Display the changes to the object's file system)
+events       (Show podman system events)
+exec         (Run a process in a running container)
+export       (Export container's filesystem contents as a tar archive)
+farm         (Farm out builds to remote machines)
+generate     (Generate structured data based on containers, pods or volumes)
+healthcheck  (Manage health checks on containers)
+help         (Help about any command)
+history      (Show history of a specified image)
+image        (Manage images)
+images       (List images in local storage)
+import       (Import a tarball to create a filesystem image)
+info         (Display podman system information)
+init         (Initialize one or more containers)
+inspect      (Display the configuration of object denoted by ID)
+kill         (Kill one or more running containers with a specific signal)
+kube         (Play containers, pods or volumes from a structured file)
+load         (Load image(s) from a tar archive)
+login        (Log in to a container registry)
+logout       (Log out of a container registry)
+logs         (Fetch the logs of one or more containers)
+machine      (Manage a virtual machine)
+manifest     (Manipulate manifest lists and image indexes)
+mount        (Mount a working container's root filesystem)
+network      (Manage networks)
+pause        (Pause all the processes in one or more containers)
+pod          (Manage pods)
+port         (List port mappings or a specific mapping for the container)
+ps           (List containers)
+pull         (Pull an image from a registry)
+push         (Push an image to a specified destination)
+quadlet      (Allows users to manage Quadlets)
+rename       (Rename an existing container)
+restart      (Restart one or more containers)
+rmi          (Remove one or more images from local storage)
+rm           (Remove one or more containers)
+run          (Run a command in a new container)
+save         (Save image(s) to an archive)
+[root@docker1 ~]# docker images-ta
+                                                                                                                                                             i Info →   U  In Use
+IMAGE                           ID             DISK USAGE   CONTENT SIZE   EXTRA
+leejunhee021210/webserver:1.0   abe47724e466        239MB         66.3MB    U
+nginx:latest                    abe47724e466        239MB         66.3MB    U
+quay.io/centos/centos:9         a90eef8141b9        252MB         66.5MB
+man image
+Manage images
+
+Description:
+  Manage images
+
+Usage:
+  podman image [command]
+
+Available Commands:
+  build       Build an image using instructions from Containerfiles
+  diff        Inspect changes to the image's file systems
+  exists      Check if an image exists in local storage
+  history     Show history of a specified image
+  import      Import a tarball to create a filesystem image
+  inspect     Display the configuration of an image
+  list        List images in local storage
+  load        Load image(s) from a tar archive
+  mount       Mount an image's root filesystem
+  prune       Remove unused images
+  pull        Pull an image from a registry
+  push        Push an image to a specified destination
+  rm          Remove one or more images from local storage
+  save        Save image(s) to an archive
+  scp         Securely copy images
+  search      Search registry for image
+  sign        Sign an image
+  tag         Add an additional name to a local image
+  tree        Print layer hierarchy of an image in a tree format
+  trust       Manage container image trust policy
+  unmount     Unmount an image's root filesystem
+  untag       Remove a name from a local image
+
+Error: missing command 'podman image COMMAND'
+[root@docker1 ~]# podman images
+REPOSITORY  TAG         IMAGE ID    CREATED     SIZE
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS              PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   5 minutes ago   Up About a minute   80/tcp    demoweb
+[root@docker1 ~]# j
+
+
+
+
+
+
+
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias j='printf "\n\n\n\n\n\n\n"'
+>4;m".bashrc" 35L, 691B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,1-8~@k   6,1  ~@k   7,0-1~@k   8,1  ~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4,0-1~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   20~@k   1~@k   2~@k   3,0-1~@k   4~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   30~@k   1~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@ý   7~@ý   17~@ý   33~@ý   17~@k   8i -- INSERT --35,18All\\n\n\n\n\n\n\n"'9n\n\n\n\n\n\n\n"'20\\n\n\n\n\n\n\n"'1n\n\n\n\n\n\n\n"'2\\n\n\n\n\n\n\n"'3n\n\n\n\n\n\n\n"'4\\n\n\n\n\n\n\n"'5n\n\n\n\n\n\n\n"'6\\n\n\n\n\n\n\n"'7n\n\n\n\n\n\n\n"'8^[  35,27All::wq
+>4;m[root@docker1 ~]# j
+
+
+
+
+
+
+
+rce ~/.bashrc
+[root@docker1 ~]# j
+
+
+
+
+
+
+
+
+
+
+
+
+[root@docker1 ~]# clear
+er restart demoweb
+demoweb
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   6 minutes ago   Up 2 seconds   80/tcp    demoweb
+er top demoweb
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                6136                6111                0                   15:43               ?                   00:00:00            nginx: master process nginx -g daemon off;
+101                 6200                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6201                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6202                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6203                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6204                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6205                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6206                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+101                 6207                6136                0                   15:43               ?                   00:00:00            nginx: worker process
+er stop demoweb
+demoweb
+kersstart demoweb
+demoweb
+[root@docker1 ~]# podman ps -a
+CONTAINER ID  IMAGE       COMMAND     CREATED     STATUS      PORTS       NAMES
+er ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS          PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   7 minutes ago   Up 12 seconds   80/tcp    demoweb
+er kill $(docker ps -aq)
+ca185831cdb6
+[root@docker1 ~]# docker psl-a$(docker ps -aq)
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                       PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   7 minutes ago   Exited (137) 2 seconds ago             demoweb
+[root@dockerdockerpstart demowebdocker ps -aq)
+demoweb
+er psa-a demoweb
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   8 minutes ago   Up 4 seconds   80/tcp    demoweb
+er kill -s 15 demoweb
+demoweb
+[root@docker1 ~]# docker psl-a-s 15 demoweb
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                    PORTS     NAMES
+ca185831cdb6   nginx     "/docker-entrypoint.…"   8 minutes ago   Exited (0) 1 second ago             demoweb
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# j
+
+
+
+
+
+
+
+
+
+
+
+
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias j='printf "\n\n\n\n\n\n\n\n\n\n\n\n"'
+>4;m".bashrc" 35L, 679B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5,1-8~@k   6,1  ~@k   7,0-1~@k   8,1  ~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4,0-1~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   20~@k   1~@k   2~@k   3,0-1~@k   4~@k   5,1  ~@k   6~@k   7,0-1~@k   8,1  ~@k   9~@k   30~@k   1~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   ~@k   ~@k   ~@k   ~@@   43~@k   2~@k   1~@k   0i -- INSERT --35,40Al\n"'39n"'8n"'""'"'"'"'"'"'"'"'"'2"'"'"'"'"'45 '6c'7l'8e'9a'30r'1^[  35,30All::ewqwq
+>4;mrce ~/.bashrc
+[root@docker1 ~]# j
+
+
+
+[root@docker1 ~]# source ~/.bashrc
+[root@docker1 ~]# source ~/.bashrc
+[root@docker1 ~]# viurce ~/.bashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
+
+alias c='clear'
+alias tree='tree -v'
+
+#
+# Specific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias crm='docker rm -f $(docker ps -aq)'
+alias irm='docker rmi -f $(docker images -aq)'
+alias j='printf "\n\n\n" clear'
+>4;m".bashrc" 35L, 680B written                                                                                                                                                  ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  i -- INSERT --1,1All212345678910,112345678920123456789301234523456789='printf "\n\n\n" clear'7c='printf "\n\n\n" clear'8910123456789201234565; clear'6^[  35,25All::wq
+>4;mrce ~/.bashrc
+[root@docker1 ~]# c
+
+
+
+er rm -f $(docker ps -aq)
+ca185831cdb6
+dockerainfo
+Client: Docker Engine - Community
+ Version:    29.8.1
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+  model: Docker Model Runner (Docker Inc.)
+    Version:  v1.2.6
+    Path:     /usr/libexec/docker/cli-plugins/docker-model
+
+Server:
+ Containers: 0
+  Running: 0
+  Paused: 0
+  Stopped: 0
+ Images: 2
+ Server Version: 29.8.1
+ Storage Driver: overlayfs
+  driver-type: io.containerd.snapshotter.v1
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 2
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local splunk syslog
+ CDI spec directories:
+  /etc/cdi
+  /var/run/cdi
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: ee2735368117d2eb259779949d5e75cdafec9761
+ runc version: v1.5.1-0-g8f2685a4
+ init version: de40ad0
+ Security Options:
+  seccomp
+   Profile: builtin
+  cgroupns
+ Kernel Version: 6.12.0-271.el10.x86_64
+ Operating System: CentOS Stream 10 (Coughlan)
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 8
+ Total Memory: 7.469GiB
+ Name: docker1.example.com
+ ID: 21065017-2140-49f8-bd53-7d8a53b513e0
+ Docker Root Dir: /data/docker
+ Debug Mode: false
+ Username: leejunhee021210
+ Experimental: false
+ Insecure Registries:
+  ::1/128
+  127.0.0.0/8
+ Live Restore Enabled: false
+ Firewall Backend: iptables
+  EnableUserlandProxy: true
+  UserlandProxyPath: /usr/bin/docker-proxy
+
+ocker/
+buildkit  containers  engine-id  image  network  plugins  rootfs  runtimes  swarm  tmp  volumes
+[root@docker1 ~]# ls /data/docker/
+buildkit  containers  engine-id  image  network  plugins  rootfs  runtimes  swarm  tmp  volumes
+[root@docker1 ~]# vi /etc/docker/daemon.json
+{
+>4;m>4;m[root@docker1 ~]#a^C/docker"}~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                ~                                                                                                                                                                                1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  i -- INSERT --1,1All#{22,1#231#}2^[  3,1All::iq!
+dockertvolumeelsdockn.jsonker/daemon.json.OLD
+DRIVER    VOLUME NAME
+er volume create demovol
+demovol
+er volume ls
+DRIVER    VOLUME NAME
+local     demovol
+[root@docker1 ~]# docker volume inspect demovol
+[
+    {
+        "CreatedAt": "2026-10-01T16:05:48+09:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/data/docker/volumes/demovol/_data",
+        "Name": "demovol",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+er run -d --name demodb1 -v demovol:/data/docker/mysql -emMYSQL_ROOTPASSWORD=passwordmysql:5.7
+docker: 'docker run' requires at least 1 argument
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+See 'docker run --help' for more information
+[root@docker1 ~]# docker run -d --name demodb1 -v demovol:/data/docker/mysql -e MYSQL_ROO_PASSWORD=passwordmysql:5.7
+docker: 'docker run' requires at least 1 argument
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+See 'docker run --help' for more information
+[root@docker1 ~]# docker run -d --name demodb1mysql:5.7ol:/data/docker/mysql -e MYSQL_ROOT_PASSWORD=passwordmysql:5.7
+Unable to find image 'mysql:5.7' locally
+5.7: Pulling from library/mysql
+
+df9a4d85569b: Pulling fs layer
+20e4dcae4c69: Pulling fs layer
+90986bb8de6e: Pulling fs layer
+ae71319cb779: Pulling fs layer
+e9f03a1c24ce: Pulling fs layer
+68c3898c2015: Pulling fs layer
+6b95a940e7b6: Pulling fs layer
+ffc89e9dfd88: Pulling fs layer
+1c56c3d4ce74: Pulling fs layer
+064b2d298fba: Pulling fs layer
+20e4dcae4c69: Extractingo2psete===========================================>>  ]  53.48MB/56.29MB
+96889c47a44a: Download complete
+Digest:9sha256:4bc6bc963e6d8443453676cae56536f4b8156d78bae03c0145cbe47c2aad73bb  9.437MB/11.51MB
+Status: Downloaded newer image for mysql:5.7
+9153abba3e7bfbeec2f04f863ceef20618dbff2e5257df8be692815cc1cec7a8
+ls /data/docker/volumes/
+23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a  3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654  backingFsBlockDev  demovol  metadata.db
+er volume ls
+DRIVER    VOLUME NAME
+local     23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a
+local     3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654
+local     demovol
+dockertruno-de--namemdemodb1 -1@n1@e1@w1@v1@o1@l1@:-e MYSQL_ROOT_PASSWORD=password mysql:5.7
+docker: Error response from daemon: Conflict. The container name "/demodb1" is already in use by container "9153abba3e7bfbeec2f04f863ceef20618dbff2e5257df8be692815cc1cec7a8". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# docker run -d --name demod1@2-v newvol:/data/docker/mysql -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+b18e7e53a151d62f4a88ede34b79ad037256c9d551f88f02aa248a37cf121e6e
+[root@docker1 ~]# docker 1@d1@e1@m1@o1@v1@o1@l -v newvol:/data/docker/mysql -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+df0e381453af4a78f71159efa96549d722672cf261a5d130d344a582a24f8f91
+[root@docker1 ~]# clear
+
+
+
+er volume ls
+DRIVER    VOLUME NAME
+local     23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a
+local     3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654
+local     8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890
+local     demovol
+local     e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+local     newvol
+/data/docker/volumes/
+23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a  backingFsBlockDev                                                 metadata.db
+3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654  demovol                                                           newvol
+8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890  e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+dockerdrunu-d --namecdemodb1@4vedemovol:/data/docker/mysql -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+f2ed9e2a6ab28ac9d2844aad1ddb6a17c3a5e8607b94fa0141b66b0e320bfbd8
+lso/data/docker/volumes/ run -d --name demodb4 -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a  e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654  eb03d4229c444a94af9b8591e8a1c7e1a6c5c35e60f37e038ed13eee795d2a16
+8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890  metadata.db
+backingFsBlockDev                                                 newvol
+demovol
+er volume ls
+DRIVER    VOLUME NAME
+local     23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a
+local     3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654
+local     8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890
+local     demovol
+local     e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+local     eb03d4229c444a94af9b8591e8a1c7e1a6c5c35e60f37e038ed13eee795d2a16
+local     newvol
+docker ps -a
+CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS              PORTS                 NAMES
+f2ed9e2a6ab2   mysql:5.7   "docker-entrypoint.s…"   About a minute ago   Up About a minute   3306/tcp, 33060/tcp   demodb4
+df0e381453af   mysql:5.7   "docker-entrypoint.s…"   3 minutes ago        Up 3 minutes        3306/tcp, 33060/tcp   demodb3
+b18e7e53a151   mysql:5.7   "docker-entrypoint.s…"   3 minutes ago        Up 3 minutes        3306/tcp, 33060/tcp   demodb2
+9153abba3e7b   mysql:5.7   "docker-entrypoint.s…"   5 minutes ago        Up 4 minutes        3306/tcp, 33060/tcp   demodb1
+ddockerrvolume inspect demovol
+[
+    {
+        "CreatedAt": "2026-10-01T16:05:48+09:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/data/docker/volumes/demovol/_data",
+        "Name": "demovol",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+[root@docker1 ~]# docker run -d --name demodb1 -v demovol:/data/docker/mysql -e MYSQL_ROOTPASSWORD=passwordmysql:5.7
+docker: 'docker run' requires at least 1 argument
+
+Usage:  docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+docker volume inspect demovol
+[
+    {
+        "CreatedAt": "2026-10-01T16:05:48+09:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/data/docker/volumes/demovol/_data",
+        "Name": "demovol",
+        "Options": null,
+        "Scope": "local"
+    }
+]
+er rm -f $(docker ps -aq)
+f2ed9e2a6ab2
+df0e381453af
+b18e7e53a151
+9153abba3e7b
+docker volume ls
+DRIVER    VOLUME NAME
+local     23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a
+local     3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654
+local     8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890
+local     demovol
+local     e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+local     eb03d4229c444a94af9b8591e8a1c7e1a6c5c35e60f37e038ed13eee795d2a16
+local     newvol
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+lsc/data/docker/volumes/newvol/
+_data
+[root@docker1 ~]# ls /data/docker/volumes/newvol/_data/
+docker volume prune
+WARNING! This will remove anonymous local volumes not used by at least one container.
+Are you sure you want to continue? [y/N] y
+Deleted Volumes:
+8226dc11aa72c1730d33b35a3a717f3c1b968814401889627357dae789fde890
+e85057f82d4f670ab3fcf54e7a93454015dcf6a2c0407c07884ce7888328f3d9
+eb03d4229c444a94af9b8591e8a1c7e1a6c5c35e60f37e038ed13eee795d2a16
+3200de75c594eee0f39ab32b4f42e8bdd1e40e7ebe0aab210039243b8c0a5654
+23d3d6a1e019cc829788d3dee9e4623f6139d8f150d20a84809d74cc0178f04a
+
+Total reclaimed space: 878MB
+er volume ls
+DRIVER    VOLUME NAME
+local     demovol
+local     newvol
+er volume  rm demovol newvol
+demovol
+newvol
+[root@docker1 ~]# clear
+rm /etc/docker/daemon.json
+rm: remove regular file '/etc/docker/daemon.json'? y
+ker.s
+Failed to restart docker.s.service: Unit docker.s.service not found.
+[root@docker1 ~]# systemctl restart docker.service
+er info | grep 'Root Dir:'
+ Docker Root Dir: /var/lib/docker
+[root@docker1 ~]# clear
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-10-01 16:23:34+09:00 [COMMAND_EXIT_CODE="0"]
