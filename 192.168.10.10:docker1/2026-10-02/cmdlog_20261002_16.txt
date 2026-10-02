@@ -1,0 +1,1544 @@
+Script started on 2026-10-02 16:38:25+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="176" LINES="46"]
+[root@docker1 ~]# c
+
+
+
+ker search httpd --limit 3
+NAME                     DESCRIPTION                                     STARS     OFFICIAL
+httpd                    The Apache HTTP Server Project                  4933      [OK]
+manageiq/httpd           Container with httpd, built on CentOS for Ma…   1
+paketobuildpacks/httpd                                                   0
+er run -d -it --name heybro1@1:8httpd
+Unable to find image 'httpd:latest' locally
+latest: Pulling from library/httpd
+
+7a3bdd751d95: Pulling fs layer
+1320c4426edf: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+6b37362b3da7: Pulling fs layer
+6db0cf540580: Pulling fs layer
+6b37362b3da7: Extractingo1psete======================================>        ]  25.17MB/29.83MB
+fdff2e4882b0: Download complete
+Digest:2sha256:03f858efb82c25cb0f9962946615cdcdaf26927cb971722149b563197cfd0fdd
+Status: Downloaded newer image for httpd:latest
+ba0a6683b0d658f5c0cb21ec608a735d403dc53181c4d3e86cdfa5945b5bc2a5
+ker images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE          ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest   03f858efb82c        175MB         47.6MB    U
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS         PORTS                                 NAMES
+ba0a6683b0d6   httpd     "httpd-foreground"   8 seconds ago   Up 8 seconds   0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro1
+er runn-d -it --name heybro2 -p 80:80 httpd
+a2a6b4077f245a20760202e32d0ad31b297b15500fc033d489936b9fb97612e7
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint heybro2 (62c3534b6e5e1a2f1f7104fb06be8d4404d7f47c770171c923febaec1636b6c3): Bind for 0.0.0.0:80 failed: port is already allocated
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# docker run -d -it --name heybro2 -p 80:80 httpd
+docker: Error response from daemon: Conflict. The container name "/heybro2" is already in use by container "a2a6b4077f245a20760202e32d0ad31b297b15500fc033d489936b9fb97612e7". You have to remove (or rename) that container to be able to reuse that name.
+
+Run 'docker run --help' for more information
+[root@docker1 ~]# doc1@c1@r1@e1@a1@t1@e heybro2 -p 80:80 httpd
+unknown flag: --name
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+[root@docker1 ~]# docker create1@  --name heybro2 -p 80:80 httpd
+unknown shorthand flag: 'd' in -d
+
+Usage:  docker create [OPTIONS] IMAGE [COMMAND] [ARG...]
+
+Run 'docker create --help' for more information
+[root@docker1 ~]# f
+bash: f: command not found...
+c
+
+
+
+er ps -a
+CONTAINER ID   IMAGE     COMMAND              CREATED              STATUS              PORTS                                 NAMES
+a2a6b4077f24   httpd     "httpd-foreground"   34 seconds ago       Created                                                   heybro2
+ba0a6683b0d6   httpd     "httpd-foreground"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro1
+er rm heybro2
+heybro2
+er stop heybro1 h
+heybro1
+er run -d --name heybro2 -p 80:80 httpd
+262fd0687b34a9de238cb367afec77f913185c093f06f983cd9000bcf78ece4b
+[root@docker1 ~]# clear
+ker ps -a
+CONTAINER ID   IMAGE     COMMAND              CREATED         STATUS                      PORTS                                 NAMES
+262fd0687b34   httpd     "httpd-foreground"   3 seconds ago   Up 3 seconds                0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro2
+ba0a6683b0d6   httpd     "httpd-foreground"   2 minutes ago   Exited (0) 17 seconds ago                                         heybro1
+ker commit -a "lee" heybro1 leejunhee021210/mybro:1.0
+sha256:daf240327b432082c577e04265c777a3ed2665241ff1b930a900e9ae8a4d9694
+er commit -a "kim" heybro2 leejunhee021210/mybro2:1.0
+sha256:04f2d1eb19e5bd45a8b5aa1210cb40b04fa893de0b5db7f56b3c7565bc1efa7a
+er image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+er inspect --format="{{}.Author}}$(docker image ls -q)
+kim
+lee
+
+er inspect leejunhee021210/mybro:1.0
+[
+    {
+        "Architecture": "amd64",
+        "Author": "lee",
+        "Config": {
+            "Cmd": [
+                "httpd-foreground"
+            ],
+            "Env": [
+                "PATH=/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "HTTPD_PREFIX=/usr/local/apache2",
+                "HTTPD_VERSION=2.4.68",
+                "HTTPD_SHA256=68c74d4df38c26bed4dfbdb8f3baf1eb532f3872357becc1bba5d136f6b63c06",
+                "HTTPD_PATCHES="
+            ],
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "StopSignal": "SIGWINCH",
+            "WorkingDir": "/usr/local/apache2"
+        },
+        "Created": "2026-10-02T16:48:42.758607836+09:00",
+        "Descriptor": {
+            "digest": "sha256:daf240327b432082c577e04265c777a3ed2665241ff1b930a900e9ae8a4d9694",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "size": 1610
+        },
+        "Id": "sha256:daf240327b432082c577e04265c777a3ed2665241ff1b930a900e9ae8a4d9694",
+        "Metadata": {
+            "LastTagTime": "2026-10-02T07:48:42.774805554Z"
+        },
+        "Os": "linux",
+        "Parent": "sha256:03f858efb82c25cb0f9962946615cdcdaf26927cb971722149b563197cfd0fdd",
+        "RepoDigests": [
+            "leejunhee021210/mybro@sha256:daf240327b432082c577e04265c777a3ed2665241ff1b930a900e9ae8a4d9694"
+        ],
+        "RepoTags": [
+            "leejunhee021210/mybro:1.0"
+        ],
+        "RootFS": {
+            "Layers": [
+                "sha256:a6dc765193a52cbaede3c93a9ff48b9540948dd0774bbe7031fcb5847606f9ac",
+                "sha256:ca3ca01a4c890177992fb7db19bc9d618c43e8fb5566e14e9352fd56344c7a0e",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:d2e7903b4893cc9c552daa08614eaccbc8f72d548637606cdd8ef96063b31a18",
+                "sha256:83961a5e50aedab5464694408a2fd0ef9d28a10cc7a755428a5f2fc78d877fc7",
+                "sha256:1ec384e6a09f7278b7773c8a92d81b264e2bbd555c5cd4d8ca07211e25948948"
+            ],
+            "Type": "layers"
+        },
+        "Size": 172511973
+    }
+]
+ker search ubuntu
+NAME                    DESCRIPTION                                     STARS     OFFICIAL
+ubuntu                  Ubuntu is a Debian-based Linux operating sys…   17874     [OK]
+ubuntu/squid            Squid is a caching proxy for the Web. Long-t…   130
+ubuntu/nginx            Nginx, a high-performance reverse proxy & we…   143
+ubuntu/bind9            BIND 9 is a very flexible, full-featured DNS…   120
+ubuntu/kafka            Apache Kafka, a distributed event streaming …   62
+ubuntu/apache2          Apache, a secure & extensible open-source HT…   106
+ubuntu/zookeeper        ZooKeeper maintains configuration informatio…   15
+ubuntu/prometheus       Prometheus is a systems and service monitori…   80
+ubuntu/jre              Chiseled Java runtime based on Ubuntu. Long-…   25
+ubuntu/python           A chiselled Ubuntu rock with the Python runt…   34
+ubuntu/dotnet-aspnet    Chiselled Ubuntu runtime image for ASP.NET a…   28
+ubuntu/mysql            MySQL open source fast, stable, multi-thread…   74
+ubuntu/postgres         PostgreSQL is an open source object-relation…   46
+ubuntu/dotnet-runtime   Chiselled Ubuntu runtime image for .NET apps…   24
+ubuntu/dotnet-deps      Chiselled Ubuntu for self-contained .NET & A…   16
+ubuntu/redis            Redis, an open source key-value store. Long-…   26
+ubuntu/rabbitmq         Ubuntu-based RabbitMQ image - an open source…   0
+ubuntu/jdk              Ubuntu rock for OpenJDK                         0
+ubuntu/grafana          Grafana, a feature rich metrics dashboard & …   13
+ubuntu/memcached        Memcached, in-memory keyvalue store for smal…   8
+ubuntu/loki             Grafana Loki, a log aggregation system like …   3
+ubuntu/mimir            Ubuntu ROCK for Mimir, a horizontally scalab…   0
+ubuntu/traefik          Ubuntu ROCK for Traefik, a modern HTTP rever…   3
+ubuntu/php              PHP is a general-purpose scripting language …   10
+ubuntu/grafana-agent    Ubuntu ROCK for Grafana Agent, an open-sourc…   0
+[root@docker1 ~]# docker search ubuntu:22.04
+NAME                    DESCRIPTION                                     STARS     OFFICIAL
+ubuntu                  Ubuntu is a Debian-based Linux operating sys…   17874     [OK]
+ubuntu/squid            Squid is a caching proxy for the Web. Long-t…   130
+ubuntu/nginx            Nginx, a high-performance reverse proxy & we…   143
+ubuntu/kafka            Apache Kafka, a distributed event streaming …   62
+ubuntu/bind9            BIND 9 is a very flexible, full-featured DNS…   120
+ubuntu/apache2          Apache, a secure & extensible open-source HT…   106
+ubuntu/prometheus       Prometheus is a systems and service monitori…   80
+ubuntu/zookeeper        ZooKeeper maintains configuration informatio…   15
+ubuntu/jre              Chiseled Java runtime based on Ubuntu. Long-…   25
+ubuntu/python           A chiselled Ubuntu rock with the Python runt…   34
+ubuntu/dotnet-aspnet    Chiselled Ubuntu runtime image for ASP.NET a…   28
+ubuntu/postgres         PostgreSQL is an open source object-relation…   46
+ubuntu/mysql            MySQL open source fast, stable, multi-thread…   74
+ubuntu/dotnet-runtime   Chiselled Ubuntu runtime image for .NET apps…   24
+ubuntu/dotnet-deps      Chiselled Ubuntu for self-contained .NET & A…   16
+ubuntu/redis            Redis, an open source key-value store. Long-…   26
+ubuntu/jdk              Ubuntu rock for OpenJDK                         0
+ubuntu/grafana          Grafana, a feature rich metrics dashboard & …   13
+ubuntu/rabbitmq         Ubuntu-based RabbitMQ image - an open source…   0
+ubuntu/memcached        Memcached, in-memory keyvalue store for smal…   8
+ubuntu/loki             Grafana Loki, a log aggregation system like …   3
+ubuntu/mimir            Ubuntu ROCK for Mimir, a horizontally scalab…   0
+ubuntu/traefik          Ubuntu ROCK for Traefik, a modern HTTP rever…   3
+ubuntu/php              PHP is a general-purpose scripting language …   10
+ubuntu/grafana-agent    Ubuntu ROCK for Grafana Agent, an open-sourc…   0
+skopeo list-tags docker://docker.io/libaray/ubuntu
+FATA[0003] Error listing repository tags: fetching tags list: requested access to the resource is denied
+[root@docker1 ~]# skopeo list-tags docker://docker.io/libry/ubuntuuu
+{
+    "Repository": "docker.io/library/ubuntu",
+    "Tags": [
+        "10.04",
+        "12.04",
+        "12.04.5",
+        "12.10",
+        "13.04",
+        "13.10",
+        "14.04",
+        "14.04.1",
+        "14.04.2",
+        "14.04.3",
+        "14.04.4",
+        "14.04.5",
+        "14.10",
+        "15.04",
+        "15.10",
+        "16.04",
+        "16.10",
+        "17.04",
+        "17.10",
+        "18.04",
+        "18.10",
+        "19.04",
+        "19.10",
+        "20.04",
+        "20.10",
+        "21.04",
+        "21.10",
+        "22.04",
+        "22.10",
+        "23.04",
+        "23.10",
+        "24.04",
+        "24.10",
+        "25.04",
+        "25.10",
+        "26.04",
+        "26.10",
+        "artful",
+        "artful-20170511.1",
+        "artful-20170601",
+        "artful-20170619",
+        "artful-20170716",
+        "artful-20170728",
+        "artful-20170826",
+        "artful-20170916",
+        "artful-20171006",
+        "artful-20171019",
+        "artful-20171116",
+        "artful-20180112",
+        "artful-20180123",
+        "artful-20180227",
+        "artful-20180412",
+        "artful-20180417",
+        "artful-20180524",
+        "artful-20180706",
+        "bionic",
+        "bionic-20171114",
+        "bionic-20171214",
+        "bionic-20171220",
+        "bionic-20180125",
+        "bionic-20180224",
+        "bionic-20180410",
+        "bionic-20180426",
+        "bionic-20180526",
+        "bionic-20180710",
+        "bionic-20180724.1",
+        "bionic-20180821",
+        "bionic-20181018",
+        "bionic-20181112",
+        "bionic-20181204",
+        "bionic-20190122",
+        "bionic-20190204",
+        "bionic-20190307",
+        "bionic-20190424",
+        "bionic-20190515",
+        "bionic-20190612",
+        "bionic-20190718",
+        "bionic-20190807",
+        "bionic-20190912.1",
+        "bionic-20191010",
+        "bionic-20191029",
+        "bionic-20191202",
+        "bionic-20200112",
+        "bionic-20200219",
+        "bionic-20200311",
+        "bionic-20200403",
+        "bionic-20200526",
+        "bionic-20200630",
+        "bionic-20200713",
+        "bionic-20200807",
+        "bionic-20200903",
+        "bionic-20200921",
+        "bionic-20201119",
+        "bionic-20210118",
+        "bionic-20210222",
+        "bionic-20210325",
+        "bionic-20210416",
+        "bionic-20210512",
+        "bionic-20210615.1",
+        "bionic-20210702",
+        "bionic-20210723",
+        "bionic-20210827",
+        "bionic-20210930",
+        "bionic-20220105",
+        "bionic-20220128",
+        "bionic-20220301",
+        "bionic-20220315",
+        "bionic-20220401",
+        "bionic-20220415",
+        "bionic-20220427",
+        "bionic-20220531",
+        "bionic-20220801",
+        "bionic-20220829",
+        "bionic-20220902",
+        "bionic-20220913",
+        "bionic-20221019",
+        "bionic-20221130",
+        "bionic-20221215",
+        "bionic-20230126",
+        "bionic-20230301",
+        "bionic-20230308",
+        "bionic-20230412",
+        "bionic-20230530",
+        "cosmic",
+        "cosmic-20180605",
+        "cosmic-20180716",
+        "cosmic-20180725",
+        "cosmic-20180821",
+        "cosmic-20180905",
+        "cosmic-20181018",
+        "cosmic-20181114",
+        "cosmic-20181219",
+        "cosmic-20190122",
+        "cosmic-20190131",
+        "cosmic-20190311",
+        "cosmic-20190418",
+        "cosmic-20190515",
+        "cosmic-20190614",
+        "cosmic-20190719",
+        "devel",
+        "disco",
+        "disco-20181112",
+        "disco-20181220",
+        "disco-20190118",
+        "disco-20190204",
+        "disco-20190310",
+        "disco-20190423",
+        "disco-20190515",
+        "disco-20190613",
+        "disco-20190718",
+        "disco-20190809",
+        "disco-20190913",
+        "disco-20191011",
+        "disco-20191030",
+        "disco-20191127",
+        "disco-20200114",
+        "eoan",
+        "eoan-20190508",
+        "eoan-20190614",
+        "eoan-20190717.1",
+        "eoan-20190813",
+        "eoan-20190916",
+        "eoan-20191017",
+        "eoan-20191101",
+        "eoan-20191127",
+        "eoan-20200114",
+        "eoan-20200207",
+        "eoan-20200313",
+        "eoan-20200410",
+        "eoan-20200608",
+        "focal",
+        "focal-20191030",
+        "focal-20191129",
+        "focal-20200115",
+        "focal-20200319",
+        "focal-20200423",
+        "focal-20200606",
+        "focal-20200703",
+        "focal-20200720",
+        "focal-20200729",
+        "focal-20200916",
+        "focal-20200925",
+        "focal-20201008",
+        "focal-20201106",
+        "focal-20210119",
+        "focal-20210217",
+        "focal-20210325",
+        "focal-20210401",
+        "focal-20210416",
+        "focal-20210609",
+        "focal-20210713",
+        "focal-20210723",
+        "focal-20210827",
+        "focal-20210921",
+        "focal-20211006",
+        "focal-20220105",
+        "focal-20220113",
+        "focal-20220302",
+        "focal-20220316",
+        "focal-20220404",
+        "focal-20220415",
+        "focal-20220426",
+        "focal-20220531",
+        "focal-20220801",
+        "focal-20220826",
+        "focal-20220922",
+        "focal-20221019",
+        "focal-20221130",
+        "focal-20230126",
+        "focal-20230301",
+        "focal-20230308",
+        "focal-20230412",
+        "focal-20230605",
+        "focal-20230624",
+        "focal-20230801",
+        "focal-20231003",
+        "focal-20231128",
+        "focal-20231211",
+        "focal-20240123",
+        "focal-20240216",
+        "focal-20240410",
+        "focal-20240416",
+        "focal-20240427",
+        "focal-20240530",
+        "focal-20240918",
+        "focal-20241011",
+        "focal-20250404",
+        "groovy",
+        "groovy-20200505",
+        "groovy-20200609",
+        "groovy-20200704",
+        "groovy-20200723",
+        "groovy-20200812",
+        "groovy-20200911",
+        "groovy-20200921",
+        "groovy-20201022.1",
+        "groovy-20201125.2",
+        "groovy-20210115",
+        "groovy-20210225",
+        "groovy-20210325",
+        "groovy-20210325.1",
+        "groovy-20210416",
+        "groovy-20210514",
+        "groovy-20210524",
+        "groovy-20210614",
+        "groovy-20210713",
+        "groovy-20210723",
+        "hirsute",
+        "hirsute-20201119",
+        "hirsute-20210119",
+        "hirsute-20210401",
+        "hirsute-20210422",
+        "hirsute-20210514",
+        "hirsute-20210522",
+        "hirsute-20210602",
+        "hirsute-20210711",
+        "hirsute-20210723",
+        "hirsute-20210825",
+        "hirsute-20210917",
+        "hirsute-20211107",
+        "hirsute-20211208",
+        "hirsute-20220113",
+        "impish",
+        "impish-20210519",
+        "impish-20210606",
+        "impish-20210711",
+        "impish-20210722",
+        "impish-20210827",
+        "impish-20210928",
+        "impish-20211015",
+        "impish-20211102",
+        "impish-20220105",
+        "impish-20220128",
+        "impish-20220301",
+        "impish-20220316",
+        "impish-20220404",
+        "impish-20220415",
+        "impish-20220427",
+        "impish-20220531",
+        "jammy",
+        "jammy-20211029",
+        "jammy-20211122",
+        "jammy-20220101",
+        "jammy-20220130",
+        "jammy-20220301",
+        "jammy-20220315",
+        "jammy-20220404",
+        "jammy-20220421",
+        "jammy-20220428",
+        "jammy-20220531",
+        "jammy-20220801",
+        "jammy-20220815",
+        "jammy-20221003",
+        "jammy-20221020",
+        "jammy-20221101",
+        "jammy-20221130",
+        "jammy-20230126",
+        "jammy-20230301",
+        "jammy-20230308",
+        "jammy-20230425",
+        "jammy-20230522",
+        "jammy-20230605",
+        "jammy-20230624",
+        "jammy-20230804",
+        "jammy-20230816",
+        "jammy-20230916",
+        "jammy-20231004",
+        "jammy-20231128",
+        "jammy-20231211.1",
+        "jammy-20240111",
+        "jammy-20240125",
+        "jammy-20240212",
+        "jammy-20240227",
+        "jammy-20240405",
+        "jammy-20240416",
+        "jammy-20240427",
+        "jammy-20240530",
+        "jammy-20240627.1",
+        "jammy-20240808",
+        "jammy-20240911.1",
+        "jammy-20250126",
+        "jammy-20250404",
+        "jammy-20250415.1",
+        "jammy-20250530",
+        "jammy-20250619",
+        "jammy-20250714",
+        "jammy-20250730",
+        "jammy-20250819",
+        "jammy-20251001",
+        "jammy-20251013",
+        "jammy-20260109",
+        "jammy-20260210.1",
+        "jammy-20260217",
+        "jammy-20260322.1",
+        "jammy-20260410",
+        "jammy-20260509",
+        "jammy-20260627",
+        "jammy-20260731.1",
+        "jammy-20260810",
+        "jammy-20260901.2",
+        "jammy-20260924.1",
+        "kinetic",
+        "kinetic-20220428",
+        "kinetic-20220602",
+        "kinetic-20220801",
+        "kinetic-20220830",
+        "kinetic-20220922",
+        "kinetic-20221024",
+        "kinetic-20221101",
+        "kinetic-20221130",
+        "kinetic-20230126",
+        "kinetic-20230217",
+        "kinetic-20230308",
+        "kinetic-20230412",
+        "kinetic-20230605",
+        "kinetic-20230624",
+        "latest",
+        "lucid",
+        "lunar",
+        "lunar-20221207",
+        "lunar-20221216",
+        "lunar-20230124.1",
+        "lunar-20230128",
+        "lunar-20230301",
+        "lunar-20230314",
+        "lunar-20230415",
+        "lunar-20230420",
+        "lunar-20230522",
+        "lunar-20230615",
+        "lunar-20230731",
+        "lunar-20230816",
+        "lunar-20231004",
+        "lunar-20231128",
+        "mantic",
+        "mantic-20230511.1",
+        "mantic-20230520",
+        "mantic-20230607",
+        "mantic-20230624",
+        "mantic-20230712",
+        "mantic-20230801",
+        "mantic-20230807.1",
+        "mantic-20230819",
+        "mantic-20230912",
+        "mantic-20230926",
+        "mantic-20231011",
+        "mantic-20231128",
+        "mantic-20240122",
+        "mantic-20240216",
+        "mantic-20240405",
+        "mantic-20240416",
+        "mantic-20240427",
+        "mantic-20240530",
+        "noble",
+        "noble-20231126.1",
+        "noble-20231214",
+        "noble-20231221",
+        "noble-20240114",
+        "noble-20240127.1",
+        "noble-20240212",
+        "noble-20240225",
+        "noble-20240407.1",
+        "noble-20240423",
+        "noble-20240429",
+        "noble-20240530",
+        "noble-20240605",
+        "noble-20240801",
+        "noble-20240827.1",
+        "noble-20240904.1",
+        "noble-20241009",
+        "noble-20241011",
+        "noble-20241015",
+        "noble-20241118.1",
+        "noble-20250127",
+        "noble-20250404",
+        "noble-20250415.1",
+        "noble-20250529",
+        "noble-20250619",
+        "noble-20250714",
+        "noble-20250716",
+        "noble-20250805",
+        "noble-20250910",
+        "noble-20250925",
+        "noble-20251001",
+        "noble-20251013",
+        "noble-20260113",
+        "noble-20260210.1",
+        "noble-20260217",
+        "noble-20260324",
+        "noble-20260410",
+        "noble-20260509.1",
+        "noble-20260610",
+        "noble-20260730.1",
+        "noble-20260810",
+        "noble-20260905",
+        "noble-20260911",
+        "noble-20260917",
+        "oracular",
+        "oracular-20240527",
+        "oracular-20240617",
+        "oracular-20240811.1",
+        "oracular-20240913",
+        "oracular-20240918",
+        "oracular-20241009",
+        "oracular-20241120",
+        "oracular-20250225",
+        "oracular-20250428",
+        "oracular-20250619",
+        "plucky",
+        "plucky-20241111",
+        "plucky-20241124",
+        "plucky-20241213",
+        "plucky-20250402",
+        "plucky-20250415",
+        "plucky-20250521",
+        "plucky-20250619",
+        "plucky-20250714",
+        "plucky-20250730",
+        "plucky-20250910",
+        "plucky-20250925.1",
+        "plucky-20251001",
+        "precise",
+        "precise-20150212",
+        "precise-20150228.11",
+        "precise-20150320",
+        "precise-20150427",
+        "precise-20150528",
+        "precise-20150612",
+        "precise-20150626",
+        "precise-20150729",
+        "precise-20150813",
+        "precise-20150924",
+        "precise-20151020",
+        "precise-20151028",
+        "precise-20151208",
+        "precise-20160108",
+        "precise-20160217",
+        "precise-20160225",
+        "precise-20160303",
+        "precise-20160311",
+        "precise-20160318",
+        "precise-20160330",
+        "precise-20160425",
+        "precise-20160503",
+        "precise-20160526",
+        "precise-20160624",
+        "precise-20160707",
+        "precise-20160819",
+        "precise-20160923.1",
+        "precise-20161102",
+        "precise-20161123",
+        "precise-20161209",
+        "precise-20170214",
+        "precise-20170331",
+        "quantal",
+        "questing",
+        "questing-20250514",
+        "questing-20250601",
+        "questing-20250620",
+        "questing-20250721",
+        "questing-20250806",
+        "questing-20250830",
+        "questing-20251007",
+        "questing-20251029",
+        "questing-20251217",
+        "questing-20260610",
+        "raring",
+        "resolute",
+        "resolute-20251101",
+        "resolute-20251130",
+        "resolute-20251208",
+        "resolute-20260106.1",
+        "resolute-20260108",
+        "resolute-20260312",
+        "resolute-20260401",
+        "resolute-20260404",
+        "resolute-20260413",
+        "resolute-20260421",
+        "resolute-20260610",
+        "resolute-20260627",
+        "resolute-20260707",
+        "resolute-20260724.1",
+        "resolute-20260811.1",
+        "resolute-20260901",
+        "resolute-20260912",
+        "resolute-20260927",
+        "rolling",
+        "saucy",
+        "stonking",
+        "stonking-20260612",
+        "stonking-20260622",
+        "stonking-20260705",
+        "stonking-20260901.1",
+        "stonking-20260913.1",
+        "trusty",
+        "trusty-20150218.1",
+        "trusty-20150228.11",
+        "trusty-20150320",
+        "trusty-20150427",
+        "trusty-20150528",
+        "trusty-20150612",
+        "trusty-20150630",
+        "trusty-20150730",
+        "trusty-20150806",
+        "trusty-20150814",
+        "trusty-20151001",
+        "trusty-20151009",
+        "trusty-20151021",
+        "trusty-20151028",
+        "trusty-20151208",
+        "trusty-20151218",
+        "trusty-20160119",
+        "trusty-20160217",
+        "trusty-20160226",
+        "trusty-20160302",
+        "trusty-20160315",
+        "trusty-20160317",
+        "trusty-20160323",
+        "trusty-20160405",
+        "trusty-20160412",
+        "trusty-20160424",
+        "trusty-20160503.1",
+        "trusty-20160526",
+        "trusty-20160624",
+        "trusty-20160711",
+        "trusty-20160802",
+        "trusty-20160819",
+        "trusty-20160914",
+        "trusty-20160923.1",
+        "trusty-20161006",
+        "trusty-20161101",
+        "trusty-20161123",
+        "trusty-20161214",
+        "trusty-20170119",
+        "trusty-20170214",
+        "trusty-20170330",
+        "trusty-20170602",
+        "trusty-20170620",
+        "trusty-20170719",
+        "trusty-20170728",
+        "trusty-20170817",
+        "trusty-20171117",
+        "trusty-20171207",
+        "trusty-20180112",
+        "trusty-20180123",
+        "trusty-20180302",
+        "trusty-20180412",
+        "trusty-20180420",
+        "trusty-20180531",
+        "trusty-20180712",
+        "trusty-20180807",
+        "trusty-20180929",
+        "trusty-20181115",
+        "trusty-20181217",
+        "trusty-20190122",
+        "trusty-20190305",
+        "trusty-20190425",
+        "trusty-20190515",
+        "trusty-20191107",
+        "trusty-20191217",
+        "utopic",
+        "utopic-20150211",
+        "utopic-20150228.11",
+        "utopic-20150319",
+        "utopic-20150418",
+        "utopic-20150427",
+        "utopic-20150528",
+        "utopic-20150612",
+        "utopic-20150625",
+        "vivid",
+        "vivid-20150218",
+        "vivid-20150309",
+        "vivid-20150319.1",
+        "vivid-20150421",
+        "vivid-20150427",
+        "vivid-20150528",
+        "vivid-20150611",
+        "vivid-20150802",
+        "vivid-20150813",
+        "vivid-20150930",
+        "vivid-20151021",
+        "vivid-20151106",
+        "vivid-20151111",
+        "vivid-20151208",
+        "vivid-20160122",
+        "wily",
+        "wily-20150528.1",
+        "wily-20150611",
+        "wily-20150708",
+        "wily-20150731",
+        "wily-20150807",
+        "wily-20150818",
+        "wily-20150829",
+        "wily-20151006",
+        "wily-20151009",
+        "wily-20151019",
+        "wily-20151208",
+        "wily-20160121",
+        "wily-20160217",
+        "wily-20160302",
+        "wily-20160316",
+        "wily-20160329",
+        "wily-20160424",
+        "wily-20160503",
+        "wily-20160526",
+        "wily-20160602",
+        "wily-20160706",
+        "xenial",
+        "xenial-20151218.1",
+        "xenial-20160119.1",
+        "xenial-20160125",
+        "xenial-20160217.2",
+        "xenial-20160226",
+        "xenial-20160303.1",
+        "xenial-20160314.4",
+        "xenial-20160317",
+        "xenial-20160331.1",
+        "xenial-20160422",
+        "xenial-20160503",
+        "xenial-20160525",
+        "xenial-20160629",
+        "xenial-20160706",
+        "xenial-20160713",
+        "xenial-20160809",
+        "xenial-20160818",
+        "xenial-20160914",
+        "xenial-20160923.1",
+        "xenial-20161010",
+        "xenial-20161114",
+        "xenial-20161121",
+        "xenial-20161213",
+        "xenial-20170119",
+        "xenial-20170214",
+        "xenial-20170410",
+        "xenial-20170417.1",
+        "xenial-20170510",
+        "xenial-20170517.1",
+        "xenial-20170619",
+        "xenial-20170710",
+        "xenial-20170802",
+        "xenial-20170915",
+        "xenial-20171006",
+        "xenial-20171114",
+        "xenial-20171201",
+        "xenial-20180112.1",
+        "xenial-20180123",
+        "xenial-20180228",
+        "xenial-20180412",
+        "xenial-20180417",
+        "xenial-20180525",
+        "xenial-20180705",
+        "xenial-20180726",
+        "xenial-20180808",
+        "xenial-20181005",
+        "xenial-20181113",
+        "xenial-20181218",
+        "xenial-20190122",
+        "xenial-20190222",
+        "xenial-20190425",
+        "xenial-20190515",
+        "xenial-20190610",
+        "xenial-20190720",
+        "xenial-20190904",
+        "xenial-20191010",
+        "xenial-20191024",
+        "xenial-20191108",
+        "xenial-20191212",
+        "xenial-20200114",
+        "xenial-20200212",
+        "xenial-20200326",
+        "xenial-20200514",
+        "xenial-20200619",
+        "xenial-20200706",
+        "xenial-20200807",
+        "xenial-20200903",
+        "xenial-20200916",
+        "xenial-20201014",
+        "xenial-20201030",
+        "xenial-20210114",
+        "xenial-20210416",
+        "xenial-20210429",
+        "xenial-20210611",
+        "xenial-20210722",
+        "xenial-20210804",
+        "yakkety",
+        "yakkety-20160708",
+        "yakkety-20160717",
+        "yakkety-20160806.1",
+        "yakkety-20160826",
+        "yakkety-20160919",
+        "yakkety-20160923.1",
+        "yakkety-20161013",
+        "yakkety-20161104",
+        "yakkety-20161121",
+        "yakkety-20161213",
+        "yakkety-20170104",
+        "yakkety-20170224",
+        "yakkety-20170327",
+        "yakkety-20170517.1",
+        "yakkety-20170619",
+        "yakkety-20170704",
+        "zesty",
+        "zesty-20161129.1",
+        "zesty-20161212",
+        "zesty-20170118",
+        "zesty-20170224",
+        "zesty-20170411",
+        "zesty-20170517.1",
+        "zesty-20170619",
+        "zesty-20170703",
+        "zesty-20170913",
+        "zesty-20170915",
+        "zesty-20171114",
+        "zesty-20171122"
+    ]
+}
+[root@docker1 ~]#
+[root@docker1 ~]#
+
+바탕화면/        .bash_logout     .cache/          Desktop/         Downloads/       LinuxLog/        Music/           Public/          Templates/       .viminfo
+anaconda-ks.cfg  .bash_profile    .config/         .docker/         .gitconfig       .local/          .mysql_history   .ssh/            tools/
+.bash_history    .bashrc          .cshrc           Documents/       .lesshst         .mozilla/        Pictures/        .tcshrc          Videos/
+[root@docker1 ~]# skopeo list-tags docker://docker.io/library/ubuntu | head
+{
+    "Repository": "docker.io/library/ubuntu",
+    "Tags": [
+        "10.04",
+        "12.04",
+        "12.04.5",
+        "12.10",
+        "13.04",
+        "13.10",
+        "14.04",
+er pull ubuntu:22.04
+22.04: Pulling from library/ubuntu
+
+98c4455a9898: Extractingo1psete========================================>      ]  26.21MB/29.75MB
+Digest:asha256:b1066385161d28ddf6bc7e7b28a9170eec11484c821d1a5150d176cbde41d7f7
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+[root@docker1 ~]#
+[root@docker1 ~]#
+er images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+ubuntu:22.04                 b1066385161d        117MB         31.7MB
+
+--all       (Show all images (default hides intermediate and dangling images))  --no-trunc  (Don't truncate output)
+--digests   (Show digests)                                                      --quiet     (Only show image IDs)
+--filter    (Filter output based on conditions provided)                        --tree      (List multi-platform images as a tree (EXPERIMENTAL))
+--format    (Format output using a custom template:)
+[root@docker1 ~]# docker images --all
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+ubuntu:22.04                 b1066385161d        117MB         31.7MB
+[root@docker1 ~]# docker images --filter
+flag needs an argument: --filter
+
+Usage:  docker images [OPTIONS] [REPOSITORY[:TAG]]
+
+Run 'docker images --help' for more information
+
+--all       (Show all images (default hides intermediate and dangling images))  --format    (Format output using a custom template:)
+-a          (Show all images (default hides intermediate and dangling images))  --no-trunc  (Don't truncate output)
+--digests   (Show digests)                                                      -q          (Only show image IDs)
+-f          (Filter output based on conditions provided)                        --quiet     (Only show image IDs)
+--filter    (Filter output based on conditions provided)                        --tree      (List multi-platform images as a tree (EXPERIMENTAL))
+[root@docker1 ~]# docker rung-d -it --name myweb-first ubuntu:22.04
+a7d16340e8e6a71430b3f9515bde3ce22fbacaea10bbc740fa38a2c8a398446e
+er attach myweb-first
+root@a7d16340e8e6:/# echo 'my first image' > fristimage.txt
+root@a7d16340e8e6:/# pwd
+/
+root@a7d16340e8e6:/# ls
+bin  boot  dev  etc  fristimage.txt  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@a7d16340e8e6:/# read escape sequence
+er ps -a
+CONTAINER ID   IMAGE          COMMAND              CREATED              STATUS                      PORTS                                 NAMES
+a7d16340e8e6   ubuntu:22.04   "/bin/bash"          About a minute ago   Up About a minute                                                 myweb-first
+262fd0687b34   httpd          "httpd-foreground"   12 minutes ago       Up 12 minutes               0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro2
+ba0a6683b0d6   httpd          "httpd-foreground"   14 minutes ago       Exited (0) 12 minutes ago                                         heybro1
+ker commit -a "test1" -m "test1" myweb-first myweb-images
+sha256:e97150131de4c68a1370e9aa7e2770ddeef18b46114ccac85c231ab0baa5ffc2
+er images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+myweb-images:latest          e97150131de4        115MB         29.8MB
+ubuntu:22.04                 b1066385161d        117MB         31.7MB    U
+ker inspect ubuntu:22.04 | grep
+[
+    {
+        "Id": "sha256:b1066385161d28ddf6bc7e7b28a9170eec11484c821d1a5150d176cbde41d7f7",
+        "RepoTags": [
+            "ubuntu:22.04"
+        ],
+        "RepoDigests": [
+            "ubuntu@sha256:b1066385161d28ddf6bc7e7b28a9170eec11484c821d1a5150d176cbde41d7f7"
+        ],
+        "Created": "2026-09-24T22:24:07.239071539Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Labels": {
+                "org.opencontainers.image.version": "22.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 114885367,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:cbaf391e670933f026c05c7dedec3faf8f194b6c2d83b0d5694ad68323c8077c"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-02T07:56:29.33443855Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:b1066385161d28ddf6bc7e7b28a9170eec11484c821d1a5150d176cbde41d7f7",
+            "size": 6688
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "docker.io/library/ubuntu"
+                }
+            ]
+        }
+    }
+]
+web-images| grep 'RootFS' -A 5
+error: no such object: myweb-image
+er inspect ubuntu:22.04 | grep 'RootFS' -A 5
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:cbaf391e670933f026c05c7dedec3faf8f194b6c2d83b0d5694ad68323c8077c"
+            ]
+        },
+er inspect myweb-images| grep 'RootFS' -A 5
+error: no such object: myweb-image
+magessmyweb-images:latesttgrep 'RootFS' -A 5
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                 ID             DISK USAGE   CONTENT SIZE   EXTRA
+myweb-images:latest   e97150131de4        115MB         29.8MB
+
+        "RootFS": {
+            "Layers": [
+                "sha256:cbaf391e670933f026c05c7dedec3faf8f194b6c2d83b0d5694ad68323c8077c",
+                "sha256:4f587a7707ac1e9b8a99f84eb3a0cd02b1959873be01bcdcfdc1c187042b2100"
+            ],
+            "Type": "layers"
+[root@docker1 ~]# c
+
+
+
+docker ps -at --name docker
+CONTAINER ID   IMAGE          COMMAND              CREATED          STATUS                      PORTS                                 NAMES
+a7d16340e8e6   ubuntu:22.04   "/bin/bash"          7 minutes ago    Up 7 minutes                                                      myweb-first
+262fd0687b34   httpd          "httpd-foreground"   18 minutes ago   Up 18 minutes               0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro2
+ba0a6683b0d6   httpd          "httpd-foreground"   20 minutes ago   Exited (0) 18 minutes ago                                         heybro1
+er stop myweb-first
+c
+myweb-first
+[root@docker1 ~]# c
+
+
+
+er ps -a
+CONTAINER ID   IMAGE          COMMAND              CREATED          STATUS                       PORTS                                 NAMES
+a7d16340e8e6   ubuntu:22.04   "/bin/bash"          7 minutes ago    Exited (137) 3 seconds ago                                         myweb-first
+262fd0687b34   httpd          "httpd-foreground"   18 minutes ago   Up 18 minutes                0.0.0.0:80->80/tcp, [::]:80->80/tcp   heybro2
+ba0a6683b0d6   httpd          "httpd-foreground"   21 minutes ago   Exited (0) 19 minutes ago                                          heybro1
+[root@docker1 ~]# c
+
+
+
+er runp-dt-it --name dockermon -p 8080:8080 node:22-bookworm /bin/bash
+Unable to find image 'node:22-bookworm' locally
+22-bookworm: Pulling from library/node
+
+0c06829c34ad: Pulling fs layer
+7b2de2423ebd: Pulling fs layer
+81578410df16: Pulling fs layer
+eaac70c68abd: Pulling fs layer
+b92563fa790f: Pulling fs layer
+105754cf457c: Pulling fs layer
+de9e8d0a0071: Pulling fs layer
+81578410df16: Downloading9[=====================>===========================>>]  27.26MB/64.42MB
+de9e8d0a0071: Downloadingm[============>=================>==============>     ]  52.43MB/211.7MB
+Digest:3sha256:363e1587494626837fa7f9a23bdb453d13b0ff3c67c705c2805cfc69c2d2fad7  209.7MB/211.7MB
+Status: Downloaded newer image for node:22-bookworm
+4b44ddbca7efc00830a6750243da93afbe9c9a27cca57f5a36be1325b099b9d2
+cker exec -it dockermon /bin/bash
+root@4b44ddbca7ef:/# node -v
+v22.23.3
+root@4b44ddbca7ef:/# npm -v
+10.9.9
+root@4b44ddbca7ef:/# git -v
+git version 2.39.5
+root@4b44ddbca7ef:/# gitpcloneshttps://github.com/s4d0w/dockermon.gittu
+Cloning into 'dockermon'...
+remote: Enumerating objects: 13, done.
+remote: Counting objects: 100% (13/13), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 13 (delta 0), reused 13 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (13/13), 9.40 KiB | 9.40 MiB/s, done.
+root@4b44ddbca7ef:/# ls
+bin  boot  dev  dockermon  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@4b44ddbca7ef:/# apt update && apt install -y tree
+Get:1ohttp://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2ahttp://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]
+Get:4ohttp://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]
+Get:54http://deb.debian.org/debiangbookworm-updates/main amd64 Packages [6924 B]
+Get:64http://deb.debian.org/debian-securitydbookworm-security/main amd64 Packages [344 kB]
+Fetchedo9382gkB ino1s (10.9[MB/s)kages 77.7 kB/344 kB 23%]
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+7 packages can be upgraded. Run 'apt list --upgradable' to see them.
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  tree
+0 upgraded, 1 newly installed, 0 to remove and 7 not upgraded.
+Need to get 52.5 kB of archives.
+After this operation, 116 kB of additional disk space will be used.
+Get:1ohttp://deb.debian.org/debian bookworm/main amd64 tree amd64 2.1.0-1 [52.5 kB]
+Fetchedo52.5gkB6in/0s.(462 kB/s)
+debconf: delaying package configuration, since apt-utils is not installed
+
+Selecting previously unselected package tree.
+(Reading database ... 23263 files and directories currently installed.)
+Preparing to unpack .../tree_2.1.0-1_amd64.deb ...
+Progress: [  0%] [..........................................................................................................................................................] Progress: [ 20%] [##############################............................................................................................................................] Unpacking tree (2.1.0-1) ...
+Progress: [ 40%] [#############################################################.............................................................................................] Setting up tree (2.1.0-1) ...
+Progress: [ 60%] [############################################################################################..............................................................] Progress: [ 80%] [###########################################################################################################################...............................]
+root@4b44ddbca7ef:/# tree -F dockermon
+dockermon/
+|-- README.md
+|-- package.json
+|-- public/
+|   |-- css/
+|   |   `-- style.css
+|   |-- index.html
+|   `-- js/
+|       `-- dashboard.js
+|-- server.js
+`-- start.bat
+
+4 directories, 7 files
+root@4b44ddbca7ef:/#
+root@4b44ddbca7ef:/# cd dockermon/
+root@4b44ddbca7ef:/dockermon# cat package.json
+{
+  "name": "monitoring-dashboard",
+  "version": "1.0.0",
+  "description": "Node.js 기반 모니터링 대시보드 웹 애플리케이션",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "dashboard",
+    "monitoring",
+    "chartjs",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
+root@4b44ddbca7ef:/dockermon# npm install
+\|/-\|/-\
+added 68 packages, and audited 69 packages in 1s
+\
+\16 packages are looking for funding
+\  run `npm fund` for details
+\
+found 0 vulnerabilities
+\npm notice
+npm notice New major version of npm available! 10.9.9 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice
+\root@4b44ddbca7ef:/dockermon#
+root@4b44ddbca7ef:/dockermon# npm start
+
+> monitoring-dashboard@1.0.0 start
+> node server.js
+
+====================================================
+[Express] 대시보드 서버가 시작되었습니다!
+- 로컬 주소: http://localhost:8080/
+- 대시보드 URL: http://localhost:8080/index.html
+====================================================
+^C
+root@4b44ddbca7ef:/dockermon#
+root@4b44ddbca7ef:/dockermon# cat << EOF > /startup.sh
+> #!/bin/bash
+> node /dockermon/server.js /
+> EOF
+root@4b44ddbca7ef:/dockermon# chmod 755 /startup.sh
+root@4b44ddbca7ef:/dockermon# ls
+README.md  node_modules  package-lock.json  package.json  public  server.js  start.bat
+root@4b44ddbca7ef:/dockermon# cat start.bat
+@echo off
+chcp 65001 > nul
+echo ====================================================
+echo  대시보드 모니터링 서버를 실행합니다...
+echo ====================================================
+
+:: 시스템에 node가 설치되어 있는지 확인
+where node >nul 2>nul
+if %errorlevel% neq 0 (
+    :: 내장 런타임 경로 임시 추가 시도
+    if exist "%LOCALAPPDATA%\OpenAI\Codex\runtimes\cua_node\a708e72b10c27b59\bin\node.exe" (
+        set "PATH=%LOCALAPPDATA%\OpenAI\Codex\runtimes\cua_node\a708e72b10c27b59\bin;%PATH%"
+    )
+)
+
+node server.js
+pause
+root@4b44ddbca7ef:/dockermon# exit
+exit
+ker commit -a "ljh" -m "ljh" dockermon myweb-image
+docksha256:0440c3aac4e1865da8373315157c3d0fd0e5ffd4701364d99ce73c4d0a81926f
+er images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+myweb-image:latest           0440c3aac4e1       1.66GB          427MB
+myweb-images:latest          e97150131de4        115MB         29.8MB
+node:22-bookworm             363e15874946       1.62GB          425MB    U
+ubuntu:22.04                 b1066385161d        117MB         31.7MB    U
+ker rmimmyweb-images:latest
+Untagged: myweb-images:latest
+Deleted: sha256:e97150131de4c68a1370e9aa7e2770ddeef18b46114ccac85c231ab0baa5ffc2
+[root@docker1 ~]# c
+
+
+
+docker ps -a
+CONTAINER ID   IMAGE              COMMAND                  CREATED          STATUS                        PORTS                                         NAMES
+4b44ddbca7ef   node:22-bookworm   "docker-entrypoint.s…"   8 minutes ago    Up 8 minutes                  0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   dockermon
+a7d16340e8e6   ubuntu:22.04       "/bin/bash"              18 minutes ago   Exited (137) 10 minutes ago                                                 myweb-first
+262fd0687b34   httpd              "httpd-foreground"       29 minutes ago   Up 29 minutes                 0.0.0.0:80->80/tcp, [::]:80->80/tcp           heybro2
+ba0a6683b0d6   httpd              "httpd-foreground"       31 minutes ago   Exited (0) 29 minutes ago                                                   heybro1
+dockergimages
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+myweb-image:latest           0440c3aac4e1       1.66GB          427MB
+node:22-bookworm             363e15874946       1.62GB          425MB    U
+ubuntu:22.04                 b1066385161d        117MB         31.7MB    U
+er stop dockermon && dockerrrm dockermon
+dockermon
+dockermon
+er run -d---name mynewweb -p 8080:8080 myweb-image:latest /startup.sh
+521950c2301edc3093b488e83d25c637ca8a78812007e419324ee61d959fd178
+[root@docker1 ~]# firefox http://localhost:8080
+[root@docker1 ~]# curl http://localhost:8080
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대시보드 - 첫 페이지</title>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- 전체 레이아웃 래퍼 -->
+  <div class="layout-wrapper">
+
+    <!-- 좌측 사이드바 -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="/index.html" class="sidebar-brand">대시보드</a>
+      </div>
+
+      <div class="sidebar-menu">
+        <div class="menu-heading">CORE</div>
+        <a href="/index.html" class="menu-item active">
+          <span class="menu-icon"><i class="fas fa-tachometer-alt"></i></span>
+          <span class="menu-text">대시보드</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- 우측 메인 영역 (상단 네비바 + 본문 + 푸터) -->
+    <div class="content-wrapper">
+
+      <!-- 상단 네비게이션 바 -->
+      <header class="top-navbar">
+        <div class="navbar-left">
+          <button class="btn-sidebar-toggle" id="sidebarToggle" title="사이드바 토글">
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
+        <div class="navbar-right">
+          <a href="#" class="nav-login-link" id="loginBtn">
+            <i class="fas fa-user-circle"></i>
+            <span>로그인</span>
+          </a>
+        </div>
+      </header>
+
+      <!-- 본문 콘텐츠 -->
+      <main class="main-content">
+        <div class="container-fluid">
+          <!-- 페이지 타이틀 & 서브타이틀 -->
+          <div class="page-title-section">
+            <h1 class="page-title">DashBoard</h1>
+            <p class="page-subtitle">첫 페이지</p>
+          </div>
+
+          <!-- 차트 그리드 (2열) -->
+          <div class="charts-grid">
+
+            <!-- 막대 차트 카드 -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <i class="fas fa-chart-bar card-icon"></i>
+                <span class="card-title">Bar Chart</span>
+              </div>
+              <div class="chart-card-body">
+                <canvas id="barChart"></canvas>
+              </div>
+            </div>
+
+            <!-- 파이 차트 카드 -->
+            <div class="chart-card">
+              <div class="chart-card-header">
+                <i class="fas fa-chart-pie card-icon"></i>
+                <span class="card-title">Pie Chart</span>
+              </div>
+              <div class="chart-card-body">
+                <canvas id="pieChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <!-- 하단 푸터 -->
+      <footer class="footer">
+        <div class="footer-container">
+          <div class="footer-left">
+            Copyright &copy; Your Website 2021
+          </div>
+          <div class="footer-right">
+            <a href="#">Home</a> &middot;
+            <a href="#">Privacy Policy</a> &middot;
+            <a href="#">Terms &amp; Conditions</a>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <!-- Custom Dashboard Script -->
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
+[root@docker1 ~]# firefox http://localhost:808
+[root@docker1 ~]# firefox http://localhost:8080
+Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+[root@docker1 ~]# c
+
+
+
+er ps -a
+CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                        PORTS                                         NAMES
+521950c2301e   myweb-image:latest   "docker-entrypoint.s…"   9 minutes ago    Up 9 minutes                  0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp   mynewweb
+a7d16340e8e6   ubuntu:22.04         "/bin/bash"              29 minutes ago   Exited (137) 21 minutes ago                                                 myweb-first
+262fd0687b34   httpd                "httpd-foreground"       40 minutes ago   Up 40 minutes                 0.0.0.0:80->80/tcp, [::]:80->80/tcp           heybro2
+ba0a6683b0d6   httpd                "httpd-foreground"       42 minutes ago   Exited (0) 40 minutes ago                                                   heybro1
+er images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE                        ID             DISK USAGE   CONTENT SIZE   EXTRA
+httpd:latest                 03f858efb82c        175MB         47.6MB    U
+leejunhee021210/mybro2:1.0   04f2d1eb19e5        173MB         45.3MB
+leejunhee021210/mybro:1.0    daf240327b43        173MB         45.3MB
+myweb-image:latest           0440c3aac4e1       1.66GB          427MB    U
+node:22-bookworm             363e15874946       1.62GB          425MB
+ubuntu:22.04                 b1066385161d        117MB         31.7MB    U
+ker rm -f $(docker ps -aq)
+521950c2301e
+a7d16340e8e6
+262fd0687b34
+ba0a6683b0d6
+er ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+ker rmi -f $(docker imgaes -q)
+unknown shorthand flag: 'q' in -q
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+docker: 'docker rmi' requires at least 1 argument
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+See 'docker rmi --help' for more information
+[root@docker1 ~]# docker rmi -f $(docker imgaes -p)
+unknown shorthand flag: 'p' in -p
+
+Usage:  docker [OPTIONS] COMMAND [ARG...]
+
+Run 'docker --help' for more information
+docker: 'docker rmi' requires at least 1 argument
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+See 'docker rmi --help' for more information
+[root@docker1 ~]# docker rmi -f $(docker imgaes))))
+docker: unknown command: docker imgaes
+
+Run 'docker --help' for more information
+docker: 'docker rmi' requires at least 1 argument
+
+Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
+
+See 'docker rmi --help' for more information
+er rmi
+httpd:latest                leejunhee021210/mybro:1.0   leejunhee021210/mybro2:1.0  myweb-image:latest          node:22-bookworm            ubuntu:22.04
+[root@docker1 ~]# docker rmi -f $(docker images -q)
+Untagged: myweb-image:latest
+Deleted: sha256:0440c3aac4e1865da8373315157c3d0fd0e5ffd4701364d99ce73c4d0a81926f
+Untagged: leejunhee021210/mybro2:1.0
+Deleted: sha256:04f2d1eb19e5bd45a8b5aa1210cb40b04fa893de0b5db7f56b3c7565bc1efa7a
+Untagged: leejunhee021210/mybro:1.0
+Deleted: sha256:daf240327b432082c577e04265c777a3ed2665241ff1b930a900e9ae8a4d9694
+Untagged: ubuntu:22.04
+Deleted: sha256:b1066385161d28ddf6bc7e7b28a9170eec11484c821d1a5150d176cbde41d7f7
+Untagged: node:22-bookworm
+Deleted: sha256:363e1587494626837fa7f9a23bdb453d13b0ff3c67c705c2805cfc69c2d2fad7
+Untagged: httpd:latest
+Deleted: sha256:03f858efb82c25cb0f9962946615cdcdaf26927cb971722149b563197cfd0fdd
+ker imgaes
+docker: unknown command: docker imgaes
+
+Run 'docker --help' for more information
+er images
+                                                                                                                                                            i Info →   U  In Use
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-10-02 17:28:40+09:00 [COMMAND_EXIT_CODE="0"]
