@@ -1,0 +1,195 @@
+Script started on 2026-10-06 20:07:13+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="180" LINES="41"]
+[root@docker1 ~/docker/05_minipro4]# c
+
+
+
+[root@docker1 ~/docker/05_minipro4]# docker pull golang:1.16
+1.16: Pulling from library/golang
+
+245345d44ed8: Pulling fs layer
+ff5b10aec998: Pulling fs layer
+12de8c754e45: Pulling fs layer
+e4d61adff207: Pulling fs layer
+0395a1c478ba: Pulling fs layer
+4ff1945c672b: Pulling fs layer
+Digest:4sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e  50.33MB/54.58MB
+Status: Downloaded newer image for golang:1.16
+docker.io/library/golang:1.16
+[root@docker1 ~/docker/05_minipro4]# vi Dockerfile
+>4;m"Dockerfile" [New] 1L, 17B written                                                                                                                                              ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   ~                                                                                                                                                                                   0,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  -- INSERT --0,1AllFROM golang:1.161,16All^[  ^[  ::wq
+>dockeroruno-itr--namecmygame_-pn8080:8080dgolang:1.16i/bin/bashmygame -p 8080:8080 golang:1.16 /bin/bash
+root@c64fd2bf37eb:/go# go get -d github.com/hashicorp/learn-go-webapp-demo
+go: downloading github.com/hashicorp/learn-go-webapp-demo v0.0.0-20230113184849-2801371511c4
+root@c64fd2bf37eb:/go# ls
+bin  pkg  src
+root@c64fd2bf37eb:/go# cd pkg/
+root@c64fd2bf37eb:/go/pkg# cd mod/
+root@c64fd2bf37eb:/go/pkg/mod#
+root@c64fd2bf37eb:/go/pkg/mod#
+root@c64fd2bf37eb:/go/pkg/mod# cd github.com/
+root@c64fd2bf37eb:/go/pkg/mod/github.com# cd hashicorp/
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp# ls
+learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp# cd learn-go-webapp-demo\@v0.0.0-20230113184849-2801371511c4/
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4# ^C
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4#
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4# go run webapp.go
+121.160.42.202^Csignal: interrupt
+root@c64fd2bf37eb:/go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4# exit
+exit
+er rm -f $(docker ps -aq)
+c64fd2bf37eb
+[root@docker1 ~/docker/05_minipro4]# dnf install -y git-core
+Last metadata expiration check: 0:32:32 ago on Tue 06 Oct 2026 07:45:23 PM KST.
+Package git-core-2.52.0-1.el10.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@docker1 ~/docker/05_minipro4]#
+[root@docker1 ~/docker/05_minipro4]#
+[root@docker1 ~/docker/05_minipro4]# treeclone
+.
+└── Dockerfile
+
+1 directory, 1 file
+dockerdbuild1--no-cache0-tmmygameimageo.ker build --no-cache -t mygameimage .
+[+] Building 0.0s (0/1)                                                                                                                                              docker:default
+[+] Building 0.2s (4/6)                                                                                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                           0.0s
+ => => transferring dockerfile: 319B                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => => resolve docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => [2/3] RUN go get -d github.com/hashicorp/learn-go-webapp-demo                                                                                                              0.2s
+[+] Building 0.4s (4/6)                                                                                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                           0.0s
+ => => transferring dockerfile: 319B                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => => resolve docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => [2/3] RUN go get -d github.com/hashicorp/learn-go-webapp-demo                                                                                                              0.3s
+[+] Building 0.5s (4/6)                                                                                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                           0.0s
+ => => transferring dockerfile: 319B                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => => resolve docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => [2/3] RUN go get -d github.com/hashicorp/learn-go-webapp-demo                                                                                                              0.4s
+ => => # go: downloading github.com/hashicorp/learn-go-webapp-demo v0.0.0-20230113184849-2801371511c4
+[+] Building 0.6s (6/7)                                                                                                                                              docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                           0.0s
+ => => transferring dockerfile: 319B                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => => resolve docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => [2/3] RUN go get -d github.com/hashicorp/learn-go-webapp-demo                                                                                                              0.5s
+ => [3/3] WORKDIR /go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4                                                                     0.0s
+ => exporting to image                                                                                                                                                         0.1s
+ => => exporting layers                                                                                                                                                        0.0s
+ => => exporting manifest sha256:61429203c4eddcf896d88ad85754a4800568096f205650346b07d3f89968fbd7                                                                              0.0s
+ => => exporting config sha256:c6f035b0c564002a79c4c5091fd6f0fb4993b2720321578aab08462fa47aac3b                                                                                0.0s
+ => => exporting attestation manifest sha256:9cb9eb56dcb92681cc3ef819aec204c224c9c1217a1e01fe8eabec63d9c446fa                                                                  0.0s
+ => => exporting manifest list sha256:9e1ab22545f4d74796fc191ea77f1a3ab0be77cc2aa196b441f69b417409a708                                                                         0.0s
+ => => naming to docker.io/library/mygameimage:latest                                                                                                                          0.0s
+ => => unpacking to docker.io/library/mygameimage:latest                                                                                                                       0.0s
+[+] Building 0.6s (7/7) FINISHED                                                                                                                                     docker:default
+ => [internal] load build definition from Dockerfile                                                                                                                           0.0s
+ => => transferring dockerfile: 319B                                                                                                                                           0.0s
+ => [internal] load metadata for docker.io/library/golang:1.16                                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                                                              0.0s
+ => => transferring context: 2B                                                                                                                                                0.0s
+ => [1/3] FROM docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => => resolve docker.io/library/golang:1.16@sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e                                                           0.0s
+ => [2/3] RUN go get -d github.com/hashicorp/learn-go-webapp-demo                                                                                                              0.5s
+ => [3/3] WORKDIR /go/pkg/mod/github.com/hashicorp/learn-go-webapp-demo@v0.0.0-20230113184849-2801371511c4                                                                     0.0s
+ => exporting to image                                                                                                                                                         0.1s
+ => => exporting layers                                                                                                                                                        0.0s
+ => => exporting manifest sha256:61429203c4eddcf896d88ad85754a4800568096f205650346b07d3f89968fbd7                                                                              0.0s
+ => => exporting config sha256:c6f035b0c564002a79c4c5091fd6f0fb4993b2720321578aab08462fa47aac3b                                                                                0.0s
+ => => exporting attestation manifest sha256:9cb9eb56dcb92681cc3ef819aec204c224c9c1217a1e01fe8eabec63d9c446fa                                                                  0.0s
+ => => exporting manifest list sha256:9e1ab22545f4d74796fc191ea77f1a3ab0be77cc2aa196b441f69b417409a708                                                                         0.0s
+ => => naming to docker.io/library/mygameimage:latest                                                                                                                          0.0s
+ => => unpacking to docker.io/library/mygameimage:latest                                                                                                                       0.0s
+ker images
+                                                                                                                                                                i Info →   U  In Use
+IMAGE                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+golang:1.16                5f6a4662de3e       1.33GB          340MB
+mygameimage:latest         9e1ab22545f4       1.33GB          341MB
+phpimage:latest            7d27f10c521f        395MB           96MB
+quay.io/centos/centos:10   3f924e68a32f        256MB         67.1MB
+wsgiimage:latest           ad016c6c91f9        335MB         85.1MB
+crm
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+er network create ongamenet
+1a5a16b492558d8f77eb2e6fec760944ccece47f5ca0283c33434019c9e58bb4
+docker run -d --name mygame -p 8080:8080 \
+--network ongamenet \
+[root@docker1 ~/docker/05_minipro4]# docker run -d --name mygame -p 8080:8080 \
+--network ongamenet \
+mygameimage
+f14b8c47a338b18aeab44258cdf367c6094b3db9eb0d22031c837d7a20444e70
+[root@docker1 ~/docker/05_minipro4]# firefox http://192.168.10.10:8080/
+Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+[root@docker1 ~/docker/05_minipro4]# crm
+f14b8c47a338
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~/docker/05_minipro4]# vrm
+logvol
+phpvol
+nrm
+1a5a16b49255
+693ee549fb35
+NETWORK ID     NAME      DRIVER    SCOPE
+ddb141827aee   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+[root@docker1 ~/docker/05_minipro4]# c
+
+
+
+login-ulleejunhee021210st leejunhee021210
+
+i Info → A Personal Access Token (PAT) can be used instead.
+         To create a PAT, visit https://app.docker.com/settings
+
+
+Password:
+Login Succeeded
+er
+docker tag mygameimage leejunhee021210/mygameimage
+docker push leejunhee021210/mygameimage
+
+
+docker tag mygameimage leejunhee021210/mygameimage
+docker taghmygameimage2leejunhee021210/mygameimage
+docker push leejunhee021210/mygameimage
+Using default tag: latest
+The push refers to repository [docker.io/leejunhee021210/mygameimage]
+
+4ff1945c672b: Waiting
+e4d61adff207: Waiting
+75011b3b30f1: Waiting
+e4d61adff207: Waiting [==================================================>]  1.2042B/2B204kB
+e4d61adff207: Mounted from=library/golang================================>]  1.2042B/2B204kB
+44136fa355b3: Pushedg [==================================================>]  1.204kB/1.204kB
+75011b3b30f1: Pushedg
+12de8c754e45: Waiting from library/golang
+0395a1c478ba: Waiting
+c6878c7ecd6d: Waiting
+latest:edigest:usha256:9e1ab22545f4d74796fc191ea77f1a3ab0be77cc2aa196b441f69b417409a708.size: 856
+dockerdrune-d --nameemygamei-pp8080:8080kleejunhee021210/mygameimage8080:8080 leejunhee021210/mygameimage
+8393a353c72e976f5fb7a985d893380bd7cdf91ac598810f03d4c4d6f1cea1b3
+[root@docker1 ~/docker/05_minipro4]# firefox http://localhost:8080
+Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
+[root@docker1 ~/docker/05_minipro4]# exit
+exit
+
+Script done on 2026-10-06 20:33:56+09:00 [COMMAND_EXIT_CODE="0"]
