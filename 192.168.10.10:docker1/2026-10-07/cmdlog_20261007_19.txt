@@ -1,0 +1,931 @@
+Script started on 2026-10-07 19:01:30+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="159" LINES="48"]
+cker2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 18:20:19 2026 from 192.168.10.10
+mkdir@-pc~/docker/06_private-registry3_&&icdt~/docker/06_private-registry3_private-registry3
+[root@docker2 ~/docker/06_private-registry3]$
+[root@docker2 ~/docker/06_private-registry3]$ docker compose up -d
+no configuration file provided: not found
+[root@docker2 ~/docker/06_private-registry3]$ docker compose up -a
+unknown shorthand flag: 'a' in -a
+[root@docker2 ~/docker/06_private-registry3]$ cat << EOF > docker-compose.yaml
+# docker run -d -p 443:443 --restart=always \
+#   -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+#   -e ... \
+#   -v ./image-data:/var/lib/registry \
+#   -v /auth:/certs \
+#  registry
+services:
+  registry:
+    image: registry:3
+    restart: always
+
+    ports:
+      - "443:443"
+
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/myregistry.example.com.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/myregistry.example.com.key
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /certs/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+
+    volumes:
+      - ./image-data:/var/lib/registry
+      - /auth:/certs
+[root@docker2 ~/docker/06_private-registry3]$ cat << EOF > docker-compose.yaml
+# docker run -d -p 443:443 --restart=always \
+#   -e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+#   -e ... \
+#   -v ./image-data:/var/lib/registry \
+#   -v /auth:/certs \
+#  registry
+services:
+  registry:
+    image: registry:3
+    restart: always
+
+    ports:
+      - "443:443"
+
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/myregistry.example.com.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/myregistry.example.com.key
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /certs/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+
+    volumes:
+      - ./image-data:/var/lib/registry
+      - /auth:/certs
+EOF
+[root@docker2 ~/docker/06_private-registry3]$ cat << EOF > docker-compose.yaml
+# docker run -d -p 443:443 --restart=always #   -e REGISTRY_HTTP_ADDR=0.0.0.0:443 #   -e ... #   -v ./image-data:/var/lib/registry #   -v /auth:/certs #  registry
+services:
+  registry:
+    image: registry:3
+    restart: always
+
+    ports:
+      - "443:443"
+
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/myregistry.example.com.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/myregistry.example.com.key
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /certs/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+
+    volumes:
+      - ./image-data:/var/lib/registry
+      - /auth:/certs
+EOF
+docker compose up -a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+d
+[+] up 1/2
+ ✔ Network 06_private-registry3_default      Created                                                                                                       0.0s
+ ⠋ Container 06_private-registry3-registry-1 Starting                                                                                                      0.1s
+[+] up 2/2
+
+ ✔ Container 06_private-registry3-registry-1 Started                                                                                                       0.1s
+[root@docker2 ~/docker/06_private-registry3]$ catk<< EOFp>sdocker-compose.yaml
+# docker run -d -p 443:443 --restart=always #   -e REGISTRY_HTTP_ADDR=0.0.0.0:443 #   -e ... #   -v ./image-data:/var/lib/registry #   -v /auth:/certs #  registry
+services:
+  registry:
+    image: registry:3
+    restart: always
+
+    ports:
+      - "443:443"
+
+    environment:
+      REGISTRY_HTTP_ADDR: 0.0.0.0:443
+      REGISTRY_HTTP_TLS_CERTIFICATE: /certs/myregistry.example.com.crt
+      REGISTRY_HTTP_TLS_KEY: /certs/myregistry.example.com.key
+      REGISTRY_AUTH: htpasswd
+      REGISTRY_AUTH_HTPASSWD_PATH: /certs/htpasswd
+      REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+
+    volumes:
+      - ./image-data:/var/lib/registry
+      - /auth:/certs
+EOF
+docker compose up -a
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+unknown shorthand flag: 'a' in -a
+[root@docker2 ~/docker/06_private-registry3]$ docker compose ps--a
+NAME                              IMAGE        COMMAND                  SERVICE    CREATED          STATUS          PORTS
+06_private-registry3-registry-1   registry:3   "/entrypoint.sh /etc…"   registry   11 seconds ago   Up 10 seconds   0.0.0.0:443->443/tcp, [::]:443->443/tcp, 5000/tcp
+[root@docker2 ~/docker/06_private-registry3]$ docker login myregistry.example.com
+Authenticating with existing credentials... [Username: demouser]
+
+i Info → To login with a different account, run 'docker logout' followed by 'docker login'
+
+
+Login Succeeded
+[root@docker2 ~/docker/06_private-registry3]$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+Digest: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+[root@docker2 ~/docker/06_private-registry3]$ docker images
+                                                                                                                                           i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine/openssl:latest                       59c5cb51e536       22.4MB         6.68MB
+hello-world:latest                          5e2309035332       21.8kB         9.49kB    U
+httpd:2.4                                   c842ac797bd1        175MB         47.7MB
+myregistry.example.com/hello-world:latest   d1a8d0a4eeb6       16.3kB         4.01kB    U
+registry:3                                  ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/docker/06_private-registry3]$
+[root@docker2 ~/docker/06_private-registry3]$
+[root@docker2 ~/docker/06_private-registry3]$ docker ta1@gllo-world myregistry.example.com/hello-world
+[root@docker2 ~/docker/06_private-registry3]$ docker push myregistry.example.com/hello-world:latest
+The push refers to repository [myregistry.example.com/hello-world]
+
+latest:fdigest:usha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e size: 1023
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8 -> sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+curlt-uodemouser:password_-kihttps://myregistry.example.com/v2/_catalog -k https://myregistry.example.com/v2/_catalog
+{"repositories":["hello-world"]}
+[dockerormirhello-world0myregistry.example.com/hello-worldhello-world myregistry.example.com/hello-world
+Untagged: hello-world:latest
+Untagged: myregistry.example.com/hello-world:latest
+Deleted: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+[root@docker2 ~/docker/06_private-registry3]$ docker run --name demo4 myregistry.example.com/hello-world
+docker run --name demo4 myregistry.example.com/hello-world
+
+Unable to find image 'myregistry.example.com/hello-world:latest' locally
+latest: Pulling from hello-world
+Digest: sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+Status: Downloaded newer image for myregistry.example.com/hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+[root@docker2 ~/docker/06_private-registry3]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED          STATUS                      PORTS                                               NAMES
+c2463dd9cc09   myregistry.example.com/hello-world   "/hello"                 11 seconds ago   Exited (0) 11 seconds ago                                                       demo4
+c29d91d1d822   registry:3                           "/entrypoint.sh /etc…"   2 minutes ago    Up 2 minutes                0.0.0.0:443->443/tcp, [::]:443->443/tcp, 5000/tcp   06_private-registry3-registry-1
+43d2f660b57a   myregistry.example.com/hello-world   "/hello"                 45 minutes ago   Exited (0) 45 minutes ago                                                       demo3
+[root@docker2 ~/docker/06_private-registry3]$ docker images
+                                                                                                                                           i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine/openssl:latest                       59c5cb51e536       22.4MB         6.68MB
+httpd:2.4                                   c842ac797bd1        175MB         47.7MB
+myregistry.example.com/hello-world:latest   d1a8d0a4eeb6       16.3kB         4.01kB    U
+registry:3                                  ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/docker/06_private-registry3]$ docker rm -f demo4
+demo4
+[root@docker2 ~/docker/06_private-registry3]$ docker rmi myregistry.example.com/hello-world
+Error response from daemon: conflict: unable to delete myregistry.example.com/hello-world:latest (must be forced) - container 43d2f660b57a is using its referenced image d1a8d0a4eeb6
+[root@docker2 ~/docker/06_private-registry3]$ docker rmi myregistry.example.com/hello-world:latest
+Error response from daemon: conflict: unable to delete myregistry.example.com/hello-world:latest (must be forced) - container 43d2f660b57a is using its referenced image d1a8d0a4eeb6
+[root@docker2 ~/docker/06_private-registry3]$ docker rm -f demo3
+demo3
+[root@docker2 ~/docker/06_private-registry3]$ docker rm34@idmyregistry.example.com/hello-world:latest
+Untagged: myregistry.example.com/hello-world:latest
+Deleted: sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+[root@docker2 ~/docker/06_private-registry3]$ docker compose down --volume
+WARN[0000] --volume is deprecated, please use --volumes
+WARN[0000] --volume is deprecated, please use --volumes
+WARN[0000] --volume is deprecated, please use --volumes
+WARN[0000] --volume is deprecated, please use --volumes
+[+] down 0/1
+ ⠋ Container 06_private-registry3-registry-1 Stopping                                                                                                      0.1s
+[+] down 1/2
+ ✔ Container 06_private-registry3-registry-1 Removed                                                                                                       0.1s
+ ⠋ Network 06_private-registry3_default      Removing                                                                                                      0.1s
+[+] down 2/2
+
+ ✔ Network 06_private-registry3_default      Removed                                                                                                       0.1s
+[root@docker2 ~/docker/06_private-registry3]$ rm -rf image-data
+[root@docker2 ~/docker/06_private-registry3]$
+[root@docker2 ~/docker/06_private-registry3]$
+[mkdird-pk~/docker/06_registry-ui-&&gcdt~/docker/06_registry-uir/06_registry-ui && cd ~/docker/06_registry-u
+[root@docker2 ~/docker/06_registry-ui]$ cat << 'EOF' > ~/docker/06_registry-ui/config.yml
+version: 0.1
+
+log:
+  fields:
+    service: registry
+
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+  delete:
+    enabled: true
+
+http:
+  addr: :443
+  tls:
+    certificate: /auth/myregistry.example.com.crt
+    key: /auth/myregistry.example.com.key
+
+auth:
+  htpasswd:
+    realm: Registry Realm
+    path: /auth/htpasswd
+
+[root@docker2 ~/docker/06_registry-ui]$ cat << 'EOF' > ~/docker/06_registry-ui/config.yml
+version: 0.1
+
+log:
+  fields:
+    service: registry
+
+storage:
+  filesystem:
+    rootdirectory: /var/lib/registry
+  delete:
+    enabled: true
+
+http:
+  addr: :443
+  tls:
+    certificate: /auth/myregistry.example.com.crt
+    key: /auth/myregistry.example.com.key
+
+auth:
+  htpasswd:
+    realm: Registry Realm
+    path: /auth/htpasswd
+
+EOF
+[root@docker2 ~/docker/06_registry-ui]$ cat << 'EOF' > ~/docker/06_registry-ui/docker-compose.yml
+services:
+  registry:
+    image: registry:3
+    container_name: registry
+    restart: always
+
+    ports:
+      - "443:443"
+
+    volumes:
+      - /auth:/auth:ro
+      - ./image-data:/var/lib/registry
+      - ./config.yml:/etc/distribution/config.yml:ro
+
+    command: ["registry", "serve", "/etc/distribution/config.yml"]
+
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    restart: always
+    ports:
+      - "8080:80"
+
+    environment:
+      SINGLE_REGISTRY: "true"
+      REGISTRY_TITLE: "My Private Registry"
+      REGISTRY_SECURED: "true"
+      SHOW_CATALOG_NB_TAGS: "true"
+      DELETE_IMAGES: "true"
+      NGINX_PROXY_PASS_URL: "https://registry:443"
+
+    depends_on:
+      - registry
+
+EOF
+cat << 'EOF' > ~/docker/06_registry-ui/docker-compose.yml
+services:
+  registry:
+    image: registry:3
+    container_name: registry
+    restart: always
+
+    ports:
+      - "443:443"
+
+    volumes:
+      - /auth:/auth:ro
+      - ./image-data:/var/lib/registry
+      - ./config.yml:/etc/distribution/config.yml:ro
+
+    command: ["registry", "serve", "/etc/distribution/config.yml"]
+
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    container_name: registry-ui
+    restart: always
+    ports:
+      - "8080:80"
+
+    environment:
+      SINGLE_REGISTRY: "true"
+      REGISTRY_TITLE: "My Private Registry"
+      REGISTRY_SECURED: "true"
+      SHOW_CATALOG_NB_TAGS: "true"
+      DELETE_IMAGES: "true"
+      NGINX_PROXY_PASS_URL: "https://registry:443"
+
+    depends_on:
+      - registry
+
+EOF
+
+[root@docker2 ~/docker/06_registry-ui]$ docker compose up -d
+[+] up 0/1
+ ⠋ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.1s
+
+ ⠙ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.2s
+
+ ⠹ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.4s
+
+ ⠼ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.5s
+
+ ⠴ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.6s
+
+ ⠦ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.7s
+
+ ⠧ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.8s
+
+ ⠇ Image joxit/docker-registry-ui:latest Pulling                                                                                                           0.9s
+
+ ⠏ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.0s
+
+ ⠋ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.1s
+
+ ⠙ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.2s
+
+ ⠹ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.4s
+
+ ⠼ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.5s
+
+ ⠴ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.6s
+
+ ⠦ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.7s
+
+ ⠧ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.8s
+
+ ⠇ Image joxit/docker-registry-ui:latest Pulling                                                                                                           1.9s
+
+ ⠏ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.0s
+
+ ⠋ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.1s
+
+ ⠙ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.2s
+
+ ⠹ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.4s
+
+ ⠼ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.5s
+
+ ⠴ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.6s
+
+ ⠦ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.7s
+
+ ⠧ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.8s
+
+ ⠇ Image joxit/docker-registry-ui:latest Pulling                                                                                                           2.9s
+
+ ⠏ Image joxit/docker-registry-ui:latest Pulling                                                                                                           3.0s
+
+ ⠋ Image joxit/docker-registry-ui:latest Pulling                                                                                                           3.1s
+[+] up 0/14
+ ⠙ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀] Pulling                                                                                           3.2s
+[+] up 1/14
+ ⠹ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.4s
+
+ ⠼ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.5s
+
+ ⠴ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.6s
+
+ ⠦ Image joxit/docker-registry-ui:latest [⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.7s
+[+] up 2/14
+ ⠧ Image joxit/docker-registry-ui:latest [⠀⠀⠀⣿⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.8s
+
+ ⠇ Image joxit/docker-registry-ui:latest [⠀⠀⠀⣿⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           3.9s
+
+ ⠏ Image joxit/docker-registry-ui:latest [⣄⠀⠀⣿⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.0s
+[+] up 3/14
+ ⠋ Image joxit/docker-registry-ui:latest [⣿⠀⠀⣿⠀⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.1s
+[+] up 4/14
+ ⠙ Image joxit/docker-registry-ui:latest [⣿⠀⠀⣿⣿⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.2s
+[+] up 5/14
+ ⠹ Image joxit/docker-registry-ui:latest [⣿⠀⣿⣿⣿⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest [⣿⠀⣿⣿⣿⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.4s
+[+] up 6/14
+ ⠼ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⠀⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.5s
+[+] up 7/14
+ ⠴ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⠀⠀⣿⠀⠀⠀⠀] Pulling                                                                                           4.6s
+[+] up 8/14
+ ⠦ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⠀⣿⣿⠀⠀⠀⠀] Pulling                                                                                           4.7s
+[+] up 9/14
+ ⠧ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀] Pulling                                                                                           4.8s
+
+ ⠇ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀] Pulling                                                                                           4.9s
+[+] up 10/14
+ ⠏ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⣿⠀] Pulling                                                                                           5.0s
+[+] up 11/14
+ ⠋ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⣿⠀] Pulling                                                                                           5.1s
+[+] up 12/14
+ ⠙ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀] Pulling                                                                                           5.2s
+
+ ⠹ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀] Pulling                                                                                           5.3s
+
+ ⠸ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿] Pulling                                                                                           5.4s
+
+ ⠼ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿] Pulling                                                                                           5.5s
+
+ ⠴ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿] Pulling                                                                                           5.6s
+[+] up 13/14
+ ⠦ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿] 1.049MB / 2.625MB Pulling                                                                         5.7s
+
+ ⠧ Image joxit/docker-registry-ui:latest [⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿] 1.049MB / 2.625MB Pulling                                                                         5.8s
+[+] up 15/16
+ ✔ Image joxit/docker-registry-ui:latest Pulled                                                                                                            5.8s
+ ⠋ Network 06_registry-ui_default        Creating                                                                                                          0.0s
+[+] up 18/18
+
+ ✔ Network 06_registry-ui_default        Created                                                                                                           0.0s
+ ✔ Container registry                    Created                                                                                                           0.1s
+ ✔ Container registry-ui                 Created                                                                                                           0.0s
+[+] up 17/18
+
+
+ ⠙ Container registry                    Starting                                                                                                          0.2s
+
+
+
+
+ ✔ Container registry                    Started                                                                                                           0.2s
+ ⠹ Container registry-ui                 Starting                                                                                                          0.2s
+[+] up 18/18
+
+
+
+ ✔ Container registry-ui                 Started                                                                                                           0.3s
+[root@docker2 ~/docker/06_registry-ui]$ docker pull alpine
+Using default tag: latest
+latest: Pulling from library/alpine
+
+6d0606d1815c: Download complete
+Digest:asha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6
+Status: Downloaded newer image for alpine:latest
+docker.io/library/alpine:latest
+[root@docker2 ~/docker/06_registry-ui]$ docker tag alpine myregistry.example.com/alpine
+[root@docker2 ~/docker/06_registry-ui]$ docker push myregistry.example.com/alpine:latest
+The push refers to repository [myregistry.example.com/alpine]
+
+latest:1digest:usha256:d56c381f961d307a21b3ca004cf1e3910f106644aefb1f43e654c8a56c4fd395 size: 1022
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6 -> sha256:d56c381f961d307a21b3ca004cf1e3910f106644aefb1f43e654c8a56c4fd395
+[root@docker2 ~/docker/06_registry-ui]$
+[root@docker2 ~/docker/06_registry-ui]$
+[root@docker2 ~/docker/06_registry-ui]$
+[root@docker2 ~/docker/06_registry-ui]$
+[root@docker2 ~/docker/06_registry-ui]$ whichiskopeo
+/usr/bin/skopeo
+[root@docker2 ~/docker/06_registry-ui]$ IMAGELIST='
+busybox:latest
+busybox:1.36
+busybox:1.35
+alpine:latest
+alpine:3.22
+alpine:3.21
+ubuntu
+fedora
+'
+dnf install -y -q skopeo
+for IMAGE in $IMAGELIST
+do
+  skopeo copy \
+    --dest-creds "demouser:password" \
+    --dest-tls-verify=false \
+    "docker://docker.io/library/${IMAGE}" \
+    "docker://myregistry.example.com/${IMAGE}"
+[root@docker2 ~/docker/06_registry-ui]$ IMAGELIST='
+busybox:latest
+busybox:1.36
+busybox:1.35
+alpine:latest
+alpine:3.22
+alpine:3.21
+ubuntu
+fedora
+'
+dnf install -y -q skopeo
+for IMAGE in $IMAGELIST
+do
+  skopeo copy \
+    --dest-creds "demouser:password" \
+    --dest-tls-verify=false \
+    "docker://docker.io/library/${IMAGE}" \
+    "docker://myregistry.example.com/${IMAGE}"
+done
+Getting image source signatures
+Copying blob 37bb94b0940b [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+Copying blob 37bb94b0940b [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+Copying blob 37bb94b0940b [--------------------------------------] 8.0b / 2.1MiB | 4.2 MiB/s
+Copying blob 37bb94b0940b done   |
+Copying blob 37bb94b0940b done   |
+Copying config aaef90e065 done   |
+Copying config aaef90e065 done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob 034d6572bf28 [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+Copying blob 034d6572bf28 [--------------------------------------] 0.0b / 2.1MiB | 0.0 b/s
+Copying blob 034d6572bf28 [===>----------------------------------] 239.4KiB / 2.1MiB | 7.1 MiB/s
+Copying blob 034d6572bf28 done   |
+Copying blob 034d6572bf28 done   |
+Copying config b116e15507 done   |
+Copying config b116e15507 done   |
+Copying config b116e15507 done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob a9b82d1f2d6e [--------------------------------------] 0.0b / 2.0MiB | 0.0 b/s
+Copying blob a9b82d1f2d6e [--------------------------------------] 0.0b / 2.0MiB | 0.0 b/s
+Copying blob a9b82d1f2d6e [====>---------------------------------] 255.4KiB / 2.0MiB | 8.2 MiB/s
+Copying blob a9b82d1f2d6e done   |
+Copying blob a9b82d1f2d6e done   |
+Copying config 95f45f9550 done   |
+Copying config 95f45f9550 done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob e2de96513ba9 skipped: already exists
+Copying blob e2de96513ba9 skipped: already exists
+Copying config 320994c3b9 done   |
+Copying config 320994c3b9 done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob 53f8f5e03afd [--------------------------------------] 0.0b / 3.6MiB | 0.0 b/s
+Copying blob 53f8f5e03afd [--------------------------------------] 0.0b / 3.6MiB | 0.0 b/s
+Copying blob 53f8f5e03afd [--------------------------------------] 8.0b / 3.6MiB | 4.6 MiB/s
+Copying blob 53f8f5e03afd done   |
+Copying blob 53f8f5e03afd done   |
+Copying config c83674e199 done   |
+Copying config c83674e199 done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob 16333ee0c00f [--------------------------------------] 0.0b / 3.5MiB | 0.0 b/s
+Copying blob 16333ee0c00f [--------------------------------------] 0.0b / 3.5MiB | 0.0 b/s
+Copying blob 16333ee0c00f [==============================>-------] 2.9MiB / 3.5MiB | 43.3 MiB/s
+Copying blob 16333ee0c00f done   |
+Copying blob 16333ee0c00f done   |
+Copying config 9cb701c20b done   |
+Copying config 9cb701c20b done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob 06ad70e463aa [--------------------------------------] 0.0b / 388.0b | 0.0 b/s
+Copying blob 4e07a0f12b2c [--------------------------------------] 0.0b / 39.9MiB | 0.0 b/s
+Copying blob 06ad70e463aa [--------------------------------------] 0.0b / 388.0b | 0.0 b/s
+Copying blob 4e07a0f12b2c [--------------------------------------] 0.0b / 39.9MiB | 0.0 b/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [--------------------------------------] 0.0b / 39.9MiB | 0.0 b/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [--------------------------------------] 0.0b / 39.9MiB | 0.0 b/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [--------------------------------------] 0.0b / 39.9MiB | 0.0 b/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [>-------------------------------------] 1.3MiB / 39.9MiB | 19.9 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [====>---------------------------------] 5.5MiB / 39.9MiB | 30.1 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [========>-----------------------------] 9.7MiB / 39.9MiB | 29.3 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [============>-------------------------] 13.9MiB / 39.9MiB | 32.8 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [=================>--------------------] 18.6MiB / 39.9MiB | 47.1 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [=========================>------------] 27.2MiB / 39.9MiB | 65.3 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c [=================================>----] 35.7MiB / 39.9MiB | 60.1 MiB/s
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c done   |
+Copying blob 06ad70e463aa done   |
+Copying blob 4e07a0f12b2c done   |
+Copying config 6e92c4fd8d done   |
+Copying config 6e92c4fd8d done   |
+Writing manifest to image destination
+Getting image source signatures
+Copying blob 59259e167f13 [--------------------------------------] 0.0b / 66.2MiB | 0.0 b/s
+Copying blob 59259e167f13 [--------------------------------------] 0.0b / 66.2MiB | 0.0 b/s
+Copying blob 59259e167f13 [>-------------------------------------] 1.3MiB / 66.2MiB | 154.6 MiB/s
+Copying blob 59259e167f13 [========>-----------------------------] 15.3MiB / 66.2MiB | 90.4 MiB/s
+Copying blob 59259e167f13 [================>---------------------] 30.1MiB / 66.2MiB | 83.1 MiB/s
+Copying blob 59259e167f13 [=========================>------------] 44.8MiB / 66.2MiB | 106.7 MiB/s
+Copying blob 59259e167f13 [=================================>----] 59.7MiB / 66.2MiB | 109.1 MiB/s
+Copying blob 59259e167f13 done   |
+Copying blob 59259e167f13 done   |
+Copying config ccb55df1d2 done   |
+Copying config ccb55df1d2 done   |
+Writing manifest to image destination
+curlt-skc-ur"demouser:password"thttps://myregistry.example.com/v2/_catalogtps://myregistry.example.com/v2/_catalog
+{"repositories":["alpine","busybox","fedora","ubuntu"]}
+[root@docker2 ~/docker/06_registry-ui]$ curl -sk -u "demouser:password" https://myregistry.example.com/v2/_catalog | jq '.repositories'
+[
+  "alpine",
+  "busybox",
+  "fedora",
+  "ubuntu"
+]
+curlt-skc-ur"demouser:password"thttps://myregistry.example.com/v2/alpine/tags/listr|gjqt'.tags'ple.com/v2/alpine/tags/list | jq '.tags'
+[
+  "3.21",
+  "3.22",
+  "latest"
+]
+[root@docker2 ~/docker/06_registry-ui]$
+[root@docker2 ~/docker/06_registry-ui]$
+skopeodlist-tagsddocker://myregistry.example.com/alpines docker://myregistry.example.com/alpine
+{
+    "Repository": "myregistry.example.com/alpine",
+    "Tags": [
+        "3.21",
+        "3.22",
+        "latest"
+    ]
+}
+skopeodinspect~docker://myregistry.example.com/busybox:latest://myregistry.example.com/busybox:latest
+{
+    "Name": "myregistry.example.com/busybox",
+    "Digest": "sha256:f97baa533a26513c453a362be331a43eb60214302f449c16571b23cea141dce4",
+    "RepoTags": [
+        "1.35",
+        "1.36",
+        "latest"
+    ],
+    "Created": "2026-05-13T02:21:49Z",
+    "DockerVersion": "",
+    "Labels": null,
+    "Architecture": "amd64",
+    "Os": "linux",
+    "Layers": [
+        "sha256:37bb94b0940bd40749eced2b83080d1b9912f281ac499a7247e4ce7c385792cc"
+    ],
+    "LayersData": [
+        {
+            "MIMEType": "application/vnd.oci.image.layer.v1.tar+gzip",
+            "Digest": "sha256:37bb94b0940bd40749eced2b83080d1b9912f281ac499a7247e4ce7c385792cc",
+            "Size": 2226163,
+            "Annotations": null
+        }
+    ],
+    "Env": [
+        "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    ]
+}
+[root@docker2 ~/docker/06_registry-ui]$ exit
+logout
+Connection to docker2 closed.
+crm
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[root@docker1 ~]# vrm
+docker: 'docker volume rm' requires at least 1 argument
+
+Usage:  docker volume rm [OPTIONS] VOLUME [VOLUME...]
+
+See 'docker volume rm --help' for more information
+[root@docker1 ~]# irm
+Untagged: leejunhee021210/hextrisimage:latest
+Untagged: hextrisimage:latest
+Deleted: sha256:364924c43bd1dcfb69344773605c83b3baa740a508060dcba842619dfec84104
+Deleted: sha256:22eaf0ba63ae968a9c8488e14883142e68aa795db9514ab30867185447998b56
+Untagged: leejunhee021210/numbergameimage:latest
+Untagged: numbergameimage:latest
+Deleted: sha256:b928088ce8ad5c6e2cd8a90daad015e9288effb03c48ac4fb4293215fc6552d3
+Untagged: leejunhee021210/trexgameimages:latest
+Untagged: trexgameimages:latest
+Deleted: sha256:ad0e888a20202c23c641eaa2bfa57ed82f0fba98187c212e46438cbef84432a2
+Deleted: sha256:0e21a8504f802e01ab8667cc35b8db019094f8d2ef4c75638f88835aeed8e5ab
+Untagged: leejunhee021210/mygameimage:latest
+Untagged: mygameimage:latest
+Deleted: sha256:9e1ab22545f4d74796fc191ea77f1a3ab0be77cc2aa196b441f69b417409a708
+Untagged: wsgiimage:latest
+Deleted: sha256:ad016c6c91f956f917df35d30b25d828bce2fd0cebde9167880b1fad41249eb7
+Untagged: phpimage:latest
+Deleted: sha256:7d27f10c521fbf978401644c108d8047fcea2d024d62806ace07ff4552b1b2d0
+Untagged: nginx:latest
+Deleted: sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+Untagged: quay.io/centos/centos:10
+Untagged: quay.io/centos/centos:stream10
+Deleted: sha256:3f924e68a32f956996f69431e59e069fbcef608ab9de821a78693167d25348d4
+Untagged: registry:3
+Deleted: sha256:ddf754342cfc8acc51a56d5d0ab6af06826461864460636d8bd5c546dab2a7b8
+Untagged: golang:1.16
+Deleted: sha256:5f6a4662de3efc6d6bb812d02e9de3d8698eea16b8eb7281f03e6f3e8383018e
+Error response from daemon: No such image: 364924c43bd1:latest
+Error response from daemon: No such image: b928088ce8ad:latest
+Error response from daemon: No such image: ad0e888a2020:latest
+Error response from daemon: No such image: 9e1ab22545f4:latest
+Error response from daemon: No such image: 3f924e68a32f:latest
+[root@docker1 ~]# nrm
+623b306bc052
+e7e48102f60b
+83ab55d0ba82
+NETWORK ID     NAME      DRIVER    SCOPE
+cceb3fb56f68   bridge    bridge    local
+e5b021ab1506   host      host      local
+6a9bb560db25   none      null      local
+er2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 19:01:32 2026 from 192.168.10.10
+[root@docker2 ~]$
+[root@docker2 ~]$
+[root@docker2 ~]$ docker compose down -v
+no configuration file provided: not found
+rmo-rfdimage-data docker compose down -v
+[root@docker2 ~]$ exit
+logout
+Connection to docker2 closed.
+[root@docker1 ~]#
+[root@docker1 ~]#
+er compose down -v
+no configuration file provided: not found
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+
+
+
+er compose version
+Docker Compose version v5.5.1
+dnf list installed "docker*"
+Installed Packages
+docker-buildx-plugin.x86_64                                                     B 0.37.1-1.el10                                                   @docker-ce-stable
+docker-ce.x86_64                                                                B 3:29.8.1-1.el10                                                 @docker-ce-stable
+docker-ce-cli.x86_64                                                            B 1:29.8.1-1.el10                                                 @docker-ce-stable
+docker-ce-rootless-extras.x86_64                                                B 29.8.1-1.el10                                                   @docker-ce-stable
+docker-compose-plugin.x86_64                                                    B 5.5.1-1.el10                                                    @docker-ce-stable
+docker-model-plugin.x86_64                                                      B 1.2.6-1.el10                                                    @docker-ce-stable
+rpmo-qlodocker-compose-plugink|regrepo-v-'/usr/lib/.build-id|/licenses/|/doc/'|/licenses/|/doc/'
+/usr/libexec/docker/cli-plugins/docker-compose
+er compose -v
+Usage:  docker compose [OPTIONS] COMMAND
+
+Define and run multi-container applications with Docker
+
+Options:
+      --all-resources              Include all resources, even those not used by services
+      --ansi string                Control when to print ANSI control characters ("never"|"always"|"auto") (default "auto")
+      --compatibility              Run compose in backward compatibility mode
+      --dry-run                    Execute command in dry run mode
+      --env-file stringArray       Specify an alternate environment file
+  -f, --file stringArray           Compose configuration files
+      --parallel int               Control max parallelism, -1 for unlimited (default -1)
+      --profile stringArray        Specify a profile to enable
+      --progress string            Set type of progress output (auto, tty, plain, json, quiet)
+      --project-directory string   Specify an alternate working directory
+                                   (default: the path of the, first specified, Compose file)
+  -p, --project-name string        Project name
+
+Management Commands:
+  bridge                  Convert compose files into another model
+
+Commands:
+  attach                  Attach local standard input, output, and error streams to a service's running container
+  build                   Build or rebuild services
+  commit                  Create a new image from a service container's changes
+  config                  Parse, resolve and render compose file in canonical format
+  cp                      Copy files/folders between a service container and the local filesystem
+  create                  Creates containers for a service
+  down                    Stop and remove containers, networks
+  events                  Receive real time events from containers
+  exec                    Execute a command in a running container
+  export                  Export a service container's filesystem as a tar archive
+  images                  List images used by the created containers
+  kill                    Force stop service containers
+  logs                    View output from containers
+  ls                      List running compose projects
+  pause                   Pause services
+  port                    Print the public port for a port binding
+  ps                      List containers
+  publish                 Publish compose application
+  pull                    Pull service images
+  push                    Push service images
+  restart                 Restart service containers
+  rm                      Removes stopped service containers
+  run                     Run a one-off command on a service
+  scale                   Scale services
+  start                   Start services
+  stats                   Display a live stream of container(s) resource usage statistics
+  stop                    Stop services
+  top                     Display the running processes
+  unpause                 Unpause services
+  up                      Create and start containers
+  version                 Show the Docker Compose version information
+  volumes                 List volumes
+  wait                    Block until containers of all (or specified) services stop.
+  watch                   Watch build context for service and rebuild/refresh containers when files are updated
+
+Run 'docker compose COMMAND --help' for more information on a command.
+[root@docker1 ~]# docker compose version
+Docker Compose version v5.5.1
+[root@docker1 ~]#
+[root@docker1 ~]#
+[root@docker1 ~]# c
+
+
+
+er info | head -n 15
+Client: Docker Engine - Community
+ Version:    29.8.1
+ Context:    default
+ Debug Mode: false
+ Plugins:
+  buildx: Docker Buildx (Docker Inc.)
+    Version:  v0.37.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-buildx
+  compose: Docker Compose (Docker Inc.)
+    Version:  v5.5.1
+    Path:     /usr/libexec/docker/cli-plugins/docker-compose
+  model: Docker Model Runner (Docker Inc.)
+    Version:  v1.2.6
+    Path:     /usr/libexec/docker/cli-plugins/docker-model
+
+[root@docker1 ~]# c
+
+
+
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-10-07 20:28:37+09:00 [COMMAND_EXIT_CODE="0"]
