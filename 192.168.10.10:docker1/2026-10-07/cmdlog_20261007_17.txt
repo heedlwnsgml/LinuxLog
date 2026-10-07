@@ -1,0 +1,1030 @@
+Script started on 2026-10-07 17:10:36+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="173" LINES="48"]
+er pull registry:3
+3: Pulling from library/registry
+
+8dc2188d2a74: Pulling fs layer
+90764beeca7f: Pulling fs layer
+2aef3a8beb68: Pulling fs layer
+783ed5b12fca: Pulling fs layer
+2aef3a8beb68: Pullacompletesete===============================>               ]  11.53MB/16.35MB
+d561fdf230c8: Download complete
+Digest:9sha256:ddf754342cfc8acc51a56d5d0ab6af06826461864460636d8bd5c546dab2a7b8
+Status: Downloaded newer image for registry:3
+docker.io/library/registry:3
+er run -d --name myregistry -p 5000:5000 --restart=always registry:3 ^C
+dlog.sh
+/usr/local/bin/cmdlog.sh
+
+바탕화면/                 docker1:                  Downloads/                localhost4:               Music/                    tools/
+::1:                      docker1.example.com:      heybro1.tar               localhost4.localdomain4:  myapp.wsgi                vhost.conf
+anaconda-ks.cfg           docker2:                  heybro2.tar               localhost6:               Pictures/                 Videos/
+Desktop/                  docker2.example.com:      LinuxLog/                 localhost6.localdomain6:  Public/
+docker/                   Documents/                localhost:                localhost.localdomain:    Templates/
+[root@docker1 ~]# scp --helpocal/bin/
+scp: unknown option -- -
+usage: scp [-346ABCOpqRrsTv] [-c cipher] [-D sftp_server_path] [-F ssh_config]
+           [-i identity_file] [-J destination] [-l limit] [-o ssh_option]
+           [-P port] [-S program] [-X sftp_option] source ... target
+[root@docker1 ~]# man scp
+SCP(1)                                                                   General Commands Manual                                                                  SCP(1)
+
+NAME
+       scp — OpenSSH secure file copy
+
+SYNOPSIS
+       scp  [-346ABCOpqRrsTv]  [-c  cipher]  [-D sftp_server_path] [-F ssh_config] [-i identity_file] [-J destination] [-l limit] [-o ssh_option] [-P port] [-S program]
+           [-X sftp_option] source ... target
+
+DESCRIPTION
+       scp copies files between hosts on a network.
+
+       scp uses the SFTP protocol over a ssh(1) connection for data transfer, and uses the same authentication and provides the same security as a login session.
+
+       scp will ask for passwords or passphrases if they are needed for authentication.
+
+       The source and target may be specified as a local pathname,  a  remote  host  with  optional  path  in  the  form  [user@]host:[path],  or  a  URI  in  the  form
+       scp://[user@]host[:port][/path].   Local  file names can be made explicit using absolute or relative pathnames to avoid scp treating file names containing ‘:’ as
+       host specifiers.
+
+       When copying between two remote hosts, if the URI format is used, a port cannot be specified on the target if the -R option is used.
+
+       The options are as follows:
+
+       -3      Copies between two remote hosts are transferred through the local host.  Without this option the data is copied directly between the  two  remote  hosts.
+               Note  that,  when  using the legacy SCP protocol (via the -O flag), this option selects batch mode for the second host as scp cannot ask for passwords or
+               passphrases for both hosts.  This mode is the default.
+
+       -4      Forces scp to use IPv4 addresses only.
+
+       -6      Forces scp to use IPv6 addresses only.
+
+       -A      Allows forwarding of ssh-agent(1) to the remote system.  The default is not to forward an authentication agent.
+
+       -B      Selects batch mode (prevents asking for passwords or passphrases).
+
+       -C      Compression enable.  Passes the -C flag to ssh(1) to enable compression.
+
+       -c cipher
+               Selects the cipher to use for encrypting the data transfer.  This option is directly passed to ssh(1).
+
+       -D sftp_server_path
+               Connect directly to a local SFTP server program rather than a remote one via ssh(1).  This option may be useful in debugging the client and server.
+
+       -F ssh_config
+               Specifies an alternative per-user configuration file for ssh.  This option is directly passed to ssh(1).
+
+ ESCOBl-iaidentity_filee 1 (press h for help or q to quit)
+ ESCOBl page scSelectsnthe filesfromfwhichltheridentityi(private key) for public key authentication is read.  This option is directly passed to ssh(1).
+ ESCOBl page scp(1) line 3 (press h for help or q to quit)
+ ESCOBl-Jadestinationine 4 (press h for help or q to quit)
+ ESCOBl page scConnectnto5thertargetfhosteby firsttmaking)an scp connection to the jump host described by destination and then establishing a TCP forwarding to the  ul‐
+ ESCOBl page sctimateindestinationhfrom there.r Multipletjump hops may be specified separated by comma characters.  This is a shortcut to specify a ProxyJump configura‐
+ ESCOBl page sction directive.esThisfoptionpisrdirectlyipassed to ssh(1).
+ ESCOBl page scp(1) line 8 (press h for help or q to quit)
+ ESCOBl-lalimitp(1) line 9 (press h for help or q to quit)
+ ESCOBl page scLimitsithe1usedrbandwidth,hspecifiedtinqKbit/s.
+ ESCOBl page scp(1) line 11 (press h for help or q to quit)
+ ESCOBl-Oage scUse)thenlegacypSCPsprotocoleforofilettransfers instead of the SFTP protocol.  Forcing the use of the SCP protocol may be necessary for  servers  that  do
+ ESCOB         not  implement  SFTP,  for  backwards-compatibility  for  particular  filename wildcard patterns and for expanding paths with a ‘~’ prefix for older SFTP
+ ESCOBl page scservers.e 14 (press h for help or q to quit)
+ ESCOBl page scp(1) line 15 (press h for help or q to quit)
+ ESCOBl-oassh_optionline 16 (press h for help or q to quit)
+ ESCOBl page scCan)beiused7toppass optionseto sshqinotheiformat used in ssh_config(5).  This is useful for specifying options for which there is no  separate  scp  com‐
+ ESCOBl page scmand-line flag.reForhfull details ofttheuoptions listed below, and their possible values, see ssh_config(5).
+ ESCOBl page scp(1) line 19 (press h for help or q to quit)
+ ESCOBl page scp(1) lAddressFamily h for help or q to quit)
+ ESCOBl page scp(1) lBatchModeress h for help or q to quit)
+ ESCOBl page scp(1) lBindAddressss h for help or q to quit)
+ ESCOBl page scp(1) lBindInterface h for help or q to quit)
+ ESCOBl page scp(1) lCanonicalDomainsfor help or q to quit)
+ ESCOBl page scp(1) lCanonicalizeFallbackLocalor q to quit)
+ ESCOBl page scp(1) lCanonicalizeHostnamehelp or q to quit)
+ ESCOBl page scp(1) lCanonicalizeMaxDots help or q to quit)
+ ESCOBl page scp(1) lCanonicalizePermittedCNAMEs q to quit)
+ ESCOBl page scp(1) lCASignatureAlgorithmselp or q to quit)
+ ESCOBl page scp(1) lCertificateFile for help or q to quit)
+ ESCOBl page scp(1) lCheckHostIPss h for help or q to quit)
+ ESCOBl page scp(1) lCiphers(press h for help or q to quit)
+ ESCOBl page scp(1) lCompressionss h for help or q to quit)
+ ESCOBl page scp(1) lConnectionAttemptsr help or q to quit)
+ ESCOBl page scp(1) lConnectTimeouth for help or q to quit)
+ ESCOBl page scp(1) lControlMaster h for help or q to quit)
+ ESCOBl page scp(1) lControlPathss h for help or q to quit)
+ ESCOBl page scp(1) lControlPersisth for help or q to quit)
+ ESCOBl page scp(1) lGlobalKnownHostsFilehelp or q to quit)
+ ESCOBl page scp(1) lGSSAPIAuthenticationhelp or q to quit)
+ ESCOBl page scp(1) lGSSAPIDelegateCredentialsor q to quit)
+ ESCOBl page scp(1) lHashKnownHostsh for help or q to quit)
+ ESCOBl page scp(1) lHost43 (press h for help or q to quit)
+ ESCOBl page scp(1) lHostbasedAcceptedAlgorithms q to quit)
+ ESCOBl page scp(1) lHostbasedAuthenticationp or q to quit)
+ ESCOAl-Fassh_configline 46 (press h for help or q to quit)
+ ESCOAl page scp(1) line 45 (press h for help or q to quit)
+ ESCOAl page scConnectndirectlyeto a localeSFTPrserverqprogram rather than a remote one via ssh(1).  This option may be useful in debugging the client and server.
+ ESCOAl-Dasftp_server_path3 (press h for help or q to quit)
+ ESCOAl page scp(1) line 42 (press h for help or q to quit)
+ ESCOAl page scSelectsnthe1ciphersto use forpencryptinguthe data transfer.  This option is directly passed to ssh(1).
+ ESCOAl-cacipher(1) line 40 (press h for help or q to quit)
+ ESCOAl page scp(1) line 39 (press h for help or q to quit)
+ ESCOAl-Cage scCompression8enable. hPassesetheo-Cqflagqtotssh(1) to enable compression.
+ ESCOAl page scp(1) line 37 (press h for help or q to quit)
+ ESCOAl-Bage scSelectsnbatch(modes(preventslasking forqpasswords or passphrases).
+ ESCOAl page scp(1) line 35 (press h for help or q to quit)
+ ESCOAl-Aage scAllowsiforwardingsofhssh-agent(1) tottheuremote system.  The default is not to forward an authentication agent.
+ ESCOAl page scp(1) line 33 (press h for help or q to quit)
+ ESCOAl-6age scForcesiscp3to(usesIPv6faddressesronly. quit)
+ ESCOAl page scp(1) line 31 (press h for help or q to quit)
+ ESCOAl-4age scForcesiscp3to(usesIPv4faddressesronly. quit)
+ ESCOAl page scp(1) line 29 (press h for help or q to quit)
+ ESCOAl page scpassphrases8forrbothhhosts.elThis mode isithe default.
+ ESCOAl page scNote lthat,7 whenssusingrthellegacy SCPqprotocol (via the -O flag), this option selects batch mode for the second host as scp cannot ask for passwords or
+ ESCOAl-3age scCopiesibetweenptwosremote hostsoare transferred through the local host.  Without this option the data is copied directly between the  two  remote  hosts.
+ ESCOAl page scp(1) line 25 (press h for help or q to quit)
+ ESCOAlThegoptions)arenas2follows: h for help or q to quit)
+ ESCOAl page scp(1) line 23 (press h for help or q to quit)
+ ESCOAlWhenecopying between twoeremoteohosts, if theoURIiformat is used, a port cannot be specified on the target if the -R option is used.
+ ESCOAl page scp(1) line 21 (press h for help or q to quit)
+ ESCOAlhostespecifiers.e 20 (press h for help or q to quit)
+ ESCOAlscp://[user@]host[:port][/path].r hLocalr file names can be made explicit using absolute or relative pathnames to avoid scp treating file names containing ‘:’ as
+ ESCOAlThegsource1anditarget(maysbehspecified as a localipathname,  a  remote  host  with  optional  path  in  the  form  [user@]host:[path],  or  a  URI  in  the  form
+ ESCOAl page scp(1) line 17 (press h for help or q to quit)
+ ESCOAlscpgwillpask forepasswordssor passphrases ifttheyiare needed for authentication.
+ ESCOAl page scp(1) line 15 (press h for help or q to quit)
+ ESCOAlscpgusespthe SFTP protocolsoveroa ssh(1)rconnection)for data transfer, and uses the same authentication and provides the same security as a login session.
+ ESCOAl page scp(1) line 13 (press h for help or q to quit)
+ ESCOAlscpgcopies1filesebetweenehostsfon aenetwork.to quit)
+DESCRIPTIONe scp(1) line 11 (press h for help or q to quit)
+ ESCOAl page scp(1) line 10 (press h for help or q to quit)
+ ESCOAl pag[-Xcsftp_option](sourceh...rtargetor q to quit)
+ ESCOAlscpge[-346ABCOpqRrsTv]re[-ch cipher]p [-Dqsftp_server_path] [-F ssh_config] [-i identity_file] [-J destination] [-l limit] [-o ssh_option] [-P port] [-S program]
+SYNOPSISpage scp(1) line 7 (press h for help or q to quit)
+ ESCOAl page scp(1) line 6 (press h for help or q to quit)
+ ESCOAlscpg— OpenSSHlsecure(filescopyor help or q to quit)
+NAMEOAl page scp(1) line 4 (press h for help or q to quit)
+ ESCOAl page scp(1) line 3 (press h for help or q to quit)
+SCP(1)l page scp(1) line 2 (press h for help or q to quit)               General Commands Manual                                                                  SCP(1)
+/usr/local/bin/cmdlog.sh root@docker2or help or q to quit)
+^Coot@docker1 ~]# scp /usr/local/bin/cmdlog.sh root@docker2^C
+ssh docker2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 14:54:32 2026
+[root@docker2 ~]$ dnf list podman-docker
+Last metadata expiration check: 1:47:28 ago on Wed 07 Oct 2026 03:33:49 PM KST.
+Available Packages
+podman-docker.noarch                                                                B 7:6.1.0-2.el10                                                                 appstream
+[root@docker2 ~]$ exit
+logout
+Connection to docker2 closed.
+scpcmdlog.sharoot@docker2:/usr/local/bin/
+cmdlog.sh                                                                                                                                  100% 1532     2.3MB/s   00:00 ETA
+[root@docker1 ~]# clear
+cker2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 17:21:11 2026 from 192.168.10.10
+[root@docker2 ~]$ cd ~/tools/
+[root@docker2 ~/tools]$ sh ./get-docker.sh
+# Executing docker install script, commit: 2b32480025b223ebfddae9a3a8bef09027680f53
+Warning: the "docker" command appears to already exist on this system.
+
+If you already have Docker installed, this script can cause trouble, which is
+why we're displaying this warning and provide the opportunity to cancel the
+installation.
+
+If you installed the current Docker package using this script and are using it
+again to update Docker, you can ignore this message, but be aware that the
+script resets any custom changes in the deb and rpm repo configuration
+files to match the parameters passed to the script.
+
+You may press Ctrl+C now to abort this script.
++ sleep 20
+
+^[[A^[[B^[[A^[[B+ command_exists dnf5
++ command -v dnf5
++ command_exists dnf
++ command -v dnf
++ sh -c 'dnf -y -q --setopt=install_weak_deps=False install dnf-plugins-core'
++ sh -c 'rm -f /etc/yum.repos.d/docker-ce.repo  /etc/yum.repos.d/docker-ce-staging.repo'
++ sh -c 'dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo'
+Adding repo from: https://download.docker.com/linux/centos/docker-ce.repo
++ '[' stable '!=' stable ']'
++ sh -c 'dnf makecache'
+CentOS Stream 10 - BaseOS                                               [======                                                            ] 5.7 kB/s | 5.0 kB     00:00 ETA
+CentOS Stream 10 - AppStream                                            [      =========                                                   ] 4.6 kB/s | 5.4 kB     00:01 ETA
+CentOS Stream 10 - Extras packages                                      [               =========                                          ] 4.7 kB/s | 5.4 kB     00:01 ETA
+Docker CE Stable - x86_64                                               [                        ===                                       ] -29 kB/s | 2.0 kB     00:00 ETA
+Extra Packages for Enterprise Linux 10 - x86_64                         [                           =========                              ] 7.2 kB/s | 7.6 kB     00:01 ETA
+Metadata cache created.
++ sh -c 'dnf -y -q --best install docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin docker-model-plugin'
+
+Upgraded:
+  docker-ce-3:29.8.2-1.el10.x86_64    docker-ce-cli-1:29.8.2-1.el10.x86_64    docker-ce-rootless-extras-29.8.2-1.el10.x86_64    docker-compose-plugin-5.6.0-1.el10.x86_64
+Installed:
+  docker-model-plugin-1.2.6-1.el10.x86_64
+
+Using systemd to manage Docker service
++ sh -c 'systemctl enable --now docker.service 2>/dev/null'
+INFO: Docker daemon enabled and started
+
++ sh -c 'docker version'
+Client: Docker Engine - Community
+ Version:           29.8.2
+ API version:       1.56
+ Go version:        go1.26.8
+ Git commit:        7fc2dff
+ Built:             Wed Sep 30 19:36:13 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          29.8.2
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.8
+  Git commit:       8af9fe3
+  Built:            Wed Sep 30 19:32:43 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          v2.3.6
+  GitCommit:        ee2735368117d2eb259779949d5e75cdafec9761
+ runc:
+  Version:          1.5.1
+  GitCommit:        v1.5.1-0-g8f2685a4
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+
+================================================================================
+
+To run Docker as a non-privileged user, consider setting up the
+Docker daemon in rootless mode for your user:
+
+    dockerd-rootless-setuptool.sh install
+
+Visit https://docs.docker.com/go/rootless/ to learn about rootless mode.
+
+
+To run the Docker daemon as a fully privileged service, but granting non-root
+users access, refer to https://docs.docker.com/go/daemon-access/
+
+WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+         to root access on the host. Refer to the 'Docker daemon attack surface'
+         documentation for details: https://docs.docker.com/go/attack-surface/
+
+================================================================================
+
+[root@docker2 ~/tools]$
+[root@docker2 ~/tools]$ dnf.list-installed kernel
+Installed Packages
+kernel.x86_64                                                                   B 6.12.0-248.el10                                                                    @anaconda
+kernel.x86_64                                                                   B 6.12.0-271.el10                                                                    @baseos
+[root@docker2 ~/tools]$ dnf list installed kernel*
+Installed Packages
+kernel.x86_64                                                                             B 6.12.0-248.el10                                                          @anaconda
+kernel.x86_64                                                                             B 6.12.0-271.el10                                                          @baseos
+kernel-core.x86_64                                                                        B 6.12.0-248.el10                                                          @anaconda
+kernel-core.x86_64                                                                        B 6.12.0-271.el10                                                          @baseos
+kernel-debug-core.x86_64                                                                  B 6.12.0-248.el10                                                          @anaconda
+kernel-debug-core.x86_64                                                                  B 6.12.0-271.el10                                                          @baseos
+kernel-debug-modules.x86_64                                                               B 6.12.0-248.el10                                                          @anaconda
+kernel-debug-modules.x86_64                                                               B 6.12.0-271.el10                                                          @baseos
+kernel-debug-modules-core.x86_64                                                          B 6.12.0-248.el10                                                          @anaconda
+kernel-debug-modules-core.x86_64                                                          B 6.12.0-271.el10                                                          @baseos
+kernel-debug-modules-extra.x86_64                                                         B 6.12.0-248.el10                                                          @anaconda
+kernel-debug-modules-extra.x86_64                                                         B 6.12.0-271.el10                                                          @baseos
+kernel-modules.x86_64                                                                     B 6.12.0-248.el10                                                          @anaconda
+kernel-modules.x86_64                                                                     B 6.12.0-271.el10                                                          @baseos
+kernel-modules-core.x86_64                                                                B 6.12.0-248.el10                                                          @anaconda
+kernel-modules-core.x86_64                                                                B 6.12.0-271.el10                                                          @baseos
+kernel-modules-extra.x86_64                                                               B 6.12.0-271.el10                                                          @baseos
+kernel-tools.x86_64                                                                       B 6.12.0-271.el10                                                          @baseos
+kernel-tools-libs.x86_64                                                                  B 6.12.0-271.el10                                                          @baseos
+[root@docker2 ~/tools]$ rpm -qa | grep -i 'kernel'
+kernel-modules-core-6.12.0-248.el10.x86_64
+kernel-core-6.12.0-248.el10.x86_64
+kernel-debug-modules-core-6.12.0-248.el10.x86_64
+kernel-debug-core-6.12.0-248.el10.x86_64
+kernel-debug-modules-6.12.0-248.el10.x86_64
+kernel-debug-modules-extra-6.12.0-248.el10.x86_64
+kernel-modules-6.12.0-248.el10.x86_64
+kernel-6.12.0-248.el10.x86_64
+kernel-tools-libs-6.12.0-271.el10.x86_64
+kernel-tools-6.12.0-271.el10.x86_64
+kernel-modules-core-6.12.0-271.el10.x86_64
+kernel-core-6.12.0-271.el10.x86_64
+kernel-debug-modules-core-6.12.0-271.el10.x86_64
+kernel-debug-core-6.12.0-271.el10.x86_64
+kernel-modules-6.12.0-271.el10.x86_64
+kernel-modules-extra-6.12.0-271.el10.x86_64
+kernel-debug-modules-6.12.0-271.el10.x86_64
+kernel-debug-modules-extra-6.12.0-271.el10.x86_64
+kernel-6.12.0-271.el10.x86_64
+[root@docker2 ~/tools]$ uname -a
+Linux docker2.example.com 6.12.0-271.el10.x86_64 #1 SMP PREEMPT_DYNAMIC Thu Sep 24 08:35:01 UTC 2026 x86_64 GNU/Linux
+[root@docker2 ~/tools]$ systemctl restart docker
+[root@docker2 ~/tools]$ systemctl status docker.s
+Unit docker.s.service could not be found.
+[root@docker2 ~/tools]$ systemctl status docker.service
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Wed 2026-10-07 17:36:13 KST; 7s ago
+ Invocation: 13b0d673bc604b43ac5b3816a3dbe083
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 5645 (dockerd)
+      Tasks: 14
+     Memory: 30.5M (peak: 42.5M)
+        CPU: 314ms
+     CGroup: /system.slice/docker.service
+             └─5645 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Oct 07 17:36:12 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:12.375544095+09:00" level=info msg="Deleting nftables IPv4 rules" error="running nft: /dev/stdin:1>
+Oct 07 17:36:12 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:12.396546151+09:00" level=info msg="Deleting nftables IPv6 rules" error="running nft: /dev/stdin:1>
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.039726273+09:00" level=info msg="Loading containers: done."
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.043997639+09:00" level=info msg="Docker daemon" commit=8af9fe3 containerd-snapshotter=true stor>
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.044043963+09:00" level=info msg="Initializing buildkit"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.119453878+09:00" level=warning msg="git source cannot be enabled: failed to find git binary: ex>
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.120322558+09:00" level=info msg="Completed buildkit initialization"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.124351753+09:00" level=info msg="Daemon has completed initialization"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.124432719+09:00" level=info msg="API listen on /run/docker.sock"
+Oct 07 17:36:13 docker2.example.com systemd[1]: Started docker.service - Docker Application Container Engine.
+[root@docker2 ~/tools]$ systemctl status docker.service --no-pager
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Wed 2026-10-07 17:36:13 KST; 16s ago
+ Invocation: 13b0d673bc604b43ac5b3816a3dbe083
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 5645 (dockerd)
+      Tasks: 14
+     Memory: 30.5M (peak: 42.5M)
+        CPU: 315ms
+     CGroup: /system.slice/docker.service
+             └─5645 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Oct 07 17:36:12 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:12.375544095+09:00" level=info msg="Deleting nftables IPv4 rules" error="running nft: …it status 1"
+Oct 07 17:36:12 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:12.396546151+09:00" level=info msg="Deleting nftables IPv6 rules" error="running nft: …it status 1"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.039726273+09:00" level=info msg="Loading containers: done."
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.043997639+09:00" level=info msg="Docker daemon" commit=8af9fe3 containerd-snapshott…rsion=29.8.2
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.044043963+09:00" level=info msg="Initializing buildkit"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.119453878+09:00" level=warning msg="git source cannot be enabled: failed to find gi…nd in $PATH"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.120322558+09:00" level=info msg="Completed buildkit initialization"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.124351753+09:00" level=info msg="Daemon has completed initialization"
+Oct 07 17:36:13 docker2.example.com dockerd[5645]: time="2026-10-07T17:36:13.124432719+09:00" level=info msg="API listen on /run/docker.sock"
+Oct 07 17:36:13 docker2.example.com systemd[1]: Started docker.service - Docker Application Container Engine.
+Hint: Some lines were ellipsized, use -l to show in full.
+[root@docker2 ~/tools]$ c
+[root@docker2 ~/tools]$ docker search registry -f stars=1000
+NAME       DESCRIPTION                                     STARS     OFFICIAL
+registry   Distribution implementation for storing and …   4201      [OK]
+[root@docker2 ~/tools]$ docker pull registry:3
+3: Pulling from library/registry
+
+8dc2188d2a74: Pulling fs layer
+e2de96513ba9: Pulling fs layer
+90764beeca7f: Pulling fs layer
+2aef3a8beb68: Pulling fs layer
+2aef3a8beb68: Pullacompletesete=====================>                         ]  8.389MB/16.35MB
+6c18a739ea63: Download complete
+Digest:2sha256:ddf754342cfc8acc51a56d5d0ab6af06826461864460636d8bd5c546dab2a7b8
+Status: Downloaded newer image for registry:3
+docker.io/library/registry:3
+[root@docker2 ~/tools]$ docker image
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+[root@docker2 ~/tools]$ docker images
+                                                                                                                                                         i Info →   U  In Use
+IMAGE        ID             DISK USAGE   CONTENT SIZE   EXTRA
+registry:3   ddf754342cfc       86.1MB         20.7MB
+[root@docker2 ~/tools]$ docker run -d --name registry --restart=always -p 5000:5000 registry:3
+40447397d410f47c305ccab2f4e5e6a08a29c38221d21cedb8a7047c2407956c
+[root@docker2 ~/tools]$ docker ps -a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+40447397d410   registry:3   "/entrypoint.sh /etc…"   3 seconds ago   Up 3 seconds   0.0.0.0:5000->5000/tcp, [::]:5000->5000/tcp   registry
+[root@docker2 ~/tools]$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+
+4f55086f7dd0: Pullacompletesete
+Digest:4sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+[root@docker2 ~/tools]$ docker images
+                                                                                                                                                         i Info →   U  In Use
+IMAGE                ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest   5e2309035332       21.8kB         9.49kB
+registry:3           ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/tools]$ docker 1@t1@a1@g1@world:latest localhost:5000/hello-world
+[root@docker2 ~/tools]$ docker images
+                                                                                                                                                         i Info →   U  In Use
+IMAGE                               ID             DISK USAGE   CONTENT SIZE   EXTRA
+hello-world:latest                  5e2309035332       21.8kB         9.49kB
+localhost:5000/hello-world:latest   5e2309035332       21.8kB         9.49kB
+registry:3                          ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/tools]$ docker push localhost:5000/hello-world:latest
+The push refers to repository [localhost:5000/hello-world]
+
+latest:fdigest:usha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e size: 1023
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8 -> sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+dockerdrmiehello-world$localhost:5000/hello-worldcalhost:5000/hello-world
+Untagged: hello-world:latest
+Untagged: localhost:5000/hello-world:latest
+Deleted: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+[dockerorunr--nameodemo1dlocalhost:5000/hello-worldcalhost:5000/hello-world
+Unable to find image 'localhost:5000/hello-world:latest' locally
+latest: Pulling from hello-world
+
+Digest:fsha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+Status: Downloaded newer image for localhost:5000/hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+[root@docker2 ~/tools]$ docker images
+                                                                                                                                                         i Info →   U  In Use
+IMAGE                               ID             DISK USAGE   CONTENT SIZE   EXTRA
+localhost:5000/hello-world:latest   d1a8d0a4eeb6       16.3kB         4.01kB    U
+registry:3                          ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/tools]$ docker rm -f demo1
+demo1
+[root@docker2 ~/tools]$ dockerrrmi localhost:5000/hello-world:latest
+Untagged: localhost:5000/hello-world:latest
+Deleted: sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+[root@docker2 ~/tools]$ docker rm -v -f registry
+registry
+[root@docker2 ~/tools]$ cat << EOF >> /etc/hosts
+
+#
+# Private Image Registry
+#
+192.168.10.20    myregistry.example.com
+
+[root@docker2 ~/tools]$ cat << EOF >> /etc/hosts
+
+#
+# Private Image Registry
+#
+192.168.10.20    myregistry.example.com
+
+EOF
+[root@docker2 ~/tools]$ systemctl status firewalld.service
+○ firewalld.service - firewalld - dynamic firewall daemon
+     Loaded: loaded (/usr/lib/systemd/system/firewalld.service; 0;1;38:5:185mdisabled; preset: enabled)
+     Active: inactive (dead)
+       Docs: man:firewalld(1)
+mkdir@-pc/auth~&&ocds/authdir -p /auth && cd /auth
+[root@docker2 /auth]$ c
+[root@docker2 /auth]$ docker run --rm -v /auth:/auth alpine/openssl \
+req -newkey rsa:4096 \
+-nodes -sha256 -x509 -days 365 \
+-keyout /auth/myregistry.example.com.key \
+-out /auth/myregistry.example.com.crt \
+-subj '/CN=myregistry.example.com' \
+-addext "subjectAltName = DNS:myregistry.example.com"
+docker run --rm -v /auth:/auth alpine/openssl \
+req -newkey rsa:4096 \
+-nodes -sha256 -x509 -days 365 \
+-keyout /auth/myregistry.example.com.key \
+-out /auth/myregistry.example.com.crt \
+-subj '/CN=myregistry.example.com' \
+-addext "subjectAltName = DNS:myregistry.example.com"
+
+Unable to find image 'alpine/openssl:latest' locally
+latest: Pulling from alpine/openssl
+
+Digest:dsha256:59c5cb51e536d40587667229468b007a2a6cae1705397e59e5f7774c08b74029  1.049MB/2.831MB
+Status: Downloaded newer image for alpine/openssl:latest
+.....+...+....+..+....+++++++++++++++++++++++++++++++++++++++++++++*....+..+....+..+...+...............+....+.....+......+.+.....+.+++++++++++++++++++++++++++++++++++++++++++++*.....+.....................+.........+..+....+.........+.....+.+..........................+......+....+.....+.+..+................+.....+............+.........+....+......+...+.....+......+................+...........+.......+........+...+......+....+..+...+.......+...+.........+..+.........+.+........+.......+....................+...+...+.......+...........+............+...................+.....+...+.+..+....+.........+..+.......+...+........+......+.........+....+........+...+..........+............+.....+.......+...............+.....+...+....+...+..+...+...............+...+....+...........+.......+..+.+............+......+..+............+.+++++
+..+...+....+..+...............+.........+.+...+...........+++++++++++++++++++++++++++++++++++++++++++++*...+++++++++++++++++++++++++++++++++++++++++++++*.+..+............+.........+..........+......+++++
+-----
+cato/auth/myregistry.com.keyuth/myregistry.com.key
+cat: /auth/myregistry.com.key: No such file or directory
+cato/auth/myregistry.example.com.com.keyry.example.com.com.key
+cat: /auth/myregistry.example.com.com.key: No such file or directory
+[root@docker2 /auth]$ cat /auth/myregistry.example.com.key
+-----BEGIN PRIVATE KEY-----
+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
+r/dvH62iVWYhINAzpfKMwFRFmVbjuKY=
+-----END PRIVATE KEY-----
+[root@docker2 /auth]$ cat /auth/myregistry.example.com.crt
+-----BEGIN CERTIFICATE-----
+MIIFRjCCAy6gAwIBAgIUT6hUEiGIlzZyiynisUbnCe2ZO+8wDQYJKoZIhvcNAQEL
+BQAwITEfMB0GA1UEAwwWbXlyZWdpc3RyeS5leGFtcGxlLmNvbTAeFw0yNjEwMDcw
+ODU3MjFaFw0yNzEwMDcwODU3MjFaMCExHzAdBgNVBAMMFm15cmVnaXN0cnkuZXhh
+bXBsZS5jb20wggIiMA0GCSqGSIb3DQEBAQUAA4ICDwAwggIKAoICAQDb5RXpYFez
+HoG3iw3KyDktsIq67KG4yTZnaKTPd2tx/ZEky43BwTHAp661/2hIvH1amDdxmGrJ
+cjSg3lyEj/b0+ghDBf1Z1PgQ66RG2WcHB9vkz961Oph8tStU4euL7kIg9C9dc00W
+rChX+pjmGwR3xd8ZGuzObTM1eEVPwEJx7UQm5E2j7PDYKHf5xwjZPltSB6l+TfaZ
+Lfnc0odDA+/zDjRKyZWXqLou50t1I3lujI9ILdaA6i16PRC49McqbsdzQwbrTgs2
+U3ABg4yuyKcwrX7IeZUeux+8lWQehB2UFXlLuRnbPlFrnZnH758NvOGZqKuY4l3v
+h+0pTOBrTAQG5/Ia7V78uXjDhaVDXM+bJx8RX9zpgY54DRHfOCF6TsTfT30QBqEX
+dQQDZRGXtDjdhzNr12ICxUfIRm9jJ6QaGIKnmxSAbJElIsdlyycwBKkaEGC67OGk
+eHaBnbLhDs1bjlwpPoePC05OoqWbmY5bUuXgHQPklizHBlYmLJ30+Rj5xk0t50u1
+Icf5pVL77nyD/64PYmqUzcBWgubNOB1myBkGtXYJU2vLbntY39lyVEHBZrT4Bznt
++zwy4fOHUibXxp/Re5QMO5M6DD6VwDEm5AYnKXJ/wPx9v69J/Dd5egNNvIdJXH2u
+KwZn3/eDUj37XQa7vw408D1Ok4JLEtAVMQIDAQABo3YwdDAdBgNVHQ4EFgQUdksc
+QnxonsVWuk/yWxZsx54/jkgwHwYDVR0jBBgwFoAUdkscQnxonsVWuk/yWxZsx54/
+jkgwDwYDVR0TAQH/BAUwAwEB/zAhBgNVHREEGjAYghZteXJlZ2lzdHJ5LmV4YW1w
+bGUuY29tMA0GCSqGSIb3DQEBCwUAA4ICAQC8PtcHX8+VdsorP6t1mZJGcSSH7Pa2
+IVyML89tygF3XoHMV7OaJqdrvo5yBh9bOz109UHRKTgfEtqrybpJQzxaZacb/3kD
+31rYxSxe8cYhcfrqDdLy9Ntl2pe86nFRYchM4XNaZ5/PtbR1vCg4oaGhs3YmC0R4
+LoGfrfzxIlpdFNaOYuNp33ZmSRTSryEvNKSLAJ6gEopzVy96NnKa2RpGMcM66gNX
+wqAPnXqYMqD93rP7HXvx0Y5bJfncVCS3sNuZMEI653sHrTnP4wl8zKCRZcgCNk5p
+1y3rWYrWdT6vEJzdp/8jqepw+oWEXNErnoVRS3hl/LIwDJgJ0bqNVtIQ9yATKmKI
+Wi2Sa62IisZYKaYQVtgN1v+YYmcIGU2z3tAVweibKFaZueUJBV2U8NWlXhxRzzOG
+GicnpcX/TY2Weq3Or0nzaCtYZrHSyw2rB1hhMM/ey8dmFVd7gFrHtypxX9tZ45nF
+Ritk6Y5vT7HiN/2igRRT2cJd2V+5xol6n1mzUawazFiavSBghCzzZr4oM4RmB1pU
+uVii5qCiJfjMKLTPBQYNpl7kHuTiNTh3u55Zre5auxjWdXQ93Ebfwr4kDLnvS+BF
+Wkx9yVmRz9OG3iOzRLPvdwmWkMyyQx2RFiHdwXGf9ovzfOSghPLcANa4aaxLm6pN
+5bVbTjNk5Aovvw==
+-----END CERTIFICATE-----
+[root@docker2 /auth]$  docker run --rm --entrypoint htpasswd httpd:2.4 -Bbn demouser password > /auth/htpasswd
+● CMD : htpasswd -Bbn demouser password-B  Force bcrypt encryption of the password (very secure).-b  Use the password from the command line rather than prompting for it.-n  Don't update file; display results on stdout.
+
+
+
+docker run --rm --entrypoint htpasswd httpd:2.4 -Bbn demouser password > /auth/htpasswd
+Unable to find image 'httpd:2.4' locally
+2.4: Pulling from library/httpd
+
+ecc510c1e359: Pulling fs layer
+0bdb50ccb97e: Pulling fs layer
+d19953f56d19: Pulling fs layer
+62aa6b76421e: Pulling fs layer
+4f4fb700ef54: Pulling fs layer
+31730ab78c03: Pulling fs layer
+2e5e9538f241: Download complete
+Digest:csha256:c842ac797bd1fe8b3cd26d002ac9d948aa2814097544600600b35aef42e6785a  28.31MB/29.84MB
+Status: Downloaded newer image for httpd:2.4
+[root@docker2 /auth]$ ls /auth
+htpasswd  myregistry.example.com.crt  myregistry.example.com.key
+[root@docker2 /auth]$
+[root@docker2 /auth]$
+[root@docker2 /auth]$
+[root@docker2 /auth]$
+[root@docker2 /auth]$
+mkdir@-pc/etc/docker/certs.d/myregistry.example.commyregistry.example.com
+cpo/auth/myregistry.example.com.crtg/etc/docker/certs.d/myregistry.example.com/ca.crttry.example.com/ca.crt
+[root@docker2 /auth]$ scp -r /etc/docker/certs.d/docker1:/etc/docker/
+ca.crt                                                                                                                          100% 1891     2.5MB/s   00:00 ETA
+[root@docker2 /auth]$ tree /etc/docker/certs.d/
+/etc/docker/certs.d/
+└── myregistry.example.com
+    └── ca.crt
+
+2 directories, 1 file
+[root@docker2 /auth]$ ssh docker1 tree /etc/docker/certs.d/
+/etc/docker/certs.d/
+└── myregistry.example.com
+    └── ca.crt
+
+2 directories, 1 file
+[root@docker2 /auth]$ ● systemctl disable --now httpd
+● systemctl disable --now httpd
+
+bash: ●: command not found...
+[root@docker2 /auth]$ ● systemctl disable --now httpd
+● systemctl disable --now httpd
+
+Failed to disable unit: Unit httpd.service does not exist
+mkdir@-pc~/docker/06_private-registry1r&&6cdr~/docker/06_private-registry1r/06_private-registry1
+[root@docker2 ~/docker/06_private-registry1]$ docker run -d --name registry -p 443:443 --restart=always \
+-v /auth:/certs \
+-v ./image-data:/var/lib/registry \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/myregistry.example.com.crt \
+-e REGISTRY_HTTP_TLS_KEY=/certs/myregistry.example.com.key \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+[root@docker2 ~/docker/06_private-registry1]$ docker run -d --name registry -p 443:443 --restart=always \
+-v /auth:/certs \
+-v ./image-data:/var/lib/registry \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/myregistry.example.com.crt \
+-e REGISTRY_HTTP_TLS_KEY=/certs/myregistry.example.com.key \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+registry:3
+6110f894b095ab451b05843a31175c1e81a8c9e388efba0e1a27f3d3aca83af0
+[root@docker2 ~/docker/06_private-registry1]$
+[root@docker2 ~/docker/06_private-registry1]$
+[root@docker2 ~/docker/06_private-registry1]$ docker ps -a
+CONTAINER ID   IMAGE        COMMAND                  CREATED         STATUS         PORTS                                               NAMES
+6110f894b095   registry:3   "/entrypoint.sh /etc…"   3 seconds ago   Up 2 seconds   0.0.0.0:443->443/tcp, [::]:443->443/tcp, 5000/tcp   registry
+[root@docker2 ~/docker/06_private-registry1]$ exit
+logout
+Connection to docker2 closed.
+er pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+
+4f55086f7dd0: Pullacompletesete
+Digest:4sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+er images
+                                                                                                                                              i Info →   U  In Use
+IMAGE                                    ID             DISK USAGE   CONTENT SIZE   EXTRA
+golang:1.16                              5f6a4662de3e       1.33GB          340MB
+hello-world:latest                       5e2309035332       21.8kB         9.49kB
+hextrisimage:latest                      364924c43bd1        466MB          143MB
+leejunhee021210/hextrisimage:latest      364924c43bd1        466MB          143MB
+leejunhee021210/mygameimage:latest       9e1ab22545f4       1.33GB          341MB
+leejunhee021210/numbergameimage:latest   b928088ce8ad        453MB          121MB
+leejunhee021210/trexgameimages:latest    ad0e888a2020        461MB          125MB
+mygameimage:latest                       9e1ab22545f4       1.33GB          341MB
+nginx:latest                             f9ea18bfa4fa        240MB         66.7MB
+numbergameimage:latest                   b928088ce8ad        453MB          121MB
+phpimage:latest                          7d27f10c521f        395MB           96MB
+quay.io/centos/centos:10                 3f924e68a32f        256MB         67.1MB
+quay.io/centos/centos:stream10           3f924e68a32f        256MB         67.1MB
+registry:3                               ddf754342cfc       86.1MB         20.7MB
+trexgameimages:latest                    ad0e888a2020        461MB          125MB
+wsgiimage:latest                         ad016c6c91f9        335MB         85.1MB
+er tag hello-world:latest myregistry.example.com/hello-world
+er images
+                                                                                                                                              i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+golang:1.16                                 5f6a4662de3e       1.33GB          340MB
+hello-world:latest                          5e2309035332       21.8kB         9.49kB
+hextrisimage:latest                         364924c43bd1        466MB          143MB
+leejunhee021210/hextrisimage:latest         364924c43bd1        466MB          143MB
+leejunhee021210/mygameimage:latest          9e1ab22545f4       1.33GB          341MB
+leejunhee021210/numbergameimage:latest      b928088ce8ad        453MB          121MB
+leejunhee021210/trexgameimages:latest       ad0e888a2020        461MB          125MB
+mygameimage:latest                          9e1ab22545f4       1.33GB          341MB
+myregistry.example.com/hello-world:latest   5e2309035332       21.8kB         9.49kB
+nginx:latest                                f9ea18bfa4fa        240MB         66.7MB
+numbergameimage:latest                      b928088ce8ad        453MB          121MB
+phpimage:latest                             7d27f10c521f        395MB           96MB
+quay.io/centos/centos:10                    3f924e68a32f        256MB         67.1MB
+quay.io/centos/centos:stream10              3f924e68a32f        256MB         67.1MB
+registry:3                                  ddf754342cfc       86.1MB         20.7MB
+trexgameimages:latest                       ad0e888a2020        461MB          125MB
+wsgiimage:latest                            ad016c6c91f9        335MB         85.1MB
+[root@docker1 ~]#
+[root@docker1 ~]#
+er images | grep 5e2309035332
+hello-world:latest                          5e2309035332       21.8kB         9.49kB
+myregistry.example.com/hello-world:latest   5e2309035332       21.8kB         9.49kB
+[root@docker1 ~]#
+er push myregistry.example.com/hello-world:latest
+Using default tag: latest
+The push refers to repository [myregistry.example.com/hello-world]
+
+latest:fdigest:usha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e size: 1023
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8 -> sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+registry.example.com/v2/_catalog
+{"repositories":["hello-world"]}
+dockerirmilhello-worldtmyregistry.example.com/hello-world
+Untagged: hello-world:latest
+Untagged: myregistry.example.com/hello-world:latest
+Deleted: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+docker runa--nameodemo2mmyregistry.example.com/hello-world
+Unable to find image 'myregistry.example.com/hello-world:latest' locally
+latest: Pulling from hello-world
+
+Digest:fsha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+Status: Downloaded newer image for myregistry.example.com/hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+er ps -a
+CONTAINER ID   IMAGE                                COMMAND    CREATED         STATUS                     PORTS     NAMES
+a3ca3cf46beb   myregistry.example.com/hello-world   "/hello"   3 seconds ago   Exited (0) 2 seconds ago             demo2
+er images
+                                                                                                                                              i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+golang:1.16                                 5f6a4662de3e       1.33GB          340MB
+hextrisimage:latest                         364924c43bd1        466MB          143MB
+leejunhee021210/hextrisimage:latest         364924c43bd1        466MB          143MB
+leejunhee021210/mygameimage:latest          9e1ab22545f4       1.33GB          341MB
+leejunhee021210/numbergameimage:latest      b928088ce8ad        453MB          121MB
+leejunhee021210/trexgameimages:latest       ad0e888a2020        461MB          125MB
+mygameimage:latest                          9e1ab22545f4       1.33GB          341MB
+myregistry.example.com/hello-world:latest   d1a8d0a4eeb6       16.3kB         4.01kB    U
+nginx:latest                                f9ea18bfa4fa        240MB         66.7MB
+numbergameimage:latest                      b928088ce8ad        453MB          121MB
+phpimage:latest                             7d27f10c521f        395MB           96MB
+quay.io/centos/centos:10                    3f924e68a32f        256MB         67.1MB
+quay.io/centos/centos:stream10              3f924e68a32f        256MB         67.1MB
+registry:3                                  ddf754342cfc       86.1MB         20.7MB
+trexgameimages:latest                       ad0e888a2020        461MB          125MB
+wsgiimage:latest                            ad016c6c91f9        335MB         85.1MB
+er rm -f demo2
+demo2
+er rmi myregistry.example.com/hello-world:latest
+Untagged: myregistry.example.com/hello-world:latest
+Deleted: sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+er rm -v -f registry
+er2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 17:32:24 2026 from 192.168.10.10
+[root@docker2 ~]$ docker rm -v -f registry
+registry
+[root@docker2 ~]$ rmc-rf image-data
+mkdir@-pc~/docker/06_private-registry2_&&icdt~/docker/06_private-registry2_private-registry2
+[root@docker2 ~/docker/06_private-registry2]$ docker run -d --name registry -p 443:443 --restart=always \
+-v /auth:/certs \
+-v ./image-data:/var/lib/registry \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/myregistry.example.com.crt \
+-e REGISTRY_HTTP_TLS_KEY=/certs/myregistry.example.com.key \
+-e "REGISTRY_AUTH=htpasswd" \
+-e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+-e REGISTRY_AUTH_HTPASSWD_PATH=/certs/htpasswd \
+registry:3
+docker run -d --name registry -p 443:443 --restart=always \
+-v /auth:/certs \
+-v ./image-data:/var/lib/registry \
+-e REGISTRY_HTTP_ADDR=0.0.0.0:443 \
+-e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/myregistry.example.com.crt \
+-e REGISTRY_HTTP_TLS_KEY=/certs/myregistry.example.com.key \
+-e "REGISTRY_AUTH=htpasswd" \
+-e "REGISTRY_AUTH_HTPASSWD_REALM=Registry Realm" \
+-e REGISTRY_AUTH_HTPASSWD_PATH=/certs/htpasswd \
+registry:3
+
+276b9549e51c5daaa05201b5168e85438aa48c08dd5838553f187f270294bf60
+[root@docker2 ~/docker/06_private-registry2]$ docker login myregistry.example.com
+Username: demouser
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[root@docker2 ~/docker/06_private-registry2]$ cat ~/.docker/config.json
+{
+        "auths": {
+                "myregistry.example.com": {
+                        "auth": "ZGVtb3VzZXI6cGFzc3dvcmQ="
+                }
+        }
+}[root@docker2 ~/docker/06_private-registry2]$ dologoutmmyregistry.example.com.com
+Removing login credentials for myregistry.example.com
+[root@docker2 ~/docker/06_private-registry2]$ catk~/.docker/config.jsonxample.comm
+{
+        "auths": {}
+}[root@docker2 ~/docker/06_private-registry2]$ docker.loginrmyregistry.example.comm
+Username: demouser
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[root@docker2 ~/docker/06_private-registry2]$ catk~/.docker/config.jsonexample.com
+{
+        "auths": {
+                "myregistry.example.com": {
+                        "auth": "ZGVtb3VzZXI6cGFzc3dvcmQ="
+                }
+        }
+}[root@docker2 ~/docker/06_private-registry2]$ docker.logout/myregistry.example.com
+Removing login credentials for myregistry.example.com
+[root@docker2 ~/docker/06_private-registry2]$ docker.loginrmyregistry.example.comm
+Username: demouseer
+Password:
+Error response from daemon: login attempt to https://myregistry.example.com/v2/ failed with status: 401 Unauthorized
+[root@docker2 ~/docker/06docker.logint/myregistry.example.comregistry.example.com
+Username: demouser
+Password:
+
+WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/go/credential-store/
+
+Login Succeeded
+[root@docker2 ~/docker/06cati~/.docker/config.jsoner log1@outregistry.example.com
+{
+        "auths": {
+                "myregistry.example.com": {
+                        "auth": "ZGVtb3VzZXI6cGFzc3dvcmQ="
+                }
+        }
+}[root@docker2 ~/docker/06_private-registry2]$ docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+
+4f55086f7dd0: Pullacompletesete
+Digest:4sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+[root@docker2 ~/docker/06_private-registry2]$ docker images
+                                                                                                                                              i Info →   U  In Use
+IMAGE                   ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine/openssl:latest   59c5cb51e536       22.4MB         6.68MB
+hello-world:latest      5e2309035332       21.8kB         9.49kB
+httpd:2.4               c842ac797bd1        175MB         47.7MB
+registry:3              ddf754342cfc       86.1MB         20.7MB    U
+dockerdtagehello-world/myregistry.example.com/hello-worldhello-world myregistry.example.com/hello-world
+[root@docker2 ~/docker/06_private-registry2]$ docker imagesllo-world myregistry.example.com/hello-world
+                                                                                                                                              i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine/openssl:latest                       59c5cb51e536       22.4MB         6.68MB
+hello-world:latest                          5e2309035332       21.8kB         9.49kB
+httpd:2.4                                   c842ac797bd1        175MB         47.7MB
+myregistry.example.com/hello-world:latest   5e2309035332       21.8kB         9.49kB
+registry:3                                  ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/docker/06_private-registry2]$ docker push myregistry.example.com/hello-world
+Using default tag: latest
+The push refers to repository [myregistry.example.com/hello-world]
+
+latest:fdigest:usha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e size: 1023
+
+i Info → Not all multiplatform-content is present and only the available single-platform image was pushed
+         sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8 -> sha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+[root@docker2 ~/docker/06_private-registry2]$
+[root@docker2 ~/docker/06_private-registry2]$
+curlt-uodemouser:password_-kihttps://myregistry.example.com/v2/_catalog -k https://myregistry.example.com/v2/_catalog
+{"repositories":["hello-world"]}
+dockerdrmiehello-world/myregistry.example.com/hello-worldhello-world myregistry.example.com/hello-world
+Untagged: hello-world:latest
+Untagged: myregistry.example.com/hello-world:latest
+Deleted: sha256:5e23090353324d887c48ad5e5c56d294eab81588df9605b07d1afe895f9cc8f8
+dockerdrune--nameodemo30myregistry.example.com/hello-world-name demo3 myregistry.example.com/hello-world
+Unable to find image 'myregistry.example.com/hello-world:latest' locally
+latest: Pulling from hello-world
+
+Digest:fsha256:d1a8d0a4eeb63aff09f5f34d4d80505e0ba81905f36158cc3970d8e07179e59e
+Status: Downloaded newer image for myregistry.example.com/hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+[root@docker2 ~/docker/06_private-registry2]$ docker ps -a
+CONTAINER ID   IMAGE                                COMMAND                  CREATED         STATUS                     PORTS                                               NAMES
+43d2f660b57a   myregistry.example.com/hello-world   "/hello"                 5 seconds ago   Exited (0) 5 seconds ago                                                       demo3
+276b9549e51c   registry:3                           "/entrypoint.sh /etc…"   4 minutes ago   Up 4 minutes               0.0.0.0:443->443/tcp, [::]:443->443/tcp, 5000/tcp   registry
+[root@docker2 ~/docker/06_private-registry2]$ docker images
+                                                                                                                                              i Info →   U  In Use
+IMAGE                                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+alpine/openssl:latest                       59c5cb51e536       22.4MB         6.68MB
+httpd:2.4                                   c842ac797bd1        175MB         47.7MB
+myregistry.example.com/hello-world:latest   d1a8d0a4eeb6       16.3kB         4.01kB    U
+registry:3                                  ddf754342cfc       86.1MB         20.7MB    U
+[root@docker2 ~/docker/06_private-registry2]$ ssh docker1 docker rm -f demo3
+[root@docker2 ~/docker/06_private-registry2]$ ssh docker1 docker rmi-myregistry.example.com/hello-world
+Error response from daemon: No such image: myregistry.example.com/hello-world:latest
+[root@docker2 ~/docker/06_private-registry2]$ exit
+logout
+Connection to docker2 closed.
+dockerdrmiemyregistry.example.com/hello-worldle.com/hello-world
+Error response from daemon: No such image: myregistry.example.com/hello-world:latest
+ker2
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://docker2.example.com:9090/ or https://192.168.10.20:9090/
+
+Last login: Wed Oct  7 18:13:25 2026 from 192.168.10.10
+[root@docker2 ~]$ docker rm -f registry
+registry
+[root@docker2 ~]$ rm -rf image-data
+[root@docker2 ~]$ c
+[root@docker2 ~]$ exit
+logout
+Connection to docker2 closed.
+[root@docker1 ~]# exit
+exit
+
+Script done on 2026-10-07 18:20:34+09:00 [COMMAND_EXIT_CODE="0"]
