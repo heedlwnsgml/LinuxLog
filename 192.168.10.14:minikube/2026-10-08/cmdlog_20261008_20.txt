@@ -5,3 +5,587 @@ root@minikube:~/tools/minikube# exit
 exit
 
 Script done on 2026-10-08 20:33:26+09:00 [COMMAND_EXIT_CODE="127"]
+Script started on 2026-10-08 20:35:50+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="126" LINES="39"]
+t
+😄  minikube v1.39.0 on Centos 10
+✨  Automatically selected the docker driver. Other choices: podman, none, ssh
+🛑  The "docker" driver should not be used with root privileges. If you wish to continue as root, use --force.
+💡  If you are running minikube within a VM, consider using --driver=none:
+📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+
+❌  Exiting due to DRV_AS_ROOT: The "docker" driver should not be used with root privileges.
+
+root@minikube:~/tools/minikube# lscpuc-e
+CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE
+  0    0      0    0 0:0:0:0          yes
+  1    0      0    1 1:1:1:0          yes
+  2    0      0    2 2:2:2:0          yes
+  3    0      0    3 3:3:3:0          yes
+  4    0      0    4 4:4:4:0          yes
+  5    0      0    5 5:5:5:0          yes
+  6    0      0    6 6:6:6:0          yes
+  7    0      0    7 7:7:7:0          yes
+root@minikube:~/tools/minikube# free -hT
+free: invalid option -- 'T'
+
+Usage:
+ free [options]
+
+Options:
+ -b, --bytes         show output in bytes
+     --kilo          show output in kilobytes
+     --mega          show output in megabytes
+     --giga          show output in gigabytes
+     --tera          show output in terabytes
+     --peta          show output in petabytes
+ -k, --kibi          show output in kibibytes
+ -m, --mebi          show output in mebibytes
+ -g, --gibi          show output in gibibytes
+     --tebi          show output in tebibytes
+     --pebi          show output in pebibytes
+ -h, --human         show human-readable output
+     --si            use powers of 1000 not 1024
+ -l, --lohi          show detailed low and high memory statistics
+ -L, --line          show output on a single line
+ -t, --total         show total for RAM + swap
+ -v, --committed     show committed memory and commit limit
+ -s N, --seconds N   repeat printing every N seconds
+ -c N, --count N     repeat printing N times, then exit
+ -w, --wide          wide output
+
+     --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see free(1).
+root@minikube:~/tools/minikube# free -ht
+               total        used        free      shared  buff/cache   available
+Mem:           7.5Gi       2.3Gi       2.8Gi        22Mi       2.7Gi       5.2Gi
+Swap:          6.0Gi          0B       6.0Gi
+Total:          13Gi       2.3Gi       8.8Gi
+root@minikube:~/tools/minikube#
+root@minikube:~/tools/minikube#
+t---force --driver=docker
+😄  minikube v1.39.0 on Centos 10
+❗  minikube skips various validations when --force is supplied; this may lead to unexpected behavior
+✨  Using the docker driver based on user configuration
+🛑  The "docker" driver should not be used with root privileges. If you wish to continue as root, use --force.
+💡  If you are running minikube within a VM, consider using --driver=none:
+📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.51 ...
+💾  Downloading Kubernetes v1.37.0 preload ...
+    > preloaded-images-k8s-v18-v1...:27347.58BMiB5/7347.58BMiB5.100.00%111.94MM
+    > gcr.io/k8s-minikube/kicbase:  507.60 MiB / 507.61 MiB  100.00%23.58MMiBpp
+🔥  Creating docker container (CPUs=2, Memory=3072MB) ...-
+📦  Preparing Kubernetes v1.37.0 on containerd 2.3.4 ...
+🔗  ConfiguringnCNIB(Container.Networking.Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+root@minikube:~/tools/minikube# minikube start --force --driver=docker
+😄  minikube v1.39.0 on Centos 10
+❗  minikube skips various validations when --force is supplied; this may lead to unexpected behavior
+✨  Using the docker driver based on existing profile
+🛑  The "docker" driver should not be used with root privileges. If you wish to continue as root, use --force.
+💡  If you are running minikube within a VM, consider using --driver=none:
+📘    https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+💡  Tip: To remove this root owned cluster, run: sudo minikube delete
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.51 ...
+🏃  Updating the running docker "minikube" container .../
+📦  Preparing Kubernetes v1.37.0 on containerd 2.3.4 ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+root@minikube:~/tools/minikube# kubectl get nodes
+NAME       STATUS   ROLES           AGE    VERSION
+minikube   Ready    control-plane   100s   v1.37.0
+root@minikube:~/tools/minikube# kubectl get pods -A
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   coredns-559f6c778d-rnbhb           1/1     Running   0          100s
+kube-system   etcd-minikube                      1/1     Running   0          107s
+kube-system   kindnet-pw76x                      1/1     Running   0          100s
+kube-system   kube-apiserver-minikube            1/1     Running   0          107s
+kube-system   kube-controller-manager-minikube   1/1     Running   0          107s
+kube-system   kube-proxy-v9j8j                   1/1     Running   0          100s
+kube-system   kube-scheduler-minikube            1/1     Running   0          107s
+kube-system   storage-provisioner                1/1     Running   0          105s
+shboard
+🔌  Enabling dashboard ...
+    ▪ Using image docker.io/kubernetesui/dashboard:v2.7.0
+    ▪ Using image docker.io/kubernetesui/metrics-scraper:v1.0.8
+💡  Some dashboard features require the metrics-server addon. To enable all features please run:
+
+        minikube addons enable metrics-server
+
+🤔  Verifying dashboard health ...
+🚀  Launching proxy ...
+🤔  Verifying proxy health ...
+http://127.0.0.1:36717/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+^C
+kubectlncreate~deploymentihello-minikubec--image=kicbase/echo-server:1.0 --image=kicbase/echo-server:1.0
+deployment.apps/hello-minikube created
+ployments.apps
+NAME             READY   UP-TO-DATE   AVAILABLE   AGE
+hello-minikube   1/1     1            1           9s
+kubectlnexpose~deploymentihello-minikubee--type=NodePortt--port=8080kube --type=NodePort --port=8080
+service/hello-minikube exposed
+vice
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+hello-minikube   NodePort    10.107.47.104   <none>        8080:32593/TCP   17s
+kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP          10m
+ice hello-minikube
+┌───────────┬────────────────┬─────────────┬───────────────────────────┐
+│ NAMESPACE │      NAME      │ TARGET PORT │            URL            │
+├───────────┼────────────────┼─────────────┼───────────────────────────┤
+│ default   │ hello-minikube │ 8080        │ http://192.168.49.2:32593 │
+└───────────┴────────────────┴─────────────┴───────────────────────────┘
+🎉  Opening service default/hello-minikube in default browser...
+👉  http://192.168.49.2:32593
+root@minikube:~/tools/minikube# firefox http://192.168.49.2:32593 &
+[1] 11385
+hello-minikube 7080:8080
+Forwarding from 127.0.0.1:7080 -> 8080
+Forwarding from [::1]:7080 -> 8080
+Handling connection for 7080
+^C[1]+  Done                    firefox http://192.168.49.2:32593
+^Cbectl get
+root@minikube:~/tools/minikube# ^C
+root@minikube:~/tools/minikube# clear
+ons list
+┌─────────────────────────────┬──────────┬────────────┬────────────────────────────────────────┐
+│         ADDON NAME          │ PROFILE  │   STATUS   │               MAINTAINER               │
+├─────────────────────────────┼──────────┼────────────┼────────────────────────────────────────┤
+│ ambassador                  │ minikube │ disabled   │ 3rd party (Ambassador)                 │
+│ amd-gpu-device-plugin       │ minikube │ disabled   │ 3rd party (AMD)                        │
+│ auto-pause                  │ minikube │ disabled   │ minikube                               │
+│ cloud-spanner               │ minikube │ disabled   │ Google                                 │
+│ csi-hostpath-driver         │ minikube │ disabled   │ Kubernetes                             │
+│ dashboard                   │ minikube │ enabled ✅ │ Kubernetes                             │
+│ default-storageclass        │ minikube │ enabled ✅ │ Kubernetes                             │
+│ efk                         │ minikube │ disabled   │ 3rd party (Elastic)                    │
+│ freshpod                    │ minikube │ disabled   │ Google                                 │
+│ gcp-auth                    │ minikube │ disabled   │ Google                                 │
+│ gvisor                      │ minikube │ disabled   │ minikube                               │
+│ headlamp                    │ minikube │ disabled   │ 3rd party (kinvolk.io)                 │
+│ inaccel                     │ minikube │ disabled   │ 3rd party (InAccel [info@inaccel.com]) │
+│ ingress                     │ minikube │ disabled   │ Kubernetes                             │
+│ ingress-dns                 │ minikube │ disabled   │ minikube                               │
+│ inspektor-gadget            │ minikube │ disabled   │ 3rd party (inspektor-gadget.io)        │
+│ istio                       │ minikube │ disabled   │ 3rd party (Istio)                      │
+│ istio-provisioner           │ minikube │ disabled   │ 3rd party (Istio)                      │
+│ kong                        │ minikube │ disabled   │ 3rd party (Kong HQ)                    │
+│ kubeflow                    │ minikube │ disabled   │ 3rd party                              │
+│ kubetail                    │ minikube │ disabled   │ 3rd party (kubetail.com)               │
+│ kubevirt                    │ minikube │ disabled   │ 3rd party (KubeVirt)                   │
+│ logviewer                   │ minikube │ disabled   │ 3rd party (unknown)                    │
+│ metallb                     │ minikube │ disabled   │ 3rd party (MetalLB)                    │
+│ metrics-server              │ minikube │ disabled   │ Kubernetes                             │
+│ nvidia-device-plugin        │ minikube │ disabled   │ 3rd party (NVIDIA)                     │
+│ nvidia-driver-installer     │ minikube │ disabled   │ 3rd party (NVIDIA)                     │
+│ nvidia-gpu-device-plugin    │ minikube │ disabled   │ 3rd party (NVIDIA)                     │
+│ olm                         │ minikube │ disabled   │ 3rd party (Operator Framework)         │
+│ pod-security-policy         │ minikube │ disabled   │ 3rd party (unknown)                    │
+│ portainer                   │ minikube │ disabled   │ 3rd party (Portainer.io)               │
+│ registry                    │ minikube │ disabled   │ minikube                               │
+│ registry-aliases            │ minikube │ disabled   │ 3rd party (unknown)                    │
+│ registry-creds              │ minikube │ disabled   │ 3rd party (UPMC Enterprises)           │
+│ storage-provisioner         │ minikube │ enabled ✅ │ minikube                               │
+│ storage-provisioner-rancher │ minikube │ disabled   │ 3rd party (Rancher)                    │
+│ traefik                     │ minikube │ disabled   │ 3rd party (Traefik Labs)               │
+│ volcano                     │ minikube │ disabled   │ third-party (volcano)                  │
+│ volumesnapshots             │ minikube │ disabled   │ Kubernetes                             │
+│ yakd                        │ minikube │ disabled   │ 3rd party (marcnuri.com)               │
+└─────────────────────────────┴──────────┴────────────┴────────────────────────────────────────┘
+all -y yakd
+Error: unknown command "install" for "minikube"
+Run 'minikube --help' for usage.
+root@minikube:~/tools/minikube# minikube minikube-latest.x86_64.rpm minikube-latest.x86_64.rpm minikube-latest.x86_64.rpm minikube-latest.x86_64.rpm
+minikube delete---alle
+🔥  Deleting "minikube" in docker ...
+🔥  Removing /root/.minikube/machines/minikube ...
+💀  Removed all traces of the "minikube" cluster.
+🔥  Successfully deleted all profiles
+root@minikube:~/tools/minikube# minikube status
+🤷  Profile "minikube" not found. Run "minikube profile list" to view all profiles.
+👉  To start a cluster, run: "minikube start"
+root@minikube:~/tools/minikube# minikube start --force --memory=4096mbb
+root@minikube:~/tools/minikube#
+root@minikube:~/tools/minikube# # (minikube)
+# https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+# For AMD64 / x86_64
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64
+# For ARM64
+[ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-arm64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+echo; echo "===== [ INFO ] kind 버전 확인 ====="
+kind version
+# (minikube)
+# https://kind.sigs.k8s.io/docs/user/quick-start/#installing-from-release-binaries
+# For AMD64 / x86_64
+[ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-amd64
+# For ARM64
+[ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.33.0/kind-linux-arm64
+chmod +x ./kind
+sudo mv ./kind /usr/local/bin/kind
+
+echo; echo "===== [ INFO ] kind 버전 확인 ====="
+kind version
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100    97  100    97    0     0    241      0 --:--:-- --:--:-- --:--:--   241
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 10.0M  100 10.0M    0     0  12.1M      0 --:--:-- --:--:-- --:--:-- 65.4M
+
+===== [ INFO ] kind 버전 확인 =====
+kind v0.33.0 go1.26.7 linux/amd64
+root@minikube:~/tools/minikube# # (minikube)
+export KIND_EXPERIMENTAL_PROVIDER=docker
+kind create cluster
+
+echo; echo "===== [ INFO ] kind 클러스터 확인 ====="
+kind get clusters
+
+echo; echo "===== [ INFO ] kind 노드 상태 확인 ====="
+kubectl get nodes
+# (minikube)
+export KIND_EXPERIMENTAL_PROVIDER=docker
+kind create cluster
+
+echo; echo "===== [ INFO ] kind 클러스터 확인 ====="
+kind get clusters
+
+echo; echo "===== [ INFO ] kind 노드 상태 확인 ====="
+kubectl get nodes
+
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Creating cluster "kind" ...
+⠊✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
+⠎✓ Preparing nodes 📦
+⠈✓ Writing configuration 📜
+⠊✓ Starting control-plane 🕹️
+⠈✓ Installing CNI 🔌
+⠈✓ Installing StorageClass 💾
+Set kubectl context to "kind-kind"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Thanks for using kind! 😊
+
+===== [ INFO ] kind 클러스터 확인 =====
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+kind
+
+===== [ INFO ] kind 노드 상태 확인 =====
+NAME                 STATUS     ROLES           AGE   VERSION
+kind-control-plane   NotReady   control-plane   4s    v1.37.0
+root@minikube:~/tools/minikube# kubectl get nodes
+NAME                 STATUS     ROLES           AGE   VERSION
+kind-control-plane   NotReady   control-plane   17s   v1.37.0
+root@minikube:~/tools/minikube# kubectl get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+kind-control-plane   Ready    control-plane   22s   v1.37.0
+ete cluster
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Deleting cluster "kind" ...
+Deleted nodes: ["kind-control-plane"]
+root@minikube:~/tools/minikube# kind delete cluster
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Deleting cluster "kind" ...
+root@minikube:~/tools/minikube# # (minikube)
+kind delete cluster
+# (minikube)
+kind delete cluster
+
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Deleting cluster "kind" ...
+root@minikube:~/tools/minikube# c
+root@minikube:~/tools/minikube# # (minikube)
+#
+# 커널 패러미터 설정
+#
+# 한 사용자당 생성 가능한 inotify 인스턴스 수 지정하기 - (권장) 512 또는 이상
+echo "fs.inotify.max_user_instances = 512" | sudo tee /etc/sysctl.d/99-inotify.conf
+
+# 한 inofify 인스턴스가 감시할 수 있는 파일 수 지정하기 - (권장) 524288 또는 이상
+# echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.d/99-inotify.conf
+
+# inotify 인벤트 큐 길이 - (권장) 16384 또는 이상
+# echo "fs.inotify.max_queued_events = 16384" | sudo tee -a /etc/sysctl.d/99-inotify.conf
+
+sysctl -p /etc/sysctl.d/99-inotify.conf
+
+systemctl restart docker.service
+# (minikube)
+#
+# 커널 패러미터 설정
+#
+# 한 사용자당 생성 가능한 inotify 인스턴스 수 지정하기 - (권장) 512 또는 이상
+echo "fs.inotify.max_user_instances = 512" | sudo tee /etc/sysctl.d/99-inotify.conf
+
+# 한 inofify 인스턴스가 감시할 수 있는 파일 수 지정하기 - (권장) 524288 또는 이상
+# echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.d/99-inotify.conf
+
+# inotify 인벤트 큐 길이 - (권장) 16384 또는 이상
+# echo "fs.inotify.max_queued_events = 16384" | sudo tee -a /etc/sysctl.d/99-inotify.conf
+
+sysctl -p /etc/sysctl.d/99-inotify.conf
+
+systemctl restart docker.service
+
+fs.inotify.max_user_instances = 512
+fs.inotify.max_user_instances = 512
+root@minikube:~/tools/minikube# # (minikube)
+# https://kind.sigs.k8s.io/docs/user/quick-start/#configuring-your-kind-cluster
+mkdir -p ~/tools/kind && cd ~/tools/kind
+cat << EOF > ~/tools/kind/kind-example-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+EOF
+
+kind create cluster --config ~/tools/kind/kind-example-config.yaml
+# (minikube)
+# https://kind.sigs.k8s.io/docs/user/quick-start/#configuring-your-kind-cluster
+mkdir -p ~/tools/kind && cd ~/tools/kind
+cat << EOF > ~/tools/kind/kind-example-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+- role: worker
+EOF
+
+kind create cluster --config ~/tools/kind/kind-example-config.yaml
+
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Creating cluster "kind" ...
+ ✓ Ensuring node image (kindest/node:v1.37.0) 🖼️
+⠎✓ Preparing nodes 📦 📦 📦 📦 📦 📦
+⠈✓ Writing configuration 📜
+⠈✓ Starting control-plane 🕹️
+⠈✓ Installing CNI 🔌
+⠈✓ Installing StorageClass 💾
+⢎✓ Joining worker nodes 🚜
+Set kubectl context to "kind-kind"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-kind
+
+Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+root@minikube:~/tools/kind# kubectl get nodes
+NAME                 STATUS   ROLES           AGE   VERSION
+kind-control-plane   Ready    control-plane   39s   v1.37.0
+kind-worker          Ready    <none>          29s   v1.37.0
+kind-worker2         Ready    <none>          29s   v1.37.0
+kind-worker3         Ready    <none>          29s   v1.37.0
+kind-worker4         Ready    <none>          29s   v1.37.0
+kind-worker5         Ready    <none>          29s   v1.37.0
+root@minikube:~/tools/kind# # (minikube)
+echo; echo "===== [ INFO ] kind 노드 상태 확인 ====="
+kubectl get nodes -o wide
+
+echo; echo "===== [ INFO ] kind 컨테이너 확인 ====="
+docker ps -a
+# (minikube)
+echo; echo "===== [ INFO ] kind 노드 상태 확인 ====="
+kubectl get nodes -o wide
+
+echo; echo "===== [ INFO ] kind 컨테이너 확인 ====="
+docker ps -a
+
+
+===== [ INFO ] kind 노드 상태 확인 =====
+NAME                 STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION                   CONTAINER-RUNTIME
+kind-control-plane   Ready    control-plane   82s   v1.37.0   172.18.0.5    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+kind-worker          Ready    <none>          72s   v1.37.0   172.18.0.4    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+kind-worker2         Ready    <none>          72s   v1.37.0   172.18.0.3    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+kind-worker3         Ready    <none>          72s   v1.37.0   172.18.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+kind-worker4         Ready    <none>          72s   v1.37.0   172.18.0.6    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+kind-worker5         Ready    <none>          72s   v1.37.0   172.18.0.7    <none>        Debian GNU/Linux 13 (trixie)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.3.4
+
+===== [ INFO ] kind 컨테이너 확인 =====
+CONTAINER ID   IMAGE                  COMMAND                  CREATED              STATUS              PORTS                       NAMES
+d3e3d22e0392   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute   127.0.0.1:41751->6443/tcp   kind-control-plane
+9183a29ce38a   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute                               kind-worker4
+760e25ce3afc   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute                               kind-worker2
+09cb5a835ec3   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute                               kind-worker
+58b0cabb649c   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute                               kind-worker5
+084652b8dff1   kindest/node:v1.37.0   "/usr/local/bin/entr…"   About a minute ago   Up About a minute                               kind-worker3
+root@minikube:~/tools/kind# # (minikube)
+kind get clusters
+kind delete cluster
+# (minikube)
+kind get clusters
+kind delete cluster
+
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+kind
+using docker due to KIND_EXPERIMENTAL_PROVIDER
+Deleting cluster "kind" ...
+Deleted nodes: ["kind-control-plane" "kind-worker4" "kind-worker2" "kind-worker" "kind-worker5" "kind-worker3"]
+root@minikube:~/tools/kind# # (minikube)
+curl -sfL https://get.k3s.io | sh -
+# (minikube)
+curl -sfL https://get.k3s.io | sh -
+
+[INFO]  Finding release for channel stable
+[INFO]  Using v1.36.5+k3s1 as release
+[INFO]  Downloading hash https://github.com/k3s-io/k3s/releases/download/v1.36.5%2Bk3s1/sha256sum-amd64.txt
+[INFO]  Downloading binary https://github.com/k3s-io/k3s/releases/download/v1.36.5%2Bk3s1/k3s
+[INFO]  Verifying binary download
+[INFO]  Installing k3s to /usr/local/bin/k3s
+[INFO]  Finding available k3s-selinux versions
+Rancher K3s Common (stable)                     [======                                     ] 1.1 kB/s | 1.1 kB     00:00 ETA
+Dependencies resolved.
+==============================================================================================================================
+ Package                     Architecture           Version                   Repository                                 Size
+==============================================================================================================================
+Installing:
+ k3s-selinux                B noarch                 1.6-1.el9                 rancher-k3s-common-stable                  22 k
+
+Transaction Summary
+==============================================================================================================================
+Install  1 Package
+
+Total download size: 22 k
+Installed size: 96 k
+Downloading Packages:
+k3s-selinux-1.6-1.el9.noarch.rpm             0% [                                           ] -30 kB/s |  22 kB     00:00 ETA
+------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                          30 kB/s |  22 kB     00:00
+Rancher K3s Common (stable)                     [      ======                               ] 3.3 kB/s | 2.4 kB     00:00 ETA
+Importing GPG key 0xE257814A:
+ Userid     : "Rancher (CI) <ci@rancher.com>"
+ Fingerprint: C8CF F216 4551 26E9 B9C9 18BE 925E A29A E257 814A
+ From       : https://rpm.rancher.io/public.key
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                      1/1
+  Running scriptlet: k3s-selinux-1.6-1.el9.noarch                                                                         1/1
+  Installing       : k3s-selinux-1.6-1.el9.noarch [==================================================================== ] 1/1
+  Running scriptlet: k3s-selinux-1.6-1.el9.noarch                                                                         1/1
+
+Installed:
+  k3s-selinux-1.6-1.el9.noarch
+
+Complete!
+[INFO]  Skipping /usr/local/bin/kubectl symlink to k3s, command exists in PATH at /usr/bin/kubectl
+[INFO]  Creating /usr/local/bin/crictl symlink to k3s
+[INFO]  Skipping /usr/local/bin/ctr symlink to k3s, command exists in PATH at /usr/bin/ctr
+[INFO]  Creating killall script /usr/local/bin/k3s-killall.sh
+[INFO]  Creating uninstall script /usr/local/bin/k3s-uninstall.sh
+[INFO]  env: Creating environment file /etc/systemd/system/k3s.service.env
+[INFO]  systemd: Creating service file /etc/systemd/system/k3s.service
+[INFO]  systemd: Enabling k3s unit
+Created symlink '/etc/systemd/system/multi-user.target.wants/k3s.service' → '/etc/systemd/system/k3s.service'.
+[INFO]  systemd: Starting k3s
+k get nodes
+E1008 21:30:44.161632   27603 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:44.161973   27603 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:44.163872   27603 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:44.164171   27603 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:44.166097   27603 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+root@minikube:~/tools/kind# c
+root@minikube:~/tools/kind#
+kubectl get pods -A
+E1008 21:30:56.491127   27628 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:56.491670   27628 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:56.493334   27628 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:56.493685   27628 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1008 21:30:56.495465   27628 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+root@minikube:~/tools/kind# # (minikube)
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chown $USER:$USER ~/.kube/config
+chmod 600 ~/.kube/config
+
+# 영구 적용을 위한 환경 변수 등록
+echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
+source ~/.bashrc
+# (minikube)
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+sudo chown $USER:$USER ~/.kube/config
+chmod 600 ~/.kube/config
+
+# 영구 적용을 위한 환경 변수 등록
+echo "export KUBECONFIG=~/.kube/config" >> ~/.bashrc
+source ~/.bashrc
+
+root@minikube:~/tools/kind# c
+root@minikube:~/tools/kind# kubectl get nods
+error: the server doesn't have a resource type "nods"
+root@minikube:~/tools/kind# kubectl get nodes
+NAME       STATUS   ROLES           AGE   VERSION
+minikube   Ready    control-plane   76s   v1.36.5+k3s1
+--A
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS      AGE
+kube-system   coredns-7cfb7bc9c7-5s5k9                  1/1     Running     0             75s
+kube-system   helm-install-traefik-crd-gcwpz            0/1     Completed   0             76s
+kube-system   helm-install-traefik-s4tfb                0/1     Completed   1 (46s ago)   76s
+kube-system   local-path-provisioner-77b9867795-6mxlg   1/1     Running     0             75s
+kube-system   metrics-server-6dc596dfb8-wstmc           1/1     Running     0             75s
+kube-system   svclb-traefik-2834c31a-6nqbt              2/2     Running     0             45s
+kube-system   traefik-7c8544f77-qgt7f                   1/1     Running     0             45s
+root@minikube:~/tools/kind# #i(minikube)
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+echo; echo "===== [ INFO ] HELM 설치 및 버전 확인 ======"
+helm version
+# (minikube)
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+echo; echo "===== [ INFO ] HELM 설치 및 버전 확인 ======"
+helm version
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 12252  100 12252    0     0   214k      0 --:--:-- --:--:-- --:--:--  217k
+Downloading https://get.helm.sh/helm-v3.22.0-linux-amd64.tar.gz
+Verifying checksum... Done.
+Preparing to install helm into /usr/local/bin
+helm installed into /usr/local/bin/helm
+
+===== [ INFO ] HELM 설치 및 버전 확인 ======
+version.BuildInfo{Version:"v3.22.0", GitCommit:"144ca65f8501953fa8b41cd1d37c7223051c85b7", GitTreeState:"clean", GoVersion:"go1.26.8"}
+root@minikube:~/tools/kind# c
+root@minikube:~/tools/kind# systemctl disable --now k3s
+Removed '/etc/systemd/system/multi-user.target.wants/k3s.service'.
+rroot@minikube:~/tools/kind# rmf-f ~/.kube/config
+root@minikube:~/tools/kind# c
+catt/sys/class/dmi/id/product_uuidys/class/dmi/id/product_uuid
+7d174d56-e2c9-8bb2-2768-7ee07375e6ac
+root@minikube:~/tools/kind# ssh node1
+ssh: Could not resolve hostname node1: Name or service not known
+root@minikube:~/tools/kind#
+netstat -antup | grep :6443
+netstat0-antup4|3grep :6443
+nc 127.0.0.1 6443 -v
+Ncat: Version 7.92 ( https://nmap.org/ncat )
+Ncat: Connection refused.
+root@minikube:~/tools/kind# exit
+exit
+
+Script done on 2026-10-08 21:51:29+09:00 [COMMAND_EXIT_CODE="1"]
