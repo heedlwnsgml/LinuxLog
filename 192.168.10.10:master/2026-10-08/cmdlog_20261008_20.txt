@@ -1,0 +1,10 @@
+Script started on 2026-10-08 20:00:14+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="104" LINES="39"]
+[root@master ~/LinuxLog]# c
+[root@master ~/LinuxLog]# c
+[root@master ~/LinuxLog]# c
+[root@master ~/LinuxLog]# c
+[root@master ~/LinuxLog]#
+[root@master ~/LinuxLog]# exit
+exit
+
+Script done on 2026-10-08 20:00:18+09:00 [COMMAND_EXIT_CODE="0"]
