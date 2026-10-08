@@ -21,3 +21,52 @@ bash: hi: command not found...
 exit
 
 Script done on 2026-10-08 20:04:14+09:00 [COMMAND_EXIT_CODE="127"]
+Script started on 2026-10-08 20:04:31+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="234" LINES="92"]
+namectl
+ Static hostname: master
+       Icon name: computer-vm
+         Chassis: vm 🖴
+      Machine ID: 7c4282ebed1c45c093712226b030688a
+         Boot ID: 40a2b477b6f046ec96b1e7dcdc9142ab
+    Product UUID: 750c4d56-60b7-6509-8ad0-35085f81a7d4
+    AF_VSOCK CID: 1602332628
+  Virtualization: vmware
+Operating System: CentOS Stream 10 (Coughlan)
+     CPE OS Name: cpe:/o:centos:centos:10
+          Kernel: Linux 6.12.0-257.el10.x86_64
+    Architecture: x86-64
+ Hardware Vendor: VMware, Inc.
+  Hardware Model: VMware20,1
+ Hardware Serial: VMware-56 4d 0c 75 b7 60 09 65-8a d0 35 08 5f 81 a7 d4
+Firmware Version: VMW201.00V.25275966.B64.2603102050
+   Firmware Date: Tue 2026-03-10
+    Firmware Age: 6month 4w 1d
+[root@master ~/LinuxLog]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens160: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:0c:29:81:a7:d4 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+    altname enx000c2981a7d4
+    inet 192.168.10.10/24 brd 192.168.10.255 scope global noprefixroute ens160
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe81:a7d4/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+[root@master ~/LinuxLog]# ip r
+default via 192.168.10.2 dev ens160 proto static metric 100
+192.168.10.0/24 dev ens160 proto kernel scope link src 192.168.10.10 metric 100
+[root@master ~/LinuxLog]# ip d
+Object "d" is unknown, try "ip help".
+[root@master ~/LinuxLog]# nmcli d
+DEVICE  TYPE      STATE                   CONNECTION
+ens160  ethernet  connected               eth0
+lo      loopback  connected (externally)  lo
+[root@master ~/LinuxLog]# c
+[root@master ~/LinuxLog]# exit
+exit
+
+Script done on 2026-10-08 20:04:47+09:00 [COMMAND_EXIT_CODE="0"]
