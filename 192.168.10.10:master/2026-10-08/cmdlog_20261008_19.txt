@@ -38,3 +38,12 @@ bash: hi: command not found...
 exit
 
 Script done on 2026-10-08 19:55:27+09:00 [COMMAND_EXIT_CODE="127"]
+Script started on 2026-10-08 19:59:51+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="104" LINES="39"]
+[root@master ~/LinuxLog]# hi
+bash: hi: command not found...
+[root@master ~/LinuxLog]# eixt
+bash: eixt: command not found...
+[root@master ~/LinuxLog]# exit
+exit
+
+Script done on 2026-10-08 19:59:56+09:00 [COMMAND_EXIT_CODE="127"]
