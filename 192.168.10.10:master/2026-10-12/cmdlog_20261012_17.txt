@@ -1,0 +1,639 @@
+Script started on 2026-10-12 17:17:39+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="144" LINES="41"]
+[root@master ~]# kubectl patch serviceaccount default \
+kubectl"patchPserviceaccount{default \regcred"}]}'
+  -p '{"imagePullSecrets": [{"name": "regcred"}]}'
+serviceaccount/default patched
+ectl get secrets -A
+NAMESPACE     NAME                     TYPE                             DATA   AGE
+default       regcred                  kubernetes.io/dockerconfigjson   1      110s
+kube-system   bootstrap-token-cy3kwz   bootstrap.kubernetes.io/token    7      36m
+[root@master ~]#
+[root@master ~]#
+mkdir@-ps~/tools/cnii&&-cd~~/tools/cni&& cd ~/tools/cni
+wget https://docs.projectcalico.org/manifests/calico.yaml
+--2026-10-12 17:20:43--  https://docs.projectcalico.org/manifests/calico.yaml
+Resolving docs.projectcalico.org (docs.projectcalico.org)... 52.74.6.109, 13.215.239.219, 2406:da18:b3d:e201::259, ...
+Connecting to docs.projectcalico.org (docs.projectcalico.org)|52.74.6.109|:443... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml [following]
+--2026-10-12 17:20:43--  https://calico-v3-25.netlify.app/archive/v3.25/manifests/calico.yaml
+Resolving calico-v3-25.netlify.app (calico-v3-25.netlify.app)... 52.74.6.109, 13.215.239.219, 2406:da18:b3d:e201::258, ...
+Connecting to calico-v3-25.netlify.app (calico-v3-25.netlify.app)|52.74.6.109|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 238089 (233K) [text/yaml]
+Saving to: ‘calico.yaml’
+
+calico.yaml                         100%[===================================================================>] 232.51K  -405KB/s    in 0.6s
+
+2026-10-12 17:20:45 (405 KB/s) - ‘calico.yaml’ saved [238089/238089]
+
+[root@master ~/tools/cni]# kubectl apply -f ~/tools/cni/calico.yaml
+kubectl apply -f ~/tools/cni/calico.yaml
+
+poddisruptionbudget.policy/calico-kube-controllers created
+serviceaccount/calico-kube-controllers created
+serviceaccount/calico-node created
+configmap/calico-config created
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/caliconodestatuses.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipreservations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/kubecontrollersconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org created
+clusterrole.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrole.rbac.authorization.k8s.io/calico-node created
+clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+daemonset.apps/calico-node created
+deployment.apps/calico-kube-controllers created
+ectl get nodes
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   40m   v1.37.1
+node1    Ready    <none>          15m   v1.37.1
+node2    Ready    <none>          15m   v1.37.1
+node3    Ready    <none>          15m   v1.37.1
+[root@master ~/tools/cni]#
+[root@master ~/tools/cni]#
+[root@master ~/tools/cni]# c
+timedatectlcceserviceaccount/defaultnin-pe'{"imagePullSecrets": [{"name": "regcred"}]}'
+               Local time: Mon 2026-10-12 17:42:00 KST
+           Universal time: Mon 2026-10-12 08:42:00 UTC
+                 RTC time: Mon 2026-10-12 08:42:00
+                Time zone: Asia/Seoul (KST, +0900)
+System clock synchronized: yes
+              NTP service: active
+          RTC in local TZ: no
+[root@master ~/tools/cni]# c
+kubectl get nodes
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   59m   v1.37.1
+node1    Ready    <none>          34m   v1.37.1
+node2    Ready    <none>          34m   v1.37.1
+node3    Ready    <none>          34m   v1.37.1
+[root@master ~/tools/cni]# cd
+[root@master ~]#
+# (master)
+for i in master node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i ====="
+    ssh "$i" dnf install -q -y cri-tools yq
+done
+# (master)
+for i in master node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i ====="
+    ssh "$i" dnf install -q -y cri-tools yq
+done
+
+
+===== [ INFO ] master =====
+
+Installed:
+  cri-tools-1.37.0-150500.1.1.x86_64          yq-4.53.3-1.el10_3.x86_64
+
+
+===== [ INFO ] node1 =====
+
+Installed:
+  cri-tools-1.37.0-150500.1.1.x86_64          yq-4.53.3-1.el10_3.x86_64
+
+
+===== [ INFO ] node2 =====
+
+Installed:
+  cri-tools-1.37.0-150500.1.1.x86_64          yq-4.53.3-1.el10_3.x86_64
+
+
+===== [ INFO ] node3 =====
+
+Installed:
+  cri-tools-1.37.0-150500.1.1.x86_64          yq-4.53.3-1.el10_3.x86_64
+
+[root@master ~]# # (master)
+mkdir -p $HOME/bin
+cat <<'EOF' | sudo tee $HOME/bin/poweroff.sh
+#!/bin/bash
+
+NODES="node3 node2 node1 minikube"
+for NODE in $NODES
+do
+    echo; echo "===== [ INFO ] ====="
+    ping -c 1 -W 1 "$NODE" >/dev/null 2>&1 && \
+      ssh "$NODE" sudo poweroff
+    sleep 2
+done
+
+systemctl poweroff
+EOF
+chmod 700 $HOME/bin/poweroff.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vit/root/bin/poweroff.shode
+#!/bin/bashfor host in node1 node2 node3 minikubedo
+    echo; echo "===== $host ====="
+    ping -c 1 -W 1 $host >/dev/null 2>&1 \&& ssh $host poweroff \&& echo "[  OK  ] $host"
+    sleep 3
+done
+
+sleep 2
+poweroff
+>4;m>4;m[root@master ~]# # (master)                                                                                                             ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[[?12;4        +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+mkdir -p $HOME/bin
+cat <<'EOF' | sudo tee $HOME/bin/poweroff.sh
+#!/bin/bash
+
+NODES="node3 node2 node1 minikube"
+for NODE in $NODES
+do
+    echo; echo "===== [ INFO ] ====="
+    ping -c 1 -W 1 "$NODE" >/dev/null 2>&1 && \
+      ssh "$NODE" sudo poweroff
+    sleep 2
+done
+
+systemctl poweroff
+EOF
+chmod 700 $HOME/bin/poweroff.sh
+# (master)
+mkdir -p $HOME/bin
+cat <<'EOF' | sudo tee $HOME/bin/poweroff.sh
+#!/bin/bash
+
+NODES="node3 node2 node1 minikube"
+for NODE in $NODES
+do
+    echo; echo "===== [ INFO ] ====="
+    ping -c 1 -W 1 "$NODE" >/dev/null 2>&1 && \
+      ssh "$NODE" sudo poweroff
+    sleep 2
+done
+
+systemctl poweroff
+EOF
+chmod 700 $HOME/bin/poweroff.sh
+
+#!/bin/bash
+
+NODES="node3 node2 node1 minikube"
+for NODE in $NODES
+do
+    echo; echo "===== [ INFO ] ====="
+    ping -c 1 -W 1 "$NODE" >/dev/null 2>&1 && \
+      ssh "$NODE" sudo poweroff
+    sleep 2
+done
+
+systemctl poweroff
+[root@master ~]# c
+ /usr/bin/kubectl /usr/bin/k
+[root@master ~]# c
+ashrc
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='printf \n\n\n; clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=/etc/kubernetes/admin.conf
+[root@master ~]#
+[root@master ~]#
+
+annotate       (Update the annotations on a resource)
+api-resources  (Print the supported API resources on the server)
+api-versions   (Print the supported API versions on the server, in the form of "group/version")
+apply          (Apply a configuration to a resource by file name or stdin)
+attach         (Attach to a running container)
+auth           (Inspect authorization)
+autoscale      (Auto-scale a deployment, replica set, stateful set, or replication controller)
+certificate    (Modify certificate resources)
+cluster-info   (Display cluster information)
+completion     (Output shell completion code for the specified shell (bash, zsh, fish, or powershell))
+config         (Modify kubeconfig files)
+cordon         (Mark node as unschedulable)
+cp             (Copy files and directories to and from containers)
+create         (Create a resource from a file or from stdin)
+debug          (Create debugging sessions for troubleshooting workloads and nodes)
+delete         (Delete resources by file names, stdin, resources and names, or by resources and label selector)
+describe       (Show details of a specific resource or group of resources)
+diff           (Diff the live version against a would-be applied version)
+drain          (Drain node in preparation for maintenance)
+edit           (Edit a resource on the server)
+events         (List events)
+exec           (Execute a command in a container)
+explain        (Get documentation for a resource)
+expose         (Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service)
+get            (Display one or many resources)
+help           (Help about any command)
+kuberc         (Manage kuberc configuration files)
+kustomize      (Build a kustomization target from a directory or URL)
+label          (Update the labels on a resource)
+logs           (Print the logs for a container in a pod)
+options        (Print the list of flags inherited by all commands)
+patch          (Update fields of a resource)
+plugin         (Provides utilities for interacting with plugins)
+port-forward   (Forward one or more local ports to a pod)
+proxy          (Run a proxy to the Kubernetes API server)
+replace        (Replace a resource by file name or stdin)
+rollout        (Manage the rollout of a resource)
+run            (Run a particular image on the cluster)
+scale          (Set a new size for a deployment, replica set, or replication controller)
+set            (Set specific features on objects)
+[root@master ~]# k get nodes
+NAME     STATUS Script started on 2026-10-12 17:52:38+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="144" LINES="43"]
+[root@master ~]# which poweroff.sh
+/root/bin/poweroff.sh
+[root@master ~]# vi /root/bin/poweroff.sh
+#!/bin/bashNODES="node3 node2 node1 minikube"for NODE in $NODES
+do
+    echo; echo "===== [ INFO ] ====="
+    ping -c 1 -W 1 "$NODE" >/dev/null 2>&1 && \ssh "$NODE" sudo poweroff
+    sleep 2
+done
+
+systemctl poweroff
+>4;m>4;mw'kubectlcgetapodsh-A'e (add ! to override)12,0-1All::q!                                                                                ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1~@k   3,1  ~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1,0-1~@k   2,1  i -- INSERT --12,1All112,1All^[  12,0-1All::q
+[root@master ~]#
+[root@master ~]#
+[root@master ~]#
+[root@master ~]# c
+ectl get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (2m7s ago)   32m
+kube-system   calico-node-gdd6m                          1/1     Running   1 (2m4s ago)   32m
+kube-system   calico-node-w5tqt                          1/1     Running   1 (2m6s ago)   32m
+kube-system   calico-node-xmd8v                          1/1     Running   1 (2m7s ago)   32m
+kube-system   calico-node-xxrpg                          1/1     Running   1 (2m4s ago)   32m
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   1 (2m7s ago)   71m
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   1 (2m7s ago)   71m
+kube-system   etcd-master                                1/1     Running   1 (2m4s ago)   71m
+kube-system   kube-apiserver-master                      1/1     Running   1 (2m4s ago)   71m
+kube-system   kube-controller-manager-master             1/1     Running   1 (2m4s ago)   71m
+kube-system   kube-proxy-g6jl6                           1/1     Running   1 (2m4s ago)   45m
+kube-system   kube-proxy-gr849                           1/1     Running   1 (2m7s ago)   45m
+kube-system   kube-proxy-nk85b                           1/1     Running   1 (2m4s ago)   71m
+kube-system   kube-proxy-vjr9p                           1/1     Running   1 (2m6s ago)   45m
+kube-system   kube-scheduler-master                      1/1     Running   1 (2m4s ago)   71m
+ectl  get nodes
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   79m   v1.37.1
+node1    Ready    <none>          54m   v1.37.1
+node2    Ready    <none>          54m   v1.37.1
+node3    Ready    <none>          54m   v1.37.1
+[root@master ~]# mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+[root@master ~]#1@l ./kubeadm_init_output.txt
+-rw-r--r--. 1 root root 5832 Oct 12 16:42 ./kubeadm_init_output.txt
+ll ~/.kube/
+total 8
+drwxr-x---. 4 root root   35 Oct 12 17:09 cache
+-rw-------. 1 root root 5637 Oct 12 18:13 config
+[root@master ~]# cat ~/.kube/config
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRWp3NUw0SjZsU0F3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHpOakV3TURrd056UXlNREJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM4cnBkU293N0tpam5MYU5uYUlSaS9ZUytROFNSMmdxcnZWUExGRmlvdTZkZGNXbGg1QUl2MjUwcysKa1JXcDR5em55NVdYNjFIRVd4T3Q2Q0gvVmNYRjZUNHlNbnFBTi9Ya2xJTEE2d0U0aWNUTDgrVWE5bVFBS3kwQQpJVHdnd0lsSUtFQ1hQUnNuZk9BMU92TS8xVnRsU1hjY2g3SytUSXkycTUrWkYwN1o1K3c1cCtjMldnR3poVWpvCklJSmRQNzRlMjNOT2l1NlVabEJ2VWFwWHd3YmRBMWwzYWpsc0hudmdXZjJ0Q2ZXYjkyd3FQQy9VQlJ6NWdoRkkKSXZoenhEU0JtZUg4eW03SS9xVmZkL2hNcEoyR1RvZG9CU1g5YmhQaHIrMGhxYVFmMWF3SGVBUE56a05qNEx4QQpCZS9jZzRRck1FM3haZkRiclNTQ3NoODBsTmcvQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSMnlnNGJoVVUvNmpkREpjRURiNmJaSXVqTVJqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXpTNlZvZ2hhbwptQS9uRVhiT3NBSkxzckR2dk5kK0tWQXhWc2JSYWdRVDVwL0RZMklqc0lHYThhNy90S0FWc0R6WGlpR2hyU2VJCkZIWXRiNXhxVGJBYmJGQ3JHemc2YkJFcHowVkRWYXpQWkhmbldzWGFqM25lZmRlcTA3YWR6N3EzNDFSZHhHWkUKVGtZVGhNVzRNbmNwNFFSakhWR2NFTG56VkViakVsandVNnNKMmxQbG9rMzk4eXVIUCttNmVCWE95RVNLV0REUAp2MzBtNTZ2alhYT1N6VThMTkdDNTVRZmFHOW1Edjc1YXFuaVhsU2tjbXVNdEhHS3RpS1NXWnphT21Yc0NvSTRnCjNlSnZRUllqQ3lTV25OOWNkWFV1cHZWK1d2NVBhaGV1MENYQkNJSzVhcFRPYXBJb2tENVI5TzY1TDdOcDg3bmcKcnpheW4yMEM5azhoCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURLVENDQWhHZ0F3SUJBZ0lJZjdjUkxhUmd6WnN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHlOekV3TVRJd056UXlNREJhTUR3eApIekFkQmdOVkJBb1RGbXQxWW1WaFpHMDZZMngxYzNSbGNpMWhaRzFwYm5NeEdUQVhCZ05WQkFNVEVHdDFZbVZ5CmJtVjBaWE10WVdSdGFXNHdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEVW5hLzcKaldtSlhQbjVIU21MRlBCMDJ5cVI2REYySk1EYlEyejBDRjV0WDQyeUZMYjZTVFBaVXpxZno3bU9hSlR3eUNkOQpQQlc1c2tvOUt0aVY1MzVGWXg1QlBtdkhxOTZmZ1lLcmdLS1JScFArTHhCaHJXaFlTZEtYdExIbW05MWN4bWZNCmRqNUw4UHRGcHpGZEhpSWJOQmdRay9zWjk3cDFaM1hoN0t4MmFyQ1lVUzdETkN1KytsbXlzUzFtRUVWRWQzMkIKanQ1eWdTRWtrWmxYZC9UWGluN2JhR2gydjZPNFQ3TWtUeVorODZvdG5PNkVVY29jeGdOUmIrWlNHM3hqc24yOAoyY1FEbFpEQ2ttcHcyMEtubnZSaEZQWGMvc1BvZTUvRUdjb243eFRkTkpPSDRuSzVBV21NdXMyYWFCcDQxeVdYCjNod0N5bEk0N1V1Q3IwRTFBZ01CQUFHalZqQlVNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUsKQmdnckJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbAp3UU52cHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFjckxyWTBZS1R1QlE1ZjkrMWRJMHYyYXlsCjlTVWxlR1NQdkx2TG1MWGN2SEZqK3c5WkY4bHN2cTZkQ3VWUXd4WHJya2RBYTZMVnovcEJBWkxvRjRMUDBFVWMKUW5JYnhBdHRNTWpjUGxlYUdabGpzeTZvUS9CcnZBMzMxQTFKNTRicEtsRDVManI4SDJKRWlmYS90UWQ5RUQ0LworVXpMZ2tUOU5RRWZ1NTRtUmFiMnJvVDR4WVk2d2QzbEtUT1NKSHY1VExvMEFWYUIvSnlhNVF2ZkE5SVZVckFKCnpuWmlpVjZVcGJHc2VJaUE3WnREbmpuZWM3NDVuSGl2bFVyY2d2N1NsVG1Uay9JcFhtc0VRaytCdWNzQVRrWE4KbXpOYy9iblpzSnYzd1IzUEd3NnBhQ3k1MTl5ZG9CUVJ6d1BnY2cvWmF6ZU5aMWxHaXZpUWtnY2pHVWlMCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBMUoydis0MXBpVno1K1IwcGl4VHdkTnNxa2VneGRpVEEyME5zOUFoZWJWK05zaFMyCitra3oyVk02bjgrNWptaVU4TWduZlR3VnViSktQU3JZbGVkK1JXTWVRVDVyeDZ2ZW40R0NxNENpa1VhVC9pOFEKWWExb1dFblNsN1N4NXB2ZFhNWm56SFkrUy9EN1JhY3hYUjRpR3pRWUVKUDdHZmU2ZFdkMTRleXNkbXF3bUZFdQp3elFydnZwWnNyRXRaaEJGUkhkOWdZN2Vjb0VoSkpHWlYzZjAxNHArMjJob2RyK2p1RSt6SkU4bWZ2T3FMWnp1CmhGSEtITVlEVVcvbVVodDhZN0o5dk5uRUE1V1F3cEpxY050Q3A1NzBZUlQxM1A3RDZIdWZ4Qm5LSis4VTNUU1QKaCtKeXVRRnBqTHJObW1nYWVOY2xsOTRjQXNwU09PMUxncTlCTlFJREFRQUJBb0lCQUFwb1RaejZweGZhUFVJOApjelFqcWtHT0dOOWJobEJLTEVhUFhsM3pxdXVmcWNmMXk1OGt4aXoxTGdGMG9aaWU5ZXR6WUx0NG5YZWhpcERECjhDWW1Wci8rd2hSZmdkY2NTcUYwTFhsSHFxMkJ6dXk2VVFyMitneVlVSDZza2FqQUtHM0tLSHFScnlyNGVOUkkKQXRxVUJ3ZGQzVyt5VHJCT3VBblhMcVlJZDhpMENXa0N4ZEMxM1RLSkIrM01WRlh0KzdlRC9VMHdjem4wSFFwegpmVXk2T0pOTk03b3FteVROMm51dVpGalpwQVNiNXI5S2t0bnd2TmFzc3UwM2FnUE1mL04vS1lSSy9DQ05CVXZUCkp5cU9FZTlnMWtSVTV6YTZLVGVoM3ZyaW9heTk2WnY4V1BXV3NlUmoxNURCTEpJQ2NtYU14VXFOWURzbW8vRTMKVnA0YTNXRUNnWUVBN1NlQTdDTkFHOTdxWi9LQTZYSFhDOHJHWWNHaEVpU0lpdFZTVW5sYWI4czEvYi8vRkpCVwpCTU5HcVF2c2d4RDhwZEVIczFoM2FhVDVLTUlFcmxXYkdWRm0rNXVma2pMMTVZQlU2akdUOFh2K1lEbVRCQklJCkFHcDNUL3VsbUdoTlJ2ZHozTC9LczR0SmR6c3p5L1RtVEVXNmk0RW9vK2FReXZhbDN5blVkS3NDZ1lFQTVZTCsKVWFzbXFiTGdnWHd0aXFMMkQ0cFFVekpoOUZVTDBjdXhraTZYcTR6VG44MEZVQjNmeUZTNTRBVmt6YlF5SHV0Ngo0cllaclIrVDZIUEgyVDhEbVZZSldrWGxRTnEvSDJGOGR0cWhuTFNwdEV6cm92cThDTzlvQTI3eTMzSEhtZ2tICkxxV2xnNCtUUGV2MlRWek9zMDZoRlZyT0pSTmdpeG5NT1hxU1laOENnWUFjYWRzOGI0ekN5aFp6bGM1MEtidUcKSWlsYWxRUmpWQlUzN1E4TDZwWTNScldWVFdlV1l5U3JOV3BGM3JQYmtERjAvSEpidm9Hd0dwL3ZqaTlaWTlCTgpYRDltYmVMVWRWNll2S052MjdqSitmMGtNa0cyL3lJT1NyTTQxZ0dsSFBvRlFxaVREamVQQTJVdDc5M28xZEt4CjJMamM5Z0NVZ285ZWdlYWxzakZPT1FLQmdEeXQ4RzFKTWRTbC9XTmVvRy9KL0FKSjBFamV4alVpRXhqcG9NNEUKVVlkQ21XVGpnS2NZN3VSNU9oZDNkWnBKTFFNdHdQU1ZycDR0L2gzMEZuOWlnS0lXdEN4UTFIYmNIckcrUlhqcQovdFYra211ZjlxREZaOWQ0N0dnVCtsU0hNWDJSSzN2eXdaclI1OXowT005bFhTVGRBZ3V5VVZST0ZqVlFvY1VFCm1oVURBb0dCQU4wd1hGRVFveFl5dWJybWc1ajN5Yjg0eGdFeUZIM3Baa1JpMFd1V2ZLWjZvWU9LeDJ1b3A0bmEKNWpWbzhhS0hDUXN3K1RFRGNpWkRldFdvMzJTM2l2dFhyK3YwdlpDd3JPSGhMYmdaanNpM1BoaHR2S1RxSlBuaApwYUZVTTZKUkNoaWpHZFBTYzgxbGRLOTF1dnJURk0xbmpQQkV2cjNPV1prVnJ6M0ZZYWNmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+[root@master ~]# c
+ectl get pods webpod -o wide
+Error from server (NotFound): pods "webpod" not found
+ectl get nodes master -o wide
+NAME     STATUS   ROLES           AGE   VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                      KERNEL-VERSION                   CONTAINER-RUNTIME
+master   Ready    control-plane   92m   v1.37.1   192.168.10.10   <none>        CentOS Stream 10 (Coughlan)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.4.1
+[root@master ~]#
+[root@master ~]#
+ectl get node
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   92m   v1.37.1
+node1    Ready    <none>          66m   v1.37.1
+node2    Ready    <none>          66m   v1.37.1
+node3    Ready    <none>          66m   v1.37.1
+[root@master ~]# kubectl get nodes
+NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   92m   v1.37.1
+node1    Ready    <none>          67m   v1.37.1
+node2    Ready    <none>          67m   v1.37.1
+node3    Ready    <none>          66m   v1.37.1
+[root@master ~]#
+[root@master ~]# kubectl get nodes node 1
+Error from server (NotFound): nodes "node" not found
+Error from server (NotFound): nodes "1" not found
+[root@master ~]# kubectl get nodes node11
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   67m   v1.37.1
+[root@master ~]# kubectl get nodesnode1111
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   67m   v1.37.1
+[root@master ~]# kubectl get node node1 node2
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   67m   v1.37.1
+node2   Ready    <none>   67m   v1.37.1
+[root@master ~]# kubectl g{1..3}e node1 node2
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   67m   v1.37.1
+node2   Ready    <none>   67m   v1.37.1
+node3   Ready    <none>   67m   v1.37.1
+[root@master ~]# kubectl get node node{1..2}}
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   67m   v1.37.1
+node2   Ready    <none>   67m   v1.37.1
+[root@master ~]#
+[root@master ~]#
+[root@master ~]#
+[root@master ~]# c
+kubectlagetrpods webpodl-oewideds webpod -o wide
+Error from server (NotFound): pods "webpod" not found
+kubectltgetdnodebnode{1..3}-o wide
+NAME    STATUS   ROLES    AGE   VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE                      KERNEL-VERSION                   CONTAINER-RUNTIME
+node1   Ready    <none>   69m   v1.37.1   192.168.10.11   <none>        CentOS Stream 10 (Coughlan)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.4.1
+node2   Ready    <none>   69m   v1.37.1   192.168.10.12   <none>        CentOS Stream 10 (Coughlan)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.4.1
+node3   Ready    <none>   69m   v1.37.1   192.168.10.13   <none>        CentOS Stream 10 (Coughlan)   6.12.0-257.el10.x86_64 (amd64)   containerd://2.4.1
+[root@master ~]# kubectl get node node{1..3} -o wide
+NAME    STATUS   ROLES    AGE   VERSION
+node1   Ready    <none>   69m   v1.37.1
+node2   Ready    <none>   69m   v1.37.1
+node3   Ready    <none>   69m   v1.37.1
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='printf \n\n\n; clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=/etc/kubernetes/admin.conf
+>4;m>4;m[root@master ~]# cat << EOF > ~/.vimrc                                                                                                  ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+> syntax on
+> set ts=4 sw=4 ai nu
+> autocmddFileType yaml setlocal ts=2 sw=2 st=2 ai nu et
+> autocmd FileType python setlocal ts=2 sw=2 st=2 ai nu et
+> EOF
+ashrc
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='printf \n\n\n; clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=/etc/kubernetes/admin.conf
+>4;m>4;m[root@master ~]# vi ~/.bashrc                                                                                                           ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ~@k   2,0-1i -- INSERT --2,1All2-91  ^[  2,0-1All::q!
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='printf \n\n\n; clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=/etc/kubernetes/admin.conf
+>4;m>4;mwhich vim                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+/usr/bin/vim
+[root@master ~]# cat << EOF > ~/.bashrc
+> alias vi='/usr/bin/vim'
+> EOFF
+rce ~/.bashrc
+bashrc
+  1 alias vi='/usr/bin/vim'
+>4;m>4;m[root@master ~]# vi ~/.bashrc                                                                                                           ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   ~@k   ~@k   ^[  ^[  ::q
+  1 alias vi='/usr/bin/vim'
+~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        dd  --No lines in buffer--0,0-1Allu1 more line; before #1  1 second agoalias vi='/usr/bin/vim'1,1All1,1AllO -- INSERT --1,1Top  2 alias vi='/usr/bin/vim'p2All1^[  1,0-1Allp   2 alias vi='/usr/bin/vim'
+  32,1All~@k   1,0-1p   2 alias vi='/usr/bin/vim'
+  3
+  42,1Alldd
+2
+  3~                                                                                                                                               2,1Alldd
+2~                                                                                                                                               2,1All~@k   1,0-1-- INSERT --1,1All# .bashrc
+  2
+  3 # Source global definitions
+  4 if [ -f /etc/5alias vi''(paste) --bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific en9 alias vi''vironment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]10 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export P4ATH
+ 14
+ 15 # Uncomment the following line if you don't like systemct6l's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User speci9fic aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 a23alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27
+ 28#
+ 28
+ 29 # kubectl CMD
+ 30 source <(kubectl completion bash)
+ 31 alias k=kube32ctl
+ 32 complete -o default -F __start_kubectl k
+ 33 export KUBECONFIG=4~/.kube/config
+ 34
+>4;m".bashrc"[35L, 649Bqwritten
+>4;m[root@master ~]# # (master)
+#
+# 명령 자동 완성 기능 - kubectl 명령
+#
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+source <(kubectl completion bash)
+
+#
+# 엘리어스 기능 추가
+#
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
+
+source ~/.bashrc
+vi ~/.bashrc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29 # kubectl CMD
+ 30 source <(kubectl completion bash)
+ 31 alias k=kubectl
+ 32 complete -o default -F __start_kubectl k
+ 33 export KUBECONFIG=~/.kube/config
+ 34
+ 35 alias vi='/usr/bin/vim'
+>4;m>4;m[root@master ~]# c                                                                                                                      ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               34,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$pfff/ffff/f          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ^[  ^[  ::q
+[root@master ~]# exit
+exit
+
+Script done on 2026-10-12 19:03:02+09:00 [COMMAND_EXIT_CODE="0"]
