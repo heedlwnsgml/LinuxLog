@@ -1,0 +1,343 @@
+Script started on 2026-10-12 16:41:44+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="144" LINES="41"]
+cdubeadm init
+sudo kubeadm init \
+  --apiserver-advertise-address 192.168.10.10 \
+  --pod-network-cidr=10.10.0.0/16 \
+  | tee /root/kubeadm_init_output.txt
+cd
+sudo kubeadm init \
+  --apiserver-advertise-address 192.168.10.10 \
+  --pod-network-cidr=10.10.0.0/16 \
+  | tee /root/kubeadm_init_output.txt
+
+[init] Using Kubernetes version: v1.37.1
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local master] and IPs [10.96.0.1 192.168.10.10]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost master] and IPs [192.168.10.10 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost master] and IPs [192.168.10.10 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "super-admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 682.249µs
+[control-plane-check] Waiting for healthy control plane components. This can take up to 4m0s
+[control-plane-check] Checking kube-apiserver at https://192.168.10.10:6443/livez
+[control-plane-check] Checking kube-controller-manager at https://127.0.0.1:10257/healthz
+[control-plane-check] Checking kube-scheduler at https://127.0.0.1:10259/livez
+[control-plane-check] kube-controller-manager is healthy after 2.452649ms
+[control-plane-check] kube-scheduler is healthy after 7.086483ms
+[control-plane-check] kube-apiserver is healthy after 1.501763875s
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node master as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node master as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+[bootstrap-token] Using token: cy3kwz.0r4ahq38kaccthmg
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Configured RBAC rules to allow the API server kubelet client certificate to access the kubelet API
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.10.10:6443 --token cy3kwz.0r4ahq38kaccthmg \
+        --discovery-token-ca-cert-hash sha256:2228c9195c77ad9f85cf1d226cb87c3cbe9387d1ce35402bd2b2c01c64983132
+[root@master ~]# ls /
+서식  공개  문서  음악  사진  비디오  바탕화면  다운로드  anaconda-ks.cfg  bin  kubeadm_init_output.txt  LinuxLog
+[root@master ~]#
+[root@master ~]#
+[root@master ~]#
+[root@master ~]# cat kubeadm_init_output.txt
+[init] Using Kubernetes version: v1.37.1
+[preflight] Running pre-flight checks
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action beforehand using 'kubeadm config images pull'
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "ca" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local master] and IPs [10.96.0.1 192.168.10.10]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Generating "front-proxy-ca" certificate and key
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/ca" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost master] and IPs [192.168.10.10 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost master] and IPs [192.168.10.10 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "sa" key and public key
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+[kubeconfig] Writing "admin.conf" kubeconfig file
+[kubeconfig] Writing "super-admin.conf" kubeconfig file
+[kubeconfig] Writing "kubelet.conf" kubeconfig file
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[etcd] Creating static Pod manifest for local etcd in "/etc/kubernetes/manifests"
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Starting the kubelet
+[wait-control-plane] Waiting for the kubelet to boot up the control plane as static Pods from directory "/etc/kubernetes/manifests"
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 682.249µs
+[control-plane-check] Waiting for healthy control plane components. This can take up to 4m0s
+[control-plane-check] Checking kube-apiserver at https://192.168.10.10:6443/livez
+[control-plane-check] Checking kube-controller-manager at https://127.0.0.1:10257/healthz
+[control-plane-check] Checking kube-scheduler at https://127.0.0.1:10259/livez
+[control-plane-check] kube-controller-manager is healthy after 2.452649ms
+[control-plane-check] kube-scheduler is healthy after 7.086483ms
+[control-plane-check] kube-apiserver is healthy after 1.501763875s
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config" in namespace kube-system with the configuration for the kubelets in the cluster
+[upload-certs] Skipping phase. Please see --upload-certs
+[mark-control-plane] Marking the node master as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node master as control-plane by adding the taints [node-role.kubernetes.io/control-plane:NoSchedule]
+[bootstrap-token] Using token: cy3kwz.0r4ahq38kaccthmg
+[bootstrap-token] Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to get nodes
+[bootstrap-token] Configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] Configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] Configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[bootstrap-token] Configured RBAC rules to allow the API server kubelet client certificate to access the kubelet API
+[bootstrap-token] Creating the "cluster-info" ConfigMap in the "kube-public" namespace
+[kubelet-finalize] Updating "/etc/kubernetes/kubelet.conf" to point to a rotatable kubelet client certificate and key
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.10.10:6443 --token cy3kwz.0r4ahq38kaccthmg \
+        --discovery-token-ca-cert-hash sha256:2228c9195c77ad9f85cf1d226cb87c3cbe9387d1ce35402bd2b2c01c64983132
+[root@master ~]#
+[root@master ~]#
+[root@master ~]#
+exportmKUBECONFIG=/etc/kubernetes/admin.confrnetes/admin.conf
+[root@master ~]#
+[root@master ~]#
+echot"export KUBECONFIG=/etc/kubernetes/admin.conf"n>>e~/.bashrconf" >> ~/.bashrc
+ashrc
+# .bashrc# Source global definitionsif [ -f /etc/bashrc ]; then. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c='printf \n\n\n; clear'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=/etc/kubernetes/admin.conf
+>4;m>4;m[root@master ~]# c                                                                                                                      ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               1,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p+q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38^[P0    +q6b39+q6b3b+q4631+q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037+q6b50^[P   +q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[  ^[  ^[  ::q
+ubernetes/admin.conf
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRWp3NUw0SjZsU0F3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHpOakV3TURrd056UXlNREJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM4cnBkU293N0tpam5MYU5uYUlSaS9ZUytROFNSMmdxcnZWUExGRmlvdTZkZGNXbGg1QUl2MjUwcysKa1JXcDR5em55NVdYNjFIRVd4T3Q2Q0gvVmNYRjZUNHlNbnFBTi9Ya2xJTEE2d0U0aWNUTDgrVWE5bVFBS3kwQQpJVHdnd0lsSUtFQ1hQUnNuZk9BMU92TS8xVnRsU1hjY2g3SytUSXkycTUrWkYwN1o1K3c1cCtjMldnR3poVWpvCklJSmRQNzRlMjNOT2l1NlVabEJ2VWFwWHd3YmRBMWwzYWpsc0hudmdXZjJ0Q2ZXYjkyd3FQQy9VQlJ6NWdoRkkKSXZoenhEU0JtZUg4eW03SS9xVmZkL2hNcEoyR1RvZG9CU1g5YmhQaHIrMGhxYVFmMWF3SGVBUE56a05qNEx4QQpCZS9jZzRRck1FM3haZkRiclNTQ3NoODBsTmcvQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSMnlnNGJoVVUvNmpkREpjRURiNmJaSXVqTVJqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXpTNlZvZ2hhbwptQS9uRVhiT3NBSkxzckR2dk5kK0tWQXhWc2JSYWdRVDVwL0RZMklqc0lHYThhNy90S0FWc0R6WGlpR2hyU2VJCkZIWXRiNXhxVGJBYmJGQ3JHemc2YkJFcHowVkRWYXpQWkhmbldzWGFqM25lZmRlcTA3YWR6N3EzNDFSZHhHWkUKVGtZVGhNVzRNbmNwNFFSakhWR2NFTG56VkViakVsandVNnNKMmxQbG9rMzk4eXVIUCttNmVCWE95RVNLV0REUAp2MzBtNTZ2alhYT1N6VThMTkdDNTVRZmFHOW1Edjc1YXFuaVhsU2tjbXVNdEhHS3RpS1NXWnphT21Yc0NvSTRnCjNlSnZRUllqQ3lTV25OOWNkWFV1cHZWK1d2NVBhaGV1MENYQkNJSzVhcFRPYXBJb2tENVI5TzY1TDdOcDg3bmcKcnpheW4yMEM5azhoCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURLVENDQWhHZ0F3SUJBZ0lJZjdjUkxhUmd6WnN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHlOekV3TVRJd056UXlNREJhTUR3eApIekFkQmdOVkJBb1RGbXQxWW1WaFpHMDZZMngxYzNSbGNpMWhaRzFwYm5NeEdUQVhCZ05WQkFNVEVHdDFZbVZ5CmJtVjBaWE10WVdSdGFXNHdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEVW5hLzcKaldtSlhQbjVIU21MRlBCMDJ5cVI2REYySk1EYlEyejBDRjV0WDQyeUZMYjZTVFBaVXpxZno3bU9hSlR3eUNkOQpQQlc1c2tvOUt0aVY1MzVGWXg1QlBtdkhxOTZmZ1lLcmdLS1JScFArTHhCaHJXaFlTZEtYdExIbW05MWN4bWZNCmRqNUw4UHRGcHpGZEhpSWJOQmdRay9zWjk3cDFaM1hoN0t4MmFyQ1lVUzdETkN1KytsbXlzUzFtRUVWRWQzMkIKanQ1eWdTRWtrWmxYZC9UWGluN2JhR2gydjZPNFQ3TWtUeVorODZvdG5PNkVVY29jeGdOUmIrWlNHM3hqc24yOAoyY1FEbFpEQ2ttcHcyMEtubnZSaEZQWGMvc1BvZTUvRUdjb243eFRkTkpPSDRuSzVBV21NdXMyYWFCcDQxeVdYCjNod0N5bEk0N1V1Q3IwRTFBZ01CQUFHalZqQlVNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUsKQmdnckJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbAp3UU52cHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFjckxyWTBZS1R1QlE1ZjkrMWRJMHYyYXlsCjlTVWxlR1NQdkx2TG1MWGN2SEZqK3c5WkY4bHN2cTZkQ3VWUXd4WHJya2RBYTZMVnovcEJBWkxvRjRMUDBFVWMKUW5JYnhBdHRNTWpjUGxlYUdabGpzeTZvUS9CcnZBMzMxQTFKNTRicEtsRDVManI4SDJKRWlmYS90UWQ5RUQ0LworVXpMZ2tUOU5RRWZ1NTRtUmFiMnJvVDR4WVk2d2QzbEtUT1NKSHY1VExvMEFWYUIvSnlhNVF2ZkE5SVZVckFKCnpuWmlpVjZVcGJHc2VJaUE3WnREbmpuZWM3NDVuSGl2bFVyY2d2N1NsVG1Uay9JcFhtc0VRaytCdWNzQVRrWE4KbXpOYy9iblpzSnYzd1IzUEd3NnBhQ3k1MTl5ZG9CUVJ6d1BnY2cvWmF6ZU5aMWxHaXZpUWtnY2pHVWlMCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBMUoydis0MXBpVno1K1IwcGl4VHdkTnNxa2VneGRpVEEyME5zOUFoZWJWK05zaFMyCitra3oyVk02bjgrNWptaVU4TWduZlR3VnViSktQU3JZbGVkK1JXTWVRVDVyeDZ2ZW40R0NxNENpa1VhVC9pOFEKWWExb1dFblNsN1N4NXB2ZFhNWm56SFkrUy9EN1JhY3hYUjRpR3pRWUVKUDdHZmU2ZFdkMTRleXNkbXF3bUZFdQp3elFydnZwWnNyRXRaaEJGUkhkOWdZN2Vjb0VoSkpHWlYzZjAxNHArMjJob2RyK2p1RSt6SkU4bWZ2T3FMWnp1CmhGSEtITVlEVVcvbVVodDhZN0o5dk5uRUE1V1F3cEpxY050Q3A1NzBZUlQxM1A3RDZIdWZ4Qm5LSis4VTNUU1QKaCtKeXVRRnBqTHJObW1nYWVOY2xsOTRjQXNwU09PMUxncTlCTlFJREFRQUJBb0lCQUFwb1RaejZweGZhUFVJOApjelFqcWtHT0dOOWJobEJLTEVhUFhsM3pxdXVmcWNmMXk1OGt4aXoxTGdGMG9aaWU5ZXR6WUx0NG5YZWhpcERECjhDWW1Wci8rd2hSZmdkY2NTcUYwTFhsSHFxMkJ6dXk2VVFyMitneVlVSDZza2FqQUtHM0tLSHFScnlyNGVOUkkKQXRxVUJ3ZGQzVyt5VHJCT3VBblhMcVlJZDhpMENXa0N4ZEMxM1RLSkIrM01WRlh0KzdlRC9VMHdjem4wSFFwegpmVXk2T0pOTk03b3FteVROMm51dVpGalpwQVNiNXI5S2t0bnd2TmFzc3UwM2FnUE1mL04vS1lSSy9DQ05CVXZUCkp5cU9FZTlnMWtSVTV6YTZLVGVoM3ZyaW9heTk2WnY4V1BXV3NlUmoxNURCTEpJQ2NtYU14VXFOWURzbW8vRTMKVnA0YTNXRUNnWUVBN1NlQTdDTkFHOTdxWi9LQTZYSFhDOHJHWWNHaEVpU0lpdFZTVW5sYWI4czEvYi8vRkpCVwpCTU5HcVF2c2d4RDhwZEVIczFoM2FhVDVLTUlFcmxXYkdWRm0rNXVma2pMMTVZQlU2akdUOFh2K1lEbVRCQklJCkFHcDNUL3VsbUdoTlJ2ZHozTC9LczR0SmR6c3p5L1RtVEVXNmk0RW9vK2FReXZhbDN5blVkS3NDZ1lFQTVZTCsKVWFzbXFiTGdnWHd0aXFMMkQ0cFFVekpoOUZVTDBjdXhraTZYcTR6VG44MEZVQjNmeUZTNTRBVmt6YlF5SHV0Ngo0cllaclIrVDZIUEgyVDhEbVZZSldrWGxRTnEvSDJGOGR0cWhuTFNwdEV6cm92cThDTzlvQTI3eTMzSEhtZ2tICkxxV2xnNCtUUGV2MlRWek9zMDZoRlZyT0pSTmdpeG5NT1hxU1laOENnWUFjYWRzOGI0ekN5aFp6bGM1MEtidUcKSWlsYWxRUmpWQlUzN1E4TDZwWTNScldWVFdlV1l5U3JOV3BGM3JQYmtERjAvSEpidm9Hd0dwL3ZqaTlaWTlCTgpYRDltYmVMVWRWNll2S052MjdqSitmMGtNa0cyL3lJT1NyTTQxZ0dsSFBvRlFxaVREamVQQTJVdDc5M28xZEt4CjJMamM5Z0NVZ285ZWdlYWxzakZPT1FLQmdEeXQ4RzFKTWRTbC9XTmVvRy9KL0FKSjBFamV4alVpRXhqcG9NNEUKVVlkQ21XVGpnS2NZN3VSNU9oZDNkWnBKTFFNdHdQU1ZycDR0L2gzMEZuOWlnS0lXdEN4UTFIYmNIckcrUlhqcQovdFYra211ZjlxREZaOWQ0N0dnVCtsU0hNWDJSSzN2eXdaclI1OXowT005bFhTVGRBZ3V5VVZST0ZqVlFvY1VFCm1oVURBb0dCQU4wd1hGRVFveFl5dWJybWc1ajN5Yjg0eGdFeUZIM3Baa1JpMFd1V2ZLWjZvWU9LeDJ1b3A0bmEKNWpWbzhhS0hDUXN3K1RFRGNpWkRldFdvMzJTM2l2dFhyK3YwdlpDd3JPSGhMYmdaanNpM1BoaHR2S1RxSlBuaApwYUZVTTZKUkNoaWpHZFBTYzgxbGRLOTF1dnJURk0xbmpQQkV2cjNPV1prVnJ6M0ZZYWNmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+[root@master ~]#
+[root@master ~]#
+[root@master ~]#
+[root@master ~]# c
+[root@master ~]# cd
+for i in node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i ====="
+    ssh root@"$i" "$(tail -n 2 /root/kubeadm_init_output.txt)"
+[root@master ~]# cd
+for i in node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i ====="
+    ssh root@"$i" "$(tail -n 2 /root/kubeadm_init_output.txt)"
+done
+
+===== [ INFO ] node1 =====
+[preflight] Running pre-flight checks
+        [WARNING Hostname]: hostname "node1" could not be reached
+        [WARNING Hostname]: hostname "node1": lookup node1 on 8.8.8.8:53: no such host
+[preflight] Reading configuration from the "kubeadm-config" ConfigMap in namespace "kube-system"...
+[preflight] Use 'kubeadm init phase upload-config kubeadm --config your-config-file' to re-upload it.
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Starting the kubelet
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 500.986039ms
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+
+===== [ INFO ] node2 =====
+[preflight] Running pre-flight checks
+        [WARNING Hostname]: hostname "node2" could not be reached
+        [WARNING Hostname]: hostname "node2": lookup node2 on 8.8.8.8:53: no such host
+[preflight] Reading configuration from the "kubeadm-config" ConfigMap in namespace "kube-system"...
+[preflight] Use 'kubeadm init phase upload-config kubeadm --config your-config-file' to re-upload it.
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Starting the kubelet
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 501.821325ms
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+
+===== [ INFO ] node3 =====
+[preflight] Running pre-flight checks
+        [WARNING Hostname]: hostname "node3" could not be reached
+        [WARNING Hostname]: hostname "node3": lookup node3 on 8.8.8.8:53: no such host
+[preflight] Reading configuration from the "kubeadm-config" ConfigMap in namespace "kube-system"...
+[preflight] Use 'kubeadm init phase upload-config kubeadm --config your-config-file' to re-upload it.
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Starting the kubelet
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 502.538395ms
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+node2 cat /root/kubeadm_init_output.*
+cat: /root/kubeadm_init_output.txt: No such file or directory
+c
+[root@master ~]# kubectl get nodes
+NAME     STATUS     ROLES           AGE   VERSION
+master   NotReady   control-plane   26m   v1.37.1
+node1    NotReady   <none>          53s   v1.37.1
+node2    NotReady   <none>          52s   v1.37.1
+node3    NotReady   <none>          51s   v1.37.1
+[root@master ~]# find /s-name serviceaccount
+/run/containerd/io.containerd.runtime.v2.task/k8s.io/e3ea50eb3f53f4fb890d334bc470d4bf3952eb99326375894a74479c45efb864/rootfs/var/run/secrets/kubernetes.io/serviceaccount
+/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/51/fs/var/run/secrets/kubernetes.io/serviceaccount
+tainerd/io.containerd.snapshotter.v1.overlayfs/snapshots/51/fs/var/run/secrets/kubernetes.io/serviceaccount/
+도
+bash: syntax error near unexpected token `('
+[root@master ~]# eixt
+bash: eixt: command not found...
+[root@master ~]# exit
+exit
+
+Script done on 2026-10-12 17:14:15+09:00 [COMMAND_EXIT_CODE="127"]
