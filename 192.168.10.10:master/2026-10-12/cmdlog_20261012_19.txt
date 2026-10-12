@@ -9,3 +9,307 @@ root@master:~# exit
 exit
 
 Script done on 2026-10-12 19:03:27+09:00 [COMMAND_EXIT_CODE="0"]
+Script started on 2026-10-12 19:03:51+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="144" LINES="43"]
+root@master:~# k get cm
+NAME               DATA   AGE
+kube-root-ca.crt   1      141m
+e-system
+error: unable to match a printer suitable for the output format "kube-system", allowed formats are: custom-columns,custom-columns-file,go-template,go-template-file,json,jsonpath,jsonpath-as-json,jsonpath-file,kyaml,name,template,templatefile,wide,yaml
+ectl get nodes
+NAME     STATUS   ROLES           AGE    VERSION
+master   Ready    control-plane   141m   v1.37.1
+node1    Ready    <none>          116m   v1.37.1
+node2    Ready    <none>          116m   v1.37.1
+node3    Ready    <none>          116m   v1.37.1
+
+root@master:~#
+ashrc
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias c="printf \n\n\n; clear"
+
+#
+# Kubernetes
+#
+
+# kubectl CMD
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=~/.kube/config
+
+alias vi='/usr/bin/vim'
+ashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29 # kubectl CMD
+ 30 source <(kubectl completion bash)
+ 31 alias k=kubectl
+ 32 complete -o default -F __start_kubectl k
+ 33 export KUBECONFIG=~/.kube/config
+ 34
+ 35 alias vi='/usr/bin/vim'
+~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               34,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   3,1  ~@k   2~@k   1~@k   0~@k   29~@k   8,0-1^M  9,1  o -- INSERT --30,3All 30 # 1
+ 32
+ 33
+ 34
+ 35
+>4;m".bashrc"936L,2650Blwritten
+>4;mroot@master:~# vi ~/.bashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29 # kubectl CMD
+ 30
+ 31 source <(kubectl completion bash)
+ 32 alias k=kubectl
+ 33 complete -o default -F __start_kubectl k
+ 34 export KUBECONFIG=~/.kube/config
+ 35
+ 36 alias vi='/usr/bin/vim'
+~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               29,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   30,0-1~@k   1,1  ~@k   0,0-1~@k   29,1  ~@k   8,0-1i -- INSERT --28,1All 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 3729,1All893012^[  32,1All~@k   3~@k   2dd
+2
+ 33
+ 34
+ 35
+ 36~                                                                                                                                               32,1Alldd
+2
+ 33
+ 34
+ 35~                                                                                                                                               32,1Alldd
+2
+ 33
+ 34~                                                                                                                                               32,1All~@k   3,0-1~@k   4,1  ~@k   3,0-1dd
+3~                                                                                                                                               33,1All~@k   O -- INSERT --33,1Top 33
+ 3433,1Allalias vi='/usr/bin/vim'
+~                                                                                                                                               24
+ 34 4,1
+>4;m".bashrc"-35L,:561B written
+>4;mroot@master:~# # (master)
+# kubectl 명령 자동 완성 기능 설정
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+source <(kubectl completion bash)
+
+# kubeadm 명령 자동 완성 기능 설정
+echo "source <(kubeadm completion bash)" >> ~/.bashrc
+source <(kubeadm completion bash)
+
+# 엘리어스 설정
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
+source ~/.bashrc
+# (master)
+# kubectl 명령 자동 완성 기능 설정
+echo "source <(kubectl completion bash)" >> ~/.bashrc
+source <(kubectl completion bash)
+
+# kubeadm 명령 자동 완성 기능 설정
+echo "source <(kubeadm completion bash)" >> ~/.bashrc
+source <(kubeadm completion bash)
+
+# 엘리어스 설정
+echo 'alias k=kubectl' >>~/.bashrc
+echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
+source ~/.bashrc
+
+root@master:~# source ~/.bashrc
+ashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29
+ 30 # kubectl CMD
+ 31
+ 32 export KUBECONFIG=~/.kube/config
+ 33 alias vi='/usr/bin/vim'
+ 34
+ 35
+ 36 source <(kubectl completion bash)
+ 37 source <(kubeadm completion bash)
+ 38 alias k=kubectl
+ 39 complete -o default -F __start_kubectl k
+~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               35,0-1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   4~@k   3,1  ~@k   2~@k   1,0-1~@k   0,1  ~@k   29,0-1o -- INSERT --30,1All 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 4030,1Alle2x3[# kubectl CMDexport KUBECONFIG=~alias vi''source(kubectl completion bash)source(kubeadm completion bash)alias kkubectlcomplete -o-F4# kubectl CMDexport KUBECONFIG=~alias vi''source(kubectl completion bash)source(kubeadm completion bash)alias kkubectlcomplete -o-F32129e2x3pexport78S98P9S1PS1=2'# kubectl CMDexport KUBECONFIG=~/.kube/configalias vi=/usr/bin/vimsource <(kubectl completion bash)source <(kubeadm completion bash)alias k=kubectlcomplete -o default -F __start_kubectl k3\4[5\6e7[83912019420;112m3\4][]5[[34;1m\]6\7u8@9\30h1[2\3e4[53637;830,1 1,142,1 1,140,1 1,140,1 29,3819m40\1][]2 [33;1m\]3][]4[3\4w5][]6 []7[]6\[]7$8 9\50s10[1\2e3[4m[]7'# kubectl CMDexport KUBECONFIG=~/.kube/configalias vi=/usr/bin/vimsource <(kubectl completion bash)source <(kubeadm completion bash)alias k=kubectlcomplete -o default -F __start_kubectl k[m\]830,1 1,142,1 3,334,245,1 6()7,34()()8()()7()6,1 54,243,332,1 1,140,1 29,5830,1 1,142,1 3,334,243,33i41 #export KUBECONFIG=~/.kube/configi22,1
+1# kubectl CMD2
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+
+
+>4;m".bashrc" 39L, 745B written                                                                                                                 31,14All234,1 56,14789^[  39,13All::wq
+>4;mashrc
+[root@master[ ~]# viurce ~/.bashrc
+  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 30
+ 31 # kubectl CMD
+ 32 #export KUBECONFIG=~/.kube/configi
+ 33 alias vi='/usr/bin/vim'
+ 34
+ 35
+ 36 source <(kubectl completion bash)
+ 37 source <(kubeadm completion bash)
+ 38 alias k=kubectl
+ 39 complete -o default -F __start_kubectl k
+~                                                                                                                                               ~                                                                                                                                               ~                                                                                                                                               39,1All+q436f+q6b75+q6b64+q6b72+q6b6c+q2332+q2334+q2569+q2a37+q6b31$q q?12$p:ffff/ffff          +q6b32+q6b33+q6b34+q6b35+q6b36+q6b37+q6b38+q6b39+q6b3b+q4631^[  +q4632+q2531+q2638+q6b62+q6b49+q6b44+q6b68+q4037^[P0+r^[        +q6b50+q6b4e+q4b31+q4b33+q4b34+q4b35+q6b42+q5053+q5045^[P0+r^[        ~@k   ~@k   ~@k   ~@k   8~@k   7~@k   6~@k   5,0-1~@k   4~@k   3,1  ~@k   2~@k   1~@k   0,0-1~@k   29,1  dd
+29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38~                                                                                                                                               29,0-1Allp  30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+>4;m".bashrc" 39L,:745B written
+>4;mashrc
+[root@master[ ~]# c
+[root@master[ ~]# exit
+exit
+
+Script done on 2026-10-12 19:23:37+09:00 [COMMAND_EXIT_CODE="0"]
