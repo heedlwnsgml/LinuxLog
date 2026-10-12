@@ -1,0 +1,187 @@
+Script started on 2026-10-12 15:46:17+09:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="144" LINES="43"]
+1 grep swap /etc/fstab ; swapon
+UUID=e3364ff3-be20-414d-b6ad-c328f604c787 none                    swap    defaults        0 0
+NAME      TYPE      SIZE USED PRIO
+/dev/dm-1 partition   6G   0B   -2
+[root@master ~]#
+[root@master ~]#
+nn-s
+Filename                                Type            Size            Used            Priority
+/dev/dm-1                               partition       6291452         0               -2
+[root@master ~]# yesssir
+[root@master0~]#4swapoff6-a
+[root@master ~]# free
+               total        used        free      shared  buff/cache   available
+Mem:         7831532     1820856     4278308       25852     2006940     6010676
+Swap:              0           0           0
+[root@master ~]# sed -i '/ swaq /s/^/#/' /etc/fstab
+[root@master ~]# sed -i '/1@paq /s/^/#/' /etc/fstab
+ /etc/fstab
+#UUID=e3364ff3-be20-414d-b6ad-c328f604c787 none                    swap    defaults        0 0
+[root@master ~]# for id in {10..14} do ; ssh 192.168.10.$(ip))ip -a ; done
+bash: syntax error near unexpected token `ssh'
+[root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" done
+> ;;
+bash: syntax error near unexpected token `;;'
+[root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" ;odone;;
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+[root@master ~]# $?
+bash: 255: command not found...
+[root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" ; done
+The authenticity of host '192.168.10.10 (192.168.10.10)' can't be established.
+ED25519 key fingerprint is SHA256:TyjwCL5RsshRNM1c2JhKo8ZPhP+ZFYeueptidcwhrfE.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: main
+    ~/.ssh/known_hosts:4: server1
+    ~/.ssh/known_hosts:5: server2
+    ~/.ssh/known_hosts:6: 192.168.10.11
+    ~/.ssh/known_hosts:7: 192.168.10.12
+    ~/.ssh/known_hosts:8: 192.168.10.13
+    ~/.ssh/known_hosts:9: 192.168.10.14
+    ~/.ssh/known_hosts:10: master
+    (4 additional names omitted)
+Are you sure you want to continue connecting (yes/no/[fingerprint])? no
+Host key verification failed.
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { address | addrlabel | fou | help | ila | ioam | l2tp | link |
+                   macsec | maddress | monitor | mptcp | mroute | mrule |
+                   neighbor | neighbour | netconf | netns | nexthop | ntable |
+                   ntbl | route | rule | sr | stats | tap | tcpmetrics |
+                   token | tunnel | tuntap | vrf | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec | -j[son] | -p[retty] |
+                    -f[amily] { inet | inet6 | mpls | bridge | link } |
+                    -4 | -6 | -M | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -echo | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
+                    -c[olor]}
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { address | addrlabel | fou | help | ila | ioam | l2tp | link |
+                   macsec | maddress | monitor | mptcp | mroute | mrule |
+                   neighbor | neighbour | netconf | netns | nexthop | ntable |
+                   ntbl | route | rule | sr | stats | tap | tcpmetrics |
+                   token | tunnel | tuntap | vrf | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec | -j[son] | -p[retty] |
+                    -f[amily] { inet | inet6 | mpls | bridge | link } |
+                    -4 | -6 | -M | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -echo | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
+                    -c[olor]}
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { address | addrlabel | fou | help | ila | ioam | l2tp | link |
+                   macsec | maddress | monitor | mptcp | mroute | mrule |
+                   neighbor | neighbour | netconf | netns | nexthop | ntable |
+                   ntbl | route | rule | sr | stats | tap | tcpmetrics |
+                   token | tunnel | tuntap | vrf | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec | -j[son] | -p[retty] |
+                    -f[amily] { inet | inet6 | mpls | bridge | link } |
+                    -4 | -6 | -M | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -echo | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
+                    -c[olor]}
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { address | addrlabel | fou | help | ila | ioam | l2tp | link |
+                   macsec | maddress | monitor | mptcp | mroute | mrule |
+                   neighbor | neighbour | netconf | netns | nexthop | ntable |
+                   ntbl | route | rule | sr | stats | tap | tcpmetrics |
+                   token | tunnel | tuntap | vrf | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec | -j[son] | -p[retty] |
+                    -f[amily] { inet | inet6 | mpls | bridge | link } |
+                    -4 | -6 | -M | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -echo | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -N[umeric] | -a[ll] |
+                    -c[olor]}
+[root@master ~]# c
+[root@master ~]# for i in {1..10} ; do
+> do
+> echo "hi leejunhee$(i)"
+> done
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+bash: i: command not found...
+hi leejunhee
+foroi@ins{1..10} ;ordo echo1"hi0leejunhee$(i)";idonejunhee$(i)"; done
+hi leejunhee1
+hi leejunhee2
+hi leejunhee3
+hi leejunhee4
+hi leejunhee5
+hi leejunhee6
+hi leejunhee7
+hi leejunhee8
+hi leejunhee9
+hi leejunhee10
+[root@master ~]# c
+[root@master ~]# [root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" ; done
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+[root@master ~]#
+
+
+
+
+
+
+
+
+
+
+
+[root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" ; done
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+[root@master ~]#
+
+
+[root@master ~]# for id in {10..14} ; do ssh "192.168.10.$(id)" "ip -a" ; done
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+hostname contains invalid characters
+[root@master ~]#
+
+
+^C
+[root@master ~]# ^C
+exit
+exit
+
+Script done on 2026-10-12 15:59:08+09:00 [COMMAND_EXIT_CODE="130"]
