@@ -1,0 +1,623 @@
+Script started on 2026-10-12 21:08:19+09:00 [TERM="xterm" TTY="/dev/pts/3" COLUMNS="141" LINES="26"]
+[root@master[ ~]# k api-resources | head
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+[root@master[ ~]# kaapi-resources --namespace=true
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+[root@master[ ~]# k api-resources --namespace=false
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+croot@master[ ~]# k api-resources --namespace=false
+nnn[root@master[ ~]# k api-resources --namespaced=true
+NAME                        SHORTNAMES   APIVERSION                     NAMESPACED   KIND
+bindings                                 v1                             true         Binding
+configmaps                  cm           v1                             true         ConfigMap
+endpoints                   ep           v1                             true         Endpoints
+events                      ev           v1                             true         Event
+limitranges                 limits       v1                             true         LimitRange
+persistentvolumeclaims      pvc          v1                             true         PersistentVolumeClaim
+pods                        po           v1                             true         Pod
+podtemplates                             v1                             true         PodTemplate
+replicationcontrollers      rc           v1                             true         ReplicationController
+resourcequotas              quota        v1                             true         ResourceQuota
+secrets                                  v1                             true         Secret
+serviceaccounts             sa           v1                             true         ServiceAccount
+services                    svc          v1                             true         Service
+controllerrevisions                      apps/v1                        true         ControllerRevision
+daemonsets                  ds           apps/v1                        true         DaemonSet
+deployments                 deploy       apps/v1                        true         Deployment
+replicasets                 rs           apps/v1                        true         ReplicaSet
+statefulsets                sts          apps/v1                        true         StatefulSet
+localsubjectaccessreviews                authorization.k8s.io/v1        true         LocalSubjectAccessReview
+horizontalpodautoscalers    hpa          autoscaling/v2                 true         HorizontalPodAutoscaler
+cronjobs                    cj           batch/v1                       true         CronJob
+jobs                                     batch/v1                       true         Job
+podcertificaterequests                   certificates.k8s.io/v1         true         PodCertificateRequest
+leases                                   coordination.k8s.io/v1         true         Lease
+networkpolicies                          crd.projectcalico.org/v1       true         NetworkPolicy
+networksets                              crd.projectcalico.org/v1       true         NetworkSet
+endpointslices                           discovery.k8s.io/v1            true         EndpointSlice
+events                      ev           events.k8s.io/v1               true         Event
+ingresses                   ing          networking.k8s.io/v1           true         Ingress
+networkpolicies             netpol       networking.k8s.io/v1           true         NetworkPolicy
+poddisruptionbudgets        pdb          policy/v1                      true         PodDisruptionBudget
+rolebindings                             rbac.authorization.k8s.io/v1   true         RoleBinding
+roles                                    rbac.authorization.k8s.io/v1   true         Role
+resourceclaims                           resource.k8s.io/v1             true         ResourceClaim
+resourceclaimtemplates                   resource.k8s.io/v1             true         ResourceClaimTemplate
+csistoragecapacities                     storage.k8s.io/v1              true         CSIStorageCapacity
+[root@master[ ~]# kuget ns
+NAME              STATUS   AGE
+default           Active   4h31m
+kube-node-lease   Active   4h31m
+kube-public       Active   4h31m
+kube-system       Active   4h31m
+[root@master[ ~]# cubectl create
+nnn[root@master[ ~]# k get ns
+NAME              STATUS   AGE
+default           Active   4h32m
+kube-node-lease   Active   4h32m
+kube-public       Active   4h32m
+kube-system       Active   4h32m
+[root@master[ ~]# kkconfigyview
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[ ~]# kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   4h38m
+kube-node-lease   Active   4h38m
+kube-public       Active   4h38m
+kube-system       Active   4h38m
+[root@master[ ~]# kubectl get pods
+No resources found in default namespace.
+[root@master[ ~]# kubectl get pods
+No resources found in default namespace.
+[root@master[ ~]# kubectl get pods-n kube-system
+NAME                                       READY   STATUS    RESTARTS        AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (3h30m ago)   4h1m
+calico-node-gdd6m                          1/1     Running   1 (3h30m ago)   4h1m
+calico-node-w5tqt                          1/1     Running   1 (3h30m ago)   4h1m
+calico-node-xmd8v                          1/1     Running   1 (3h30m ago)   4h1m
+calico-node-xxrpg                          1/1     Running   1 (3h30m ago)   4h1m
+coredns-559f6c778d-c5pr6                   1/1     Running   1 (3h30m ago)   4h39m
+coredns-559f6c778d-rcq87                   1/1     Running   1 (3h30m ago)   4h39m
+etcd-master                                1/1     Running   1 (3h30m ago)   4h39m
+kube-apiserver-master                      1/1     Running   1 (3h30m ago)   4h39m
+kube-controller-manager-master             1/1     Running   1 (3h30m ago)   4h39m
+kube-proxy-g6jl6                           1/1     Running   1 (3h30m ago)   4h13m
+kube-proxy-gr849                           1/1     Running   1 (3h30m ago)   4h13m
+kube-proxy-nk85b                           1/1     Running   1 (3h30m ago)   4h39m
+kube-proxy-vjr9p                           1/1     Running   1 (3h30m ago)   4h13m
+kube-scheduler-master                      1/1     Running   1 (3h30m ago)   4h39m
+[root@master[ ~]# kubectl getppods -n kube-public
+No resources found in kube-public namespace.
+[root@master[ ~]# kubectl get pods -n kube-node-lease
+No resources found in kube-node-lease namespace.
+[root@master[ ~]# kubectl get pods -n defaultde-lease
+No resources found in default namespace.
+[root@master[ ~]# cddkube/
+[root@master[ ~/kube]# mkdir -p 04/ns
+[root@master[ ~cd004/ns4/nsr -p 04/ns
+[root@master[ ~/kube/04/ns]# c
+nnn[root@master[ ~/kube/04/ns]# kubectlf-nldefault get pod
+No resources found in default namespace.
+[root@master[ ~/kube/04/ns]# kubectl run web --image=nginx --port=80 --dry-run=client--o yaml > nginx-pod.yml
+[root@master[ ~/kube/04/ns]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 16L, 235B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: web
+  6   name: web
+  7 spec:
+  8   containers:
+  9   - image: nginx
+ 10     name: web
+ 11     ports:
+ 12     - containerPort: 80
+ 13     resources: {}
+ 14   dnsPolicy: ClusterFirst
+ 15   restartPolicy: Always
+ 16 status: {}
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3dd
+3
+ 14
+ 15~                                                                                                                                            13,3Alldd
+3
+ 14~                                                                                                                                            13,3Alldd
+3~                                                                                                                                            13,1Alldd
+>4;m"nginx-pod.yml" 12L, 156B written                                                                                                        2,5~@k   1~@k   0~@k   9,5 ~@k   87~@k   6~@k   5~@k   4~@k   3~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3^[  ^[  ::wq
+>4;m[root@master[ ~/kube/04/ns]# kubectl create -f nginx-pod.yml
+pod/web created
+[root@master[ ~/kube/04/ns]# kubectl get pods -n kube-system
+NAME                                       READY   STATUS    RESTARTS        AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (3h38m ago)   4h9m
+calico-node-gdd6m                          1/1     Running   1 (3h38m ago)   4h9m
+calico-node-w5tqt                          1/1     Running   1 (3h38m ago)   4h9m
+calico-node-xmd8v                          1/1     Running   1 (3h38m ago)   4h9m
+calico-node-xxrpg                          1/1     Running   1 (3h38m ago)   4h9m
+coredns-559f6c778d-c5pr6                   1/1     Running   1 (3h38m ago)   4h47m
+coredns-559f6c778d-rcq87                   1/1     Running   1 (3h38m ago)   4h47m
+etcd-master                                1/1     Running   1 (3h38m ago)   4h47m
+kube-apiserver-master                      1/1     Running   1 (3h38m ago)   4h47m
+kube-controller-manager-master             1/1     Running   1 (3h38m ago)   4h47m
+kube-proxy-g6jl6                           1/1     Running   1 (3h38m ago)   4h22m
+kube-proxy-gr849                           1/1     Running   1 (3h38m ago)   4h22m
+kube-proxy-nk85b                           1/1     Running   1 (3h38m ago)   4h47m
+kube-proxy-vjr9p                           1/1     Running   1 (3h38m ago)   4h22m
+kube-scheduler-master                      1/1     Running   1 (3h38m ago)   4h47m
+[root@master[ ~/kube/04/ns]# kubectl create ns dev
+namespace/dev created
+[root@master[ ~/kube/04/ns]# kubectl  get ns
+NAME              STATUS   AGE
+default           Active   4h49m
+dev               Active   5s
+kube-node-lease   Active   4h49m
+kube-public       Active   4h49m
+kube-system       Active   4h49m
+[root@master[ ~/kube/04/ns]# kubectl create ns prodns --dry-run=client -o yaml > prodns.ymlyml
+[root@master[ ~/kube/04/ns]# vi prodns.yml
+>4;2m"prodns.yml" 6L, 76B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Namespace  3 metadata:  4   name: prodns
+  5 spec: {}
+  6 status: {}
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            1,1All?12$p~@k   2~@k   3~@k   4~@k   5dd
+5~                                                                                                                                            5,1Alldd
+>4;m"prodns.yml" 4L, 56B written                                                                                                             4,3d^[  ^[   ::wq
+>4;m[root@master[ ~/kube/04/ns]# kubectl create -f prodns.yml
+namespace/prodns created
+[root@master[ ~/kube/04/ns]# kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   4h50m
+dev               Active   85s
+kube-node-lease   Active   4h50m
+kube-public       Active   4h50m
+kube-system       Active   4h50m
+prodns            Active   16s
+[root@master[ ~/kube/04/ns]# cp ~/kube/03/web-pod.yml .
+[root@master[ ~/kube/04/ns]# ls
+nginx-pod.yml  prodns.yml  web-pod.yml
+[root@master[ ~/kube/04/ns]# kubectl create -f nginx-pod.yml -n prodns
+[root@master[ ~/kube/04/ns]# cat web-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: web
+  name: web
+spec:
+  containers:
+  - image: nginx
+    name: web
+    ports:
+    - containerPort: 80
+[root@master[ ~/kube/04/ns]# kubectl create -f web-pod.yml -n prodns
+pod/web created
+[root@master[ ~/kube/04/ns]# kubectl get pods -n prodns
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          18s
+[root@master[ ~/kube/04/ns]# getepods-o@widete--fpweb-pod.yml
+NAME   READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+web    1/1     Running   0          26s   10.10.166.131   node1   <none>           <none>
+[root@master[ ~/kube/04/ns]# kubectl delete pods web -n prodns
+pod "web" deleted from prodns namespace
+[root@master[ ~/kube/04/ns]# kubectl create namespace stagens
+namespace/stagens created
+[root@master[ ~/kube/04/ns]# kubectl create namespace pppp --dry-run=client -o yaml > nginx-pod.yml
+[root@master[ ~/kube/04/ns]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 6L, 74B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Namespace  3 metadata:  4   name: pppp
+  5 spec: {}
+  6 status: {}
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            3,1All?12$pi -- INSERT --3,1All45432109 89s10t1a2g3e4n5s63,104,163,104,169 7s: stagens8p: stagens9a: stagens10c: stagens1e: stagens23,10  4
+  5
+  6
+  74,1All3n4a5nname:w9e10bname: web9310  4
+  5
+  6
+  7
+  84,1All3l4a5b6e7slabels:1010  5
+  6
+  7
+  8
+  95,3All5r6urun:910w1e2b36,127,13{}8,{}10d1^[  8,10Alldd
+8~                                                                                                                                            8,1Alldd
+~                                                                                                                                            7,21oE99: Current buffer is not in diff mode7,3All^[  ^[  o --9INSERTe-- 8,3All  8   1
+  8   8,3 1s2p3c43spec:6
+  9 9,13c4o5n6t7a8i9n10e1r2s3containers:4
+ 10   10,353-- 5n6a7name:101n2g3i4n5x6
+ 11   1,3 ---435i6m7a8gimages:2imaimage:12n3g4i5n6a76x7
+ 12     2,5 p6o7r8ports:1
+ 13     3,5 75-- 7c8o9n10t1a2i3n4e5r6P7r8o987o8r9t20containerPort:128304
+>4;m"nginx-pod.yml"014L,c205B5writtenrotocol:67T8C9P20^[  14,19All::wq
+>4;m[root@master[ ~/kube/04/ns]# k create -f nginx-pod.yml
+Error from server (BadRequest): error when creating "nginx-pod.yml": Namespace in version "v1" cannot be handled as a Namespace: strict decoding error: unknown field "spec.containers"
+[root@master[ ~/kube/04/ns]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 14L, 205B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Namespace  3 metadata:  4   labels:
+  5     run: web
+  6   name: web
+  7   namespace: stagens
+  8 spec:
+  9   containers:
+ 10   - name: nginx
+ 11     image: nginx
+ 12     ports:
+ 13     - containerPort: 80
+ 14       protocol: TCP
+>4;m"nginx-pod.yml" 14L, 199B written                                                                                                        ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            14,7All?12$p~@k   3~@k   2~@k   1~@k   0~@k   9,7 ~@k   8,5~@k   7,7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   ~@k   ~@k   ~@k   ~@k   2i -- INSERT --2,7AllamespacemespaceespacespacepaceaceceeP8o9d10^[  2,9All::wq
+>4;m[root@master[ ~/kube/04/ns]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 14L, 199B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: web
+  6   name: web
+  7   namespace: stagens
+  8 spec:
+  9   containers:
+ 10   - name: nginx
+ 11     image: nginx
+ 12     ports:
+ 13     - containerPort: 80
+ 14       protocol: TCP
+>4;m>4;m[root@master[ ~/kube/04/ns]# 9@kncreateo-fyml                                                                                        ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            2,1All?12$p::q
+pod/web created
+[root@master[ ~/kube/04/ns]# kubectl get pods -n stagens
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          15s
+[root@master[ ~/kube/04/ns]# kubectl delete pods -n stagens
+error: resource(s) were provided, but no name was specified
+[root@master[ ~/kube/04/ns]# kubectl getete pods -n stagens
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          30s
+[root@master[ ~/kube/04/ns]# kubectl delete pods web -n stagens
+pod "web" deleted from stagens namespace
+[root@master[ ~/kube/04/ns]#
+[root@master[ ~/kube/04/ns]#
+[root@master[ ~/kube/04/ns]# c
+nnn[root@master[ ~/kube/04/ns]# kubectl config
+current-context  (Display the current-context)
+delete-cluster   (Delete the specified cluster from the kubeconfig)
+delete-context   (Delete the specified context from the kubeconfig)
+delete-user      (Delete the specified user from the kubeconfig)
+get-clusters     (Display clusters defined in the kubeconfig)
+get-contexts     (Describe one or many contexts)
+get-users        (Display users defined in the kubeconfig)
+rename-context   (Rename a context from the kubeconfig file)
+set-cluster      (Set a cluster entry in kubeconfig)
+set-context      (Set a context entry in kubeconfig)
+set-credentials  (Set a user entry in kubeconfig)
+set              (Set an individual value in a kubeconfig file)
+unset            (Unset an individual value in a kubeconfig file)
+use-context      (Set the current-context in a kubeconfig file)
+view             (Display merged kubeconfig settings or a specified kubeconfig file)
+[root@master[ ~/kube/04/ns]# kubectl config current-context
+kubernetes-admin@kubernetes
+[root@master[ ~/kube/04/ns]# kubectl config get-contextsext
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+[root@master[ ~/kube/04/ns]# kubectl config use-contexts
+Set the current-context in a kubeconfig file.
+
+Aliases:
+use-context, use
+
+Examples:
+  # Use the context for the minikube cluster
+  kubectl config use-context minikube
+
+Usage:
+  kubectl config use-context CONTEXT_NAME [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+error: Unexpected args: []
+[root@master[ ~/kube/04/ns]# c
+nnn[root@master[ ~/kube/04/ns]# kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[ ~/kube/04/ns]# kubectluconfig get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+[root@master[ ~/kube/04/ns]# kubectl config set-context kubernetes-admin@kubernetes --namespace prodns
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ ~/kube/04/ns]# kubectl config set-context kubernetes-admin@kubernetes --namespace=prodns
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ ~/kube/04/ns]# kubectl config set-context kubernetes-admin@kubernetes --namespace=prodns
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ ~/kube/04/ns]# c\
+nnn[root@master[ ~/kube/04/ns]# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   prodns
+[root@master[ ~/kube/04/ns]# kubectl config get-contexts -o wide
+error: --output wide is not available in kubectl config get-contexts; resetting to default output format
+[root@master[ ~/kube/04/ns]# kubectl config get-contexts -o wide
+nginx-pod.yml  prodns.yml     web-pod.yml
+[root@master[ ~/kube/04/ns]# cubectl config get-contexts p
+nnn[root@master[ ~/kube/04/ns]# kubectl get poos
+No resources found in prodns namespace.
+[root@master[ ~/kube/04/ns]# kubectl get pods
+No resources found in prodns namespace.
+[root@master[ ~/kube/04/ns]# kubectl config set-context kubernetes-admin@kubernetes --namespace=""
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ ~/kube/04/ns]# kubectl config get-c
+error: unknown command "get-c"
+See 'kubectl config -h' for help and examples
+[root@master[ ~/kube/04/ns]# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+[root@master[ ~/kube/04/ns]# c
+nnn[root@master[ ~/kube/04/ns]# kubectl get pods
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          21m
+[root@master[ ~/kube/04/ns]# kubectl get ns
+NAME              STATUS   AGE
+default           Active   5h9m
+dev               Active   20m
+kube-node-lease   Active   5h9m
+kube-public       Active   5h9m
+kube-system       Active   5h9m
+prodns            Active   19m
+stagens           Active   15m
+[root@master[ ~/kube/04/ns]# kubectl get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS     AGE
+default       web                                        1/1     Running   0            22m
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (4h ago)   4h31m
+kube-system   calico-node-gdd6m                          1/1     Running   1 (4h ago)   4h31m
+kube-system   calico-node-w5tqt                          1/1     Running   1 (4h ago)   4h31m
+kube-system   calico-node-xmd8v                          1/1     Running   1 (4h ago)   4h31m
+kube-system   calico-node-xxrpg                          1/1     Running   1 (4h ago)   4h31m
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   1 (4h ago)   5h9m
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   1 (4h ago)   5h9m
+kube-system   etcd-master                                1/1     Running   1 (4h ago)   5h9m
+kube-system   kube-apiserver-master                      1/1     Running   1 (4h ago)   5h9m
+kube-system   kube-controller-manager-master             1/1     Running   1 (4h ago)   5h9m
+kube-system   kube-proxy-g6jl6                           1/1     Running   1 (4h ago)   4h43m
+kube-system   kube-proxy-gr849                           1/1     Running   1 (4h ago)   4h43m
+kube-system   kube-proxy-nk85b                           1/1     Running   1 (4h ago)   5h9m
+kube-system   kube-proxy-vjr9p                           1/1     Running   1 (4h ago)   4h43m
+kube-system   kube-scheduler-master                      1/1     Running   1 (4h ago)   5h9m
+[root@master[ ~/kube/04/ns]# kubectl delete pods web -n default
+pod "web" deleted from default namespace
+[root@master[ ~/kube/04/ns]# kubectl delete namespaces stagens dev
+namespace "stagens" deleted
+namespace "dev" deleted
+[root@master[ ~/kube/04/ns]# kubectl run testpod --image=nginx --port=80 -n prodns
+pod/testpod created
+[root@master[ ~/kube/04/ns]# kubectl delete namespaces prodns
+namespace "prodns" deleted
+[root@master[ ~/kube/04/ns]# kubectl get pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/ns]# kubectl get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (4h2m ago)   4h33m
+kube-system   calico-node-gdd6m                          1/1     Running   1 (4h2m ago)   4h33m
+kube-system   calico-node-w5tqt                          1/1     Running   1 (4h2m ago)   4h33m
+kube-system   calico-node-xmd8v                          1/1     Running   1 (4h2m ago)   4h33m
+kube-system   calico-node-xxrpg                          1/1     Running   1 (4h2m ago)   4h33m
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   1 (4h2m ago)   5h11m
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   1 (4h2m ago)   5h11m
+kube-system   etcd-master                                1/1     Running   1 (4h2m ago)   5h11m
+kube-system   kube-apiserver-master                      1/1     Running   1 (4h2m ago)   5h11m
+kube-system   kube-controller-manager-master             1/1     Running   1 (4h2m ago)   5h11m
+kube-system   kube-proxy-g6jl6                           1/1     Running   1 (4h2m ago)   4h46m
+kube-system   kube-proxy-gr849                           1/1     Running   1 (4h2m ago)   4h46m
+kube-system   kube-proxy-nk85b                           1/1     Running   1 (4h2m ago)   5h11m
+kube-system   kube-proxy-vjr9p                           1/1     Running   1 (4h2m ago)   4h46m
+kube-system   kube-scheduler-master                      1/1     Running   1 (4h2m ago)   5h11m
+[root@master[ ~/kube/04/ns]# c
+nnn[root@master[ ~/kube/04/ns]# exit
+exit
+
+Script done on 2026-10-12 21:54:23+09:00 [COMMAND_EXIT_CODE="0"]
