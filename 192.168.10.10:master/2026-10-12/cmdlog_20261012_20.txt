@@ -1,0 +1,217 @@
+Script started on 2026-10-12 20:15:56+09:00 [TERM="xterm" TTY="/dev/pts/3" COLUMNS="141" LINES="26"]
+[root@master[ ~]# cM
+nnn[root@master[ ~]# cd kube/
+[root@master[ ~/kube]# mkdir 03
+[root@master[ ~/kube]# cd 03
+[root@master[ ~/kube/03]# k run web --image=nginx --port=80
+Error from server (AlreadyExists): pods "web" already exists
+[root@master[ ~/kube/03]# k run web --image=nginx --port=80 --dry-run
+W1012 20:17:00.956254   99109 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+pod/web created (dry run)
+[root@master[ ~/kube/03]# k run web --image=nginx --port=80 --dry-run=client
+pod/web created (dry run)
+[root@master[ ~/kube/03]# k run web --image=nginx --port=80 --dry-run=server
+Error from server (AlreadyExists): pods "web" already exists
+[root@master[ ~/kube/03]# k run web --image=nginx --port=80 --dry-run=client -o yaml > web-pod.yml
+[root@master[ ~/kube/03]# ls
+web-pod.yml
+[root@master[ ~/kube/03]# vi web-pod.yml
+>4;2m"web-pod.yml" 16L, 235B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: web
+  6   name: web
+  7 spec:
+  8   containers:
+  9   - image: nginx
+ 10     name: web
+ 11     ports:
+ 12     - containerPort: 80
+ 13     resources: {}
+ 14   dnsPolicy: ClusterFirst
+ 15   restartPolicy: Always
+ 16 status: {}
+~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            ~                                                                                                                                            1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3dd
+3
+ 14
+ 15~                                                                                                                                            13,3Alldd
+3
+ 14~                                                                                                                                            13,3Alldd
+3~                                                                                                                                            13,1Alldd
+>4;m"web-pod.yml" 12L, 156B written                                                                                                          2,5^[  ^[  ::wq
+>4;m[root@master[ ~/kube/03]# ls
+web-pod.yml
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]# catwweb-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: web
+  name: web
+spec:
+  containers:
+  - image: nginx
+    name: web
+    ports:
+    - containerPort: 80
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]# k get pods
+NAME                     READY   STATUS    RESTARTS   AGE
+web                      1/1     Running   0          41m
+webapi-f8f66c47d-7gt5w   1/1     Running   0          9m20s
+webapi-f8f66c47d-cr6cd   1/1     Running   0          36m
+webapi-f8f66c47d-g86kz   1/1     Running   0          36m
+webapi-f8f66c47d-lwgvc   1/1     Running   0          36m
+webapi-f8f66c47d-rxz8k   1/1     Running   0          9m20s
+[root@master[ ~/kube/03]# k get deployments.apps
+NAME     READY   UP-TO-DATE   AVAILABLE   AGE
+webapi   5/5     5            5           36m
+[root@master[ ~/kube/03]# kudeletekdeployments.appsmwebapi
+deployment.apps "webapi" deleted from default namespace
+[root@master[ ~/kube/03]# k delete pods web
+pod "web" deleted from default namespace
+[root@master[ ~/kube/03]# lscreat
+web-pod.yml
+[root@master[ ~/kube/03]# k create -fbweb-pod.yml
+pod/web created
+[root@master[ ~/kube/03]# k get pod
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          18s
+[root@master[ ~/kube/03]# k delete -f web-pod.yml
+pod "web" deleted from default namespace
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]#
+[root@master[ ~/kube/03]#
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]# lscreate
+web-pod.yml
+[root@master[ ~/kube/03]# kubectl create -f web-pod.yml
+pod/web created
+[root@master[ ~/kube/03]# k edit pod web
+>4;2m"/tmp/kubectl-edit-998658085.yaml" 137L, 3699B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: 8698f9e3aad061803d1acd2b05a4508f6ddd949a5b6f67e56148745c092ba98a
+    cni.projectcalico.org/podIP: 10.10.104.5/32
+    cni.projectcalico.org/podIPs: 10.10.104.5/32
+  creationTimestamp: "2026-10-12T11:31:26Z"
+  generation: 1
+  labels:
+    run: web
+  name: web
+  namespace: default
+  resourceVersion: "24218"
+  uid: 26fcc36b-b0a8-4b6d-9e09-33b7a2169134
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: web
+>4;m>4;mEdit1cancelled,qno changes made.
+[root@master[ ~/kube/03]# k get pod web
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          16s
+[root@master[ ~/kube/03]# k describeoyments.apps
+apiservices.apiregistration.k8s.io                              kubecontrollersconfigurations.crd.projectcalico.org
+bgpconfigurations.crd.projectcalico.org                         leases.coordination.k8s.io
+bgppeers.crd.projectcalico.org                                  limitranges
+blockaffinities.crd.projectcalico.org                           mutatingadmissionpolicies.admissionregistration.k8s.io
+caliconodestatuses.crd.projectcalico.org                        mutatingadmissionpolicybindings.admissionregistration.k8s.io
+certificatesigningrequests.certificates.k8s.io                  mutatingwebhookconfigurations.admissionregistration.k8s.io
+clusterinformations.crd.projectcalico.org                       namespaces
+clusterrolebindings.rbac.authorization.k8s.io                   networkpolicies.crd.projectcalico.org
+clusterroles.rbac.authorization.k8s.io                          networkpolicies.networking.k8s.io
+clustertrustbundles.certificates.k8s.io                         networksets.crd.projectcalico.org
+componentstatuses                                               nodes
+configmaps                                                      persistentvolumeclaims
+controllerrevisions.apps                                        persistentvolumes
+cronjobs.batch                                                  podcertificaterequests.certificates.k8s.io
+csidrivers.storage.k8s.io                                       poddisruptionbudgets.policy
+csinodes.storage.k8s.io                                         pods
+csistoragecapacities.storage.k8s.io                             podtemplates
+customresourcedefinitions.apiextensions.k8s.io                  priorityclasses.scheduling.k8s.io
+daemonsets.apps                                                 prioritylevelconfigurations.flowcontrol.apiserver.k8s.io
+deployments.apps                                                replicasets.apps
+deviceclasses.resource.k8s.io                                   replicationcontrollers
+devicetaintrules.resource.k8s.io                                resourceclaims.resource.k8s.io
+endpoints                                                       resourceclaimtemplates.resource.k8s.io
+endpointslices.discovery.k8s.io                                 resourcequotas
+events                                                          resourceslices.resource.k8s.io
+[root@master[ ~/kube/03]# k describe webd
+error: the server doesn't have a resource type "web"
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]# k get pod web
+NAME   READY   STATUS    RESTARTS   AGE
+web    1/1     Running   0          57s
+[root@master[ ~/kube/03]# k deleteb-fkweb-pod.yml
+pod "web" deleted from default namespace
+[root@master[ ~/kube/03]# c
+nnn[root@master[ ~/kube/03]# k get pod -n kube-system
+NAME                                       READY   STATUS    RESTARTS       AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (177m ago)   3h28m
+calico-node-gdd6m                          1/1     Running   1 (177m ago)   3h28m
+calico-node-w5tqt                          1/1     Running   1 (177m ago)   3h28m
+calico-node-xmd8v                          1/1     Running   1 (177m ago)   3h28m
+calico-node-xxrpg                          1/1     Running   1 (177m ago)   3h28m
+coredns-559f6c778d-c5pr6                   1/1     Running   1 (177m ago)   4h6m
+coredns-559f6c778d-rcq87                   1/1     Running   1 (177m ago)   4h6m
+etcd-master                                1/1     Running   1 (177m ago)   4h6m
+kube-apiserver-master                      1/1     Running   1 (177m ago)   4h6m
+kube-controller-manager-master             1/1     Running   1 (177m ago)   4h6m
+kube-proxy-g6jl6                           1/1     Running   1 (177m ago)   3h41m
+kube-proxy-gr849                           1/1     Running   1 (177m ago)   3h41m
+kube-proxy-nk85b                           1/1     Running   1 (177m ago)   4h6m
+kube-proxy-vjr9p                           1/1     Running   1 (177m ago)   3h41m
+kube-scheduler-master                      1/1     Running   1 (177m ago)   4h6m
+[root@master[ ~/kube/03]# c get pod -n kube-systemc
+nnn[root@master[ ~/kube/03]# k get pod -n kube-systemc-o wide
+NAME                                       READY   STATUS    RESTARTS       AGE     IP              NODE     NOMINATED NODE   READINESS GATES
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (179m ago)   3h29m   10.10.135.6     node3    <none>           <none>
+calico-node-gdd6m                          1/1     Running   1 (179m ago)   3h29m   192.168.10.10   master   <none>           <none>
+calico-node-w5tqt                          1/1     Running   1 (179m ago)   3h29m   192.168.10.12   node2    <none>           <none>
+calico-node-xmd8v                          1/1     Running   1 (179m ago)   3h29m   192.168.10.13   node3    <none>           <none>
+calico-node-xxrpg                          1/1     Running   1 (179m ago)   3h29m   192.168.10.11   node1    <none>           <none>
+coredns-559f6c778d-c5pr6                   1/1     Running   1 (179m ago)   4h7m    10.10.135.5     node3    <none>           <none>
+coredns-559f6c778d-rcq87                   1/1     Running   1 (179m ago)   4h7m    10.10.135.4     node3    <none>           <none>
+etcd-master                                1/1     Running   1 (179m ago)   4h8m    192.168.10.10   master   <none>           <none>
+kube-apiserver-master                      1/1     Running   1 (179m ago)   4h8m    192.168.10.10   master   <none>           <none>
+kube-controller-manager-master             1/1     Running   1 (179m ago)   4h8m    192.168.10.10   master   <none>           <none>
+kube-proxy-g6jl6                           1/1     Running   1 (179m ago)   3h42m   192.168.10.11   node1    <none>           <none>
+kube-proxy-gr849                           1/1     Running   1 (179m ago)   3h42m   192.168.10.13   node3    <none>           <none>
+kube-proxy-nk85b                           1/1     Running   1 (179m ago)   4h7m    192.168.10.10   master   <none>           <none>
+kube-proxy-vjr9p                           1/1     Running   1 (179m ago)   3h42m   192.168.10.12   node2    <none>           <none>
+kube-scheduler-master                      1/1     Running   1 (179m ago)   4h8m    192.168.10.10   master   <none>           <none>
+[root@master[ ~/kube/03]# k get pod -n kube-system -o wide  -v
+error: flag needs an argument: 'v' in -v
+See 'kubectl get --help' for usage.
+[root@master[ ~/kube/03]# k get pod -n kube-system -o wide ^Cv
+[root@master[ ~/kube/03]# ^C
+[root@master[ ~/kube/03]# ^C
+[root@master[ ~/kube/03]# k get pod -n kube-system -o wide --sort-by=.spec.nodename
+No resources found in kube-system namespace.
+[root@master[ ~/kube/03]# ^[[200~k get pod -n kube-system -o wide --sort-by=.spec.nodeName~
+[root@master[k~/kube/03]#-oewided--sort-by=.spec.nodeNamek-gettpod=-npkube-system -o wide --sort-by=.spec.nodeName
+k get pod -n kube-system -o wide --sort-by=.spec.nodeName
+NAME                                       READY   STATUS    RESTARTS     AGE     IP              NODE     NOMINATED NODE   READINESS GATES
+calico-node-gdd6m                          1/1     Running   1 (3h ago)   3h31m   192.168.10.10   master   <none>           <none>
+kube-scheduler-master                      1/1     Running   1 (3h ago)   4h9m    192.168.10.10   master   <none>           <none>
+kube-proxy-nk85b                           1/1     Running   1 (3h ago)   4h9m    192.168.10.10   master   <none>           <none>
+etcd-master                                1/1     Running   1 (3h ago)   4h9m    192.168.10.10   master   <none>           <none>
+kube-apiserver-master                      1/1     Running   1 (3h ago)   4h9m    192.168.10.10   master   <none>           <none>
+kube-controller-manager-master             1/1     Running   1 (3h ago)   4h9m    192.168.10.10   master   <none>           <none>
+kube-proxy-g6jl6                           1/1     Running   1 (3h ago)   3h44m   192.168.10.11   node1    <none>           <none>
+calico-node-xxrpg                          1/1     Running   1 (3h ago)   3h31m   192.168.10.11   node1    <none>           <none>
+calico-node-w5tqt                          1/1     Running   1 (3h ago)   3h31m   192.168.10.12   node2    <none>           <none>
+kube-proxy-vjr9p                           1/1     Running   1 (3h ago)   3h44m   192.168.10.12   node2    <none>           <none>
+calico-node-xmd8v                          1/1     Running   1 (3h ago)   3h31m   192.168.10.13   node3    <none>           <none>
+kube-proxy-gr849                           1/1     Running   1 (3h ago)   3h44m   192.168.10.13   node3    <none>           <none>
+coredns-559f6c778d-rcq87                   1/1     Running   1 (3h ago)   4h9m    10.10.135.4     node3    <none>           <none>
+coredns-559f6c778d-c5pr6                   1/1     Running   1 (3h ago)   4h9m    10.10.135.5     node3    <none>           <none>
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   1 (3h ago)   3h31m   10.10.135.6     node3    <none>           <none>
+[root@master[ ~/kube/03]# exit
+exit
+
+Script done on 2026-10-12 21:08:14+09:00 [COMMAND_EXIT_CODE="0"]
