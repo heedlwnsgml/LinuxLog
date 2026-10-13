@@ -1,0 +1,1297 @@
+Script started on 2026-10-13 20:19:34+09:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="134" LINES="31"]
+[root@master[ ~]# kwatch -n 0.5 'kubectl describe pod/nginx-pod | grep -e Status: -e State:'
+[root@master[r~]#c^CotFound):epodst"nginx-pod"nnot2found234567891:00123456789101234567tsm<invalid>)otFound): pods "nginx-pod" not found4567892012345678930123456
+[root@master[ ~]# c
+nnn[root@master[ ~]# # dpod(Delete Pod) 엘리어스 선언하기
+echo 'alias dpod="kubectl delete pods --all"' >> ~/.bashrc
+source ~/.bashrc
+# dpod(Delete Pod) 엘리어스 선언하기
+echo 'alias dpod="kubectl delete pods --all"' >> ~/.bashrc
+source ~/.bashrc
+
+[root@master[ ~]# mkdir -p  ~/kube/05/labs/pod
+ ~/kube/05/labs/pod
+
+[root@master[ ~]# cd  ~/kube/05/labs/pod
+ ~/kube/05/labs/pod
+
+[root@master[ ~/kube/05/labs/pod]# c
+nnn[root@master[ ~/kube/05/labs/pod]# ls
+[root@master[ ~/kube/05/labs/pod]# c
+nnn[root@master[ ~/kube/05/labs/pod]# koget ns
+NAME              STATUS   AGE
+default           Active   27h
+kube-node-lease   Active   27h
+kube-public       Active   27h
+kube-system       Active   27h
+test              Active   4h24m
+[root@master[ ~/kube/05/labs/pod]# k delete -nstest
+error: You must provide one or more resources by argument or filename.
+Example resource specifications include:
+   '-f rsrc.yaml'
+   '--filename=rsrc.json'
+   '<resource> <name>'
+   '<resource>'
+[root@master[ ~/kube/05/labs/pod]# k delete testest
+error: the server doesn't have a resource type "test"
+[root@master[ ~/kube/05/labs/pod]# k delete --help
+Delete resources by file names, stdin, resources and names, or by resources and
+label selector.
+
+ JSON and YAML formats are accepted. Only one type of argument may be specified:
+file names, resources and names, or resources and label selector.
+
+ Some resources, such as pods, support graceful deletion. These resources define
+a default period before they are forcibly terminated (the grace period) but you
+may override that value with the --grace-period flag, or pass --now to set a
+grace-period of 1. Because these resources often represent entities in the
+cluster, deletion may not be acknowledged immediately. If the node hosting a pod
+is down or cannot reach the API server, termination may take significantly
+longer than the grace period. To force delete a resource, you must specify the
+--force flag. Note: only a subset of resources support graceful deletion. In
+absence of the support, the --grace-period flag is ignored.
+
+ IMPORTANT: Force deleting pods does not wait for confirmation that the pod's
+processes have been terminated, which can leave those processes running until
+the node detects the deletion and completes graceful deletion. If your processes
+use shared storage or talk to a remote API and depend on the name of the pod to
+identify themselves, force deleting those pods may result in multiple processes
+running on different machines using the same identification which may lead to
+data corruption or inconsistency. Only force delete pods when you are sure the
+pod is terminated, or if your application can tolerate multiple copies of the
+same pod running at once. Also, if you force delete pods, the scheduler may
+place new pods on those nodes before the node has released those resources and
+causing those pods to be evicted immediately.
+
+ Note that the delete command does NOT do resource version checks, so if someone
+submits an update to a resource right when you submit a delete, their update
+will be lost along with the rest of the resource.
+
+ After a CustomResourceDefinition is deleted, invalidation of discovery cache
+may take up to 6 hours. If you don't want to wait, you might want to run
+"kubectl api-resources" to refresh the discovery cache.
+
+Examples:
+  # Delete a pod using the type and name specified in pod.json
+  kubectl delete -f ./pod.json
+
+  # Delete resources from a directory containing kustomization.yaml - e.g.
+dir/kustomization.yaml
+  kubectl delete -k dir
+
+  # Delete resources from all files that end with '.json'
+  kubectl delete -f '*.json'
+
+  # Delete a pod based on the type and name in the JSON passed into stdin
+  cat pod.json | kubectl delete -f -
+
+  # Delete pods and services with same names "baz" and "foo"
+  kubectl delete pod,service baz foo
+
+  # Delete pods and services with label name=myLabel
+  kubectl delete pods,services -l name=myLabel
+
+  # Delete a pod with minimal delay
+  kubectl delete pod foo --now
+
+  # Force delete a pod on a dead node
+  kubectl delete pod foo --force
+
+  # Delete all pods
+  kubectl delete pods --all
+
+  # Delete all pods only if the user confirms the deletion
+  kubectl delete pods --all --interactive
+
+Options:
+    --all=false:
+        Delete all resources, in the namespace of the specified resource
+        types.
+
+    -A, --all-namespaces=false:
+        If present, list the requested object(s) across all namespaces.
+        Namespace in current context is ignored even if specified with
+        --namespace.
+
+    --cascade='background':
+        Must be "background", "orphan", or "foreground". Selects the deletion
+        cascading strategy for the dependents (e.g. Pods created by a
+        ReplicationController). Defaults to background.
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print
+        the object that would be sent, without sending it. If server strategy,
+        submit server-side request without persisting the resource.
+
+    --field-selector='':
+        Selector (field query) to filter on, supports '=', '==', and
+        '!='.(e.g. --field-selector key1=value1,key2=value2). The server only
+        supports a limited number of field queries per type.
+
+    -f, --filename=[]:
+        containing the resource to delete.
+
+    --force=false:
+        If true, immediately remove resources from API and bypass graceful
+        deletion. Note that immediate deletion of some resources may result in
+        inconsistency or data loss and requires confirmation.
+
+    --grace-period=-1:
+        Period of time in seconds given to the resource to terminate
+        gracefully. Ignored if negative. Set to 1 for immediate shutdown. Can
+        only be set to 0 when --force is true (force deletion).
+
+    --ignore-not-found=false:
+        Treat "resource not found" as a successful delete. Defaults to "true"
+        when --all is specified.
+
+    -i, --interactive=false:
+        If true, delete resource only when user confirms.
+
+    -k, --kustomize='':
+        Process a kustomization directory. This flag can't be used together
+        with -f or -R.
+
+    --now=false:
+        If true, resources are signaled for immediate shutdown (same as
+        --grace-period=1).
+
+    -o, --output='':
+        Output mode. Use "-o name" for shorter output (resource/name).
+
+    --raw='':
+        Raw URI to DELETE to the server.  Uses the transport specified by the
+        kubeconfig file.
+
+    -R, --recursive=false:
+        Process the directory used in -f, --filename recursively. Useful when
+        you want to manage related manifests organized within the same
+        directory.
+
+    -l, --selector='':
+        Selector (label query) to filter on, supports '=', '==', '!=', 'in',
+        'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching
+        objects must satisfy all of the specified label constraints.
+
+    --timeout=0s:
+        The length of time to wait before giving up on a delete, zero means
+        determine a timeout from the size of the object
+
+    --wait=true:
+        If true, wait for resources to be gone before returning. This waits
+        for finalizers.
+
+Usage:
+  kubectl delete ([-f FILENAME] | [-k DIRECTORY] | TYPE [(NAME | -l label |
+--all)]) [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all
+commands).
+[root@master[ ~/kube/05/labs/pod]# c
+nnn[root@master[ ~/kube/05/labs/pod]# k get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS        AGE
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (4h18m ago)   27h
+kube-system   calico-node-gdd6m                          1/1     Running   3 (4h18m ago)   27h
+kube-system   calico-node-w5tqt                          1/1     Running   2 (4h53m ago)   27h
+kube-system   calico-node-xmd8v                          1/1     Running   2 (4h53m ago)   27h
+kube-system   calico-node-xxrpg                          1/1     Running   2 (4h53m ago)   27h
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   2 (4h53m ago)   27h
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   2 (4h53m ago)   27h
+kube-system   etcd-master                                1/1     Running   3 (4h18m ago)   27h
+kube-system   kube-apiserver-master                      1/1     Running   3 (4h18m ago)   27h
+kube-system   kube-controller-manager-master             1/1     Running   3 (4h18m ago)   27h
+kube-system   kube-proxy-g6jl6                           1/1     Running   2 (4h53m ago)   27h
+kube-system   kube-proxy-gr849                           1/1     Running   2 (4h53m ago)   27h
+kube-system   kube-proxy-nk85b                           1/1     Running   3 (4h18m ago)   27h
+kube-system   kube-proxy-vjr9p                           1/1     Running   2 (4h53m ago)   27h
+kube-system   kube-scheduler-master                      1/1     Running   3 (4h18m ago)   27h
+[root@master[ ~/kube/05/labs/pod]# k get pods -A | wc -l
+16
+[root@master[ ~/kube/05/labs/pod]# k runanginx-pod --image=nginx:--port=80
+pod/nginx-pod created
+[root@master[ ~/kube/05/labs/pod]# k describe pods nginx-pod
+Name:             nginx-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 20:25:19 +0900
+Labels:           run=nginx-pod
+Annotations:      cni.projectcalico.org/containerID: c1dfcc34aa8847c630280a840b1a6fc9b7d3f4a2c453752678ace2676dd57815
+                  cni.projectcalico.org/podIP: 10.10.166.138/32
+                  cni.projectcalico.org/podIPs: 10.10.166.138/32
+Status:           Running
+IP:               10.10.166.138
+IPs:
+  IP:  10.10.166.138
+Containers:
+  nginx-pod:
+    Container ID:   containerd://b86a8a5c78fe64e217c3701cd133de1c4996109dc734b14e68a6937c5d1e7988
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 20:25:21 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wj9jk (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-wj9jk:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  54s   default-scheduler  Successfully assigned default/nginx-pod to node1
+  Normal  Pulling    53s   kubelet            spec.containers{nginx-pod}: Pulling image "nginx"
+  Normal  Pulled     52s   kubelet            spec.containers{nginx-pod}: Successfully pulled image "nginx" in 1.555s (1.555s including waiting). Image size: 63873678 bytes.
+  Normal  Created    52s   kubelet            spec.containers{nginx-pod}: Container created
+  Normal  Started    52s   kubelet            spec.containers{nginx-pod}: Container started
+[root@master[ ~/kube/05/labs/pod]# k delete pods nginx-pod
+pod "nginx-pod" deleted from default namespace
+[root@master[ ~/kube/05/labs/pod]# k run memcached --image=memcached123=--dry-run -o yaml > memcached.yml
+W1013 20:30:20.632606  274625 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[ ~/kube/05/labs/pod]# vi memcached.yml
+>4;2m"memcached.yml" 14L, 225B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: memcached
+  6   name: memcached
+  7 spec:
+  8   containers:
+  9   - image: memcached123
+ 10     name: memcached
+ 11     resources: {}
+ 12   dnsPolicy: ClusterFirst
+ 13   restartPolicy: Always
+ 14 status: {}
+>4;m>4;m[root@master[ ~/kube/05/labs/pod]# k create -f memcached.yml                                                                                  ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     1,1All?12$p::q
+pod/memcached created
+[root@master[ ~/kube/05/labs/pod]# ^C
+[root@master[ ~/kube/05/labs/pod]# k describe pods memcached
+Name:             memcached
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 20:31:26 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 6ce8167019752994a326a26ad7c6311646bb513433052be937ed8626e28c99bd
+                  cni.projectcalico.org/podIP: 10.10.166.139/32
+                  cni.projectcalico.org/podIPs: 10.10.166.139/32
+Status:           Pending
+IP:               10.10.166.139
+IPs:
+  IP:  10.10.166.139
+Containers:
+  memcached:
+    Container ID:
+    Image:          memcached123
+    Image ID:
+    Port:           <none>
+    Host Port:      <none>
+    State:          Waiting
+      Reason:       ErrImagePull
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-zhvgz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  kube-api-access-zhvgz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  44s                default-scheduler  Successfully assigned default/memcached to node1
+  Normal   Pulling    28s (x2 over 43s)  kubelet            spec.containers{memcached}: Pulling image "memcached123"
+  Warning  Failed     26s (x2 over 42s)  kubelet            spec.containers{memcached}: Failed to pull image "memcached123": failed to pull and unpack image "docker.io/library/memcached123:latest": failed to resolve image: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     26s (x2 over 42s)  kubelet            spec.containers{memcached}: Error: ErrImagePull
+  Normal   BackOff    13s (x2 over 41s)  kubelet            spec.containers{memcached}: Back-off pulling image "memcached123"
+  Warning  Failed     13s (x2 over 41s)  kubelet            spec.containers{memcached}: Error: ImagePullBackOff
+[root@master[ ~/kube/05/labs/pod]# podman search memcached
+NAME                                                               DESCRIPTION
+registry.redhat.io/rhacm2/memcached-rhel8                          Memcached
+registry.redhat.io/rhacm2/memcached-rhel9                          Memcached
+registry.redhat.io/rhel9/memcached                                 High-performance memory object caching syste...
+registry.redhat.io/3scale-mas/memcached-rhel7                      3scale Memcached
+registry.redhat.io/rhmap44/memcached                               RHMAP Docker image used for data caching.
+registry.redhat.io/rhmap47/memcached                               RHMAP container image used for data caching
+registry.redhat.io/rhel8/memcached                                 High-performance memory object caching syste...
+registry.redhat.io/3scale-amp2/memcached-rhel7                     3scale Memcached
+registry.redhat.io/rhel10/memcached                                High-performance memory object caching syste...
+registry.redhat.io/rhmap42/memcached                               RHMAP Docker image used for data caching.
+registry.redhat.io/rhmap43/memcached                               RHMAP Docker image used for data caching.
+registry.redhat.io/rhmap45/memcached                               RHMAP Container image used for data caching.
+registry.redhat.io/rhmap46/memcached                               RHMAP Container image used for data caching.
+registry.redhat.io/cloudforms46-beta/cfme-openshift-memcached      CloudForms 4.6 Memcache image for OpenShift
+registry.redhat.io/rhosp13/openstack-memcached                     Red Hat OpenStack Platform 13.0 memcached
+registry.redhat.io/cloudforms46/cfme-openshift-memcached           CloudForms 4.6 Memcache image for OpenShift
+registry.redhat.io/ansible-tower-33/ansible-tower-memcached        memcached container for Red Hat Ansible Towe...
+registry.redhat.io/ansible-tower-34/ansible-tower-memcached        memcached container for Red Hat Ansible Towe...
+registry.redhat.io/ansible-tower-36/ansible-tower-memcached        memcached container for Red Hat Ansible Towe...
+registry.redhat.io/ansible-tower-37/ansible-tower-memcached-rhel7  memcached container for Red Hat Ansible Towe...
+registry.redhat.io/hi/memcached                                    Distributed in-memory key-value store for ac...
+registry.redhat.io/cloudforms45/cfme-openshift-memcached           CloudForms 4.5 Memcache 1.4.5 image for Open...
+registry.redhat.io/cloudforms42/cfme-openshift-memcached           CloudForms 4.2 Memcache 1.4.5 image for Open...
+registry.redhat.io/rhosp12/openstack-memcached                     Red Hat OpenStack Platform 12.0 memcached
+registry.redhat.io/cloudforms47/cfme-openshift-memcached           CloudForms 4.7 Memcache 1.4.5 image for Open...
+docker.io/library/memcached                                        Free & open source, high-performance, distri...
+docker.io/bitnamicharts/memcached                                  Bitnami Helm chart for Memcached
+docker.io/ubuntu/memcached                                         Memcached, in-memory keyvalue store for smal...
+docker.io/manageiq/memcached                                       Container with memcached and built on CentOS...
+docker.io/cleanstart/memcached                                     Secure by Design, Built for Speed, Hardened...
+docker.io/corpusops/memcached                                      https://github.com/corpusops/docker-images/
+docker.io/openeuler/memcached
+docker.io/bitnami/memcached                                        Bitnami Secure Image for memcached
+docker.io/jahacdropboxa/memcached                                  memcached
+docker.io/jelastic/memcached                                       An image of the Memcached cache server maint...
+docker.io/frodenas/memcached                                       A Docker Image for Memcached
+docker.io/modularitycontainers/memcached                           Container for memcached - high-performance,...
+docker.io/atsystem/memcached
+docker.io/sameersbn/memcached
+docker.io/eeacms/memcached                                         DEPRECATED. Please use the official memcache...
+docker.io/sylvainlasnier/memcached                                 Memcached docker images based on Ubuntu 14.1...
+docker.io/motilevy/memcached
+docker.io/tutum/memcached                                          Base docker image to run a Memcached server
+docker.io/bitnamilegacy/memcached                                  Legacy Bitnami images (no longer updated)
+docker.io/wodby/memcached
+docker.io/tkoeleman/memcached                                      memcached 1.4.35 | Centos 7
+docker.io/nguyenanhdung/memcached                                  CentOS 7, memcached 1.4.11, libevent 2.0.22
+docker.io/kz8s/memcached                                           Docker Image of Memcached on CentOS 7
+docker.io/esmelab/memcached                                        OS Base: CentOS 6 Memcached version: 1.4.20
+docker.io/klabs/memcached                                          Memcached server image.
+[root@master[ ~/kube/05/labs/pod]# podman search memcached123
+[root@master[ ~/kube/05/labs/pod]# $?
+bash: 0: command not found...
+[root@master[ ~/kube/05/labs/pod]# c.
+nnn[root@master[ ~/kube/05/labs/pod]# k create -f memcached.yml
+Error from server (AlreadyExists): error when creating "memcached.yml": pods "memcached" already exists
+[root@master[ ~/kube/05/labs/pod]# c create -f memcached.yml
+nnn[root@master[ ~/kube/05/labs/pod]# k create -f memcached.yml
+Error from server (AlreadyExists): error when creating "memcached.yml": pods "memcached" already exists
+[root@master[ ~/kube/05/labs/pod]# k delete -f memcached.yml
+pod "memcached" deleted from default namespace
+[root@master[ ~/kube/05/labs/pod]# k create -f memcached.yml
+pod/memcached created
+[root@master[ ~/kube/05/labs/pod]# k delete pods --all
+pod "memcached" deleted from default namespace
+runememcachedg--image=memcached121@1@-1@-1@1@p1@r1@P1@r1@1@l1@i11@1@-1@-1@13@memcached.yml
+--allow-missing-template-keys  (If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang a…)
+--annotations                  (Annotations to apply to the pod.)
+--as-group                     (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                       (UID to impersonate for the operation.)
+--as-user-extra                (User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.)
+--as                           (Username to impersonate for the operation. User could be a regular user or a service account in a namespace.)
+--attach                       (If true, wait for the Pod to start running, and then attach to the Pod as if 'kubectl attach ...' were called.  Defa…)
+--cache-dir                    (Default cache directory)
+--cascade                      (Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents (e.g. Po…)
+--certificate-authority        (Path to a cert file for the certificate authority)
+--client-certificate           (Path to a client certificate file for TLS)
+--client-key                   (Path to a client key file for TLS)
+--cluster                      (The name of the kubeconfig cluster to use)
+--command                      (If true and extra arguments are present, use them as the 'command' field in the container, rather than the 'args' fi…)
+--context                      (The name of the kubeconfig context to use)
+--detach-keys                  (Override the key sequence for detaching a container.)
+--disable-compression          (If true, opt-out of response compression for all requests to the server)
+--dry-run                      (Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending…)
+--env                          (Environment variables to set in the container.)
+--expose                       (If true, create a ClusterIP service associated with the pod.  Requires `--port`.)
+--field-manager                (Name of the manager used to track field ownership.)
+--force                        (If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of some re…)
+--grace-period                 (Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for immediate…)
+--help                         (help for run)
+--image-pull-policy            (The image pull policy for the container.  If left empty, this value will not be specified by the client and defaulte…)
+--insecure-skip-tls-verify     (If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure)
+--kubeconfig                   (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                       (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate …)
+--kustomize                    (Process a kustomization directory. This flag can't be used together with -f or -R.)
+1@cot@master[ ~/kube/05/labs/pod]# k run memcached --image=memcached123 -- --dry-run -o yaml > memcached.yml
+error: unknown flag: --c
+See 'kubectl run --help' for usage.
+[root@master[ ~/kube/05/labs/pod]# c
+nmkdiro-pm~/kube/05/livenessa&&/cdd~/kube/05/livenesse/05/liveness && cd ~/kube/05/liveness
+[root@master[ ~/kube/05/liveness]# c
+nnn[root@master[ ~/kube/05/liveness]# vi nginx-liveness-pod.yml
+>4;2m"nginx-liveness-pod.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-liveness-pod.yml" [New] 0L, 0B written                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     0,0-1All?12$p::wq
+>4;m[root@master[ ~/kube/05/liveness]# k create -f nginx-liveness-pod.yml
+pod/nginx-liveness-pod created
+[root@master[ ~/kube/05/liveness]# k get namespaces n
+NAME              STATUS   AGE
+default           Active   28h
+kube-node-lease   Active   28h
+kube-public       Active   28h
+kube-system       Active   28h
+test              Active   5h16m
+[root@master[ ~/kube/05/liveness]# k delete namespaces test
+namespace "test" deleted
+[root@master[ ~/kube/05/liveness]# c
+nnn[root@master[ ~/kube/05/liveness]# k get pods nginx-liveness-pod
+NAME                 READY   STATUS    RESTARTS   AGE
+nginx-liveness-pod   1/1     Running   0          29s
+[root@master[ ~/kube/05/livene1@d1@e1@s5@cribenginx-liveness-pod
+Name:             nginx-liveness-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 21:14:20 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: b900411be49d670702de7573f66e3aa19f8d204a847409e982750a72d82a6417
+                  cni.projectcalico.org/podIP: 10.10.166.141/32
+                  cni.projectcalico.org/podIPs: 10.10.166.141/32
+Status:           Running
+IP:               10.10.166.141
+IPs:
+  IP:  10.10.166.141
+Containers:
+  nginx-container:
+    Container ID:   containerd://c3ca180383578520afc3f212eac8dc73ea25ee26f64fa1084f2428d3f2a813a3
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 21:14:20 +0900
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:80/ delay=0s timeout=1s period=10s successThreshold=1 failureThreshold=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-9dbwt (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-9dbwt:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  42s   default-scheduler  Successfully assigned default/nginx-liveness-pod to node1
+  Normal  Pulled     42s   kubelet            spec.containers{nginx-container}: Container image "nginx:1.26" already present on machine and can be accessed by the pod
+  Normal  Created    42s   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    42s   kubelet            spec.containers{nginx-container}: Container started
+[root@master[ ~/kube/05/liveness]# k get pods nginx-liveness-pod -o json
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "b900411be49d670702de7573f66e3aa19f8d204a847409e982750a72d82a6417",
+            "cni.projectcalico.org/podIP": "10.10.166.141/32",
+            "cni.projectcalico.org/podIPs": "10.10.166.141/32"
+        },
+        "creationTimestamp": "2026-10-13T12:14:20Z",
+        "generation": 1,
+        "name": "nginx-liveness-pod",
+        "namespace": "default",
+        "resourceVersion": "72472",
+        "uid": "a0fe7d85-579e-42cc-9c50-59727fdcf4a3"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "nginx:1.26",
+                "imagePullPolicy": "IfNotPresent",
+                "livenessProbe": {
+                    "failureThreshold": 3,
+                    "httpGet": {
+                        "path": "/",
+                        "port": 80,
+                        "scheme": "HTTP"
+                    },
+                    "periodSeconds": 10,
+                    "successThreshold": 1,
+                    "timeoutSeconds": 1
+                },
+                "name": "nginx-container",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-9dbwt",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "nodeName": "node1",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-9dbwt",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-13T12:14:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-13T12:14:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-13T12:14:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-13T12:14:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-13T12:14:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://c3ca180383578520afc3f212eac8dc73ea25ee26f64fa1084f2428d3f2a813a3",
+                "image": "docker.io/library/nginx:1.26",
+                "imageID": "docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860",
+                "lastState": {},
+                "name": "nginx-container",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-13T12:14:20Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-9dbwt",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.11",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.11"
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.166.141",
+        "podIPs": [
+            {
+                "ip": "10.10.166.141"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-13T12:14:20Z"
+    }
+}
+[root@master[ ~/kube/05/liveness]# k get pods nginx-liveness-pod -o yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    cni.projectcalico.org/containerID: b900411be49d670702de7573f66e3aa19f8d204a847409e982750a72d82a6417
+    cni.projectcalico.org/podIP: 10.10.166.141/32
+    cni.projectcalico.org/podIPs: 10.10.166.141/32
+  creationTimestamp: "2026-10-13T12:14:20Z"
+  generation: 1
+  name: nginx-liveness-pod
+  namespace: default
+  resourceVersion: "72472"
+  uid: a0fe7d85-579e-42cc-9c50-59727fdcf4a3
+spec:
+  containers:
+  - image: nginx:1.26
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: 80
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: nginx-container
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9dbwt
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  imagePullSecrets:
+  - name: regcred
+  nodeName: node1
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-9dbwt
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-13T12:14:20Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-13T12:14:20Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-13T12:14:20Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-13T12:14:20Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-10-13T12:14:20Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://c3ca180383578520afc3f212eac8dc73ea25ee26f64fa1084f2428d3f2a813a3
+    image: docker.io/library/nginx:1.26
+    imageID: docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    lastState: {}
+    name: nginx-container
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-10-13T12:14:20Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        uid: 0
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-9dbwt
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 192.168.10.11
+  hostIPs:
+  - ip: 192.168.10.11
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.10.166.141
+  podIPs:
+  - ip: 10.10.166.141
+  qosClass: BestEffort
+  resources: {}
+  startTime: "2026-10-13T12:14:20Z"
+[root@master[ ~/kube/05/liveness]# k get pods nginx-liveness-pod -o yaml | grep live -A 10
+  name: nginx-liveness-pod
+  namespace: default
+  resourceVersion: "72472"
+  uid: a0fe7d85-579e-42cc-9c50-59727fdcf4a3
+spec:
+  containers:
+  - image: nginx:1.26
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /
+        port: 80
+        scheme: HTTP
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: nginx-container
+    ports:
+[root@master[ ~/kube/05/liveness]# c
+nnn[root@master[ ~/kube/05/liveness]# cp nginx-liveness-pod.yml nginx-liveness-pod1@1@-1@o11@o1@r1@i1@g1@-
+[root@master[ ~/kube/05/liveness]# k delete pods nginx-liveness-pod
+pod "nginx-liveness-pod" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# k create -f nginx-liveness-orig-pod.yml
+pod/nginx-liveness-pod created
+[root@master[ ~/kube/05/liveness]# k describe pods nginx-liveness-pod -o yaml
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl describe --help' for usage.
+[root@master[ ~/kube/05/liveness]# k describe pods nginx-liveness-pod -o yaml
+Name:             nginx-liveness-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 21:18:23 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 443ef6ac81cc1e0482180fab48ac550be32fb0e9cf882eec7b7eef7beeac0ee2
+                  cni.projectcalico.org/podIP: 10.10.166.142/32
+                  cni.projectcalico.org/podIPs: 10.10.166.142/32
+Status:           Running
+IP:               10.10.166.142
+IPs:
+  IP:  10.10.166.142
+Containers:
+  nginx-container:
+    Container ID:   containerd://60167a47b49fd79f0eb0f0c497e3c8409094127ed78c0766770dc9e1bd87e1bc
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 21:18:23 +0900
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://:80/ delay=0s timeout=3s period=30s successThreshold=1 failureThreshold=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-6qngj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-6qngj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  31s   default-scheduler  Successfully assigned default/nginx-liveness-pod to node1
+  Normal  Pulled     31s   kubelet            spec.containers{nginx-container}: Container image "nginx:1.26" already present on machine and can be accessed by the pod
+  Normal  Created    31s   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    31s   kubelet            spec.containers{nginx-container}: Container started
+[root@master[ ~/kube/05/liveness]# k delete pods nginx-liveness-pod
+pod "nginx-liveness-pod" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# c
+nnn[root@master[ ~/kube/05/liveness]# vi exec-liveness.yml
+>4;2m"exec-liveness.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: v1
+  3 kind: Pod  4 metadata:
+  5   name: exec-liveness
+  6 spec:  7   containers:
+  8   - name: liveness  9     image: registry.k8s.io/busybox
+ 10     args:
+ 11     - /bin/sh 12     - -c 13     - touch /tmp/healthy; sleep 15; rm -f /tmp/healthy; sleep 300
+ 14     livenessProbelivenessProbe:
+ 15       exec: 16         command: 17         - cat 18         - /tmp/healthy
+>4;m"exec-liveness.yml":[New] 20L,-343B^written::wq
+>4;m[root@master[ ~/kube/05/liveness]# kkcreate -f
+error: flag needs an argument: 'f' in -f
+See 'kubectl create --help' for usage.
+[root@master[ ~/kube/05/liveness]# k create -f
+exec-liveness.yml            nginx-liveness-orig-pod.yml  nginx-liveness-pod.yml
+[root@master[ ~/kube/05/liveness]# k create -f exec-liveness.yml
+pod/exec-liveness created
+[root@master[ ~/kube/05/liveness]# k describe pods exec-liveness
+Name:             exec-liveness
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 21:25:04 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 7cea38664a59f4940bf4a533857115223796d402ebca4dbce4c9a9012376693b
+                  cni.projectcalico.org/podIP: 10.10.166.143/32
+                  cni.projectcalico.org/podIPs: 10.10.166.143/32
+Status:           Pending
+IP:               10.10.166.143
+IPs:
+  IP:  10.10.166.143
+Containers:
+  liveness:
+    Container ID:
+    Image:         registry.k8s.io/busybox
+    Image ID:
+    Port:          <none>
+    Host Port:     <none>
+    Args:
+      /bin/sh
+      -c
+      touch /tmp/healthy; sleep 15; rm -f /tmp/healthy; sleep 300
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Liveness:       exec [cat /tmp/healthy] delay=0s timeout=1s period=3s successThreshold=1 failureThreshold=3
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7lmtw (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  kube-api-access-7lmtw:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  52s                default-scheduler  Successfully assigned default/exec-liveness to node1
+  Normal   BackOff    22s (x3 over 50s)  kubelet            spec.containers{liveness}: Back-off pulling image "registry.k8s.io/busybox"
+  Warning  Failed     22s (x3 over 50s)  kubelet            spec.containers{liveness}: Error: ImagePullBackOff
+  Normal   Pulling    10s (x3 over 51s)  kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/busybox"
+  Warning  Failed     9s (x3 over 50s)   kubelet            spec.containers{liveness}: Failed to pull image "registry.k8s.io/busybox": rpc error: code = InvalidArgument desc = failed to pull and unpack image "registry.k8s.io/busybox:latest": schema 1 image manifests are no longer supported: invalid argument
+  Warning  Failed     9s (x3 over 50s)   kubelet            spec.containers{liveness}: Error: ErrImagePull
+[root@master[ ~/kube/05/liveness]# k delete pods exec-liveness
+pod "exec-liveness" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# podman search busybox
+NAME                            DESCRIPTION
+docker.io/library/busybox       Busybox base image.
+docker.io/cleanstart/busybox    Secure by Design, Built for Speed, Hardened...
+docker.io/ubuntu/busybox        Rock for BusyBox: a combination of tiny vers...
+docker.io/activestate/busybox   ActiveState's customizable, low-to-no vulner...
+docker.io/rancher/busybox
+docker.io/okteto/busybox
+docker.io/dragonflyoss/busybox
+docker.io/airbyte/busybox
+docker.io/stagex/busybox        Size optimized toolbox of many common UNIX u...
+docker.io/goharbor/busybox
+docker.io/openeuler/busybox
+docker.io/hugegraph/busybox     test image
+docker.io/hkube/busybox
+docker.io/arm64v8/busybox       Busybox base image.
+docker.io/vukomir/busybox       busybox and curl
+docker.io/amd64/busybox         Busybox base image.
+docker.io/ppc64le/busybox       Busybox base image.
+docker.io/i386/busybox          Busybox base image.
+docker.io/s390x/busybox         Busybox base image.
+docker.io/p7ppc64/busybox       Busybox base image for ppc64.
+docker.io/arm32v7/busybox       Busybox base image.
+docker.io/prom/busybox          Prometheus Busybox Docker base images
+docker.io/arm32v5/busybox       Busybox base image.
+docker.io/spotify/busybox       Spotify fork of https://hub.docker.com/_/bus...
+docker.io/arm32v6/busybox       Busybox base image.
+[root@master[ ~/kube/05/liveness]# ^C
+[root@master[ ~/kube/05/liveness]# k create -f exec-liveness.yml
+pod/exec-liveness created
+[root@master[ ~/kube/05/liveness]# cd ~/kube/05/liveness
+kubectl create -f exec-liveness.yml
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+cd ~/kube/05/liveness
+kubectl create -f exec-liveness.yml
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod exec-liveness | sed -n '/Events:/,$p'
+
+Error from server (AlreadyExists): error when creating "exec-liveness.yml": pods "exec-liveness" already exists
+
+^C
+
+------ Tue Oct 13 09:29:56 PM KST 2026 ------
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  99s                default-scheduler  Successfully assigned default/exec-liveness to node1
+  Normal   Pulling    98s                kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/busybox:1.27.2"
+  Normal   Pulled     96s                kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/busybox:1.27.2" in 1.539s (1.539s including waiting). Image size: 694360 bytes.
+  Normal   Created    44s (x2 over 96s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    44s (x2 over 96s)  kubelet            spec.containers{liveness}: Container started
+  Normal   Pulled     44s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  20s (x6 over 80s)  kubelet            spec.containers{liveness}: Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+  Normal   Killing    20s (x2 over 74s)  kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+^C
+
+------ Tue Oct 13 09:29:57 PM KST 2026 ------
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  101s               default-scheduler  Successfully assigned default/exec-liveness to node1
+  Normal   Pulling    100s               kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/busybox:1.27.2"
+  Normal   Pulled     98s                kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/busybox:1.27.2" in 1.539s (1.539s including waiting). Image size: 694360 bytes.
+  Normal   Created    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container started
+  Normal   Pulled     46s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  22s (x6 over 82s)  kubelet            spec.containers{liveness}: Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+  Normal   Killing    22s (x2 over 76s)  kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+^C
+
+------ Tue Oct 13 09:29:58 PM KST 2026 ------
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  101s               default-scheduler  Successfully assigned default/exec-liveness to node1
+  Normal   Pulling    100s               kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/busybox:1.27.2"
+  Normal   Pulled     98s                kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/busybox:1.27.2" in 1.539s (1.539s including waiting). Image size: 694360 bytes.
+  Normal   Created    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container started
+  Normal   Pulled     46s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  22s (x6 over 82s)  kubelet            spec.containers{liveness}: Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+  Normal   Killing    22s (x2 over 76s)  kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+^C
+
+------ Tue Oct 13 09:29:58 PM KST 2026 ------
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  101s               default-scheduler  Successfully assigned default/exec-liveness to node1
+  Normal   Pulling    100s               kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/busybox:1.27.2"
+  Normal   Pulled     98s                kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/busybox:1.27.2" in 1.539s (1.539s including waiting). Image size: 694360 bytes.
+  Normal   Created    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    46s (x2 over 98s)  kubelet            spec.containers{liveness}: Container started
+  Normal   Pulled     46s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  22s (x6 over 82s)  kubelet            spec.containers{liveness}: Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+  Normal   Killing    22s (x2 over 76s)  kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+[root@master[ ~/kube/05/liveness]# ^C
+[root@master[ ~/kube/05/liveness]# ^C
+[root@master[ ~/kube/05/liveness]# k delete pod exec-liveness
+pod "exec-liveness" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# k create -f exec-liveness.yml
+pod/exec-liveness created
+[root@master[ ~/kube/05/liveness]# k delete pods exec-liveness
+pod "exec-liveness" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# vi httpget-liveness.yml
+>4;2m"httpget-liveness.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: v1
+  3 kind: Pod  4 metadata:  5   name: http-liveness  6 spec:
+  7   containers:  8   - name: liveness  9     image: registry.k8s.io/e2e-test-images/agnhost:2.40
+ 10     args: 11     - liveness 12     livenessProbe:
+ 13       httpGet: 14         path: /healthz 15         port: 8080
+ 16         httpHeaders: 17         - name: Custom-Header 18 value: Awesome
+ 19       periodSeconds: 3 20 20,0-1All. -- INSERT --20,1All---
+ 21 apiVersion: v1 22 kind: Pod 23 metadata: 24   name: http-liveness 25   spec: 26     containers: 27       - name: liveness 28           image: registry.k8s.io/e2e-test-images/agnhost:2.40 29               args: 30 - liveness
+ 31 livenessProbe:
+ 32 httpGet:
+ 33 path: /healthz
+ 34 port: 8080
+ 35 httpHeaders:
+ 36 - name: Custom-Header
+ 37 value: Awesome
+ 38 periodSeconds: 3
+ 39
+~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     39,0-1Bot8,77 7~@k   65,644,5~@k   3,502,361~@k   0,281,362~@k   3,504,545,6~@k   6,7778~@k   9,0-1~@k   8,77 7~@k   65,644,5~@k   3,502,361~@k   0,2829,198,61~@k   7,226,155,7 ~@k   4,213,9 2~@k   1,14 15 port: 808020,3Bot 14 path: /healthz19,22Bot~@k    13       httpGet:18,24Bot 12     livenessProbe:17,29Bot 11     - liveness16,20Bot~@k    10     args:15,1890%  9     image: registry.k8s.io/e2e-test-images/agnhost:2.4014,2280%  8   - name: liveness13,1470%~@k     7   containers:12,1860%  6 spec:11,1450%  5   name: http-liveness10,940%~@k     4 metadata:9,5530%  3 kind: Pod8,1820%  2 apiVersion: v17,1310%~@k     1 ---6,5Top5,214,9 ~@k   32,141,3 ~@k   ~@k   ~@k   ~@k   ~@k   2,143,9 ~@k   45,216,5 ~@k   7,138,189,55~@k   10,91,142,18~@k   3,144,225,18~@k   6,207,298,24~@k   9,2220,3 1,14~@k   2,9 34,21~@k
+ 30 - liveness25,710%
+ 31 livenessProbe:26,1520%
+ 32 httpGet:27,2230%~@k
+ 33 path: /healthz28,6140%
+ 34 port: 808029,1950%
+ 35 httpHeaders:30,2860%~@k
+ 36 - name: Custom-Header31,3670%
+ 37 value: Awesome32,3680%
+ 38 periodSeconds: 333,5090%~@k
+>4;m"httpget-liveness.yml"8[New]~20L, 357B written~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   8,77 7~@k   65,644,5~@k   3,502,361~@k   0,2829,198,61~@k   7,226,155,7 ~@k   4,213,9 2~@k   1,140,3 19,22~@k   8,247,296,20~@k    10     args:15,1890%  9     image: registry.k8s.io/e2e-test-images/agnhost:2.4014,2280%  8   - name: liveness13,1470%~@k     7   containers:12,1860%  6 spec:11,1450%  5   name: http-liveness10,940%~@k     4 metadata:9,5530%  3 kind: Pod8,1820%  2 apiVersion: v17,1310%~@k     1 ---6,5Top5,214,9 ~@k   32,141,3 ~@k   ~@k   ~@k   ~@k   u19 fewer lines; before #2  10 seconds ago~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     20,0-1All20,0-1All^[  ^[  ::wq
+>4;m[root@master[ ~/kube/05/liveness]# cd ~/kube/05/liveness
+kubectl create -f httpget-liveness.yml
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+cd ~/kube/05/liveness
+kubectl create -f httpget-liveness.yml
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+sleep 9
+echo;echo "------ $(date) ------"
+kubectl describe pod http-liveness | sed -n '/Events:/,$p'
+
+pod/http-liveness created
+
+------ Tue Oct 13 09:37:21 PM KST 2026 ------
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  9s    default-scheduler  Successfully assigned default/http-liveness to node1
+  Normal  Pulling    8s    kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/e2e-test-images/agnhost:2.40"
+  Normal  Pulled     4s    kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/e2e-test-images/agnhost:2.40" in 4.145s (4.145s including waiting). Image size: 51155161 bytes.
+  Normal  Created    4s    kubelet            spec.containers{liveness}: Container created
+  Normal  Started    4s    kubelet            spec.containers{liveness}: Container started
+
+------ Tue Oct 13 09:37:30 PM KST 2026 ------
+Events:
+  Type     Reason     Age   From               Message
+  ----     ------     ----  ----               -------
+  Normal   Scheduled  18s   default-scheduler  Successfully assigned default/http-liveness to node1
+  Normal   Pulling    17s   kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/e2e-test-images/agnhost:2.40"
+  Normal   Pulled     13s   kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/e2e-test-images/agnhost:2.40" in 4.145s (4.145s including waiting). Image size: 51155161 bytes.
+  Normal   Created    13s   kubelet            spec.containers{liveness}: Container created
+  Normal   Started    13s   kubelet            spec.containers{liveness}: Container started
+  Warning  Unhealthy  2s    kubelet            spec.containers{liveness}: Liveness probe failed: HTTP probe failed with statuscode: 500
+
+------ Tue Oct 13 09:37:39 PM KST 2026 ------
+Events:
+  Type     Reason     Age               From               Message
+  ----     ------     ----              ----               -------
+  Normal   Scheduled  27s               default-scheduler  Successfully assigned default/http-liveness to node1
+  Normal   Pulling    26s               kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/e2e-test-images/agnhost:2.40"
+  Normal   Pulled     22s               kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/e2e-test-images/agnhost:2.40" in 4.145s (4.145s including waiting). Image size: 51155161 bytes.
+  Normal   Created    5s (x2 over 22s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    5s (x2 over 22s)  kubelet            spec.containers{liveness}: Container started
+  Warning  Unhealthy  5s (x3 over 11s)  kubelet            spec.containers{liveness}: Liveness probe failed: HTTP probe failed with statuscode: 500
+  Normal   Killing    5s                kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+  Normal   Pulled     5s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/e2e-test-images/agnhost:2.40" already present on machine and can be accessed by the pod
+
+------ Tue Oct 13 09:37:48 PM KST 2026 ------
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  36s                default-scheduler  Successfully assigned default/http-liveness to node1
+  Normal   Pulling    35s                kubelet            spec.containers{liveness}: Pulling image "registry.k8s.io/e2e-test-images/agnhost:2.40"
+  Normal   Pulled     31s                kubelet            spec.containers{liveness}: Successfully pulled image "registry.k8s.io/e2e-test-images/agnhost:2.40" in 4.145s (4.145s including waiting). Image size: 51155161 bytes.
+  Normal   Created    14s (x2 over 31s)  kubelet            spec.containers{liveness}: Container created
+  Normal   Started    14s (x2 over 31s)  kubelet            spec.containers{liveness}: Container started
+  Normal   Killing    14s                kubelet            spec.containers{liveness}: Container liveness failed liveness probe, will be restarted
+  Normal   Pulled     14s                kubelet            spec.containers{liveness}: Container image "registry.k8s.io/e2e-test-images/agnhost:2.40" already present on machine and can be accessed by the pod
+  Warning  Unhealthy  2s (x4 over 20s)   kubelet            spec.containers{liveness}: Liveness probe failed: HTTP probe failed with statuscode: 500
+[root@master[ ~/kube/05/liveness]# k delete pods http-liveness
+pod "http-liveness" deleted from default namespace
+[root@master[ ~/kube/05/liveness]# mkdir -p ~/kube/05/labs/probe
+[root@master[ ~/kube/05/liveness]# cd ~/kube/05/labs/probe
+[root@master[ ~/kube/05/labs/probe]# c
+nnn[root@master[ ~/kube/05/labs/probe]# vi liveness-lab.yml
+>4;2m"liveness-lab.yml" [New]▽  zz0%m           >c  1
+>4;m"liveness-lab.yml" [New] 0L, 0B written                                                                                                           ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     ~                                                                                                                                                     0,0-1All?12$p::wq
+>4;m[root@master[ ~/kube/05/labs/probe]# k create -f liveness-lab.yml
+pod/liveness-pod created
+[root@master[ ~/kube/05/labs/probe]# k delete pods liveness-pod
+pod "liveness-pod" deleted from default namespace
+[root@master[ ~/kube/05/labs/probe]#
+[root@master[ ~/kube/05/labs/probe]#
+[root@master[ ~/kube/05/labs/probe]#
+[root@master[ ~/kube/05/labs/probe]# c
+nnn[root@master[ ~/kube/05/labs/probe]# exit
+exit
+
+Script done on 2026-10-13 21:43:50+09:00 [COMMAND_EXIT_CODE="0"]
