@@ -1,0 +1,2960 @@
+Script started on 2026-10-13 16:06:02+09:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="164" LINES="30"]
+[root@master[ ~]# c
+nnn[root@master[ ~]# kubectlccreate ns testns
+namespace/testns created
+[root@master[ ~]# c
+nnn[root@master[ ~]#  kubectl delete ns testns
+namespace "testns" deleted
+[root@master[ ~]# kubectt
+kubectl  kubectx
+[root@master[ ~]# kubect
+kubectl  kubectx
+[root@master[ ~]# kubectl config ns
+error: unknown command "ns"
+See 'kubectl config -h' for help and examples
+[root@master[ ~]# kubectl nsnfig ns
+error: unknown command "ns" for "kubectl"
+
+Did you mean this?
+        cp
+[root@master[ ~]# kubectl confignget-contexts ns
+CURRENT   NAME   CLUSTER   AUTHINFO   NAMESPACE
+error: context ns not found
+[root@master[ ~]# kubectl getfns get-contexts ns
+NAME              STATUS   AGE
+default           Active   23h
+kube-node-lease   Active   23h
+kube-public       Active   23h
+kube-system       Active   23h
+test              Active   11m
+[root@master[ ~]# ^[[200~# krew 설치하기
+  set -x; cd "$(mktemp -d)" &&
+  OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+  ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+  KREW="krew-${OS}_${ARCH}" &&
+  curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+  tar zxvf "${KREW}.tar.gz" &&
+bash: 200~#: command not found...
+  ./"${KREW}" install krew
+)
+^[[201~[root@master[ ~]# (
+>   set -x; cd "$(mktemp -d)" &&
+>   OS="$(uname | tr '[:upper:]' '[:lower:]')" &&
+>   ARCH="$(uname -m | sed -e 's/x86_64/amd64/' -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/')" &&
+>   KREW="krew-${OS}_${ARCH}" &&
+>   curl -fsSLO "https://github.com/kubernetes-sigs/krew/releases/latest/download/${KREW}.tar.gz" &&
+>   tar zxvf "${KREW}.tar.gz" &&
+>   ./"${KREW}" install krew
+> )
+++ mktemp -d
++ cd /tmp/tmp.miJotYPw3R
+++ uname
+++ tr '[:upper:]' '[:lower:]'
++ OS=linux
+++ uname -m
+++ sed -e s/x86_64/amd64/ -e 's/\(arm\)\(64\)\?.*/\1\2/' -e 's/aarch64$/arm64/'
++ ARCH=amd64
++ KREW=krew-linux_amd64
++ curl -fsSLO https://github.com/kubernetes-sigs/krew/releases/latest/download/krew-linux_amd64.tar.gz
++ tar zxvf krew-linux_amd64.tar.gz
+./LICENSE
+./krew-linux_amd64
++ ./krew-linux_amd64 install krew
+Adding "default" plugin index from https://github.com/kubernetes-sigs/krew-index.git.
+Updated the local copy of plugin index.
+Installing plugin: krew
+Installed plugin: krew
+\
+ | Use this plugin:
+ |      kubectl krew
+ | Documentation:
+ |      https://krew.sigs.k8s.io/
+ | Caveats:
+ | \
+ |  | krew is now installed! To start using kubectl plugins, you need to add
+ |  | krew's installation directory to your PATH:
+ |  |
+ |  |   * macOS/Linux:
+ |  |     - Add the following to your ~/.bashrc or ~/.zshrc:
+ |  |         export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+ |  |     - Restart your shell.
+ |  |
+ |  |   * Windows: Add %USERPROFILE%\.krew\bin to your PATH environment variable
+ |  |
+ |  | To list krew commands and to get help, run:
+ |  |   $ kubectl krew
+ |  | For a full list of available plugins, run:
+ |  |   $ kubectl krew search
+ |  |
+ |  | You can find documentation at
+ |  |   https://krew.sigs.k8s.io/docs/user-guide/quickstart/.
+ | /
+/
+[root@master[ ~]# ~# PATH 변수에 등록하기
+echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc
+source $HOME/.bashrc
+# PATH 변수에 등록하기
+echo 'export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"' >> $HOME/.bashrc
+source $HOME/.bashrc
+
+bash: ~#: command not found...
+[root@master[ ~]# kubectl krew --help
+krew is the kubectl plugin manager.
+You can invoke krew through kubectl: "kubectl krew [command]..."
+
+Usage:
+  kubectl krew [command]
+
+Available Commands:
+  help        Help about any command
+  index       Manage custom plugin indexes
+  info        Show information about an available plugin
+  install     Install kubectl plugins
+  list        List installed kubectl plugins
+  search      Discover kubectl plugins
+  uninstall   Uninstall plugins
+  update      Update the local copy of the plugin index
+  upgrade     Upgrade installed plugins to newer versions
+  version     Show krew version and diagnostics
+
+Flags:
+  -h, --help      help for krew
+  -v, --v Level   number for the log level verbosity
+
+Use "kubectl krew [command] --help" for more information about a command.
+[root@master[ ~]# kubectl krew search
+NAME                            DESCRIPTION                                         INSTALLED
+access-matrix                   Show an RBAC access matrix for server resources     no
+accurate                        Manage Accurate, a multi-tenancy controller         no
+ack-conditions                  Show ACK resource sync and terminal conditions      no
+actuator                        Interact with Spring Boot Actuator endpoints.       no
+advise-policy                   Suggests PodSecurityPolicies and OPA Policies f...  no
+advise-psp                      Suggests PodSecurityPolicies for cluster.           no
+ai                              AI-powered Kubernetes assistant                     no
+aibom                           Read, summarize, and verify AIBOM resources         no
+aks                             Interact with and debug AKS clusters                no
+alfred                          AI-powered Kubernetes assistant                     no
+allctx                          Run commands on contexts in your kubeconfig         no
+analyze-images                  Find the largest and most-used container images...  no
+aperf                           Record and analyze performance metrics on nodes     no
+apidocs                         Research API resources in a tree view format.       no
+apparmor-manager                Manage AppArmor profiles for cluster.               no
+applier                         Apply 'go text/template' files on k8s.              no
+argo-apps-viz                   Visualizes ArgoCD for documentation and teaching.   no
+armadactl                       Command line utility to submit many jobs to armada  no
+assert                          Assert Kubernetes resources                         no
+atlas                           Visualize Kubernetes resource dependencies          no
+attune                          Inspect and explain Attune pod right-sizing pol...  no
+auth-proxy                      Authentication proxy to a pod or service            no
+autons                          Automatic namespace detection                       no
+aws-auth                        Manage aws-auth ConfigMap                           no
+azad-proxy                      Generate and handle authentication for azad-kub...  no
+bd-xray                         Run Black Duck Image Scans                          no
+beam                            Connect to BEAM (Erlang VM) nodes in Kubernetes     no
+blame                           Show who edited resource fields.                    no
+browse-pvc                      Browse PVC contents from the command line.          no
+bulk-action                     Do bulk actions on Kubernetes resources.            no
+ca-cert                         Print the PEM CA certificate of the current clu...  no
+cache                           Get or list Kubernetes resources with local cache   no
+can-schedule                    Check whether workloads fit on a cluster            no
+capture                         Triggers a Sysdig capture to troubleshoot the r...  no
+cautious                        Prevents accidental kubectl commands for contexts   no
+cert-manager                    Manage cert-manager resources inside your cluster   no
+cfgd                            Manage cfgd modules on pods and workloads.          no
+change-ns                       View or change the current namespace via kubectl.   no
+chaos                           Ephemeral-container chaos engineering               no
+cilium                          Easily interact with Cilium agents.                 no
+cilium-policy-gen               Generate CiliumNetworkPolicy from Hubble flows      no
+cisco-vk                        Run read-only IOS-XE commands through CVK           no
+cleaner                         Safe, intelligent cleanup of unused Kubernetes ...  no
+clog                            Colorize log outputs.                               no
+cluster-compare                 Diff cluster resources against manifests.           no
+cluster-group                   Exec commands across a group of contexts.           no
+clusternet                      Wrap multiple kubectl calls to Clusternet           no
+clusterproof                    Scan workloads for security posture and evidence    no
+cm                              Provides commands for OCM/MCE/ACM.                  no
+cnf                             Switch between k8s configs within a terminal tab    no
+cnp-viz                         Visualize Cilium Network Policies without leavi...  no
+cnpg                            Manage your CloudNativePG clusters                  no
+colorize-applied                Colorize results of apply/dry-run                   no
+colorize-managed-fields         Display resources colorized based on managed fi...  no
+commander                       Interactively manage Kubernetes resources           no
+commatrix                       Generate a communication matrix for OpenShift c...  no
+community-images                List community owned container images running       no
+cond                            View resource conditions                            no
+conditioner                     Add, update, or remove conditions on Kubernetes...  no
+config-cleanup                  Automatically clean up your kubeconfig              no
+config-doctor                   Validate and test kubeconfigs                       no
+config-import                   Merge kubeconfigs from a file, stdin, or kubern...  no
+config-registry                 Switch between registered kubeconfigs               no
+confirm                         Dry-run / diff / confirm before running a command   no
+correlate                       Merge logs, events, and node pressures chronolo...  no
+cost                            View cluster cost information                       no
+cost-scan                       Read-only cluster cost waste scanner                no
+costwatch                       Track cost drift per namespace since the last run   no
+count                           Count resources by kind                             no
+cpbase64                        Alternative to 'cp' using base64 instead of tar     no
+crane                           Easily interact with Crane                          no
+crashloop                       Inspect pod crash history and previous logs         no
+crashwatch                      Monitor CrashLoopBackOff pods                       no
+crd-sample                      Generates an example manifest based of an CRD       no
+crd-wizard                      A tool to explore Kubernetes CR(D)s via a TUI o...  no
+creyaml                         Generate custom resource YAML manifest              no
+crust-gather                    Collect cluster state and serve it via an API s...  no
+cs                              Quick Kubernetes context switcher                   no
+ctr                             List all containers in a pod quickly                no
+ctx                             Switch between contexts in your kubeconfig          no
+ctx-diff                        Compare Kubernetes resources across contexts        no
+ctx-tags                        Manage and organize contexts using tags             no
+curl                            Make curl requests to in-cluster domains and IP...  no
+custom-cols                     A "kubectl get" replacement with customizable c...  no
+cwide                           Customize wide kubectl get output                   no
+cyclonus                        NetworkPolicy analysis tool suite                   no
+cypher                          Query your clusters using the Cyphernetes query...  no
+datadog                         Manage the Datadog Operator                         no
+datree                          Scan your cluster resources for misconfigurations   no
+dds                             Detect if workloads are mounting the docker socket  no
+debug-pdb                       Debug Pod Disruption Budgets (PDB)                  no
+debug-pvc                       Debug pods with access to PVC-backed volumes        no
+debug-queries                   Query Kubernetes resources, logs, and events        no
+debug-shell                     Create pod with interactive kube-shell.             no
+deprecations                    Checks for deprecated objects in a cluster          no
+df-pv                           Show disk usage (like unix df) for persistent v...  no
+diff-watch                      Watch resources and show diffs when they change     no
+directpv                        Deploys and manages the lifecycle of DirectPV C...  no
+discover                        Find/export kubeconfigs for cloud clusters          no
+ditto                           Generate YAML for any resource/CRD using cluste...  no
+doc                             Render Kubernetes API documentation                 no
+doctor                          Scans your cluster and reports anomalies.           no
+dpm                             Manages custom debug profiles for pods              no
+duck                            List custom resources with ducktype support         no
+dumpy                           Performs tcpdump captures on resources              no
+dup                             Duplicate existing Kubernetes resources             no
+duplicate                       Duplicate Pods in a Kubernetes cluster.             no
+edit-secret                     Edit secrets with decoded base64 values             no
+edit-status                     Edit /status subresources of CRs                    no
+eds                             Easily interact and manage ExtendedDaemonset re...  no
+eksporter                       Export resources and removes a pre-defined set ...  no
+emit-event                      Emit Kubernetes Events for the requested object     no
+encrypted-kubeconfig            Encrypt KUBECONFIG files                            no
+envsubst                        A strict substitution of env-vars in Kubernetes...  no
+envx                            Run with env vars from Kubernetes resource          no
+eso                             Manage Secrets for External Secrets Operator        no
+evict-pod                       Evicts the given pod                                no
+example                         Prints out example manifest YAMLs                   no
+exec-as                         Like kubectl exec, but offers a `user` flag to ...  no
+exec-cronjob                    Run a CronJob immediately as Job                    no
+execws                          kubectl exec using WebSockets                       no
+explore                         A better kubectl explain with the fuzzy finder      no
+exporter                        Export cluster resources as YAML or JSON            no
+fakos                           Quickly access the state and metadata of k8s re...  no
+fd                              Find resources and perform action on them.          no
+fieldlord                       Explain SSA field ownership, drift & clobber        no
+fields                          Grep resources hierarchy by field name              no
+finalizer-doctor                Safely diagnose & clear stuck finalizers            no
+finalizers                      Evicts the given pod                                no
+flame                           Generate CPU flame graphs from pods                 no
+fleet                           Shows config and resources of a fleet of clusters   no
+flyte                           Monitor, launch and manage flyte executions         no
+foreach                         Run kubectl commands against some/all contexts ...  no
+fuzzy                           Fuzzy and partial string search for kubectl         no
+gadget                          Gadgets for debugging and introspecting apps        no
+get-all                         Like `kubectl get all` but **really** everything    no
+get-resources                   Get Kubernetes resources in CSV or YAML             no
+gke-credentials                 Fetch credentials for GKE clusters                  no
+gke-policy                      Validates GKE clusters configuration                no
+glance                          View cluster resource allocation and usage.         no
+gopass                          Imports secrets from gopass                         no
+gpu-top                         Show GPU utilization per pod across a cluster       no
+gpugo                           Top-like TUI for per-pod GPU usage on Kubernetes    no
+graph                           Visualize Kubernetes resources and relationships.   no
+grep                            Filter Kubernetes resources by matching their n...  no
+gs                              Handle custom resources with Giant Swarm            no
+health                          Determine the health of Kubernetes resources        no
+history                         List & diff revisions of workload resources         no
+hlf                             Deploy and manage Hyperledger Fabric components     no
+hpa-status                      Show detailed HPA status, scaling analysis, and...  no
+htpasswd                        Create nginx-ingress compatible basic-auth secrets  no
+http                            Make HTTP requests with kubeconfig credentials      no
+ice                             View configuration settings of containers insid...  no
+idx                             Select resources by index instead of typing names   no
+iexec                           Interactive selection tool for `kubectl exec`       no
+image                           Query container images by namespace/cluster         no
+images                          Show container images used in the cluster.          no
+imagescan                       Image vulnerability scanning for Kubernetes Pods    no
+ingress-nginx                   Interact with ingress-nginx                         no
+ingress-rule                    Update Ingress rules via command line               no
+insider                         Access cluster network through WireGuard            no
+inspect                         Browse Kubernetes resources interactively with ...  no
+ip-check                        Check IP utilization in EKS clusters with VPC CNI   no
+ipick                           A kubectl wrapper for interactive resource sele...  no
+istiolog                        Manipulate istio-proxy logging level without is...  no
+janitor                         Lists objects in a problematic state                no
+jfs                             Debug JuiceFS issues in Kubernetes                  no
+jqlogs                          Readable, colorful JSON logs via jq                 no
+k8i                             Display Kubernetes node resources with color-co...  no
+kadalu                          Manage Kadalu Operator, CSI and Storage pods        no
+kaito                           Manage AI/ML model inference and fine-tuning wi...  no
+kamaji                          Manage your Kamaji Tenant Control Planes with e...  no
+karbon                          Connect to Nutanix Karbon cluster                   no
+karmada                         Manage clusters with Karmada federation.            no
+kc                              Interactive CRUD operations to manage kubeconfig    no
+kconmon                         On-demand node-to-node connectivity checks for ...  no
+kenv                            Render manifest variables                           no
+kfilt                           Filter Kubernetes resources                         no
+kflow                           Network traffic visualization for Kubernetes        no
+kimspect                        Inspect container images on your pods and nodes.    no
+kjob                            Run AI/ML jobs based on the pre-defined templates   no
+klock                           Watches resources                                   no
+kluster-capacity                Scheduler simulation for capacity analysis.         no
+knife                           Run commands on multiple pods concurrently          no
+kollama                         Interact with the Ollama Operator                   no
+komodor                         Interact with cluster resources through Komodor     no
+konfig                          Merge, split or import kubeconfig files             no
+konfuse                         Merge and manage kubeconfig files                   no
+kopilot                         Diagnose/audit resources with AI                    no
+kor                             Kor is a tool to discover unused K8s resources.     no
+kpil                            Run Copilot CLI with a scoped kubeconfig            no
+krew                            Package manager for kubectl plugins.                yes
+kruise                          Easily handle OpenKruise workloads                  no
+ks                              Simple management of KubeSphere components          no
+ktop                            A top tool to display workload metrics              no
+kuberecord                      Query recorded state changes                        no
+kubescape                       Scan resources and cluster configs against secu...  no
+kubesec-scan                    Scan Kubernetes resources with kubesec.io.          no
+kubesplaining                   Scan for security risks and RBAC escalation paths   no
+kubetail                        Logging tool for Kubernetes with real-time web ...  no
+kudo                            Declaratively build, install, and run operators...  no
+kueue                           Controls Kueue queueing manager.                    no
+kuota-calc                      Calculate needed quota to perform rolling updates.  no
+kurt                            Find what's restarting and why                      no
+kuttl                           Declaratively run and test operators                no
+kyverno                         Kyverno is a policy engine for kubernetes           no
+lambda-g                        6D resource imbalance scanner for K8s               no
+lineage                         Display all dependent resources or resource dep...  no
+link                            Access cluster resources without vpn                unavailable on linux/amd64
+linstor                         View and manage LINSTOR storage resources           no
+liqo                            Install and manage Liqo on your clusters            no
+lock                            A client-side lock for kubernetes contexts to p...  no
+log2rbac                        Fine-tune your RBAC using log2rbac operator         no
+mapr-ticket                     Get information about deployed MapR tickets         no
+marvin                          Scan clusters with your own checks written in CEL.  no
+match-name                      Match names of pods and other API objects           no
+mayastor                        Provides commands for OpenEBS Mayastor.             no
+mc                              Run kubectl commands against multiple clusters ...  no
+mdba                            Manage mariadb-operator semi-sync replication c...  no
+meshsync-snapshot               Creates a k8s cluster snapshot using meshsync l...  no
+mexec                           Execute on multiple pods in parallel                no
+minio                           Deploy and manage MinIO Operator and Tenant(s)      no
+mitos                           Operate mitos.run sandboxes for AI agents           no
+mittens                         Interactively proxy Kubernetes Services with mi...  no
+moco                            Interact with MySQL operator MOCO.                  no
+modify-secret                   modify secret with implicit base64 translations     no
+mole                            Watch workloads settle and explain what broke       no
+mounts                          Show Pods' Volumes and VolumeMounts in the curr...  no
+mtail                           Tail logs from multiple pods matching label sel...  no
+mtv                             Migrate VMs to KubeVirt using Forklift              no
+mtv-metrics                     Query Prometheus/Thanos metrics for Kubernetes ...  no
+multi-get                       Query resources across namespaces                   no
+multiforward                    Port Forward to multiple Kubernetes Services        no
+multinet                        Shows pods' network-status of multi-net-spec        no
+nasty                           Manage NASty CSI volumes                            no
+neat                            Remove clutter from Kubernetes manifests to mak...  no
+net-forward                     Proxy to arbitrary TCP services on a cluster ne...  no
+netobserv                       Lightweight Flow and Packet visualization tool      no
+netscaler                       Inspect NetScaler Ingresses                         no
+nginx-supportpkg                Collect support packages for NGINX products tha...  no
+nks-ctx                         Manage NKS (Ncloud Kubernetes Service) cluster ...  no
+node-admin                      List nodes and run privileged pod with chroot       no
+node-df                         Show node filesystem usage                          no
+node-logs                       View and filter node service logs                   no
+node-resource                   Show node allocations/utilization list or summary   no
+node-restart                    Restart cluster nodes sequentially and gracefully   no
+node-shell                      Spawn a root shell on a node via kubectl            no
+node-ssm                        start aws ssm session to SSM managed EKS node       no
+nodegizmo                       A CLI utility for your kubernetes nodes             no
+nodepools                       List node pools/groups                              no
+np-viewer                       Network Policies rules viewer                       no
+ns                              Switch between Kubernetes namespaces                no
+nsenter                         Run shell command in Pod's namespace on the nod...  no
+oadp                            CLI for OpenShift APIs for Data Protection (OAD...  no
+oidc-login                      Log in to the OpenID Connect provider               no
+oomd                            Show recently OOMKilled pods                        no
+open-svc                        Open the Kubernetes URL(s) for the specified se...  no
+openebs                         Provides commands for OpenEBS engines.              no
+openunison-cli                  Login to a kubernetes cluster via OpenUnison        no
+operator                        Manage operators with Operator Lifecycle Manager    no
+oulogin                         Login to a cluster via OpenUnison (deprecated, ...  no
+outagedeck                      Check external dependencies for provider incidents  no
+outdated                        Finds outdated container images running in a cl...  no
+output                          Set custom output format for resources/namespaces   no
+passman                         Store kubeconfig credentials in keychains or pa...  no
+permissions                     Displays and traces service account permissions     no
+pexec                           Execute process with privileges in a pod            no
+pickdeep                        Interactively choose get output columns             no
+plogs                           Retrieve and stream colorized logs from Pods.       no
+pocket                          Test DB connections and open shells                 no
+pod-dive                        Shows a pod's workload tree and info inside a node  no
+pod-inspect                     Get all of a pod's details at a glance              no
+pod-instance-types              List pods with their node's cloud instance type     no
+pod-lens                        Show pod-related resources                          no
+pod-logs                        Display a list of pods to get logs from             no
+pod-shell                       Display a list of pods to execute a shell in        no
+podevents                       Show events for pods                                no
+pods-on                         List Pods by Node names/selectors                   no
+podtrace                        eBPF diagnostics for Kubernetes pods                no
+podump                          Dump pod network traffic                            no
+popeye                          Scans your clusters for potential resource issues   no
+portal                          An HTTP proxy for connecting to stuff inside yo...  no
+preflight                       Executes application preflight tests in a cluster   no
+preq                            Use common reliability enumerations (CREs) to d...  no
+print-env                       Build config files from k8s environments.           no
+profefe                         Gather and manage pprof profiles from running pods  no
+promdump                        Dumps the head and persistent blocks of Prometh...  no
+prompt                          Prompts for user confirmation when executing co...  no
+prune-unused                    Prune unused resources                              no
+psp-util                        Manage Pod Security Policy(PSP) and the related...  no
+pv-migrate                      Migrate data across persistent volumes              no
+pv-mounter                      Mount PVC locally using SSHFS or NFS                no
+pvmigrate                       Migrates PVs between StorageClasses                 no
+pvu                             Inspect Kubernetes pod volumes usage                no
+rabbitmq                        Manage RabbitMQ clusters                            no
+radar                           Cluster dashboard with topology and traffic maps    no
+ray                             Ray kubectl plugin                                  no
+rbac-lookup                     Reverse lookup for RBAC                             no
+rbac-map                        Map RBAC permissions for subjects (ServiceAccou...  no
+rbac-tool                       Plugin to analyze RBAC permissions and generate...  no
+rbac-view                       A tool to visualize your RBAC permissions.          no
+reach                           Test network connectivity from a pod to a target    no
+readonly                        Guardrail against accidental cluster changes        no
+realname-diff                   Diffs live and local resources ignoring Kustomi...  no
+reap                            Delete unused Kubernetes resources.                 no
+regex                           Get and delete Kubernetes resources with regex ...  no
+relay                           Drop-in "port-forward" replacement with UDP and...  no
+reliably                        Surfaces reliability issues in Kubernetes           no
+rename-pvc                      Rename a PersistentVolumeClaim (PVC)                no
+resource-backup                 Save Kubernetes resources to disk                   no
+resource-capacity               Provides an overview of resource requests, limi...  no
+resource-snapshot               Prints a snapshot of nodes, pods and HPAs resou...  no
+resource-versions               Print supported API resource versions               no
+restart                         Restarts a pod with the given name                  no
+retina                          Distributed network captures and telemetry          no
+reverse-proxy                   Start reverse proxy for the Service Pods.           no
+revisions                       Time-travel through your workload revision history  no
+ripple                          See what a ConfigMap or Secret change will break    no
+rltop                           Display pod resource usage with requests and li...  no
+rm-standalone-pods              Remove all pods without owner references            no
+rolesum                         Summarize RBAC roles for subjects                   no
+roll                            Rolling restart of all persistent pods in a nam...  no
+rook-ceph                       Rook plugin for Ceph management                     no
+rsync                           Syncs files between local filesystem and Kubern...  no
+saconfig                        Generate a kubeconfig file for authenticating a...  no
+safe                            Prompts before running edit commands                no
+schemagen                       Generate, migrate, and scaffold Kubernetes reso...  no
+schemahero                      Declarative database schema migrations via YAML     no
+score                           Kubernetes static code analysis.                    no
+secretdata                      Viewing decoded Secret data with search flags       no
+service-tree                    Status for ingresses, services, and their backends  no
+sgmap                           Visualize security group per pod.                   no
+sheep                           Fetch and manage kubeconfigs from Rancher-manag...  no
+shell-ctx                       Shell independent context switching                 no
+shovel                          Gather diagnostics for .NET Core applications       no
+sick-pods                       Find and debug Pods that are "Not Ready"            no
+slice                           Split a multi-YAML file into individual files.      no
+slowdrain                       Drains a node, deleting app pods one by one wit...  no
+snap                            Delete half of the pods in a namespace or cluster   no
+sniff                           Start a remote packet capture on pods using tcp...  no
+socks5-proxy                    SOCKS5 proxy to Services or Pods in the cluster     no
+sort-manifests                  Sort manifest files in a proper order by Kind       no
+split-yaml                      Split YAML output into one file per resource.       no
+spy                             pod debugging tool for kubernetes clusters with...  no
+sql                             Query Kubernetes resources using SQL-like syntax    no
+ssh-jump                        Access nodes or services using SSH jump Pod         no
+sshd                            Run SSH server in a Pod                             no
+sshuttle                        Tunnel traffic through a cluster using sshuttle     no
+ssm-secret                      Import/export secrets from/to AWS SSM param store   no
+starboard                       Toolkit for finding risks in kubernetes resources   no
+status                          Show status of Kubernetes resources at a glance.    no
+stern                           Multi pod and container log tailing                 no
+storm                           Monitor and diff excessive Kubernetes resource ...  no
+strace                          Capture strace logs from a running workload         no
+subm                            Manages Submariner and its services                 no
+sudo                            Run Kubernetes commands impersonated as group s...  no
+support-bundle                  Creates support bundles for off-cluster analysis    no
+survive-zone                    Show which workloads die when a zone is lost        no
+switch-config                   Switches between kubeconfig files                   no
+syncpod                         High-Speed File Transfer to and from PVCs           no
+szero                           Scale all workloads in a namespace to 0 and back    no
+tail                            Stream logs from multiple pods and containers u...  no
+tap                             Interactively proxy Kubernetes Services with ease   no
+tmux-exec                       An exec multiplexer using Tmux                      no
+tns-csi                         Manage TrueNAS CSI volumes                          no
+topology                        Explore region topology for nodes or pods           no
+topx                            Monitor CPU and memory resources in real-time       no
+trace                           Trace Kubernetes pods and nodes with system tools   no
+track                           Tracking the changes between resource versions      no
+tree                            Show a tree of object hierarchies through owner...  no
+triage                          Fast diagnostics for failed pods                    no
+tripwire                        Admission webhook failure-chain analyzer            no
+ttsum                           Visualize taints and tolerations                    no
+tunnel                          Reverse tunneling between cluster and your machine  no
+unitconv                        Convert resource quantities between units           no
+unlimited                       Show running containers with no limits set          no
+unused-volumes                  List unused PVCs                                    no
+upgrade-check                   Find what breaks before you upgrade                 no
+validate                        Validation of resources for native Kubernetes t...  no
+vault-login                     Authenticate with Vault Kubernetes Secret Engine    no
+vela                            Easily interact with KubeVela                       no
+view-allocations                List allocations per resources, nodes, pods.        no
+view-cert                       View certificate information stored in secrets      no
+view-quotas                     List resource quotas in colors                      no
+view-secret                     Decode Kubernetes secrets                           no
+view-serviceaccount-kubeconfig  Show a kubeconfig setting to access the apiserv...  no
+view-utilization                Shows cluster cpu and memory utilization            no
+view-webhook                    Visualize your webhook configurations               no
+viewnode                        Displays nodes with their pods and containers a...  no
+vifal                           Expose and unify container filesystems locally      no
+vigil                           Scan clusters for misconfigurations                 no
+virt                            Control KubeVirt virtual machines using virtctl     no
+volsync                         Manage replication with the VolSync operator        no
+vpa-recommendation              Compare VPA recommendations to actual resources...  no
+wait-job                        Waits for a Job to complete or fail                 no
+walk                            Explore Kubernetes YAML like a human — not li...    no
+warp                            Sync and execute local files in Pod                 no
+watch-diff                      Watches the changes in the k8s resource and pri...  no
+watch-rollout                   Monitor deployment rollouts with live progress      no
+weka                            Manage WEKA deployments in Kubernetes               no
+whisper-secret                  Create secrets with improved privacy                no
+who-can                         Shows who has RBAC permissions to access Kubern...  no
+whoami                          Show the subject that's currently authenticated...  no
+whoami-enhanced                 Show who you are and what you can do                no
+why-blocked                     Explain why Kubernetes resources are blocked an...  no
+why-fail                        Explain why a pod is failing, in plain language     no
+why-pending                     Explain why a pod is stuck Pending.                 no
+wider                           Get pod and associated resource information wit...  no
+wild                            Use wildcard patterns for kubectl get/describe/...  no
+windows-debug                   Windows node access via kubectl                     no
+xdsnap                          Capture Envoy xDS state from Consul sidecars        no
+zane                            Conversational Kubernetes co-pilot in your term...  no
+zombie                          Find orphaned resources burning budget              no
+[root@master[ ~]# kubectl krew search | grep yes
+krew                            Package manager for kubectl plugins.                yes
+[root@master[ ~]# kubectl krew install ctx ctr ns
+Updated the local copy of plugin index.
+Installing plugin: ctx
+Installed plugin: ctx
+\
+ | Use this plugin:
+ |      kubectl ctx
+ | Documentation:
+ |      https://github.com/ahmetb/kubectx
+ | Caveats:
+ | \
+ |  | If fzf is installed on your machine, you can interactively choose
+ |  | between the entries using the arrow keys, or by fuzzy searching
+ |  | as you type.
+ |  | See https://github.com/ahmetb/kubectx for customization and details.
+ | /
+/
+WARNING: You installed plugin "ctx" from the krew-index plugin repository.
+   These plugins are not audited for security by the Krew maintainers.
+   Run them at your own risk.
+Installing plugin: ctr
+Installed plugin: ctr
+\
+ | Use this plugin:
+ |      kubectl ctr
+ | Documentation:
+ |      https://github.com/cfanbo/kubectr
+/
+WARNING: You installed plugin "ctr" from the krew-index plugin repository.
+   These plugins are not audited for security by the Krew maintainers.
+   Run them at your own risk.
+Installing plugin: ns
+Installed plugin: ns
+\
+ | Use this plugin:
+ |      kubectl ns
+ | Documentation:
+ |      https://github.com/ahmetb/kubectx
+ | Caveats:
+ | \
+ |  | If fzf is installed on your machine, you can interactively choose
+ |  | between the entries using the arrow keys, or by fuzzy searching
+ |  | as you type.
+ | /
+/
+WARNING: You installed plugin "ns" from the krew-index plugin repository.
+   These plugins are not audited for security by the Krew maintainers.
+   Run them at your own risk.
+[root@master[ ~]# kubectl krew searchl|cgreptyess
+ctr                             List all containers in a pod quickly                yes
+ctx                             Switch between contexts in your kubeconfig          yes
+krew                            Package manager for kubectl plugins.                yes
+ns                              Switch between Kubernetes namespaces                yes
+[root@master[ ~]# kubectl krew list
+PLUGIN  VERSION
+ctr     v0.0.1
+ctx     v0.11.0
+krew    v0.5.0
+ns      v0.11.0
+[root@master[ ~]# cat << EOF >> ~/.bashrc
+
+# kubens, kubectx 엘리어스 선언
+alias kubens='kubectl ns'
+alias kubectx='kubectl ctx'
+
+EOF
+source ~/.bashrc
+cat << EOF >> ~/.bashrc
+
+# kubens, kubectx 엘리어스 선언
+alias kubens='kubectl ns'
+alias kubectx='kubectl ctx'
+
+EOF
+source ~/.bashrc
+
+[root@master[ ~]# kubectl ns
+defaultB
+kube-node-lease
+kube-public
+kube-system
+test
+[root@master[ ~]# kubensl
+defaultB
+kube-node-lease
+kube-public
+kube-system
+test
+[root@master[ ~]# c
+nnn[root@master[ ~]# k ns kube-system
+Context "kubernetes-admin@kubernetes" modified.
+Active namespace is "kube-system".
+[root@master[ ~]# kubectl ns
+default
+kube-node-lease
+kube-public
+kube-systemB
+test
+[root@master[ ~]# k get pod
+NAME                                       READY   STATUS    RESTARTS      AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (13m ago)   22h
+calico-node-gdd6m                          1/1     Running   3 (13m ago)   22h
+calico-node-w5tqt                          1/1     Running   2 (48m ago)   22h
+calico-node-xmd8v                          1/1     Running   2 (48m ago)   22h
+calico-node-xxrpg                          1/1     Running   2 (48m ago)   22h
+coredns-559f6c778d-c5pr6                   1/1     Running   2 (48m ago)   23h
+coredns-559f6c778d-rcq87                   1/1     Running   2 (48m ago)   23h
+etcd-master                                1/1     Running   3 (13m ago)   23h
+kube-apiserver-master                      1/1     Running   3 (13m ago)   23h
+kube-controller-manager-master             1/1     Running   3 (13m ago)   23h
+kube-proxy-g6jl6                           1/1     Running   2 (48m ago)   23h
+kube-proxy-gr849                           1/1     Running   2 (48m ago)   23h
+kube-proxy-nk85b                           1/1     Running   3 (13m ago)   23h
+kube-proxy-vjr9p                           1/1     Running   2 (48m ago)   23h
+kube-scheduler-master                      1/1     Running   3 (13m ago)   23h
+[root@master[ ~]# vic~/.vimrc
+>4;2m"~/.vimrc" 4L, 142B▽  zz0%m           >c  1 syntax on
+  2 set ts=4 sw=4 ai nu  3 autocmd FileType yaml setlocal ts=2 sw=2 st=2 ai nu et  4 autocmd FileType python setlocal ts=2 sw=2 st=2 ai nu et
+~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   1,1All?12$p^[  ^[  ::1,1Alldd
+1
+  2
+  3~                                                                                                                                                                   1,1Alldd
+1
+  2~                                                                                                                                                                   1,1Alldd
+>4;m".vimrc" 0L, 0B written                                                                                                                                          1,1Alldd  --No lines in buffer--0,0-1Alldd  dd  dd  ^[  ^[  ::wq
+>4;m[root@master[ ~]# ^[[200~# (master)
+
+scp ~/.vimrc node1:.vimrc
+scp ~/.vimrc node2:.vimrc
+bash: syntax error near unexpected token `master'
+[root@master[ ~]# # $HOME/.vimrc 파일 설정
+[root@master[ ~]#
+[root@master[ ~]# cat << EOF > ~/.vimrc
+> syntax on
+> set ai nu ts=4 sw=4
+> autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+> autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+> EOF
+scp ~/.vimrc node3:.vimrc
+
+for host in node1 node2 node3 minikube
+do
+[root@master[ ~]#
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+[root@master[ ~]# scp ~/.vimrc node1:.vimrc
+.vimrc[201~                                                                                                                       100%  133   145.6KB/s   00:00 ETA
+[root@master[ ~]# scp ~/.vimrc node2:.vimrc
+.vimrc                                                                                                                            100%  133   150.7KB/s   00:00 ETA
+[root@master[ ~]# scp ~/.vimrc node3:.vimrc
+.vimrc                                                                                                                            100%  133    86.5KB/s   00:00 ETA
+[root@master[ ~]#
+[root@master[ ~]# for host in node1 node2 node3 minikube
+> do
+>     echo; echo "===== [ INFO ] $host ====="
+>     ssh ${host} tail -n 5 ~/.vimrc
+> done~
+>
+> ^C
+[root@master[ ~]# for host in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+[root@master[ ~]# for host in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+done
+
+===== [ INFO ] node1 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node2 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node3 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] minikube =====
+syntax on
+set ts=4 sw=4 ai nu
+autocmd FileType yaml setlocal ts=2 sw=2 st=2 ai nu et
+autocmd FileType python setlocal ts=2 sw=2 st=2 ai nu et
+[root@master[ ~]# c
+nnn[root@master[ ~]# vi ~/.vimrc
+>4;2m"~/.vimrc" 4L, 133B▽  zz0%m           >c  1 syntax on
+  2 set ai nu ts=4 sw=4   3 autocmd FileType yaml setlocal ai nu ts=2 sw=2 et  4 autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+>4;m>4;m[root@master[ ~]# vi ~/.bashrc                                                                                                                              ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   1,1All?12$p^[  ^[  ::q
+>4;2m"~/.bashrc" 48L, 939B▽  zz0%m           >c  7
+  8 # User specific environment  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]] 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 31 # kubectl CMD
+ 32 #export KUBECONFIG=~/.kube/configi
+ 33 alias vi='/usr/bin/vim'
+ 34
+>4;m>4;m[root@master[[~]#:vi ~/.bashrc
+>4;2m"~/.bashrc" 48L, 939B▽  zz0%m           >c  7
+  8 # User specific environment  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]] 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 31 # kubectl CMD
+ 32 #export KUBECONFIG=~/.kube/configi
+ 33 alias vi='/usr/bin/vim'
+ 34
+ 35 30,131%?12$p~@k
+ 36 source <(kubectl completion bash)31,136%~@k
+ 37 source <(kubeadm completion bash)32,142%~@k
+ 38 alias k=kubectl33,147%dd
+3
+ 34
+ 35
+ 36
+ 37
+ 38 complete -o default -F __start_kubectl k33,0-150%dd
+3
+ 34
+ 35
+ 36
+ 37
+>4;m".bashrc"^46L,[914Bwwritten
+>4;m[root@master[ ~]# # (master)
+# $HOME/.bashrc  파일 설정
+for host in master node1 node2 node3 minikube
+do
+    ssh -T "${host}" <<'EOF'
+    echo "alias vi='/usr/bin/vim'" >> ~/.bashrc
+EOF
+done
+
+for host in master node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.bashrc
+[root@master[ ~]# # (master)
+# $HOME/.bashrc  파일 설정
+for host in master node1 node2 node3 minikube
+do
+    ssh -T "${host}" <<'EOF'
+    echo "alias vi='/usr/bin/vim'" >> ~/.bashrc
+EOF
+done
+
+for host in master node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.bashrc
+done
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://master.example.com:9090/ or https://192.168.10.10:9090/
+
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node1:9090/ or https://192.168.10.11:9090/
+
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node2:9090/ or https://192.168.10.12:9090/
+
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node3:9090/ or https://192.168.10.13:9090/
+
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://minikube:9090/ or https://192.168.10.14:9090/
+
+
+===== [ INFO ] master =====
+# kubens, kubectx 엘리어스 선언
+alias kubens='kubectl ns'
+alias kubectx='kubectl ctx'
+
+alias vi='/usr/bin/vim'
+
+===== [ INFO ] node1 =====
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias vi='/usr/bin/vim'
+
+===== [ INFO ] node2 =====
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias vi='/usr/bin/vim'
+
+===== [ INFO ] node3 =====
+# Sfecific configuration
+#
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+alias vi='/usr/bin/vim'
+
+===== [ INFO ] minikube =====
+source <(kubectl completion bash)
+alias k=kubectl
+complete -o default -F __start_kubectl k
+export KUBECONFIG=~/.kube/config
+alias vi='/usr/bin/vim'
+[root@master[ ~]# vi ~/.bashrc
+>4;2m"~/.bashrc" 47L, 938B▽  zz0%m           >c 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH" 12 fi 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 31 # kubectl CMD
+ 32 #export KUBECONFIG=~/.kube/configi
+ 33
+ 34 source <(kubectl completion bash)
+ 35 source <(kubeadm completion bash)
+ 36 alias k=kubectl
+ 37 complete -o default -F __start_kubectl k
+ 38 33,0-150%?12$p
+ 39 #kubectx and kubens34,155%
+ 40 export PATH=~/.kubectx:$PATH35,161%~@k
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"36,166%
+ 42 37,172%
+ 43 # kubens, kubectx 엘리어스 선언38,0-177%~@k
+ 44 alias kubens='kubectl ns'39,183%
+ 45 alias kubectx='kubectl ctx'40,188%
+ 46 41,194%~@k
+>4;m".bashrc"'47L,/938Bvwritten-1Bot3,1  4~@k   56,0-17,1  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ^[  ^[  ::wq
+>4;m[root@master[ ~]# source ~/.bashrc
+[root@master[ ~]# c
+nnn[root@master[ ~]#
+for host in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+forehost in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+done
+
+===== [ INFO ] node1 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node2 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node3 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] minikube =====
+syntax on
+set ts=4 sw=4 ai nu
+autocmd FileType yaml setlocal ts=2 sw=2 st=2 ai nu et
+autocmd FileType python setlocal ts=2 sw=2 st=2 ai nu et
+[root@master[ ~]# scp ~/.vimrc minikube:.vimrc
+scp ~/.vimrc minikube:.vimrc
+
+.vimrc                                                                                                                            100%  133   200.0KB/s   00:00 ETA
+[root@master[ ~]#
+syntax on
+syntax on
+
+bash: syntax: command not found...
+[root@master[ ~]# c
+nnn[root@master[ ~]#
+for host in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+forehost in node1 node2 node3 minikube
+do
+    echo; echo "===== [ INFO ] $host ====="
+    ssh ${host} tail -n 5 ~/.vimrc
+done
+
+===== [ INFO ] node1 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node2 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] node3 =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+
+===== [ INFO ] minikube =====
+syntax on
+set ai nu ts=4 sw=4
+autocmd FileType yaml setlocal ai nu ts=2 sw=2 et
+autocmd Filetype python setlocal ai nu ts=2 sw=2 et
+[root@master[ ~]# c
+[root@master[e~]#~ls
+서식  문서  사진    바탕화면  anaconda-ks.cfg  kube                     LinuxLog  tools
+공개  음악  비디오  다운로드  bin              kubeadm_init_output.txt  test.txt
+[root@master[ ~]# tree kube
+kube
+├── 00_test
+│   ├── webapi1.yaml
+│   └── webapi2.yaml
+├── 03
+│   └── web-pod.yml
+└── 04
+    └── ns
+        ├── nginx-pod.yml
+        ├── prodns.yml
+        └── web-pod.yml
+
+5 directories, 6 files
+[root@master[ ~]# vi ~/.bashrc
+>4;2m"~/.bashrc" 47L, 938B▽  zz0%m           >c 19
+ 20 alias rm='rm -i' 21 alias cp='cp -i' 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #
+ 28
+ 29
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'
+ 31 # kubectl CMD
+ 32 #export KUBECONFIG=~/.kube/configi
+ 33
+ 34 source <(kubectl completion bash)
+ 35 source <(kubeadm completion bash)
+ 36 alias k=kubectl
+ 37 complete -o default -F __start_kubectl k
+ 38
+ 39 #kubectx and kubens
+ 40 export PATH=~/.kubectx:$PATH
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+ 42
+ 43 # kubens, kubectx 엘리어스 선언
+ 44 alias kubens='kubectl ns'
+ 45 alias kubectx='kubectl ctx'
+ 46
+ 47 alias vi='/usr/bin/vim'47,1Bot?12$p~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   6,0-15,1  ~@k   432,0-1~@k   1,1  039~@k   8,0-17,1  6~@k   543,0-1~@k   2,1  10~@k   29,0-187,1  ~@k   654,0-1~@k    18 # User specific aliases and functions23,194% 17 22,188% 16 # export SYSTEMD_PAGER=21,183%~@k    15 # Uncomment the following line if you don't like systemctl's auto-paging feature:20,177% 14 19,172% 13 export PATH18,166%~@k    12 fi17,0-161% 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"16,155% 10 then15,150%~@k     9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]14,0-144%  8 # User specific environment13,138%  7 12,133%~@k     6 fi11,127%  5  . /etc/bashrc10,122%  4 if [ -f /etc/bashrc ]; then9,116%~@k     3 # Source global definitions8,111%  2 7,0-15%  1 # .bashrc6,1Top~@k   5432,0-11,1  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,0-13,1  ~@k   456~@k   7,0-18,1  9~@k   10,112~@k   34,0-15,1  67,0-18,1  ~@k   9201234,0-1~@k
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\] \w]\$ \[\e[m\]'25,15%
+ 31 # kubectl CMD26,111%
+ 32 #export KUBECONFIG=~/.kube/configi27,116%
+ 33 28,0-122%
+ 34 source <(kubectl completion bash)29,0-127%
+ 35 source <(kubeadm completion bash)30,133%~@k
+ 36 alias k=kubectl31,138%
+ 37 complete -o default -F __start_kubectl k32,144%
+ 38 33,0-150%~@k
+ 39 #kubectx and kubens34,155%
+ 40 export PATH=~/.kubectx:$PATH35,161%
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"36,166%~@k
+ 42 37,172%
+ 43 # kubens, kubectx 엘리어스 선언38,0-177%
+ 44 alias kubens='kubectl ns'39,183%~@k
+ 45 alias kubectx='kubectl ctx'40,188%
+ 46 41,194%
+ 47 alias vi='/usr/bin/vim'42,0-1Bot~@k   3,1  45~@k   6,0-17,1  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   6,0-15,1  ~@k   456,0-1~@k   7,1  ~@k   ~@k   ~@k   ~@k   ~@k   o
+-- INSERT --48,1Bot
+ 48 48,1Bot
+>4;m>4;m[root@master[a~]#ccange (add ! to override)49,0-1Bot::q!
+nnn[root@master[ ~]# kubectlaapi-resources | grep -i '^v1#|app/v1'
+[root@master[ ~]# c
+nnn[root@master[ ~]# kubect api-versions
+bash: kubect: command not found...
+[root@master[ ~]# luapi-versionssions
+admissionregistration.k8s.io/v1
+apiextensions.k8s.io/v1
+apiregistration.k8s.io/v1
+apps/v1
+authentication.k8s.io/v1
+authorization.k8s.io/v1
+autoscaling/v1
+autoscaling/v2
+batch/v1
+certificates.k8s.io/v1
+coordination.k8s.io/v1
+crd.projectcalico.org/v1
+discovery.k8s.io/v1
+events.k8s.io/v1
+flowcontrol.apiserver.k8s.io/v1
+networking.k8s.io/v1
+node.k8s.io/v1
+policy/v1
+rbac.authorization.k8s.io/v1
+resource.k8s.io/v1
+scheduling.k8s.io/v1
+storage.k8s.io/v1
+storagemigration.k8s.io/v1
+v1
+[root@master[ ~]# kubectlaapi-resources | grep -w -i "v1|app/v1"
+[root@master[ ~]#  kubectl api-resources | grep -w -i "v1|app/v1"
+^C
+[root@master[ ~]# ^C
+[root@master[ ~]# kubectl api-resources | grep -wiE""v1|app/v1""
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+[root@master[ ~]# c
+#H헤
+kubectl api-resources | gr#p헤
+kubectl api-resources | grep -E -w "^NAME|v1|apps/v1"
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+api-remaster[ ~]# kubectl api-resources | grep -E -w "^NAME|v1|apps/v1"
+[root@master[ ~]# kubectl api-resources | grep names
+namespaces                          ns           v1                                false        Namespace
+[root@master[ ~]# kubectl api-resources | grep names
+namespaces                          ns           v1                                false        Namespace
+[root@master[ ~]# kubectl api-resources --api-group ''
+NAME                     SHORTNAMES   APIVERSION   NAMESPACED   KIND
+bindings                              v1           true         Binding
+componentstatuses        cs           v1           false        ComponentStatus
+configmaps               cm           v1           true         ConfigMap
+endpoints                ep           v1           true         Endpoints
+events                   ev           v1           true         Event
+limitranges              limits       v1           true         LimitRange
+namespaces               ns           v1           false        Namespace
+nodes                    no           v1           false        Node
+persistentvolumeclaims   pvc          v1           true         PersistentVolumeClaim
+persistentvolumes        pv           v1           false        PersistentVolume
+pods                     po           v1           true         Pod
+podtemplates                          v1           true         PodTemplate
+replicationcontrollers   rc           v1           true         ReplicationController
+resourcequotas           quota        v1           true         ResourceQuota
+secrets                               v1           true         Secret
+serviceaccounts          sa           v1           true         ServiceAccount
+services                 svc          v1           true         Service
+[root@master[ ~]# kubectl explain Pod
+kubectl explain Pod
+
+KIND:       Pod
+VERSION:    v1
+
+DESCRIPTION:
+    Pod is a collection of containers that can run on a host. This resource is
+    created by clients and scheduled onto hosts.
+
+FIELDS:
+  apiVersion    <string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+  kind  <string>
+    Kind is a string value representing the REST resource this object
+    represents. Servers may infer this from the endpoint the client submits
+    requests to. Cannot be updated. In CamelCase. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  metadata      <ObjectMeta>
+    Standard object's metadata. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+  spec  <PodSpec>
+    Specification of the desired behavior of the pod. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+  status        <PodStatus>
+    Most recently observed status of the pod. This data may not be up to date.
+    Populated by the system. Read-only. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+
+[root@master[ ~]# kubectl explain Pod.spec
+KIND:       Pod
+VERSION:    v1
+
+FIELD: spec <PodSpec>
+
+
+DESCRIPTION:
+    Specification of the desired behavior of the pod. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+    PodSpec is a description of a pod.
+
+FIELDS:
+  activeDeadlineSeconds <integer>
+    Optional duration in seconds the pod may be active on the node relative to
+    StartTime before the system will actively try to mark it failed and kill
+    associated containers. Value must be a positive integer.
+
+  affinity      <Affinity>
+    If specified, the pod's scheduling constraints
+
+  automountServiceAccountToken  <boolean>
+    AutomountServiceAccountToken indicates whether a service account token
+    should be automatically mounted.
+
+  containers    <[]Container> -required-
+    List of containers belonging to the pod. Containers cannot currently be
+    added or removed. There must be at least one container in a Pod. Cannot be
+    updated.
+
+  dnsConfig     <PodDNSConfig>
+    Specifies the DNS parameters of a pod. Parameters specified here will be
+    merged to the generated DNS configuration based on DNSPolicy.
+
+  dnsPolicy     <string>
+  enum: ClusterFirst, ClusterFirstWithHostNet, Default, None
+    Set DNS policy for the pod. Defaults to "ClusterFirst". Valid values are
+    'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS
+    parameters given in DNSConfig will be merged with the policy selected with
+    DNSPolicy. To have DNS options set along with hostNetwork, you have to
+    specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
+
+    Possible enum values:
+     - `"ClusterFirst"` indicates that the pod should use cluster DNS first
+    unless hostNetwork is true, if it is available, then fall back on the
+    default (as determined by kubelet) DNS settings.
+     - `"ClusterFirstWithHostNet"` indicates that the pod should use cluster DNS
+    first, if it is available, then fall back on the default (as determined by
+    kubelet) DNS settings.
+     - `"Default"` indicates that the pod should use the default (as determined
+    by kubelet) DNS settings.
+     - `"None"` indicates that the pod should use empty DNS settings. DNS
+    parameters such as nameservers and search paths should be defined via
+    DNSConfig.
+
+  enableServiceLinks    <boolean>
+    EnableServiceLinks indicates whether information about services should be
+    injected into pod's environment variables, matching the syntax of Docker
+    links. Optional: Defaults to true.
+
+  ephemeralContainers   <[]EphemeralContainer>
+    List of ephemeral containers run in this pod. Ephemeral containers may be
+    run in an existing pod to perform user-initiated actions such as debugging.
+    This list cannot be specified when creating a pod, and it cannot be modified
+    by updating the pod spec. In order to add an ephemeral container to an
+    existing pod, use the pod's ephemeralcontainers subresource.
+
+  evictionResponders    <[]EvictionResponder>
+    evictionResponders reference responders that react to Evictions based on
+    EvictionRequests. Responders should observe and communicate through the
+    Eviction Resource API to help with the graceful termination of a pod. The
+    responders are selected sequentially, according to their specified priority.
+
+    Responders should periodically report on an eviction progress by updating
+    the .status.responders[].heartbeatTime field of the Eviction object. If this
+    field is not updated within the heartbeat deadline defined by the Eviction
+    API (currently 20 minutes), the eviction is passed over to the next
+    responder with a lower priority. If there is no other responder, the last
+    default imperative-eviction.k8s.io/evictor responder with a priority of 100
+    will evict the pod using the imperative Eviction API (pods/<name>/eviction
+    subresource).
+
+    The maximum length of the responders list is 10. Responders are not
+    supported when the pod is part of a PodGroup (.spec.schedulingGroup is set).
+    This field can only be set on creation and is immutable afterwards.
+
+  hostAliases   <[]HostAlias>
+    HostAliases is an optional list of hosts and IPs that will be injected into
+    the pod's hosts file if specified.
+
+  hostIPC       <boolean>
+    Use the host's ipc namespace. Optional: Default to false.
+
+  hostNetwork   <boolean>
+    Host networking requested for this pod. Use the host's network namespace.
+    When using HostNetwork you should specify ports so the scheduler is aware.
+    When `hostNetwork` is true, specified `hostPort` fields in port definitions
+    must match `containerPort`, and unspecified `hostPort` fields in port
+    definitions are defaulted to match `containerPort`. Default to false.
+
+  hostPID       <boolean>
+    Use the host's pid namespace. Optional: Default to false.
+
+  hostUsers     <boolean>
+    Use the host's user namespace. Optional: Default to true. If set to true or
+    not present, the pod will be run in the host user namespace, useful for when
+    the pod needs a feature only available to the host user namespace, such as
+    loading a kernel module with CAP_SYS_MODULE. When set to false, a new userns
+    is created for the pod. Setting false is useful for mitigating container
+    breakout vulnerabilities even allowing users to run their containers as root
+    without actually having root privileges on the host.
+
+  hostname      <string>
+    Specifies the hostname of the Pod If not specified, the pod's hostname will
+    be set to a system-defined value.
+
+  hostnameOverride      <string>
+    HostnameOverride specifies an explicit override for the pod's hostname as
+    perceived by the pod. This field only specifies the pod's hostname and does
+    not affect its DNS records. When this field is set to a non-empty string: -
+    It takes precedence over the values set in `hostname` and `subdomain`. - The
+    Pod's hostname will be set to this value. - `setHostnameAsFQDN` must be nil
+    or set to false. - `hostNetwork` must be set to false.
+
+    This field must be a valid DNS subdomain as defined in RFC 1123 and contain
+    at most 64 characters.
+
+  imagePullSecrets      <[]LocalObjectReference>
+    ImagePullSecrets is an optional list of references to secrets in the same
+    namespace to use for pulling any of the images used by this PodSpec. If
+    specified, these secrets will be passed to individual puller implementations
+    for them to use. More info:
+    https://kubernetes.io/docs/concepts/containers/images#specifying-imagepullsecrets-on-a-pod
+
+  initContainers        <[]Container>
+    List of initialization containers belonging to the pod. Init containers are
+    executed in order prior to containers being started. If any init container
+    fails, the pod is considered to have failed and is handled according to its
+    restartPolicy. The name for an init container or normal container must be
+    unique among all containers. Init containers may not have Lifecycle actions,
+    Readiness probes, Liveness probes, or Startup probes. The
+    resourceRequirements of an init container are taken into account during
+    scheduling by finding the highest request/limit for each resource type, and
+    then using the max of that value or the sum of the normal containers. Limits
+    are applied to init containers in a similar fashion. Init containers cannot
+    currently be added or removed. Cannot be updated. More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+
+  nodeName      <string>
+    NodeName indicates in which node this pod is scheduled. If empty, this pod
+    is a candidate for scheduling by the scheduler defined in schedulerName.
+    Once this field is set, the kubelet for this node becomes responsible for
+    the lifecycle of this pod. This field should not be used to express a desire
+    for the pod to be scheduled on a specific node.
+    https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#nodename
+
+  nodeSelector  <map[string]string>
+    NodeSelector is a selector which must be true for the pod to fit on a node.
+    Selector which must match a node's labels for the pod to be scheduled on
+    that node. More info:
+    https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+
+  os    <PodOS>
+    Specifies the OS of the containers in the pod. Some pod and container fields
+    are restricted if this is set.
+
+    If the OS field is set to linux, the following fields must be unset:
+    -securityContext.windowsOptions
+
+    If the OS field is set to windows, following fields must be unset: -
+    spec.hostPID - spec.hostIPC - spec.hostUsers - spec.resources -
+    spec.securityContext.appArmorProfile - spec.securityContext.seLinuxOptions -
+    spec.securityContext.seccompProfile - spec.securityContext.fsGroup -
+    spec.securityContext.fsGroupChangePolicy - spec.securityContext.sysctls -
+    spec.shareProcessNamespace - spec.securityContext.runAsUser -
+    spec.securityContext.runAsGroup - spec.securityContext.supplementalGroups -
+    spec.securityContext.supplementalGroupsPolicy -
+    spec.containers[*].securityContext.appArmorProfile -
+    spec.containers[*].securityContext.seLinuxOptions -
+    spec.containers[*].securityContext.seccompProfile -
+    spec.containers[*].securityContext.capabilities -
+    spec.containers[*].securityContext.readOnlyRootFilesystem -
+    spec.containers[*].securityContext.privileged -
+    spec.containers[*].securityContext.allowPrivilegeEscalation -
+    spec.containers[*].securityContext.procMount -
+    spec.containers[*].securityContext.runAsUser -
+    spec.containers[*].securityContext.runAsGroup
+
+  overhead      <map[string]Quantity>
+    Overhead represents the resource overhead associated with running a pod for
+    a given RuntimeClass. This field will be autopopulated at admission time by
+    the RuntimeClass admission controller. If the RuntimeClass admission
+    controller is enabled, overhead must not be set in Pod create requests. The
+    RuntimeClass admission controller will reject Pod create requests which have
+    the overhead already set. If RuntimeClass is configured and selected in the
+    PodSpec, Overhead will be set to the value defined in the corresponding
+    RuntimeClass, otherwise it will remain unset and treated as zero. More info:
+    https://git.k8s.io/enhancements/keps/sig-node/688-pod-overhead/README.md
+
+  preemptionPolicy      <string>
+  enum: Never, PreemptLowerPriority
+    PreemptionPolicy is the Policy for preempting pods with lower priority. One
+    of Never, PreemptLowerPriority. When Priority Admission Controller is
+    enabled, it prevents users from setting this field. The admission controller
+    populates this field from PriorityClassName. Defaults to
+    PreemptLowerPriority if unset.
+
+    Possible enum values:
+     - `"Never"` means that pod never preempts other pods with lower priority.
+     - `"PreemptLowerPriority"` means that pod can preempt other pods with lower
+    priority.
+
+  priority      <integer>
+    The priority value. Various system components use this field to find the
+    priority of the pod. When Priority Admission Controller is enabled, it
+    prevents users from setting this field. The admission controller populates
+    this field from PriorityClassName. The higher the value, the higher the
+    priority.
+
+  priorityClassName     <string>
+    If specified, indicates the pod's priority. "system-node-critical" and
+    "system-cluster-critical" are two special keywords which indicate the
+    highest priorities with the former being the highest priority. Any other
+    name must be defined by creating a PriorityClass object with that name. If
+    not specified, the pod priority will be default or zero if there is no
+    default.
+
+  readinessGates        <[]PodReadinessGate>
+    If specified, all readiness gates will be evaluated for pod readiness. A pod
+    is ready when all its containers are ready AND all conditions specified in
+    the readiness gates have status equal to "True" More info:
+    https://git.k8s.io/enhancements/keps/sig-network/580-pod-readiness-gates
+
+  resourceClaims        <[]PodResourceClaim>
+    ResourceClaims defines which ResourceClaims must be allocated and reserved
+    before the Pod is allowed to start. The resources will be made available to
+    those containers which consume them by name.
+
+    This is a stable field but requires that the DynamicResourceAllocation
+    feature gate is enabled.
+
+    This field is immutable.
+
+  resources     <ResourceRequirements>
+    Resources is the total amount of CPU and Memory resources required by all
+    containers in the pod. It supports specifying Requests and Limits for "cpu",
+    "memory" and "hugepages-" resource names only. ResourceClaims are not
+    supported.
+
+    This field enables fine-grained control over resource allocation for the
+    entire pod, allowing resource sharing among containers in a pod.
+
+    This is an alpha field and requires enabling the PodLevelResources feature
+    gate.
+
+  restartPolicy <string>
+  enum: Always, Never, OnFailure
+    Restart policy for all containers within the pod. One of Always, OnFailure,
+    Never. In some contexts, only a subset of those values may be permitted.
+    Default to Always. More info:
+    https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#restart-policy
+
+    Possible enum values:
+     - `"Always"`
+     - `"Never"`
+     - `"OnFailure"`
+
+  runtimeClassName      <string>
+    RuntimeClassName refers to a RuntimeClass object in the node.k8s.io group,
+    which should be used to run this pod.  If no RuntimeClass resource matches
+    the named class, the pod will not be run. If unset or empty, the "legacy"
+    RuntimeClass will be used, which is an implicit class with an empty
+    definition that uses the default runtime handler. More info:
+    https://git.k8s.io/enhancements/keps/sig-node/585-runtime-class
+
+  schedulerName <string>
+    If specified, the pod will be dispatched by specified scheduler. If not
+    specified, the pod will be dispatched by default scheduler.
+
+  schedulingGates       <[]PodSchedulingGate>
+    SchedulingGates is an opaque list of values that if specified will block
+    scheduling the pod. If schedulingGates is not empty, the pod will stay in
+    the SchedulingGated state and the scheduler will not attempt to schedule the
+    pod.
+
+    SchedulingGates can only be set at pod creation time, and be removed only
+    afterwards.
+
+  schedulingGroup       <PodSchedulingGroup>
+    SchedulingGroup provides a reference to the immediate scheduling runtime
+    grouping object that this Pod belongs to. This field is used by the
+    scheduler to identify the group and apply the correct group scheduling
+    policies. The association with a group also impacts other lifecycle aspects
+    of a Pod that are relevant in a wider context of scheduling like preemption,
+    resource attachment, etc. If not specified, the Pod is treated as a single
+    unit in all of these aspects. The group object referenced by this field may
+    not exist at the time the Pod is created. This field is immutable, but a
+    group object with the same name may be recreated with different policies.
+    Doing this during pod scheduling may result in the placement not conforming
+    to the expected policies.
+
+  securityContext       <PodSecurityContext>
+    SecurityContext holds pod-level security attributes and common container
+    settings. Optional: Defaults to empty.  See type description for default
+    values of each field.
+
+  serviceAccount        <string>
+    DeprecatedServiceAccount is a deprecated alias for ServiceAccountName.
+    Deprecated: Use serviceAccountName instead.
+
+  serviceAccountName    <string>
+    ServiceAccountName is the name of the ServiceAccount to use to run this pod.
+    More info:
+    https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
+
+  setHostnameAsFQDN     <boolean>
+    If true the pod's hostname will be configured as the pod's FQDN, rather than
+    the leaf name (the default). In Linux containers, this means setting the
+    FQDN in the hostname field of the kernel (the nodename field of struct
+    utsname). In Windows containers, this means setting the registry value of
+    hostname for the registry key
+    HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters
+    to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+
+  shareProcessNamespace <boolean>
+    Share a single process namespace between all of the containers in a pod.
+    When this is set containers will be able to view and signal processes from
+    other containers in the same pod, and the first process in each container
+    will not be assigned PID 1. HostPID and ShareProcessNamespace cannot both be
+    set. Optional: Default to false.
+
+  subdomain     <string>
+    If specified, the fully qualified Pod hostname will be
+    "<hostname>.<subdomain>.<pod namespace>.svc.<cluster domain>". If not
+    specified, the pod will not have a domainname at all.
+
+  terminationGracePeriodSeconds <integer>
+    Optional duration in seconds the pod needs to terminate gracefully. May be
+    decreased in delete request. Value must be non-negative integer. The value
+    zero indicates stop immediately via the kill signal (no opportunity to shut
+    down). If this value is nil, the default grace period will be used instead.
+    The grace period is the duration in seconds after the processes running in
+    the pod are sent a termination signal and the time when the processes are
+    forcibly halted with a kill signal. Set this value longer than the expected
+    cleanup time for your process. Defaults to 30 seconds.
+
+  tolerations   <[]Toleration>
+    If specified, the pod's tolerations.
+
+  topologySpreadConstraints     <[]TopologySpreadConstraint>
+    TopologySpreadConstraints describes how a group of pods ought to spread
+    across topology domains. Scheduler will schedule pods in a way which abides
+    by the constraints. All topologySpreadConstraints are ANDed.
+
+  volumes       <[]Volume>
+    List of volumes that can be mounted by containers belonging to the pod. More
+    info: https://kubernetes.io/docs/concepts/storage/volumes
+
+
+[root@master[ ~]# kubectl explain Pod.spec --recursive
+KIND:       Pod
+VERSION:    v1
+
+FIELD: spec <PodSpec>
+
+
+DESCRIPTION:
+    Specification of the desired behavior of the pod. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+    PodSpec is a description of a pod.
+
+FIELDS:
+  activeDeadlineSeconds <integer>
+  affinity      <Affinity>
+    nodeAffinity        <NodeAffinity>
+      preferredDuringSchedulingIgnoredDuringExecution   <[]PreferredSchedulingTerm>
+        preference      <NodeSelectorTerm> -required-
+          matchExpressions      <[]NodeSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            enum: DoesNotExist, Exists, Gt, In, ....
+            values      <[]string>
+          matchFields   <[]NodeSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            enum: DoesNotExist, Exists, Gt, In, ....
+            values      <[]string>
+        weight  <integer> -required-
+      requiredDuringSchedulingIgnoredDuringExecution    <NodeSelector>
+        nodeSelectorTerms       <[]NodeSelectorTerm> -required-
+          matchExpressions      <[]NodeSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            enum: DoesNotExist, Exists, Gt, In, ....
+            values      <[]string>
+          matchFields   <[]NodeSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            enum: DoesNotExist, Exists, Gt, In, ....
+            values      <[]string>
+    podAffinity <PodAffinity>
+      preferredDuringSchedulingIgnoredDuringExecution   <[]WeightedPodAffinityTerm>
+        podAffinityTerm <PodAffinityTerm> -required-
+          labelSelector <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          matchLabelKeys        <[]string>
+          mismatchLabelKeys     <[]string>
+          namespaceSelector     <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          namespaces    <[]string>
+          topologyKey   <string> -required-
+        weight  <integer> -required-
+      requiredDuringSchedulingIgnoredDuringExecution    <[]PodAffinityTerm>
+        labelSelector   <LabelSelector>
+          matchExpressions      <[]LabelSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            values      <[]string>
+          matchLabels   <map[string]string>
+        matchLabelKeys  <[]string>
+        mismatchLabelKeys       <[]string>
+        namespaceSelector       <LabelSelector>
+          matchExpressions      <[]LabelSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            values      <[]string>
+          matchLabels   <map[string]string>
+        namespaces      <[]string>
+        topologyKey     <string> -required-
+    podAntiAffinity     <PodAntiAffinity>
+      preferredDuringSchedulingIgnoredDuringExecution   <[]WeightedPodAffinityTerm>
+        podAffinityTerm <PodAffinityTerm> -required-
+          labelSelector <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          matchLabelKeys        <[]string>
+          mismatchLabelKeys     <[]string>
+          namespaceSelector     <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          namespaces    <[]string>
+          topologyKey   <string> -required-
+        weight  <integer> -required-
+      requiredDuringSchedulingIgnoredDuringExecution    <[]PodAffinityTerm>
+        labelSelector   <LabelSelector>
+          matchExpressions      <[]LabelSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            values      <[]string>
+          matchLabels   <map[string]string>
+        matchLabelKeys  <[]string>
+        mismatchLabelKeys       <[]string>
+        namespaceSelector       <LabelSelector>
+          matchExpressions      <[]LabelSelectorRequirement>
+            key <string> -required-
+            operator    <string> -required-
+            values      <[]string>
+          matchLabels   <map[string]string>
+        namespaces      <[]string>
+        topologyKey     <string> -required-
+  automountServiceAccountToken  <boolean>
+  containers    <[]Container> -required-
+    args        <[]string>
+    command     <[]string>
+    env <[]EnvVar>
+      name      <string> -required-
+      value     <string>
+      valueFrom <EnvVarSource>
+        configMapKeyRef <ConfigMapKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+        fieldRef        <ObjectFieldSelector>
+          apiVersion    <string>
+          fieldPath     <string> -required-
+        fileKeyRef      <FileKeySelector>
+          key   <string> -required-
+          optional      <boolean>
+          path  <string> -required-
+          volumeName    <string> -required-
+        resourceFieldRef        <ResourceFieldSelector>
+          containerName <string>
+          divisor       <Quantity>
+          resource      <string> -required-
+        secretKeyRef    <SecretKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+    envFrom     <[]EnvFromSource>
+      configMapRef      <ConfigMapEnvSource>
+        name    <string>
+        optional        <boolean>
+      prefix    <string>
+      secretRef <SecretEnvSource>
+        name    <string>
+        optional        <boolean>
+    image       <string>
+    imagePullPolicy     <string>
+    enum: Always, IfNotPresent, Never
+    lifecycle   <Lifecycle>
+      postStart <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      preStop   <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      stopSignal        <string>
+      enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+    livenessProbe       <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    name        <string> -required-
+    ports       <[]ContainerPort>
+      containerPort     <integer> -required-
+      hostIP    <string>
+      hostPort  <integer>
+      name      <string>
+      protocol  <string>
+      enum: SCTP, TCP, UDP
+    readinessProbe      <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    resizePolicy        <[]ContainerResizePolicy>
+      resourceName      <string> -required-
+      restartPolicy     <string> -required-
+    resources   <ResourceRequirements>
+      claims    <[]ResourceClaim>
+        name    <string> -required-
+        request <string>
+      limits    <map[string]Quantity>
+      requests  <map[string]Quantity>
+    restartPolicy       <string>
+    restartPolicyRules  <[]ContainerRestartRule>
+      action    <string> -required-
+      exitCodes <ContainerRestartRuleOnExitCodes>
+        operator        <string> -required-
+        values  <[]integer>
+    securityContext     <SecurityContext>
+      allowPrivilegeEscalation  <boolean>
+      appArmorProfile   <AppArmorProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      capabilities      <Capabilities>
+        add     <[]string>
+        drop    <[]string>
+      privileged        <boolean>
+      procMount <string>
+      enum: Default, Unmasked
+      readOnlyRootFilesystem    <boolean>
+      runAsGroup        <integer>
+      runAsNonRoot      <boolean>
+      runAsUser <integer>
+      seLinuxOptions    <SELinuxOptions>
+        level   <string>
+        role    <string>
+        type    <string>
+        user    <string>
+      seccompProfile    <SeccompProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      windowsOptions    <WindowsSecurityContextOptions>
+        gmsaCredentialSpec      <string>
+        gmsaCredentialSpecName  <string>
+        hostProcess     <boolean>
+        runAsUserName   <string>
+    startupProbe        <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    stdin       <boolean>
+    stdinOnce   <boolean>
+    terminationMessagePath      <string>
+    terminationMessagePolicy    <string>
+    enum: FallbackToLogsOnError, File
+    tty <boolean>
+    volumeDevices       <[]VolumeDevice>
+      devicePath        <string> -required-
+      name      <string> -required-
+    volumeMounts        <[]VolumeMount>
+      bindMountOptions  <[]string>
+      mountPath <string> -required-
+      mountPropagation  <string>
+      enum: Bidirectional, HostToContainer, None
+      name      <string> -required-
+      readOnly  <boolean>
+      recursiveReadOnly <string>
+      subPath   <string>
+      subPathExpr       <string>
+    workingDir  <string>
+  dnsConfig     <PodDNSConfig>
+    nameservers <[]string>
+    options     <[]PodDNSConfigOption>
+      name      <string>
+      value     <string>
+    searches    <[]string>
+  dnsPolicy     <string>
+  enum: ClusterFirst, ClusterFirstWithHostNet, Default, None
+  enableServiceLinks    <boolean>
+  ephemeralContainers   <[]EphemeralContainer>
+    args        <[]string>
+    command     <[]string>
+    env <[]EnvVar>
+      name      <string> -required-
+      value     <string>
+      valueFrom <EnvVarSource>
+        configMapKeyRef <ConfigMapKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+        fieldRef        <ObjectFieldSelector>
+          apiVersion    <string>
+          fieldPath     <string> -required-
+        fileKeyRef      <FileKeySelector>
+          key   <string> -required-
+          optional      <boolean>
+          path  <string> -required-
+          volumeName    <string> -required-
+        resourceFieldRef        <ResourceFieldSelector>
+          containerName <string>
+          divisor       <Quantity>
+          resource      <string> -required-
+        secretKeyRef    <SecretKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+    envFrom     <[]EnvFromSource>
+      configMapRef      <ConfigMapEnvSource>
+        name    <string>
+        optional        <boolean>
+      prefix    <string>
+      secretRef <SecretEnvSource>
+        name    <string>
+        optional        <boolean>
+    image       <string>
+    imagePullPolicy     <string>
+    enum: Always, IfNotPresent, Never
+    lifecycle   <Lifecycle>
+      postStart <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      preStop   <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      stopSignal        <string>
+      enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+    livenessProbe       <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    name        <string> -required-
+    ports       <[]ContainerPort>
+      containerPort     <integer> -required-
+      hostIP    <string>
+      hostPort  <integer>
+      name      <string>
+      protocol  <string>
+      enum: SCTP, TCP, UDP
+    readinessProbe      <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    resizePolicy        <[]ContainerResizePolicy>
+      resourceName      <string> -required-
+      restartPolicy     <string> -required-
+    resources   <ResourceRequirements>
+      claims    <[]ResourceClaim>
+        name    <string> -required-
+        request <string>
+      limits    <map[string]Quantity>
+      requests  <map[string]Quantity>
+    restartPolicy       <string>
+    restartPolicyRules  <[]ContainerRestartRule>
+      action    <string> -required-
+      exitCodes <ContainerRestartRuleOnExitCodes>
+        operator        <string> -required-
+        values  <[]integer>
+    securityContext     <SecurityContext>
+      allowPrivilegeEscalation  <boolean>
+      appArmorProfile   <AppArmorProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      capabilities      <Capabilities>
+        add     <[]string>
+        drop    <[]string>
+      privileged        <boolean>
+      procMount <string>
+      enum: Default, Unmasked
+      readOnlyRootFilesystem    <boolean>
+      runAsGroup        <integer>
+      runAsNonRoot      <boolean>
+      runAsUser <integer>
+      seLinuxOptions    <SELinuxOptions>
+        level   <string>
+        role    <string>
+        type    <string>
+        user    <string>
+      seccompProfile    <SeccompProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      windowsOptions    <WindowsSecurityContextOptions>
+        gmsaCredentialSpec      <string>
+        gmsaCredentialSpecName  <string>
+        hostProcess     <boolean>
+        runAsUserName   <string>
+    startupProbe        <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    stdin       <boolean>
+    stdinOnce   <boolean>
+    targetContainerName <string>
+    terminationMessagePath      <string>
+    terminationMessagePolicy    <string>
+    enum: FallbackToLogsOnError, File
+    tty <boolean>
+    volumeDevices       <[]VolumeDevice>
+      devicePath        <string> -required-
+      name      <string> -required-
+    volumeMounts        <[]VolumeMount>
+      bindMountOptions  <[]string>
+      mountPath <string> -required-
+      mountPropagation  <string>
+      enum: Bidirectional, HostToContainer, None
+      name      <string> -required-
+      readOnly  <boolean>
+      recursiveReadOnly <string>
+      subPath   <string>
+      subPathExpr       <string>
+    workingDir  <string>
+  evictionResponders    <[]EvictionResponder>
+    name        <string> -required-
+    priority    <integer> -required-
+  hostAliases   <[]HostAlias>
+    hostnames   <[]string>
+    ip  <string> -required-
+  hostIPC       <boolean>
+  hostNetwork   <boolean>
+  hostPID       <boolean>
+  hostUsers     <boolean>
+  hostname      <string>
+  hostnameOverride      <string>
+  imagePullSecrets      <[]LocalObjectReference>
+    name        <string>
+  initContainers        <[]Container>
+    args        <[]string>
+    command     <[]string>
+    env <[]EnvVar>
+      name      <string> -required-
+      value     <string>
+      valueFrom <EnvVarSource>
+        configMapKeyRef <ConfigMapKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+        fieldRef        <ObjectFieldSelector>
+          apiVersion    <string>
+          fieldPath     <string> -required-
+        fileKeyRef      <FileKeySelector>
+          key   <string> -required-
+          optional      <boolean>
+          path  <string> -required-
+          volumeName    <string> -required-
+        resourceFieldRef        <ResourceFieldSelector>
+          containerName <string>
+          divisor       <Quantity>
+          resource      <string> -required-
+        secretKeyRef    <SecretKeySelector>
+          key   <string> -required-
+          name  <string>
+          optional      <boolean>
+    envFrom     <[]EnvFromSource>
+      configMapRef      <ConfigMapEnvSource>
+        name    <string>
+        optional        <boolean>
+      prefix    <string>
+      secretRef <SecretEnvSource>
+        name    <string>
+        optional        <boolean>
+    image       <string>
+    imagePullPolicy     <string>
+    enum: Always, IfNotPresent, Never
+    lifecycle   <Lifecycle>
+      postStart <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      preStop   <LifecycleHandler>
+        exec    <ExecAction>
+          command       <[]string>
+        httpGet <HTTPGetAction>
+          host  <string>
+          httpHeaders   <[]HTTPHeader>
+            name        <string> -required-
+            value       <string> -required-
+          path  <string>
+          port  <IntOrString> -required-
+          protocol      <string>
+          enum: HTTP1, HTTP2
+          scheme        <string>
+          enum: HTTP, HTTPS
+        sleep   <SleepAction>
+          seconds       <integer> -required-
+        tcpSocket       <TCPSocketAction>
+          host  <string>
+          port  <IntOrString> -required-
+      stopSignal        <string>
+      enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+    livenessProbe       <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    name        <string> -required-
+    ports       <[]ContainerPort>
+      containerPort     <integer> -required-
+      hostIP    <string>
+      hostPort  <integer>
+      name      <string>
+      protocol  <string>
+      enum: SCTP, TCP, UDP
+    readinessProbe      <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    resizePolicy        <[]ContainerResizePolicy>
+      resourceName      <string> -required-
+      restartPolicy     <string> -required-
+    resources   <ResourceRequirements>
+      claims    <[]ResourceClaim>
+        name    <string> -required-
+        request <string>
+      limits    <map[string]Quantity>
+      requests  <map[string]Quantity>
+    restartPolicy       <string>
+    restartPolicyRules  <[]ContainerRestartRule>
+      action    <string> -required-
+      exitCodes <ContainerRestartRuleOnExitCodes>
+        operator        <string> -required-
+        values  <[]integer>
+    securityContext     <SecurityContext>
+      allowPrivilegeEscalation  <boolean>
+      appArmorProfile   <AppArmorProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      capabilities      <Capabilities>
+        add     <[]string>
+        drop    <[]string>
+      privileged        <boolean>
+      procMount <string>
+      enum: Default, Unmasked
+      readOnlyRootFilesystem    <boolean>
+      runAsGroup        <integer>
+      runAsNonRoot      <boolean>
+      runAsUser <integer>
+      seLinuxOptions    <SELinuxOptions>
+        level   <string>
+        role    <string>
+        type    <string>
+        user    <string>
+      seccompProfile    <SeccompProfile>
+        localhostProfile        <string>
+        type    <string> -required-
+        enum: Localhost, RuntimeDefault, Unconfined
+      windowsOptions    <WindowsSecurityContextOptions>
+        gmsaCredentialSpec      <string>
+        gmsaCredentialSpecName  <string>
+        hostProcess     <boolean>
+        runAsUserName   <string>
+    startupProbe        <Probe>
+      exec      <ExecAction>
+        command <[]string>
+      failureThreshold  <integer>
+      grpc      <GRPCAction>
+        mode    <string>
+        enum: Plaintext, TLS
+        port    <integer> -required-
+        service <string>
+      httpGet   <HTTPGetAction>
+        host    <string>
+        httpHeaders     <[]HTTPHeader>
+          name  <string> -required-
+          value <string> -required-
+        path    <string>
+        port    <IntOrString> -required-
+        protocol        <string>
+        enum: HTTP1, HTTP2
+        scheme  <string>
+        enum: HTTP, HTTPS
+      initialDelaySeconds       <integer>
+      periodSeconds     <integer>
+      successThreshold  <integer>
+      tcpSocket <TCPSocketAction>
+        host    <string>
+        port    <IntOrString> -required-
+      terminationGracePeriodSeconds     <integer>
+      timeoutSeconds    <integer>
+    stdin       <boolean>
+    stdinOnce   <boolean>
+    terminationMessagePath      <string>
+    terminationMessagePolicy    <string>
+    enum: FallbackToLogsOnError, File
+    tty <boolean>
+    volumeDevices       <[]VolumeDevice>
+      devicePath        <string> -required-
+      name      <string> -required-
+    volumeMounts        <[]VolumeMount>
+      bindMountOptions  <[]string>
+      mountPath <string> -required-
+      mountPropagation  <string>
+      enum: Bidirectional, HostToContainer, None
+      name      <string> -required-
+      readOnly  <boolean>
+      recursiveReadOnly <string>
+      subPath   <string>
+      subPathExpr       <string>
+    workingDir  <string>
+  nodeName      <string>
+  nodeSelector  <map[string]string>
+  os    <PodOS>
+    name        <string> -required-
+  overhead      <map[string]Quantity>
+  preemptionPolicy      <string>
+  enum: Never, PreemptLowerPriority
+  priority      <integer>
+  priorityClassName     <string>
+  readinessGates        <[]PodReadinessGate>
+    conditionType       <string> -required-
+  resourceClaims        <[]PodResourceClaim>
+    name        <string> -required-
+    resourceClaimName   <string>
+    resourceClaimTemplateName   <string>
+  resources     <ResourceRequirements>
+    claims      <[]ResourceClaim>
+      name      <string> -required-
+      request   <string>
+    limits      <map[string]Quantity>
+    requests    <map[string]Quantity>
+  restartPolicy <string>
+  enum: Always, Never, OnFailure
+  runtimeClassName      <string>
+  schedulerName <string>
+  schedulingGates       <[]PodSchedulingGate>
+    name        <string> -required-
+  schedulingGroup       <PodSchedulingGroup>
+    podGroupName        <string>
+  securityContext       <PodSecurityContext>
+    appArmorProfile     <AppArmorProfile>
+      localhostProfile  <string>
+      type      <string> -required-
+      enum: Localhost, RuntimeDefault, Unconfined
+    fsGroup     <integer>
+    fsGroupChangePolicy <string>
+    enum: Always, OnRootMismatch
+    runAsGroup  <integer>
+    runAsNonRoot        <boolean>
+    runAsUser   <integer>
+    seLinuxChangePolicy <string>
+    seLinuxOptions      <SELinuxOptions>
+      level     <string>
+      role      <string>
+      type      <string>
+      user      <string>
+    seccompProfile      <SeccompProfile>
+      localhostProfile  <string>
+      type      <string> -required-
+      enum: Localhost, RuntimeDefault, Unconfined
+    supplementalGroups  <[]integer>
+    supplementalGroupsPolicy    <string>
+    enum: Merge, Strict
+    sysctls     <[]Sysctl>
+      name      <string> -required-
+      value     <string> -required-
+    windowsOptions      <WindowsSecurityContextOptions>
+      gmsaCredentialSpec        <string>
+      gmsaCredentialSpecName    <string>
+      hostProcess       <boolean>
+      runAsUserName     <string>
+  serviceAccount        <string>
+  serviceAccountName    <string>
+  setHostnameAsFQDN     <boolean>
+  shareProcessNamespace <boolean>
+  subdomain     <string>
+  terminationGracePeriodSeconds <integer>
+  tolerations   <[]Toleration>
+    effect      <string>
+    enum: NoExecute, NoSchedule, PreferNoSchedule
+    key <string>
+    operator    <string>
+    enum: Equal, Exists, Gt, Lt
+    tolerationSeconds   <integer>
+    value       <string>
+  topologySpreadConstraints     <[]TopologySpreadConstraint>
+    labelSelector       <LabelSelector>
+      matchExpressions  <[]LabelSelectorRequirement>
+        key     <string> -required-
+        operator        <string> -required-
+        values  <[]string>
+      matchLabels       <map[string]string>
+    matchLabelKeys      <[]string>
+    maxSkew     <integer> -required-
+    minDomains  <integer>
+    nodeAffinityPolicy  <string>
+    enum: Honor, Ignore
+    nodeTaintsPolicy    <string>
+    enum: Honor, Ignore
+    topologyKey <string> -required-
+    whenUnsatisfiable   <string> -required-
+    enum: DoNotSchedule, ScheduleAnyway
+  volumes       <[]Volume>
+    awsElasticBlockStore        <AWSElasticBlockStoreVolumeSource>
+      fsType    <string>
+      partition <integer>
+      readOnly  <boolean>
+      volumeID  <string> -required-
+    azureDisk   <AzureDiskVolumeSource>
+      cachingMode       <string>
+      enum: None, ReadOnly, ReadWrite
+      diskName  <string> -required-
+      diskURI   <string> -required-
+      fsType    <string>
+      kind      <string>
+      enum: Dedicated, Managed, Shared
+      readOnly  <boolean>
+    azureFile   <AzureFileVolumeSource>
+      readOnly  <boolean>
+      secretName        <string> -required-
+      shareName <string> -required-
+    cephfs      <CephFSVolumeSource>
+      monitors  <[]string> -required-
+      path      <string>
+      readOnly  <boolean>
+      secretFile        <string>
+      secretRef <LocalObjectReference>
+        name    <string>
+      user      <string>
+    cinder      <CinderVolumeSource>
+      fsType    <string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference>
+        name    <string>
+      volumeID  <string> -required-
+    configMap   <ConfigMapVolumeSource>
+      defaultMode       <integer>
+      defaultUser       <integer>
+      items     <[]KeyToPath>
+        key     <string> -required-
+        mode    <integer>
+        path    <string> -required-
+        user    <integer>
+      name      <string>
+      optional  <boolean>
+    csi <CSIVolumeSource>
+      driver    <string> -required-
+      fsType    <string>
+      nodePublishSecretRef      <LocalObjectReference>
+        name    <string>
+      readOnly  <boolean>
+      volumeAttributes  <map[string]string>
+    downwardAPI <DownwardAPIVolumeSource>
+      defaultMode       <integer>
+      defaultUser       <integer>
+      items     <[]DownwardAPIVolumeFile>
+        fieldRef        <ObjectFieldSelector>
+          apiVersion    <string>
+          fieldPath     <string> -required-
+        mode    <integer>
+        path    <string> -required-
+        resourceFieldRef        <ResourceFieldSelector>
+          containerName <string>
+          divisor       <Quantity>
+          resource      <string> -required-
+        user    <integer>
+    emptyDir    <EmptyDirVolumeSource>
+      medium    <string>
+      mode      <integer>
+      sizeLimit <Quantity>
+    ephemeral   <EphemeralVolumeSource>
+      volumeClaimTemplate       <PersistentVolumeClaimTemplate>
+        metadata        <ObjectMeta>
+          annotations   <map[string]string>
+          creationTimestamp     <string>
+          deletionGracePeriodSeconds    <integer>
+          deletionTimestamp     <string>
+          finalizers    <[]string>
+          generateName  <string>
+          generation    <integer>
+          labels        <map[string]string>
+          managedFields <[]ManagedFieldsEntry>
+            apiVersion  <string>
+            fieldsType  <string>
+            fieldsV1    <FieldsV1>
+            manager     <string>
+            operation   <string>
+            subresource <string>
+            time        <string>
+          name  <string>
+          namespace     <string>
+          ownerReferences       <[]OwnerReference>
+            apiVersion  <string> -required-
+            blockOwnerDeletion  <boolean>
+            controller  <boolean>
+            kind        <string> -required-
+            name        <string> -required-
+            uid <string> -required-
+          resourceVersion       <string>
+          selfLink      <string>
+          uid   <string>
+        spec    <PersistentVolumeClaimSpec> -required-
+          accessModes   <[]string>
+          dataSource    <TypedLocalObjectReference>
+            apiGroup    <string>
+            kind        <string> -required-
+            name        <string> -required-
+          dataSourceRef <TypedObjectReference>
+            apiGroup    <string>
+            kind        <string> -required-
+            name        <string> -required-
+            namespace   <string>
+          resources     <VolumeResourceRequirements>
+            limits      <map[string]Quantity>
+            requests    <map[string]Quantity>
+          selector      <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          storageClassName      <string>
+          volumeAttributesClassName     <string>
+          volumeMode    <string>
+          enum: Block, Filesystem
+          volumeName    <string>
+    fc  <FCVolumeSource>
+      fsType    <string>
+      lun       <integer>
+      readOnly  <boolean>
+      targetWWNs        <[]string>
+      wwids     <[]string>
+    flexVolume  <FlexVolumeSource>
+      driver    <string> -required-
+      fsType    <string>
+      options   <map[string]string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference>
+        name    <string>
+    flocker     <FlockerVolumeSource>
+      datasetName       <string>
+      datasetUUID       <string>
+    gcePersistentDisk   <GCEPersistentDiskVolumeSource>
+      fsType    <string>
+      partition <integer>
+      pdName    <string> -required-
+      readOnly  <boolean>
+    gitRepo     <GitRepoVolumeSource>
+      directory <string>
+      repository        <string> -required-
+      revision  <string>
+    glusterfs   <GlusterfsVolumeSource>
+      endpoints <string> -required-
+      path      <string> -required-
+      readOnly  <boolean>
+    hostPath    <HostPathVolumeSource>
+      path      <string> -required-
+      type      <string>
+      enum: "", BlockDevice, CharDevice, Directory, ....
+    image       <ImageVolumeSource>
+      pullPolicy        <string>
+      enum: Always, IfNotPresent, Never
+      reference <string>
+    iscsi       <ISCSIVolumeSource>
+      chapAuthDiscovery <boolean>
+      chapAuthSession   <boolean>
+      fsType    <string>
+      initiatorName     <string>
+      iqn       <string> -required-
+      iscsiInterface    <string>
+      lun       <integer> -required-
+      portals   <[]string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference>
+        name    <string>
+      targetPortal      <string> -required-
+    name        <string> -required-
+    nfs <NFSVolumeSource>
+      path      <string> -required-
+      readOnly  <boolean>
+      server    <string> -required-
+    persistentVolumeClaim       <PersistentVolumeClaimVolumeSource>
+      claimName <string> -required-
+      readOnly  <boolean>
+    photonPersistentDisk        <PhotonPersistentDiskVolumeSource>
+      fsType    <string>
+      pdID      <string> -required-
+    portworxVolume      <PortworxVolumeSource>
+      fsType    <string>
+      readOnly  <boolean>
+      volumeID  <string> -required-
+    projected   <ProjectedVolumeSource>
+      defaultMode       <integer>
+      defaultUser       <integer>
+      sources   <[]VolumeProjection>
+        clusterTrustBundle      <ClusterTrustBundleProjection>
+          labelSelector <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          name  <string>
+          optional      <boolean>
+          path  <string> -required-
+          signerName    <string>
+          user  <integer>
+        configMap       <ConfigMapProjection>
+          items <[]KeyToPath>
+            key <string> -required-
+            mode        <integer>
+            path        <string> -required-
+            user        <integer>
+          name  <string>
+          optional      <boolean>
+        downwardAPI     <DownwardAPIProjection>
+          items <[]DownwardAPIVolumeFile>
+            fieldRef    <ObjectFieldSelector>
+              apiVersion        <string>
+              fieldPath <string> -required-
+            mode        <integer>
+            path        <string> -required-
+            resourceFieldRef    <ResourceFieldSelector>
+              containerName     <string>
+              divisor   <Quantity>
+              resource  <string> -required-
+            user        <integer>
+        podCertificate  <PodCertificateProjection>
+          certificateChainPath  <string>
+          credentialBundlePath  <string>
+          keyPath       <string>
+          keyType       <string> -required-
+          maxExpirationSeconds  <integer>
+          signerName    <string> -required-
+          user  <integer>
+          userAnnotations       <map[string]string>
+        secret  <SecretProjection>
+          items <[]KeyToPath>
+            key <string> -required-
+            mode        <integer>
+            path        <string> -required-
+            user        <integer>
+          name  <string>
+          optional      <boolean>
+        serviceAccountToken     <ServiceAccountTokenProjection>
+          audience      <string>
+          expirationSeconds     <integer>
+          path  <string> -required-
+          user  <integer>
+    quobyte     <QuobyteVolumeSource>
+      group     <string>
+      readOnly  <boolean>
+      registry  <string> -required-
+      tenant    <string>
+      user      <string>
+      volume    <string> -required-
+    rbd <RBDVolumeSource>
+      fsType    <string>
+      image     <string> -required-
+      keyring   <string>
+      monitors  <[]string> -required-
+      pool      <string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference>
+        name    <string>
+      user      <string>
+    scaleIO     <ScaleIOVolumeSource>
+      fsType    <string>
+      gateway   <string> -required-
+      protectionDomain  <string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference> -required-
+        name    <string>
+      sslEnabled        <boolean>
+      storageMode       <string>
+      storagePool       <string>
+      system    <string> -required-
+      volumeName        <string>
+    secret      <SecretVolumeSource>
+      defaultMode       <integer>
+      defaultUser       <integer>
+      items     <[]KeyToPath>
+        key     <string> -required-
+        mode    <integer>
+        path    <string> -required-
+        user    <integer>
+      optional  <boolean>
+      secretName        <string>
+    storageos   <StorageOSVolumeSource>
+      fsType    <string>
+      readOnly  <boolean>
+      secretRef <LocalObjectReference>
+        name    <string>
+      volumeName        <string>
+      volumeNamespace   <string>
+    vsphereVolume       <VsphereVirtualDiskVolumeSource>
+      fsType    <string>
+      storagePolicyID   <string>
+      storagePolicyName <string>
+      volumePath        <string> -required-
+
+[root@master[ ~]# c
+nnn[root@master[ ~]# exit
+exit
+
+Script done on 2026-10-13 17:22:37+09:00 [COMMAND_EXIT_CODE="0"]
