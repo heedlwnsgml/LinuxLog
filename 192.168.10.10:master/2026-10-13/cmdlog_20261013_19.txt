@@ -1,0 +1,1235 @@
+Script started on 2026-10-13 19:01:04+09:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="134" LINES="30"]
+[root@master[ ~]# c
+nnn[root@master[ ~]# ^[[200~mkdir -p ~/kube/05/single && cd ~/kube/05/single~
+mkdir@-ps~/kube/05/singlep&&/cdb~/kube/05/singled ~/kube/05/single
+[root@master[ ~/kube/05/single]# c
+nnn[root@master[ ~/kube/05/single]# kiruninginx-pod --image=nginx --port=80 --dry-run -o yaml > nginx-pod.yml
+W1013 19:01:54.770357  158487 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[ ~/kube/05/single]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 16L, 253B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: nginx-pod
+  6   name: nginx-pod
+  7 spec:
+  8   containers:
+  9   - image: nginx
+ 10     name: nginx-pod
+ 11     ports:
+ 12     - containerPort: 80
+ 13     resources: {}
+ 14   dnsPolicy: ClusterFirst
+ 15   restartPolicy: Always
+ 16 status: {}
+~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     1,1All?12$po -- INSERT --2,1All  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 172,1Allu2^[  2,1Allu1 line less; before #1  2 seconds ago
+2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+11line less; before #1  2 seconds ago1,1AllO -- INSERT --1,1TopapiVersion: v1kind: Podmetadatalabels:  run: nginx-pod  name: nginx-podspec:containers:- image: nginxname: nginx-podports:- containerPort: 80  resources: {}dnsPolicy: ClusterFirst  restartPolicy: Always
+"nginx-pod.yml"217L,-257B written1,3All1,3All~@k   2~@k   3~@k   4~@k   5dd
+5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16~                                                                                                                                     5,5Alldd
+5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15~                                                                                                                                     5,3All~@k   6~@k   7~@k   8~@k   9~@@   19i -- INSERT --9,19Ald87c8o9n20t1a2i3n4e5r610,111,24^[  11,23All~@k  {}2,17~@k   {}1,23~@k  {}2,17dd
+2
+ 13
+ 14~                                                                                                                                     12,3All~@k   1~@@   23i -- INSERT --11,23All4 12
+ 13
+ 14
+ 1512,5All7p8r9o10n10t1i21o2c3o4l5protocol:67T8C9P20^[  12,19All~@k   3dd
+3
+ 14~                                                                                                                                     13,3Alldd
+3~                                                                                                                                     13,1Alldd
+>4;m"nginx-pod.yml" 12L, 175B written                                                                                                 2,7^[  ^[  ::wq
+>4;m[root@master[ ~/kube/05/single]# findapi pod
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+[root@master[ ~/kube/05/single]# k create -f nginx-pod.yml
+pod/nginx-pod created
+[root@master[ ~/kube/05/single]# kkget pods
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          105s
+web1        1/1     Running   0          61m
+[root@master[ ~/kube/05/single]# k get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE    IP              NODE    NOMINATED NODE   READINESS GATES
+nginx-pod   1/1     Running   0          117s   10.10.104.9     node2   <none>           <none>
+web1        1/1     Running   0          61m    10.10.166.134   node1   <none>           <none>
+[root@master[ ~/kube/05/single]# k get pods -o json
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "25754a1e2f22c153cc0950aefd3611db4cb2cb5c64f52adbdaf7da7539b7c50b",
+                    "cni.projectcalico.org/podIP": "10.10.104.9/32",
+                    "cni.projectcalico.org/podIPs": "10.10.104.9/32"
+                },
+                "creationTimestamp": "2026-10-13T10:07:58Z",
+                "generation": 1,
+                "name": "nginx-pod",
+                "namespace": "default",
+                "resourceVersion": "59344",
+                "uid": "c749695b-3434-4194-afb0-07d5d6eb4e4f"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "nginx",
+                        "imagePullPolicy": "Always",
+                        "name": "nginx-container",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-khprp",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "imagePullSecrets": [
+                    {
+                        "name": "regcred"
+                    }
+                ],
+                "nodeName": "node2",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-khprp",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T10:07:59Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T10:07:58Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T10:08:00Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T10:08:00Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T10:07:58Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://846aa5463703354d94d0355b61f20e7558737c877e8f514baaaff54c0cb925fc",
+                        "image": "docker.io/library/nginx:latest",
+                        "imageID": "docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571",
+                        "lastState": {},
+                        "name": "nginx-container",
+                        "ready": true,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-13T10:08:00Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-khprp",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.10.12",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.10.12"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.10.104.9",
+                "podIPs": [
+                    {
+                        "ip": "10.10.104.9"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-10-13T10:07:58Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "annotations": {
+                    "cni.projectcalico.org/containerID": "d6fbb0cf8e57e5d3dd5a6ee5b6655eb1171c882e6a261322a7527a2759fb5dc6",
+                    "cni.projectcalico.org/podIP": "10.10.166.134/32",
+                    "cni.projectcalico.org/podIPs": "10.10.166.134/32"
+                },
+                "creationTimestamp": "2026-10-13T09:08:33Z",
+                "generation": 1,
+                "labels": {
+                    "run": "web1"
+                },
+                "name": "web1",
+                "namespace": "default",
+                "resourceVersion": "53258",
+                "uid": "c455e23c-3dbd-4985-a434-ffb4ad20aa7f"
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "image": "nginx",
+                        "imagePullPolicy": "Always",
+                        "name": "web1",
+                        "ports": [
+                            {
+                                "containerPort": 80,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-mj6qz",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirst",
+                "enableServiceLinks": true,
+                "imagePullSecrets": [
+                    {
+                        "name": "regcred"
+                    }
+                ],
+                "nodeName": "node1",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {},
+                "serviceAccount": "default",
+                "serviceAccountName": "default",
+                "terminationGracePeriodSeconds": 30,
+                "tolerations": [
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/not-ready",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    },
+                    {
+                        "effect": "NoExecute",
+                        "key": "node.kubernetes.io/unreachable",
+                        "operator": "Exists",
+                        "tolerationSeconds": 300
+                    }
+                ],
+                "volumes": [
+                    {
+                        "name": "kube-api-access-mj6qz",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T09:08:34Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T09:08:33Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T09:08:35Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T09:08:35Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-10-13T09:08:33Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "containerID": "containerd://3c1327b95a877639386e8db10f20c4a0c4e3ac8306dbebca3a5d884240337448",
+                        "image": "docker.io/library/nginx:latest",
+                        "imageID": "docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571",
+                        "lastState": {},
+                        "name": "web1",
+                        "ready": true,
+                        "resources": {},
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-10-13T09:08:35Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 0,
+                                "supplementalGroups": [
+                                    0
+                                ],
+                                "uid": 0
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-mj6qz",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "192.168.10.11",
+                "hostIPs": [
+                    {
+                        "ip": "192.168.10.11"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "10.10.166.134",
+                "podIPs": [
+                    {
+                        "ip": "10.10.166.134"
+                    }
+                ],
+                "qosClass": "BestEffort",
+                "resources": {},
+                "startTime": "2026-10-13T09:08:33Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
+[root@master[ ~/kube/05/single]# k get pods -o yaml
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: 25754a1e2f22c153cc0950aefd3611db4cb2cb5c64f52adbdaf7da7539b7c50b
+      cni.projectcalico.org/podIP: 10.10.104.9/32
+      cni.projectcalico.org/podIPs: 10.10.104.9/32
+    creationTimestamp: "2026-10-13T10:07:58Z"
+    generation: 1
+    name: nginx-pod
+    namespace: default
+    resourceVersion: "59344"
+    uid: c749695b-3434-4194-afb0-07d5d6eb4e4f
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: nginx-container
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-khprp
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: regcred
+    nodeName: node2
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-khprp
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T10:07:59Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T10:07:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T10:08:00Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T10:08:00Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T10:07:58Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://846aa5463703354d94d0355b61f20e7558737c877e8f514baaaff54c0cb925fc
+      image: docker.io/library/nginx:latest
+      imageID: docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+      lastState: {}
+      name: nginx-container
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-13T10:08:00Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-khprp
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.10.12
+    hostIPs:
+    - ip: 192.168.10.12
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.10.104.9
+    podIPs:
+    - ip: 10.10.104.9
+    qosClass: BestEffort
+    resources: {}
+    startTime: "2026-10-13T10:07:58Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      cni.projectcalico.org/containerID: d6fbb0cf8e57e5d3dd5a6ee5b6655eb1171c882e6a261322a7527a2759fb5dc6
+      cni.projectcalico.org/podIP: 10.10.166.134/32
+      cni.projectcalico.org/podIPs: 10.10.166.134/32
+    creationTimestamp: "2026-10-13T09:08:33Z"
+    generation: 1
+    labels:
+      run: web1
+    name: web1
+    namespace: default
+    resourceVersion: "53258"
+    uid: c455e23c-3dbd-4985-a434-ffb4ad20aa7f
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: web1
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-mj6qz
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    imagePullSecrets:
+    - name: regcred
+    nodeName: node1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-mj6qz
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T09:08:34Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T09:08:33Z"
+      observedGeneration: 1
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T09:08:35Z"
+      observedGeneration: 1
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T09:08:35Z"
+      observedGeneration: 1
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2026-10-13T09:08:33Z"
+      observedGeneration: 1
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://3c1327b95a877639386e8db10f20c4a0c4e3ac8306dbebca3a5d884240337448
+      image: docker.io/library/nginx:latest
+      imageID: docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+      lastState: {}
+      name: web1
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2026-10-13T09:08:35Z"
+      user:
+        linux:
+          gid: 0
+          supplementalGroups:
+          - 0
+          uid: 0
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-mj6qz
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.10.11
+    hostIPs:
+    - ip: 192.168.10.11
+    observedGeneration: 1
+    phase: Running
+    podIP: 10.10.166.134
+    podIPs:
+    - ip: 10.10.166.134
+    qosClass: BestEffort
+    resources: {}
+    startTime: "2026-10-13T09:08:33Z"
+kind: List
+metadata:
+  resourceVersion: ""
+[root@master[ ~/kube/05/single]# c
+nnn[root@master[ ~/kube/05/single]# k get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE     IP              NODE    NOMINATED NODE   READINESS GATES
+nginx-pod   1/1     Running   0          2m12s   10.10.104.9     node2   <none>           <none>
+web1        1/1     Running   0          61m     10.10.166.134   node1   <none>           <none>
+[root@master[ ~/kube/05/single]# ping 10.10.104.9
+PING 10.10.104.9 (10.10.104.9) 56(84) bytes of data.
+64 bytes from 10.10.104.9: icmp_seq=1 ttl=63 time=0.830 ms
+64 bytes from 10.10.104.9: icmp_seq=2 ttl=63 time=0.318 ms
+^C
+--- 10.10.104.9 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1051ms
+rtt min/avg/max/mdev = 0.318/0.574/0.830/0.256 ms
+[root@master[ ~/kube/05/single]# curl:10.10.104.9de
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[ ~/kube/05/single]# c
+POD_IP=$(kubectl getupods5nginx-pod -oDjsonpath="{t.status.podIPi}")pod -o jsonpath="{ .status.podIP }")
+[root@master[ ~/kube/05/single]# echo $(POD_IP)
+bash: POD_IP: command not found...
+
+[root@master[ ~/kube/05/single]# echo $POD_IPP)
+10.10.104.9
+[root@master[ ~/kube/05/single]# vi nginx-pod.yml
+>4;2m"nginx-pod.yml" 12L, 189B▽  zz0%m           >c  1 ---
+  2 kind: Pod  3 apiVersion: v1  4 metadata:
+  5   name: nginx-pod
+  6 spec:
+  7   containers:
+  8     - name: nginx-container
+  9       image: nginx
+ 10       ports:
+ 11 - containerPort: 80
+ 12 protocol: TCP
+>4;m>4;m[root@master[ ~/kube/05/single]# kubectl get pods                                                                             ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     12,11All?12$p^[  ^[  ::q
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          8m47s
+web1        1/1     Running   0          68m
+[root@master[ ~/kube/05/single]# c
+nnn[root@master[ ~/kube/05/single]# k describe pods web1 | less
+Name:             web1
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 18:08:33 +0900
+Labels:           run=web1
+Annotations:      cni.projectcalico.org/containerID: d6fbb0cf8e57e5d3dd5a6ee5b6655eb1171c882e6a261322a7527a2759fb5dc6
+                  cni.projectcalico.org/podIP: 10.10.166.134/32
+                  cni.projectcalico.org/podIPs: 10.10.166.134/32
+Status:           Running
+IP:               10.10.166.134
+IPs:
+  IP:  10.10.166.134
+Containers:
+  web1:
+    Container ID:   containerd://3c1327b95a877639386e8db10f20c4a0c4e3ac8306dbebca3a5d884240337448
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 18:08:35 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mj6qz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-mj6qz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+[root@master[ ~/kube/05/single]#
+[root@master[ ~/kube/05/single]# k events web
+LAST SEEN   TYPE     REASON      OBJECT          MESSAGE
+10m         Normal   Scheduled   Pod/nginx-pod   Successfully assigned default/nginx-pod to node2
+10m         Normal   Pulling     Pod/nginx-pod   Pulling image "nginx"
+10m         Normal   Pulled      Pod/nginx-pod   Successfully pulled image "nginx" in 1.694s (1.694s including waiting). Image size: 63873678 bytes.
+10m         Normal   Created     Pod/nginx-pod   Container created
+10m         Normal   Started     Pod/nginx-pod   Container started
+[root@master[ ~/kube/05/single]# c
+mkdiro-p@~/kube/05/multi0&&scdg~/kube/05/multi/kube/05/multi && cd ~/kube/05/multi
+[root@master[ ~/kube/05/multi]# c
+[root@master[ ~/kube/05/multi]# kurun multipod --image=nginx:1.26 --port=80 --dry-run -o yaml > multi-pod.yml
+W1013 19:19:33.693189  178694 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[ ~/kube/05/multi]# vi multi-pod.yml
+>4;2m"multi-pod.yml" 16L, 255B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: multipod
+  6   name: multipod
+  7 spec:
+  8   containers:
+  9   - image: nginx:1.26
+ 10     name: multipod
+ 11     ports:
+ 12     - containerPort: 80
+ 13     resources: {}
+ 14   dnsPolicy: ClusterFirst
+ 15   restartPolicy: Always
+ 16 status: {}
+~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     ~                                                                                                                                     1,1All?12$pO -- INSERT --1,1TopapiVersion: v1kind: Podmetadatalabels:  run: multipod  name: multipodspec:containers:- image: nginx:1.26name: multipodports:- containerPort: 80  resources: {}dnsPolicy: ClusterFirst  restartPolicy: Always
+>4;m"multi-pod.yml"-17L,3259B2writtenwq
+>4;m[root@master[ ~/kube/05/multi]# k create -f multi-pod.yml
+pod/multipod created
+[root@master[ ~/kube/05/multi]# k get pods
+NAME        READY   STATUS    RESTARTS   AGE
+multipod    2/2     Running   0          2m2s
+nginx-pod   1/1     Running   0          17m
+web1        1/1     Running   0          76m
+kubectladescribekpods0multipod#|ksedc-ni'/Events:/,$p'multipod | sed -n '/Events:/,$p'
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m12s  default-scheduler  Successfully assigned default/multipod to node1
+  Normal  Pulling    4m11s  kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.26"
+  Normal  Pulled     4m4s   kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.26" in 7.37s (7.37s including waiting). Image size: 72169522 bytes.
+  Normal  Created    4m4s   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    4m4s   kubelet            spec.containers{nginx-container}: Container started
+  Normal  Pulling    4m4s   kubelet            spec.containers{centos-container}: Pulling image "quay.io/centos/centos:10"
+  Normal  Pulled     3m54s  kubelet            spec.containers{centos-container}: Successfully pulled image "quay.io/centos/centos:10" in 9.889s (9.889s including waiting). Image size: 67092868 bytes.
+  Normal  Created    3m54s  kubelet            spec.containers{centos-container}: Container created
+  Normal  Started    3m54s  kubelet            spec.containers{centos-container}: Container started
+[root@master[ ~/kube/05/multi]# kubectl describe pods multipod
+Name:             multipod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 19:23:10 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: e2af4834aa8f85bc51159feaba4c4391bbbf99ea364961134ade73d1f4b952bf
+                  cni.projectcalico.org/podIP: 10.10.166.135/32
+                  cni.projectcalico.org/podIPs: 10.10.166.135/32
+Status:           Running
+IP:               10.10.166.135
+IPs:
+  IP:  10.10.166.135
+Containers:
+  nginx-container:
+    Container ID:   containerd://b7ae1e15617eb1dad39ae955e56cf67f0102f285462e00acdf46827215a6c70e
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 19:23:18 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wxkmg (ro)
+  centos-container:
+    Container ID:  containerd://118ed02372bc2dfb4c3f3a846bb9837f4150963cd43a765ab744b6f31acfc246
+    Image:         quay.io/centos/centos:10
+    Image ID:      quay.io/centos/centos@sha256:e664412637fcadb7d9eef7da6cc48c29cd69fb977d27c871ec3c54d95c91ace9
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sleep
+      86400
+    State:          Running
+      Started:      Tue, 13 Oct 2026 19:23:28 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-wxkmg (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-wxkmg:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m19s  default-scheduler  Successfully assigned default/multipod to node1
+  Normal  Pulling    4m18s  kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.26"
+  Normal  Pulled     4m11s  kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.26" in 7.37s (7.37s including waiting). Image size: 72169522 bytes.
+  Normal  Created    4m11s  kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    4m11s  kubelet            spec.containers{nginx-container}: Container started
+  Normal  Pulling    4m11s  kubelet            spec.containers{centos-container}: Pulling image "quay.io/centos/centos:10"
+  Normal  Pulled     4m1s   kubelet            spec.containers{centos-container}: Successfully pulled image "quay.io/centos/centos:10" in 9.889s (9.889s including waiting). Image size: 67092868 bytes.
+  Normal  Created    4m1s   kubelet            spec.containers{centos-container}: Container created
+  Normal  Started    4m1s   kubelet            spec.containers{centos-container}: Container started
+[root@master[ ~/kube/05/multi]# k exec -ittmultipod -c nginx-container -- /bin/bash
+root@multipod:/# cd /usr/share/nginx/html/
+root@multipod:/usr/share/nginx/html# ls
+50x.html  index.html
+root@multipod:/usr/share/nginx/html# echo "My Nginx Web Page" > index.html
+root@multipod:/usr/share/nginx/html# exit
+exit
+[root@master[ ~/kube/05/multi]# k get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE     IP              NODE    NOMINATED NODE   READINESS GATES
+multipod    2/2     Running   0          5m13s   10.10.166.135   node1   <none>           <none>
+nginx-pod   1/1     Running   0          20m     10.10.104.9     node2   <none>           <none>
+web1        1/1     Running   0          79m     10.10.166.134   node1   <none>           <none>
+[root@master[ ~/kube/05/multi]# curl POD_IP:8
+nnn[root@master[ ~/kube/05/multi]# k get pods multipod -o jsonpath='{.status.hostIP}';;echo
+192.168.10.11
+[root@master[ ~/kube/05/multi]# k get pod multipod -o wide
+NAME       READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+multipod   2/2     Running   0          11m   10.10.166.135   node1   <none>           <none>
+[root@master[ ~/kube/05/multi]# k get pod multipod -o wide | tail -n +2 | awk '{print $6}'
+10.10.166.135
+[root@master[ ~/kube/05/multi]# k exec -it multipod -c
+centos-container  nginx-container
+[root@master[ ~/kube/05/multi]# k exec -it multipod -c centos-container -- /bin/bash
+bash-5.2# curl localhost:80
+My Nginx Web Page
+bash-5.2# exit
+exit
+[root@master[ ~/kube/05/multi]# k logs multipod
+Defaulted container "nginx-container" out of: nginx-container, centos-container
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/10/13 10:23:18 [notice] 1#1: using the "epoll" event method
+2026/10/13 10:23:18 [notice] 1#1: nginx/1.26.3
+2026/10/13 10:23:18 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14)
+2026/10/13 10:23:18 [notice] 1#1: OS: Linux 6.12.0-257.el10.x86_64
+2026/10/13 10:23:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026/10/13 10:23:18 [notice] 1#1: start worker processes
+2026/10/13 10:23:18 [notice] 1#1: start worker process 29
+2026/10/13 10:23:18 [notice] 1#1: start worker process 30
+2026/10/13 10:23:18 [notice] 1#1: start worker process 31
+2026/10/13 10:23:18 [notice] 1#1: start worker process 32
+2026/10/13 10:23:18 [notice] 1#1: start worker process 33
+2026/10/13 10:23:18 [notice] 1#1: start worker process 34
+2026/10/13 10:23:18 [notice] 1#1: start worker process 35
+2026/10/13 10:23:18 [notice] 1#1: start worker process 36
+::1 - - [13/Oct/2026:10:37:58 +0000] "GET / HTTP/1.1" 200 18 "-" "curl/8.12.1" "-"
+[root@master[ ~/kube/05/multi]# k logs multipod -c nginx-container
+/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+/docker-entrypoint.sh: Configuration complete; ready for start up
+2026/10/13 10:23:18 [notice] 1#1: using the "epoll" event method
+2026/10/13 10:23:18 [notice] 1#1: nginx/1.26.3
+2026/10/13 10:23:18 [notice] 1#1: built by gcc 12.2.0 (Debian 12.2.0-14)
+2026/10/13 10:23:18 [notice] 1#1: OS: Linux 6.12.0-257.el10.x86_64
+2026/10/13 10:23:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026/10/13 10:23:18 [notice] 1#1: start worker processes
+2026/10/13 10:23:18 [notice] 1#1: start worker process 29
+2026/10/13 10:23:18 [notice] 1#1: start worker process 30
+2026/10/13 10:23:18 [notice] 1#1: start worker process 31
+2026/10/13 10:23:18 [notice] 1#1: start worker process 32
+2026/10/13 10:23:18 [notice] 1#1: start worker process 33
+2026/10/13 10:23:18 [notice] 1#1: start worker process 34
+2026/10/13 10:23:18 [notice] 1#1: start worker process 35
+2026/10/13 10:23:18 [notice] 1#1: start worker process 36
+::1 - - [13/Oct/2026:10:37:58 +0000] "GET / HTTP/1.1" 200 18 "-" "curl/8.12.1" "-"
+[root@master[ ~/kube/05/multi]# k logs multipod -c centos^Cntainer
+[root@master[ ~/kube/05/multi]# c
+nnn[root@master[ ~/kube/05/multi]# kudescribe pods web1
+Name:             web1
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 18:08:33 +0900
+Labels:           run=web1
+Annotations:      cni.projectcalico.org/containerID: d6fbb0cf8e57e5d3dd5a6ee5b6655eb1171c882e6a261322a7527a2759fb5dc6
+                  cni.projectcalico.org/podIP: 10.10.166.134/32
+                  cni.projectcalico.org/podIPs: 10.10.166.134/32
+Status:           Running
+IP:               10.10.166.134
+IPs:
+  IP:  10.10.166.134
+Containers:
+  web1:
+    Container ID:   containerd://3c1327b95a877639386e8db10f20c4a0c4e3ac8306dbebca3a5d884240337448
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 18:08:35 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mj6qz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-mj6qz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+[root@master[ ~/kube/05/multi]# c
+nnn[root@master[ ~/kube/05/multi]# kudelete podss--all
+pod "multipod" deleted from default namespace
+pod "nginx-pod" deleted from default namespace
+pod "web1" deleted from default namespace
+[root@master[ ~/kube/05/multi]# cd ../single/
+[root@master[ ~/kube/05/single]# ls
+nginx-pod.yml
+[root@master[ ~/kube/05/single]# k create -f nginx-pod.yml
+pod/nginx-pod created
+[root@master[ ~/kube/05/single]# k create -f nginx-pod.yml --sc
+--allow-missing-template-keys  (If true, ignore any errors in templates when a field or map key is missing in the template. Only app…)
+--as-group                     (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                       (UID to impersonate for the operation.)
+--as-user-extra                (User extras to impersonate for the operation, this flag can be repeated to specify multiple values f…)
+--as                           (Username to impersonate for the operation. User could be a regular user or a service account in a na…)
+--cache-dir                    (Default cache directory)
+--certificate-authority        (Path to a cert file for the certificate authority)
+--client-certificate           (Path to a client certificate file for TLS)
+--client-key                   (Path to a client key file for TLS)
+--cluster                      (The name of the kubeconfig cluster to use)
+--context                      (The name of the kubeconfig context to use)
+--disable-compression          (If true, opt-out of response compression for all requests to the server)
+--dry-run                      (Must be "none", "server", or "client". If client strategy, only print the object that would be sent,…)
+--edit                         (Edit the API resource before creating)
+--field-manager                (Name of the manager used to track field ownership.)
+--filename                     (Filename, directory, or URL to files to use to create the resource)
+--help                         (help for create)
+--insecure-skip-tls-verify     (If true, the server's certificate will not be checked for validity. This will make your HTTPS connec…)
+--kubeconfig                   (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                       (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=fal…)
+--kustomize                    (Process the kustomization directory. This flag can't be used together with -f or -R.)
+--log-flush-frequency          (Maximum number of seconds between log flushes)
+--match-server-version         (Require server version to match client version)
+--namespace                    (If present, the namespace scope for this CLI request)
+--output                       (Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefi…)
+--password                     (Password for basic authentication to the API server)
+--profile                      (Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace))
+--profile-output               (Name of the file to write the profile to)
+--proxy-url                    (Proxy URL to use for requests to the API server)
+--raw                          (Raw URI to POST to the server.  Uses the transport specified by the kubeconfig file.)
+--recursive                    (Process the directory used in -f, --filename recursively. Useful when you want to manage related man…)
+--request-timeout              (The length of time to wait before giving up on a single server request. Non-zero values should conta…)
+--save-config                  (If true, the configuration of current object will be saved in its annotation. Otherwise, the annotat…)
+--selector                     (Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,ke…)
+--server                       (The address and port of the Kubernetes API server)
+--show-managed-fields          (If true, keep the managedFields when printing objects in JSON or YAML format.)
+--template                     (Template string or path to template file to use when -o=go-template, -o=go-template-file. The templa…)
+--tls-server-name              (Server name to use for server certificate validation. If it is not provided, the hostname used to co…)
+--token                        (Bearer token for authentication to the API server)
+--username                     (Username for basic authentication to the API server)
+--user                         (The name of the kubeconfig user to use)
+--validate                     (Must be one of: strict (or true), warn, ignore (or false). "true" or "strict" will use a schema to v…)
+--vmodule                      (comma-separated list of pattern=N settings for file-filtered logging (only works for the default tex…)
+--v                            (number for the log level verbosity)
+[root@master[ ~/kube/05/single]# k create -f nginx-pod.yml --s
+--save-config          (If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will…)
+--selector             (Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l key1=value1,key2=value…)
+--server               (The address and port of the Kubernetes API server)
+--show-managed-fields  (If true, keep the managedFields when printing objects in JSON or YAML format.)
+[root@master[ ~/kube/05/single]# k create -f nginx-pod.yml --c
+--cache-dir              (Default cache directory)
+--certificate-authority  (Path to a cert file for the certificate authority)
+--client-certificate     (Path to a client certificate file for TLS)
+--client-key             (Path to a client key file for TLS)
+--cluster                (The name of the kubeconfig cluster to use)
+--context                (The name of the kubeconfig context to use)
+[root@master[ ~/kube/05/single]# c create -f nginx-pod.yml -scnginx-pod.yml
+[root@master[e~/kube/05/single]#ek#delete pod nginx-pod
+pod "nginx-pod" deleted from default namespace
+[root@master[ ~/kube/05/single]# k create poddisruptionbudget nginx-pod.yml nginx-pod.yml nginx-pod.yml nginx-pod.yml nginx-pod.yml nginx-pod.yml
+.~~/.bashr
+bash: /root/.bashr: No such file or directory
+[root@master[ ~/kube/05/single]# . ~/.bashrc
+[root@master[ ~/kube/05/single]# c
+nnn[root@master[ ~/kube/05/single]# k create poddisruptionbudget ^C
+[root@master[ ~/kube/05/single]# exit
+exit
+
+Script done on 2026-10-13 20:19:24+09:00 [COMMAND_EXIT_CODE="130"]
