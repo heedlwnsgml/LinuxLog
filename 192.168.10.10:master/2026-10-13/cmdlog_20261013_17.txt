@@ -1,0 +1,412 @@
+Script started on 2026-10-13 17:35:33+09:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="135" LINES="30"]
+[root@master[ ~]# c
+cxitt@master[e~]#~kubectl explain Pod.spec --recursive
+[mkdirm-pt~/kube/04/apir&&pcd/~/kube/04/api& cd ~/kube/04/api
+[root@master[ ~/kube/04/api]# iinginx-2xxx.yml
+bash: i: command not found...
+[root@master[ ~/kube/04/api]# 1@vginx-2xxx.yml
+>4;2m"nginx-2xxx.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-2xxx.yml" [New] 0L, 0B written                                                                                               ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       0,0-1All?12$p::wq
+>4;m[root@master[ ~/kube/04/api]# kubectl create -f nginx-2xxx.yml
+error: resource mapping not found for name: "web" namespace: "" from "nginx-2xxx.yml": no matches for kind "Pod" in version "apps/v1"
+ensure CRDs are installed first
+[root@master[ ~/kube/04/api]# k api-resources | grep -wdpod
+[root@master[ ~/kube/04/api]# k api-resources | grep -w Pod
+pods                                po           v1                                true         Pod
+[root@master[ ~/kube/04/api]# k api-resources | grep -podPod
+pods                                po           v1                                true         Pod
+[root@master[ ~/kube/04/api]# cat << 'EOF' >> ~/.bashrc
+
+# grep 기본 옵션 (색상 및 대소문자 무시)
+alias grep='grep --color=auto -i'
+
+# kubectl api-resources 검색 함수
+findapi() {
+  if [ -z "$1" ]; then
+    echo "사용법: findapi <검색어>"
+    return 1
+  fi
+
+  # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+  kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+}
+EOF
+source ~/.bashrc
+cat << 'EOF' >> ~/.bashrc
+
+# grep 기본 옵션 (색상 및 대소문자 무시)
+alias grep='grep --color=auto -i'
+
+# kubectl api-resources 검색 함수
+findapi() {
+  if [ -z "$1" ]; then
+    echo "사용법: findapi <검색어>"
+    return 1
+  fi
+
+  # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+  kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+}
+EOF
+source ~/.bashrc
+
+[root@master[ ~/kube/04/api]# catr<< 'EOF's>>c~/.bashrc
+
+# grep 기본 옵션 (색상 및 대소문자 무시)
+alias grep='grep --color=auto -i'
+
+# kubectl api-resources 검색 함수
+findapi() {
+  if [ -z "$1" ]; then
+    echo "사용법: findapi <검색어>"
+    return 1
+  fi
+
+  # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+  kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+}
+EOF
+k api-resources | grep -wi pod
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pods                                po           v1                                true         Pod
+[root@master[ ~/kube/04/api]# k api-resources | findaippoddd
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+[root@master[ ~/kube/04/api]# k create -f nginx-2xxx.yml
+pod/web created
+[root@master[ ~/kube/04/api]# k get pod
+NAME                                       READY   STATUS    RESTARTS       AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (101m ago)   24h
+calico-node-gdd6m                          1/1     Running   3 (101m ago)   24h
+calico-node-w5tqt                          1/1     Running   2 (136m ago)   24h
+calico-node-xmd8v                          1/1     Running   2 (136m ago)   24h
+calico-node-xxrpg                          1/1     Running   2 (136m ago)   24h
+coredns-559f6c778d-c5pr6                   1/1     Running   2 (136m ago)   25h
+coredns-559f6c778d-rcq87                   1/1     Running   2 (136m ago)   25h
+etcd-master                                1/1     Running   3 (101m ago)   25h
+kube-apiserver-master                      1/1     Running   3 (101m ago)   25h
+kube-controller-manager-master             1/1     Running   3 (101m ago)   25h
+kube-proxy-g6jl6                           1/1     Running   2 (136m ago)   24h
+kube-proxy-gr849                           1/1     Running   2 (136m ago)   24h
+kube-proxy-nk85b                           1/1     Running   3 (101m ago)   25h
+kube-proxy-vjr9p                           1/1     Running   2 (136m ago)   24h
+kube-scheduler-master                      1/1     Running   3 (101m ago)   25h
+web                                        1/1     Running   0              5s
+[root@master[ ~/kube/04/api]# k get pods
+NAME                                       READY   STATUS    RESTARTS       AGE
+calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (101m ago)   24h
+calico-node-gdd6m                          1/1     Running   3 (101m ago)   24h
+calico-node-w5tqt                          1/1     Running   2 (136m ago)   24h
+calico-node-xmd8v                          1/1     Running   2 (136m ago)   24h
+calico-node-xxrpg                          1/1     Running   2 (136m ago)   24h
+coredns-559f6c778d-c5pr6                   1/1     Running   2 (136m ago)   25h
+coredns-559f6c778d-rcq87                   1/1     Running   2 (136m ago)   25h
+etcd-master                                1/1     Running   3 (101m ago)   25h
+kube-apiserver-master                      1/1     Running   3 (101m ago)   25h
+kube-controller-manager-master             1/1     Running   3 (101m ago)   25h
+kube-proxy-g6jl6                           1/1     Running   2 (136m ago)   24h
+kube-proxy-gr849                           1/1     Running   2 (136m ago)   24h
+kube-proxy-nk85b                           1/1     Running   3 (101m ago)   25h
+kube-proxy-vjr9p                           1/1     Running   2 (136m ago)   24h
+kube-scheduler-master                      1/1     Running   3 (101m ago)   25h
+web                                        1/1     Running   0              9s
+[root@master[ ~/kube/04/api]# ^C
+[root@master[ ~/kube/04/api]# ^C
+[root@master[ ~/kube/04/api]# ^[[200~kubectl config set-context --current --namespace=default~
+bash: 200~kubectl: command not found...
+kubectlaconfig~set-contexti--currentl--namespace=default --current --namespace=default
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ ~/kube/04/api]# k get pod
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k get pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k create -f nginx-2xxx.yml
+pod/web created
+[root@master[ ~/kube/04/api]# k getapodsf nginx-2xxx.yml
+NAME   READY   STATUS              RESTARTS   AGE
+web    0/1     ContainerCreating   0          1s
+[root@master[ ~/kube/04/api]# k get pods--A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+default       web                                        1/1     Running   0              6s
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (104m ago)   24h
+kube-system   calico-node-gdd6m                          1/1     Running   3 (104m ago)   24h
+kube-system   calico-node-w5tqt                          1/1     Running   2 (139m ago)   24h
+kube-system   calico-node-xmd8v                          1/1     Running   2 (139m ago)   24h
+kube-system   calico-node-xxrpg                          1/1     Running   2 (139m ago)   24h
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   2 (139m ago)   25h
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   2 (139m ago)   25h
+kube-system   etcd-master                                1/1     Running   3 (104m ago)   25h
+kube-system   kube-apiserver-master                      1/1     Running   3 (104m ago)   25h
+kube-system   kube-controller-manager-master             1/1     Running   3 (104m ago)   25h
+kube-system   kube-proxy-g6jl6                           1/1     Running   2 (139m ago)   24h
+kube-system   kube-proxy-gr849                           1/1     Running   2 (139m ago)   24h
+kube-system   kube-proxy-nk85b                           1/1     Running   3 (104m ago)   25h
+kube-system   kube-proxy-vjr9p                           1/1     Running   2 (139m ago)   24h
+kube-system   kube-scheduler-master                      1/1     Running   3 (104m ago)   25h
+kube-system   web                                        1/1     Running   0              2m37s
+[root@master[ ~/kube/04/api]# kubectlddelete pod
+apiservices.apiregistration.k8s.io                              kubecontrollersconfigurations.crd.projectcalico.org
+bgpconfigurations.crd.projectcalico.org                         leases.coordination.k8s.io
+bgppeers.crd.projectcalico.org                                  limitranges
+blockaffinities.crd.projectcalico.org                           mutatingadmissionpolicies.admissionregistration.k8s.io
+caliconodestatuses.crd.projectcalico.org                        mutatingadmissionpolicybindings.admissionregistration.k8s.io
+certificatesigningrequests.certificates.k8s.io                  mutatingwebhookconfigurations.admissionregistration.k8s.io
+clusterinformations.crd.projectcalico.org                       namespaces
+clusterrolebindings.rbac.authorization.k8s.io                   networkpolicies.crd.projectcalico.org
+clusterroles.rbac.authorization.k8s.io                          networkpolicies.networking.k8s.io
+clustertrustbundles.certificates.k8s.io                         networksets.crd.projectcalico.org
+componentstatuses                                               nodes
+configmaps                                                      persistentvolumeclaims
+controllerrevisions.apps                                        persistentvolumes
+cronjobs.batch                                                  podcertificaterequests.certificates.k8s.io
+csidrivers.storage.k8s.io                                       poddisruptionbudgets.policy
+csinodes.storage.k8s.io                                         pods
+csistoragecapacities.storage.k8s.io                             podtemplates
+customresourcedefinitions.apiextensions.k8s.io                  priorityclasses.scheduling.k8s.io
+daemonsets.apps                                                 prioritylevelconfigurations.flowcontrol.apiserver.k8s.io
+deployments.apps                                                replicasets.apps
+deviceclasses.resource.k8s.io                                   replicationcontrollers
+devicetaintrules.resource.k8s.io                                resourceclaims.resource.k8s.io
+endpoints                                                       resourceclaimtemplates.resource.k8s.io
+endpointslices.discovery.k8s.io                                 resourcequotas
+events                                                          resourceslices.resource.k8s.io
+events.events.k8s.io                                            rolebindings.rbac.authorization.k8s.io
+felixconfigurations.crd.projectcalico.org                       roles.rbac.authorization.k8s.io
+flowschemas.flowcontrol.apiserver.k8s.io                        runtimeclasses.node.k8s.io
+globalnetworkpolicies.crd.projectcalico.org                     secrets
+globalnetworksets.crd.projectcalico.org                         serviceaccounts
+horizontalpodautoscalers.autoscaling                            servicecidrs.networking.k8s.io
+hostendpoints.crd.projectcalico.org                             services
+ingressclasses.networking.k8s.io                                statefulsets.apps
+ingresses.networking.k8s.io                                     storageclasses.storage.k8s.io
+ipaddresses.networking.k8s.io                                   storageversionmigrations.storagemigration.k8s.io
+ipamblocks.crd.projectcalico.org                                validatingadmissionpolicies.admissionregistration.k8s.io
+ipamconfigs.crd.projectcalico.org                               validatingadmissionpolicybindings.admissionregistration.k8s.io
+ipamhandles.crd.projectcalico.org                               validatingwebhookconfigurations.admissionregistration.k8s.io
+ippools.crd.projectcalico.org                                   volumeattachments.storage.k8s.io
+ipreservations.crd.projectcalico.org                            volumeattributesclasses.storage.k8s.io
+jobs.batch
+[root@master[ ~/kube/04/api]# kubectl delete pods web kube-system
+pod "web" deleted from default namespace
+Error from server (NotFound): pods "kube-system" not found
+[root@master[ ~/kube/04/api]# kubectl delete pods web -nkkube-system
+pod "web" deleted from kube-system namespace
+[root@master[ ~/kube/04/api]# c
+nnn[root@master[ ~/kube/04/api]# k get pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k get pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k get pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (105m ago)   24h
+kube-system   calico-node-gdd6m                          1/1     Running   3 (105m ago)   24h
+kube-system   calico-node-w5tqt                          1/1     Running   2 (140m ago)   24h
+kube-system   calico-node-xmd8v                          1/1     Running   2 (140m ago)   24h
+kube-system   calico-node-xxrpg                          1/1     Running   2 (140m ago)   24h
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   2 (140m ago)   25h
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   2 (140m ago)   25h
+kube-system   etcd-master                                1/1     Running   3 (105m ago)   25h
+kube-system   kube-apiserver-master                      1/1     Running   3 (105m ago)   25h
+kube-system   kube-controller-manager-master             1/1     Running   3 (105m ago)   25h
+kube-system   kube-proxy-g6jl6                           1/1     Running   2 (140m ago)   24h
+kube-system   kube-proxy-gr849                           1/1     Running   2 (140m ago)   24h
+kube-system   kube-proxy-nk85b                           1/1     Running   3 (105m ago)   25h
+kube-system   kube-proxy-vjr9p                           1/1     Running   2 (140m ago)   24h
+kube-system   kube-scheduler-master                      1/1     Running   3 (105m ago)   25h
+[root@master[ ~/kube/04/api]# c
+nnn[root@master[ ~/kube/04/api]# kubectl run webserver --image=nginx --port=80 --dry-run -o yaml > pod.yml
+W1013 18:03:12.899090   95700 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[ ~/kube/04/api]# vi pod.yml
+>4;2m"pod.yml" 16L, 253B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: webserver
+  6   name: webserver
+  7 spec:
+  8   containers:
+  9   - image: nginx
+ 10     name: webserver
+ 11     ports:
+ 12     - containerPort: 80
+ 13     resources: {}
+ 14   dnsPolicy: ClusterFirst
+ 15   restartPolicy: Always
+ 16 status: {}
+~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       ~                                                                                                                                       1,1All?12$p~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1dd
+0
+ 11
+ 12
+ 13
+ 14
+ 15~                                                                                                                                       10,5All~@k   9,5 ~@k   4~@k   3~@k   2~@k   3o -- INSERT --10,3All 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 1610,3All^[  10,0-1Allu1 line less; before #2  2 seconds ago
+0
+ 11
+ 12
+ 13
+ 14
+11line less; before #2  2 seconds ago9,3AllO -- INSERT --9,3Top  9                                                                         9,3All
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+>4;m"pod.yml",16L,B259Btwritten6All10,16All^[3-^[5n::wqame:101n2g3i4n5x6-7c8o9n20t1a2i3n4e5r610,17^[  10,16All::w
+>4;m[root@master[ ~/kube/04/api]# koget pods
+No resources found in default namespace.
+[root@master[ ~/kube/04/api]# k get pods -A
+NAMESPACE     NAME                                       READY   STATUS    RESTARTS       AGE
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   3 (121m ago)   24h
+kube-system   calico-node-gdd6m                          1/1     Running   3 (121m ago)   24h
+kube-system   calico-node-w5tqt                          1/1     Running   2 (156m ago)   24h
+kube-system   calico-node-xmd8v                          1/1     Running   2 (156m ago)   24h
+kube-system   calico-node-xxrpg                          1/1     Running   2 (156m ago)   24h
+kube-system   coredns-559f6c778d-c5pr6                   1/1     Running   2 (156m ago)   25h
+kube-system   coredns-559f6c778d-rcq87                   1/1     Running   2 (156m ago)   25h
+kube-system   etcd-master                                1/1     Running   3 (121m ago)   25h
+kube-system   kube-apiserver-master                      1/1     Running   3 (121m ago)   25h
+kube-system   kube-controller-manager-master             1/1     Running   3 (121m ago)   25h
+kube-system   kube-proxy-g6jl6                           1/1     Running   2 (156m ago)   24h
+kube-system   kube-proxy-gr849                           1/1     Running   2 (156m ago)   24h
+kube-system   kube-proxy-nk85b                           1/1     Running   3 (121m ago)   25h
+kube-system   kube-proxy-vjr9p                           1/1     Running   2 (156m ago)   24h
+kube-system   kube-scheduler-master                      1/1     Running   3 (121m ago)   25h
+[root@master[ ~/kube/04/api]# c
+nnn[root@master[ ~/kube/04/api]# kubectl run web1 --image=nginx --port=80
+pod/web1 created
+[root@master[ ~/kube/04/api]# kudescribe pods web1
+Name:             web1
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 13 Oct 2026 18:08:33 +0900
+Labels:           run=web1
+Annotations:      cni.projectcalico.org/containerID: d6fbb0cf8e57e5d3dd5a6ee5b6655eb1171c882e6a261322a7527a2759fb5dc6
+                  cni.projectcalico.org/podIP: 10.10.166.134/32
+                  cni.projectcalico.org/podIPs: 10.10.166.134/32
+Status:           Running
+IP:               10.10.166.134
+IPs:
+  IP:  10.10.166.134
+Containers:
+  web1:
+    Container ID:   containerd://3c1327b95a877639386e8db10f20c4a0c4e3ac8306dbebca3a5d884240337448
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 13 Oct 2026 18:08:35 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-mj6qz (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-mj6qz:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  10m   default-scheduler  Successfully assigned default/web1 to node1
+  Normal  Pulling    10m   kubelet            spec.containers{web1}: Pulling image "nginx"
+  Normal  Pulled     10m   kubelet            spec.containers{web1}: Successfully pulled image "nginx" in 1.65s (1.65s including waiting). Image size: 63873678 bytes.
+  Normal  Created    10m   kubelet            spec.containers{web1}: Container created
+  Normal  Started    10m   kubelet            spec.containers{web1}: Container started
+[root@master[ ~/kube/04/api]# c
+nnn[root@master[ ~/kube/04/api]# kuevents
+LAST SEEN   TYPE     REASON      OBJECT     MESSAGE
+31m         Normal   Scheduled   Pod/web    Successfully assigned default/web to node1
+31m         Normal   Pulling     Pod/web    Pulling image "nginx"
+31m         Normal   Pulled      Pod/web    Successfully pulled image "nginx" in 1.681s (1.681s including waiting). Image size: 63873678 bytes.
+31m         Normal   Created     Pod/web    Container created
+31m         Normal   Started     Pod/web    Container started
+30m         Normal   Killing     Pod/web    Stopping container nginx
+12m         Normal   Scheduled   Pod/web1   Successfully assigned default/web1 to node1
+12m         Normal   Pulling     Pod/web1   Pulling image "nginx"
+12m         Normal   Pulled      Pod/web1   Successfully pulled image "nginx" in 1.65s (1.65s including waiting). Image size: 63873678 bytes.
+12m         Normal   Created     Pod/web1   Container created
+12m         Normal   Started     Pod/web1   Container started
+[root@master[ ~/kube/04/api]# kubectl st
+annotate       (Update the annotations on a resource)
+api-resources  (Print the supported API resources on the server)
+api-versions   (Print the supported API versions on the server, in the form of "group/version")
+apply          (Apply a configuration to a resource by file name or stdin)
+attach         (Attach to a running container)
+auth           (Inspect authorization)
+autoscale      (Auto-scale a deployment, replica set, stateful set, or replication controller)
+certificate    (Modify certificate resources)
+cluster-info   (Display cluster information)
+completion     (Output shell completion code for the specified shell (bash, zsh, fish, or powershell))
+config         (Modify kubeconfig files)
+cordon         (Mark node as unschedulable)
+cp             (Copy files and directories to and from containers)
+create         (Create a resource from a file or from stdin)
+ctr            (The command ctr is a plugin installed by the user)
+ctx            (The command ctx is a plugin installed by the user)
+debug          (Create debugging sessions for troubleshooting workloads and nodes)
+delete         (Delete resources by file names, stdin, resources and names, or by resources and label selector)
+describe       (Show details of a specific resource or group of resources)
+diff           (Diff the live version against a would-be applied version)
+drain          (Drain node in preparation for maintenance)
+edit           (Edit a resource on the server)
+events         (List events)
+exec           (Execute a command in a container)
+explain        (Get documentation for a resource)
+expose         (Take a replication controller, service, deployment or pod and expose it as a new Kubernetes service)
+get            (Display one or many resources)
+help           (Help about any command)
+krew           (The command krew is a plugin installed by the user)
+[root@master[ ~/kube/04/api]# kubectl s
+scale  (Set a new size for a deployment, replica set, or replication controller)
+set    (Set specific features on objects)
+[root@master[ ~/kube/04/api]# kubectl pau
+patch         (Update fields of a resource)                      port-forward  (Forward one or more local ports to a pod)
+plugin        (Provides utilities for interacting with plugins)  proxy         (Run a proxy to the Kubernetes API server)
+[root@master[ ~/kube/04/api]# cubectl pc
+nnn[root@master[ ~/kube/04/api]# exit
+exit
+
+Script done on 2026-10-13 19:00:56+09:00 [COMMAND_EXIT_CODE="0"]
