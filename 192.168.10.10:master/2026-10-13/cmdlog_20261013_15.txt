@@ -1,0 +1,98 @@
+Script started on 2026-10-13 15:31:19+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="161" LINES="40"]
+[root@master[ ~]# cd /
+afs/   bin/   boot/  dev/   etc/   home/  lib/   lib64/ media/ mnt/   opt/   proc/  root/  run/   sbin/  srv/   sys/   tmp/   usr/   var/
+[root@master[ ~]# ls /
+서식  공개  문서  음악  사진  비디오  바탕화면  다운로드  anaconda-ks.cfg  bin  kube  kubeadm_init_output.txt  LinuxLog  test.txt  tools
+[root@master[ ~]# cd /etc/
+[root@master[ /etc]# ls
+adjtime                 crontab                  fuse.conf             krb5.conf                 netconfig         request-key.d      sudo-ldap.conf
+aliases                 cron.weekly              fwupd                 krb5.conf.d               NetworkManager    resolv.conf        sysconfig
+alsa                    crypto-policies          gcrypt                kubernetes                networks          rpc                sysctl.conf
+alternatives            crypttab                 gdm                   ld.so.cache               nftables          rpm                sysctl.d
+anacrontab              csh.cshrc                geoclue               ld.so.conf                nsswitch.conf     rsyncd.conf        systemd
+asound.conf             csh.login                glvnd                 ld.so.conf.d              nvme              rsyslog.conf       system-release
+at.deny                 cups                     gnome-remote-desktop  libaudit.conf             openldap          rsyslog.d          system-release-cpe
+audit                   cupshelpers              gnupg                 libblockdev               opt               rwtab.d            terminfo
+authselect              dbus-1                   GREP_COLORS           libibverbs.d              os-release        samba              tmpfiles.d
+avahi                   dconf                    groff                 libnl                     ostree            sane.d             tpm2-tss
+bash_completion.d       debuginfod               group                 libssh                    PackageKit        sasl2              trusted-key.key
+bashrc                  default                  group-                locale.conf               pam.d             security           tuned
+bindresvport.blacklist  depmod.d                 grub2.cfg             localtime                 paperspecs        selinux            udev
+binfmt.d                dhcp                     grub2-efi.cfg         login.defs                passwd            services           udisks2
+bluetooth               DIR_COLORS               grub.d                logrotate.conf            passwd-           sestatus.conf      updatedb.conf
+brlapi.key              DIR_COLORS.lightbgcolor  gshadow               logrotate.d               pbm2ppa.conf      setroubleshoot     UPower
+brltty                  dnf                      gshadow-              lsm                       pkcs11            sgml               vconsole.conf
+brltty.conf             dnsmasq.conf             gss                   lvm                       pkgconfig         shadow             vimrc
+centos-release          dnsmasq.d                host.conf             machine-id                pki               shadow-            virc
+chromium                dracut.conf              hostname              magic                     plymouth          shells             vmware-tools
+chrony.conf             dracut.conf.d            hosts                 mailcap                   pm                skel               vulkan
+cifs-utils              egl                      hp                    makedumpfile.conf.sample  pnm2ppa.conf      smartmontools      wgetrc
+cni                     enscript.cfg             inittab               man_db.conf               polkit-1          sos                wireplumber
+cockpit                 environment              inputrc               mcelog                    popt.d            speech-dispatcher  wpa_supplicant
+colord                  ethertypes               ipp-usb               microcode_ctl             printcap          ssh                X11
+containerd              exports                  iproute2              mime.types                profile           ssl                xattr.conf
+containers              favicon.png              iscsi                 mke2fs.conf               profile.d         sssd               xdg
+credstore               filesystems              issue                 modprobe.d                protocols         statetab.d         xml
+credstore.encrypted     firefox                  issue.d               modules-load.d            pulse             subgid             yum
+crictl.yaml             firewalld                issue.net             motd                      qemu-ga           subgid-            yum.conf
+cron.d                  flatpak                  kdump                 motd.d                    ras               subuid             yum.repos.d
+cron.daily              fonts                    kdump.conf            mtab                      rc.d              subuid-
+cron.deny               foomatic                 kernel                mtools.conf               rc.local          sudo.conf
+cron.hourly             fprintd.conf             keys                  multipath                 redhat-release    sudoers
+cron.monthly            fstab                    keyutils              nanorc                    request-key.conf  sudoers.d
+[root@master[ /etc]# cd kubernetes/
+[root@master[ /etc/kubernetes]# ls
+admin.conf  controller-manager.conf  kubelet.conf  manifests  pki  scheduler.conf  super-admin.conf
+[root@master[ /etc/kubernetes]# cat admin.conf
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRWp3NUw0SjZsU0F3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHpOakV3TURrd056UXlNREJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM4cnBkU293N0tpam5MYU5uYUlSaS9ZUytROFNSMmdxcnZWUExGRmlvdTZkZGNXbGg1QUl2MjUwcysKa1JXcDR5em55NVdYNjFIRVd4T3Q2Q0gvVmNYRjZUNHlNbnFBTi9Ya2xJTEE2d0U0aWNUTDgrVWE5bVFBS3kwQQpJVHdnd0lsSUtFQ1hQUnNuZk9BMU92TS8xVnRsU1hjY2g3SytUSXkycTUrWkYwN1o1K3c1cCtjMldnR3poVWpvCklJSmRQNzRlMjNOT2l1NlVabEJ2VWFwWHd3YmRBMWwzYWpsc0hudmdXZjJ0Q2ZXYjkyd3FQQy9VQlJ6NWdoRkkKSXZoenhEU0JtZUg4eW03SS9xVmZkL2hNcEoyR1RvZG9CU1g5YmhQaHIrMGhxYVFmMWF3SGVBUE56a05qNEx4QQpCZS9jZzRRck1FM3haZkRiclNTQ3NoODBsTmcvQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSMnlnNGJoVVUvNmpkREpjRURiNmJaSXVqTVJqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXpTNlZvZ2hhbwptQS9uRVhiT3NBSkxzckR2dk5kK0tWQXhWc2JSYWdRVDVwL0RZMklqc0lHYThhNy90S0FWc0R6WGlpR2hyU2VJCkZIWXRiNXhxVGJBYmJGQ3JHemc2YkJFcHowVkRWYXpQWkhmbldzWGFqM25lZmRlcTA3YWR6N3EzNDFSZHhHWkUKVGtZVGhNVzRNbmNwNFFSakhWR2NFTG56VkViakVsandVNnNKMmxQbG9rMzk4eXVIUCttNmVCWE95RVNLV0REUAp2MzBtNTZ2alhYT1N6VThMTkdDNTVRZmFHOW1Edjc1YXFuaVhsU2tjbXVNdEhHS3RpS1NXWnphT21Yc0NvSTRnCjNlSnZRUllqQ3lTV25OOWNkWFV1cHZWK1d2NVBhaGV1MENYQkNJSzVhcFRPYXBJb2tENVI5TzY1TDdOcDg3bmcKcnpheW4yMEM5azhoCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURLVENDQWhHZ0F3SUJBZ0lJZjdjUkxhUmd6WnN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHlOekV3TVRJd056UXlNREJhTUR3eApIekFkQmdOVkJBb1RGbXQxWW1WaFpHMDZZMngxYzNSbGNpMWhaRzFwYm5NeEdUQVhCZ05WQkFNVEVHdDFZbVZ5CmJtVjBaWE10WVdSdGFXNHdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEVW5hLzcKaldtSlhQbjVIU21MRlBCMDJ5cVI2REYySk1EYlEyejBDRjV0WDQyeUZMYjZTVFBaVXpxZno3bU9hSlR3eUNkOQpQQlc1c2tvOUt0aVY1MzVGWXg1QlBtdkhxOTZmZ1lLcmdLS1JScFArTHhCaHJXaFlTZEtYdExIbW05MWN4bWZNCmRqNUw4UHRGcHpGZEhpSWJOQmdRay9zWjk3cDFaM1hoN0t4MmFyQ1lVUzdETkN1KytsbXlzUzFtRUVWRWQzMkIKanQ1eWdTRWtrWmxYZC9UWGluN2JhR2gydjZPNFQ3TWtUeVorODZvdG5PNkVVY29jeGdOUmIrWlNHM3hqc24yOAoyY1FEbFpEQ2ttcHcyMEtubnZSaEZQWGMvc1BvZTUvRUdjb243eFRkTkpPSDRuSzVBV21NdXMyYWFCcDQxeVdYCjNod0N5bEk0N1V1Q3IwRTFBZ01CQUFHalZqQlVNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUsKQmdnckJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbAp3UU52cHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFjckxyWTBZS1R1QlE1ZjkrMWRJMHYyYXlsCjlTVWxlR1NQdkx2TG1MWGN2SEZqK3c5WkY4bHN2cTZkQ3VWUXd4WHJya2RBYTZMVnovcEJBWkxvRjRMUDBFVWMKUW5JYnhBdHRNTWpjUGxlYUdabGpzeTZvUS9CcnZBMzMxQTFKNTRicEtsRDVManI4SDJKRWlmYS90UWQ5RUQ0LworVXpMZ2tUOU5RRWZ1NTRtUmFiMnJvVDR4WVk2d2QzbEtUT1NKSHY1VExvMEFWYUIvSnlhNVF2ZkE5SVZVckFKCnpuWmlpVjZVcGJHc2VJaUE3WnREbmpuZWM3NDVuSGl2bFVyY2d2N1NsVG1Uay9JcFhtc0VRaytCdWNzQVRrWE4KbXpOYy9iblpzSnYzd1IzUEd3NnBhQ3k1MTl5ZG9CUVJ6d1BnY2cvWmF6ZU5aMWxHaXZpUWtnY2pHVWlMCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBMUoydis0MXBpVno1K1IwcGl4VHdkTnNxa2VneGRpVEEyME5zOUFoZWJWK05zaFMyCitra3oyVk02bjgrNWptaVU4TWduZlR3VnViSktQU3JZbGVkK1JXTWVRVDVyeDZ2ZW40R0NxNENpa1VhVC9pOFEKWWExb1dFblNsN1N4NXB2ZFhNWm56SFkrUy9EN1JhY3hYUjRpR3pRWUVKUDdHZmU2ZFdkMTRleXNkbXF3bUZFdQp3elFydnZwWnNyRXRaaEJGUkhkOWdZN2Vjb0VoSkpHWlYzZjAxNHArMjJob2RyK2p1RSt6SkU4bWZ2T3FMWnp1CmhGSEtITVlEVVcvbVVodDhZN0o5dk5uRUE1V1F3cEpxY050Q3A1NzBZUlQxM1A3RDZIdWZ4Qm5LSis4VTNUU1QKaCtKeXVRRnBqTHJObW1nYWVOY2xsOTRjQXNwU09PMUxncTlCTlFJREFRQUJBb0lCQUFwb1RaejZweGZhUFVJOApjelFqcWtHT0dOOWJobEJLTEVhUFhsM3pxdXVmcWNmMXk1OGt4aXoxTGdGMG9aaWU5ZXR6WUx0NG5YZWhpcERECjhDWW1Wci8rd2hSZmdkY2NTcUYwTFhsSHFxMkJ6dXk2VVFyMitneVlVSDZza2FqQUtHM0tLSHFScnlyNGVOUkkKQXRxVUJ3ZGQzVyt5VHJCT3VBblhMcVlJZDhpMENXa0N4ZEMxM1RLSkIrM01WRlh0KzdlRC9VMHdjem4wSFFwegpmVXk2T0pOTk03b3FteVROMm51dVpGalpwQVNiNXI5S2t0bnd2TmFzc3UwM2FnUE1mL04vS1lSSy9DQ05CVXZUCkp5cU9FZTlnMWtSVTV6YTZLVGVoM3ZyaW9heTk2WnY4V1BXV3NlUmoxNURCTEpJQ2NtYU14VXFOWURzbW8vRTMKVnA0YTNXRUNnWUVBN1NlQTdDTkFHOTdxWi9LQTZYSFhDOHJHWWNHaEVpU0lpdFZTVW5sYWI4czEvYi8vRkpCVwpCTU5HcVF2c2d4RDhwZEVIczFoM2FhVDVLTUlFcmxXYkdWRm0rNXVma2pMMTVZQlU2akdUOFh2K1lEbVRCQklJCkFHcDNUL3VsbUdoTlJ2ZHozTC9LczR0SmR6c3p5L1RtVEVXNmk0RW9vK2FReXZhbDN5blVkS3NDZ1lFQTVZTCsKVWFzbXFiTGdnWHd0aXFMMkQ0cFFVekpoOUZVTDBjdXhraTZYcTR6VG44MEZVQjNmeUZTNTRBVmt6YlF5SHV0Ngo0cllaclIrVDZIUEgyVDhEbVZZSldrWGxRTnEvSDJGOGR0cWhuTFNwdEV6cm92cThDTzlvQTI3eTMzSEhtZ2tICkxxV2xnNCtUUGV2MlRWek9zMDZoRlZyT0pSTmdpeG5NT1hxU1laOENnWUFjYWRzOGI0ekN5aFp6bGM1MEtidUcKSWlsYWxRUmpWQlUzN1E4TDZwWTNScldWVFdlV1l5U3JOV3BGM3JQYmtERjAvSEpidm9Hd0dwL3ZqaTlaWTlCTgpYRDltYmVMVWRWNll2S052MjdqSitmMGtNa0cyL3lJT1NyTTQxZ0dsSFBvRlFxaVREamVQQTJVdDc5M28xZEt4CjJMamM5Z0NVZ285ZWdlYWxzakZPT1FLQmdEeXQ4RzFKTWRTbC9XTmVvRy9KL0FKSjBFamV4alVpRXhqcG9NNEUKVVlkQ21XVGpnS2NZN3VSNU9oZDNkWnBKTFFNdHdQU1ZycDR0L2gzMEZuOWlnS0lXdEN4UTFIYmNIckcrUlhqcQovdFYra211ZjlxREZaOWQ0N0dnVCtsU0hNWDJSSzN2eXdaclI1OXowT005bFhTVGRBZ3V5VVZST0ZqVlFvY1VFCm1oVURBb0dCQU4wd1hGRVFveFl5dWJybWc1ajN5Yjg0eGdFeUZIM3Baa1JpMFd1V2ZLWjZvWU9LeDJ1b3A0bmEKNWpWbzhhS0hDUXN3K1RFRGNpWkRldFdvMzJTM2l2dFhyK3YwdlpDd3JPSGhMYmdaanNpM1BoaHR2S1RxSlBuaApwYUZVTTZKUkNoaWpHZFBTYzgxbGRLOTF1dnJURk0xbmpQQkV2cjNPV1prVnJ6M0ZZYWNmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+[root@master[ /etc/kubernetes]# c
+nnn[root@master[ /etc/kubernetes]# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin
+[root@master[ /etc/kubernetes]# kubectl get ns
+NAME              STATUS   AGE
+default           Active   23h
+kube-node-lease   Active   23h
+kube-public       Active   23h
+kube-system       Active   23h
+[root@master[ /etc/kubernetes]# kubectl create namespace test
+namespace/test created
+[root@master[ /etc/kubernetes]# kubectl getans namespace test
+NAME              STATUS   AGE
+default           Active   23h
+kube-node-lease   Active   23h
+kube-public       Active   23h
+kube-system       Active   23h
+test              Active   1s
+[root@master[ /etc/kubernetes]# kubectl config set-context kubernettestdmin@kubernetes --current --namespace
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ /etc/kubernetes]# kubectl config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   test
+configmset-context/kubernetes-admin@kubernetes s--namespacek""stnetes-admin@kubernetes  --namespace test
+Context "kubernetes-admin@kubernetes" modified.
+[root@master[ /etc/kubernetes]# kubectl getfpodget-contextskubernetes-admin@kubernetes  --namespace ""
+No resources found in default namespace.
+[root@master[ /etc/kubernetes]# c
+nnn[root@master[ /etc/kubernetes]# dnf installl-q -y git-core
+[root@master[ /etc/kubernetes]# exit
+exit
+
+Script done on 2026-10-13 16:03:54+09:00 [COMMAND_EXIT_CODE="0"]
