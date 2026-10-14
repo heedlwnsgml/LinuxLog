@@ -1,0 +1,2358 @@
+Script started on 2026-10-14 20:11:08+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="165" LINES="30"]
+[root@master[~/kube/05]# c
+nnn[root@master[~/kube/05]# vi nginx-rc.yml
+>4;2m"nginx-rc.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-rc.yml" [New] 0L, 0B written                                                                                                                              ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::wq
+mkdirr-pt~/kube/06/rcb&&0cd#~/kube/06/rckube/06/rc && cd ~/kube/06/rc
+vidnginx-rc.yml/06/rc6&&ccd ~/kube/06/rcube/06/rc && cd ~/kube/06/rc
+>4;2m"nginx-rc.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-rc.yml" [New] 0L, 0B written                                                                                                                              ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::wq
+>4;m[root@master[~/kube/06/rc]# kpapi-resources --api-group ''
+NAME                     SHORTNAMES   APIVERSION   NAMESPACED   KIND
+bindings                              v1           true         Binding
+componentstatuses        cs           v1           false        ComponentStatus
+configmaps               cm           v1           true         ConfigMap
+endpoints                ep           v1           true         Endpoints
+events                   ev           v1           true         Event
+limitranges              limits       v1           true         LimitRange
+namespaces               ns           v1           false        Namespace
+nodes                    no           v1           false        Node
+persistentvolumeclaims   pvc          v1           true         PersistentVolumeClaim
+persistentvolumes        pv           v1           false        PersistentVolume
+pods                     po           v1           true         Pod
+podtemplates                          v1           true         PodTemplate
+replicationcontrollers   rc           v1           true         ReplicationController
+resourcequotas           quota        v1           true         ResourceQuota
+secrets                               v1           true         Secret
+serviceaccounts          sa           v1           true         ServiceAccount
+services                 svc          v1           true         Service
+[root@master[~/kube/06/rc]# ^C
+[root@master[~/kube/06/rc]# k create -f nginx-rc.yml
+Error from server (BadRequest): error when creating "nginx-rc.yml": ReplicationController in version "v1" cannot be handled as a ReplicationController: json: cannot unmarshal array into Go struct field PodTemplateSpec.spec.template.spec of type v1.PodSpec
+[root@master[~/kube/06/rc]# k create -f nginx-rc.yml
+Error from server (BadRequest): error when creating "nginx-rc.yml": ReplicationController in version "v1" cannot be handled as a ReplicationController: json: cannot unmarshal array into Go struct field PodTemplateSpec.spec.template.spec of type v1.PodSpec
+[root@master[~/kube/06/rc]# k create -f nginx-rc.yml
+Error from server (BadRequest): error when creating "nginx-rc.yml": ReplicationController in version "v1" cannot be handled as a ReplicationController: json: cannot unmarshal array into Go struct field PodTemplateSpec.spec.template.spec of type v1.PodSpec
+[root@master[~/kube/06/rc]# k create -f nginx-rc.yml
+replicationcontroller/nginx-rc created
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# k get pods
+NAME             READY   STATUS              RESTARTS   AGE
+nginx-rc-2w72s   0/1     ContainerCreating   0          8s
+nginx-rc-qjlq4   1/1     Running             0          8s
+nginx-rc-zkvjf   1/1     Running             0          8s
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# k get rc
+NAME       DESIRED   CURRENT   READY   AGE
+nginx-rc   3         3         3       13s
+[root@master[~/kube/06/rc]# k describe rc nginx-rc
+Name:         nginx-rc
+Namespace:    default
+Selector:     app=webui
+Labels:       app=webui
+Annotations:  <none>
+Replicas:     3 current / 3 desired
+Pods Status:  3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app=webui
+  Containers:
+   nginx-container:
+    Image:         nginx:1.26
+    Port:          80/TCP
+    Host Port:     0/TCP
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Events:
+  Type    Reason            Age   From                    Message
+  ----    ------            ----  ----                    -------
+  Normal  SuccessfulCreate  20s   replication-controller  Created pod: nginx-rc-zkvjf
+  Normal  SuccessfulCreate  20s   replication-controller  Created pod: nginx-rc-qjlq4
+  Normal  SuccessfulCreate  20s   replication-controller  Created pod: nginx-rc-2w72s
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# k run redis --image=redis --labels="app=webui" --dry-run=client -o yaml > redis.yml
+[root@master[~/kube/06/rc]# ls
+nginx-rc.yml  redis.yml
+[root@master[~/kube/06/rc]# cat redis.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: webui
+  name: redis
+spec:
+  containers:
+  - image: redis
+    name: redis
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+[root@master[~/kube/06/rc]# 11viaredis.ymlml
+>4;2m"redis.yml" 14L, 206B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     app: webui
+  6   name: redis
+  7 spec:
+  8   containers:
+  9   - image: redis
+ 10     name: redis
+ 11     resources: {}
+ 12   dnsPolicy: ClusterFirst
+ 13   restartPolicy: Always
+ 14 status: {}
+~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   910,1~@k   1~@k   23~@k   4~@k   dd
+~                                                                                                                                                                    3,3dd
+~                                                                                                                                                                    2dd
+~                                                                                                                                                                    1,5dd
+>4;m"redis.yml" 10L, 127B written                                                                                                                                    0~@k   9,5 ~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2~@k   3~@k   4~@k   5~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1^[  ^[  ::wq
+>4;m[root@master[~/kube/06/rc]# k get pods --show-
+error: unknown flag: --show-
+See 'kubectl get --help' for usage.
+[root@master[~/kube/06/rc]# k get pods --show-labels
+NAME             READY   STATUS    RESTARTS   AGE     LABELS
+nginx-rc-2w72s   1/1     Running   0          3m27s   app=webui
+nginx-rc-qjlq4   1/1     Running   0          3m27s   app=webui
+nginx-rc-zkvjf   1/1     Running   0          3m27s   app=webui
+[root@master[~/kube/06/rc]# k create -f redis.yml
+pod/redis created
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# k get pods
+NAME             READY   STATUS    RESTARTS   AGE
+nginx-rc-2w72s   1/1     Running   0          3m53s
+nginx-rc-qjlq4   1/1     Running   0          3m53s
+nginx-rc-zkvjf   1/1     Running   0          3m53s
+[root@master[~/kube/06/rc]# k get pods --show-labels
+NAME             READY   STATUS    RESTARTS   AGE    LABELS
+nginx-rc-2w72s   1/1     Running   0          4m5s   app=webui
+nginx-rc-qjlq4   1/1     Running   0          4m5s   app=webui
+nginx-rc-zkvjf   1/1     Running   0          4m5s   app=webui
+[root@master[~/kube/06/rc]# k get ev
+Warning: short name "ev" could also match lower priority resource events.events.k8s.io
+LAST SEEN   TYPE     REASON             OBJECT                           MESSAGE
+48m         Normal   Killing            pod/myapp                        Stopping container myapp
+48m         Normal   Killing            pod/mydeploy-675fd74c56-5bj9k    Stopping container nginx
+48m         Normal   Killing            pod/mydeploy-675fd74c56-l28r4    Stopping container nginx
+48m         Normal   Killing            pod/mypod                        Stopping container mypod
+48m         Normal   Killing            pod/myweb                        Stopping container myweb
+4m52s       Normal   Scheduled          pod/nginx-rc-2w72s               Successfully assigned default/nginx-rc-2w72s to node3
+4m51s       Normal   Pulling            pod/nginx-rc-2w72s               Pulling image "nginx:1.26"
+4m44s       Normal   Pulled             pod/nginx-rc-2w72s               Successfully pulled image "nginx:1.26" in 7.454s (7.454s including waiting). Image size: 72169522 bytes.
+4m44s       Normal   Created            pod/nginx-rc-2w72s               Container created
+4m43s       Normal   Started            pod/nginx-rc-2w72s               Container started
+4m52s       Normal   Scheduled          pod/nginx-rc-qjlq4               Successfully assigned default/nginx-rc-qjlq4 to node2
+4m51s       Normal   Pulling            pod/nginx-rc-qjlq4               Pulling image "nginx:1.26"
+4m44s       Normal   Pulled             pod/nginx-rc-qjlq4               Successfully pulled image "nginx:1.26" in 7.176s (7.176s including waiting). Image size: 72169522 bytes.
+4m44s       Normal   Created            pod/nginx-rc-qjlq4               Container created
+4m44s       Normal   Started            pod/nginx-rc-qjlq4               Container started
+4m52s       Normal   Scheduled          pod/nginx-rc-zkvjf               Successfully assigned default/nginx-rc-zkvjf to node1
+4m51s       Normal   Pulled             pod/nginx-rc-zkvjf               Container image "nginx:1.26" already present on machine and can be accessed by the pod
+4m51s       Normal   Created            pod/nginx-rc-zkvjf               Container created
+4m51s       Normal   Started            pod/nginx-rc-zkvjf               Container started
+4m52s       Normal   SuccessfulCreate   replicationcontroller/nginx-rc   Created pod: nginx-rc-zkvjf
+4m52s       Normal   SuccessfulCreate   replicationcontroller/nginx-rc   Created pod: nginx-rc-qjlq4
+4m52s       Normal   SuccessfulCreate   replicationcontroller/nginx-rc   Created pod: nginx-rc-2w72s
+66s         Normal   SuccessfulDelete   replicationcontroller/nginx-rc   Deleted pod: redis
+66s         Normal   Scheduled          pod/redis                        Successfully assigned default/redis to node1
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# k edit rc nginx-rc
+>4;2m"/tmp/kubectl-edit-2177993745.yaml" 46L, 1164B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: "2026-10-14T11:17:03Z"
+  generation: 1
+  labels:
+    app: webui
+  name: nginx-rc
+  namespace: default
+  resourceVersion: "108857"
+  uid: d36d122e-0911-4977-963e-652a154c607d
+spec:
+  replicas: 3
+  selector:
+    app: webui
+  template:
+    metadata:labels:app: webuiname: nginx-pod
+>4;m"/tmp/kubectl-edit-2177993745.yaml"i46L,k1164B@written@ktPr1~@ktna2~@kngi3r4co^[ai^[r1::wqp?12$p//replica^I
+>4;mreplicationcontroller/nginx-rc edited
+[root@master[~/kube/06/rc]# k get pods --show-labels
+NAME             READY   STATUS    RESTARTS   AGE     LABELS
+nginx-rc-2w72s   1/1     Running   0          5m44s   app=webui
+nginx-rc-mrmkz   1/1     Running   0          18s     app=webui
+nginx-rc-qjlq4   1/1     Running   0          5m44s   app=webui
+nginx-rc-zkvjf   1/1     Running   0          5m44s   app=webui
+[root@master[~/kube/06/rc]# k scale rc nginx-rc --replicas=2
+replicationcontroller/nginx-rc scaled
+[root@master[~/kube/06/rc]# k get pods --show-labels
+NAME             READY   STATUS    RESTARTS   AGE     LABELS
+nginx-rc-2w72s   1/1     Running   0          6m42s   app=webui
+nginx-rc-qjlq4   1/1     Running   0          6m42s   app=webui
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# sed -i '/nginx:1.26/,/nginx:1.27/c' nginx-rc.yml
+sed: -e expression #1, char 26: expected \ after `a', `c' or `i'
+[root@master[~/kube/06/rc]# ^C
+[root@master[~/kube/06/rc]# k edit rc nginx-rc
+>4;2m"/tmp/kubectl-edit-3885908216.yaml" 46L, 1164B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: "2026-10-14T11:17:03Z"
+  generation: 3
+  labels:
+    app: webui
+  name: nginx-rc
+  namespace: default
+  resourceVersion: "109180"
+  uid: d36d122e-0911-4977-963e-652a154c607d
+spec:
+  replicas: 2
+  selector:
+    app: webui
+  template:
+    metadata:labels:app: webuiname: nginx-pod
+>4;m"/tmp/kubectl-edit-3885908216.yaml"746L,71164BlwrittenN8~@kese9~@kme:20~@kx-c1~@kine2~@kTop3~@kp//4~@kxL:5r7  ^[  ^[  ::wq
+>4;mreplicationcontroller/nginx-rc edited
+[root@master[~/kube/06/rc]# k get nginx-rc
+error: the server doesn't have a resource type "nginx-rc"
+[root@master[~/kube/06/rc]# k get rc nginx-rc
+NAME       DESIRED   CURRENT   READY   AGE
+nginx-rc   2         2         2       8m55s
+[root@master[~/kube/06/rc]# k getppods
+NAME             READY   STATUS    RESTARTS   AGE
+nginx-rc-2w72s   1/1     Running   0          9m14s
+nginx-rc-qjlq4   1/1     Running   0          9m14s
+[root@master[~/kube/06/rc]# k describe pods nginx-rc-2w72s
+Name:             nginx-rc-2w72s
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node3/192.168.10.13
+Start Time:       Wed, 14 Oct 2026 20:17:03 +0900
+Labels:           app=webui
+Annotations:      cni.projectcalico.org/containerID: ac77539fdb457d7ac65a066311badb817864bd531b05f7bae34f71c38d0f875e
+                  cni.projectcalico.org/podIP: 10.10.135.15/32
+                  cni.projectcalico.org/podIPs: 10.10.135.15/32
+Status:           Running
+IP:               10.10.135.15
+IPs:
+  IP:           10.10.135.15
+Controlled By:  ReplicationController/nginx-rc
+Containers:
+  nginx-container:
+    Container ID:   containerd://52d55901ecac940db022c55d98ce2e3db2910131613aa0c08e513c1649468e6d
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 20:17:12 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-c8pjn (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-c8pjn:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  9m32s  default-scheduler  Successfully assigned default/nginx-rc-2w72s to node3
+  Normal  Pulling    9m31s  kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.26"
+  Normal  Pulled     9m24s  kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.26" in 7.454s (7.454s including waiting). Image size: 72169522 bytes.
+  Normal  Created    9m24s  kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    9m23s  kubelet            spec.containers{nginx-container}: Container started
+[root@master[~/kube/06/rc]# k delete pods nginx-rc-2w72s
+pod "nginx-rc-2w72s" deleted from default namespace
+[root@master[~/kube/06/rc]# k describe pods nginx-rc-mrptl
+Name:             nginx-rc-mrptl
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 20:27:15 +0900
+Labels:           app=webui
+Annotations:      cni.projectcalico.org/containerID: 8ab239e8fcd7a17bcf2d8e31111716e15fc36e85d58a26195f22124d73f5c500
+                  cni.projectcalico.org/podIP: 10.10.166.166/32
+                  cni.projectcalico.org/podIPs: 10.10.166.166/32
+Status:           Running
+IP:               10.10.166.166
+IPs:
+  IP:           10.10.166.166
+Controlled By:  ReplicationController/nginx-rc
+Containers:
+  nginx-container:
+    Container ID:   containerd://72ddecc5eee5aa854c285de6399c8c597c598768630530d19ae1b285d06d091c
+    Image:          nginx:1.27
+    Image ID:       docker.io/library/nginx@sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7d
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 20:27:22 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-58lzs (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-58lzs:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  15s   default-scheduler  Successfully assigned default/nginx-rc-mrptl to node1
+  Normal  Pulling    14s   kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.27"
+  Normal  Pulled     8s    kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.27" in 6.561s (6.561s including waiting). Image size: 72406859 bytes.
+  Normal  Created    8s    kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    8s    kubelet            spec.containers{nginx-container}: Container started
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]#
+[root@master[~/kube/06/rc]# k describe pods nginx-rc-qjlq4
+Name:             nginx-rc-qjlq4
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node2/192.168.10.12
+Start Time:       Wed, 14 Oct 2026 20:17:03 +0900
+Labels:           app=webui
+Annotations:      cni.projectcalico.org/containerID: 2e5e445319ebc2495b70abd783595cdb42a8a14718e2f6c0d12e2d4f096adee2
+                  cni.projectcalico.org/podIP: 10.10.104.13/32
+                  cni.projectcalico.org/podIPs: 10.10.104.13/32
+Status:           Running
+IP:               10.10.104.13
+IPs:
+  IP:           10.10.104.13
+Controlled By:  ReplicationController/nginx-rc
+Containers:
+  nginx-container:
+    Container ID:   containerd://4d64584229bd9c312e6404460bc198ea65da394e6de3060efe052f95a94cc4d5
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 20:17:11 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-n9fwq (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-n9fwq:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  11m   default-scheduler  Successfully assigned default/nginx-rc-qjlq4 to node2
+  Normal  Pulling    11m   kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.26"
+  Normal  Pulled     11m   kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.26" in 7.176s (7.176s including waiting). Image size: 72169522 bytes.
+  Normal  Created    11m   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    11m   kubelet            spec.containers{nginx-container}: Container started
+[root@master[~/kube/06/rc]# k describe pods nginx-rc-mrptl
+Name:             nginx-rc-mrptl
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 20:27:15 +0900
+Labels:           app=webui
+Annotations:      cni.projectcalico.org/containerID: 8ab239e8fcd7a17bcf2d8e31111716e15fc36e85d58a26195f22124d73f5c500
+                  cni.projectcalico.org/podIP: 10.10.166.166/32
+                  cni.projectcalico.org/podIPs: 10.10.166.166/32
+Status:           Running
+IP:               10.10.166.166
+IPs:
+  IP:           10.10.166.166
+Controlled By:  ReplicationController/nginx-rc
+Containers:
+  nginx-container:
+    Container ID:   containerd://72ddecc5eee5aa854c285de6399c8c597c598768630530d19ae1b285d06d091c
+    Image:          nginx:1.27
+    Image ID:       docker.io/library/nginx@sha256:6784fb0834aa7dbbe12e3d7471e69c290df3e6ba810dc38b34ae33d3c1c05f7d
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 20:27:22 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-58lzs (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-58lzs:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  109s  default-scheduler  Successfully assigned default/nginx-rc-mrptl to node1
+  Normal  Pulling    108s  kubelet            spec.containers{nginx-container}: Pulling image "nginx:1.27"
+  Normal  Pulled     102s  kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx:1.27" in 6.561s (6.561s including waiting). Image size: 72406859 bytes.
+  Normal  Created    102s  kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    102s  kubelet            spec.containers{nginx-container}: Container started
+[root@master[~/kube/06/rc]# colling update
+nnn[root@master[~/kube/06/rc]# ksdeletee-f nginx-rc.yml
+replicationcontroller "nginx-rc" deleted from default namespace
+[root@master[~/kube/06/rc]# k get po,rc
+No resources found in default namespace.
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# kpapi-resources --api-group Replica
+NAME   SHORTNAMES   APIVERSION   NAMESPACED   KIND
+[root@master[~/kube/06/rc]# k api-resources --api-group "2.1"ca
+NAME   SHORTNAMES   APIVERSION   NAMESPACED   KIND
+[root@master[~/kube/06/rc]# k api-resources --api-group "v2.1"
+NAME   SHORTNAMES   APIVERSION   NAMESPACED   KIND
+[root@master[~/kube/06/rc]# k api-resources --api-group''v2.1"
+NAME                     SHORTNAMES   APIVERSION   NAMESPACED   KIND
+bindings                              v1           true         Binding
+componentstatuses        cs           v1           false        ComponentStatus
+configmaps               cm           v1           true         ConfigMap
+endpoints                ep           v1           true         Endpoints
+events                   ev           v1           true         Event
+limitranges              limits       v1           true         LimitRange
+namespaces               ns           v1           false        Namespace
+nodes                    no           v1           false        Node
+persistentvolumeclaims   pvc          v1           true         PersistentVolumeClaim
+persistentvolumes        pv           v1           false        PersistentVolume
+pods                     po           v1           true         Pod
+podtemplates                          v1           true         PodTemplate
+replicationcontrollers   rc           v1           true         ReplicationController
+resourcequotas           quota        v1           true         ResourceQuota
+secrets                               v1           true         Secret
+serviceaccounts          sa           v1           true         ServiceAccount
+services                 svc          v1           true         Service
+[root@master[~/kube/06/rc]# k api-resources --api-group 'c'
+NAME   SHORTNAMES   APIVERSION   NAMESPACED   KIND
+[root@master[~/kube/06/rc]# c
+mkdiro-p@~/kube/06/rse&&6cdc~/kube/06/rs~/kube/06/rs && cd ~/kube/06/rs
+[root@master[~/kube/06/rs]# vi nginx-rs.yml
+>4;2m"nginx-rs.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-rs.yml" [New] 0L, 0B written                                                                                                                              ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::wq
+>4;m[root@master[~/kube/06/rs]# k create -f nginx-rs.yml
+error: resource mapping not found for name: "nginx-rs" namespace: "" from "nginx-rs.yml": no matches for kind "ReplicaSet" in version "v1"
+ensure CRDs are installed first
+[root@master[~/kube/06/rs]# k create -f nginx-rs.yml
+replicaset.apps/nginx-rs created
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# k explain rc
+KIND:       ReplicationController
+VERSION:    v1
+
+DESCRIPTION:
+    ReplicationController represents the configuration of a replication
+    controller.
+
+FIELDS:
+  apiVersion    <string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+  kind  <string>
+    Kind is a string value representing the REST resource this object
+    represents. Servers may infer this from the endpoint the client submits
+    requests to. Cannot be updated. In CamelCase. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  metadata      <ObjectMeta>
+    If the Labels of a ReplicationController are empty, they are defaulted to be
+    the same as the Pod(s) that the replication controller manages. Standard
+    object's metadata. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+  spec  <ReplicationControllerSpec>
+    Spec defines the specification of the desired behavior of the replication
+    controller. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+  status        <ReplicationControllerStatus>
+    Status is the most recently observed status of the replication controller.
+    This data may be out of date by some window of time. Populated by the
+    system. Read-only. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+
+[root@master[~/kube/06/rs]# k explain rs
+GROUP:      apps
+KIND:       ReplicaSet
+VERSION:    v1
+
+DESCRIPTION:
+    ReplicaSet ensures that a specified number of pod replicas are running at
+    any given time.
+
+FIELDS:
+  apiVersion    <string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+  kind  <string>
+    Kind is a string value representing the REST resource this object
+    represents. Servers may infer this from the endpoint the client submits
+    requests to. Cannot be updated. In CamelCase. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  metadata      <ObjectMeta>
+    If the Labels of a ReplicaSet are empty, they are defaulted to be the same
+    as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More
+    info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+  spec  <ReplicaSetSpec> -required-
+    Spec defines the specification of the desired behavior of the ReplicaSet.
+    More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+  status        <ReplicaSetStatus>
+    Status is the most recently observed status of the ReplicaSet. This data may
+    be out of date by some window of time. Populated by the system. Read-only.
+    More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+
+[root@master[~/kube/06/rs]# kubectl explain rc.spec
+kubectl explain rc.spec
+
+KIND:       ReplicationController
+VERSION:    v1
+
+FIELD: spec <ReplicationControllerSpec>
+
+
+DESCRIPTION:
+    Spec defines the specification of the desired behavior of the replication
+    controller. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+    ReplicationControllerSpec is the specification of a replication controller.
+
+FIELDS:
+  minReadySeconds       <integer>
+    Minimum number of seconds for which a newly created pod should be ready
+    without any of its container crashing, for it to be considered available.
+    Defaults to 0 (pod will be considered available as soon as it is ready)
+
+  replicas      <integer>
+    Replicas is the number of desired replicas. This is a pointer to distinguish
+    between explicit zero and unspecified. Defaults to 1. More info:
+    https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
+
+  selector      <map[string]string>
+    Selector is a label query over pods that should match the Replicas count. If
+    Selector is empty, it is defaulted to the labels present on the Pod
+    template. Label keys and values that must match in order to be controlled by
+    this replication controller, if empty defaulted to labels on Pod template.
+    More info:
+    https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors
+
+  template      <PodTemplateSpec>
+    Template is the object that describes the pod that will be created if
+    insufficient replicas are detected. This takes precedence over a
+    TemplateRef. The only allowed template.spec.restartPolicy value is "Always".
+    More info:
+    https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template
+
+
+[root@master[~/kube/06/rs]# kubectl explain rc --recursive
+KIND:       ReplicationController
+VERSION:    v1
+
+DESCRIPTION:
+    ReplicationController represents the configuration of a replication
+    controller.
+
+FIELDS:
+  apiVersion    <string>
+  kind  <string>
+  metadata      <ObjectMeta>
+    annotations <map[string]string>
+    creationTimestamp   <string>
+    deletionGracePeriodSeconds  <integer>
+    deletionTimestamp   <string>
+    finalizers  <[]string>
+    generateName        <string>
+    generation  <integer>
+    labels      <map[string]string>
+    managedFields       <[]ManagedFieldsEntry>
+      apiVersion        <string>
+      fieldsType        <string>
+      fieldsV1  <FieldsV1>
+      manager   <string>
+      operation <string>
+      subresource       <string>
+      time      <string>
+    name        <string>
+    namespace   <string>
+    ownerReferences     <[]OwnerReference>
+      apiVersion        <string> -required-
+      blockOwnerDeletion        <boolean>
+      controller        <boolean>
+      kind      <string> -required-
+      name      <string> -required-
+      uid       <string> -required-
+    resourceVersion     <string>
+    selfLink    <string>
+    uid <string>
+  spec  <ReplicationControllerSpec>
+    minReadySeconds     <integer>
+    replicas    <integer>
+    selector    <map[string]string>
+    template    <PodTemplateSpec>
+      metadata  <ObjectMeta>
+        annotations     <map[string]string>
+        creationTimestamp       <string>
+        deletionGracePeriodSeconds      <integer>
+        deletionTimestamp       <string>
+        finalizers      <[]string>
+        generateName    <string>
+        generation      <integer>
+        labels  <map[string]string>
+        managedFields   <[]ManagedFieldsEntry>
+          apiVersion    <string>
+          fieldsType    <string>
+          fieldsV1      <FieldsV1>
+          manager       <string>
+          operation     <string>
+          subresource   <string>
+          time  <string>
+        name    <string>
+        namespace       <string>
+        ownerReferences <[]OwnerReference>
+          apiVersion    <string> -required-
+          blockOwnerDeletion    <boolean>
+          controller    <boolean>
+          kind  <string> -required-
+          name  <string> -required-
+          uid   <string> -required-
+        resourceVersion <string>
+        selfLink        <string>
+        uid     <string>
+      spec      <PodSpec>
+        activeDeadlineSeconds   <integer>
+        affinity        <Affinity>
+          nodeAffinity  <NodeAffinity>
+            preferredDuringSchedulingIgnoredDuringExecution     <[]PreferredSchedulingTerm>
+              preference        <NodeSelectorTerm> -required-
+                matchExpressions        <[]NodeSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  enum: DoesNotExist, Exists, Gt, In, ....
+                  values        <[]string>
+                matchFields     <[]NodeSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  enum: DoesNotExist, Exists, Gt, In, ....
+                  values        <[]string>
+              weight    <integer> -required-
+            requiredDuringSchedulingIgnoredDuringExecution      <NodeSelector>
+              nodeSelectorTerms <[]NodeSelectorTerm> -required-
+                matchExpressions        <[]NodeSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  enum: DoesNotExist, Exists, Gt, In, ....
+                  values        <[]string>
+                matchFields     <[]NodeSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  enum: DoesNotExist, Exists, Gt, In, ....
+                  values        <[]string>
+          podAffinity   <PodAffinity>
+            preferredDuringSchedulingIgnoredDuringExecution     <[]WeightedPodAffinityTerm>
+              podAffinityTerm   <PodAffinityTerm> -required-
+                labelSelector   <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                matchLabelKeys  <[]string>
+                mismatchLabelKeys       <[]string>
+                namespaceSelector       <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                namespaces      <[]string>
+                topologyKey     <string> -required-
+              weight    <integer> -required-
+            requiredDuringSchedulingIgnoredDuringExecution      <[]PodAffinityTerm>
+              labelSelector     <LabelSelector>
+                matchExpressions        <[]LabelSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  values        <[]string>
+                matchLabels     <map[string]string>
+              matchLabelKeys    <[]string>
+              mismatchLabelKeys <[]string>
+              namespaceSelector <LabelSelector>
+                matchExpressions        <[]LabelSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  values        <[]string>
+                matchLabels     <map[string]string>
+              namespaces        <[]string>
+              topologyKey       <string> -required-
+          podAntiAffinity       <PodAntiAffinity>
+            preferredDuringSchedulingIgnoredDuringExecution     <[]WeightedPodAffinityTerm>
+              podAffinityTerm   <PodAffinityTerm> -required-
+                labelSelector   <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                matchLabelKeys  <[]string>
+                mismatchLabelKeys       <[]string>
+                namespaceSelector       <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                namespaces      <[]string>
+                topologyKey     <string> -required-
+              weight    <integer> -required-
+            requiredDuringSchedulingIgnoredDuringExecution      <[]PodAffinityTerm>
+              labelSelector     <LabelSelector>
+                matchExpressions        <[]LabelSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  values        <[]string>
+                matchLabels     <map[string]string>
+              matchLabelKeys    <[]string>
+              mismatchLabelKeys <[]string>
+              namespaceSelector <LabelSelector>
+                matchExpressions        <[]LabelSelectorRequirement>
+                  key   <string> -required-
+                  operator      <string> -required-
+                  values        <[]string>
+                matchLabels     <map[string]string>
+              namespaces        <[]string>
+              topologyKey       <string> -required-
+        automountServiceAccountToken    <boolean>
+        containers      <[]Container> -required-
+          args  <[]string>
+          command       <[]string>
+          env   <[]EnvVar>
+            name        <string> -required-
+            value       <string>
+            valueFrom   <EnvVarSource>
+              configMapKeyRef   <ConfigMapKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+              fieldRef  <ObjectFieldSelector>
+                apiVersion      <string>
+                fieldPath       <string> -required-
+              fileKeyRef        <FileKeySelector>
+                key     <string> -required-
+                optional        <boolean>
+                path    <string> -required-
+                volumeName      <string> -required-
+              resourceFieldRef  <ResourceFieldSelector>
+                containerName   <string>
+                divisor <Quantity>
+                resource        <string> -required-
+              secretKeyRef      <SecretKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+          envFrom       <[]EnvFromSource>
+            configMapRef        <ConfigMapEnvSource>
+              name      <string>
+              optional  <boolean>
+            prefix      <string>
+            secretRef   <SecretEnvSource>
+              name      <string>
+              optional  <boolean>
+          image <string>
+          imagePullPolicy       <string>
+          enum: Always, IfNotPresent, Never
+          lifecycle     <Lifecycle>
+            postStart   <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            preStop     <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            stopSignal  <string>
+            enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+          livenessProbe <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          name  <string> -required-
+          ports <[]ContainerPort>
+            containerPort       <integer> -required-
+            hostIP      <string>
+            hostPort    <integer>
+            name        <string>
+            protocol    <string>
+            enum: SCTP, TCP, UDP
+          readinessProbe        <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          resizePolicy  <[]ContainerResizePolicy>
+            resourceName        <string> -required-
+            restartPolicy       <string> -required-
+          resources     <ResourceRequirements>
+            claims      <[]ResourceClaim>
+              name      <string> -required-
+              request   <string>
+            limits      <map[string]Quantity>
+            requests    <map[string]Quantity>
+          restartPolicy <string>
+          restartPolicyRules    <[]ContainerRestartRule>
+            action      <string> -required-
+            exitCodes   <ContainerRestartRuleOnExitCodes>
+              operator  <string> -required-
+              values    <[]integer>
+          securityContext       <SecurityContext>
+            allowPrivilegeEscalation    <boolean>
+            appArmorProfile     <AppArmorProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            capabilities        <Capabilities>
+              add       <[]string>
+              drop      <[]string>
+            privileged  <boolean>
+            procMount   <string>
+            enum: Default, Unmasked
+            readOnlyRootFilesystem      <boolean>
+            runAsGroup  <integer>
+            runAsNonRoot        <boolean>
+            runAsUser   <integer>
+            seLinuxOptions      <SELinuxOptions>
+              level     <string>
+              role      <string>
+              type      <string>
+              user      <string>
+            seccompProfile      <SeccompProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            windowsOptions      <WindowsSecurityContextOptions>
+              gmsaCredentialSpec        <string>
+              gmsaCredentialSpecName    <string>
+              hostProcess       <boolean>
+              runAsUserName     <string>
+          startupProbe  <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          stdin <boolean>
+          stdinOnce     <boolean>
+          terminationMessagePath        <string>
+          terminationMessagePolicy      <string>
+          enum: FallbackToLogsOnError, File
+          tty   <boolean>
+          volumeDevices <[]VolumeDevice>
+            devicePath  <string> -required-
+            name        <string> -required-
+          volumeMounts  <[]VolumeMount>
+            bindMountOptions    <[]string>
+            mountPath   <string> -required-
+            mountPropagation    <string>
+            enum: Bidirectional, HostToContainer, None
+            name        <string> -required-
+            readOnly    <boolean>
+            recursiveReadOnly   <string>
+            subPath     <string>
+            subPathExpr <string>
+          workingDir    <string>
+        dnsConfig       <PodDNSConfig>
+          nameservers   <[]string>
+          options       <[]PodDNSConfigOption>
+            name        <string>
+            value       <string>
+          searches      <[]string>
+        dnsPolicy       <string>
+        enum: ClusterFirst, ClusterFirstWithHostNet, Default, None
+        enableServiceLinks      <boolean>
+        ephemeralContainers     <[]EphemeralContainer>
+          args  <[]string>
+          command       <[]string>
+          env   <[]EnvVar>
+            name        <string> -required-
+            value       <string>
+            valueFrom   <EnvVarSource>
+              configMapKeyRef   <ConfigMapKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+              fieldRef  <ObjectFieldSelector>
+                apiVersion      <string>
+                fieldPath       <string> -required-
+              fileKeyRef        <FileKeySelector>
+                key     <string> -required-
+                optional        <boolean>
+                path    <string> -required-
+                volumeName      <string> -required-
+              resourceFieldRef  <ResourceFieldSelector>
+                containerName   <string>
+                divisor <Quantity>
+                resource        <string> -required-
+              secretKeyRef      <SecretKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+          envFrom       <[]EnvFromSource>
+            configMapRef        <ConfigMapEnvSource>
+              name      <string>
+              optional  <boolean>
+            prefix      <string>
+            secretRef   <SecretEnvSource>
+              name      <string>
+              optional  <boolean>
+          image <string>
+          imagePullPolicy       <string>
+          enum: Always, IfNotPresent, Never
+          lifecycle     <Lifecycle>
+            postStart   <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            preStop     <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            stopSignal  <string>
+            enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+          livenessProbe <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          name  <string> -required-
+          ports <[]ContainerPort>
+            containerPort       <integer> -required-
+            hostIP      <string>
+            hostPort    <integer>
+            name        <string>
+            protocol    <string>
+            enum: SCTP, TCP, UDP
+          readinessProbe        <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          resizePolicy  <[]ContainerResizePolicy>
+            resourceName        <string> -required-
+            restartPolicy       <string> -required-
+          resources     <ResourceRequirements>
+            claims      <[]ResourceClaim>
+              name      <string> -required-
+              request   <string>
+            limits      <map[string]Quantity>
+            requests    <map[string]Quantity>
+          restartPolicy <string>
+          restartPolicyRules    <[]ContainerRestartRule>
+            action      <string> -required-
+            exitCodes   <ContainerRestartRuleOnExitCodes>
+              operator  <string> -required-
+              values    <[]integer>
+          securityContext       <SecurityContext>
+            allowPrivilegeEscalation    <boolean>
+            appArmorProfile     <AppArmorProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            capabilities        <Capabilities>
+              add       <[]string>
+              drop      <[]string>
+            privileged  <boolean>
+            procMount   <string>
+            enum: Default, Unmasked
+            readOnlyRootFilesystem      <boolean>
+            runAsGroup  <integer>
+            runAsNonRoot        <boolean>
+            runAsUser   <integer>
+            seLinuxOptions      <SELinuxOptions>
+              level     <string>
+              role      <string>
+              type      <string>
+              user      <string>
+            seccompProfile      <SeccompProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            windowsOptions      <WindowsSecurityContextOptions>
+              gmsaCredentialSpec        <string>
+              gmsaCredentialSpecName    <string>
+              hostProcess       <boolean>
+              runAsUserName     <string>
+          startupProbe  <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          stdin <boolean>
+          stdinOnce     <boolean>
+          targetContainerName   <string>
+          terminationMessagePath        <string>
+          terminationMessagePolicy      <string>
+          enum: FallbackToLogsOnError, File
+          tty   <boolean>
+          volumeDevices <[]VolumeDevice>
+            devicePath  <string> -required-
+            name        <string> -required-
+          volumeMounts  <[]VolumeMount>
+            bindMountOptions    <[]string>
+            mountPath   <string> -required-
+            mountPropagation    <string>
+            enum: Bidirectional, HostToContainer, None
+            name        <string> -required-
+            readOnly    <boolean>
+            recursiveReadOnly   <string>
+            subPath     <string>
+            subPathExpr <string>
+          workingDir    <string>
+        evictionResponders      <[]EvictionResponder>
+          name  <string> -required-
+          priority      <integer> -required-
+        hostAliases     <[]HostAlias>
+          hostnames     <[]string>
+          ip    <string> -required-
+        hostIPC <boolean>
+        hostNetwork     <boolean>
+        hostPID <boolean>
+        hostUsers       <boolean>
+        hostname        <string>
+        hostnameOverride        <string>
+        imagePullSecrets        <[]LocalObjectReference>
+          name  <string>
+        initContainers  <[]Container>
+          args  <[]string>
+          command       <[]string>
+          env   <[]EnvVar>
+            name        <string> -required-
+            value       <string>
+            valueFrom   <EnvVarSource>
+              configMapKeyRef   <ConfigMapKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+              fieldRef  <ObjectFieldSelector>
+                apiVersion      <string>
+                fieldPath       <string> -required-
+              fileKeyRef        <FileKeySelector>
+                key     <string> -required-
+                optional        <boolean>
+                path    <string> -required-
+                volumeName      <string> -required-
+              resourceFieldRef  <ResourceFieldSelector>
+                containerName   <string>
+                divisor <Quantity>
+                resource        <string> -required-
+              secretKeyRef      <SecretKeySelector>
+                key     <string> -required-
+                name    <string>
+                optional        <boolean>
+          envFrom       <[]EnvFromSource>
+            configMapRef        <ConfigMapEnvSource>
+              name      <string>
+              optional  <boolean>
+            prefix      <string>
+            secretRef   <SecretEnvSource>
+              name      <string>
+              optional  <boolean>
+          image <string>
+          imagePullPolicy       <string>
+          enum: Always, IfNotPresent, Never
+          lifecycle     <Lifecycle>
+            postStart   <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            preStop     <LifecycleHandler>
+              exec      <ExecAction>
+                command <[]string>
+              httpGet   <HTTPGetAction>
+                host    <string>
+                httpHeaders     <[]HTTPHeader>
+                  name  <string> -required-
+                  value <string> -required-
+                path    <string>
+                port    <IntOrString> -required-
+                protocol        <string>
+                enum: HTTP1, HTTP2
+                scheme  <string>
+                enum: HTTP, HTTPS
+              sleep     <SleepAction>
+                seconds <integer> -required-
+              tcpSocket <TCPSocketAction>
+                host    <string>
+                port    <IntOrString> -required-
+            stopSignal  <string>
+            enum: SIGABRT, SIGALRM, SIGBUS, SIGCHLD, ....
+          livenessProbe <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          name  <string> -required-
+          ports <[]ContainerPort>
+            containerPort       <integer> -required-
+            hostIP      <string>
+            hostPort    <integer>
+            name        <string>
+            protocol    <string>
+            enum: SCTP, TCP, UDP
+          readinessProbe        <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          resizePolicy  <[]ContainerResizePolicy>
+            resourceName        <string> -required-
+            restartPolicy       <string> -required-
+          resources     <ResourceRequirements>
+            claims      <[]ResourceClaim>
+              name      <string> -required-
+              request   <string>
+            limits      <map[string]Quantity>
+            requests    <map[string]Quantity>
+          restartPolicy <string>
+          restartPolicyRules    <[]ContainerRestartRule>
+            action      <string> -required-
+            exitCodes   <ContainerRestartRuleOnExitCodes>
+              operator  <string> -required-
+              values    <[]integer>
+          securityContext       <SecurityContext>
+            allowPrivilegeEscalation    <boolean>
+            appArmorProfile     <AppArmorProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            capabilities        <Capabilities>
+              add       <[]string>
+              drop      <[]string>
+            privileged  <boolean>
+            procMount   <string>
+            enum: Default, Unmasked
+            readOnlyRootFilesystem      <boolean>
+            runAsGroup  <integer>
+            runAsNonRoot        <boolean>
+            runAsUser   <integer>
+            seLinuxOptions      <SELinuxOptions>
+              level     <string>
+              role      <string>
+              type      <string>
+              user      <string>
+            seccompProfile      <SeccompProfile>
+              localhostProfile  <string>
+              type      <string> -required-
+              enum: Localhost, RuntimeDefault, Unconfined
+            windowsOptions      <WindowsSecurityContextOptions>
+              gmsaCredentialSpec        <string>
+              gmsaCredentialSpecName    <string>
+              hostProcess       <boolean>
+              runAsUserName     <string>
+          startupProbe  <Probe>
+            exec        <ExecAction>
+              command   <[]string>
+            failureThreshold    <integer>
+            grpc        <GRPCAction>
+              mode      <string>
+              enum: Plaintext, TLS
+              port      <integer> -required-
+              service   <string>
+            httpGet     <HTTPGetAction>
+              host      <string>
+              httpHeaders       <[]HTTPHeader>
+                name    <string> -required-
+                value   <string> -required-
+              path      <string>
+              port      <IntOrString> -required-
+              protocol  <string>
+              enum: HTTP1, HTTP2
+              scheme    <string>
+              enum: HTTP, HTTPS
+            initialDelaySeconds <integer>
+            periodSeconds       <integer>
+            successThreshold    <integer>
+            tcpSocket   <TCPSocketAction>
+              host      <string>
+              port      <IntOrString> -required-
+            terminationGracePeriodSeconds       <integer>
+            timeoutSeconds      <integer>
+          stdin <boolean>
+          stdinOnce     <boolean>
+          terminationMessagePath        <string>
+          terminationMessagePolicy      <string>
+          enum: FallbackToLogsOnError, File
+          tty   <boolean>
+          volumeDevices <[]VolumeDevice>
+            devicePath  <string> -required-
+            name        <string> -required-
+          volumeMounts  <[]VolumeMount>
+            bindMountOptions    <[]string>
+            mountPath   <string> -required-
+            mountPropagation    <string>
+            enum: Bidirectional, HostToContainer, None
+            name        <string> -required-
+            readOnly    <boolean>
+            recursiveReadOnly   <string>
+            subPath     <string>
+            subPathExpr <string>
+          workingDir    <string>
+        nodeName        <string>
+        nodeSelector    <map[string]string>
+        os      <PodOS>
+          name  <string> -required-
+        overhead        <map[string]Quantity>
+        preemptionPolicy        <string>
+        enum: Never, PreemptLowerPriority
+        priority        <integer>
+        priorityClassName       <string>
+        readinessGates  <[]PodReadinessGate>
+          conditionType <string> -required-
+        resourceClaims  <[]PodResourceClaim>
+          name  <string> -required-
+          resourceClaimName     <string>
+          resourceClaimTemplateName     <string>
+        resources       <ResourceRequirements>
+          claims        <[]ResourceClaim>
+            name        <string> -required-
+            request     <string>
+          limits        <map[string]Quantity>
+          requests      <map[string]Quantity>
+        restartPolicy   <string>
+        enum: Always, Never, OnFailure
+        runtimeClassName        <string>
+        schedulerName   <string>
+        schedulingGates <[]PodSchedulingGate>
+          name  <string> -required-
+        schedulingGroup <PodSchedulingGroup>
+          podGroupName  <string>
+        securityContext <PodSecurityContext>
+          appArmorProfile       <AppArmorProfile>
+            localhostProfile    <string>
+            type        <string> -required-
+            enum: Localhost, RuntimeDefault, Unconfined
+          fsGroup       <integer>
+          fsGroupChangePolicy   <string>
+          enum: Always, OnRootMismatch
+          runAsGroup    <integer>
+          runAsNonRoot  <boolean>
+          runAsUser     <integer>
+          seLinuxChangePolicy   <string>
+          seLinuxOptions        <SELinuxOptions>
+            level       <string>
+            role        <string>
+            type        <string>
+            user        <string>
+          seccompProfile        <SeccompProfile>
+            localhostProfile    <string>
+            type        <string> -required-
+            enum: Localhost, RuntimeDefault, Unconfined
+          supplementalGroups    <[]integer>
+          supplementalGroupsPolicy      <string>
+          enum: Merge, Strict
+          sysctls       <[]Sysctl>
+            name        <string> -required-
+            value       <string> -required-
+          windowsOptions        <WindowsSecurityContextOptions>
+            gmsaCredentialSpec  <string>
+            gmsaCredentialSpecName      <string>
+            hostProcess <boolean>
+            runAsUserName       <string>
+        serviceAccount  <string>
+        serviceAccountName      <string>
+        setHostnameAsFQDN       <boolean>
+        shareProcessNamespace   <boolean>
+        subdomain       <string>
+        terminationGracePeriodSeconds   <integer>
+        tolerations     <[]Toleration>
+          effect        <string>
+          enum: NoExecute, NoSchedule, PreferNoSchedule
+          key   <string>
+          operator      <string>
+          enum: Equal, Exists, Gt, Lt
+          tolerationSeconds     <integer>
+          value <string>
+        topologySpreadConstraints       <[]TopologySpreadConstraint>
+          labelSelector <LabelSelector>
+            matchExpressions    <[]LabelSelectorRequirement>
+              key       <string> -required-
+              operator  <string> -required-
+              values    <[]string>
+            matchLabels <map[string]string>
+          matchLabelKeys        <[]string>
+          maxSkew       <integer> -required-
+          minDomains    <integer>
+          nodeAffinityPolicy    <string>
+          enum: Honor, Ignore
+          nodeTaintsPolicy      <string>
+          enum: Honor, Ignore
+          topologyKey   <string> -required-
+          whenUnsatisfiable     <string> -required-
+          enum: DoNotSchedule, ScheduleAnyway
+        volumes <[]Volume>
+          awsElasticBlockStore  <AWSElasticBlockStoreVolumeSource>
+            fsType      <string>
+            partition   <integer>
+            readOnly    <boolean>
+            volumeID    <string> -required-
+          azureDisk     <AzureDiskVolumeSource>
+            cachingMode <string>
+            enum: None, ReadOnly, ReadWrite
+            diskName    <string> -required-
+            diskURI     <string> -required-
+            fsType      <string>
+            kind        <string>
+            enum: Dedicated, Managed, Shared
+            readOnly    <boolean>
+          azureFile     <AzureFileVolumeSource>
+            readOnly    <boolean>
+            secretName  <string> -required-
+            shareName   <string> -required-
+          cephfs        <CephFSVolumeSource>
+            monitors    <[]string> -required-
+            path        <string>
+            readOnly    <boolean>
+            secretFile  <string>
+            secretRef   <LocalObjectReference>
+              name      <string>
+            user        <string>
+          cinder        <CinderVolumeSource>
+            fsType      <string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference>
+              name      <string>
+            volumeID    <string> -required-
+          configMap     <ConfigMapVolumeSource>
+            defaultMode <integer>
+            defaultUser <integer>
+            items       <[]KeyToPath>
+              key       <string> -required-
+              mode      <integer>
+              path      <string> -required-
+              user      <integer>
+            name        <string>
+            optional    <boolean>
+          csi   <CSIVolumeSource>
+            driver      <string> -required-
+            fsType      <string>
+            nodePublishSecretRef        <LocalObjectReference>
+              name      <string>
+            readOnly    <boolean>
+            volumeAttributes    <map[string]string>
+          downwardAPI   <DownwardAPIVolumeSource>
+            defaultMode <integer>
+            defaultUser <integer>
+            items       <[]DownwardAPIVolumeFile>
+              fieldRef  <ObjectFieldSelector>
+                apiVersion      <string>
+                fieldPath       <string> -required-
+              mode      <integer>
+              path      <string> -required-
+              resourceFieldRef  <ResourceFieldSelector>
+                containerName   <string>
+                divisor <Quantity>
+                resource        <string> -required-
+              user      <integer>
+          emptyDir      <EmptyDirVolumeSource>
+            medium      <string>
+            mode        <integer>
+            sizeLimit   <Quantity>
+          ephemeral     <EphemeralVolumeSource>
+            volumeClaimTemplate <PersistentVolumeClaimTemplate>
+              metadata  <ObjectMeta>
+                annotations     <map[string]string>
+                creationTimestamp       <string>
+                deletionGracePeriodSeconds      <integer>
+                deletionTimestamp       <string>
+                finalizers      <[]string>
+                generateName    <string>
+                generation      <integer>
+                labels  <map[string]string>
+                managedFields   <[]ManagedFieldsEntry>
+                  apiVersion    <string>
+                  fieldsType    <string>
+                  fieldsV1      <FieldsV1>
+                  manager       <string>
+                  operation     <string>
+                  subresource   <string>
+                  time  <string>
+                name    <string>
+                namespace       <string>
+                ownerReferences <[]OwnerReference>
+                  apiVersion    <string> -required-
+                  blockOwnerDeletion    <boolean>
+                  controller    <boolean>
+                  kind  <string> -required-
+                  name  <string> -required-
+                  uid   <string> -required-
+                resourceVersion <string>
+                selfLink        <string>
+                uid     <string>
+              spec      <PersistentVolumeClaimSpec> -required-
+                accessModes     <[]string>
+                dataSource      <TypedLocalObjectReference>
+                  apiGroup      <string>
+                  kind  <string> -required-
+                  name  <string> -required-
+                dataSourceRef   <TypedObjectReference>
+                  apiGroup      <string>
+                  kind  <string> -required-
+                  name  <string> -required-
+                  namespace     <string>
+                resources       <VolumeResourceRequirements>
+                  limits        <map[string]Quantity>
+                  requests      <map[string]Quantity>
+                selector        <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                storageClassName        <string>
+                volumeAttributesClassName       <string>
+                volumeMode      <string>
+                enum: Block, Filesystem
+                volumeName      <string>
+          fc    <FCVolumeSource>
+            fsType      <string>
+            lun <integer>
+            readOnly    <boolean>
+            targetWWNs  <[]string>
+            wwids       <[]string>
+          flexVolume    <FlexVolumeSource>
+            driver      <string> -required-
+            fsType      <string>
+            options     <map[string]string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference>
+              name      <string>
+          flocker       <FlockerVolumeSource>
+            datasetName <string>
+            datasetUUID <string>
+          gcePersistentDisk     <GCEPersistentDiskVolumeSource>
+            fsType      <string>
+            partition   <integer>
+            pdName      <string> -required-
+            readOnly    <boolean>
+          gitRepo       <GitRepoVolumeSource>
+            directory   <string>
+            repository  <string> -required-
+            revision    <string>
+          glusterfs     <GlusterfsVolumeSource>
+            endpoints   <string> -required-
+            path        <string> -required-
+            readOnly    <boolean>
+          hostPath      <HostPathVolumeSource>
+            path        <string> -required-
+            type        <string>
+            enum: "", BlockDevice, CharDevice, Directory, ....
+          image <ImageVolumeSource>
+            pullPolicy  <string>
+            enum: Always, IfNotPresent, Never
+            reference   <string>
+          iscsi <ISCSIVolumeSource>
+            chapAuthDiscovery   <boolean>
+            chapAuthSession     <boolean>
+            fsType      <string>
+            initiatorName       <string>
+            iqn <string> -required-
+            iscsiInterface      <string>
+            lun <integer> -required-
+            portals     <[]string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference>
+              name      <string>
+            targetPortal        <string> -required-
+          name  <string> -required-
+          nfs   <NFSVolumeSource>
+            path        <string> -required-
+            readOnly    <boolean>
+            server      <string> -required-
+          persistentVolumeClaim <PersistentVolumeClaimVolumeSource>
+            claimName   <string> -required-
+            readOnly    <boolean>
+          photonPersistentDisk  <PhotonPersistentDiskVolumeSource>
+            fsType      <string>
+            pdID        <string> -required-
+          portworxVolume        <PortworxVolumeSource>
+            fsType      <string>
+            readOnly    <boolean>
+            volumeID    <string> -required-
+          projected     <ProjectedVolumeSource>
+            defaultMode <integer>
+            defaultUser <integer>
+            sources     <[]VolumeProjection>
+              clusterTrustBundle        <ClusterTrustBundleProjection>
+                labelSelector   <LabelSelector>
+                  matchExpressions      <[]LabelSelectorRequirement>
+                    key <string> -required-
+                    operator    <string> -required-
+                    values      <[]string>
+                  matchLabels   <map[string]string>
+                name    <string>
+                optional        <boolean>
+                path    <string> -required-
+                signerName      <string>
+                user    <integer>
+              configMap <ConfigMapProjection>
+                items   <[]KeyToPath>
+                  key   <string> -required-
+                  mode  <integer>
+                  path  <string> -required-
+                  user  <integer>
+                name    <string>
+                optional        <boolean>
+              downwardAPI       <DownwardAPIProjection>
+                items   <[]DownwardAPIVolumeFile>
+                  fieldRef      <ObjectFieldSelector>
+                    apiVersion  <string>
+                    fieldPath   <string> -required-
+                  mode  <integer>
+                  path  <string> -required-
+                  resourceFieldRef      <ResourceFieldSelector>
+                    containerName       <string>
+                    divisor     <Quantity>
+                    resource    <string> -required-
+                  user  <integer>
+              podCertificate    <PodCertificateProjection>
+                certificateChainPath    <string>
+                credentialBundlePath    <string>
+                keyPath <string>
+                keyType <string> -required-
+                maxExpirationSeconds    <integer>
+                signerName      <string> -required-
+                user    <integer>
+                userAnnotations <map[string]string>
+              secret    <SecretProjection>
+                items   <[]KeyToPath>
+                  key   <string> -required-
+                  mode  <integer>
+                  path  <string> -required-
+                  user  <integer>
+                name    <string>
+                optional        <boolean>
+              serviceAccountToken       <ServiceAccountTokenProjection>
+                audience        <string>
+                expirationSeconds       <integer>
+                path    <string> -required-
+                user    <integer>
+          quobyte       <QuobyteVolumeSource>
+            group       <string>
+            readOnly    <boolean>
+            registry    <string> -required-
+            tenant      <string>
+            user        <string>
+            volume      <string> -required-
+          rbd   <RBDVolumeSource>
+            fsType      <string>
+            image       <string> -required-
+            keyring     <string>
+            monitors    <[]string> -required-
+            pool        <string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference>
+              name      <string>
+            user        <string>
+          scaleIO       <ScaleIOVolumeSource>
+            fsType      <string>
+            gateway     <string> -required-
+            protectionDomain    <string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference> -required-
+              name      <string>
+            sslEnabled  <boolean>
+            storageMode <string>
+            storagePool <string>
+            system      <string> -required-
+            volumeName  <string>
+          secret        <SecretVolumeSource>
+            defaultMode <integer>
+            defaultUser <integer>
+            items       <[]KeyToPath>
+              key       <string> -required-
+              mode      <integer>
+              path      <string> -required-
+              user      <integer>
+            optional    <boolean>
+            secretName  <string>
+          storageos     <StorageOSVolumeSource>
+            fsType      <string>
+            readOnly    <boolean>
+            secretRef   <LocalObjectReference>
+              name      <string>
+            volumeName  <string>
+            volumeNamespace     <string>
+          vsphereVolume <VsphereVirtualDiskVolumeSource>
+            fsType      <string>
+            storagePolicyID     <string>
+            storagePolicyName   <string>
+            volumePath  <string> -required-
+  status        <ReplicationControllerStatus>
+    availableReplicas   <integer>
+    conditions  <[]ReplicationControllerCondition>
+      lastTransitionTime        <string>
+      message   <string>
+      reason    <string>
+      status    <string> -required-
+      type      <string> -required-
+    fullyLabeledReplicas        <integer>
+    observedGeneration  <integer>
+    readyReplicas       <integer>
+    replicas    <integer> -required-
+
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# kubectl explain rc.spec.replicas
+kubectl explain rc.spec.replicas
+
+KIND:       ReplicationController
+VERSION:    v1
+
+FIELD: replicas <integer>
+
+
+DESCRIPTION:
+    Replicas is the number of desired replicas. This is a pointer to distinguish
+    between explicit zero and unspecified. Defaults to 1. More info:
+    https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#what-is-a-replicationcontroller
+
+
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# k explain rs
+GROUP:      apps
+KIND:       ReplicaSet
+VERSION:    v1
+
+DESCRIPTION:
+    ReplicaSet ensures that a specified number of pod replicas are running at
+    any given time.
+
+FIELDS:
+  apiVersion    <string>
+    APIVersion defines the versioned schema of this representation of an object.
+    Servers should convert recognized schemas to the latest internal value, and
+    may reject unrecognized values. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+
+  kind  <string>
+    Kind is a string value representing the REST resource this object
+    represents. Servers may infer this from the endpoint the client submits
+    requests to. Cannot be updated. In CamelCase. More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+
+  metadata      <ObjectMeta>
+    If the Labels of a ReplicaSet are empty, they are defaulted to be the same
+    as the Pod(s) that the ReplicaSet manages. Standard object's metadata. More
+    info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+
+  spec  <ReplicaSetSpec> -required-
+    Spec defines the specification of the desired behavior of the ReplicaSet.
+    More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+  status        <ReplicaSetStatus>
+    Status is the most recently observed status of the ReplicaSet. This data may
+    be out of date by some window of time. Populated by the system. Read-only.
+    More info:
+    https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+
+
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# k get rs
+NAME       DESIRED   CURRENT   READY   AGE
+nginx-rs   3         3         3       5m38s
+[root@master[~/kube/06/rs]# k get pods
+NAME             READY   STATUS    RESTARTS   AGE
+nginx-rs-dsnzf   1/1     Running   0          5m48s
+nginx-rs-fh9qw   1/1     Running   0          5m48s
+nginx-rs-w2cf6   1/1     Running   0          5m48s
+[root@master[~/kube/06/rs]# k describe rsdnginx-rs-
+Name:         nginx-rs
+Namespace:    default
+Selector:     app=webui
+Labels:       <none>
+Annotations:  <none>
+Replicas:     3 current / 3 desired
+Pods Status:  3 Running / 0 Waiting / 0 Succeeded / 0 Failed
+Pod Template:
+  Labels:  app=webui
+  Containers:
+   nginx-container:
+    Image:         nginx:1.26
+    Port:          <none>
+    Host Port:     <none>
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Events:
+  Type    Reason            Age   From                   Message
+  ----    ------            ----  ----                   -------
+  Normal  SuccessfulCreate  6m2s  replicaset-controller  Created pod: nginx-rs-dsnzf
+  Normal  SuccessfulCreate  6m2s  replicaset-controller  Created pod: nginx-rs-fh9qw
+  Normal  SuccessfulCreate  6m2s  replicaset-controller  Created pod: nginx-rs-w2cf6
+[root@master[~/kube/06/rs]# k describe rs nginx-rs-dsnzf
+Error from server (NotFound): replicasets.apps "nginx-rs-dsnzf" not found
+[root@master[~/kube/06/rs]# ^C
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# k delete podsgnginx-rs-dsnzf
+pod "nginx-rs-dsnzf" deleted from default namespace
+[root@master[~/kube/06/rs]# k scale rs nginx-rs --replicas 4
+replicaset.apps/nginx-rs scaled
+[root@master[~/kube/06/rs]# k delete rs nginx-rs --cascade orphan
+replicaset.apps "nginx-rs" deleted from default namespace
+Error from server (NotFound): replicasets.apps "orphan" not found
+[root@master[~/kube/06/rs]# k get rs
+No resources found in default namespace.
+[root@master[~/kube/06/rs]# k get pods --show-labels
+No resources found in default namespace.
+[root@master[~/kube/06/rs]# k create rs nginx-rs.yml
+error: Unexpected args: [rs nginx-rs.yml]
+See 'kubectl create -h' for help and examples
+[root@master[~/kube/06/rs]# k create 1@-1@fnx-rs.yml
+replicaset.apps/nginx-rs created
+[root@master[~/deleteorssnginx-rsa--cascade=orphanml
+replicaset.apps "nginx-rs" deleted from default namespace
+[root@master[~/kube/06/rs]# k delete -f nginx-rs.yml
+Error from server (NotFound): error when deleting "nginx-rs.yml": replicasets.apps "nginx-rs" not found
+[root@master[~/kube/06/rs]# k 11@d1@1@r1@sinx-rs.yml
+error: when paths, URLs, or stdin is provided as input, you may not specify resource arguments as well
+[root@master[~/kube/06/rs]k deletet-frnginx-rs.ymls.yml
+Error from server (NotFound): error when deleting "nginx-rs.yml": replicasets.apps "nginx-rs" not found
+[root@master[~/kube/06/rs]# k create -f nginx-rs.yml
+replicaset.apps/nginx-rs created
+[root@master[~/kube/06/rs]# k delete -f nginx-rs.yml
+replicaset.apps "nginx-rs" deleted from default namespace
+[root@master[~/kube/06/rs]# c
+nnn[root@master[~/kube/06/rs]# mkdir -p  ~/kube/06/labs/rs
+[root@master[~/kube/06/rs]# cd  ~/kube/06/labs/rs
+[root@master[~/kube/06/labs/rs]# c
+nnn[root@master[~/kube/06/labs/rs]# k run mainui-rs --image httpd:2.2 --port 80 --rs -o yaml > rs-lab.yml
+error: unknown flag: --rs
+See 'kubectl run --help' for usage.
+[root@master[~/kube/06/labs/rs]# k run mainui-rs --image httpd:2.2 --port 81@-1@-1@d1@r1@y4@-runab.yml
+W1014 20:58:58.123647  389413 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[~/kube/06/labs/rs]# ks
+bash: ks: command not found...
+[root@master[~/kube/06/labs/rs]# ls
+rs-lab.yml
+[root@master[~/kube/06/labs/rs]# k create -f rs-lab.yml
+
+Error from server (BadRequest): error when creating "rs-lab.yml": ReplicaSet in version "v1" cannot be handled as a ReplicaSet: strict decoding error: unknown field "spec.template.spec.containers[0].port"
+[root@master[~/kube/06/labs/rs]#
+[root@master[~/kube/06/labs/rs]# k create -f rs-lab.yml
+Error from server (BadRequest): error when creating "rs-lab.yml": ReplicaSet in version "v1" cannot be handled as a ReplicaSet: strict decoding error: unknown field "spec.template.spec.containers[0].port"
+[root@master[~/kube/06/labs/rs]# k evscribe
+error: unknown command "ev" for "kubectl"
+
+Did you mean this?
+        set
+        get
+        cp
+        events
+[root@master[~/kube/06/labs/rs]# k get logs
+error: the server doesn't have a resource type "logs"
+[root@master[~/kube/06/labs/rs]# k get logs
+error: the server doesn't have a resource type "log"
+[root@master[~/kube/06/labs/rs]# kscreateg-f rs-lab.yml
+Error from server (BadRequest): error when creating "rs-lab.yml": ReplicaSet in version "v1" cannot be handled as a ReplicaSet: strict decoding error: unknown field "spec.template.spec.containers[0].port"
+[root@master[~/kube/06/labs/rs]# k create -f rs-lab.yml
+replicaset.apps/mainui-rs created
+[root@master[~/kube/06/labs/rs]# k scale rs/
+mainui-rs                                                    --replicas  (The new desired number of replicas. Required.)
+[root@master[~/kube/06/labs/rs]# k scale rs
+mainui-rs                                                    --replicas  (The new desired number of replicas. Required.)
+[root@master[~/kube/06/labs/rs]# k scale rs mainui-rs --replicas 1
+replicaset.apps/mainui-rs scaled
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-5mcvs
+pod "mainui-rs-5mcvs" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# skopeo list-tag docker://docker.io/httpd:2.2
+bash: skopeo: command not found...
+Install package 'skopeo' to provide command 'skopeo'? [N/y] y
+
+
+ * Waiting in queue...
+ * Loading list of packages....
+The following packages have to be installed:
+ skopeo-3:1.24.0-2.el10.x86_64  Inspect container images and repositories on registries
+Proceed with changes? [N/y] y
+
+
+ * Waiting in queue...
+ * Waiting for authentication...
+ * Waiting in queue... y
+ * Downloading packages...
+ * Requesting data...
+ * Testing changes...
+ * Installing packages...
+FATA[0000] Unrecognized command `skopeo list-tag`
+
+Did you mean this?
+        list-tags
+
+Try 'skopeo --help' for more information
+
+[root@master[~/kube/06/labs/rs]# k describe pods mainui-rs-pv7f2
+Name:             mainui-rs-pv7f2
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 21:11:44 +0900
+Labels:           app=main
+                  name=apache
+                  rel=stable
+Annotations:      cni.projectcalico.org/containerID: 66595c7e2dac5c257c5c47a78036ae9695baf33d487aba2d8253c9f29adf0b89
+                  cni.projectcalico.org/podIP: 10.10.166.171/32
+                  cni.projectcalico.org/podIPs: 10.10.166.171/32
+Status:           Pending
+IP:               10.10.166.171
+IPs:
+  IP:           10.10.166.171
+Controlled By:  ReplicaSet/mainui-rs
+Containers:
+  mainui-container:
+    Container ID:
+    Image:          http:2.2
+    Image ID:
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Waiting
+      Reason:       ImagePullBackOff
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-5ldb9 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  kube-api-access-5ldb9:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason     Age                  From               Message
+  ----     ------     ----                 ----               -------
+  Normal   Scheduled  2m36s                default-scheduler  Successfully assigned default/mainui-rs-pv7f2 to node1
+  Normal   Pulling    71s (x4 over 2m36s)  kubelet            spec.containers{mainui-container}: Pulling image "http:2.2"
+  Warning  Failed     70s (x4 over 2m34s)  kubelet            spec.containers{mainui-container}: Failed to pull image "http:2.2": failed to pull and unpack image "docker.io/library/http:2.2": failed to resolve image: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     70s (x4 over 2m34s)  kubelet            spec.containers{mainui-container}: Error: ErrImagePull
+  Normal   BackOff    6s (x9 over 2m34s)   kubelet            spec.containers{mainui-container}: Back-off pulling image "http:2.2"
+  Warning  Failed     6s (x9 over 2m34s)   kubelet            spec.containers{mainui-container}: Error: ImagePullBackOff
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-pv7f2
+pod "mainui-rs-pv7f2" deleted from default namespace
+[root@masterskopeoelist-tag/docker://docker.io/httpd:2.2-pv7f2
+FATA[0000] Unrecognized command `skopeo list-tag`
+
+Did you mean this?
+        list-tags
+
+Try 'skopeo --help' for more information
+[root@master[~/kube/06/labs/rs]# podman  search httpd | grep :2.2
+[root@master[~/kube/06/labs/rs]# podman  search httpd | grep :2.2
+NAME                                                                                                  DESCRIPTION
+registry.redhat.io/rhscl/httpd-24-rhel7                                                               Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/rhel8/httpd-24                                                                     Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/rhmap44/httpd                                                                      RHMAP Docker container that provides the RHM...
+registry.redhat.io/rhmap45/httpd                                                                      RHMAP Container image that provides the RHMA...
+registry.redhat.io/cloudforms46-beta/cfme-openshift-httpd                                             CloudForms 4.6 Httpd for OpenShift
+registry.redhat.io/cloudforms46/cfme-openshift-httpd                                                  CloudForms 4.6 Httpd for OpenShift
+registry.redhat.io/rhmap46/httpd                                                                      RHMAP Container image that provides the RHMA...
+registry.redhat.io/amq7/amq-online-1-console-httpd                                                    AMQ Online Console HTTPD
+registry.redhat.io/openshift4/ose-egress-http-proxy                                                   OpenShift Egress HTTP Proxy
+registry.redhat.io/ubi8/httpd-24                                                                      Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/rhel9/httpd-24                                                                     Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/ubi9/httpd-24                                                                      Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/rhel10/httpd-24                                                                    Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/ubi10/httpd-24                                                                     Platform for running Apache httpd 2.4 or bui...
+registry.redhat.io/rhscl/varnish-4-rhel7                                                              Varnish 4 high-performance HTTP accelerator
+registry.redhat.io/amq7-tech-preview/amq-online-1-iot-http-adapter                                    AMQ Online IoT HTTP Adapter
+registry.redhat.io/rhmap42/httpd                                                                      RHMAP Docker container that provides the RHM...
+registry.redhat.io/rhmap43/httpd                                                                      RHMAP Docker container that provides the RHM...
+registry.redhat.io/rhmap47/httpd                                                                      RHMAP container image that provides the RHMA...
+registry.redhat.io/cloudforms47/cfme-openshift-httpd                                                  CloudForms 4.7 Httpd for OpenShift
+registry.redhat.io/openshift4/ose-egress-http-proxy-rhel9                                             OpenShift Egress HTTP Proxy
+registry.redhat.io/openshift3/ose-egress-http-proxy                                                   OpenShift Container Platform Egress Http Pro...
+registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-operator-rhel9     Custom Metrics Autoscaler HTTP Add-On Operat...
+registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-interceptor-rhel9  Custom Metrics Autoscaler HTTP Add-On Interc...
+registry.redhat.io/custom-metrics-autoscaler/custom-metrics-autoscaler-http-add-on-scaler-rhel9       Custom Metrics Autoscaler HTTP Add-On Scaler
+docker.io/library/httpd                                                                               The Apache HTTP Server Project
+docker.io/manageiq/httpd                                                                              Container with httpd, built on CentOS for Ma...
+docker.io/paketobuildpacks/httpd
+docker.io/vulhub/httpd
+docker.io/openeuler/httpd
+docker.io/dockerpinata/httpd
+docker.io/jokerjack/httpd                                                                             base image:  buxybox, running httpd server,...
+docker.io/centos/httpd
+docker.io/e2eteam/httpd
+docker.io/manasip/httpd
+docker.io/6sycho/httpd                                                                                busybox httpd /docker run --name -d mageedu/...
+docker.io/litaotaodocker/httpd                                                                        busybox httpd docker run -name NAME -d litao...
+docker.io/ohcoder/httpd                                                                               busybox httpd  docker run --name NAME -d ohc...
+docker.io/liubaoyu/httpd                                                                              busybox httpd     docker run --name NAME -d...
+docker.io/muda/httpd                                                                                  busybox httpd   docker run --name NAME -d ma...
+docker.io/dockerptu/httpd                                                                             busybox httpd     'docker run --name NAME -d...
+docker.io/puyanhong/httpd                                                                             busybox httpd ,  docker run --name NAME -d p...
+docker.io/wanliduxing/httpd                                                                           busybox httpd  docker run --name NAME -d  ma...
+docker.io/ghtl/httpd                                                                                  busybox httpd  docker run --name NAME -d ght...
+docker.io/lolhens/httpd                                                                               Apache httpd 2 Server
+docker.io/vishakkv/httpd                                                                              spinup httpd in centos 7
+docker.io/amd64/httpd                                                                                 The Apache HTTP Server Project
+docker.io/went2675/httpd                                                                              docker --name NAME -d went2675/httpd
+docker.io/tangxj/httpd                                                                                busybox-httpd,you should use this command: d...
+docker.io/futdryt/httpd
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-fl4zg
+pod "mainui-rs-fl4zg" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-lbk67
+pod "mainui-rs-lbk67" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-dczhs
+pod "mainui-rs-dczhs" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# k apply
+edit-last-applied  (Edit latest last-applied-configuration annotations of a resource/object)
+set-last-applied   (Set the last-applied-configuration annotation on a live object to match the contents of a file)
+view-last-applied  (View the latest last-applied-configuration annotations of a resource/object)
+[root@master[~/kube/06/labs/rs]# k apply
+edit-last-applied  (Edit latest last-applied-configuration annotations of a resource/object)
+set-last-applied   (Set the last-applied-configuration annotation on a live object to match the contents of a file)
+view-last-applied  (View the latest last-applied-configuration annotations of a resource/object)
+[root@master[~/kube/06/labs/rs]# k delete-rs mainui-rs
+replicaset.apps "mainui-rs" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# k create -f rs-lab.yml
+replicaset.apps/mainui-rs created
+[root@master[~/kube/06/labs/rs]# k apply -f rs-lab.yml
+Warning: resource replicasets/mainui-rs is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+replicaset.apps/mainui-rs configured
+[root@master[~/kube/06/labs/rs]# k scale rs
+mainui-rs                                                    --replicas  (The new desired number of replicas. Required.)
+[root@master[~/kube/06/labs/rs]# k scale rs
+mainui-rs                                                    --replicas  (The new desired number of replicas. Required.)
+[root@master[~/kube/06/labs/rs]# k scale rs mainui-rs --replicas 1
+replicaset.apps/mainui-rs scaled
+[root@master[~/kube/06/labs/rs]# k delete pods mainui-rs-b9d44
+pod "mainui-rs-b9d44" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# k delete rs mainui-rs
+replicaset.apps "mainui-rs" deleted from default namespace
+[root@master[~/kube/06/labs/rs]# c
+mkdiro-p@~/kube/06/deploy/&&bcdr~/kube/06/deployube/06/deploy && cd ~/kube/06/deploy
+[root@master[~/kube/06/deploy]# c
+nnn[root@master[~/kube/06/deploy]# vi nginx-deploy.yml
+>4;2m"nginx-deploy.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-deploy.yml" [New] 0L, 0B written                                                                                                                          ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::wq
+>4;m[root@master[~/kube/06/deploy]# which poweroff.sh
+/root/bin/poweroff.sh
+[root@master[~/kube/06/deploy]# kccreate -f nginx-deploy.yml
+Error from server (BadRequest): error when creating "nginx-deploy.yml": Deployment in version "v1" cannot be handled as a Deployment: strict decoding error: unknown field "spec.template.spec.containers[0].prots"
+[root@master[~/kube/06/deploy]# k create -f nginx-deploy.yml
+deployment.apps/nginx-deploy created
+[root@master[~/kube/06/deploy]# k get deployments.apps l
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deploy   3/3     3            3           45s
+[root@master[~/kube/06/deploy]# k get deployments.apps -o wide
+NAME           READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS        IMAGES       SELECTOR
+nginx-deploy   3/3     3            3           55s   nginx-container   nginx:1.26   app=webui
+[root@master[~/kube/06/deploy]# k get rs -o wide
+NAME                      DESIRED   CURRENT   READY   AGE   CONTAINERS        IMAGES       SELECTOR
+nginx-deploy-7776d96658   3         3         3       73s   nginx-container   nginx:1.26   app=webui,pod-template-hash=7776d96658
+[root@master[~/kube/06/deploy]# k get r1@co wide
+No resources found in default namespace.
+[root@master[~/kube/06/deplo1@p1@o1@d1@s -o wide
+NAME                            READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+nginx-deploy-7776d96658-bnwk7   1/1     Running   0          94s   10.10.166.175   node1   <none>           <none>
+nginx-deploy-7776d96658-brp4v   1/1     Running   0          94s   10.10.104.22    node2   <none>           <none>
+nginx-deploy-7776d96658-nmvmr   1/1     Running   0          94s   10.10.135.18    node3   <none>           <none>
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]# k get all
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/nginx-deploy-7776d96658-bnwk7   1/1     Running   0          107s
+pod/nginx-deploy-7776d96658-brp4v   1/1     Running   0          107s
+pod/nginx-deploy-7776d96658-nmvmr   1/1     Running   0          107s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   2d4h
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx-deploy   3/3     3            3           107s
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/nginx-deploy-7776d96658   3         3         3       107s
+[root@master[~/kube/06/deploy]# c
+nnn[root@master[~/kube/06/deploy]# k delete pods nginx-deploy-7776d96658-
+Error from server (NotFound): pods "nginx-deploy-7776d96658-" not found
+[root@master[~/kube/06/deploy]# k delete pods nginx-deploy-7776d96658-b
+Error from server (NotFound): pods "nginx-deploy-7776d96658-b" not found
+[root@master[~/kube/06/deploy]# k delete pods nginx-deploy-7776d96658-bnwk7
+pod "nginx-deploy-7776d96658-bnwk7" deleted from default namespace
+[root@master[~/kube/06/deploy]# k scale
+deployment                                                              replicationcontroller
+replicaset                                                              statefulset
+--replicas             (The new desired number of replicas. Required.)
+[root@master[~/kube/06/deploy]# k scale deployment
+nginx-deploy                                                   --replicas    (The new desired number of replicas. Required.)
+[root@master[~/kube/06/deploy]# k scale deployment nginx-deploy --replicas 2
+deployment.apps/nginx-deploy scaled
+[root@master[~/kube/06/deploy]# k delete rs nginx-deploy-7776d96658
+replicaset.apps "nginx-deploy-7776d96658" deleted from default namespace
+[root@master[~/kube/06/deploy]# k delete deployments.apps nginx-deploy
+deployment.apps "nginx-deploy" deleted from default namespace
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]#
+[root@master[~/kube/06/deploy]# c
+nnn[root@master[~/kube/06/deploy]# exit
+exit
+
+Script done on 2026-10-14 21:50:15+09:00 [COMMAND_EXIT_CODE="0"]
