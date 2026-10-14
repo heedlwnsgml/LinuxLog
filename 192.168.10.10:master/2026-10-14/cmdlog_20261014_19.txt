@@ -1,0 +1,835 @@
+Script started on 2026-10-14 19:11:50+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="165" LINES="30"]
+[root@master[~/kube/05]# c
+nnn[root@master[~/kube/05]#
+[root@master[~/kube/05]# keget pods
+NAME                        READY   STATUS    RESTARTS   AGE
+myapp                       1/1     Running   0          21s
+mydeploy-675fd74c56-5bj9k   1/1     Running   0          21s
+mydeploy-675fd74c56-l28r4   1/1     Running   0          21s
+mypod                       1/1     Running   0          21s
+myweb                       1/1     Running   0          21s
+[root@master[~/kube/05]# k get pods -o wide
+NAME                        READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+myapp                       1/1     Running   0          60s   10.10.166.162   node1   <none>           <none>
+mydeploy-675fd74c56-5bj9k   1/1     Running   0          60s   10.10.104.12    node2   <none>           <none>
+mydeploy-675fd74c56-l28r4   1/1     Running   0          60s   10.10.166.163   node1   <none>           <none>
+mypod                       1/1     Running   0          60s   10.10.166.161   node1   <none>           <none>
+myweb                       1/1     Running   0          60s   10.10.104.11    node2   <none>           <none>
+[root@master[~/kube/05]# k delete svc mydb
+service "mydb" deleted from default namespace
+[root@master[~/kube/05]# k delete svc myservice
+service "myservice" deleted from default namespace
+[root@master[~/kube/05]# k get all
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/myapp                       1/1     Running   0          2m58s
+pod/mydeploy-675fd74c56-5bj9k   1/1     Running   0          2m58s
+pod/mydeploy-675fd74c56-l28r4   1/1     Running   0          2m58s
+pod/mypod                       1/1     Running   0          2m58s
+pod/myweb                       1/1     Running   0          2m58s
+
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   2d2h
+
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/mydeploy   2/2     2            2           2m58s
+
+NAME                                  DESIRED   CURRENT   READY   AGE
+replicaset.apps/mydeploy-675fd74c56   2         2         2       2m58s
+[root@master[~/kube/05]# c
+nnn[root@master[~/kube/05]# k get pods myapp -oojson
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "d7db8b99c77daa04e29cc57912cbeaf3aa50b72c9b81a91305a1c619b744cbf3",
+            "cni.projectcalico.org/podIP": "10.10.166.162/32",
+            "cni.projectcalico.org/podIPs": "10.10.166.162/32"
+        },
+        "creationTimestamp": "2026-10-14T10:11:40Z",
+        "generation": 1,
+        "labels": {
+            "run": "myapp"
+        },
+        "name": "myapp",
+        "namespace": "default",
+        "resourceVersion": "101669",
+        "uid": "0f35c78d-61ca-4561-a751-b3ef902d13df"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "nginx",
+                "imagePullPolicy": "Always",
+                "name": "myapp",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-x7xtc",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "nodeName": "node1",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-x7xtc",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:43Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:43Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://d4558cc19a4066cc1753e74fc2f5ed723da0340d681354602166e831dfc65e78",
+                "image": "docker.io/library/nginx:latest",
+                "imageID": "docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571",
+                "lastState": {},
+                "name": "myapp",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-14T10:11:43Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-x7xtc",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.11",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.11"
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.166.162",
+        "podIPs": [
+            {
+                "ip": "10.10.166.162"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-14T10:11:40Z"
+    }
+}
+[root@master[~/kube/05]# k get pods myapp -o jsonpath='{.status.podIP}| jq
+jq: parse error: Invalid numeric literal at EOF at line 1, column 13
+[root@master[~/kube/05]# k get pods myapp -o jsonpath='{.status.podIP}' | jq
+10.10.166.162[root@master[~/kube/05]# c
+nnn[root@master[~/kube/05]# k get pods myweb -o json
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "bb586ebd2722925fe44c84ecace7eac60b3a625bfbeeaeb7896c655ca3eea820",
+            "cni.projectcalico.org/podIP": "10.10.104.11/32",
+            "cni.projectcalico.org/podIPs": "10.10.104.11/32"
+        },
+        "creationTimestamp": "2026-10-14T10:11:40Z",
+        "generation": 1,
+        "labels": {
+            "run": "myweb"
+        },
+        "name": "myweb",
+        "namespace": "default",
+        "resourceVersion": "101663",
+        "uid": "99d6e15e-ab4d-4a4c-b646-259c0cb05b42"
+    },
+    "spec": {
+        "containers": [
+            {
+                "image": "nginx",
+                "imagePullPolicy": "Always",
+                "name": "myweb",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-z2b4c",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "nodeName": "node2",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-z2b4c",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:42Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:42Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T10:11:40Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://3da3844b30080ec26a1477e9ddcaf56b06458c485d56f019d033062c7a39e3db",
+                "image": "docker.io/library/nginx:latest",
+                "imageID": "docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571",
+                "lastState": {},
+                "name": "myweb",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-14T10:11:42Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-z2b4c",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.12",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.12"
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.104.11",
+        "podIPs": [
+            {
+                "ip": "10.10.104.11"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-14T10:11:40Z"
+    }
+}
+[root@master[~/kube/05]# k get pods myweb -o jsonpath='{.items[*].spec.containers[0].image}'
+croot@master[~/kube/05]# k get pods myweb -o jsonpath='{.items[*].spec.containers[0].image}'
+nnn[root@master[~/kube/05]# k get pods myapp -o json | jq '.status.podIP'
+"10.10.166.162"
+krget@podsemyappu-o/json | jqt'.status.podIP'json | jq '.status.podIP'
+[root@master[~/kube/05]# k get pods myapp -o json | jq '.pec.containers'
+[
+  {
+    "image": "nginx",
+    "imagePullPolicy": "Always",
+    "name": "myapp",
+    "ports": [
+      {
+        "containerPort": 80,
+        "protocol": "TCP"
+      }
+    ],
+    "resources": {},
+    "terminationMessagePath": "/dev/termination-log",
+    "terminationMessagePolicy": "File",
+    "volumeMounts": [
+      {
+        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+        "name": "kube-api-access-x7xtc",
+        "readOnly": true
+      }
+    ]
+  }
+]
+[root@master[~/kube/05]# cd design/
+[root@master[~/kube/05/design]# c
+nnn[root@master[~/kube/05/design]# dnf list yq
+Last metadata expiration check: 3:32:54 ago on Wed 14 Oct 2026 03:49:45 PM KST.
+Installed Packages
+yq.x86_64                                                                   B 4.53.3-1.el10_3                                                                    @epel
+[root@master[~/kube/05/design]# dnfsinstallR-ysyq
+Last metadata expiration check: 3:33:32 ago on Wed 14 Oct 2026 03:49:45 PM KST.
+Package yq-4.53.3-1.el10_3.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@master[~/kube/05/design]# c
+nnn[root@master[~/kube/05/design]# k get pod mypod -o json|| yq '.status.podIP'
+10.10.166.161
+[root@master[~/kube/05/design]# k get pod mypod1@y1@a1@m1@lq '.status.podIP'
+10.10.166.161
+[root@master[~/kube/05/design]# k describe pods mypod | grep IPt-A 3 -B 4
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 19:11:40 +0900
+Labels:           run=mypod
+Annotations:      cni.projectcalico.org/containerID: 1a5fd70011250c8a4b987c90eb9b04e91ce75e45c931ec075aaf44b26e9db8f6
+                  cni.projectcalico.org/podIP: 10.10.166.161/32
+                  cni.projectcalico.org/podIPs: 10.10.166.161/32
+Status:           Running
+IP:               10.10.166.161
+IPs:
+  IP:  10.10.166.161
+Containers:
+  mypod:
+    Container ID:   containerd://f89d8af6005840a377dec2324e27355d093262b57c4a313ee6d8f284843724f2
+--
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-f86tl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+[root@master[~/kube/05/design]# k describe pods mypod | sedp-nP'//,1@E1@v1@e1@n1@t1@s1@:
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  14m   default-scheduler  Successfully assigned default/mypod to node1
+  Normal  Pulling    14m   kubelet            spec.containers{mypod}: Pulling image "nginx"
+  Normal  Pulled     14m   kubelet            spec.containers{mypod}: Successfully pulled image "nginx" in 1.639s (1.639s including waiting). Image size: 63873678 bytes.
+  Normal  Created    14m   kubelet            spec.containers{mypod}: Container created
+  Normal  Started    14m   kubelet            spec.containers{mypod}: Container started
+[root@master[~/kube/05/design]# kcdescribe pods mypod | sed -n 1@C1@o1@n1@t1@a1@i1@n1@e1@r1@s1@:1@1@,1@1@C1@o1@n1@d1@i1@t1@i1@o1@n1@1@:
+sed: -e expression #1, char 28: unknown command: `,'
+[root@master[~/kube/05/design]# k describe pods mypod | sed -n '/Containers:/,/Conditions:/,$p'
+sed: -e expression #1, char 28: unknown command: `,'
+[root@master[~/kube/05/design]# k describe pods mypod | sed -n '/Containers:/,/Conditions:/,$p'
+sed: -e expression #1, char 14: unknown command: `/'
+[root@master[~/kube/05/design]# k describe pods mypod | sed -n '/Containers://Conditions:/,$p'
+sed: -e expression #1, char 14: unknown command: `C'
+[root@master[~/kube/05/design]# k describe pods mypod | sed -n '/Containers:/1@1@,tions:/,$p'
+sed: -e expression #1, char 28: unknown command: `,'
+[root@master[~/kube/05/design]# ^C
+krdescribeepodskmypod5|dsedg-n#'/Containers:/,/Conditions:/p'n '/Containers:/,/Conditions:/p'
+krdescribeepodskmypod5|dsedg-n#'/Containers:/,/Conditions:/p'n '/Containers:/,/Conditions:/p'
+Containers:
+  mypod:
+    Container ID:   containerd://f89d8af6005840a377dec2324e27355d093262b57c4a313ee6d8f284843724f2
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 19:11:42 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-f86tl (ro)
+Conditions:
+[root@master[~/kube/05/design]# c
+nnn[root@master[~/kube/05/design]# k get pods -o wide --pro
+--password        (Password for basic authentication to the API server)
+--profile         (Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace))
+--profile-output  (Name of the file to write the profile to)
+--proxy-url       (Proxy URL to use for requests to the API server)
+[root@master[~/kube/05/design]# k get pods -o custom-columns=NAEM:.meadata.name, IP:.status.podIP, STATUS: .status.phase
+error: unexpected custom-columns spec: , expected <header>:<json-path-expr>
+[root@master[~/kube/05/design]# k get pods -o custom-columns=NAEM:.meadata.name, IP:.status.podIP, STATUS:.status.phasee
+error: unexpected custom-columns spec: , expected <header>:<json-path-expr>
+[root@master[~/kube/05/design]# k get pods -o custom-colu1@A1@M1@E.meadata.name, IP:.status.podIP, STATUS:.status.phase
+error: unexpected custom-columns spec: , expected <header>:<json-path-expr>
+[root@master[~/kube/05/design]# k get pods -o custom-columns=NAME:.1@tdata.name, IP:.status.podIP, STATUS:.status.phase
+error: unexpected custom-columns spec: , expected <header>:<json-path-expr>
+[root@master[~/kube/05/design]# k get pods -o custom-columns=NAME:.metadata.name,IP:.status.podIP,STATUS:.status.phaseee
+NAME                        IP              STATUS
+myapp                       10.10.166.162   Running
+mydeploy-675fd74c56-5bj9k   10.10.104.12    Running
+mydeploy-675fd74c56-l28r4   10.10.166.163   Running
+mypod                       10.10.166.161   Running
+myweb                       10.10.104.11    Running
+[root@master[~/kube/05/design]# k delete pods mypod myapp myweb
+pod "mypod" deleted from default namespace
+pod "myapp" deleted from default namespace
+pod "myweb" deleted from default namespace
+[root@master[~/kube/05/design]# kddelete deploymmydeploys
+deployment.apps "mydeploy" deleted from default namespace
+[root@master[~/kube/05/design]# k get pods
+No resources found in default namespace.
+[root@master[~/kube/05/design]# c
+nnn[root@master[~/kube/05/design]# k api-resources
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+[root@master[~/kube/05/design]# k api-resources | grep ReplicationControll
+replicationcontrollers              rc           v1                                true         ReplicationController
+[root@master[~/kube/05/design]# k api-resources --decar.ymlisidecar.ymloll
+--api-group                 (Limit to resources in the specified API group.)
+--as-group                  (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                    (UID to impersonate for the operation.)
+--as-user-extra             (User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.)
+--as                        (Username to impersonate for the operation. User could be a regular user or a service account in a namespace.)
+--cache-dir                 (Default cache directory)
+--cached                    (Use the cached list of resources if available.)
+--categories                (Limit to resources that belong to the specified categories.)
+--certificate-authority     (Path to a cert file for the certificate authority)
+--client-certificate        (Path to a client certificate file for TLS)
+--client-key                (Path to a client key file for TLS)
+--cluster                   (The name of the kubeconfig cluster to use)
+--context                   (The name of the kubeconfig context to use)
+--disable-compression       (If true, opt-out of response compression for all requests to the server)
+--help                      (help for api-resources)
+--insecure-skip-tls-verify  (If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure)
+--kubeconfig                (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                    (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the…)
+--log-flush-frequency       (Maximum number of seconds between log flushes)
+--match-server-version      (Require server version to match client version)
+--namespaced                (If false, non-namespaced resources will be returned, otherwise returning namespaced resources by default.)
+--namespace                 (If present, the namespace scope for this CLI request)
+--no-headers                (When using the default or custom-column output format, don't print headers (default print headers).)
+--output                    (Output format. One of: (json, yaml, kyaml, name, wide).)
+--password                  (Password for basic authentication to the API server)
+--profile                   (Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace))
+--profile-output            (Name of the file to write the profile to)
+--proxy-url                 (Proxy URL to use for requests to the API server)
+--request-timeout           (The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g.…)
+[root@master[~/kube/05/design]# k api-resources |-grep--w "v1"
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+[root@master[~/kube/05/design]# k api-resources --api-groupv1"
+error: flag needs an argument: --api-group
+See 'kubectl api-resources --help' for usage.
+[root@master[~/kube/05/design]# k api-resources --api-group ''
+NAME                     SHORTNAMES   APIVERSION   NAMESPACED   KIND
+bindings                              v1           true         Binding
+componentstatuses        cs           v1           false        ComponentStatus
+configmaps               cm           v1           true         ConfigMap
+endpoints                ep           v1           true         Endpoints
+events                   ev           v1           true         Event
+limitranges              limits       v1           true         LimitRange
+namespaces               ns           v1           false        Namespace
+nodes                    no           v1           false        Node
+persistentvolumeclaims   pvc          v1           true         PersistentVolumeClaim
+persistentvolumes        pv           v1           false        PersistentVolume
+pods                     po           v1           true         Pod
+podtemplates                          v1           true         PodTemplate
+replicationcontrollers   rc           v1           true         ReplicationController
+resourcequotas           quota        v1           true         ResourceQuota
+secrets                               v1           true         Secret
+serviceaccounts          sa           v1           true         ServiceAccount
+services                 svc          v1           true         Service
+[root@master[~/kube/05/design]#  vi nginx-rc.yml
+>4;2m"nginx-rc.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-rc.yml"w0L,L0B0writtenen0,0-1All0,0-1All::wq                                                                                                              ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::w
+>4;m[root@master[~/kube/05/design]# rm nginx-rc.yml
+rm: remove regular empty file 'nginx-rc.yml'? y
+[root@master[~/kube/05/design]# mkdir -p ~/kube/06/rc && cd ~/kube/06/rc
+[root@master[~/kube/06/rc]# c
+nnn[root@master[~/kube/06/rc]# exit
+exit
+
+Script done on 2026-10-14 20:11:05+09:00 [COMMAND_EXIT_CODE="0"]
