@@ -1,0 +1,879 @@
+Script started on 2026-10-14 17:35:28+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="157" LINES="30"]
+[root@master[~/kube/05]# envnswkand
+SHELL=/bin/bash
+HISTCONTROL=ignoredups
+HISTSIZE=1000
+HOSTNAME=master
+GPG_TTY=/dev/pts/4
+PWD=/root/kube/05
+LOGNAME=root
+XDG_SESSION_TYPE=tty
+MOTD_SHOWN=pam
+HOME=/root
+LANG=en_US.UTF-8
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=01;37;41:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.7z=01;31:*.ace=01;31:*.alz=01;31:*.apk=01;31:*.arc=01;31:*.arj=01;31:*.bz=01;31:*.bz2=01;31:*.cab=01;31:*.cpio=01;31:*.crate=01;31:*.deb=01;31:*.drpm=01;31:*.dwm=01;31:*.dz=01;31:*.ear=01;31:*.egg=01;31:*.esd=01;31:*.gz=01;31:*.jar=01;31:*.lha=01;31:*.lrz=01;31:*.lz=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.lzo=01;31:*.pyz=01;31:*.rar=01;31:*.rpm=01;31:*.rz=01;31:*.sar=01;31:*.swm=01;31:*.t7z=01;31:*.tar=01;31:*.taz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tgz=01;31:*.tlz=01;31:*.txz=01;31:*.tz=01;31:*.tzo=01;31:*.tzst=01;31:*.udeb=01;31:*.war=01;31:*.whl=01;31:*.wim=01;31:*.xz=01;31:*.z=01;31:*.zip=01;31:*.zoo=01;31:*.zst=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=01;36:*.au=01;36:*.flac=01;36:*.m4a=01;36:*.mid=01;36:*.midi=01;36:*.mka=01;36:*.mp3=01;36:*.mpc=01;36:*.ogg=01;36:*.ra=01;36:*.wav=01;36:*.oga=01;36:*.opus=01;36:*.spx=01;36:*.xspf=01;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+SSH_CONNECTION=192.168.10.1 51546 192.168.10.10 22
+XDG_SESSION_CLASS=user
+SELINUX_ROLE_REQUESTED=
+TERM=xterm
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+USER=root
+SELINUX_USE_CURRENT_RANGE=
+SHLVL=3
+XDG_SESSION_ID=9
+XDG_RUNTIME_DIR=/run/user/0
+PS1=\[\e[34;1m\][\u@\h[\e[33;1m\]\w]\$ \[\e[m\]
+SSH_CLIENT=192.168.10.1 51546 22
+DEBUGINFOD_URLS=https://debuginfod.centos.org/
+DEBUGINFOD_IMA_CERT_PATH=/etc/keys/ima:
+XDG_DATA_DIRS=/root/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+PATH=/root/.krew/bin:/root/.kubectx:/root/.krew/bin:/root/.kubectx:/root/.local/bin:/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+SELINUX_LEVEL_REQUESTED=
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/0/bus
+MAIL=/var/spool/mail/root
+SSH_TTY=/dev/pts/2
+OLDPWD=/root/kube
+_=/usr/bin/env
+[root@master[~/kube/05]# c
+[root@master[~/kube/05]#
+[root@master[~/kube/05]# c
+mkdir@-ps~/kube/05/variabled&&ccdr~/kube/05/variable && cd ~/kube/05/variable
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]# vi nginx-env-pod.yml
+>4;2m"nginx-env-pod.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-env-pod.yml" [New] 0L, 0B written                                                                                                                         ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p::wq
+>4;m[root@master[~/kube/05/variable]# k create -f nginx-env-pod.yml
+pod/nginx-env-pod created
+[root@master[~/kube/05/variable]# k exec -it nginx-env-pod -- /bin/bash
+root@nginx-env-pod:/# env | grep MYVAR
+MYVAR=testvalue
+root@nginx-env-pod:/# exit
+exit
+[root@master[~/kube/05/variable]# k delete pods -all
+error: unknown shorthand flag: 'a' in -all
+See 'kubectl delete --help' for usage.
+[root@master[~/kube/05/variable]# k delete pods --all
+pod "nginx-env-pod" deleted from default namespace
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]# k create -f nginx-env-pod.yml
+pod/nginx-env-pod created
+[root@master[~/kube/05/variable]# k get pods nginx-env-pod -o json
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "6f769af52a33dd9acd51d4c385eed30a2aab844fc20e97dd3dc525a855dd68ef",
+            "cni.projectcalico.org/podIP": "10.10.166.154/32",
+            "cni.projectcalico.org/podIPs": "10.10.166.154/32"
+        },
+        "creationTimestamp": "2026-10-14T08:43:43Z",
+        "generation": 1,
+        "name": "nginx-env-pod",
+        "namespace": "default",
+        "resourceVersion": "92381",
+        "uid": "8677f70d-57b1-465b-b9e1-ecaadb03a674"
+    },
+    "spec": {
+        "containers": [
+            {
+                "env": [
+                    {
+                        "name": "MYVAR",
+                        "value": "testvalue"
+                    }
+                ],
+                "image": "nginx:1.14",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "nginx-container",
+                "ports": [
+                    {
+                        "containerPort": 80,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-6z9xf",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "nodeName": "node1",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-6z9xf",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:43:44Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:43:43Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:43:44Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:43:44Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:43:43Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://88f05b280646f402e083c00160907f98c0fb629e0c6d309f8e05451a9b7f7cde",
+                "image": "docker.io/library/nginx:1.14",
+                "imageID": "docker.io/library/nginx@sha256:f7988fb6c02e0ce69257d9bd9cf37ae20a60f1df7563c3a2a6abe24160306b8d",
+                "lastState": {},
+                "name": "nginx-container",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-14T08:43:44Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-6z9xf",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.11",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.11"
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.166.154",
+        "podIPs": [
+            {
+                "ip": "10.10.166.154"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-14T08:43:43Z"
+    }
+}
+[root@master[~/kube/05/variable]# k delete pods nginx-env-pod
+pod "nginx-env-pod" deleted from default namespace
+[root@master[~/kube/05/variable]# c
+nnn[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]#
+mkdir -p ~/kube/05/variable && cd ~/kube/05/variable
+[root@master[~/kube/05/variable]# vi mysql-env-pod.yml
+>4;2m"mysql-env-pod.yml" [New]▽  zz0%m           >c  1
+>4;m"mysql-env-pod.yml" [New] 0L, 0B written                                                                                                                         ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    ~                                                                                                                                                                    0,0-1All?12$p^[  ^[  ::wq
+>4;m[root@master[~/kube/05/variable]# k create -f mysql-env-pod.yml
+pod/mysql-env-pod created
+[root@master[~/kube/05/variable]# k delete pods --all
+pod "mysql-env-pod" deleted from default namespace
+^[[A^[[B[root@master[~/kube/05/variable]# k create -fdmysql-env-pod.yml
+pod/mysql-env-pod created
+ubectledescribelpods-mysql-env-podd||sedd-nn'/Evnets:/,$p'||lless-pod | sed -n '/Evnets:/,$p'
+[root@master[~/kube/05/variable]# kubectl describe pods mysql-env-pod | sed -n '/Evnets:/,$p' | less
+[root@master[~/kube/05/variable]# kubectl describe pods mysql-env-pod | sed -n '/E1@ets:/,$p'
+[root@master[~/kube/05/variable]# kubectl describe pods mysql-env-pod | 1@e -n '/Evenets:/,$p'
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  77s                default-scheduler  Successfully assigned default/mysql-env-pod to node1
+  Normal   Pulled     75s                kubelet            spec.containers{mysql-container}: Successfully pulled image "mysql" in 1.706s (1.706s including waiting). Image size: 271641479 bytes.
+  Normal   Pulled     72s                kubelet            spec.containers{mysql-container}: Successfully pulled image "mysql" in 1.648s (1.648s including waiting). Image size: 271641479 bytes.
+  Normal   Pulled     54s                kubelet            spec.containers{mysql-container}: Successfully pulled image "mysql" in 6.568s (6.568s including waiting). Image size: 271641479 bytes.
+  Normal   Pulling    32s (x4 over 76s)  kubelet            spec.containers{mysql-container}: Pulling image "mysql"
+  Normal   Created    31s (x4 over 75s)  kubelet            spec.containers{mysql-container}: Container created
+  Normal   Started    31s (x4 over 75s)  kubelet            spec.containers{mysql-container}: Container started
+  Normal   Pulled     31s                kubelet            spec.containers{mysql-container}: Successfully pulled image "mysql" in 1.558s (1.558s including waiting). Image size: 271641479 bytes.
+  Warning  BackOff    29s (x4 over 72s)  kubelet            spec.containers{mysql-container}: Back-off restarting failed container mysql-container in pod mysql-env-pod_default(c1311123-7fe6-4ca3-b907-eb4adcb3e142)
+[root@master[~/kube/05/variable]# k logs mysql-env-pod
+2026-10-14 08:53:40+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 26.7.0-1.el9 started.
+2026-10-14 08:53:40+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-10-14 08:53:41+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 26.7.0-1.el9 started.
+2026-10-14 08:53:41+00:00 [ERROR] [Entrypoint]: Database is uninitialized and password option is not specified
+    You need to specify one of the following as an environment variable:
+    - MYSQL_ROOT_PASSWORD
+    - MYSQL_ALLOW_EMPTY_PASSWORD
+    - MYSQL_RANDOM_ROOT_PASSWORD
+[root@master[~/kube/05/variable]# k get ev mysql-env-pod.18de59
+Warning: short name "ev" could also match lower priority resource events.events.k8s.io
+Error from server (NotFound): events "mysql-env-pod.18de59" not found
+[root@master[~/kube/05/variable]# k get ev |ygrepemysqld.18de59
+Warning: short name "ev" could also match lower priority resource events.events.k8s.io
+2m36s       Normal    Scheduled          pod/mysql-env-pod          Successfully assigned default/mysql-env-pod to node1
+2m35s       Normal    Pulling            pod/mysql-env-pod          Pulling image "mysql"
+2m14s       Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 20.664s (20.664s including waiting). Image size: 271641479 bytes.
+2m14s       Normal    Created            pod/mysql-env-pod          Container created
+2m14s       Normal    Started            pod/mysql-env-pod          Container started
+2m14s       Normal    Killing            pod/mysql-env-pod          Stopping container mysql-container
+2m11s       Normal    Scheduled          pod/mysql-env-pod          Successfully assigned default/mysql-env-pod to node1
+34s         Normal    Pulling            pod/mysql-env-pod          Pulling image "mysql"
+2m9s        Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 1.706s (1.706s including waiting). Image size: 271641479 bytes.
+28s         Normal    Created            pod/mysql-env-pod          Container created
+28s         Normal    Started            pod/mysql-env-pod          Container started
+2m6s        Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 1.648s (1.648s including waiting). Image size: 271641479 bytes.
+26s         Warning   BackOff            pod/mysql-env-pod          Back-off restarting failed container mysql-container in pod mysql-env-pod_default(c1311123-7fe6-4ca3-b907-eb4adcb3e142)
+108s        Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 6.568s (6.568s including waiting). Image size: 271641479 bytes.
+85s         Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 1.558s (1.558s including waiting). Image size: 271641479 bytes.
+28s         Normal    Pulled             pod/mysql-env-pod          Successfully pulled image "mysql" in 6.622s (6.622s including waiting). Image size: 271641479 bytes.
+[root@master[~/kube/05/variable]# c
+nnn[root@master[~/kube/05/variable]# k delete -f mysql-env-pod.yml
+pod "mysql-env-pod" deleted from default namespace
+[root@master[~/kube/05/variable]# k create -f mysql-env-pod.yml
+pod/mysql-env-pod created
+[root@master[~/kube/05/variable]# k get pods -o wide
+NAME            READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+mysql-env-pod   1/1     Running   0          21s   10.10.166.157   node1   <none>           <none>
+[root@master[~/kube/05/variable]# dnf -y install mariadb
+Last metadata expiration check: 2:06:09 ago on Wed 14 Oct 2026 03:49:45 PM KST.
+Dependencies resolved.
+=====================================================================================================================================================================
+ Package                                            Architecture                   Version                                   Repository                         Size
+=====================================================================================================================================================================
+Installing:
+ mariadb                                           B x86_64                         3:10.11.18-1.el10                         appstream                         1.6 M
+Installing dependencies:
+ mariadb-common                                    B noarch                         3:10.11.18-1.el10                         appstream                          32 k
+ mariadb-connector-c                               B x86_64                         3.4.4-2.el10                              baseos                            209 k
+ mariadb-connector-c-config                        B noarch                         3.4.4-2.el10                              baseos                            8.2 k
+ perl-Sys-Hostname                                 B x86_64                         1.25-515.el10                             appstream                          15 k
+Installing weak dependencies:
+ mariadb-client-utils                              B x86_64                         3:10.11.18-1.el10                         appstream                          39 k
+
+Transaction Summary
+=====================================================================================================================================================================
+Install  6 Packages
+
+Total download size: 1.9 M
+Installed size: 27 M
+Downloading Packages:
+(1/6): mariadb-connector-c-config-3.4.4-2.el10.noarch.rpm        0% [=========                                                     ] -29 kB/s | 8.2 kB     00:00 ETA
+(2/6):)mariadb-10.11.18-1.el10.x86_64.rpm.x86_64.rpm            12% [=======                                                       ] 2.8 MB/s | 1.6 MB     00:00 ETA
+(3/6):)mariadb-client-utils-10.11.18-1.el10.x86_64.rpm          87% [======================================================        ] 195 kB/s | 139 kB     00:00 ETA
+(4/6):)mariadb-common-10.11.18-1.el10.noarch.rpm.rpm            89% [=======================================================-      ] 224 kB/s | 132 kB     00:00 ETA
+(5/6):)perl-Sys-Hostname-1.25-515.el10.x86_64.rpmpm             90% [========================================================      ] 104 kB/s | 115 kB     00:00 ETA
+(6/6): mariadb-connector-c-3.4.4-2.el10.x86_64.rpm              98% [============================================================= ] 897 kB/s | 209 kB     00:02 ETA
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                519 kB/s | 1.9 MB     00:03
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [================================================================================================================                        ] 1/1
+  Installing       : mariadb-connector-c-config-3.4.4-2.el10.noarch [==============================================================================            ] 1/6
+  Installing       : mariadb-connector-c-3.4.4-2.el10.x86_64 [================================================================================================ ] 2/6
+  Installing       : mariadb-common-3:10.11.18-1.el10.noarch [================================================================================================ ] 3/6
+  Installing       : perl-Sys-Hostname-1.25-515.el10.x86_64 [================================================================================================= ] 4/6
+  Installing       : mariadb-client-utils-3:10.11.18-1.el10.x86_64 [========================================================================================== ] 5/6
+  Installing       : mariadb-3:10.11.18-1.el10.x86_64 [======================================================================================================  ] 6/6
+  Running scriptlet: mariadb-3:10.11.18-1.el10.x86_64                                                                                                            6/6
+
+Installed:
+  mariadb-3:10.11.18-1.el10.x86_64                    mariadb-client-utils-3:10.11.18-1.el10.x86_64              mariadb-common-3:10.11.18-1.el10.noarch
+  mariadb-connector-c-3.4.4-2.el10.x86_64             mariadb-connector-c-config-3.4.4-2.el10.noarch             perl-Sys-Hostname-1.25-515.el10.x86_64
+
+Complete!
+POD_IP=$(kubectluget0podsrmysql-env-podP-o(jsonpath='{.status.podIP}')pod -o jsonpath='{.status.podIP}')
+[root@master[~/kube/05/variable]# mysql -h ${POD_IP} -u root -p
+Enter password:
+BWelcome to the MariaDB monitor.  Commands end with ; or \g.
+BBYour MySQL connection id is 9
+Server version: 26.7.0 MySQL Community Server - GPL
+
+BBCopyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+BBType 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+BMySQL [(none)]> exit
+BBye
+B[root@master[~/kube/05/variable]# k exec -it mysql-env-pod -- /bin/bash
+bash-5.1# mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 26.7.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> exit
+Bye
+bash-5.1# exit
+exit
+[root@master[~/kube/05/variable]# k exec -it mysql-env-pod -- /bin/bash
+bash-5.1# exitl
+exit
+[root@master[~/kube/05/variable]# c
+nnn[root@master[~/kube/05/variable]# k get pods mysql-env-pod -o json
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "fd2ee70052077b9e07127ca7b37d7516cdbf45fc5eab9b9966c142f64f504354",
+            "cni.projectcalico.org/podIP": "10.10.166.157/32",
+            "cni.projectcalico.org/podIPs": "10.10.166.157/32"
+        },
+        "creationTimestamp": "2026-10-14T08:55:20Z",
+        "generation": 1,
+        "name": "mysql-env-pod",
+        "namespace": "default",
+        "resourceVersion": "93682",
+        "uid": "cc75ff20-cd3c-48b9-8f44-fbac0d81c486"
+    },
+    "spec": {
+        "containers": [
+            {
+                "env": [
+                    {
+                        "name": "MYSQL_ROOT_PASSWORD",
+                        "value": "password"
+                    }
+                ],
+                "image": "mysql",
+                "imagePullPolicy": "Always",
+                "name": "mysql-container",
+                "ports": [
+                    {
+                        "containerPort": 3306,
+                        "protocol": "TCP"
+                    }
+                ],
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-fvd5x",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "nodeName": "node1",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-fvd5x",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:55:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:55:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:55:22Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:55:22Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T08:55:20Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://64f031e589e66121d04572adc5fc9effd52e31c72c648c3dfb040ee7155b19f8",
+                "image": "docker.io/library/mysql:latest",
+                "imageID": "docker.io/library/mysql@sha256:893418c8a7a34c60d2d961cc30ef136095da141478562ed2101ae3f5faba9c3f",
+                "lastState": {},
+                "name": "mysql-container",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-14T08:55:22Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-fvd5x",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.11",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.11"
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.166.157",
+        "podIPs": [
+            {
+                "ip": "10.10.166.157"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-14T08:55:20Z"
+    }
+}
+[root@master[~/kube/05/variable]# echo $POD_IP
+10.10.166.157
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]#
+[root@master[~/kube/05/variable]# c
+nnn[root@master[~/kube/05/variable]# kodelete -f mysql-env-pod.yml
+pod "mysql-env-pod" deleted from default namespace
+[root@master[~/kube/05/variable]# k get ns
+NAME              STATUS   AGE
+default           Active   2d1h
+kube-node-lease   Active   2d1h
+kube-public       Active   2d1h
+kube-system       Active   2d1h
+[root@master[~/kube/05/variable]# k run myweb --image=nginx:1.14 --port=80 --re
+--recursive        (Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.)
+--request-timeout  (The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, …)
+--restart          (The restart policy for this Pod.  Legal values [Always, OnFailure, Never].)
+[root@master[~/kube/05/variable]# k run myweb --image=nginx:1.14 --port=80 --re
+--recursive        (Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.)
+--request-timeout  (The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, …)
+--restart          (The restart policy for this Pod.  Legal values [Always, OnFailure, Never].)
+mkdir@-pster[~/kube/05/variable]# k run myweb --image=nginx:1.14 --port=80 -oryamlr> m
+
+
+
+[root@master[~/kube/05/variable]#
+
+
+
+
+[root@master[~/kube/05/variable]# mkdir -p ~/kube/05/labs/envabs/env~
+[root@master[~/kube/05/variable]# cd ~/kube/05/labs/env
+[root@master[~/kube/05/labs/env]# c
+nnn[root@master[~/kube/05/labs/env]# kurun myweb --image=nginx:1.14 --port=80 --dry-run -o yaml > myweb-pod.yml
+W1014 18:01:21.209460  189982 helpers.go:714] --dry-run is deprecated and can be replaced with --dry-run=client.
+[root@master[~/kube/05/labs/env]# k create -f myweb-pod.yml
+namespace/prodns created
+Error from server (BadRequest): error when creating "myweb-pod.yml": Pod in version "v1" cannot be handled as a Pod: strict decoding error: unknown field "metadata.namesapce"
+[root@master[~/kube/05/labs/env]# k create -f myweb-pod.yml
+Error from server (AlreadyExists): error when creating "myweb-pod.yml": namespaces "prodns" already exists
+Error from server (BadRequest): error when creating "myweb-pod.yml": Pod in version "v1" cannot be handled as a Pod: strict decoding error: unknown field "metadata.namesapce"
+[root@master[~/kube/05/labs/env]# k create -f myweb-pod.yml
+pod/myweb created
+Error from server (AlreadyExists): error when creating "myweb-pod.yml": namespaces "prodns" already exists
+[root@master[~/kube/05/labs/env]# k get ns
+NAME              STATUS   AGE
+default           Active   2d1h
+kube-node-lease   Active   2d1h
+kube-public       Active   2d1h
+kube-system       Active   2d1h
+prodns            Active   2m37s
+[root@master[~/kube/05/labs/env]# k delete namespaces prodns
+namespace "prodns" deleted
+[root@master[~/kube/05/labs/env]# k create -f myweb-pod.yml
+namespace/prodns created
+pod/myweb created
+[root@master[~/kube/05/labs/env]# k getcpods pods myweb
+No resources found in default namespace.
+[root@master[~/kube/05/labs/env]# k get ns
+NAME              STATUS   AGE
+default           Active   2d1h
+kube-node-lease   Active   2d1h
+kube-public       Active   2d1h
+kube-system       Active   2d1h
+prodns            Active   51s
+[root@master[~/kube/05/labs/env]# k get podss-nnprodns
+NAME    READY   STATUS    RESTARTS   AGE
+myweb   1/1     Running   0          61s
+[root@master[~/kube/05/labs/env]# k describe pods myweb -n prodns n
+Name:             myweb
+Namespace:        prodns
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 18:08:38 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 9ec6d2633d74f336e7c69d0cd73d24590b1398a9f4c228ff83d168a701d8288c
+                  cni.projectcalico.org/podIP: 10.10.166.159/32
+                  cni.projectcalico.org/podIPs: 10.10.166.159/32
+Status:           Running
+IP:               10.10.166.159
+IPs:
+  IP:  10.10.166.159
+Containers:
+  myweb-container:
+    Container ID:   containerd://ad9676f60903ae7506f00d610f3df48631e733f7a97a80b34f4634f415a3ab9f
+    Image:          nginx:1.14
+    Image ID:       docker.io/library/nginx@sha256:f7988fb6c02e0ce69257d9bd9cf37ae20a60f1df7563c3a2a6abe24160306b8d
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 18:08:38 +0900
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  1Gi
+    Requests:
+      cpu:     200m
+      memory:  500Mi
+    Environment:
+      DB_ID:    developer
+      DB_PASS:  developer
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-pgvsl (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-pgvsl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  72s   default-scheduler  Successfully assigned prodns/myweb to node1
+  Normal  Pulled     72s   kubelet            spec.containers{myweb-container}: Container image "nginx:1.14" already present on machine and can be accessed by the pod
+  Normal  Created    72s   kubelet            spec.containers{myweb-container}: Container created
+  Normal  Started    72s   kubelet            spec.containers{myweb-container}: Container started
+[root@master[~/kube/05/labs/env]# c
+nnn[root@master[~/kube/05/labs/env]# k delete pod --all
+No resources found
+[root@master[~/kube/05/labs/env]# k delete pod --all -n prodns
+pod "myweb" deleted from prodns namespace
+mkdir@-ps~/kube/05/designb&&ecd]~/kube/05/designe/05/design && cd ~/kube/05/design
+[root@master[~/kube/05/design]#
+[root@master[~/kube/05/design]#
+[root@master[~/kube/05/design]# c
+nnn[root@master[~/kube/05/design]# cat << EOF > sidecar.yml
+#################################
+# Sidecar 패턴(Sidecar Pattern)
+#################################
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar
+spec:
+  # 로그 공유 볼륨 선언
+  volumes:
+  - name: sharedlogs
+    emptyDir: {}
+  containers:
+  # 앱 컨테이너 - 5초에 한번식 /var/log/app.log 파일에 로그 남김
+  - name: app-container
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date >> /var/log/app.log; sleep 5; done"]
+    volumeMounts:
+    - name: sharedlogs
+      mountPath: /var/log
+  # 사이드카 컨테이너 - 공유된 볼륨의 내용을 웹에서 확인
+  - name: sidecar-container
+    image: nginx:1.14
+    ports:
+      - containerPort: 80
+    volumeMounts:
+    - name: sharedlogs
+      mountPath: /usr/share/nginx/html
+[root@master[~/kube/05/design]# cat << EOF > sidecar.yml
+#################################
+# Sidecar 패턴(Sidecar Pattern)
+#################################
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar
+spec:
+  # 로그 공유 볼륨 선언
+  volumes:
+  - name: sharedlogs
+    emptyDir: {}
+  containers:
+  # 앱 컨테이너 - 5초에 한번식 /var/log/app.log 파일에 로그 남김
+  - name: app-container
+    image: alpine
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do date >> /var/log/app.log; sleep 5; done"]
+    volumeMounts:
+    - name: sharedlogs
+      mountPath: /var/log
+  # 사이드카 컨테이너 - 공유된 볼륨의 내용을 웹에서 확인
+  - name: sidecar-container
+    image: nginx:1.14
+    ports:
+      - containerPort: 80
+    volumeMounts:
+    - name: sharedlogs
+      mountPath: /usr/share/nginx/html
+EOF
+[root@master[~/kube/05/design]# # 3) 파드 실행 및 확인
+kubectl apply -f sidecar.yml
+kubectl get pods -o wide
+# 3) 파드 실행 및 확인
+kubectl apply -f sidecar.yml
+kubectl get pods -o wide
+
+pod/sidecar created
+NAME      READY   STATUS              RESTARTS   AGE   IP       NODE    NOMINATED NODE   READINESS GATES
+sidecar   0/2     ContainerCreating   0          0s    <none>   node1   <none>           <none>
+[root@master[~/kube/05/design]#
+[root@master[~/kube/05/design]#
+[root@master[~/kube/05/design]#
+[root@master[~/kube/05/design]# # 4) 웹 로그 확인
+POD_IP=$(kubectl get pod sidecar -o jsonpath='{.status.podIP}')
+curl $POD_IP/app.log
+sleep 6
+
+curl $POD_IP/app.log
+sleep 6
+
+kubectl delete pods sidecar
+# 4) 웹 로그 확인
+POD_IP=$(kubectl get pod sidecar -o jsonpath='{.status.podIP}')
+curl $POD_IP/app.log
+sleep 6
+
+curl $POD_IP/app.log
+sleep 6
+
+kubectl delete pods sidecar
+
+Wed Oct 14 09:19:50 UTC 2026
+Wed Oct 14 09:19:55 UTC 2026
+Wed Oct 14 09:19:50 UTC 2026
+Wed Oct 14 09:19:55 UTC 2026
+Wed Oct 14 09:20:00 UTC 2026
+pod "sidecar" deleted from default namespace
+[root@master[~/kube/05/design]# exit
+exit
+
+Script done on 2026-10-14 18:36:21+09:00 [COMMAND_EXIT_CODE="0"]
