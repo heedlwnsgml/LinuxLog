@@ -1,0 +1,1790 @@
+Script started on 2026-10-14 15:31:29+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="139" LINES="30"]
+mkdir@-ps~/kube/05/init-containert&&kcde~/kube/05/init-container ~/kube/05/init-container
+[root@master[~/kube/05/init-container]# vi init-container-pod.yml
+>4;2m"init-container-pod.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            0,0-1All?12$p-- INSERT --0,1AllapiVersion: v1
+  2 kind: Pod  3 metadata:
+  4   name: myapp-pod
+  5   labels:  6     app.kubernetes.io/name: MyApp
+  7 spec:  8   containers:  9   - name: myapp-container
+ 10     image: busybox:1.28 11     command: ['sh', '-c', 'echo The app is running! && sleep 3600']
+ 12   initContainitContainers:
+ 13   - name: init-myservice 14     image: busybox:1.28 15     command: ['sh', '-c', "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting forr     myservice; sleep 2; done"] 16   - name: init-mydb
+ 17     image: busybox:1.28 18     command: ['sh', '-c', "until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydbb    ; sleep 2; done"]
+ 19 19,0-1All8,1  7~@k   654~@k   321~@k   09,1 8~@k   765~@k   432~@k   1~@k   ~@k   ~@k   ~@k   o -- INSERT --2,1All  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+
+ 17
+ 18
+ 19
+
+ 202,1All
+1apiVersion: v12
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+
+ 16
+ 17
+ 18
+
+ 19~                                                                                                                                                            1,15All   2 apiVersion: v13
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+
+ 17
+ 18
+ 19
+
+>4;m"init-container-pod.yml"w20L,L684B3writtenen1,3All1,3All~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   4~@k   56~@k   7~@k   8~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   67~@k   8~@k   9~@k   20~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   7~@k   6~@k   7i -- INSERT --7,27Al: MyAp: MyAp: MyAp: MyAp: MyA:2MyApp: MyAp1: MyA:8MyApp: MyA:5MyApp: MyAp: MyAp: MyAp: MyAp9: MyAp865679109 10tMyApp1mMyAppMyApMyAp0mMyApp1yAp8,6 9,1110,119,11 8,6 7,112papp38,6 9,13^[  9,12All::wq
+>4;m[root@master[~/kube/05/init-container]# k create -f init-container-pod.yml
+pod/myapp-pod created
+[root@master[~/kube/05/init-container]# k get ns
+NAME              STATUS   AGE
+default           Active   47h
+kube-node-lease   Active   47h
+kube-public       Active   47h
+kube-system       Active   47h
+[root@master[~/kube/05/init-container]# vi init-container-exam-svc.yml
+>4;2m"init-container-exam-svc.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            0,0-1All?12$p- - - di0   0 ^[  ^[  ^[  ^[  -- INSERT --0,1All---
+  2 apiVersion: v1  3 kind: Service  4 metadata:  5   name: myservice
+  6 spec:  7   ports:  8   - protocol: TCP  9     port: 80 10     tatargetPort: 9376
+>4;m"init-container-exam-svc.yml"w11L,L129B9writtenen11,0-1All11,0-1All::wq
+>4;m[root@master[~/kube/05/init-container]# k create -f init-container-exam-svc.yml
+service/myservice created
+[root@master[~/kube/05/init-containe1@2 vicreate -f init-container-exam-svc.yml
+>4;2m"init-container-exam-svc2.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            0,0-1All?12$ps cl  -- INSERT --0,1Alle1,2r321s2e3r4v5i6c7e898/9m10y1d2b3 ---
+  2 apiVersion: v1  3 kind: Service  4 metadata:  5   name: mydb
+  6 spec:  7   ports:  8   - protocol: TCP  9     port: 80 10     targetPort: 9377
+>4;m"init-container-exam-svc2.yml" [New] 11L, 124B written
+>4;m[root@master[~/kube/05/init-container]# 8@kicreaten-fiinit-container-ex1@2svc
+service/mydb created
+[root@master[~/kube/05/init-container]# k describe pods myapp-pod
+Name:             myapp-pod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Wed, 14 Oct 2026 15:59:50 +0900
+Labels:           app=myapp
+Annotations:      cni.projectcalico.org/containerID: bf7840e761049ede355ed08aa9c0635bb418d4cbbdb98c663741191d94ca60a9
+                  cni.projectcalico.org/podIP: 10.10.166.148/32
+                  cni.projectcalico.org/podIPs: 10.10.166.148/32
+Status:           Running
+IP:               10.10.166.148
+IPs:
+  IP:  10.10.166.148
+Init Containers:
+  init-myservice:
+    Container ID:  containerd://ea5fc4e0d63e3ffb77147c4456128b202506dd4927f58ef63253ba544b085919
+    Image:         busybox:1.28
+    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 14 Oct 2026 15:59:55 +0900
+      Finished:     Wed, 14 Oct 2026 16:03:13 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gfg77 (ro)
+  init-mydb:
+    Container ID:  containerd://452bb83c41aa804859a3b00f13d8539b070dd60ec85732a70a1d911da7562b6c
+    Image:         busybox:1.28
+    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 14 Oct 2026 16:03:14 +0900
+      Finished:     Wed, 14 Oct 2026 16:04:08 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gfg77 (ro)
+Containers:
+  myapp-container:
+    Container ID:  containerd://92b660e2d4ccd1a4e4645c09c43e4d1cb3356b13f2219e769c0eac092bd399a0
+    Image:         busybox:1.28
+    Image ID:      docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      echo The app is running! && sleep 3600
+    State:          Running
+      Started:      Wed, 14 Oct 2026 16:04:09 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-gfg77 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-gfg77:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  5m1s   default-scheduler  Successfully assigned default/myapp-pod to node1
+  Normal  Pulling    5m1s   kubelet            spec.initContainers{init-myservice}: Pulling image "busybox:1.28"
+  Normal  Pulled     4m56s  kubelet            spec.initContainers{init-myservice}: Successfully pulled image "busybox:1.28" in 4.834s (4.834s including waiting). Image size: 727869 bytes.
+  Normal  Created    4m56s  kubelet            spec.initContainers{init-myservice}: Container created
+  Normal  Started    4m56s  kubelet            spec.initContainers{init-myservice}: Container started
+  Normal  Pulled     98s    kubelet            spec.initContainers{init-mydb}: Container image "busybox:1.28" already present on machine and can be accessed by the pod
+  Normal  Created    98s    kubelet            spec.initContainers{init-mydb}: Container created
+  Normal  Started    97s    kubelet            spec.initContainers{init-mydb}: Container started
+  Normal  Pulled     42s    kubelet            spec.containers{myapp-container}: Container image "busybox:1.28" already present on machine and can be accessed by the pod
+  Normal  Created    42s    kubelet            spec.containers{myapp-container}: Container created
+  Normal  Started    42s    kubelet            spec.containers{myapp-container}: Container started
+[root@master[~/kube/05/init-container]# k get ev
+Warning: short name "ev" could also match lower priority resource events.events.k8s.io
+LAST SEEN   TYPE      REASON                    OBJECT                   MESSAGE
+18h         Normal    Scheduled                 pod/exec-liveness        Successfully assigned default/exec-liveness to node1
+18h         Normal    Pulling                   pod/exec-liveness        Pulling image "registry.k8s.io/busybox"
+18h         Warning   Failed                    pod/exec-liveness        Failed to pull image "registry.k8s.io/busybox": rpc error: code = InvalidArgument desc = failed to pull and unpack image "registry.k8s.io/busybox:latest": schema 1 image manifests are no longer supported: invalid argument
+18h         Warning   Failed                    pod/exec-liveness        Error: ErrImagePull
+18h         Normal    BackOff                   pod/exec-liveness        Back-off pulling image "registry.k8s.io/busybox"
+18h         Warning   Failed                    pod/exec-liveness        Error: ImagePullBackOff
+18h         Normal    Scheduled                 pod/exec-liveness        Successfully assigned default/exec-liveness to node1
+18h         Normal    Pulling                   pod/exec-liveness        Pulling image "registry.k8s.io/busybox:1.27.2"
+18h         Normal    Pulled                    pod/exec-liveness        Successfully pulled image "registry.k8s.io/busybox:1.27.2" in 1.539s (1.539s including waiting). Image size: 694360 bytes.
+18h         Normal    Created                   pod/exec-liveness        Container created
+18h         Normal    Started                   pod/exec-liveness        Container started
+18h         Warning   Unhealthy                 pod/exec-liveness        Liveness probe failed: cat: can't open '/tmp/healthy': No such file or directory
+18h         Normal    Killing                   pod/exec-liveness        Container liveness failed liveness probe, will be restarted
+18h         Normal    Pulled                    pod/exec-liveness        Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+18h         Normal    Killing                   pod/exec-liveness        Stopping container liveness
+18h         Normal    Scheduled                 pod/exec-liveness        Successfully assigned default/exec-liveness to node1
+18h         Normal    Pulled                    pod/exec-liveness        Container image "registry.k8s.io/busybox:1.27.2" already present on machine and can be accessed by the pod
+18h         Normal    Created                   pod/exec-liveness        Container created
+18h         Normal    Started                   pod/exec-liveness        Container started
+18h         Normal    Killing                   pod/exec-liveness        Stopping container liveness
+18h         Normal    Scheduled                 pod/http-liveness        Successfully assigned default/http-liveness to node1
+18h         Normal    Pulling                   pod/http-liveness        Pulling image "registry.k8s.io/e2e-test-images/agnhost:2.40"
+18h         Normal    Pulled                    pod/http-liveness        Successfully pulled image "registry.k8s.io/e2e-test-images/agnhost:2.40" in 4.145s (4.145s including waiting). Image size: 51155161 bytes.
+18h         Normal    Created                   pod/http-liveness        Container created
+18h         Normal    Started                   pod/http-liveness        Container started
+18h         Warning   Unhealthy                 pod/http-liveness        Liveness probe failed: HTTP probe failed with statuscode: 500
+18h         Normal    Killing                   pod/http-liveness        Container liveness failed liveness probe, will be restarted
+18h         Normal    Pulled                    pod/http-liveness        Container image "registry.k8s.io/e2e-test-images/agnhost:2.40" already present on machine and can be accessed by the pod
+18h         Normal    Killing                   pod/http-liveness        Stopping container liveness
+18h         Normal    Scheduled                 pod/liveness-pod         Successfully assigned default/liveness-pod to node1
+18h         Normal    Pulling                   pod/liveness-pod         Pulling image "busybox"
+18h         Normal    Pulled                    pod/liveness-pod         Successfully pulled image "busybox" in 4.698s (4.698s including waiting). Image size: 2236767 bytes.
+18h         Normal    Created                   pod/liveness-pod         Container created
+18h         Normal    Started                   pod/liveness-pod         Container started
+18h         Warning   Unhealthy                 pod/liveness-pod         Liveness probe failed: ls: /tmp/healthy: No such file or directory
+18h         Normal    Killing                   pod/liveness-pod         Container busybox-container failed liveness probe, will be restarted
+18h         Normal    Pulled                    pod/liveness-pod         Successfully pulled image "busybox" in 1.564s (1.564s including waiting). Image size: 2236767 bytes.
+18h         Normal    Killing                   pod/liveness-pod         Stopping container busybox-container
+54m         Normal    Starting                  node/master              Starting kubelet.
+54m         Normal    NodeHasSufficientMemory   node/master              Node master status is now: NodeHasSufficientMemory
+54m         Normal    NodeHasNoDiskPressure     node/master              Node master status is now: NodeHasNoDiskPressure
+54m         Normal    NodeHasSufficientPID      node/master              Node master status is now: NodeHasSufficientPID
+54m         Normal    NodeAllocatableEnforced   node/master              Updated Node Allocatable limit across pods
+54m         Warning   Rebooted                  node/master              Node master has been rebooted, boot id: cf554514-51ca-4e08-b0e9-a154483b3fea
+54m         Normal    Starting                  node/master
+53m         Normal    RegisteredNode            node/master              Node master event: Registered Node master in Controller
+5m59s       Normal    Scheduled                 pod/myapp-pod            Successfully assigned default/myapp-pod to node1
+5m59s       Normal    Pulling                   pod/myapp-pod            Pulling image "busybox:1.28"
+5m54s       Normal    Pulled                    pod/myapp-pod            Successfully pulled image "busybox:1.28" in 4.834s (4.834s including waiting). Image size: 727869 bytes.
+5m54s       Normal    Created                   pod/myapp-pod            Container created
+5m54s       Normal    Started                   pod/myapp-pod            Container started
+2m36s       Normal    Pulled                    pod/myapp-pod            Container image "busybox:1.28" already present on machine and can be accessed by the pod
+2m36s       Normal    Created                   pod/myapp-pod            Container created
+2m35s       Normal    Started                   pod/myapp-pod            Container started
+100s        Normal    Pulled                    pod/myapp-pod            Container image "busybox:1.28" already present on machine and can be accessed by the pod
+100s        Normal    Created                   pod/myapp-pod            Container created
+100s        Normal    Started                   pod/myapp-pod            Container started
+18h         Normal    Scheduled                 pod/nginx-liveness-pod   Successfully assigned default/nginx-liveness-pod to node1
+18h         Normal    Pulled                    pod/nginx-liveness-pod   Container image "nginx:1.26" already present on machine and can be accessed by the pod
+18h         Normal    Created                   pod/nginx-liveness-pod   Container created
+18h         Normal    Started                   pod/nginx-liveness-pod   Container started
+18h         Normal    Killing                   pod/nginx-liveness-pod   Stopping container nginx-container
+18h         Normal    Scheduled                 pod/nginx-liveness-pod   Successfully assigned default/nginx-liveness-pod to node1
+18h         Normal    Pulled                    pod/nginx-liveness-pod   Container image "nginx:1.26" already present on machine and can be accessed by the pod
+18h         Normal    Created                   pod/nginx-liveness-pod   Container created
+18h         Normal    Started                   pod/nginx-liveness-pod   Container started
+18h         Normal    Killing                   pod/nginx-liveness-pod   Stopping container nginx-container
+53m         Normal    RegisteredNode            node/node1               Node node1 event: Registered Node node1 in Controller
+53m         Normal    Starting                  node/node1               Starting kubelet.
+53m         Normal    NodeAllocatableEnforced   node/node1               Updated Node Allocatable limit across pods
+53m         Normal    NodeHasSufficientMemory   node/node1               Node node1 status is now: NodeHasSufficientMemory
+53m         Normal    NodeHasNoDiskPressure     node/node1               Node node1 status is now: NodeHasNoDiskPressure
+53m         Normal    NodeHasSufficientPID      node/node1               Node node1 status is now: NodeHasSufficientPID
+53m         Warning   Rebooted                  node/node1               Node node1 has been rebooted, boot id: 7ab25dc2-372e-4132-83b4-e685085a4af9
+53m         Normal    Starting                  node/node1
+53m         Normal    RegisteredNode            node/node2               Node node2 event: Registered Node node2 in Controller
+53m         Normal    Starting                  node/node2               Starting kubelet.
+53m         Normal    NodeAllocatableEnforced   node/node2               Updated Node Allocatable limit across pods
+53m         Normal    NodeHasSufficientMemory   node/node2               Node node2 status is now: NodeHasSufficientMemory
+53m         Normal    NodeHasNoDiskPressure     node/node2               Node node2 status is now: NodeHasNoDiskPressure
+53m         Normal    NodeHasSufficientPID      node/node2               Node node2 status is now: NodeHasSufficientPID
+53m         Warning   Rebooted                  node/node2               Node node2 has been rebooted, boot id: 55f46fcb-f918-468c-9f62-50d1f1e8a115
+53m         Normal    Starting                  node/node2
+53m         Normal    RegisteredNode            node/node3               Node node3 event: Registered Node node3 in Controller
+53m         Normal    Starting                  node/node3               Starting kubelet.
+53m         Normal    NodeAllocatableEnforced   node/node3               Updated Node Allocatable limit across pods
+53m         Normal    NodeHasSufficientMemory   node/node3               Node node3 status is now: NodeHasSufficientMemory
+53m         Normal    NodeHasNoDiskPressure     node/node3               Node node3 status is now: NodeHasNoDiskPressure
+53m         Normal    NodeHasSufficientPID      node/node3               Node node3 status is now: NodeHasSufficientPID
+53m         Warning   Rebooted                  node/node3               Node node3 has been rebooted, boot id: ef21f6c1-c1bb-4e76-bcb4-123d80563b3c
+53m         Normal    Starting                  node/node3
+[root@master[~/kube/05/init-container]# c
+nnn[root@master[~/kube/05/init-container]# k describe pods myapp-pod -o json
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl describe --help' for usage.
+[root@master[~/kube/05/init-container]# k getcpods myapp-podp-oojson json
+{
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+        "annotations": {
+            "cni.projectcalico.org/containerID": "bf7840e761049ede355ed08aa9c0635bb418d4cbbdb98c663741191d94ca60a9",
+            "cni.projectcalico.org/podIP": "10.10.166.148/32",
+            "cni.projectcalico.org/podIPs": "10.10.166.148/32"
+        },
+        "creationTimestamp": "2026-10-14T06:59:50Z",
+        "generation": 1,
+        "labels": {
+            "app": "myapp"
+        },
+        "name": "myapp-pod",
+        "namespace": "default",
+        "resourceVersion": "82000",
+        "uid": "7b7d3a74-199b-4c42-838c-c9b3e0e789bc"
+    },
+    "spec": {
+        "containers": [
+            {
+                "command": [
+                    "sh",
+                    "-c",
+                    "echo The app is running! \u0026\u0026 sleep 3600"
+                ],
+                "image": "busybox:1.28",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "myapp-container",
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "dnsPolicy": "ClusterFirst",
+        "enableServiceLinks": true,
+        "imagePullSecrets": [
+            {
+                "name": "regcred"
+            }
+        ],
+        "initContainers": [
+            {
+                "command": [
+                    "sh",
+                    "-c",
+                    "until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done"
+                ],
+                "image": "busybox:1.28",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "init-myservice",
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true
+                    }
+                ]
+            },
+            {
+                "command": [
+                    "sh",
+                    "-c",
+                    "until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done"
+                ],
+                "image": "busybox:1.28",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "init-mydb",
+                "resources": {},
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true
+                    }
+                ]
+            }
+        ],
+        "nodeName": "node1",
+        "preemptionPolicy": "PreemptLowerPriority",
+        "priority": 0,
+        "restartPolicy": "Always",
+        "schedulerName": "default-scheduler",
+        "securityContext": {},
+        "serviceAccount": "default",
+        "serviceAccountName": "default",
+        "terminationGracePeriodSeconds": 30,
+        "tolerations": [
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            },
+            {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+            }
+        ],
+        "volumes": [
+            {
+                "name": "kube-api-access-gfg77",
+                "projected": {
+                    "defaultMode": 420,
+                    "sources": [
+                        {
+                            "serviceAccountToken": {
+                                "expirationSeconds": 3607,
+                                "path": "token"
+                            }
+                        },
+                        {
+                            "configMap": {
+                                "items": [
+                                    {
+                                        "key": "ca.crt",
+                                        "path": "ca.crt"
+                                    }
+                                ],
+                                "name": "kube-root-ca.crt"
+                            }
+                        },
+                        {
+                            "downwardAPI": {
+                                "items": [
+                                    {
+                                        "fieldRef": {
+                                            "apiVersion": "v1",
+                                            "fieldPath": "metadata.namespace"
+                                        },
+                                        "path": "namespace"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "status": {
+        "conditions": [
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T06:59:50Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodReadyToStartContainers"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T07:04:09Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T07:04:09Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "Ready"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T07:04:09Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "ContainersReady"
+            },
+            {
+                "lastProbeTime": null,
+                "lastTransitionTime": "2026-10-14T06:59:50Z",
+                "observedGeneration": 1,
+                "status": "True",
+                "type": "PodScheduled"
+            }
+        ],
+        "containerStatuses": [
+            {
+                "containerID": "containerd://92b660e2d4ccd1a4e4645c09c43e4d1cb3356b13f2219e769c0eac092bd399a0",
+                "image": "docker.io/library/busybox:1.28",
+                "imageID": "docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47",
+                "lastState": {},
+                "name": "myapp-container",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": true,
+                "state": {
+                    "running": {
+                        "startedAt": "2026-10-14T07:04:09Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0,
+                            10
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "hostIP": "192.168.10.11",
+        "hostIPs": [
+            {
+                "ip": "192.168.10.11"
+            }
+        ],
+        "initContainerStatuses": [
+            {
+                "containerID": "containerd://ea5fc4e0d63e3ffb77147c4456128b202506dd4927f58ef63253ba544b085919",
+                "image": "docker.io/library/busybox:1.28",
+                "imageID": "docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47",
+                "lastState": {},
+                "name": "init-myservice",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": false,
+                "state": {
+                    "terminated": {
+                        "containerID": "containerd://ea5fc4e0d63e3ffb77147c4456128b202506dd4927f58ef63253ba544b085919",
+                        "exitCode": 0,
+                        "finishedAt": "2026-10-14T07:03:13Z",
+                        "reason": "Completed",
+                        "startedAt": "2026-10-14T06:59:55Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0,
+                            10
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            },
+            {
+                "containerID": "containerd://452bb83c41aa804859a3b00f13d8539b070dd60ec85732a70a1d911da7562b6c",
+                "image": "docker.io/library/busybox:1.28",
+                "imageID": "docker.io/library/busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47",
+                "lastState": {},
+                "name": "init-mydb",
+                "ready": true,
+                "resources": {},
+                "restartCount": 0,
+                "started": false,
+                "state": {
+                    "terminated": {
+                        "containerID": "containerd://452bb83c41aa804859a3b00f13d8539b070dd60ec85732a70a1d911da7562b6c",
+                        "exitCode": 0,
+                        "finishedAt": "2026-10-14T07:04:08Z",
+                        "reason": "Completed",
+                        "startedAt": "2026-10-14T07:03:14Z"
+                    }
+                },
+                "user": {
+                    "linux": {
+                        "gid": 0,
+                        "supplementalGroups": [
+                            0,
+                            10
+                        ],
+                        "uid": 0
+                    }
+                },
+                "volumeMounts": [
+                    {
+                        "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                        "name": "kube-api-access-gfg77",
+                        "readOnly": true,
+                        "recursiveReadOnly": "Disabled"
+                    }
+                ]
+            }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.10.166.148",
+        "podIPs": [
+            {
+                "ip": "10.10.166.148"
+            }
+        ],
+        "qosClass": "BestEffort",
+        "resources": {},
+        "startTime": "2026-10-14T06:59:50Z"
+    }
+}
+[root@master[~/kube/05/init-container]# k delete -all
+error: unknown shorthand flag: 'a' in -all
+See 'kubectl delete --help' for usage.
+[root@master[~/kube/05/init-container]# k delete pods --all
+pod "myapp-pod" deleted from default namespace
+[root@master[~/kube/05/init-container]# cd /var/lob
+account/  cache/    db/       ftp/      kerberos/ local/    log/      nis/      preserve/ spool/    yp/
+adm/      crash/    empty/    games/    lib/      lock/     mail/     opt/      run/      tmp/
+[root@master[~/kube/05/init-container]# cd /var/lib/kubelet/l
+checkpoints/      image_manager/    plugins/          pod-resources/    pods-api/
+device-plugins/   pki/              plugins_registry/ pods/
+[root@master[~/kube/05/init-container]# cd /var/lib/kubelet/
+[root@master[/var/lib/kubelet]# cat config.yaml
+apiVersion: kubelet.config.k8s.io/v1beta1
+authentication:
+  anonymous:
+    enabled: false
+  webhook:
+    cacheTTL: 0s
+    enabled: true
+  x509:
+    clientCAFile: /etc/kubernetes/pki/ca.crt
+authorization:
+  mode: Webhook
+  webhook:
+    cacheAuthorizedTTL: 0s
+    cacheUnauthorizedTTL: 0s
+cgroupDriver: systemd
+clusterDNS:
+- 10.96.0.10
+clusterDomain: cluster.local
+containerRuntimeEndpoint: unix:///var/run/containerd/containerd.sock
+cpuManagerReconcilePeriod: 0s
+crashLoopBackOff: {}
+evictionPressureTransitionPeriod: 0s
+fileCheckFrequency: 0s
+healthzBindAddress: 127.0.0.1
+healthzPort: 10248
+httpCheckFrequency: 0s
+imageMaximumGCAge: 0s
+imageMinimumGCAge: 0s
+kind: KubeletConfiguration
+logging:
+  flushFrequency: 0
+  options:
+    json:
+      infoBufferSize: "0"
+    text:
+      infoBufferSize: "0"
+  verbosity: 0
+memorySwap: {}
+nodeStatusReportFrequency: 0s
+nodeStatusUpdateFrequency: 0s
+rotateCertificates: true
+runtimeRequestTimeout: 0s
+shutdownGracePeriod: 0s
+shutdownGracePeriodCriticalPods: 0s
+staticPodPath: /etc/kubernetes/manifests
+streamingConnectionIdleTimeout: 0s
+syncFrequency: 0s
+volumeStatsAggPeriod: 0s
+[root@master[/var/lib/kubelet]# cd /etc/kubernetes/
+[root@master[/etc/kubernetes]# ls
+admin.conf  controller-manager.conf  kubelet.conf  manifests  pki  scheduler.conf  super-admin.conf
+[root@master[/etc/kubernetes]# cd manifests/
+[root@master[/etc/kubernetes/manifests]# ls
+etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yaml
+[root@master[/etc/kubernetes/manifests]#
+[root@master[/etc/kubernetes/manifests]#
+[root@master[/etc/kubernetes/manifests]#
+[root@master[/etc/kubernetes/manifests]#
+[root@master[/etc/kubernetes/manifests]# cat etcd.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubeadm.kubernetes.io/etcd.advertise-client-urls: https://192.168.10.10:2379
+  labels:
+    component: etcd
+    tier: control-plane
+  name: etcd
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - etcd
+    - --advertise-client-urls=https://192.168.10.10:2379
+    - --cert-file=/etc/kubernetes/pki/etcd/server.crt
+    - --client-cert-auth=true
+    - --data-dir=/var/lib/etcd
+    - --feature-gates=InitialCorruptCheck=true
+    - --initial-advertise-peer-urls=https://192.168.10.10:2380
+    - --initial-cluster=master=https://192.168.10.10:2380
+    - --key-file=/etc/kubernetes/pki/etcd/server.key
+    - --listen-client-urls=https://127.0.0.1:2379,https://192.168.10.10:2379
+    - --listen-metrics-urls=http://127.0.0.1:2381
+    - --listen-peer-urls=https://192.168.10.10:2380
+    - --name=master
+    - --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt
+    - --peer-client-cert-auth=true
+    - --peer-key-file=/etc/kubernetes/pki/etcd/peer.key
+    - --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+    - --snapshot-count=10000
+    - --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+    - --watch-progress-notify-interval=5s
+    image: registry.k8s.io/etcd:3.7.0-0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 8
+      httpGet:
+        host: 127.0.0.1
+        path: /livez
+        port: probe-port
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+    name: etcd
+    ports:
+    - containerPort: 2381
+      name: probe-port
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        host: 127.0.0.1
+        path: /readyz
+        port: probe-port
+        scheme: HTTP
+      periodSeconds: 1
+      timeoutSeconds: 15
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+    startupProbe:
+      failureThreshold: 24
+      httpGet:
+        host: 127.0.0.1
+        path: /readyz
+        port: probe-port
+        scheme: HTTP
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 15
+    volumeMounts:
+    - mountPath: /var/lib/etcd
+      name: etcd-data
+    - mountPath: /etc/kubernetes/pki/etcd
+      name: etcd-certs
+  hostNetwork: true
+  priority: 2000001000
+  priorityClassName: system-node-critical
+  securityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  volumes:
+  - hostPath:
+      path: /etc/kubernetes/pki/etcd
+      type: DirectoryOrCreate
+    name: etcd-certs
+  - hostPath:
+      path: /var/lib/etcd
+      type: DirectoryOrCreate
+    name: etcd-data
+status: {}
+[root@master[/etc/kubernetes/manifests]# ssh node1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node1:9090/ or https://192.168.10.11:9090/
+
+Last login: Mon Oct 12 17:52:12 2026
+cdo/etc/kubernetes/manifestsrnetes/manifests
+[root@node1 /etc/kubernetes/manifests]# vi nginx.yml
+>4;2m"nginx.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: v1  3 kind: Pod  4 metadata:  5   name: nginx-pod
+  6 spec:  7   containers:  8   - name: nginx-container  9     image: nginx:1.14
+>4;m"nginx.yml"1[New] 13L,n181Bewritten80 12       protocol: TCP 13 13,0-1All^[  ^[  ::wq
+>4;m[root@node1 /etc/kubernetes/manifests]# mv /etc/kubernetes/manifests/nginx.yml /tmp
+sleep 10
+crictl ps      # containerd 컨테이너 런타임을 사용하는 경우
+
+mv /tmp/nginx.yml /etc/kubernetes/manifests/
+sleep 10
+crictl ps      # containerd 컨테이너 런타임을 사용하는 경우
+mv /etc/kubernetes/manifests/nginx.yml /tmp
+sleep 10
+crictl ps      # containerd 컨테이너 런타임을 사용하는 경우
+
+mv /tmp/nginx.yml /etc/kubernetes/manifests/
+sleep 10
+crictl ps      # containerd 컨테이너 런타임을 사용하는 경우
+
+CONTAINER           IMAGE               CREATED             STATE               NAME                ATTEMPT             POD ID              POD                 NAMESPACE
+bfd91b22cfe2c       08616d26b8e74       About an hour ago   Running             calico-node         3                   458e83afb8887       calico-node-xxrpg   kube-system
+e73d36740ce3b       728902c90c8b5       About an hour ago   Running             kube-proxy          3                   c10e16e632dfe       kube-proxy-g6jl6    kube-system
+CONTAINER           IMAGE               CREATED             STATE               NAME                ATTEMPT             POD ID              POD                 NAMESPACE
+dca37025d1721       295c7be079025       9 seconds ago       Running             nginx-container     0                   63220e57eff17       nginx-pod-node1     default
+bfd91b22cfe2c       08616d26b8e74       About an hour ago   Running             calico-node         3                   458e83afb8887       calico-node-xxrpg   kube-system
+e73d36740ce3b       728902c90c8b5       About an hour ago   Running             kube-proxy          3                   c10e16e632dfe       kube-proxy-g6jl6    kube-system
+[root@node1 /etc/kubernetes/manifests]# rm -f /etc/kubernets/manifests/nginx.yml
+[root@node1 /etc/kubernetes/manifests]# exit
+logout
+Connection to node1 closed.
+[root@master[/etc/kubernetes/manifests]# kubectl get pods
+NAME              READY   STATUS    RESTARTS   AGE
+nginx-pod-node1   1/1     Running   0          77s
+[root@master[/etc/kubernetes/manifests]# ssh node1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node1:9090/ or https://192.168.10.11:9090/
+
+Last login: Wed Oct 14 16:17:23 2026 from 192.168.10.10
+[root@node1 ~]# cd /etc/kubernetes/manifests/
+[root@node1 /etc/kubernetes/manifests]# ls
+nginx.yml
+[root@node1 /etc/kubernetes/manifests]# rm -f nginx.yml
+[root@node1 /etc/kubernetes/manifests]# exit
+logout
+Connection to node1 closed.
+[root@master[/etc/kubernetes/manifests]# k get pds
+error: the server doesn't have a resource type "pds"
+[root@master[/etc/kubernetes/manifests]# k get pos
+No resources found in default namespace.
+[root@master[/etc/kubernetes/manifests]# forei in master node1 node2 node3
+do
+echo "-- $i --"
+ssh $i 'ls /etc/kubernetes/manifests'
+[root@master[/etc/kubernetes/manifests]# for i in master node1 node2 node3
+do
+echo "-- $i --"
+ssh $i 'ls /etc/kubernetes/manifests'
+done
+-- master --
+etcd.yaml
+kube-apiserver.yaml
+kube-controller-manager.yaml
+kube-scheduler.yaml
+-- node1 --
+-- node2 --
+-- node3 --
+[root@master[/etc/kubernetes/manifests]# ssh node1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node1:9090/ or https://192.168.10.11:9090/
+
+Last login: Wed Oct 14 16:19:40 2026 from 192.168.10.10
+croot@node1 ~]# cd /etc/kubernetes/manifests/
+nnn[root@node1 ~]# free
+               total        used        free      shared  buff/cache   available
+Mem:         7831564      995580     5775140       12320     1326596     6835984
+Swap:              0           0           0
+[root@node1 ~]# cpupower
+Usage:  cpupower [-c|--cpu cpulist ] <command> [<args>]
+Supported commands are:
+        frequency-info
+        frequency-set
+        idle-info
+        idle-set
+        powercap-info
+        set
+        info
+        monitor
+        help
+
+Not all commands can make use of the -c cpulist option.
+
+Use 'cpupower help <command>' for getting help for above commands.
+[root@node1 ~]# cpupower info
+System does not support Intel's performance bias setting
+analyzing CPU 3:
+[root@node1 ~]# top
+Btop - 16:48:26 up  1:36,  1 user,  load average: 0.28, 0.17, 0.10BB
+Tasks:B 330 Btotal,B   1 Brunning,B 329 Bsleeping,B   0 Bstopped,B   0 BzombieBB
+%Cpu(s):B  0.0 Bus,B  1.1 Bsy,B  0.0 Bni,B 98.9 Bid,B  0.0 Bwa,B  0.0 Bhi,B  0.0 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B   5635.8 Bfree,B    975.9 Bused,B   1295.9 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   6672.2 Bavail Mem BB
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                               B
+B      1 root      20   0   44860  37132  10924 S   0.0   0.5   0:02.41 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                B
+B     15 root      20   0       0      0      0 S   0.0   0.0   0:00.02 ksoftirqd/0                                                                           B
+B     16 root      20   0       0      0      0 I   0.0   0.0   0:00.59 rcu_preempt                                                                           B
+B     17 root      20   0       0      0      0 S   0.0   0.0   0:00.31 rcu_exp_par_gp_kthread_worker/1                                                       B
+B     18 root      20   0       0      0      0 S   0.0   0.0   0:00.14 rcu_exp_gp_kthread_worker                                                             B
+B     19 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 migration/0                                                                           B
+B     20 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                         B
+B     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                               B
+B     22 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                               B
+B     23 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1                                                                         B
+B     24 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 migration/1                                                                           B
+B     25 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/1                                                                           B
+B     27 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/1:0H-events_highpri                                                           B
+B     28 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2                                                                               BBtop - 16:48:29 up  1:36,  1 user,  load average: 0.28, 0.17, 0.10BB
+
+%Cpu(s):B  0.1 Bus,B  0.4 Bsy,B  0.0 Bni,B 99.3 Bid,B  0.0 Bwa,B  0.1 Bhi,B  0.1 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B   5631.9 Bfree,B    979.5 Bused,B   1296.2 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   6668.5 Bavail Mem BB
+
+
+B   1449 root      20   0 3522784  77612  37804 S   1.0   1.0   0:40.89 containerd                                                                            B
+B   2454 root      20   0 2432420  93100  53876 S   1.0   1.2   0:51.64 kubelet                                                                               B
+B   3120 root      20   0 1968436  68716  46752 S   1.0   0.9   1:04.96 calico-node                                                                           B
+B   2513 root      20   0 1333912  19172   7900 S   0.7   0.2   0:12.80 containerd-shim                                                                       B
+B  32610 root      20   0   15996   8136   5788 S   0.3   0.1   0:00.12 sshd-session                                                                          B
+B  34910 root      20   0       0      0      0 I   0.3   0.0   0:00.06 kworker/u512:1-events_unbound                                                         B
+B      1 root      20   0   44860  37132  10924 S   0.0   0.5   0:02.41 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                B
+B     15 root      20   0       0      0      0 S   0.0   0.0   0:00.02 ksoftirqd/0                                                                           B
+B     16 root      20   0       0      0      0 I   0.0   0.0   0:00.59 rcu_preempt                                                                           B
+B     17 root      20   0       0      0      0 S   0.0   0.0   0:00.31 rcu_exp_par_gp_kthread_worker/1                                                       B
+B     18 root      20   0       0      0      0 S   0.0   0.0   0:00.14 rcu_exp_gp_kthread_worker                                                             B
+B     19 root      rt   0       0      0      0 S   0.0   0.0   0:00.00 migration/0                                                                           B
+B     20 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                         B
+B     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                               B
+[root@node1 ~]# c
+mkdiro-p@~/kube/05/resources~&&ucd/~/kube/05/resources~/kube/05/resources
+[root@node1 ~/kube/05/resources]# c
+nnn[root@node1 ~/kube/05/resources]# k run nginx-pod-resources --image nginx --port=80 -o yaml > nginx-resource-requests-pod.yml
+bash: k: command not found...
+[root@node1 ~/kube/05/resources]# 1@u1@b1@e1@c1@t1@lsources --image nginx --port 80 -o yaml > nginx-resource-requests-pod.yml
+E1014 16:55:04.630696   44056 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+[root@node1 ~/kube/05/resources]# exit
+logout
+Connection to node1 closed.
+[mkdirm-pt~/kube/05/resourcesm&&icds~/kube/05/resourcesbe/05/resources && cd ~/kube/05/resources
+[root@master[~/kube/05/resources]# ^C
+[kubectlsrun[nginx-pod-resources]--imagecnginxn--port-80d-oeyamlc>snginx-resource-requests-pod.ymll > nginx-resource-requests-pod.yml
+[root@master[~/kube/05/resources]# k create -f nginx-resource-requests-pod.yml
+Error from server (AlreadyExists): error when creating "nginx-resource-requests-pod.yml": pods "nginx-pod-resources" already exists
+[root@master[~/kube/05/resources]# k delete pods --all
+pod "nginx-pod-resources" deleted from default namespace
+[root@master[~/kube/05/resources]# k create -fdnginx-resource-requests-pod.yml
+pod/nginx-pod-resources created
+[root@master[~/kube/05/resources]# c
+nkubectl@describe/pods/nginx-pod-resourcese|tsede-nr'/Containers:/,/Conditions:/p' sed -n '/Containers:/,/Conditions:/p'
+Containers:
+  nginx-container:
+    Container ID:   containerd://a8549f7d7ab998fdf03d170169c8dc0afef915bf9d7a79ad72b37f18db314f2f
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 16:57:57 +0900
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        1
+      memory:     500Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cl5sx (ro)
+Conditions:
+[root@master[~/kube/05/resources]# ssh node
+ssh: Could not resolve hostname node: Name or service not known
+[root@master[~/kube/05/resources]# ssh node1
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node1:9090/ or https://192.168.10.11:9090/
+
+Last login: Wed Oct 14 16:25:01 2026 from 192.168.10.10
+[root@node1 ~]# cd kube/05/resources/
+[root@node1 ~/kube/05/resources]# ls
+nginx-resource-requests-pod.yml
+[root@node1 ~/kube/05/resources]# rm nginx-resource-requests-pod.yml
+rm: remove regular empty file 'nginx-resource-requests-pod.yml'? y
+[root@node1 ~/kube/05/resources]# exit
+logout
+Connection to node1 closed.
+[root@master[~/kube/05/resources]# c
+nkubectl@describe/pods/nginx-pod-resourcese|tsede-nr'/Containers:/,/Conditions:/p' sed -n '/Containers:/,/Conditions:/p'
+Containers:
+  nginx-container:
+    Container ID:   containerd://a8549f7d7ab998fdf03d170169c8dc0afef915bf9d7a79ad72b37f18db314f2f
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 16:57:57 +0900
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        1
+      memory:     500Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-cl5sx (ro)
+Conditions:
+[root@master[~/kube/05/resources]# cat nginx-resource-requests-pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod-resources
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+    - containerPort: 80
+      protocol: TCP
+    resources:
+      requests:
+        cpu: 1
+        memory: 500Mi[root@master[~/kube/05/resources]# k
+[root@master[~/kube/05/resources]# k get pods nginx-pod-resources -o jsonpath='{.spec.containers[0].resources}' | jq .
+{
+  "requests": {
+    "cpu": "1",
+    "memory": "500Mi"
+  }
+}
+cponginx-resource-requests-pod.yml nginx-resource-limits-pod.ymld.yml nginx-resource-limits-pod.yml
+[root@master[~/kube/05/resources]# vi nginx-resource-limits-pod.yml
+>4;2m"nginx-resource-limits-pod.yml" [noeol] 16L, 257B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       requests:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+>4;m"nginx-resource-limits-pod.yml" 16L, 256B written                                                                                                        ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            1,1All?12$pG 6,8~@k   5~@k   4~@k   3~@k   2~@k   9~@k   10~@k   1~@k   3~@k   2i -- INSERT --13,12All3s:3:s:1::9::7l:8i:9m:10i:1t:2s:3^[  13,12All::wq
+>4;m[root@master[~/kube/05/resources]# k create -f nginx-resource-limits-pod.yml
+Error from server (AlreadyExists): error when creating "nginx-resource-limits-pod.yml": pods "nginx-pod-resources" already exists
+vicreatec-fanginx-resource-limits-pod.ymlte -f nginx-resource-limits-pod.yml
+>4;2m"nginx-resource-limits-pod.yml" 16L, 256B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       limits:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+>4;m"nginx-resource-limits-pod.yml" 16L, 256B written                                                                                                        ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            13,7All?12$p~@k   4~@k   3~@k   2~@k   1~@k   0~@@   23i -- INSERT --10,23All14^[  10,23All::wq
+>4;m[root@vister[~/kube/05/resources]# 9@kncreatee-furce-limits-pod.yml
+>4;2m"nginx-resource-limits-pod.yml" 16L, 256B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 81
+ 11       protocol: TCP
+ 12     resources:
+ 13       limits:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+>4;m"nginx-resource-limits-pod.yml" 16L, 257B written                                                                                                        ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            10,5All?12$p~@ý   7~@ý   22~@ý   1,7 ~@ý   17~@ý   7 ~@ý   0,22~@k   9,10 ~@k   ~@k   10,22~@k   3~@k   r0  9,10 8,16~@k   7,23~@k   6,1~@k   5,5 ~@k   4,23~@@   7i -- INSERT --4,27All829^[  4,28All::wq
+>4;m[root@master[~/kube/05/resources]# 9@kncreatee-furce-limits-pod.yml
+pod/nginx-pod-resources2 created
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]# k describe pods nginx-pod-resources2
+Name:             nginx-pod-resources2
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node2/192.168.10.12
+Start Time:       Wed, 14 Oct 2026 17:02:57 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: f3fe51409e7a76ff2dc2f4c92300b332aebbea0e47c685bf47ac96cd33c3ef4a
+                  cni.projectcalico.org/podIP: 10.10.104.10/32
+                  cni.projectcalico.org/podIPs: 10.10.104.10/32
+Status:           Running
+IP:               10.10.104.10
+IPs:
+  IP:  10.10.104.10
+Containers:
+  nginx-container:
+    Container ID:   containerd://d06a95b873acd9287e2df1db66caae73ef7d7be8fe4ecfc3e715a8bb75dc767b
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:f9ea18bfa4fad859e1ed38259d711da7ccad2c3516e875cec3351a57c859f571
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Wed, 14 Oct 2026 17:03:00 +0900
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      cpu:     1
+      memory:  500Mi
+    Requests:
+      cpu:        1
+      memory:     500Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-9wt4w (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  kube-api-access-9wt4w:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Guaranteed
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  64s   default-scheduler  Successfully assigned default/nginx-pod-resources2 to node2
+  Normal  Pulling    63s   kubelet            spec.containers{nginx-container}: Pulling image "nginx"
+  Normal  Pulled     61s   kubelet            spec.containers{nginx-container}: Successfully pulled image "nginx" in 1.694s (1.694s including waiting). Image size: 63873678 bytes.
+  Normal  Created    61s   kubelet            spec.containers{nginx-container}: Container created
+  Normal  Started    61s   kubelet            spec.containers{nginx-container}: Container started
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]#
+cponginx-resource-limits-pod.yml]nginx-resource-requests-limits-pod.ymlnx-resource-requests-limits-pod.yml
+[root@master[~/kube/05/resources]# vi nginx-resource-limits-pod.yml
+>4;2m"nginx-resource-limits-pod.yml" 16L, 257B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources2
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       limits:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            4,3All?12$pG 16,8~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   9,8 ~@k   8~@k   7~@k   6~@k   5,5~@k   4,8~@@   28r3  ~@k   5,5 ~@k   6,13~@k   7,25~@k   8,16~@k   9,10~@k   10,23~@k   1,19~@k   2,14~@k   o -- INSERT --13,5All 13
+ 14
+ 15
+ 16
+ 1713,5All7r8e9q10u1e2s3t4s5requests:6 14
+ 15
+ 16
+ 17
+ 1814,7All9c10pcpu:34250200m8 15
+ 16
+ 17
+ 18
+>4;m"nginx-resource-limits-pod.yml"i19L, 313B1written
+>4;m[root@master[~/kube/05/resources]# k create -f nginx-resource-limits-pod.yml
+pod/nginx-pod-resources3 created
+[root@master[~/kube/05/resources]# c
+nnn[root@master[~/kube/05/resources]# top
+Btop - 17:08:12 up  1:56, 10 users,  load average: 0.62, 0.40, 0.33BB
+Tasks:B 466 Btotal,B   1 Brunning,B 465 Bsleeping,B   0 Bstopped,B   0 BzombieBB
+%Cpu(s):B  1.1 Bus,B  2.2 Bsy,B  0.0 Bni,B 96.6 Bid,B  0.0 Bwa,B  0.0 Bhi,B  0.0 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    532.8 Bfree,B   3216.4 Bused,B   4183.5 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4431.5 Bavail Mem BB
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND                                                                               B
+B 129230 root      20   0 1533728  50240  33212 S  18.2   0.6   0:00.02 calico-node                                                                           B
+B   3418 root      20   0 1693252 432344  81016 S   9.1   5.5   3:47.55 kube-apiserver                                                                        B
+B   4899 root      20   0 1747496  61724  42856 S   9.1   0.8   0:01.12 calico-node                                                                           B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     14 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                B
+B     15 root      20   0       0      0      0 S   0.0   0.0   0:00.09 ksoftirqd/0                                                                           B
+B     16 root      20   0       0      0      0 I   0.0   0.0   0:02.70 rcu_preempt                                                                           B
+B     17 root      20   0       0      0      0 S   0.0   0.0   0:00.47 rcu_exp_par_gp_kthread_worker/1                                                       B
+B     18 root      20   0       0      0      0 S   0.0   0.0   0:00.21 rcu_exp_gp_kthread_worker                                                             B
+B     19 root      rt   0       0      0      0 S   0.0   0.0   0:00.03 migration/0                                                                           B
+B     20 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                         B
+B     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                               B
+B     22 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                               B
+B     23 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1                                                                         B
+B     24 root      rt   0       0      0      0 S   0.0   0.0   0:00.03 migration/1                                                                           BBtop - 17:08:15 up  1:56, 10 users,  load average: 0.65, 0.41, 0.33BB
+Tasks:B 463 Btotal,B   1 Brunning,B 462 Bsleeping,B   0 Bstopped,B   0 BzombieBB
+%Cpu(s):B  0.6 Bus,B  1.5 Bsy,B  0.0 Bni,B 97.0 Bid,B  0.0 Bwa,B  0.6 Bhi,B  0.3 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    539.5 Bfree,B   3209.7 Bused,B   4183.6 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4438.3 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   4.3   5.5   3:47.68 kube-apiserver                                                                        B
+B   3420 root      20   0   11.3g  90892  39260 S   3.0   1.2   2:03.91 etcd                                                                                  B
+B   1465 root      20   0 2924548  70056  32800 S   2.0   0.9   1:10.01 containerd                                                                            B
+B   3154 root      20   0 2498876  99088  53820 S   2.0   1.3   1:53.50 kubelet                                                                               B
+B   3407 root      20   0 1406608 141128  64540 S   2.0   1.8   1:15.23 kube-controller                                                                       B
+B   4903 root      20   0 1968948  69196  46808 S   1.7   0.9   1:11.49 calico-node                                                                           B
+B   3447 root      20   0 1312336  69252  41032 S   0.7   0.9   0:38.31 kube-scheduler                                                                        B
+B     16 root      20   0       0      0      0 I   0.3   0.0   0:02.71 rcu_preempt                                                                           B
+B     55 root      20   0       0      0      0 S   0.3   0.0   0:00.13 ksoftirqd/6                                                                           B
+B   1337 root      20   0  463396   8784   7056 S   0.3   0.1   0:05.92 vmtoolsd                                                                              B
+B   3720 root      20   0 1268304  14308   7900 S   0.3   0.2   0:07.45 containerd-shim                                                                       B
+B   3740 root      20   0 1268304  17472   7900 S   0.3   0.2   0:16.14 containerd-shim                                                                       B
+B   5648 root      20   0 1749748 114424  54808 S   0.3   1.5   0:16.27 MainThread                                                                            B
+B   5910 root      20   0 1546612  52796  38264 S   0.3   0.7   0:06.27 copilot-runtime                                                                       B
+B  32940 root      20   0  232096   7120   3108 S   0.3   0.1   0:10.25 bash                                                                                  B
+B 129217 root      20   0  232060   5864   3656 R   0.3   0.1   0:00.02 top                                                                                   B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                BBtop - 17:08:18 up  1:57, 10 users,  load average: 0.65, 0.41, 0.33BB
+
+%Cpu(s):B  0.5 Bus,B  1.6 Bsy,B  0.0 Bni,B 97.3 Bid,B  0.0 Bwa,B  0.4 Bhi,B  0.1 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    535.0 Bfree,B   3214.1 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4433.9 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.3   5.5   3:47.78 kube-apiserver                                                                        B
+B   3154 root      20   0 2498876  99088  53820 S   3.0   1.3   1:53.59 kubelet                                                                               B
+B   1465 root      20   0 2924548  70056  32800 S   2.3   0.9   1:10.08 containerd                                                                            B
+B   4903 root      20   0 1968948  69196  46808 S   2.3   0.9   1:11.56 calico-node                                                                           B
+B   3420 root      20   0   11.3g  90892  39260 S   2.0   1.2   2:03.97 etcd                                                                                  B
+B   3407 root      20   0 1406608 141128  64540 S   1.0   1.8   1:15.26 kube-controller                                                                       B
+B   3644 root      20   0 5774824 367196 135388 S   1.0   4.7   0:14.37 gnome-shell                                                                           B
+B   3214 root      20   0 1268560  18396   7772 S   0.3   0.2   0:08.34 containerd-shim                                                                       B
+B   3260 root      20   0 1268816  18172   7900 S   0.3   0.2   0:07.51 containerd-shim                                                                       B
+B   3447 root      20   0 1312336  69252  41032 S   0.3   0.9   0:38.32 kube-scheduler                                                                        B
+B   4901 root      20   0 1599520  57368  40100 S   0.3   0.7   0:00.49 calico-node                                                                           B
+B   5648 root      20   0 1749748 114424  54808 S   0.3   1.5   0:16.28 MainThread                                                                            B
+B   5748 root      20   0 9973.4m 189444  62556 S   0.3   2.4   0:15.24 MainThread                                                                            B
+B   6569 root      20   0   16000   8228   5780 S   0.3   0.1   0:09.57 sshd-session                                                                          B
+B 129217 root      20   0  232060   5864   3656 R   0.3   0.1   0:00.03 top                                                                                   B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       BBtop - 17:08:21 up  1:57, 10 users,  load average: 0.60, 0.41, 0.33BB
+Tasks:B 464 Btotal,B   1 Brunning,B 463 Bsleeping,B   0 Bstopped,B   0 BzombieBB
+%Cpu(s):B  0.4 Bus,B  1.1 Bsy,B  0.0 Bni,B 97.9 Bid,B  0.0 Bwa,B  0.4 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    534.4 Bfree,B   3214.8 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4433.2 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.3   5.5   3:47.88 kube-apiserver                                                                        B
+B   3154 root      20   0 2498876  99088  53820 S   3.0   1.3   1:53.68 kubelet                                                                               B
+B   4903 root      20   0 1968948  69232  46808 S   2.3   0.9   1:11.63 calico-node                                                                           B
+B   3420 root      20   0   11.3g  90892  39260 S   2.0   1.2   2:04.03 etcd                                                                                  B
+B   3264 root      20   0 1268560  16692   7772 S   1.3   0.2   0:07.58 containerd-shim                                                                       B
+B   3407 root      20   0 1406608 141128  64540 S   1.3   1.8   1:15.30 kube-controller                                                                       B
+B   3260 root      20   0 1268816  18232   7900 S   0.7   0.2   0:07.53 containerd-shim                                                                       B
+B   3447 root      20   0 1312336  69252  41032 S   0.7   0.9   0:38.34 kube-scheduler                                                                        B
+B   1465 root      20   0 2924548  70056  32800 S   0.3   0.9   1:10.09 containerd                                                                            B
+B   1540 root      20   0  171404   7472   5612 S   0.3   0.1   0:00.45 rsyslogd                                                                              B
+B   3212 root      20   0 1268560  17652   7900 S   0.3   0.2   0:07.56 containerd-shim                                                                       B
+B   3740 root      20   0 1268304  17596   7900 S   0.3   0.2   0:16.15 containerd-shim                                                                       B
+B   3980 root      20   0  545576  11776   9744 S   0.3   0.2   0:00.03 gsd-print-notif                                                                       B
+B   4003 root      20   0 3694980 263568  78748 S   0.3   3.4   0:06.18 vmtoolsd                                                                              B
+B   5421 root      20   0   57880  26032  18500 S   0.3   0.3   0:06.96 code-2a59476c9b                                                                       B
+B   5835 root      20   0   17.7g 152076  58908 S   0.3   1.9   0:05.96 MainThread                                                                            B
+B   5910 root      20   0 1546612  52796  38264 S   0.3   0.7   0:06.28 copilot-runtime                                                                       B
+B  32940 root      20   0  232096   7120   3108 S   0.3   0.1   0:10.26 bash                                                                                  B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     BBtop - 17:08:24 up  1:57, 10 users,  load average: 0.55, 0.40, 0.33BB
+Tasks:B 465 Btotal,B   1 Brunning,B 464 Bsleeping,B   0 Bstopped,B   0 BzombieBB
+%Cpu(s):B  0.6 Bus,B  1.7 Bsy,B  0.0 Bni,B 97.0 Bid,B  0.0 Bwa,B  0.5 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    524.2 Bfree,B   3224.9 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4423.1 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.3   5.5   3:47.98 kube-apiserver                                                                        B
+B   1465 root      20   0 2924548  70056  32800 S   1.7   0.9   1:10.14 containerd                                                                            B
+B   3420 root      20   0   11.3g  90892  39260 S   1.7   1.2   2:04.08 etcd                                                                                  B
+B   4903 root      20   0 1968948  69236  46808 S   1.3   0.9   1:11.67 calico-node                                                                           B
+B   3154 root      20   0 2498876  99088  53820 S   1.0   1.3   1:53.71 kubelet                                                                               B
+B   3407 root      20   0 1406608 141128  64540 S   1.0   1.8   1:15.33 kube-controller                                                                       B
+B   1337 root      20   0  463396   8784   7056 S   0.7   0.1   0:05.94 vmtoolsd                                                                              B
+B   3447 root      20   0 1312336  69252  41032 S   0.7   0.9   0:38.36 kube-scheduler                                                                        B
+B 129217 root      20   0  232060   5864   3656 R   0.7   0.1   0:00.05 top                                                                                   B
+B    988 root      20   0       0      0      0 S   0.3   0.0   0:01.37 xfsaild/dm-0                                                                          B
+B   1472 root      20   0  489136  30412  15128 S   0.3   0.4   0:01.26 tuned                                                                                 B
+B   5355 root      20   0   16148   8220   5696 S   0.3   0.1   0:04.20 sshd-session                                                                          B
+B  32940 root      20   0  232096   7120   3108 S   0.3   0.1   0:10.27 bash                                                                                  B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     14 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                BBtop - 17:08:27 up  1:57, 10 users,  load average: 0.55, 0.40, 0.33BB
+
+%Cpu(s):B  0.4 Bus,B  1.3 Bsy,B  0.0 Bni,B 97.7 Bid,B  0.0 Bwa,B  0.4 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    533.7 Bfree,B   3215.4 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4432.6 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.0   5.5   3:48.07 kube-apiserver                                                                        B
+B   3154 root      20   0 2498876  99088  53820 S   2.0   1.3   1:53.77 kubelet                                                                               B
+B   3420 root      20   0   11.3g  90892  39260 S   2.0   1.2   2:04.14 etcd                                                                                  B
+B   3407 root      20   0 1406608 141128  64540 S   1.3   1.8   1:15.37 kube-controller                                                                       B
+B   1465 root      20   0 2924548  70056  32800 S   1.0   0.9   1:10.17 containerd                                                                            B
+B   4903 root      20   0 1968948  69236  46808 S   1.0   0.9   1:11.70 calico-node                                                                           B
+B   6569 root      20   0   16000   8228   5780 S   1.0   0.1   0:09.60 sshd-session                                                                          B
+B   3740 root      20   0 1268304  17712   7900 S   0.7   0.2   0:16.17 containerd-shim                                                                       B
+B  18740 root      20   0       0      0      0 I   0.7   0.0   0:01.31 kworker/u512:0-events_unbound                                                         B
+B  21492 root      20   0  226872   2204   2064 S   0.7   0.0   0:00.14 script                                                                                B
+B 114412 root      20   0       0      0      0 I   0.7   0.0   0:00.11 kworker/u512:1-events_unbound                                                         B
+B 129217 root      20   0  232060   5864   3656 R   0.7   0.1   0:00.07 top                                                                                   B
+B   3214 root      20   0 1268560  18488   7772 S   0.3   0.2   0:08.35 containerd-shim                                                                       B
+B   3447 root      20   0 1312336  69252  41032 S   0.3   0.9   0:38.37 kube-scheduler                                                                        B
+B   3644 root      20   0 5774824 367224 135388 S   0.3   4.7   0:14.38 gnome-shell                                                                           B
+B   3720 root      20   0 1268304  14616   7900 S   0.3   0.2   0:07.46 containerd-shim                                                                       B
+B   5648 root      20   0 1749748 114424  54808 S   0.3   1.5   0:16.29 MainThread                                                                            B
+B  95825 root      20   0       0      0      0 I   0.3   0.0   0:00.24 kworker/u512:2-events_unbound                                                         B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     BBtop - 17:08:30 up  1:57, 10 users,  load average: 0.58, 0.41, 0.33BB
+
+%Cpu(s):B  0.5 Bus,B  1.2 Bsy,B  0.0 Bni,B 97.7 Bid,B  0.0 Bwa,B  0.5 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    529.4 Bfree,B   3219.7 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4428.2 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.0   5.5   3:48.16 kube-apiserver                                                                        B
+B   3154 root      20   0 2498876  99088  53820 S   2.0   1.3   1:53.83 kubelet                                                                               B
+B   3420 root      20   0   11.3g  90892  39260 S   1.7   1.2   2:04.19 etcd                                                                                  B
+B   3407 root      20   0 1406608 141128  64540 S   1.0   1.8   1:15.40 kube-controller                                                                       B
+B   4903 root      20   0 1968948  69236  46808 S   1.0   0.9   1:11.73 calico-node                                                                           B
+B   1465 root      20   0 2924548  70056  32800 S   0.7   0.9   1:10.19 containerd                                                                            B
+B   3447 root      20   0 1312336  69252  41032 S   0.7   0.9   0:38.39 kube-scheduler                                                                        B
+B   3212 root      20   0 1268560  17988   7900 S   0.3   0.2   0:07.57 containerd-shim                                                                       B
+B   3264 root      20   0 1268560  16760   7772 S   0.3   0.2   0:07.59 containerd-shim                                                                       B
+B   3929 root      20   0  677724   8008   6992 S   0.3   0.1   0:00.24 gsd-housekeepin                                                                       B
+B   5933 root      20   0   16000   8080   5728 S   0.3   0.1   0:00.39 sshd-session                                                                          B
+B  32940 root      20   0  232096   7120   3108 S   0.3   0.1   0:10.28 bash                                                                                  B
+B  95825 root      20   0       0      0      0 I   0.3   0.0   0:00.25 kworker/u512:2-kvfree_rcu_reclaim                                                     B
+B 129217 root      20   0  232060   5864   3656 R   0.3   0.1   0:00.08 top                                                                                   B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           BBtop - 17:08:33 up  1:57, 10 users,  load average: 0.58, 0.41, 0.33BB
+
+%Cpu(s):B  0.5 Bus,B  1.3 Bsy,B  0.0 Bni,B 97.7 Bid,B  0.0 Bwa,B  0.5 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    520.8 Bfree,B   3228.3 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4419.7 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432344  81016 S   3.3   5.5   3:48.26 kube-apiserver                                                                        B
+B   3420 root      20   0   11.3g  90892  39260 S   2.0   1.2   2:04.25 etcd                                                                                  B
+B   3154 root      20   0 2498876  99088  53820 S   1.3   1.3   1:53.87 kubelet                                                                               B
+B   3407 root      20   0 1406608 141128  64540 S   1.0   1.8   1:15.43 kube-controller                                                                       B
+B   1465 root      20   0 2924548  70056  32800 S   0.7   0.9   1:10.21 containerd                                                                            B
+B   3447 root      20   0 1312336  69252  41032 S   0.7   0.9   0:38.41 kube-scheduler                                                                        B
+B   4903 root      20   0 1968948  69236  46808 S   0.7   0.9   1:11.75 calico-node                                                                           B
+B   3260 root      20   0 1268816  18496   7900 S   0.3   0.2   0:07.54 containerd-shim                                                                       B
+B   4003 root      20   0 3694980 263568  78748 S   0.3   3.4   0:06.19 vmtoolsd                                                                              B
+B   5421 root      20   0   57880  26036  18500 S   0.3   0.3   0:06.97 code-2a59476c9b                                                                       B
+B   5648 root      20   0 1749748 114424  54808 S   0.3   1.5   0:16.30 MainThread                                                                            B
+B   5748 root      20   0 9973.4m 189444  62556 S   0.3   2.4   0:15.25 MainThread                                                                            B
+B   6569 root      20   0   16000   8228   5780 S   0.3   0.1   0:09.61 sshd-session                                                                          B
+B 115486 root      20   0       0      0      0 I   0.3   0.0   0:00.04 kworker/3:2-mm_percpu_wq                                                              B
+B 129217 root      20   0  232060   5864   3656 R   0.3   0.1   0:00.09 top                                                                                   B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.08 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B Unknown command - try 'h' for help BBtop - 17:08:34 up  1:57, 10 users,  load average: 0.54, 0.40, 0.33BB
+
+%Cpu(s):B  0.6 Bus,B  1.7 Bsy,B  0.0 Bni,B 97.0 Bid,B  0.0 Bwa,B  0.5 Bhi,B  0.2 Bsi,B  0.0 BstBB BB
+
+
+
+
+B   3154 root      20   0 2498876  99088  53820 S   3.4   1.3   1:53.92 kubelet                                                                               B
+B   3418 root      20   0 1693252 432344  81016 S   3.4   5.5   3:48.31 kube-apiserver                                                                        B
+B   3420 root      20   0   11.3g  90892  39260 S   3.4   1.2   2:04.30 etcd                                                                                  B
+B   1465 root      20   0 2924548  70152  32800 S   2.7   0.9   1:10.25 containerd                                                                            B
+B   3407 root      20   0 1406608 141128  64540 S   1.4   1.8   1:15.45 kube-controller                                                                       B
+B   4903 root      20   0 1968948  69236  46808 S   1.4   0.9   1:11.77 calico-node                                                                           B
+B      1 root      20   0   44860  36868  10664 S   0.7   0.5   0:02.09 systemd                                                                               B
+B   3212 root      20   0 1268560  17088   7900 S   0.7   0.2   0:07.58 containerd-shim                                                                       B
+B   3214 root      20   0 1268560  18016   7772 S   0.7   0.2   0:08.36 containerd-shim                                                                       B
+B   3740 root      20   0 1268304  17880   7900 S   0.7   0.2   0:16.18 containerd-shim                                                                       B
+B   5109 root      20   0    1784   1488   1356 S   0.7   0.0   0:00.79 bird6                                                                                 B
+B  32940 root      20   0  232096   7120   3108 S   0.7   0.1   0:10.29 bash                                                                                  B
+B 129217 root      20   0  232060   5864   3656 R   0.7   0.1   0:00.10 top                                                                                   B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     14 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                B
+B     15 root      20   0       0      0      0 S   0.0   0.0   0:00.09 ksoftirqd/0                                                                           B Unknown command - try 'h' for help BBtop - 17:08:37 up  1:57, 10 users,  load average: 0.54, 0.40, 0.33BB
+
+%Cpu(s):B  0.4 Bus,B  1.4 Bsy,B  0.0 Bni,B 97.7 Bid,B  0.0 Bwa,B  0.4 Bhi,B  0.1 Bsi,B  0.0 BstBB BB
+MiB Mem :B   7648.0 Btotal,B    528.2 Bfree,B   3220.8 Bused,B   4183.7 Bbuff/cacheBB BB    BB
+MiB Swap:B      0.0 Btotal,B      0.0 Bfree,B      0.0 Bused.B   4427.1 Bavail Mem BB
+
+
+B   3418 root      20   0 1693252 432348  81016 S   3.2   5.5   3:48.38 kube-apiserver                                                                        B
+B   3154 root      20   0 2498876  99088  53820 S   1.4   1.3   1:53.95 kubelet                                                                               B
+B   3407 root      20   0 1406608 141128  64540 S   1.4   1.8   1:15.48 kube-controller                                                                       B
+B   3420 root      20   0   11.3g  90892  39260 S   1.4   1.2   2:04.33 etcd                                                                                  B
+B   1465 root      20   0 2924548  70152  32800 S   0.9   0.9   1:10.27 containerd                                                                            B
+B   3447 root      20   0 1312336  69252  41032 S   0.9   0.9   0:38.43 kube-scheduler                                                                        B
+B   3720 root      20   0 1268304  14660   7900 S   0.5   0.2   0:07.47 containerd-shim                                                                       B
+B   3740 root      20   0 1268304  17592   7900 S   0.5   0.2   0:16.19 containerd-shim                                                                       B
+B   4903 root      20   0 1968948  69236  46808 S   0.5   0.9   1:11.78 calico-node                                                                           B
+B   5648 root      20   0 1749748 114424  54808 S   0.5   1.5   0:16.31 MainThread                                                                            B
+B   5748 root      20   0 9973.4m 189444  62556 S   0.5   2.4   0:15.26 MainThread                                                                            B
+B   5910 root      20   0 1546612  52796  38264 S   0.5   0.7   0:06.29 copilot-runtime                                                                       B
+B   6569 root      20   0   16000   8228   5780 S   0.5   0.1   0:09.62 sshd-session                                                                          B
+B  21305 root      20   0  227844   3348   2444 S   0.5   0.0   0:01.77 watch                                                                                 B
+B 114412 root      20   0       0      0      0 I   0.5   0.0   0:00.12 kworker/u512:1-kvfree_rcu_reclaim                                                     B
+B 129217 root      20   0  232060   5864   3656 R   0.5   0.1   0:00.11 top                                                                                   B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.09 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+
+%Cpu(s):B  1.7 Bus,B  1.7 Bsy,B  0.0 Bni,B 93.3 Bid,B  0.0 Bwa,B  1.7 Bhi,B  1.7 Bsi,B  0.0 BstBB BB
+
+
+
+
+B  21492 root      20   0  226872   2204   2064 S  12.5   0.0   0:00.15 script                                                                                B
+B      1 root      20   0   44860  36868  10664 S   0.0   0.5   0:02.09 systemd                                                                               B
+B      2 root      20   0       0      0      0 S   0.0   0.0   0:00.05 kthreadd                                                                              B
+B      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release                                                                B
+B      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_gp                                                                      B
+B      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-sync_wq                                                                     B
+B      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-kvfree_rcu_reclaim                                                          B
+B      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_flushwq                                                                B
+B      8 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns                                                                       B
+B     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri                                                           B
+B     14 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_percpu_wq                                                                B
+B     15 root      20   0       0      0      0 S   0.0   0.0   0:00.09 ksoftirqd/0                                                                           B
+B     16 root      20   0       0      0      0 I   0.0   0.0   0:02.71 rcu_preempt                                                                           B
+B     17 root      20   0       0      0      0 S   0.0   0.0   0:00.47 rcu_exp_par_gp_kthread_worker/1                                                       B
+B     18 root      20   0       0      0      0 S   0.0   0.0   0:00.21 rcu_exp_gp_kthread_worker                                                             B
+B     19 root      rt   0       0      0      0 S   0.0   0.0   0:00.03 migration/0                                                                           B
+B     20 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0                                                                         B
+B     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0                                                                               B
+B     22 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1                                                                               B
+B     23 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1                                                                         B
+B     24 root      rt   0       0      0      0 S   0.0   0.0   0:00.03 migration/1                                                                           B
+B     25 root      20   0       0      0      0 S   0.0   0.0   0:00.08 ksoftirqd/1                                                                           B
+B     28 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2                                                                               B
+[root@master[~/kube/05/resources]# top | grep nginx-pod
+
+[root@master[~/kube/05/resources]# lscpu | head
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           45 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  8
+On-line CPU(s) list:                     0-7
+Vendor ID:                               GenuineIntel
+BIOS Vendor ID:                          GenuineIntel
+Model name:                              13th Gen Intel(R) Core(TM) i5-13400
+BIOS Model name:                         13th Gen Intel(R) Core(TM) i5-13400  CPU @ 2.3GHz
+[root@master[~/kube/05/resources]# ssh node1 lscpu | grep nginx
+[root@master[~/kube/05/resources]# ssh node1 1@''u | head nginx
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           45 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  8
+On-line CPU(s) list:                     0-7
+Vendor ID:                               GenuineIntel
+BIOS Vendor ID:                          GenuineIntel
+Model name:                              13th Gen Intel(R) Core(TM) i5-13400
+BIOS Model name:                         13th Gen Intel(R) Core(TM) i5-13400  CPU @ 2.3GHz
+[root@master[~/kube/05/resources]# ssh node1 'lscpu | grep'"nginx"'
+[root@master[~/kube/05/resources]# kubectl top pod nginx-pod-resources
+error: Metrics API not available
+[root@master[~/kube/05/resources]# kubectl top pods
+error: Metrics API not available
+[root@master[~/kube/05/resources]# ^C
+[root@master[~/kube/05/resources]# k delete pods --all
+pod "nginx-pod-resources" deleted from default namespace
+pod "nginx-pod-resources2" deleted from default namespace
+pod "nginx-pod-resources3" deleted from default namespace
+[cponginx-resource-requests-limits-pod.ymlnnginx-wrong-resource-pod.ymlod.yml nginx-wrong-resource-pod.yml
+[root@master[~/kube/05/resources]# vi nginx-wrong-resource-pod.yml
+>4;2m"nginx-wrong-resource-pod.yml" 16L, 257B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources2
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       limits:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+>4;m>4;m[root@master[~/kube/05/resources]# rm--f nginx-wrong-resource-pod.yml                                                                                ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4~@k   3^[  ^[  ::q
+cponginx-resource-requests-limits-pod.ymlnnginx-wrong-resource-pod.ymlod.yml nginx-wrong-resource-pod.yml
+vidnginx-wrong-resource-pod.ymlits-pod.ymlxnginx-wrong-resource-pod.ymld.yml nginx-wrong-resource-pod.yml
+>4;2m"nginx-wrong-resource-pod.yml" 16L, 257B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources2
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       limits:
+ 14 cpu: 1
+ 15 memory: 500Mi
+ 16
+>4;m"nginx-wrong-resource-pod.yml" 16L, 260B written                                                                                                         ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            13,7All?12$p~@k   4~@k   8~@k   9~@k   10~@k   1~@k   3~@k   0~@k   1~@k   2i -- INSERT --13,12Als:1::9::7r:8e:9s:10o:1u:2r:3c:4e:5s:64,15485^[  14,14All~@k   5~@k   5~@k   6~@k   7~@k   8~@k   9i -- INSERT --15,19AllMi0Mi720Mi850Mi9^[  15,18All::wq
+>4;m[root@master[~/kube/05/resources]# k create podsnnginx-wrong-resource-pod.yml
+error: Unexpected args: [pods nginx-wrong-resource-pod.yml]
+See 'kubectl create -h' for help and examples
+[root@master[~/kube/05/resources]# vi nginx-wrong-resource-pod.yml
+>4;2m"nginx-wrong-resource-pod.yml" 16L, 260B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: nginx-pod-resources2
+  5 spec:
+  6   containers:
+  7   - name: nginx-container
+  8     image: nginx
+  9     ports:
+ 10     - containerPort: 80
+ 11       protocol: TCP
+ 12     resources:
+ 13       resources:
+ 14 cpu: 8
+ 15 memory: 250Mi
+ 16
+>4;m>4;m[root@master[~/kube/05/resources]# 11@kgcreateopodsesource-pod.yml                                                                                   ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            ~                                                                                                                                                            15,9All?12$pType  :qa  and press <Enter> to exit Vim15,9All::q
+error: Unexpected args: [pods nginx-wrong-resource-pod.yml]
+See 'kubectl create -h' for help and examples
+[root@master[~/kube/05/resources]# k create -f nginx-wrong-resource-pod.yml
+pod/nginx-pod-resources3 created
+[root@master[~/kube/05/resources]# c
+nnn[root@master[~/kube/05/resources]# k describe nodes node1
+Name:               node1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=node1
+                    kubernetes.io/os=linux
+Annotations:        node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.10.11/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.10.166.128
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Mon, 12 Oct 2026 17:08:13 +0900
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  node1
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 14 Oct 2026 17:14:33 +0900
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Wed, 14 Oct 2026 15:12:09 +0900   Wed, 14 Oct 2026 15:12:09 +0900   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Wed, 14 Oct 2026 17:13:12 +0900   Tue, 13 Oct 2026 15:30:18 +0900   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Wed, 14 Oct 2026 17:13:12 +0900   Tue, 13 Oct 2026 15:30:18 +0900   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 14 Oct 2026 17:13:12 +0900   Tue, 13 Oct 2026 15:30:18 +0900   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 14 Oct 2026 17:13:12 +0900   Tue, 13 Oct 2026 15:30:18 +0900   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.10.11
+  Hostname:    node1
+Capacity:
+  cpu:                8
+  ephemeral-storage:  37027315712
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7831564Ki
+  pods:               110
+Allocatable:
+  cpu:                8
+  ephemeral-storage:  33324584086
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7729164Ki
+  pods:               110
+System Info:
+  Machine ID:                 7c4282ebed1c45c093712226b030688a
+  System UUID:                5bb94d56-5297-df94-5b8d-fc5857dfa230
+  Boot ID:                    7ab25dc2-372e-4132-83b4-e685085a4af9
+  Kernel Version:             6.12.0-257.el10.x86_64
+  OS Image:                   CentOS Stream 10 (Coughlan)
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  containerd://2.4.1
+  Kubelet Version:            v1.37.1
+PodCIDR:                      10.10.1.0/24
+PodCIDRs:                     10.10.1.0/24
+Non-terminated Pods:          (2 in total)
+  Namespace                   Name                 CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                 ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-node-xxrpg    250m (3%)     0 (0%)      0 (0%)           0 (0%)         47h
+  kube-system                 kube-proxy-g6jl6     0 (0%)        0 (0%)      0 (0%)           0 (0%)         2d
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                250m (3%)  0 (0%)
+  memory             0 (0%)     0 (0%)
+  ephemeral-storage  0 (0%)     0 (0%)
+  hugepages-1Gi      0 (0%)     0 (0%)
+  hugepages-2Mi      0 (0%)     0 (0%)
+Events:              <none>
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]#
+[root@master[~/kube/05/resources]# k describe pods nginx-pod-resources3 |
+Name:             nginx-pod-resources3
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             <none>
+Labels:           <none>
+Annotations:      <none>
+Status:           Pending
+IP:
+IPs:              <none>
+Containers:
+  nginx-container:
+    Image:      nginx:1.14
+    Port:       80/TCP
+    Host Port:  0/TCP
+    Requests:
+      cpu:        8
+      memory:     250Mi
+    Environment:  <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-l5cjb (ro)
+Conditions:
+  Type           Status
+  PodScheduled   False
+Volumes:
+  kube-api-access-l5cjb:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason            Age   From               Message
+  ----     ------            ----  ----               -------
+  Warning  FailedScheduling  102s  default-scheduler  0/4 nodes are available: 1 node(s) had untolerated taint(s), 3 Insufficient cpu. preemption: 0/4 nodes are available: 1 Preemption is not helpful for scheduling, 3 No preemption victims found for incoming pod.
+[root@master[~/kube/05/resources]# ci nginx-wrong-resource-pod.yml
+nnn[root@master[~/kube/05/resources]# k logs nginx-pod-resources3
+[root@master[~/kube/05/resources]# k get events nginx-pod-resources3
+Error from server (NotFound): events "nginx-pod-resources3" not found
+[root@master[~/kube/05/resources]# k get events nginx-pod-resources3
+LAST SEEN   TYPE      REASON             OBJECT                     MESSAGE
+60m         Normal    Pulling            pod/nginx-pod-node1        Pulling image "nginx:1.14"
+60m         Normal    Pulled             pod/nginx-pod-node1        Successfully pulled image "nginx:1.14" in 5.905s (5.905s including waiting). Image size: 44710204 bytes.
+60m         Normal    Created            pod/nginx-pod-node1        Container created
+60m         Normal    Started            pod/nginx-pod-node1        Container started
+58m         Normal    Killing            pod/nginx-pod-node1        Stopping container nginx-container
+60m         Normal    Pulled             pod/nginx-pod-node1        Container image "nginx:1.14" already present on machine and can be accessed by the pod
+23m         Normal    Scheduled          pod/nginx-pod-resources    Successfully assigned default/nginx-pod-resources to node1
+23m         Normal    Pulling            pod/nginx-pod-resources    Pulling image "nginx"
+23m         Normal    Pulled             pod/nginx-pod-resources    Successfully pulled image "nginx" in 1.598s (1.598s including waiting). Image size: 63873678 bytes.
+23m         Normal    Created            pod/nginx-pod-resources    Container created
+23m         Normal    Started            pod/nginx-pod-resources    Container started
+20m         Normal    Killing            pod/nginx-pod-resources    Stopping container nginx-pod-resources
+20m         Normal    Scheduled          pod/nginx-pod-resources    Successfully assigned default/nginx-pod-resources to node1
+20m         Normal    Pulling            pod/nginx-pod-resources    Pulling image "nginx"
+20m         Normal    Pulled             pod/nginx-pod-resources    Successfully pulled image "nginx" in 1.629s (1.629s including waiting). Image size: 63873678 bytes.
+20m         Normal    Created            pod/nginx-pod-resources    Container created
+20m         Normal    Started            pod/nginx-pod-resources    Container started
+7m10s       Normal    Killing            pod/nginx-pod-resources    Stopping container nginx-container
+15m         Normal    Scheduled          pod/nginx-pod-resources2   Successfully assigned default/nginx-pod-resources2 to node2
+15m         Normal    Pulling            pod/nginx-pod-resources2   Pulling image "nginx"
+15m         Normal    Pulled             pod/nginx-pod-resources2   Successfully pulled image "nginx" in 1.694s (1.694s including waiting). Image size: 63873678 bytes.
+15m         Normal    Created            pod/nginx-pod-resources2   Container created
+15m         Normal    Started            pod/nginx-pod-resources2   Container started
+7m10s       Normal    Killing            pod/nginx-pod-resources2   Stopping container nginx-container
+12m         Normal    Scheduled          pod/nginx-pod-resources3   Successfully assigned default/nginx-pod-resources3 to node3
+12m         Normal    Pulling            pod/nginx-pod-resources3   Pulling image "nginx"
+12m         Normal    Pulled             pod/nginx-pod-resources3   Successfully pulled image "nginx" in 6.516s (6.516s including waiting). Image size: 63873678 bytes.
+12m         Normal    Created            pod/nginx-pod-resources3   Container created
+12m         Normal    Started            pod/nginx-pod-resources3   Container started
+7m10s       Normal    Killing            pod/nginx-pod-resources3   Stopping container nginx-container
+4m24s       Warning   FailedScheduling   pod/nginx-pod-resources3   0/4 nodes are available: 1 node(s) had untolerated taint(s), 3 Insufficient cpu. preemption: 0/4 nodes are available: 1 Preemption is not helpful for scheduling, 3 No preemption victims found for incoming pod.
+[root@master[~/kube/05/resources]# c
+nnn[root@master[~/kube/05/resources]# k delete pods --all
+pod "nginx-pod-resources3" deleted from default namespace
+[root@master[~/kube/05/resources]# exitctl get p
+exit
+
+Script done on 2026-10-14 17:19:42+09:00 [COMMAND_EXIT_CODE="0"]
