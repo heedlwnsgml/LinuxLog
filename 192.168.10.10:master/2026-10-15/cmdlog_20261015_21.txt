@@ -1,0 +1,693 @@
+Script started on 2026-10-15 21:10:17+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="169" LINES="28"]
+[root@master[~]# tty
+/dev/pts/3
+[root@master[~]# cddkube/07/svc/
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# ls
+ip.sh  ip.txt  test-svc.yml
+[root@master[~/kube/07/svc]# vi nginx-deploy.yml
+>4;2m"nginx-deploy.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-deploy.yml" [New] 0L, 0B written                                                                                                                              ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        0,0-1All?12$p::wq
+>4;m[root@master[~/kube/07/svc]# k apply -f nginx-deploy.yml g
+error: resource mapping not found for name: "webapp-nginx-deploy" namespace: "" from "nginx-deploy.yml": no matches for kind "Deployment" in version "v1"
+ensure CRDs are installed first
+[root@master[~/kube/07/svc]# k apply -f nginx-deploy.yml
+Error from server (BadRequest): error when creating "nginx-deploy.yml": Deployment in version "v1" cannot be handled as a Deployment: strict decoding error: unknown field "spec.tmeplate"
+[root@master[~/kube/07/svc]# k apply -f nginx-deploy.yml
+deployment.apps/webapp-nginx-deploy created
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# vi nginx-clusterip-svc.yml
+>4;2m"nginx-clusterip-svc.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-clusterip-svc.yml" [New] 0L, 0B written                                                                                                                       ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        0,0-1All?12$p::wq
+>4;m[root@master[~/kube/07/svc]# curl h
+=
+curl: try 'curl --help' for more information
+[root@master[~/kube/07/svc]# curl 10.10.135.26
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# k apply -f nginx-clusterip-svc.yml
+service/webapp-clusterip-svc created
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# k describe svc webapp-clusterip-svc
+Name:                     webapp-clusterip-svc
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=webapp
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.100.10.10
+IPs:                      10.100.10.10
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                10.10.104.53:80,10.10.135.26:80,10.10.166.146:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[root@master[~/kube/07/svc]# k geteendpoints
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME                   ENDPOINTS                                          AGE
+kubernetes             192.168.10.10:6443                                 3d4h
+webapp-clusterip-svc   10.10.104.53:80,10.10.135.26:80,10.10.166.146:80   113s
+[root@master[~/kube/07/svc]# k get endpointslices.discovery.k8s.io
+NAME                         ADDRESSTYPE   PORTS   ENDPOINTS                                 AGE
+kubernetes                   IPv4          6443    192.168.10.10                             3d4h
+webapp-clusterip-svc-5zrx6   IPv4          80      10.10.104.53,10.10.135.26,10.10.166.146   3m34s
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-f422n -- /bin/bash
+root@webapp-nginx-deploy-dc8685d7c-f422n:/# echoeWEB1 > /usr/share/nginx/html/index.html
+root@webapp-nginx-deploy-dc8685d7c-f422n:/# exit
+exit
+[root@master[~/kube/07/svc]# k exec1@p1@o1@d1@s1@/30@webapp-nginx-deploy-dc8685d7c-1@m4@b2njh
+root@webapp-nginx-deploy-dc8685d7c-mb2nj:/# echo WEB2 > /usr/share/nginx/html/index.html
+root@webapp-nginx-deploy-dc8685d7c-mb2nj:/# exit
+exit
+[root@master[~/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-1@snj -- /bin/bash
+Error from server (NotFound): pods "webapp-nginx-deploy-dc8685d7c-s" not found
+[root@master[~/kube/07/svc]# k exec -it pods/webapp4@kjxb-deploysdc8685d7c-4@mb2njin/bash
+root@webapp-nginx-deploy-dc8685d7c-skjxb:/# exit
+exit
+[root@master[~/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-skjxb -- 1@"o/WEB3 > /usr/share/nginx/html/index.html"
+WEB3 > /usr/share/nginx/html/index.html
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB2
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+kuexec0-it0pods/webapp-nginx-deploy-dc8685d7c-skjxb---i/bin/bash3d>8/usr/share/nginx/html/index.html"/share/nginx/html/index.html"
+root@webapp-nginx-deploy-dc8685d7c-skjxb:/# echo WEB3 > /usr/share/nginx/html/index.html
+root@webapp-nginx-deploy-dc8685d7c-skjxb:/# exit
+exit
+curlt10.100.10.10be/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-skjxb -- /bin/bash
+WEB3
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB2
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# kuexec0-it0pods/webapp-nginx-deploy-dc8685d7c-skjxb -- /bin/bash
+root@webapp-nginx-deploy-dc8685d7c-skjxb:/# echo WEB3 > /usr/share/nginx/html/index.html ^C
+root@webapp-nginx-deploy-dc8685d7c-skjxb:/# exit
+exit
+command terminated with exit code 130
+[root@master[~/kube/07/svc]# c
+curlr10.100.10.10/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-skjxb -- /bin/bash
+WEB2
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB3
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB2
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB2
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB3
+[root@master[~/kube/07/svc]# curl 10.100.10.10
+WEB1
+[root@master[~/kube/07/svc]# whlie false do curl 10.100.10.10 sleep 4 done
+bash: whlie: command not found...
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# k scale deployment webapp-nginx-deploy
+--replicas           (The new desired number of replicas. Required.)  webapp-nginx-deploy
+[root@master[~/kube/07/svc]# k scale deployment webapp-nginx-deploy --replicas 5
+deployment.apps/webapp-nginx-deploy scaled
+[root@master[~/kube/07/svc]# k describe svclwebapp-clusterip-svcnkubernetesy w
+Name:                     webapp-clusterip-svc
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=webapp
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.100.10.10
+IPs:                      10.100.10.10
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                10.10.104.53:80,10.10.135.26:80,10.10.166.146:80 + 2 more...
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[root@master[~/kube/07/svc]# k get endpointslices.discovery.k8s.io
+NAME                         ADDRESSTYPE   PORTS   ENDPOINTS                                             AGE
+kubernetes                   IPv4          6443    192.168.10.10                                         3d4h
+webapp-clusterip-svc-5zrx6   IPv4          80      10.10.104.53,10.10.135.26,10.10.166.146 + 2 more...   9m42s
+[root@master[~/kube/07/svc]# k get endpointslices.discovery.k8s.io --no-headers
+kubernetes                   IPv4   6443   192.168.10.10                                         3d4h
+webapp-clusterip-svc-5zrx6   IPv4   80     10.10.104.53,10.10.135.26,10.10.166.146 + 2 more...   9m53s
+[root@master[~/kube/07/svc]# k get endpointslices.discovery.k8s.io --no-headers
+--all-namespaces               (If present, list the requested object(s) across all namespaces. Namespace in current context is ignored even if specified with --namesp…)
+--allow-missing-template-keys  (If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output …)
+--as-group                     (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                       (UID to impersonate for the operation.)
+--as-user-extra                (User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.)
+--as                           (Username to impersonate for the operation. User could be a regular user or a service account in a namespace.)
+--cache-dir                    (Default cache directory)
+--certificate-authority        (Path to a cert file for the certificate authority)
+--chunk-size                   (Return large lists in chunks rather than all at once. Pass 0 to disable.)
+--client-certificate           (Path to a client certificate file for TLS)
+--client-key                   (Path to a client key file for TLS)
+--cluster                      (The name of the kubeconfig cluster to use)
+--context                      (The name of the kubeconfig context to use)
+--disable-compression          (If true, opt-out of response compression for all requests to the server)
+--field-selector               (Selector (field query) to filter on, supports '=', '==', and '!='.(e.g. --field-selector key1=value1,key2=value2). The server only supp…)
+--filename                     (Filename, directory, or URL to files identifying the resource to get from a server.)
+--help                         (help for get)
+--ignore-not-found             (If set to true, suppresses NotFound error for specific objects that do not exist. Using this flag with commands that query for collecti…)
+--insecure-skip-tls-verify     (If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure)
+--kubeconfig                   (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                       (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the …)
+--kustomize                    (Process the kustomization directory. This flag can't be used together with -f or -R.)
+--label-columns                (Accepts a comma separated list of labels that are going to be presented as columns. Names are case-sensitive. You can also use multiple…)
+--log-flush-frequency          (Maximum number of seconds between log flushes)
+--match-server-version         (Require server version to match client version)
+--namespace                    (If present, the namespace scope for this CLI request)
+--no-headers                   (When using the default or custom-column output format, don't print headers (default print headers).)
+[root@master[~/kube/07/svc]# k get endpointslices.discovery.k8s.io --c
+error: unknown flag: --c
+See 'kubectl get --help' for usage.
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# while true;;ddo curl 10.100.10.10 ; sleep 5;; done
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+WEB3
+WEB1
+^C
+[root@master[~/kube/07/svc]# k scale deployment webapp-nginx-deploy --replicas 3
+deployment.apps/webapp-nginx-deploy scaled
+[root@master[~/kube/07/svc]# while true ; do curl 10.100.10.10 ; sleep 2 ; done
+WEB1
+WEB1
+WEB1
+WEB3
+WEB2
+WEB1
+WEB1
+WEB2
+WEB1
+^C
+[root@master[~/kube/07/svc]# k delete service
+kubernetes            webapp-clusterip-svc
+[root@master[~/kube/07/svc]# k delete service webapp-clusterip-svc
+service "webapp-clusterip-svc" deleted from default namespace
+[root@master[~/kube/07/svc]# k delete deployments.apps webapp-nginx-deploy
+deployment.apps "webapp-nginx-deploy" deleted from default namespace
+[root@master[~/kube/07/svc]# k applye-f webnx-
+nginx-clusterip-svc.yml  nginx-deploy.yml         test-svc.yml
+[root@master[~/kube/07/svc]# k apply -f nginx-deploy.yml
+deployment.apps/webapp-nginx-deploy created
+[root@master[~/kube/07/svc]# k apply -f nginx-clusterip-svc.yml
+service/webapp-clusterip-svc created
+[root@master[~/kube/07/svc]# k exec -if
+nginx-clusterip-svc.yml  nginx-deploy.yml         test-svc.yml
+[root@master[~/kube/07/svc]# k exec -if
+nginx-clusterip-svc.yml  nginx-deploy.yml         test-svc.yml
+[root@master[~/kube/07/svc]# k exec -if pods
+daemonsets/                          pods/                                services/                            webapp-nginx-deploy-dc8685d7c-mjh7b
+deployments/                         replicasets/                         statefulsets/                        webapp-nginx-deploy-dc8685d7c-ww5vk
+jobs/                                replicationcontrollers/              webapp-nginx-deploy-dc8685d7c-9p5hk
+[root@master[~/kube/07/svc]# k exec -if pods webapp-nginx-deploy-dc8685d7c-mjh7b -- /bin/bash
+error: the path "pods" does not exist
+[root@master[~/kube/07/svc]# applyc-finginx-clusterip-svc.ymlloy-dc8685d7c-mjh7b -- /bin/bash
+[root@master[~/kube/07/svc]#pservice-webapp-clusterip-svc
+[root@master[~/kube/07/svc]#1chileltruep;odoecurle10.100.10.10e;lsleepr5p;idone3
+[root@master[~/kube/07/svc]#1c.10 ; sleep 5 ; done
+[root@master[~/kube/07/svc]#ry.k8s.io --no-headers
+[root@master[~/kube/07/svc]#xcdeploy --replicas 5
+[root@master[~/kube/07/svc]#idescribeysvcrwebapp-clusterip-svc
+2@get endpointslices.discovery.k8s.io^C
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]# c
+[root@master[~/kube/07/svc]#capplye-fcnginx-clusterip-svc.ymldeploy-dc8685d7c-mjh7b -- /bin/bash
+[root@master[~/kube/07/svc]#pservice-webapp-clusterip-svc
+[root@master[~/kube/07/svc]#1chileltruep;odoecurle10.100.10.10e;lsleepr5p;idone3
+[root@master[~/kube/07/svc]#ry.k8s.io --no-headers
+[root@master[~/kube/07/svc]#xcdeploy --replicas 5
+curle10.100.10.10rl 10.100.10.10 sleep 4 done
+[root@master[~/kube/07/svc]#-curlo10.100.10.10skjxb -- /bin/bash
+1@94@p5hkt pods/webapp-nginx-deploy-dc8685d7c-skjxb -- /bin/bash
+6o.t@webapp-nginx-deploy-dc8685d7c-9p5hk:/# echo WEB docker build -t mynginx:1.26
+echo; echo "===== [ INFO ] \354\235\264\353\257\270\
+354\247\200 \354\203\235\354\204\261 \355\23
+1\225\354\235\270 ====="
+docker images mynginxloy-dc8685d7c-9p5hk:/#
+
+
+
+
+ex.htmlbapp-nginx-deploy-dc8685d7c-9p5hk:/# echooWEB > /usr/share/nginx/html/inde
+root@webapp-nginx-deploy-dc8685d7c-9p5hk:/# exit
+exit
+[root@master[~/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-1@m4@jh7b/bin/bash
+x.htmlebapp-nginx-deploy-dc8685d7c-mjh7b:/# echo WEB2 > /usr/share/nginx/html/index
+root@webapp-nginx-deploy-dc8685d7c-mjh7b:/# exit
+exit
+[root@master[~/kube/07/svc]# k exec -it pods/webapp-nginx-deploy-dc8685d7c-mjh7b -- /bin/bash
+
+[root@master[~/kube/07/svc]#7^Cc-mj1@h7
+
+[root@master[~/kube/07/svc]# c.
+bash: c.: command not found...
+c
+[root@master[~/kube/07/svc]# c
+[root@master[~/kube/07/svc]#c]#
+
+
+
+
+c
+nnn[root@master[~/kube/07/svc]#
+mkdir -p ~/kube/07/svc && cd ~/kube/07/svc
+cat <<'EOF' > ~/kube/07/svc/mynginx-deploy.yml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-nginx-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: nginx-container
+        image: jang4sc/mynginx:1.26
+        ports:
+        - containerPort: 80
+EOF
+kubectl delete -f ~/kube/07/svc/nginx-deploy.yml
+kubectl apply  -f ~/kube/07/svc/mynginx-deploy.yml
+mkdir -p ~/kube/07/svc && cd ~/kube/07/svc
+cat <<'EOF' > ~/kube/07/svc/mynginx-deploy.yml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-nginx-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webapp
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: nginx-container
+        image: jang4sc/mynginx:1.26
+        ports:
+        - containerPort: 80
+EOF
+kubectl delete -f ~/kube/07/svc/nginx-deploy.yml
+kubectl apply  -f ~/kube/07/svc/mynginx-deploy.yml
+
+deployment.apps "webapp-nginx-deploy" deleted from default namespace
+deployment.apps/webapp-nginx-deploy created
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.135.299
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+[root@master[~/kube/07/svc]# curl 10.10.104.55
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-xvjg7</h1>
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# vi nginx-nodeport-svc.yml
+>4;2m"nginx-nodeport-svc.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-nodeport-svc.yml" [New] 0L, 0B written                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        0,0-1All?12$p::wq
+>4;m[root@master[~/kube/07/svc]# k apply -f nginx-nodeport-svc.yml
+The Service "webapp-nodeport-svc" is invalid: spec.clusterIPs: Invalid value: ["10.100.10.10"]: failed to allocate IP 10.100.10.10: provided IP is already allocated
+[root@master[~/kube/07/svc]# k apply -f nginx-nodeport-svc.yml
+The Service "webapp-nodeport-svc" is invalid: spec.clusterIPs: Invalid value: ["10.100.10.10"]: failed to allocate IP 10.100.10.10: provided IP is already allocated
+[root@master[~/kube/07/svc]# k apply -f nginx-nodeport-svc.yml
+service/webapp-nodeport-svc created
+[root@master[~/kube/07/svc]# k delete svc webapp-clusterip-svc
+service "webapp-clusterip-svc" deleted from default namespace
+[root@master[~/kube/07/svc]# k delete svc webapp-nodeport-svc
+service "webapp-nodeport-svc" deleted from default namespace
+[root@master[~/kube/07/svc]#applyl-fenginx-nodeport-svc.ymlpc
+service/webapp-nodeport-svc created
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# yum -y install nmap
+Last metadata expiration check: 2:16:34 ago on Thu 15 Oct 2026 07:30:16 PM KST.
+Dependencies resolved.
+=========================================================================================================================================================================
+ Package                             Architecture                          Version                                        Repository                                Size
+=========================================================================================================================================================================
+Installing:
+ nmap                               B x86_64                                4:7.92-5.el10                                  appstream                                5.6 M
+
+Transaction Summary
+=========================================================================================================================================================================
+Install  1 Package
+
+Total download size: 5.6 M
+Installed size: 24 M
+Downloading Packages:
+nmap-7.92-5.el10.x86_64.rpm                                       97% [==============================================================  ] 838 kB/s | 5.6 MB     00:06 ETA
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                    716 kB/s | 5.6 MB     00:08
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                                 1/1
+  Installing       : nmap-4:7.92-5.el10.x86_64 [=================================================================================================================  ] 1/1
+  Running scriptlet: nmap-4:7.92-5.el10.x86_64                                                                                                                       1/1
+
+Installed:
+  nmap-4:7.92-5.el10.x86_64
+
+Complete!
+[root@master[~/kube/07/svc]# cat << EOF > server.list
+192.168.10.10
+192.168.10.11
+192.168.10.12
+192.168.10.13
+[root@master[~/kube/07/svc]# cat << EOF > server.list
+192.168.10.10
+192.168.10.11
+192.168.10.12
+192.168.10.13
+EOF
+[root@master[~/kube/07/svc]# nmap -p 30000 -iL server.list
+Starting Nmap 7.92 ( https://nmap.org ) at 2026-10-15 21:47 KST
+Nmap scan report for master.example.com (192.168.10.10)
+Host is up.
+
+PORT      STATE    SERVICE
+30000/tcp filtered ndmps
+
+Nmap scan report for node1.example.com (192.168.10.11)
+Host is up (0.00030s latency).
+
+PORT      STATE SERVICE
+30000/tcp open  ndmps
+MAC Address: 00:0C:29:DF:A2:30 (VMware)
+
+Nmap scan report for node2.example.com (192.168.10.12)
+Host is up (0.00038s latency).
+
+PORT      STATE SERVICE
+30000/tcp open  ndmps
+MAC Address: 00:0C:29:42:A4:33 (VMware)
+
+Nmap scan report for node3.example.com (192.168.10.13)
+Host is up (0.00029s latency).
+
+PORT      STATE SERVICE
+30000/tcp open  ndmps
+MAC Address: 00:0C:29:F0:46:49 (VMware)
+
+Nmap done: 4 IP addresses (4 hosts up) scanned in 2.20 seconds
+[root@master[~/kube/07/svc]# while true;; do curl 192.168.10.11:30000 ; sleep 1 ; done
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-xvjg7</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-xvjg7</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+^C
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.166.149
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-97h8l</h1>
+[root@master[~/kube/07/svc]# curl 10.10.135.299
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-ngdzj</h1>
+[root@master[~/kube/07/svc]# curl 10.10.104.55
+<h1>My Name: webapp-nginx-deploy-6fbf44d494-xvjg7</h1>
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# k delete svc webapp-nodeport-svc
+service "webapp-nodeport-svc" deleted from default namespace
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# exit
+exit
+
+Script done on 2026-10-15 21:49:01+09:00 [COMMAND_EXIT_CODE="0"]
