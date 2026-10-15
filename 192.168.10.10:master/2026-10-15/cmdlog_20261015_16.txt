@@ -1,0 +1,466 @@
+Script started on 2026-10-15 16:35:43+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="165" LINES="28"]
+[root@master[~/kube/06/deploy]# c
+nnn[root@master[~/kube/06/deploy]# edit rollingupdate-deploy
+bash: edit: command not found...
+[root@master[~/kube/06/deploy]# edit rollingupdate-deploy2.yml
+bash: edit: command not found...
+[root@master[~/kube/06/deploy]# vi rollingupdate-deploy2.yml
+>4;2m"rollingupdate-deploy2.yml" [noeol] 32L, 593B▽  zz0%m           >c  1 ---
+  2 kind: Deployment  3 apiVersion: apps/v1  4 metadata:
+  5   name: app-deploy
+  6   annotations:
+  7     kubernetes.io/change-cause: version 1.26
+  8 spec:
+  9   progressDeadlineSeconds: 600
+ 10   revisionHistoryLimit: 10
+ 11   strategy:
+ 12     type: RollingUpdate
+ 13     rollingUpdate:
+ 14       maxSurge: 25%
+ 15       maxUnavailable: 25%
+ 16   replicas: 3
+ 17   selector:
+ 18     matchLabels:
+ 19       app: webui
+ 20   template:
+ 21     metadata:
+ 22       name: nginx-pod
+ 23       labels:
+ 24 app: webui
+ 25     spec:
+ 26       containers:
+ 27 - name: web1,1Top?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@@   44r7  ~@k   8,5 ~@k   9,3010,26~@k   1,11~@k   2,233,18~@k   4,19~@k   5,25~@k   6,137,11~@k   8,16~@k   9~@k   20,11~@k   1,13~@k   2,21~@k
+ 28 image: nginx:1.2623,1320%~@k
+ 29 ports:24,1840%~@k
+ 30 - containerPort: 8025,960%~@k
+ 31 protocol: TCP26,1780%~@k
+>4;m"rollingupdate-deploy2.yml"632L, 594B3written1,27~@k   2,4 ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   1,27~@k   0,31~@k   29,16~@k   8,27~@k   7,19~@k   8,27r7  ^[  ^[  ::wq
+>4;m[root@master[~/kube/06/deploy]# k apply -f rollingupdate-deploy2.yml
+deployment.apps/app-deploy configured
+[root@master[~/kube/06/deploy]# k rollout history deployment app-deploy
+deployment.apps/app-deploy
+REVISION  CHANGE-CAUSE
+1         version 1.26
+2         version 1.27
+
+[root@master[~/kube/06/deploy]# k delete deployments.apps app-deploy
+deployment.apps "app-deploy" deleted from default namespace
+[root@master[~/kube/06/deploy]# c
+nnn[root@master[~/kube/06/deploy]# k get pod -A -o wide | greppcalico
+kube-system   calico-kube-controllers-57f7f4cc78-8v5h8   1/1     Running   5 (118m ago)   2d23h   10.10.135.20    node3    <none>           <none>
+kube-system   calico-node-gdd6m                          1/1     Running   5 (118m ago)   2d23h   192.168.10.10   master   <none>           <none>
+kube-system   calico-node-w5tqt                          1/1     Running   4 (118m ago)   2d23h   192.168.10.12   node2    <none>           <none>
+kube-system   calico-node-xmd8v                          1/1     Running   4 (118m ago)   2d23h   192.168.10.13   node3    <none>           <none>
+kube-system   calico-node-xxrpg                          1/1     Running   4 (118m ago)   2d23h   192.168.10.11   node1    <none>           <none>
+[root@master[~/kube/06/deploy]# cat daemonset.yaml
+cat: daemonset.yaml: No such file or directory
+[root@master[~/kube/06/deploy]# c
+[root@master[~/kube/06/deploy]#yk#drain node3 --delete-emptydir-data --
+--as-group                      (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                        (UID to impersonate for the operation.)
+--as-user-extra                 (User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.)
+--as                            (Username to impersonate for the operation. User could be a regular user or a service account in a namespace.)
+--cache-dir                     (Default cache directory)
+--certificate-authority         (Path to a cert file for the certificate authority)
+--chunk-size                    (Return large lists in chunks rather than all at once. Pass 0 to disable.)
+--client-certificate            (Path to a client certificate file for TLS)
+--client-key                    (Path to a client key file for TLS)
+--cluster                       (The name of the kubeconfig cluster to use)
+--context                       (The name of the kubeconfig context to use)
+--disable-compression           (If true, opt-out of response compression for all requests to the server)
+--disable-eviction              (Force drain to use delete, even if eviction is supported. This will bypass checking PodDisruptionBudgets, use with caution.)
+--dry-run                       (Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server str…)
+--force                         (Continue even if there are pods that do not declare a controller.)
+--grace-period                  (Period of time in seconds given to each pod to terminate gracefully. If negative, the default value specified in the pod will be used.)
+--help                          (help for drain)
+--ignore-daemonsets             (Ignore DaemonSet-managed pods.)
+--insecure-skip-tls-verify      (If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure)
+--kubeconfig                    (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                        (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the…)
+--log-flush-frequency           (Maximum number of seconds between log flushes)
+--match-server-version          (Require server version to match client version)
+--namespace                     (If present, the namespace scope for this CLI request)
+--password                      (Password for basic authentication to the API server)
+--pod-selector                  (Label selector to filter pods on the node)
+--profile                       (Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace))
+[root@master[~/kube/06/deploy]# k drain node3 --delete-emptydir-data --force --ignore-daemonsets
+node/node3 cordoned
+Warning: ignoring DaemonSet-managed Pods: kube-system/calico-node-xmd8v, kube-system/kube-proxy-gr849
+evicting pod kube-system/coredns-559f6c778d-rcq87
+evicting pod kube-system/coredns-559f6c778d-c5pr6
+evicting pod kube-system/calico-kube-controllers-57f7f4cc78-8v5h8
+pod/calico-kube-controllers-57f7f4cc78-8v5h8 evicted
+pod/coredns-559f6c778d-c5pr6 evicted
+pod/coredns-559f6c778d-rcq87 evicted
+node/node3 drained
+[root@master[~/kube/06/deploy]# ssh node3
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node3:9090/ or https://192.168.10.13:9090/
+
+Last login: Mon Oct 12 16:00:10 2026 from 192.168.10.10
+[root@node3 ~]# kubeadm reset
+W1015 16:57:58.469773   94080 preflight.go:55] [reset] WARNING: Changes made to this host by 'kubeadm init' or 'kubeadm join' will be reverted.
+[reset] Are you sure you want to proceed? [y/N]: y
+[preflight] Running pre-flight checks
+W1015 16:57:59.929970   94080 removeetcdmember.go:105] [reset] No kubeadm config, using etcd pod spec to get data directory
+[reset] Deleted contents of the etcd data directory: /var/lib/etcd
+[reset] Stopping the kubelet service
+[reset] Unmounting mounted directories in "/var/lib/kubelet"
+[reset] Deleting contents of directories: [/etc/kubernetes/manifests /var/lib/kubelet /etc/kubernetes/pki]
+[reset] Deleting files: [/etc/kubernetes/admin.conf /etc/kubernetes/super-admin.conf /etc/kubernetes/kubelet.conf /etc/kubernetes/bootstrap-kubelet.conf /etc/kubernetes/controller-manager.conf /etc/kubernetes/scheduler.conf]
+
+The reset process does not perform cleanup of CNI plugin configuration,
+network filtering rules and kubeconfig files.
+
+For information on how to perform this cleanup manually, please see:
+    https://k8s.io/docs/reference/setup-tools/kubeadm/kubeadm-reset/
+
+[root@node3 ~]# exit
+logout
+Connection to node3 closed.
+[root@master[~/kube/06/deploy]# sshnnode33system get cm
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node3:9090/ or https://192.168.10.13:9090/
+
+Last login: Thu Oct 15 16:57:47 2026 from 192.168.10.10
+[root@node3 ~]# kubeadmdreset
+W1015 16:59:46.784653   94748 preflight.go:55] [reset] WARNING: Changes made to this host by 'kubeadm init' or 'kubeadm join' will be reverted.
+[reset] Are you sure you want to proceed? [y/N]: y
+[preflight] Running pre-flight checks
+W1015 16:59:48.109147   94748 removeetcdmember.go:105] [reset] No kubeadm config, using etcd pod spec to get data directory
+[reset] Deleted contents of the etcd data directory: /var/lib/etcd
+[reset] Stopping the kubelet service
+[reset] Unmounting mounted directories in "/var/lib/kubelet"
+[reset] Deleting contents of directories: [/etc/kubernetes/manifests /var/lib/kubelet /etc/kubernetes/pki]
+[reset] Deleting files: [/etc/kubernetes/admin.conf /etc/kubernetes/super-admin.conf /etc/kubernetes/kubelet.conf /etc/kubernetes/bootstrap-kubelet.conf /etc/kubernetes/controller-manager.conf /etc/kubernetes/scheduler.conf]
+
+The reset process does not perform cleanup of CNI plugin configuration,
+network filtering rules and kubeconfig files.
+
+For information on how to perform this cleanup manually, please see:
+    https://k8s.io/docs/reference/setup-tools/kubeadm/kubeadm-reset/
+
+[root@node3 ~]# kubectl -nkkube-system get cm kube-proxy -o yaml | grep -w mode:
+E1015 17:01:17.675041   94787 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1015 17:01:17.675333   94787 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1015 17:01:17.677302   94787 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1015 17:01:17.677574   94787 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+E1015 17:01:17.679251   94787 memcache.go:381] "Couldn't get current server API group list" err="Get \"http://localhost:8080/api?timeout=32s\": dial tcp [::1]:8080: connect: connection refused"
+The connection to the server localhost:8080 was refused - did you specify the right host or port?
+iptablesd-F &&#iptabless-tFnat -Ft&&liptablest-tFmanglet-Fl&& iptablese-XF && iptables -X
+[root@node3 ~]# exit
+logout
+Connection to node3 closed.
+[root@master[~/kube/06/deploy]# k delete nodes node3
+node "node3" deleted
+[root@master[~/kube/06/deploy]# k get nodes
+NAME     STATUS   ROLES           AGE     VERSION
+master   Ready    control-plane   3d      v1.37.1
+node1    Ready    <none>          2d23h   v1.37.1
+node2    Ready    <none>          2d23h   v1.37.1
+[root@master[~/kube/06/deploy]# mkdir -p ~/kube/06/ds && cd ~/kube/06/ds
+[root@master[~/kube/06/ds]# cyml nginx-ds.yml
+[root@master[~/kube/06/ds]# ls
+nginx-ds.yml.yml
+[root@master[~/kube/06/ds]# rm -f nginx-ds.yml.yml
+[root@master[~/kube/06/ds]# vi nginx-ds.yml
+>4;2m"nginx-ds.yml" [New]▽  zz0%m           >c  1
+>4;m"nginx-ds.yml" [New] 0L, 0B written                                                                                                                                  ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        0,0-1All?12$p::wq
+>4;m[root@master[~/kube/06/ds]# k apply -f nginx-ds.yml
+error: unable to decode "nginx-ds.yml": json: cannot unmarshal string into Go struct field metadataOnlyObject.metadata of type v1.ObjectMeta
+[root@master[~/kube/06/ds]# k apply -f nginx-ds.yml
+error: unable to decode "nginx-ds.yml": json: cannot unmarshal string into Go struct field metadataOnlyObject.metadata of type v1.ObjectMeta
+[root@master[~/kube/06/ds]# k apply -f nginx-ds.yml
+error: unable to decode "nginx-ds.yml": json: cannot unmarshal string into Go struct field metadataOnlyObject.metadata of type v1.ObjectMeta
+[root@master[~/kube/06/ds]# k apply -f nginx-ds.yml
+daemonset.apps/nginx-ds created
+[root@master[~/kube/06/ds]# k api-resources
+NAME                                SHORTNAMES   APIVERSION                        NAMESPACED   KIND
+bindings                                         v1                                true         Binding
+componentstatuses                   cs           v1                                false        ComponentStatus
+configmaps                          cm           v1                                true         ConfigMap
+endpoints                           ep           v1                                true         Endpoints
+events                              ev           v1                                true         Event
+limitranges                         limits       v1                                true         LimitRange
+namespaces                          ns           v1                                false        Namespace
+nodes                               no           v1                                false        Node
+persistentvolumeclaims              pvc          v1                                true         PersistentVolumeClaim
+persistentvolumes                   pv           v1                                false        PersistentVolume
+pods                                po           v1                                true         Pod
+podtemplates                                     v1                                true         PodTemplate
+replicationcontrollers              rc           v1                                true         ReplicationController
+resourcequotas                      quota        v1                                true         ResourceQuota
+secrets                                          v1                                true         Secret
+serviceaccounts                     sa           v1                                true         ServiceAccount
+services                            svc          v1                                true         Service
+mutatingadmissionpolicies                        admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                  admissionregistration.k8s.io/v1   false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                    admissionregistration.k8s.io/v1   false        MutatingWebhookConfiguration
+validatingadmissionpolicies                      admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                admissionregistration.k8s.io/v1   false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                  admissionregistration.k8s.io/v1   false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+apiservices                                      apiregistration.k8s.io/v1         false        APIService
+controllerrevisions                              apps/v1                           true         ControllerRevision
+daemonsets                          ds           apps/v1                           true         DaemonSet
+deployments                         deploy       apps/v1                           true         Deployment
+replicasets                         rs           apps/v1                           true         ReplicaSet
+statefulsets                        sts          apps/v1                           true         StatefulSet
+selfsubjectreviews                               authentication.k8s.io/v1          false        SelfSubjectReview
+tokenreviews                                     authentication.k8s.io/v1          false        TokenReview
+localsubjectaccessreviews                        authorization.k8s.io/v1           true         LocalSubjectAccessReview
+selfsubjectaccessreviews                         authorization.k8s.io/v1           false        SelfSubjectAccessReview
+selfsubjectrulesreviews                          authorization.k8s.io/v1           false        SelfSubjectRulesReview
+subjectaccessreviews                             authorization.k8s.io/v1           false        SubjectAccessReview
+horizontalpodautoscalers            hpa          autoscaling/v2                    true         HorizontalPodAutoscaler
+cronjobs                            cj           batch/v1                          true         CronJob
+jobs                                             batch/v1                          true         Job
+certificatesigningrequests          csr          certificates.k8s.io/v1            false        CertificateSigningRequest
+clustertrustbundles                              certificates.k8s.io/v1            false        ClusterTrustBundle
+podcertificaterequests                           certificates.k8s.io/v1            true         PodCertificateRequest
+leases                                           coordination.k8s.io/v1            true         Lease
+bgpconfigurations                                crd.projectcalico.org/v1          false        BGPConfiguration
+bgppeers                                         crd.projectcalico.org/v1          false        BGPPeer
+blockaffinities                                  crd.projectcalico.org/v1          false        BlockAffinity
+caliconodestatuses                               crd.projectcalico.org/v1          false        CalicoNodeStatus
+clusterinformations                              crd.projectcalico.org/v1          false        ClusterInformation
+felixconfigurations                              crd.projectcalico.org/v1          false        FelixConfiguration
+globalnetworkpolicies                            crd.projectcalico.org/v1          false        GlobalNetworkPolicy
+globalnetworksets                                crd.projectcalico.org/v1          false        GlobalNetworkSet
+hostendpoints                                    crd.projectcalico.org/v1          false        HostEndpoint
+ipamblocks                                       crd.projectcalico.org/v1          false        IPAMBlock
+ipamconfigs                                      crd.projectcalico.org/v1          false        IPAMConfig
+ipamhandles                                      crd.projectcalico.org/v1          false        IPAMHandle
+ippools                                          crd.projectcalico.org/v1          false        IPPool
+ipreservations                                   crd.projectcalico.org/v1          false        IPReservation
+kubecontrollersconfigurations                    crd.projectcalico.org/v1          false        KubeControllersConfiguration
+networkpolicies                                  crd.projectcalico.org/v1          true         NetworkPolicy
+networksets                                      crd.projectcalico.org/v1          true         NetworkSet
+endpointslices                                   discovery.k8s.io/v1               true         EndpointSlice
+events                              ev           events.k8s.io/v1                  true         Event
+flowschemas                                      flowcontrol.apiserver.k8s.io/v1   false        FlowSchema
+prioritylevelconfigurations                      flowcontrol.apiserver.k8s.io/v1   false        PriorityLevelConfiguration
+ingressclasses                                   networking.k8s.io/v1              false        IngressClass
+ingresses                           ing          networking.k8s.io/v1              true         Ingress
+ipaddresses                         ip           networking.k8s.io/v1              false        IPAddress
+networkpolicies                     netpol       networking.k8s.io/v1              true         NetworkPolicy
+servicecidrs                                     networking.k8s.io/v1              false        ServiceCIDR
+runtimeclasses                                   node.k8s.io/v1                    false        RuntimeClass
+poddisruptionbudgets                pdb          policy/v1                         true         PodDisruptionBudget
+clusterrolebindings                              rbac.authorization.k8s.io/v1      false        ClusterRoleBinding
+clusterroles                                     rbac.authorization.k8s.io/v1      false        ClusterRole
+rolebindings                                     rbac.authorization.k8s.io/v1      true         RoleBinding
+roles                                            rbac.authorization.k8s.io/v1      true         Role
+deviceclasses                                    resource.k8s.io/v1                false        DeviceClass
+devicetaintrules                                 resource.k8s.io/v1                false        DeviceTaintRule
+resourceclaims                                   resource.k8s.io/v1                true         ResourceClaim
+resourceclaimtemplates                           resource.k8s.io/v1                true         ResourceClaimTemplate
+resourceslices                                   resource.k8s.io/v1                false        ResourceSlice
+priorityclasses                     pc           scheduling.k8s.io/v1              false        PriorityClass
+csidrivers                                       storage.k8s.io/v1                 false        CSIDriver
+csinodes                                         storage.k8s.io/v1                 false        CSINode
+csistoragecapacities                             storage.k8s.io/v1                 true         CSIStorageCapacity
+storageclasses                      sc           storage.k8s.io/v1                 false        StorageClass
+volumeattachments                                storage.k8s.io/v1                 false        VolumeAttachment
+volumeattributesclasses             vac          storage.k8s.io/v1                 false        VolumeAttributesClass
+storageversionmigrations                         storagemigration.k8s.io/v1        false        StorageVersionMigration
+[root@master[~/kube/06/ds]# k api-resources  | grep ds
+pods                                po           v1                                true         Pod
+customresourcedefinitions           crd,crds     apiextensions.k8s.io/v1           false        CustomResourceDefinition
+daemonsets                          ds           apps/v1                           true         DaemonSet
+[root@master[~/kube/06/ds]# c
+nnn[root@master[~/kube/06/ds]# vib~/.bashrc
+>4;2m"~/.bashrc" 66L, 1492B▽  zz0%m           >c 40 export PATH=~/.kubectx:$PATH
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH" 42  43 # kubens, kubectx 엘리어스 선언
+ 44 alias kubens='kubectl ns'
+ 45 alias kubectx='kubectl ctx'
+ 46
+ 47 alias vi='/usr/bin/vim'
+ 48
+ 49 # grep 기본 옵션 (색상 및 대소문자 무시)
+ 50 alias grep='grep --color=auto -i'
+ 51
+ 52 # kubectl api-resources 검색 함수
+ 53 findapi() {
+ 54   if [ -z "$1" ]; then
+ 55     echo "사용법: findapi <검색어>"
+ 56     return 1
+ 57   fi
+ 58
+ 59   # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+ 60   kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+ 61 }
+ 62 alias dpod="kubectl delete pods --all"
+ 63
+ 64 cyml() {
+ 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"
+ 66 }64,1Bot?12$p3,0-12,1  ~@k   {}1{}059~@k   876~@k   543~@k   21,0-10,1  ~@k   498,0-17,1  ~@k   6,0-15,1   39 #kubectx and kubens44,197%~@k    38 43,194%45~@k   6,0-17,1  8,0-1~@k   9,1  501,0-1~@k   2,1  34~@k   567~@k   89
+ 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"60,197%
+{} 66 }61,1Bot{}23,0-1~@k   4,1  5{}6~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   {}54~@k   3,0-12,1  {}1~@k   {}0598~@k   765~@k   432~@k   1,0-10,1  49~@k   8,0-17,1  6,0-1~@k   5,1   39 #kubectx and kubens44,197% 38 43,194%~@k    37 complete -o default -F __start_kubectl k42,0-192% 36 alias k=kubectl41,189% 35 source <(kubeadm completion bash)40,187%~@k    34 source <(kubectl completion bash)39,184% 33 38,0-182% 32 #export KUBECONFIG=~/.kube/configi37,179%~@k    31 # kubectl CMD36,176% 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\]\w]\$ \[\e[m\]'35,174% 29 34,171%~@k    28 33,0-169% 27 #32,166% 26 # Kubernetes31,164%~@k    25 #30,161% 24 29,0-158% 23 alias c="printf \n\n\n; clear"28,0-156%~@k    22 alias mv='mv -i'27,153% 21 alias cp='cp -i'26,151% 20 alias rm='rm -i'25,148%~@k    19 24,0-146% 18 # User specific aliases and functions23,143% 17 22,141%~@k    16 # export SYSTEMD_PAGER=21,138% 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:20,135% 14 19,133%~@k    13 export PATH18,130% 12 fi17,0-128% 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"16,125%~@k    10 then15,123%  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]14,0-120%  8 # User specific environment13,117%~@k     7 12,115%34,0-1~@k   5,1  67,0-1~@k   8,1  920~@k   1234,0-15,1  6~@k   78,0-1
+ 34 source <(kubectl completion bash)29,0-117%~@k
+ 35 source <(kubeadm completion bash)30,120%
+ 36 alias k=kubectl31,123%
+ 37 complete -o default -F __start_kubectl k32,125%~@k
+ 38 33,0-128%
+ 39 #kubectx and kubens34,130%
+ 40 export PATH=~/.kubectx:$PATH35,133%~@k
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"36,135%
+ 42 37,138%
+ 43 # kubens, kubectx 엘리어스 선언38,0-141%~@k
+ 44 alias kubens='kubectl ns'39,143%
+ 45 alias kubectx='kubectl ctx'40,146%
+ 46 41,148%~@k
+ 47 alias vi='/usr/bin/vim'42,0-151%
+ 48 43,153%
+ 49 # grep 기본 옵션 (색상 및 대소문자 무시)44,156%~@k
+>4;m>4;m[root@master[~/kube/06/ds]#ikubeadm%token[listte nginx-ds.yml
+[root@master[~/kube/06/ds]# kubeadm token create --print-join-command | tee kudeadm-join.cmd
+kubeadm join 192.168.10.10:6443 --token 51tivb.wa40beyhqtlc5o07 --discovery-token-ca-cert-hash sha256:2228c9195c77ad9f85cf1d226cb87c3cbe9387d1ce35402bd2b2c01c64983132
+[root@master[~/kube/06/ds]# kubeadm token listte --print-join-command | tee kudeadm-join.cmd
+TOKEN                     TTL         EXPIRES                USAGES                   DESCRIPTION                                                EXTRA GROUPS
+51tivb.wa40beyhqtlc5o07   23h         2026-10-16T08:10:24Z   authentication,signing   <none>                                                     system:bootstrappers:kubeadm:default-node-token
+[root@master[~/kube/06/ds]# ssh node3 kubeamd join
+Display all 2426 possibilities? (y or n)
+[root@master[~/kube/06/ds]# ssh node3 "$(catdkubeadm-join.cmd)"
+cat: kubeadm-join.cmd: No such file or directory
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://node3:9090/ or https://192.168.10.13:9090/
+
+Last login: Thu Oct 15 16:59:11 2026 from 192.168.10.10
+sshtnode3-"$(catpkudeadm-join.cmd)"&riptablesa-tFmanglet-Fl&&diptablese-XF && iptables -X
+cat: kudeadm-join.cmd: No such file or directory
+The authenticity of host 'node3 (fe80::20c:29ff:fef0:4649%ens160)' can't be established.
+ED25519 key fingerprint is SHA256:TyjwCL5RsshRNM1c2JhKo8ZPhP+ZFYeueptidcwhrfE.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:1: main
+    ~/.ssh/known_hosts:4: server1
+    ~/.ssh/known_hosts:5: server2
+Are you sure you want to continue connecting (yes/no/[fingerprint])? ^C
+[root@node3 ~]# exit
+logout
+Connection to node3 closed.
+[root@master[~/kube/06/ds]# ssh node3 "$(cat kudeadm-join.cmd)"
+[preflight] Running pre-flight checks
+        [WARNING Hostname]: hostname "node3" could not be reached
+        [WARNING Hostname]: hostname "node3": lookup node3 on 8.8.8.8:53: no such host
+[preflight] Reading configuration from the "kubeadm-config" ConfigMap in namespace "kube-system"...
+[preflight] Use 'kubeadm init phase upload-config kubeadm --config your-config-file' to re-upload it.
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/instance-config.yaml"
+[patches] Applied patch of type "application/strategic-merge-patch+json" to target "kubeletconfiguration"
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Starting the kubelet
+[kubelet-check] Waiting for a healthy kubelet at http://127.0.0.1:10248/healthz. This can take up to 4m0s
+[kubelet-check] The kubelet is healthy after 514.808379ms
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+
+[root@master[~/kube/06/ds]# kkubectl set image ds/nginx-ds nginx-container=nginx:1.27 \
+  && kubectl annotate ds/nginx-ds kubkubectl.setcimage-ds/nginx-ds"nginx-container=nginx:1.27 \
+  && kubectl annotate ds/nginx-ds kubernetes.io/change-cause="1.27"
+daemonset.apps/nginx-ds image updated
+daemonset.apps/nginx-ds annotated
+[root@master[~/kube/06/ds]# k rollout history daemonset nginx-ds
+daemonset.apps/nginx-ds
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+[root@master[~/kube/06/ds]# ls
+kudeadm-join.cmd  nginx-ds.yml
+[root@master[~/kube/06/ds]# kiget daemonsets.apps nginx-ds -o yaml | less
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  annotations:
+    deprecated.daemonset.template.generation: "2"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"DaemonSet","metadata":{"annotations":{},"name":"nginx-ds","namespace":"default"},"spec":{"selector":{"matchLabels":{"app":"webui"}},"template":{"metadata":{"labels":{"app":"webui"},"name":"nginx-pod"},"spec":{"containers":[{"image":"nginx:1.26","name":"nginx-container"}]}}}}
+    kubernetes.io/change-cause: "1.27"
+  creationTimestamp: "2026-10-15T08:06:52Z"
+  generation: 2
+  name: nginx-ds
+  namespace: default
+  resourceVersion: "135957"
+  uid: 97c485f1-22c6-442b-b991-757ed3b85a84
+spec:
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      labels:
+        app: webui
+      name: nginx-pod
+    spec:
+      containers:
+[root@master[~/kube/06/ds]# k rollout undo daemonset nginx-ds ---
+--allow-missing-template-keys  (If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output …)
+--as-group                     (Group to impersonate for the operation, this flag can be repeated to specify multiple groups.)
+--as-uid                       (UID to impersonate for the operation.)
+--as-user-extra                (User extras to impersonate for the operation, this flag can be repeated to specify multiple values for the same key.)
+--as                           (Username to impersonate for the operation. User could be a regular user or a service account in a namespace.)
+--cache-dir                    (Default cache directory)
+--certificate-authority        (Path to a cert file for the certificate authority)
+--client-certificate           (Path to a client certificate file for TLS)
+--client-key                   (Path to a client key file for TLS)
+--cluster                      (The name of the kubeconfig cluster to use)
+--context                      (The name of the kubeconfig context to use)
+--disable-compression          (If true, opt-out of response compression for all requests to the server)
+--dry-run                      (Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server stra…)
+--filename                     (Filename, directory, or URL to files identifying the resource to get from a server.)
+--help                         (help for undo)
+--insecure-skip-tls-verify     (If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure)
+--kubeconfig                   (Path to the kubeconfig file to use for CLI requests.)
+--kuberc                       (Path to the kuberc file to use for preferences. This can be disabled by exporting KUBECTL_KUBERC=false feature gate or turning off the …)
+--kustomize                    (Process the kustomization directory. This flag can't be used together with -f or -R.)
+--log-flush-frequency          (Maximum number of seconds between log flushes)
+--match-server-version         (Require server version to match client version)
+--namespace                    (If present, the namespace scope for this CLI request)
+--output                       (Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jso…)
+--password                     (Password for basic authentication to the API server)
+--profile                      (Name of profile to capture. One of (none|cpu|heap|goroutine|threadcreate|block|mutex|trace))
+--profile-output               (Name of the file to write the profile to)
+--proxy-url                    (Proxy URL to use for requests to the API server)
+[root@master[~/kube/06/ds]# k rollout undo daemonset nginx-ds --to
+--token        (Bearer token for authentication to the API server)           --to-revision  (The revision to rollback to. Default to 0 (last revision).)
+[root@master[~/kube/06/ds]# k rollout undo daemonset nginx-ds --to-revision 1
+Warning: resource daemonsets/nginx-ds was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+daemonset.apps/nginx-ds rolled back
+kkrolloutshistoryedaemonset-nginx-ds-container=nginx:1.27x-d&&-kubectliannotate ds/nginx-ds kubernetes.io/change-cause="1.27"
+daemonset.apps/nginx-ds
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+
+[root@master[~/kube/06/ds]# k rollout undoodaemonsetsnginx-ds---to-revision 2
+Warning: resource daemonsets/nginx-ds was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+daemonset.apps/nginx-ds rolled back
+[root@master[~/kube/06/ds]# k rollout historyedaemonsetinginx-dsto-revision 2
+daemonset.apps/nginx-ds
+REVISION  CHANGE-CAUSE
+3         <none>
+4         <none>
+
+[root@master[~/kube/06/ds]# k delete ds nginx-ds
+daemonset.apps "nginx-ds" deleted from default namespace
+[root@master[~/kube/06/ds]# c
+nnn[root@master[~/kube/06/ds]# exit
+exit
+
+Script done on 2026-10-15 17:35:53+09:00 [COMMAND_EXIT_CODE="0"]
