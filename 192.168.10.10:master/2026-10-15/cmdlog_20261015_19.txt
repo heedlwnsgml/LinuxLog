@@ -1,0 +1,213 @@
+Script started on 2026-10-15 19:18:10+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="169" LINES="28"]
+[root@master[~/kube/06/job]# k apply -f os-job.yml
+job.batch/os-job created
+[root@master[~/kube/06/job]# k delete pods os
+pod "os" deleted from default namespace
+[root@master[~/kube/06/job]# k events os-job.yml
+LAST SEEN              TYPE      REASON             OBJECT                  MESSAGE
+60m                    Normal    Pulled             Pod/nginx-sts-0         Container image "nginx:1.26" already present on machine and can be accessed by the pod
+60m                    Normal    Created            Pod/nginx-sts-0         Container created
+60m                    Normal    Started            Pod/nginx-sts-0         Container started
+60m                    Normal    SuccessfulCreate   StatefulSet/nginx-sts   Create Pod nginx-sts-1 in StatefulSet nginx-sts successful
+60m                    Normal    SuccessfulCreate   StatefulSet/nginx-sts   Create Pod nginx-sts-0 in StatefulSet nginx-sts successful
+60m                    Normal    Scheduled          Pod/nginx-sts-0         Successfully assigned default/nginx-sts-0 to node3
+60m                    Normal    Scheduled          Pod/nginx-sts-1         Successfully assigned default/nginx-sts-1 to node1
+60m                    Normal    Created            Pod/nginx-sts-2         Container created
+60m                    Normal    Started            Pod/nginx-sts-1         Container started
+60m                    Normal    Pulled             Pod/nginx-sts-2         Container image "nginx:1.26" already present on machine and can be accessed by the pod
+60m                    Normal    Started            Pod/nginx-sts-2         Container started
+60m                    Normal    Created            Pod/nginx-sts-1         Container created
+60m                    Normal    Pulled             Pod/nginx-sts-1         Container image "nginx:1.26" already present on machine and can be accessed by the pod
+60m                    Normal    SuccessfulCreate   StatefulSet/nginx-sts   Create Pod nginx-sts-2 in StatefulSet nginx-sts successful
+60m                    Normal    Scheduled          Pod/nginx-sts-2         Successfully assigned default/nginx-sts-2 to node2
+6m23s                  Normal    Pulling            Pod/os                  Pulling image "quay.io/centos/centos:10"
+6m23s                  Normal    Scheduled          Pod/os                  Successfully assigned default/os to node3
+6m10s                  Normal    Pulled             Pod/os                  Successfully pulled image "quay.io/centos/centos:10" in 13.072s (13.072s including waiting). Image size: 67156333 bytes.
+5m43s                  Normal    Killing            Pod/nginx-sts-2         Stopping container nginx-container
+5m43s                  Normal    Killing            Pod/nginx-sts-1         Stopping container nginx-container
+5m43s                  Normal    Killing            Pod/nginx-sts-0         Stopping container nginx-container
+3m1s (x6 over 6m10s)   Normal    Created            Pod/os                  Container created
+3m1s (x6 over 6m10s)   Normal    Started            Pod/os                  Container started
+3m1s (x5 over 6m4s)    Normal    Pulled             Pod/os                  Container image "quay.io/centos/centos:10" already present on machine and can be accessed by the pod
+99s (x6 over 5m58s)    Warning   BackOff            Pod/os                  Back-off restarting failed container os in pod os_default(be8add60-5e8a-4714-ac70-5a7953766d16)
+74s                    Normal    SuccessfulCreate   Job/os-job              Created pod: os-job-nx82r
+73s                    Normal    Scheduled          Pod/os-job-nx82r        Successfully assigned default/os-job-nx82r to node1
+73s                    Normal    Pulled             Pod/os-job-nx82r        Container image "quay.io/centos/centos:10" already present on machine and can be accessed by the pod
+73s                    Normal    Created            Pod/os-job-nx82r        Container created
+73s                    Normal    Started            Pod/os-job-nx82r        Container started
+10s                    Normal    Completed          Job/os-job              Job completed
+[root@master[~/kube/06/job]# c
+nnn[root@master[~/kube/06/job]# k describe pods os-job-nx82r
+Name:             os-job-nx82r
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Thu, 15 Oct 2026 19:18:17 +0900
+Labels:           batch.kubernetes.io/controller-uid=b14e043b-b50a-4028-9407-2078b9141cca
+                  batch.kubernetes.io/job-name=os-job
+                  controller-uid=b14e043b-b50a-4028-9407-2078b9141cca
+                  job-name=os-job
+Annotations:      cni.projectcalico.org/containerID: 93f01580b8449abb5d02adae033e1f5328107822f6a92a5c510d92128df26024
+                  cni.projectcalico.org/podIP:
+                  cni.projectcalico.org/podIPs:
+Status:           Succeeded
+IP:               10.10.166.145
+IPs:
+  IP:           10.10.166.145
+Controlled By:  Job/os-job
+Containers:
+  os-container:
+    Container ID:  containerd://b815dc9c9d057e4971dbe6be29a6eebf9a3e4486b2ab8d7de565b4fec313dcee
+    Image:         quay.io/centos/centos:10
+    Image ID:      quay.io/centos/centos@sha256:e664412637fcadb7d9eef7da6cc48c29cd69fb977d27c871ec3c54d95c91ace9
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /bin/bash
+    Args:
+      -c
+      echo Hello; sleep 60; echo Word
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Thu, 15 Oct 2026 19:18:18 +0900
+      Finished:     Thu, 15 Oct 2026 19:19:18 +0900
+    Ready:          False
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-2th4n (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   False
+  Initialized                 True
+  Ready                       False
+  ContainersReady             False
+  PodScheduled                True
+Volumes:
+  kube-api-access-2th4n:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  89s   default-scheduler  Successfully assigned default/os-job-nx82r to node1
+  Normal  Pulled     89s   kubelet            spec.containers{os-container}: Container image "quay.io/centos/centos:10" already present on machine and can be accessed by the pod
+  Normal  Created    89s   kubelet            spec.containers{os-container}: Container created
+  Normal  Started    89s   kubelet            spec.containers{os-container}: Container started
+[root@master[~/kube/06/job]# cqq
+nnn[root@master[~/kube/06/job]# k get pods os-job-nx82r
+NAME           READY   STATUS      RESTARTS   AGE
+os-job-nx82r   0/1     Completed   0          105s
+[root@master[~/kube/06/job]# k get jobs.batchb-nx82r
+NAME     STATUS     COMPLETIONS   DURATION   AGE
+os-job   Complete   1/1           64s        112s
+[root@master[~/kube/06/job]# k delete pods os-job-nx82r
+pod "os-job-nx82r" deleted from default namespace
+[root@master[~/kube/06/jobk#getdpodse jobs.batch os-job
+No resources found in default namespace.
+[root@master[~/kube/06/job]#
+[root@master[~/kube/06/job]#
+[root@master[~/kube/06/job]# k delete jobs.batch os-job
+job.batch "os-job" deleted from default namespace
+[root@master[~/kube/06/job]# $(date +%Y %m %d)
+date: extra operand ‘%m’
+Try 'date --help' for more information.
+[root@master[~/kube/06/job]# 1@e1@c1@h1@o1@%d)
+date: extra operand ‘%m’
+Try 'date --help' for more information.
+
+[root@master[~/kube/06/1@"ho@$(date(+%Ye%m%%d)" %")
+date: extra operand ‘%m’
+Try 'date --help' for more information.
+
+[root@master[~/kube/06/job]# echo "$(1@'e +%Y %m %d')"
+2026 10 15
+[root@master[~/kube/06/job]# c
+nnn[root@master[~/kube/06/job]# cat /etc/cron
+cron.d/       cron.daily/   cron.deny     cron.hourly/  cron.monthly/ crontab       cron.weekly/
+[root@master[~/kube/06/job]# cat /etc/crontab
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+# For details see man 4 crontabs
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name  command to be executed
+
+[root@master[~/kube/06/job]# c
+mkdiro-p@~/kube/06/cje&&6cdo~/kube/06/cj ~/kube/06/cj && cd ~/kube/06/cj
+[root@master[~/kube/06/cj]# vi cronjob.yml
+>4;2m"cronjob.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        ~                                                                                                                                                                        0,0-1All?12$p-- INSERT --0,1AllapiVersion: batch/v1
+  2 kind: CronJob  3 metadata:  4   name: os-cj
+  5 spec:
+  6   schedule: "* * * * *"  7   jobTemplate:  8     spec:  9       template:
+ 10         spec: 11           containers: 12           - name: os-container
+ 13             image: busybox 14             args: 15   - /bin/sh
+ 16             - -c 17             - echo Hello; sleep 10; echo Bye
+>4;m"cronjob.yml"t[New]l18L, 357Brwrittenl^[  ^[  ::wq
+>4;m[root@master[~/kube/06/cj]# k apply -f cronjob.yml
+cronjob.batch/os-cj created
+[root@master[~/kube/06/cj]# kigetocjoos-cj -o yaml | sed 0n '/schedule:/,$p'
+sed: -e expression #1, char 2: invalid usage of line address 0
+[root@master[~/kube/06/cj]# k get cj os-cj -o yaml | 1@- 0n '/schedule:/,$p'
+  schedule: '* * * * *'
+  successfulJobsHistoryLimit: 3
+  suspend: false
+status:
+  lastScheduleTime: "2026-10-15T10:34:00Z"
+  lastSuccessfulTime: "2026-10-15T10:34:15Z"
+[root@master[~/kube/06/cj]# k logstpods/os-cj-29867673-972jf
+Hello
+Bye
+[root@master[~/kube/06/cj]# k delete
+apiservices.apiregistration.k8s.io                              kubecontrollersconfigurations.crd.projectcalico.org
+bgpconfigurations.crd.projectcalico.org                         leases.coordination.k8s.io
+bgppeers.crd.projectcalico.org                                  limitranges
+blockaffinities.crd.projectcalico.org                           mutatingadmissionpolicies.admissionregistration.k8s.io
+caliconodestatuses.crd.projectcalico.org                        mutatingadmissionpolicybindings.admissionregistration.k8s.io
+certificatesigningrequests.certificates.k8s.io                  mutatingwebhookconfigurations.admissionregistration.k8s.io
+clusterinformations.crd.projectcalico.org                       namespaces
+clusterrolebindings.rbac.authorization.k8s.io                   networkpolicies.crd.projectcalico.org
+clusterroles.rbac.authorization.k8s.io                          networkpolicies.networking.k8s.io
+clustertrustbundles.certificates.k8s.io                         networksets.crd.projectcalico.org
+componentstatuses                                               nodes
+configmaps                                                      persistentvolumeclaims
+controllerrevisions.apps                                        persistentvolumes
+cronjobs.batch                                                  podcertificaterequests.certificates.k8s.io
+csidrivers.storage.k8s.io                                       poddisruptionbudgets.policy
+csinodes.storage.k8s.io                                         pods
+csistoragecapacities.storage.k8s.io                             podtemplates
+customresourcedefinitions.apiextensions.k8s.io                  priorityclasses.scheduling.k8s.io
+daemonsets.apps                                                 prioritylevelconfigurations.flowcontrol.apiserver.k8s.io
+deployments.apps                                                replicasets.apps
+deviceclasses.resource.k8s.io                                   replicationcontrollers
+devicetaintrules.resource.k8s.io                                resourceclaims.resource.k8s.io
+endpoints                                                       resourceclaimtemplates.resource.k8s.io
+endpointslices.discovery.k8s.io                                 resourcequotas
+events                                                          resourceslices.resource.k8s.io
+events.events.k8s.io                                            rolebindings.rbac.authorization.k8s.io
+felixconfigurations.crd.projectcalico.org                       roles.rbac.authorization.k8s.io
+[root@master[~/kube/06/cj]# k delete cj os-cj
+cronjob.batch "os-cj" deleted from default namespace
+[root@master[~/kube/06/cj]# c
+nnn[root@master[~/kube/06/cj]# exitBONG SIL
+exit
+
+Script done on 2026-10-15 19:59:13+09:00 [COMMAND_EXIT_CODE="0"]
