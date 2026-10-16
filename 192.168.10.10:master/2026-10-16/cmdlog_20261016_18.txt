@@ -1,0 +1,636 @@
+Script started on 2026-10-16 18:56:40+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="164" LINES="28"]
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# tree .
+.
+├── externalname.yml
+├── ip.sh
+├── ip.txt
+├── mynginx-deploy.yml
+├── nginx-clusterip-svc.yml
+├── nginx-deploy.yml
+├── nginx-loadbalancer-svc2.yml
+├── nginx-loadbalancer-svc.yml
+├── nginx-nodeport-svc.yml
+├── server.list
+└── test-svc.yml
+
+1 directory, 11 files
+[root@master[~/kube/07/svc]# tree ~/.
+/root/.
+├── 서식
+├── 공개
+├── 문서
+├── 음악
+├── 사진
+├── 비디오
+├── 바탕화면
+│   ├── org.gnome.gedit.desktop
+│   ├── org.gnome.Ptyxis.desktop
+│   └── org.gnome.TextEditor.desktop
+├── 다운로드
+├── anaconda-ks.cfg
+├── api-list.txt
+├── bin
+│   ├── poweroff.sh
+│   └── reboot.sh
+├── kube
+│   ├── 00_test
+│   │   ├── webapi1.yaml
+│   │   └── webapi2.yaml
+│   ├── 03
+│   │   └── web-pod.yml
+│   ├── 04
+│   │   ├── api
+│   │   │   ├── nginx-2xxx.yml
+│   │   │   └── pod.yml
+│   │   └── ns
+│   │       ├── nginx-pod.yml
+│   │       ├── prodns.yml
+│   │       └── web-pod.yml
+│   ├── 05
+│   │   ├── design
+│   │   │   └── sidecar.yml
+│   │   ├── init-container
+│   │   │   ├── init-container-exam-svc2.yml
+│   │   │   ├── init-container-exam-svc.yml
+│   │   │   └── init-container-pod.yml
+│   │   ├── labs
+│   │   │   ├── env
+│   │   │   │   └── myweb-pod.yml
+│   │   │   ├── pod
+│   │   │   │   └── memcached.yml
+│   │   │   └── probe
+│   │   │       └── liveness-lab.yml
+│   │   ├── liveness
+│   │   │   ├── exec-liveness.yml
+│   │   │   ├── httpget-liveness.yml
+│   │   │   ├── nginx-liveness-orig-pod.yml
+│   │   │   └── nginx-liveness-pod.yml
+│   │   ├── multi
+│   │   │   └── multi-pod.yml
+│   │   ├── nginx-rc.yml
+│   │   ├── resources
+│   │   │   ├── nginx-resource-limits-pod.yml
+│   │   │   ├── nginx-resource-requests-limits-pod.yml
+│   │   │   ├── nginx-resource-requests-pod.yml
+│   │   │   └── nginx-wrong-resource-pod.yml
+│   │   ├── single
+│   │   │   └── nginx-pod.yml
+│   │   └── variable
+│   │       ├── mysql-env-pod.yml
+│   │       └── nginx-env-pod.yml
+│   ├── 06
+│   │   ├── cj
+│   │   │   └── cronjob.yml
+│   │   ├── deploy
+│   │   │   ├── nginx-deploy.yml
+│   │   │   ├── rollingupdate-deploy2.yml
+│   │   │   └── rollingupdate-deploy.yml
+│   │   ├── ds
+│   │   │   ├── kudeadm-join.cmd
+│   │   │   └── nginx-ds.yml
+│   │   ├── job
+│   │   │   └── os-job.yml
+│   │   ├── labs
+│   │   │   └── rs
+│   │   │       └── rs-lab.yml
+│   │   ├── rc
+│   │   │   ├── nginx-rc.yml
+│   │   │   └── redis.yml
+│   │   ├── rs
+│   │   │   └── nginx-rs.yml
+│   │   └── sts
+│   │       ├── nginx-rs.yml
+│   │       └── nginx-sts.yml
+│   └── 07
+│       ├── headless
+│       │   └── headless-nginx.yml
+│       ├── headless_sts
+│       │   ├── redis-cluster.yml
+│       │   └── redis-configmap.yml
+│       └── svc
+│           ├── externalname.yml
+│           ├── ip.sh
+│           ├── ip.txt
+│           ├── mynginx-deploy.yml
+│           ├── nginx-clusterip-svc.yml
+│           ├── nginx-deploy.yml
+│           ├── nginx-loadbalancer-svc2.yml
+│           ├── nginx-loadbalancer-svc.yml
+│           ├── nginx-nodeport-svc.yml
+│           ├── server.list
+│           └── test-svc.yml
+├── kubeadm_init_output.txt
+├── LinuxLog
+│   ├── 리눅스_쉘스크립트
+│   │   ├── BIN
+│   │   │   ├── 1
+│   │   │   ├── aaa
+│   │   │   ├── add_dir.sh
+│   │   │   ├── add_userlist.sh
+│   │   │   ├── add_user.sh
+│   │   │   ├── auto_ftp2.sh
+│   │   │   ├── auto_ftp.sh
+│   │   │   ├── auto_reboot.sh
+│   │   │   ├── auto_telnet2.sh
+│   │   │   ├── auto_telnet.sh
+│   │   │   ├── bashrc.txt
+│   │   │   ├── calculator_ver1.sh
+│   │   │   ├── check_network.sh
+│   │   │   ├── del_user.sh
+│   │   │   ├── DNS
+│   │   │   │   ├── example.com.rev
+│   │   │   │   ├── example.com.zone
+│   │   │   │   ├── named.conf
+│   │   │   │   └── named.rfc1912.zones
+│   │   │   ├── ENV1.sh
+│   │   │   ├── ENV2.sh
+│   │   │   ├── ENV3.sh
+│   │   │   ├── ENV_main.sh
+│   │   │   ├── functions.sh
+│   │   │   ├── hosts
+│   │   │   ├── hosts.sh
+│   │   │   ├── jump.sh
+│   │   │   ├── move_filename.sh
+│   │   │   ├── nmtui.sh
+│   │   │   ├── ping2.sh
+│   │   │   ├── ping.sh
+│   │   │   ├── position.txt
+│   │   │   ├── reboot.txt
+│   │   │   ├── server.list
+│   │   │   ├── setup_tui.sh
+│   │   │   ├── test.sh
+│   │   │   ├── TOOLS_AI_QUESTION_IP206.txt
+│   │   │   ├── user_admin.sh
+│   │   │   ├── useradmin.sh
+│   │   │   └── user.list
+│   │   ├── ENV
+│   │   │   └── vimrc.txt
+│   │   └── SHELL
+│   │       ├── aaa
+│   │       ├── auto_ftp_windows.sh
+│   │       ├── break_test.sh
+│   │       ├── chklog2.sh
+│   │       ├── chklog.sh
+│   │       ├── cont_break.sh
+│   │       ├── continue_test.sh
+│   │       ├── count.sh
+│   │       ├── denyuser.sh
+│   │       ├── dir.sh
+│   │       ├── dns.sh
+│   │       ├── echo.sh
+│   │       ├── enter.sh
+│   │       ├── execfile.sh
+│   │       ├── file1
+│   │       ├── filesize.sh
+│   │       ├── findstring.sh
+│   │       ├── for.sh
+│   │       ├── FTP
+│   │       │   └── vsftpd.conf
+│   │       ├── ftp2.sh
+│   │       ├── ftp.sh
+│   │       ├── here.sh
+│   │       ├── mytest.sh
+│   │       ├── nohup.out
+│   │       ├── nullcheck.sh
+│   │       ├── passwd1
+│   │       ├── passwd2
+│   │       ├── read.sh
+│   │       ├── sedtest
+│   │       ├── server.txt
+│   │       ├── shift.sh
+│   │       ├── svc.sh
+│   │       ├── testfile.sh
+│   │       ├── test.sh
+│   │       ├── test_source.txt
+│   │       ├── test.txt
+│   │       ├── tools.sh
+│   │       ├── WEB
+│   │       │   └── index.html
+│   │       ├── web.sh
+│   │       ├── yes2.sh
+│   │       └── yes.sh
+│   ├── 192.168.10.10:ansible
+│   │   ├── 2026-09-15
+│   │   │   ├── cmdlog_20260915_1600.txt
+│   │   │   ├── cmdlog_20260915_1601.txt
+│   │   │   ├── cmdlog_20260915_1605.txt
+│   │   │   ├── cmdlog_20260915_1612.txt
+│   │   │   └── cmdlog_20260915_1912.txt
+│   │   ├── 2026-09-16
+│   │   │   └── cmdlog_20260916_1946.txt
+│   │   ├── 2026-09-17
+│   │   │   ├── cmdlog_20260917_1541.txt
+│   │   │   └── cmdlog_20260917_1914.txt
+│   │   ├── 2026-09-18
+│   │   │   ├── cmdlog_20260918_1640.txt
+│   │   │   └── cmdlog_20260918_1906.txt
+│   │   ├── 2026-09-21
+│   │   │   ├── cmdlog_20260921_1532.txt
+│   │   │   └── cmdlog_20260921_1755.txt
+│   │   ├── 2026-09-22
+│   │   │   ├── cmdlog_20260922_1546.txt
+│   │   │   └── cmdlog_20260922_1644.txt
+│   │   ├── 2026-09-23
+│   │   │   ├── cmdlog_20260923_1537.txt
+│   │   │   ├── cmdlog_20260923_1904.txt
+│   │   │   ├── cmdlog_20260923_2029.txt
+│   │   │   └── cmdlog_20260923_2121.txt
+│   │   ├── 2026-09-28
+│   │   │   ├── cmdlog_20260928_1541.txt
+│   │   │   ├── cmdlog_20260928_1710.txt
+│   │   │   ├── cmdlog_20260928_1903.txt
+│   │   │   └── cmdlog_20260928_2124.txt
+│   │   └── 2026-09-29
+│   │       ├── cmdlog_20260929_1546.txt
+│   │       └── cmdlog_20260929_1904.txt
+│   ├── 192.168.10.10:docker1
+│   │   ├── 2026-09-29
+│   │   │   ├── cmdlog_20260929_20.txt
+│   │   │   └── cmdlog_20260929_21.txt
+│   │   ├── 2026-09-30
+│   │   │   ├── cmdlog_20260930_16.txt
+│   │   │   ├── cmdlog_20260930_17.txt
+│   │   │   └── cmdlog_20260930_20.txt
+│   │   ├── 2026-10-01
+│   │   │   ├── cmdlog_20261001_15.txt
+│   │   │   ├── cmdlog_20261001_19.txt
+│   │   │   ├── cmdlog_20261001_20.txt
+│   │   │   └── cmdlog_20261001_21.txt
+│   │   ├── 2026-10-02
+│   │   │   ├── cmdlog_20261002_15.txt
+│   │   │   ├── cmdlog_20261002_16.txt
+│   │   │   ├── cmdlog_20261002_17.txt
+│   │   │   ├── cmdlog_20261002_19.txt
+│   │   │   └── cmdlog_20261002_21.txt
+│   │   ├── 2026-10-06
+│   │   │   ├── cmdlog_20261006_15.txt
+│   │   │   ├── cmdlog_20261006_19.txt
+│   │   │   └── cmdlog_20261006_20.txt
+│   │   ├── 2026-10-07
+│   │   │   ├── cmdlog_20261007_17.txt
+│   │   │   ├── cmdlog_20261007_19.txt
+│   │   │   └── cmdlog_20261007_20.txt
+│   │   └── 2026-10-08
+│   │       └── cmdlog_20261008_15.txt
+│   ├── 192.168.10.10:main
+│   │   ├── 2026-09-02
+│   │   │   ├── cmdlog_20260902_16.txt
+│   │   │   ├── cmdlog_20260902_17.txt
+│   │   │   ├── cmdlog_20260902_1919.txt
+│   │   │   └── cmdlog_20260902_19.txt
+│   │   ├── 2026-09-03
+│   │   │   ├── cmdlog_20260903_1535.txt
+│   │   │   ├── cmdlog_20260903_1708.txt
+│   │   │   ├── cmdlog_20260903_1814.txt
+│   │   │   ├── cmdlog_20260903_1822.txt
+│   │   │   └── cmdlog_20260903_2055.txt
+│   │   ├── 2026-09-04
+│   │   │   ├── cmdlog_20260904_1541.txt
+│   │   │   └── cmdlog_20260904_1734.txt
+│   │   ├── 2026-09-08
+│   │   │   ├── cmdlog_20260908_1605.txt
+│   │   │   └── cmdlog_20260908_1740.txt
+│   │   ├── 2026-09-09
+│   │   │   └── cmdlog_20260909_1704.txt
+│   │   └── 2026-09-11
+│   │       └── cmdlog_20260911_1917.txt
+│   ├── 192.168.10.10:master
+│   │   └── 2026-10-16
+│   │       ├── cmdlog_20261016_17.txt
+│   │       └── cmdlog_20261016_18.txt
+│   ├── 192.168.10.14:minikube
+│   │   ├── 2026-10-08
+│   │   │   └── cmdlog_20261008_20.txt
+│   │   └── 2026-10-15
+│   │       └── cmdlog_20261015_21.txt
+│   ├── 192.168.10.50:docker1
+│   │   └── 2026-10-08
+│   │       └── cmdlog_20261008_20.txt
+│   └── README.md
+├── test
+├── test.txt
+└── tools
+    ├── calico
+    │   ├── calicoctl
+    │   └── kubectl-calico
+    ├── cni
+    │   └── calico.yaml
+    ├── kubectx
+    │   ├── cmd
+    │   │   ├── kubectx
+    │   │   │   ├── current.go
+    │   │   │   ├── delete.go
+    │   │   │   ├── env.go
+    │   │   │   ├── flags.go
+    │   │   │   ├── flags_test.go
+    │   │   │   ├── fzf.go
+    │   │   │   ├── fzf_test.go
+    │   │   │   ├── help.go
+    │   │   │   ├── help_test.go
+    │   │   │   ├── isolated_shell_guard.go
+    │   │   │   ├── list.go
+    │   │   │   ├── main.go
+    │   │   │   ├── readonly_shell.go
+    │   │   │   ├── rename.go
+    │   │   │   ├── rename_test.go
+    │   │   │   ├── shell.go
+    │   │   │   ├── shell_session.go
+    │   │   │   ├── shell_test.go
+    │   │   │   ├── state.go
+    │   │   │   ├── state_test.go
+    │   │   │   ├── switch.go
+    │   │   │   ├── unset.go
+    │   │   │   └── version.go
+    │   │   └── kubens
+    │   │       ├── current.go
+    │   │       ├── flags.go
+    │   │       ├── flags_test.go
+    │   │       ├── fzf.go
+    │   │       ├── fzf_test.go
+    │   │       ├── help.go
+    │   │       ├── list.go
+    │   │       ├── main.go
+    │   │       ├── statefile.go
+    │   │       ├── statefile_test.go
+    │   │       ├── switch.go
+    │   │       ├── unset.go
+    │   │       └── version.go
+    │   ├── completion
+    │   │   ├── kubectx.bash
+    │   │   ├── kubectx.fish
+    │   │   ├── _kubectx.zsh
+    │   │   ├── kubens.bash
+    │   │   ├── kubens.fish
+    │   │   └── _kubens.zsh
+    │   ├── CONTRIBUTING.md
+    │   ├── go.mod
+    │   ├── go.sum
+    │   ├── img
+    │   │   ├── kubectx-demo.gif
+    │   │   ├── kubectx-interactive.gif
+    │   │   └── kubens-demo.gif
+    │   ├── internal
+    │   │   ├── cmdutil
+    │   │   │   ├── deprecated.go
+    │   │   │   ├── deprecated_test.go
+    │   │   │   ├── interactive.go
+    │   │   │   ├── util.go
+    │   │   │   └── util_test.go
+    │   │   ├── env
+    │   │   │   └── constants.go
+    │   │   ├── kubeconfig
+    │   │   │   ├── contextmodify.go
+    │   │   │   ├── contextmodify_test.go
+    │   │   │   ├── contexts.go
+    │   │   │   ├── contexts_test.go
+    │   │   │   ├── currentcontext.go
+    │   │   │   ├── currentcontext_test.go
+    │   │   │   ├── helper_test.go
+    │   │   │   ├── kubeconfig.go
+    │   │   │   ├── kubeconfigloader.go
+    │   │   │   ├── kubeconfigloader_test.go
+    │   │   │   ├── kubeconfig_test.go
+    │   │   │   ├── namespace.go
+    │   │   │   └── namespace_test.go
+    │   │   ├── printer
+    │   │   │   ├── color.go
+    │   │   │   ├── color_test.go
+    │   │   │   └── printer.go
+    │   │   ├── proxy
+    │   │   │   ├── kubeconfig.go
+    │   │   │   ├── kubeconfig_test.go
+    │   │   │   ├── readonly.go
+    │   │   │   ├── readonly_security_test.go
+    │   │   │   └── readonly_test.go
+    │   │   └── testutil
+    │   │       └── kubeconfigbuilder.go
+    │   ├── kubectx
+    │   ├── kubens
+    │   ├── LICENSE
+    │   ├── README.md
+    │   └── test
+    │       ├── common.bash
+    │       ├── kubectx.bats
+    │       ├── kubens.bats
+    │       ├── mock-kubectl
+    │       └── testdata
+    │           ├── config1
+    │           └── config2
+    └── metallb
+        └── v0.15.2
+            ├── metallb-L2-config.yaml
+            └── metallb-native.yaml
+
+102 directories, 303 files
+[root@master[~/kube/07/svc]# cm -f ~/
+[root@master[~/kube/07/svc]#cecho;aechor"===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+
+
+===== [ INFO ] dig 출력 결과(전체 Pod) =====
+
+
+^C[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]# echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+
+
+===== [ INFO ] dig 출력 결과(전체 Pod) =====
+Error from server (AlreadyExists): pods "netshoot" already exists
+[root@master[~/kube/07/svc]# echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+
+
+===== [ INFO ] dig 출력 결과(전체 Pod) =====
+Error from server (AlreadyExists): pods "netshoot" already exists
+[root@master[~/kube/07/svc]#
+kubectl apply -f redis-cluster.yml
+
+echo; echo "==== [ INFO ] 파드 실행 확인 ===="
+sleep 6
+kubectl applyo-f redis-cluster.yml
+
+echo; echo "==== [ INFO ] 파드 실행 확인 ===="
+sleep 6
+kubectl get pods -l app=redis
+error: the path "redis-cluster.yml" does not exist
+
+==== [ INFO ] 파드 실행 확인 ====
+NAME      READY   STATUS    RESTARTS   AGE
+redis-0   1/1     Running   0          51m
+redis-1   1/1     Running   0          51m
+redis-2   1/1     Running   0          51m
+[root@master[~/kube/07/svc]#
+echo; echo "===== [ INFO ] dig 출력 결과(전체 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+echo;dechoe"=====a[lINFOd]fdigt출
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-headless.default.svc.cluster.local
+
+===== [ INFO ] dig 출력 결과(전체 Pod) =====
+Error from server (AlreadyExists): pods "netshoot" already exists
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]#
+
+# 특정 파드의 고정 FQDN 도메인 질의
+echo; echo "===== [ INFO ] dig 출력 결과(하나의 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-0.redis-headless.default.svc.cluster.local
+# 특정 파드의 고정 FQDN 도메인 질의
+echo; echo "===== [ INFO ] dig 출력 결과(하나의 Pod) ====="
+kubectl run netshoot -it --rm --image=nicolaka/netshoot \
+  -- dig redis-0.redis-headless.default.svc.cluster.local
+
+
+===== [ INFO ] dig 출력 결과(하나의 Pod) =====
+Error from server (AlreadyExists): pods "netshoot" already exists
+[root@master[~/kube/07/svc]# kubectl exec -it redis-0 -- redis-cli set mykey "Hello Headless Redis"
+kubectl exec -it redis-0 -- redis-cli set mykey "Hello Headless Redis"
+
+Defaulted container "redis" out of: redis, config (init)
+OK
+[root@master[~/kube/07/svc]# kubectl exec -it redis-1 -- redis-cli get mykey
+kubectl exec -it redis-1 -- redis-cli get mykey
+
+Defaulted container "redis" out of: redis, config (init)
+"Hello Headless Redis"
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]#
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# cd /root/kube/07/headless_sts
+kubectl delete -f redis-configmap.yml -f redis-cluster.yml
+cd /root/kube/07/headless_sts
+kubectl delete -f redis-configmap.yml -f redis-cluster.yml
+
+configmap "redis-config" deleted from default namespace
+service "redis-headless" deleted from default namespace
+statefulset.apps "redis" deleted from default namespace
+[root@master[~/kube/07/headless_sts]# k delete pods netshoot
+pod "netshoot" deleted from default namespace
+[root@master[~/kube/07/headless_sts]# c
+unn[root@master[~/kube/07/headless_sts]# kjget kubecontrollersconfigurations.crd.projectcalico.org
+[root@master[~/kube/07/headless_sts]# c
+nnn[root@master[~/kube/07/headless_sts]# k get pods -n kube-system | less
+NAME                                       READY   STATUS    RESTARTS        AGE
+calico-kube-controllers-57f7f4cc78-hzsdm   1/1     Running   1 (4h21m ago)   26h
+calico-node-gdd6m                          1/1     Running   6 (4h21m ago)   4d2h
+calico-node-gpw9k                          1/1     Running   1 (4h21m ago)   26h
+calico-node-w5tqt                          1/1     Running   5 (4h21m ago)   4d2h
+calico-node-xxrpg                          1/1     Running   5 (4h21m ago)   4d2h
+coredns-559f6c778d-fbzfj                   1/1     Running   1 (4h21m ago)   26h
+coredns-559f6c778d-x2pvc                   1/1     Running   1 (4h21m ago)   26h
+etcd-master                                1/1     Running   6 (4h21m ago)   4d2h
+kube-apiserver-master                      1/1     Running   6 (4h21m ago)   4d2h
+kube-controller-manager-master             1/1     Running   6 (4h21m ago)   4d2h
+kube-proxy-2tfqd                           1/1     Running   0               143m
+kube-proxy-69rxb                           1/1     Running   2 (102m ago)    143m
+kube-proxy-pcc5f                           1/1     Running   0               143m
+kube-proxy-wtbfg                           1/1     Running   0               143m
+kube-scheduler-master                      1/1     Running   6 (4h21m ago)   4d2h
+[root@master[~/kube/07/headless_sts]# k get pods -n kube-system | less
+NAME                                       READY   STATUS    RESTARTS        AGE
+calico-kube-controllers-57f7f4cc78-hzsdm   1/1     Running   1 (4h21m ago)   26h
+calico-node-gdd6m                          1/1     Running   6 (4h21m ago)   4d2h
+calico-node-gpw9k                          1/1     Running   1 (4h21m ago)   26h
+calico-node-w5tqt                          1/1     Running   5 (4h21m ago)   4d2h
+calico-node-xxrpg                          1/1     Running   5 (4h21m ago)   4d2h
+coredns-559f6c778d-fbzfj                   1/1     Running   1 (4h21m ago)   26h
+coredns-559f6c778d-x2pvc                   1/1     Running   1 (4h21m ago)   26h
+etcd-master                                1/1     Running   6 (4h21m ago)   4d2h
+kube-apiserver-master                      1/1     Running   6 (4h21m ago)   4d2h
+kube-controller-manager-master             1/1     Running   6 (4h21m ago)   4d2h
+kube-proxy-2tfqd                           1/1     Running   0               143m
+kube-proxy-69rxb                           1/1     Running   2 (102m ago)    143m
+kube-proxy-pcc5f                           1/1     Running   0               143m
+kube-proxy-wtbfg                           1/1     Running   0               143m
+kube-scheduler-master                      1/1     Running   6 (4h21m ago)   4d2h
+[root@master[~/kube/07/headless_sts]# koget pods -n kube-system -o
+[root@master[~/kube/07/headless_sts]#
+[root@master[~/kube/07/headless_sts]# k get pods -n kube-system -o wide | grep proxy
+kube-proxy-2tfqd                           1/1     Running   0               144m   192.168.10.10   master   <none>           <none>
+kube-proxy-69rxb                           1/1     Running   2 (103m ago)    144m   192.168.10.13   node3    <none>           <none>
+kube-proxy-pcc5f                           1/1     Running   0               144m   192.168.10.11   node1    <none>           <none>
+kube-proxy-wtbfg                           1/1     Running   0               144m   192.168.10.12   node2    <none>           <none>
+[root@master[~/kube/07/headless_sts]# kR-nCkube-system get cm
+NAME                                                   DATA   AGE
+calico-config                                          4      4d2h
+coredns                                                1      4d2h
+extension-apiserver-authentication                     6      4d2h
+kube-apiserver-legacy-service-account-token-tracking   1      4d2h
+kube-proxy                                             2      4d2h
+kube-root-ca.crt                                       1      4d2h
+kubeadm-config                                         1      4d2h
+kubelet-config                                         1      4d2h
+[root@master[~/kube/07/headless_sts]# k -n kube-system get cm kube-proxy -o yaml | grep mode
+    detectLocalMode: ""
+    mode: iptables
+[root@master[~/kube/07/headless_sts]# c1beproxy mdoerk
+nnn[root@master[~/kube/07/headless_sts]#  mkdir -p ~/kube/08/myweb && cd ~/kube/08/myweb
+[root@master[~/kube/08/myweb]# docker login -u leejunhee021210
+bash: docker: command not found...
+Packages providing this file are:
+'podman-docker'
+'docker-ce-cli'
+[root@master[~/kube/08/myweb]# ssh minikube-y docker-compose-plugin-
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Web console: https://minikube:9090/ or https://192.168.10.14:9090/
+
+Last login: Fri Oct 16 16:50:19 2026
+[root@minikube ~]# systemctl status docker.s
+Unit docker.s.service could not be found.
+[root@minikube ~]# systemctl status docker.service
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/usr/lib/systemd/system/docker.service; enabled; preset: 0;1;38:5:185mdisabled)
+     Active: active (running) since Fri 2026-10-16 16:50:08 KST; 3h 4min ago
+ Invocation: 5ce04dce5423450ab6809f449581d40a
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 1606 (dockerd)
+      Tasks: 13
+     Memory: 157.7M (peak: 160.2M)
+        CPU: 1.952s
+     CGroup: /system.slice/docker.service
+             └─1606 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+Oct 16 16:50:07 minikube dockerd[1606]: time="2026-10-16T16:50:07.747335587+09:00" level=info msg="Restoring containers: start."
+Oct 16 16:50:07 minikube dockerd[1606]: time="2026-10-16T16:50:07.794030295+09:00" level=info msg="Deleting nftables IPv4 rules" error="running nft: /dev/stdin:1:1>
+Oct 16 16:50:07 minikube dockerd[1606]: time="2026-10-16T16:50:07.803190451+09:00" level=info msg="Deleting nftables IPv6 rules" error="running nft: /dev/stdin:1:1>
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.273117333+09:00" level=info msg="Loading containers: done."
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.302901254+09:00" level=info msg="Docker daemon" commit=8af9fe3 containerd-snapshotter=true storag>
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.303102045+09:00" level=info msg="Initializing buildkit"
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.526183406+09:00" level=info msg="Completed buildkit initialization"
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.531686450+09:00" level=info msg="Daemon has completed initialization"
+Oct 16 16:50:08 minikube dockerd[1606]: time="2026-10-16T16:50:08.531750040+09:00" level=info msg="API listen on /run/docker.sock"
+Oct 16 16:50:08 minikube systemd[1]: Started docker.service - Docker Application Container Engine.
+[root@minikube(~]#)exit
+logout
+Connection to minikube closed.
+[root@master[~/kube/08/myweb]# c
+nnn[root@master[~/kube/08/myweb]# dnf install -y docker
+Last metadata expiration check: 1:14:22 ago on Fri 16 Oct 2026 06:40:15 PM KST.
+No match for argument: dockerB
+Error: Unable to find a match: docker
+[root@master[~/kube/08/myweb]# cockerkube
+nnn[root@master[~/kube/08/myweb]# exit
+exit
+
+Script done on 2026-10-16 20:04:09+09:00 [COMMAND_EXIT_CODE="0"]
