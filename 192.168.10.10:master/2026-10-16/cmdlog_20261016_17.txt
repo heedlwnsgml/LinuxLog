@@ -1,0 +1,531 @@
+Script started on 2026-10-16 17:44:13+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="164" LINES="28"]
+[root@master[~/kube/07/svc]# c
+kubectltgetscmrcoredns/-n/kube-systemt-ogyamlm coredns -n kube-system -o yaml
+apiVersion: v1
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health {
+           lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+           pods insecure
+           fallthrough in-addr.arpa ip6.arpa
+           ttl 30
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf {
+           max_concurrent 1000
+        }
+        cache 30 {
+           disable success cluster.local
+           disable denial cluster.local
+        }
+        loop
+        reload
+        loadbalance
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-12T07:42:30Z"
+  name: coredns
+  namespace: kube-system
+  resourceVersion: "273"
+  uid: 6a9e4e99-73f6-41d6-abdd-9370b3e6bcc8
+grept-ia'clusterDomain's/var/lib/kubelet/config.yaml /var/lib/kubelet/config.yaml
+clusterDomain: cluster.local
+[root@master[~/kube/07/svc]# ip d
+Object "d" is unknown, try "ip help".
+[root@master[~/kube/07/svc]# nmcli d
+DEVICE  TYPE      STATE                   CONNECTION
+ens160  ethernet  connected               eth0
+lo      loopback  connected (externally)  lo
+tunl0   iptunnel  disconnected            --
+[root@master[~/kube/07/svc]# # 각 노드의 /etc/resolv.conf 파일 수정
+for host in master node1 node2 node3
+do
+
+  echo; echo "===== [ INFO ] $host ====="
+  ssh -T "$host" /bin/bash <<'EOF'
+  nmcli con mod eth0 ipv4.dns-search ""
+  nmcli con up eth0
+EOF
+
+[root@master[~/kube/07/svc]# # 각 노드의 /etc/resolv.conf 파일 수정
+for host in master node1 node2 node3
+do
+
+  echo; echo "===== [ INFO ] $host ====="
+  ssh -T "$host" /bin/bash <<'EOF'
+  nmcli con mod eth0 ipv4.dns-search ""
+  nmcli con up eth0
+EOF
+
+done
+
+===== [ INFO ] master =====
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
+
+===== [ INFO ] node1 =====
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
+
+===== [ INFO ] node2 =====
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
+
+===== [ INFO ] node3 =====
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
+[root@master[~/kube/07/svc]# c
+nnn[root@master[~/kube/07/svc]# vi externalname.yml
+>4;2m"externalname.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: v1  3 kind: Service  4 metadata:  5   name: externalname-svc
+  6 spec:  7   type: ExternalName  8   externalName: google.com
+>4;m"externalname.yml"w[New] 9L, 123B written
+>4;m[root@master[~/kube/07/svc]# k apply -f externalname.yml
+service/externalname-svc created
+[root@master[~/kube/07/svc]# k get svc
+NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+externalname-svc   ExternalName   <none>       google.com    <none>    46s
+kubernetes         ClusterIP      10.96.0.1    <none>        443/TCP   4d1h
+[root@master[~/kube/07/svc]# k run netshoot -it --image nicolaka/netshoot
+All commands and output from this session will be recorded in container logs, including credentials and sensitive information passed through the command prompt.
+If you don't see a command prompt, try pressing enter.
+                    dP            dP                           dP
+                    88            88                           88
+88d888b. .d8888b. d8888P .d8888b. 88d888b. .d8888b. .d8888b. d8888P
+88'  `88 88ooood8   88   Y8ooooo. 88'  `88 88'  `88 88'  `88   88
+88    88 88.  ...   88         88 88    88 88.  .88 88.  .88   88
+dP    dP `88888P'   dP   `88888P' dP    dP `88888P' `88888P'   dP
+
+Welcome to Netshoot! (github.com/nicolaka/netshoot)
+Version: 0.14
+
+
+
+
+
+ternalname-svc.default.svc.cluster.local
+
+; <<>> DiG 9.20.23 <<>> externalname-svc.default.svc.cluster.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 25542
+;; flags: qr aa rd; QUERY: 1, ANSWER: 7, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 8a7414785ab6d858 (echoed)
+;; QUESTION SECTION:
+;externalname-svc.default.svc.cluster.local. IN A
+
+;; ANSWER SECTION:
+externalname-svc.default.svc.cluster.local. 30 IN CNAME google.com.
+google.com.             30      IN      A       172.217.209.102
+google.com.             30      IN      A       172.217.209.113
+google.com.             30      IN      A       172.217.209.138
+google.com.             30      IN      A       172.217.209.101
+google.com.             30      IN      A       172.217.209.139
+google.com.             30      IN      A       172.217.209.100
+
+;; Query time: 43 msec
+;; SERVER: 10.96.0.10#53(10.96.0.10) (UDP)
+;; WHEN: Fri Oct 16 08:50:35 UTC 2026
+;; MSG SIZE  rcvd: 305
+
+#
+ netshoot  ~  nslookup e       externalname-svc.default.svc.cluster.localnslookup externalname-svc.default.svc.cluster.localexternalname-svc.default.svc.cluster.local
+;; Got recursion not available from 10.96.0.10
+;; Got recursion not available from 10.96.0.10
+;; Got recursion not available from 10.96.0.10
+;; Got recursion not available from 10.96.0.10
+Server:         10.96.0.10
+Address:        10.96.0.10#53
+
+externalname-svc.default.svc.cluster.local      canonical name = google.com.
+Name:   google.com
+Address: 172.217.209.138
+Name:   google.com
+Address: 172.217.209.113
+Name:   google.com
+Address: 172.217.209.100
+Name:   google.com
+Address: 172.217.209.102
+Name:   google.com
+Address: 172.217.209.139
+Name:   google.com
+Address: 172.217.209.101
+Name:   google.com
+Address: 2404:6800:400a:1000::64
+Name:   google.com
+Address: 2404:6800:400a:1000::8b
+Name:   google.com
+Address: 2404:6800:400a:1000::65
+Name:   google.com
+Address: 2404:6800:400a:1000::66
+
+#
+ netshoot  ~  cat /etc/resolv.conf
+search default.svc.cluster.local svc.cluster.local cluster.local
+nameserver 10.96.0.10
+options ndots:5
+#
+ netshoot  ~  exit
+Session ended, resume using 'kubectl attach netshoot -c netshoot -n default -i -t' command
+[root@master[~/kube/07/svc]# k delete pod netshoot
+pod "netshoot" deleted from default namespace
+[root@master[~/kube/07/svc]# k delete -f externalname.yml
+service "externalname-svc" deleted from default namespace
+[mkdirm~/kube/07/headlessc&& cdk~/kube/07/headlessless && cd ~/kube/07/headless
+[root@master[~/kube/07/headless]# c
+nnn[root@master[~/kube/07/headless]#
+c
+[root@master[~/kube/07/headless]# c
+nnn[root@master[~/kube/07/headless]# vi headless-nginx.yml
+>4;2m"headless-nginx.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: apps/v1
+  3 kind: Deployment  4 metadata:  5   name: webui
+  6 spec:  7   replicas: 3  8   selector:  9     matchLabels: 10       app: webui
+ 11   template: 12     metadata: 13       name: nginx-pod 14       labels:
+ 15         app: webui 16     spec: 17       containers: 18       - name: nginx-container
+ 19         image: nginx:1.26 20 --- 21 apiVersiapiVersion: v1
+ 22 kind: Service 23 metadata: 24   name: headless-service 25 spec: 26   type: ClusterIP
+ 27   clusterIP: None 28   selector:
+ 29     app: webui
+ 30 (paste) --  ports: 31   - protocol: TCP
+ 32     port: 80
+ 33     targetPort: 80
+>4;m"headless-nginx.yml"q[New] 34L, 493B written
+>4;m[root@master[~/kube/07/headless]# k apply -f headless-nginx.yml
+deployment.apps/webui created
+service/headless-service created
+[root@master[~/kube/07/headless]# k describe svc headless-service
+Name:                     headless-service
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=webui
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       None
+IPs:                      None
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                10.10.166.153:80,10.10.135.32:80,10.10.104.59:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[root@master[~/kube/07/headless]# k get pods -o wide
+NAME                    READY   STATUS    RESTARTS   AGE   IP              NODE    NOMINATED NODE   READINESS GATES
+webui-686b848b7-72sph   1/1     Running   0          34s   10.10.166.153   node1   <none>           <none>
+webui-686b848b7-dt8gg   1/1     Running   0          34s   10.10.135.32    node3   <none>           <none>
+webui-686b848b7-hht4b   1/1     Running   0          34s   10.10.104.59    node2   <none>           <none>
+[root@master[~/kube/07/headless]# k run testpod -it --image=quay.io/centos/centos:10
+All commands and output from this session will be recorded in container logs, including credentials and sensitive information passed through the command prompt.
+If you don't see a command prompt, try pressing enter.
+bash-5.2# cat /etc/resolv.conf
+search default.svc.cluster.local svc.cluster.local cluster.local
+nameserver 10.96.0.10
+options ndots:5
+bash-5.2# curl 10-10-166-153.default.pod.cluster.local
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+bash-5.2# curl headless-service.default.service.cluster.local
+curl: (6) Could not resolve host: headless-service.default.service.cluster.local
+bash-5.2# curl headless-service.default.svc.cluster.local
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+bash-5.2# dnf -y installlbind-utils
+CentOS Stream 10 - BaseOS                                      99% [=============================================================-] 2.1 MB/s | 6.8 MB     00:03 ETA
+CentOS Stream 10 - AppStream                                   99% [=============================================================-] 3.0 MB/s | 3.3 MB     00:01 ETA
+CentOS Stream 10 - Extras packages                                 [                     ==================                       ] 5.2 kB/s |  11 kB     00:02 ETA
+Dependencies resolved.
+====================================================================================================================================================================
+ Package                                 Architecture                      Version                                       Repository                            Size
+====================================================================================================================================================================
+Installing:
+ bind-utils                             B x86_64                            32:9.18.33-28.el10                            appstream                            228 k
+Installing dependencies:
+ bind-libs                              B x86_64                            32:9.18.33-28.el10                            appstream                            1.3 M
+ bind-license                           B noarch                            32:9.18.33-28.el10                            appstream                             14 k
+ fstrm                                  B x86_64                            0.6.1-12.el10                                 appstream                             29 k
+ libmaxminddb                           B x86_64                            1.9.1-4.el10                                  appstream                             43 k
+ libuv                                  B x86_64                            1:1.52.1-1.el10                               appstream                            265 k
+ lmdb-libs                              B x86_64                            0.9.32-4.el10                                 baseos                                62 k
+ protobuf-c                             B x86_64                            1.5.0-6.el10                                  baseos                                33 k
+
+Transaction Summary
+====================================================================================================================================================================
+Install  8 Packages
+
+Total download size: 1.9 M
+Installed size: 5.1 M
+Downloading Packages:
+(1/8):)bind-libs-9.18.33-28.el10.x86_64.rpm                     0% [                                       =========              ] 1.7 MB/s | 1.3 MB     00:00 ETA
+(2/8):)bind-license-9.18.33-28.el10.noarch.rpmpm               66% [=========================================                     ]  14 kB/s | 114 kB     00:00 ETA
+(3/8):)bind-utils-9.18.33-28.el10.x86_64.rpm                   77% [===============================================-              ] 173 kB/s | 228 kB     00:01 ETA
+(4/8):)fstrm-0.6.1-12.el10.x86_64.rpm64.rpm                    78% [================================================-             ]  87 kB/s | 129 kB     00:00 ETA
+(5/8):)libmaxminddb-1.9.1-4.el10.x86_64.rpm                    79% [=================================================             ] 129 kB/s | 143 kB     00:00 ETA
+(6/8):)libuv-1.52.1-1.el10.x86_64.rpmpm.rpm                    81% [==================================================-           ] 745 kB/s | 265 kB     00:00 ETA
+[MIRROR] protobuf-c-1.5.0-6.el10.x86_64.rpm: Curl error (7): Could not=connect=to=server=for=http://mirror.freedif.org/CentOS/10-stream/BaseOS/x86_64/os/Packages/protobuf-c-1.5.0-6.el10.x86_64.rpm [Failed to connect to mirror.freedif.org port 80 after 21075 ms: Could not connect to server]
+[MIRROR] lmdb-libs-0.9.32-4.el10.x86_64.rpm: Curl error (7): Could not=connect=to=server=for=http://mirror.freedif.org/CentOS/10-stream/BaseOS/x86_64/os/Packages/lmdb-libs-0.9.32-4.el10.x86_64.rpm [Failed to connect to mirror.freedif.org port 80 after 21091 ms: Could not connect to server]
+[MIRROR] protobuf-c-1.5.0-6.el10.x86_64.rpm: Curl error (7): Could not=connect=to=server=for=https://mirror.freedif.org/CentOS/10-stream/BaseOS/x86_64/os/Packages/protobuf-c-1.5.0-6.el10.x86_64.rpm [Failed to connect to mirror.freedif.org port 443 after 21247 ms: Could not connect to server]
+[MIRROR] lmdb-libs-0.9.32-4.el10.x86_64.rpm: Curl error (7): Could not=connect=to=server=for=https://mirror.freedif.org/CentOS/10-stream/BaseOS/x86_64/os/Packages/lmdb-libs-0.9.32-4.el10.x86_64.rpm [Failed to connect to mirror.freedif.org port 443 after 21231 ms: Could not connect to server]
+(7/8):)protobuf-c-1.5.0-6.el10.x86_64.rpmpm                    98% [============================================================- ] 780 MB/s | 133 kB     00:43 ETA
+(8/8): lmdb-libs-0.9.32-4.el10.x86_64.rpm                      99% [============================================================= ] 1.4 kB/s | 162 kB     00:43 ETA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                45 kB/s | 1.9 MB     00:44
+CentOS Stream 10 - BaseOS                                          [                                                ===           ] 1.6 MB/s | 1.6 kB     00:00 ETA
+Importing GPG key 0x8483C65D:
+ Userid     : "CentOS (CentOS Official Signing Key) <security@centos.org>"
+ Fingerprint: 99DB 70FA E1D7 CE22 7FB6 4882 05B5 55B3 8483 C65D
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-centosofficial-SHA256
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [=====================================================================================================================                  ] 1/1
+  Installing       : protobuf-c-1.5.0-6.el10.x86_64 [=======================================================================================================  ] 1/8
+  Installing       : lmdb-libs-0.9.32-4.el10.x86_64 [=======================================================================================================  ] 2/8
+  Installing       : libuv-1:1.52.1-1.el10.x86_64 [=========================================================================================================  ] 3/8
+  Installing       : libmaxminddb-1.9.1-4.el10.x86_64 [=====================================================================================================  ] 4/8
+  Installing       : fstrm-0.6.1-12.el10.x86_64 [===========================================================================================================  ] 5/8
+  Installing       : bind-license-32:9.18.33-28.el10.noarch [================================================================================================ ] 6/8
+  Installing       : bind-libs-32:9.18.33-28.el10.x86_64 [=================================================================================================== ] 7/8
+  Installing       : bind-utils-32:9.18.33-28.el10.x86_64 [================================================================================================== ] 8/8
+  Running scriptlet: bind-utils-32:9.18.33-28.el10.x86_64                                                                                                       8/8
+
+Installed:
+  bind-libs-32:9.18.33-28.el10.x86_64      bind-license-32:9.18.33-28.el10.noarch      bind-utils-32:9.18.33-28.el10.x86_64      fstrm-0.6.1-12.el10.x86_64
+  libmaxminddb-1.9.1-4.el10.x86_64         libuv-1:1.52.1-1.el10.x86_64                lmdb-libs-0.9.32-4.el10.x86_64            protobuf-c-1.5.0-6.el10.x86_64
+
+Complete!
+bash-5.2# dig headless-service.default.svc.cluster.local
+
+; <<>> DiG 9.18.33 <<>> headless-service.default.svc.cluster.local
+;; global options: +cmd
+;; Got answer:
+;; WARNING: .local is reserved for Multicast DNS
+;; You are currently testing what happens when an mDNS query is leaked to DNS
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 53099
+;; flags: qr aa rd; QUERY: 1, ANSWER: 3, AUTHORITY: 0, ADDITIONAL: 1
+;; WARNING: recursion requested but not available
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: 5dba82016e4e5391 (echoed)
+;; QUESTION SECTION:
+;headless-service.default.svc.cluster.local. IN A
+
+;; ANSWER SECTION:
+headless-service.default.svc.cluster.local. 30 IN A 10.10.104.59
+headless-service.default.svc.cluster.local. 30 IN A 10.10.135.32
+headless-service.default.svc.cluster.local. 30 IN A 10.10.166.153
+
+;; Query time: 0 msec
+;; SERVER: 10.96.0.10#53(10.96.0.10) (UDP)
+;; WHEN: Fri Oct 16 09:12:21 UTC 2026
+;; MSG SIZE  rcvd: 257
+
+bash-5.2# dig +short headless-service.default.svc.cluster.local
+10.10.135.32
+10.10.166.153
+10.10.104.59
+bash-5.2# exit
+exit
+Session ended, resume using 'kubectl attach testpod -c testpod -n default -i -t' command
+[root@master[~/kube/07/headless]# kjdelete pods testpod --grace-period 0 --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "testpod" force deleted from default namespace
+[root@master[~/kube/07/headless]# k delete -f headless-nginx.yml
+deployment.apps "webui" deleted from default namespace
+service "headless-service" deleted from default namespace
+[root@master[~/kube/07/headless]# c
+nnn[root@master[~/kube/07/headless]# mkdir -p ~/kube/07/headless_sts && cd ~/kube/07/headless_sts
+
+cat << 'EOF' > redis-configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    port 6379
+    protected-mode no
+    dir /data
+EOF
+
+[root@master[~/kube/07/headless]#ymkdir -p ~/kube/07/headless_sts && cd ~/kube/07/headless_sts
+
+cat << 'EOF' > redis-configmap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-config
+data:
+  redis.conf: |
+    bind 0.0.0.0
+    port 6379
+    protected-mode no
+    dir /data
+EOF
+
+kubectl apply -f redis-configmap.yml
+configmap/redis-config created
+[root@master[~/kube/07/headless_sts]# c
+nnn[root@master[~/kube/07/headless_sts]# vi redis-cluster.yml
+>4;2m"redis-cluster.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   ~                                                                                                                                                                   0,0-1All?12$p-- INSERT --0,1AllapiVersion: v1
+  2 kind: Service  3 metadata:  4   name: redis-headless
+  5 spec:  6   clusterIP: None       # Headless Service 핵심 설정
+  7   selector:  8     app: redis  9   ports: 10   - port: 6379 11     name: redis
+ 12 --- 13 apiVersion: apps/v1 14 kind: StatefulSet 15 metadata: 16   name: redis
+ 17 spec: 18   serviceName: redis-headless   # Headless Service 이름과 연결
+ 19   replicas: 3 20   selector: 21     matchLabmatchLabels:
+ 22       app: redis 23   template: 24     metadata: 25       labels: 26  app: redis
+ 27     spec: 28       initContainers:
+ 29       - name:(paste) -- config      30 image: redis:7-alpine
+ 31 command: ['sh', '-c']
+ 32  # redis-0은 Master로 동작, redis-1/2는 redis-0을 바라보는 Replica로 설정 33 args:
+ 34 - |
+ 35 HOSTNAME=$(hostname)
+ 36 if [ "$HOSTNAME" = "redis-0" ]; then 37 echo "Building Master Config"
+ 38 cp /readonly-config/redis.conf /data/redis.conf
+ 39 else
+ 40 echo "Building Replica Config for $HOSTNAME"
+ 41 echo "replicaof redis-0.redis-headless.default.svc.cluster.local 6379" > /data/redis.conf
+ 42 cat /readonly-config/redis.conf >> /data/redis.conf 43 fi
+ 44 volumeMounts:       45 - name: config
+ 46 mountPath: /readonly-config 47 - name: data
+ 48 mountPath: /data
+ 49       containers: 50       - name: redis
+ 51 image: redis:7-alpine 52 command: ["redis-server", "/data/redis.conf"]
+ 53 ports: 54 - containerPort: 6379
+ 55 name: redis
+ 56 volumeMounts:    57 - name: data
+ 58 mountPath: /data 59       volumes:
+ 60       - name: config
+ 61 configMap:
+ 62 name: redis-config 63       - name: data
+ 64 emptyDir: {}64,20Bot~@k   {}3,18~@k   2,20~@k   1,18~@k   0,20~@k   59,14~@k   8,20~@k   7~@k   6~@k   5~@k   4~@k   3,14~@k   2,20~@k   1~@k   0,19~@k   49,17~@k   8,20~@k   7~@k   65~@k   4~@k   3,12~@k    37 echo "Building Master Config"42,2097% 36 if [ "$HOSTNAME" = "redis-0" ]; then41,2094%~@k    35 HOSTNAME=$(hostname)40,2091%~@k    34 - |39,1489%~@k    33 args:38,2086%~@k    32  # redis-0은 Master로 동작, redis-1/2는 redis-0을 바라보는 Replica로 설정37,2083%~@k    31 command: ['sh', '-c']36,2081%~@k    30 image: redis:7-alpine35,2078% 29       - name: config34,1175%~@k    28       initContainers:33,1372%~@k    27     spec:32,21-20      70% 26 app: redis31,2067%~@k    25       labels:30,2064%~@k    24     metadata:29,2062%~@k    23   template:28,2059% 22       app: redis27,956%~@k    21     matchLabels:26,1854%~@k    20   selector:25,1351%~@k    19   replicas: 324,1348%~@k    18   serviceName: redis-headless   # Headless Service 이름과 연결23,1145%~@k    17 spec:22,1643%~@k    16   name: redis21,1640%~@k    15 metadata:20,1137%~@k    14 kind: StatefulSet19,1335%~@k    13 apiVersion: apps/v118,2032%~@k    12 ---17,529%~@k    11     name: redis16,1327%~@k    10   - port: 637915,924%~@k     9   ports:14,1721%~@k     8     app: redis13,1918%~@k     7   selector:12,316%~@k     6   clusterIP: None       # Headless Service 핵심 설정11,1513%  5 spec:10,1410%~@k     4   name: redis-headless9,88%~@k     3 metadata:8,145%~@k     2 kind: Service7,112%~@k     1 apiVersion: v16,20Top~@k   5,5 ~@k   4,20~@k   3,9 ~@k   2,13~@k   1,14~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   o -- INSERT --2,1Top  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 272,1Topu2^[  2,1Topu1 line less; before #2  2 seconds ago
+2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+>4;m"redis-cluster.yml" [New]o65L,a1633B4written INSERT --1,1TopapiVersion: v1kind: Servicemetadata:  name: redis-headlessspec:clusterIP: None       # Headless Service 핵심 설정selector:  appredisports:- port6379    name: redis---apiVersion: apps/v1kind: StatefulSetmetadata:  name: redisspec:serviceName: redis-headless   # Headless Service 이름과 연결replicas3selector:matchLabels:    app: redistemplate:metadatalabels:    app: redis-2-------46 ^[  1,3Top::wq
+>4;m[root@master[~/kube/07/headless_sts]# k apply -f redis-cluster.yml
+service/redis-headless created
+statefulset.apps/redis created
+[root@master[~/kube/07/headless_sts]#
+echo; echo "==== [ INFO ] 파드 실행 확인 ===="
+sleep 6
+echo;techot"==== [lINFO=]e파
+sleep 6
+kubectl get pods -l app=redis
+
+==== [ INFO ] 파드 실행 확인 ====
+NAME      READY   STATUS     RESTARTS   AGE
+redis-0   1/1     Running    0          16s
+redis-1   1/1     Running    0          9s
+redis-2   0/1     Init:0/1   0          2s
+[root@master[~/kube/07/headless_sts]# exit
+exit
+
+Script done on 2026-10-16 18:24:00+09:00 [COMMAND_EXIT_CODE="0"]
