@@ -1,0 +1,944 @@
+Script started on 2026-10-16 21:10:04+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="164" LINES="28"]
+[root@master[~]# dnf install -y helm
+Last metadata expiration check: 2:46:11 ago on Fri 16 Oct 2026 06:40:15 PM KST.
+Dependencies resolved.
+====================================================================================================================================================================
+ Package                             Architecture                          Version                                        Repository                           Size
+====================================================================================================================================================================
+Installing:
+ helm                               B x86_64                                4.1.1-1.el10_2                                 epel                                 19 M
+
+Transaction Summary
+====================================================================================================================================================================
+Install  1 Package
+
+Total download size: 19 M
+Installed size: 79 M
+Downloading Packages:
+helm-4.1.1-1.el10_2.x86_64.rpm                                 86% [=====================================================         ] -52 MB/s |  19 MB     00:00 ETA
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                                                25 MB/s |  19 MB     00:00
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                                                                            1/1
+  Installing       : helm-4.1.1-1.el10_2.x86_64 [===========================================================================================================  ] 1/1
+  Running scriptlet: helm-4.1.1-1.el10_2.x86_64                                                                                                                 1/1
+
+Installed:
+  helm-4.1.1-1.el10_2.x86_64
+
+Complete!
+[root@master[~]# c
+nnn[root@master[~]# helm version
+version.BuildInfo{Version:"v4.1.1", GitCommit:"5caf0044d4ef3d62a955440272999e139aafbbed", GitTreeState:"clean", GoVersion:"go1.25.5 (Red Hat 1.25.5-1.el10)", KubeClientVersion:"v1.35"}
+[root@master[~]# c
+nnn[root@master[~]# ^[[200~echo 'source <(helm completion bash)' >> ~/.bashrc~
+[root@master[~]# c
+echor'sourcet<(helm completioncbash)'l>>c~/.bashrc bash)' >> ~/.bashrc
+[root@master[~]# k get all -n metallb-system
+NAME                              READY   STATUS    RESTARTS        AGE
+pod/controller-6c57b67fd4-whwz2   1/1     Running   1 (4h17m ago)   4h18m
+pod/speaker-9mltx                 1/1     Running   0               4h18m
+pod/speaker-brfkh                 1/1     Running   0               4h18m
+pod/speaker-jz74t                 1/1     Running   0               4h18m
+pod/speaker-vdds2                 1/1     Running   0               4h18m
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/metallb-webhook-service   ClusterIP   10.109.236.23   <none>        443/TCP   4h18m
+
+NAME                     DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+daemonset.apps/speaker   4         4         4       4            4           kubernetes.io/os=linux   4h18m
+
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/controller   1/1     1            1           4h18m
+
+NAME                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/controller-6c57b67fd4   1         1         1       4h18m
+[root@master[~]# kget ipaddresspools -n metallb-system
+bash: kget: command not found...
+Install package 'kget' to provide command 'kget'? [N/y] n
+
+
+[root@master[~]# 1@et ipaddresspools -n metallb-system
+NAME           AUTO ASSIGN   AVOID BUGGY IPS   ADDRESSES
+metallb-pool   true          false             ["192.168.10.20-192.168.10.30"]
+[root@master[~]# c
+nnn[root@master[~]# or ns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+[root@master[~]# or ns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+done
+bash: syntax error near unexpected token `do'
+error: name must be specified
+error: no objects passed to apply
+bash: syntax error near unexpected token `done'
+[root@master[~]# dokubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+[root@master[~]# c
+nnn[root@master[~]# or ns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+[root@master[~]# c
+
+ornns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+[root@master[~]# 1@f
+
+
+bash: syntax error near unexpected token `do'
+error: name must be specified
+error: no objects passed to apply
+bash: syntax error near unexpected token `done'
+[root@master[~]# for ns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+[root@master[~]# for ns in gateway-system gateway-lab team-a team-b; do
+  kubectl create ns "$ns" --dry-run=client -o yaml | kubectl apply -f -
+done
+namespace/gateway-system created
+namespace/gateway-lab created
+namespace/team-a created
+namespace/team-b created
+[root@master[~]# c
+nnn[root@master[~]# k get ns gateway-system gateway-lab team-a team-b
+NAME             STATUS   AGE
+gateway-system   Active   12s
+gateway-lab      Active   12s
+team-a           Active   12s
+team-b           Active   12s
+[root@master[~]# watcht'ltenvoyprox
+kubectl get gatewayclass; echo
+echo "===== [namespace: envoy-gateway-system] ====="
+kubectl get all -n envoy-gateway-system; echo;
+echo "===== [namespace: gateway-system] ====="
+kubectl get gateway -n gateway-system; echo
+[root@master[~]# watch '
+kubectl get gatewayclass; echo
+echo "===== [namespace: envoy-gateway-system] ====="
+kubectl get all -n envoy-gateway-system; echo;
+echo "===== [namespace: gateway-system] ====="
+kubectl get gateway -n gateway-system; echo
+'
+[root@master[~]#rcdoesn't-haveea]resourcemtypee"gateway"erver doesn't have a resource type "gatewayclass"
+nnn[root@master[~]#
+
+
+
+
+watch '
+kubectl get gatewayclass; echo
+echo "===== [namespace: envoy-gateway-system] ====="
+kubectl get all -n envoy-gateway-system; echo;
+echo "===== [namespace: gateway-system] ====="
+kubectl get gateway -n gateway-system; echo
+[root@master[~]# watch '
+kubectl get gatewayclass; echo
+echo "===== [namespace: envoy-gateway-system] ====="
+kubectl get all -n envoy-gateway-system; echo;
+echo "===== [namespace: gateway-system] ====="
+kubectl get gateway -n gateway-system; echo
+'
+mkdir@-ps~/kube/08/gateway~&&ucd/~/kube/08/gateway~/kube/08/gatewaymaster:rFrirOctc16121:39:5452026error:rthehserveredoesn't'havevaeresourcectypep"gatewayclass"s"""
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# helm install eg oci://docker.io/envoyproxy/gateway-helm \
+  --version v1.9.2 \
+  -n envoy-gateway-system \
+[root@master[~/kube/08/gateway]# ://docker.io/envoyproxy/gateway-helm \
+  --version v1.9.2 \
+  -n envoy-gateway-system \
+  --create-namespace
+Pulled: docker.io/envoyproxy/gateway-helm:v1.9.2
+Digest: sha256:be034275b55deeddd6b7bc1f4da6eeb02b8efc418a4a29e2b1977851b24b1e63
+NAME: eg
+LAST DEPLOYED: Fri Oct 16 21:40:51 2026
+NAMESPACE: envoy-gateway-system
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+**************************************************************************
+*** PLEASE BE PATIENT: Envoy Gateway may take a few minutes to install ***
+**************************************************************************
+
+Envoy Gateway is an open source project for managing Envoy Proxy as a standalone or Kubernetes-based application gateway.
+
+Thank you for installing Envoy Gateway! 🎉
+
+Your release is named: eg. 🎉
+
+Your release is in namespace: envoy-gateway-system. 🎉
+
+To learn more about the release, try:
+
+  $ helm status eg -n envoy-gateway-system
+  $ helm get all eg -n envoy-gateway-system
+
+To have a quickstart of Envoy Gateway, please refer to https://gateway.envoyproxy.io/latest/tasks/quickstart.
+
+To get more details, please visit https://gateway.envoyproxy.io and https://github.com/envoyproxy/gateway.
+[root@master[~/kube/08/gateway]# k get all -n envoy-gateway-system
+NAME                                 READY   STATUS      RESTARTS   AGE
+pod/eg-gateway-helm-certgen-8x2tt    0/1     Completed   0          25s
+pod/envoy-gateway-75b559cc4c-ls48z   1/1     Running     0          13s
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                            AGE
+service/envoy-gateway   ClusterIP   10.101.129.240   <none>        18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   13s
+
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/envoy-gateway   1/1     1            1           13s
+
+NAME                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/envoy-gateway-75b559cc4c   1         1         1       13s
+
+NAME                                STATUS     COMPLETIONS   DURATION   AGE
+job.batch/eg-gateway-helm-certgen   Complete   1/1           12s        25s
+[root@master[~/kube/08/gateway]# k get all -n envoy-gateway-system
+NAME                                 READY   STATUS      RESTARTS   AGE
+pod/eg-gateway-helm-certgen-8x2tt    0/1     Completed   0          39s
+pod/envoy-gateway-75b559cc4c-ls48z   1/1     Running     0          27s
+
+NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                            AGE
+service/envoy-gateway   ClusterIP   10.101.129.240   <none>        18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   27s
+
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/envoy-gateway   1/1     1            1           27s
+
+NAME                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/envoy-gateway-75b559cc4c   1         1         1       27s
+
+NAME                                STATUS     COMPLETIONS   DURATION   AGE
+job.batch/eg-gateway-helm-certgen   Complete   1/1           12s        39s
+[root@master[~/kube/08/gateway]# k get crd | grep gateway.networking.k8s.io
+backendtlspolicies.gateway.networking.k8s.io          Namespaced   v1(storage),v1alpha3            2026-10-16T12:40:50Z
+gatewayclasses.gateway.networking.k8s.io              Cluster      v1(storage),v1beta1             2026-10-16T12:40:50Z
+gateways.gateway.networking.k8s.io                    Namespaced   v1(storage),v1beta1             2026-10-16T12:40:50Z
+grpcroutes.gateway.networking.k8s.io                  Namespaced   v1(storage)                     2026-10-16T12:40:50Z
+httproutes.gateway.networking.k8s.io                  Namespaced   v1(storage),v1beta1             2026-10-16T12:40:50Z
+listenersets.gateway.networking.k8s.io                Namespaced   v1(storage)                     2026-10-16T12:40:50Z
+referencegrants.gateway.networking.k8s.io             Namespaced   v1,v1beta1(storage)             2026-10-16T12:40:50Z
+tcproutes.gateway.networking.k8s.io                   Namespaced   v1(storage),v1alpha2            2026-10-16T12:40:50Z
+tlsroutes.gateway.networking.k8s.io                   Namespaced   v1(storage),v1alpha2,v1alpha3   2026-10-16T12:40:50Z
+udproutes.gateway.networking.k8s.io                   Namespaced   v1(storage),v1alpha2            2026-10-16T12:40:50Z
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# vi gatewayclass.yml
+>4;2m"gatewayclass.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           0,0-1All?12$p^V1x1-- VISUAL BLOCK --1x10,0-1All   INSERT --O0,1AllapiVersion: gateway.networking.k8s.io/v1
+  2 kind: GatewayClass
+>4;m"gatewayclass.yml"e[New] 6L,p151B writtentrollerName: gateway.envoyproxy.io/gatewayclass-controller6,63All^[  ^[  ::wq
+>4;m[root@master[~/kube/08/gateway]# k apply -f gatewayclass.yml
+gatewayclass.gateway.networking.k8s.io/eg created
+kroot@master[~/kube/08/gateway]# k get gatewayclasses.gateway.networking.k8s.io
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# k get gc
+NAME   CONTROLLER                                      ACCEPTED   AGE
+eg     gateway.envoyproxy.io/gatewayclass-controller   True       17s
+[root@master[~/kube/08/gateway]# vi ~/.bashrc
+>4;2m"~/.bashrc" 67L, 1523B▽  zz0%m           >c 32 #export KUBECONFIG=~/.kube/configi
+ 33  34 source <(kubectl completion bash) 35 source <(kubeadm completion bash)
+ 36 alias k=kubectl
+ 37 complete -o default -F __start_kubectl k
+ 38
+ 39 #kubectx and kubens
+ 40 export PATH=~/.kubectx:$PATH
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+ 42
+ 43 # kubens, kubectx 엘리어스 선언
+ 44 alias kubens='kubectl ns'
+ 45 alias kubectx='kubectl ctx'
+ 46
+ 47 alias vi='/usr/bin/vim'
+ 48
+ 49 # grep 기본 옵션 (색상 및 대소문자 무시)
+ 50 alias grep='grep --color=auto -i'
+ 51
+ 52 # kubectl api-resources 검색 함수
+ 53 findapi() {
+ 54   if [ -z "$1" ]; then
+ 55     echo "사용법: findapi <검색어>"
+ 56     return 1
+ 57   fi
+ 58 45,177%?12$pO -- INSERT --45,175% 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 5845,175%^[  45,0-175%u1 line less; before #1  2 seconds ago
+5
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+15line,less; before #1  2 seconds ago45,177%G  59   # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+ 60   kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+ 61 }
+ 62 alias dpod="kubectl delete pods --all"
+ 63
+ 64 cyml() {
+ 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"
+ 66 }
+ 67 source <(helm completion bash)67,1Boto
+-- INSERT --68,1Bot
+ 68 68,1Bot
+ 69 69,1Bot
+ 70 70,1Bot
+ 71 71,1Bot
+ 72 72,1Bot
+ 73 73,1Bot
+ 74 74,1Bot
+~75 75,1Bot                                                                                                                                                 69alias kwatch='watch -n 5 "
+ 70 echo \"===== [노드 / 네임스페이스] =====\"
+ 71 kubectl get nodes,ns -o wide 72 echo
+ 73  74 echo \"===== [워크로드] =====\" 75 kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide 76 echo
+ 77
+ 78 echo \"===== [서비스 / 인그레스] =====\"(paste) -- 79 kubectl get svc,ingress -A -o wide
+ 80 echo 81
+ 82 echo \"===== [GatewayClass] =====\"
+ 83 kubectl get gatewayclass 84 echo
+ 85
+ 86 echo \"===== [Gateway / Route] =====\"
+ 87 kubectl get gateway,httproute,grpcroute -A -o wide 88 echo
+ 89
+ 90 echo \"===== [스토리지] =====\" 91 kubectl get storageclass,pv
+ 92 kubectl get pvc -A -o wide 93 echo
+ 94
+ 95 echo \"===== [설정 / 자동 확장 / 네트워크 정책] =====\" 96 kubectl get cm,hpa,pdb,networkpolicy -A
+ 97 "'--a97,3Bot4,11,3885,12,3796 68
+ 69 alias kwatch='watch -n 5 "
+ 70 echo \"===== [노드 / 네임스페이스] =====\"73,195% 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"
+ 66 }
+ 67 source <(helm completion bash)70,391% 62 alias dpod="kubectl delete pods --all"
+ 63
+ 64 cyml() {67,387% 59   # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+ 60   kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+ 61 }64,382% 56     return 1
+ 57   fi
+E37:6No2write3since last2change (add ! to override)70,278%q:  :61}62 alias dpod="kubectl delete pods --all"
+ 63
+ 64cyml() {5  kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"6
+ 67 source <(helm completion bash)8
+ 69 alias kwatch='watch -n 5 "70echo \"===== [노드 / 네임스페이스] =====\"71kubectl get nodes,ns -o wide72echo73
+ 74echo \"===== [워크로드] =====\"5kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide6echo78echo \"===== [서비스 / 인그레스] =====\"
+~/.bashrc [+]                                                                                                                             70,2           75%:  1 w:  2 39G
+:  3 q!
+:  4 wq:  5 q:  6 ~                                                                                                                                                           [Command Line]                                                                                                                            6,0-1          All:q1
+
+
+recording @1q!^M
+
+
+>4;m>4;2m
+shell returned 127
+
+Press ENTER or type command to continue 56     return 1
+ 57   fi
+ 58
+ 59   # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링
+ 60   kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'
+ 61 }
+ 62 alias dpod="kubectl delete pods --all"
+ 63
+ 64 cyml() {
+ 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"
+ 66 }
+ 67 source <(helm completion bash)
+ 68
+ 69 alias kwatch='watch -n 5 "
+ 70 /bin/bash: line 1: :q1: command not found
+ 71 kubectl get nodes,ns -o wide
+ 72 echo
+ 73
+ 74 echo \"===== [워크로드] =====\"
+ 75 kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide
+ 76 echo
+ 77
+ 78 echo \"===== [서비스 / 인그레스] =====\"
+ 79 kubectl get svc,ingress -A -o wide
+ 80 echo
+ 81
+>4;m>4;m[root@master[~/kube/08/gateway]#0vi7gateway.yml:q!
+>4;2m"gateway.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: gateway.networking.k8s.io/v1  3 kind: Gateway
+  4 metadata:  5   name: lab-gateway  6   namespace: gateway-system  7 spec:
+  8   gatewayClassName: eg  9   listeners: 10     - name: http 11       protocol: HTTP
+ 12       port: 80 13       allowedRoutes: 14         namespaces:
+ 15           from: All    # 모든 네임스페이스의 적절한 Route가 이 리스너에 연결 허용
+>4;m"gateway.yml"^[New]w16L, 358B written
+>4;m[root@master[~/kube/08/gateway]# vi ~/.bashrc
+>4;2m"~/.bashrc" 67L, 1523B▽  zz0%m           >c  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+ 26 # Kubernetes
+ 27 #1,1Top?12$p2,0-13,1  ~@k   456~@k   7,0-18,1  9~@k   10,112~@k   34,0-15,1  ~@k   67,0-18,1  ~@k   9201~@k   2
+ 28 23,12%
+ 29 24,0-15%~@k
+ 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\]\w]\$ \[\e[m\]'25,17%
+ 31 # kubectl CMD26,110%
+ 32 #export KUBECONFIG=~/.kube/configi27,112%~@k
+ 33 28,0-115%
+ 34 source <(kubectl completion bash)29,0-117%
+ 35 source <(kubeadm completion bash)30,120%~@k
+ 36 alias k=kubectl31,122%
+ 37 complete -o default -F __start_kubectl k32,125%
+ 38 33,0-127%~@k
+ 39 #kubectx and kubens34,130%
+ 40 export PATH=~/.kubectx:$PATH35,132%
+ 41 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"36,135%~@k
+ 42 37,137%
+ 43 # kubens, kubectx 엘리어스 선언38,0-140%
+ 44 alias kubens='kubectl ns'39,142%~@k
+ 45 alias kubectx='kubectl ctx'40,145%
+ 46 41,147%
+ 47 alias vi='/usr/bin/vim'42,0-150%~@k
+ 48 43,152%
+ 49 # grep 기본 옵션 (색상 및 대소문자 무시)44,155%
+ 50 alias grep='grep --color=auto -i'45,157%~@k
+ 51 46,0-160%
+ 52 # kubectl api-resources 검색 함수47,162%
+ 53 findapi() {48,0-165%~@k
+ 54   if [ -z "$1" ]; then49,167%
+ 55     echo "사용법: findapi <검색어>"50,170%
+ 56     return 151,0-172%~@k
+ 57   fi52,175%
+ 58 53,177%
+ 59   # 헤더(첫 줄)를 출력하고, 검색어가 포함된 행만 대소문자 구분 없이 필터링54,180%~@k
+ 60   kubectl api-resources | awk -v keyword="$1" 'NR==1 || tolower($0) ~ tolower(keyword)'55,182%
+ 61 }56,185%
+ 62 alias dpod="kubectl delete pods --all"57,187%~@k
+ 63 58,190%
+ 64 cyml() {59,192%
+ 65     kubectl run ename --image=eimages --port=80 --dry-run=client -o yaml > "$1.yml"60,195%~@k
+{} 66 }61,197%
+>4;m>4;m[root@master[~/kube/08/gateway]#Bwhich-poweroff.sh@k   {}7~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   {}6{}5~@k   43,0-12,1  ~@k   {}1{}059~@k   876~@k   543~@k   21,0-10,1  ~@k   498,0-17,1  ~@k   6,0-1 40 export PATH=~/.kubectx:$PATH45,197% 39 #kubectx and kubens44,195%~@k    38 43,192% 37 complete -o default -F __start_kubectl k42,0-190% 36 alias k=kubectl41,187%~@k    35 source <(kubeadm completion bash)40,185% 34 source <(kubectl completion bash)39,182% 33 38,0-180%~@k    32 #export KUBECONFIG=~/.kube/configi37,177% 31 # kubectl CMD36,175% 30 export PS1='\[\e[34;1m\][\u@\h[\e[33;1m\]\w]\$ \[\e[m\]'35,172%~@k    29 34,170% 28 33,0-167% 27 #32,165%~@k    26 # Kubernetes31,162% 25 #30,160% 24 29,0-157%~@k    23 alias c="printf \n\n\n; clear"28,0-155% 22 alias mv='mv -i'27,152% 21 alias cp='cp -i'26,150%~@k    20 alias rm='rm -i'25,147% 19 24,0-145% 18 # User specific aliases and functions23,142%~@k    17 22,140% 16 # export SYSTEMD_PAGER=21,137% 15 # Uncomment the following line if you don't like systemctl's auto-paging feature:20,135%~@k    14 19,132% 13 export PATH18,130% 12 fi17,0-127%~@k    11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"16,125% 10 then15,122%  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]14,0-120%~@k     8 # User specific environment13,117%  7 12,115%  6 fi11,112%~@k     5  . /etc/bashrc10,110%  4 if [ -f /etc/bashrc ]; then9,17%  3 # Source global definitions8,15%~@k     2 7,0-12%  1 # .bashrc6,1Top5~@k   432,0-1~@k   1,1  w 3h 2~@k   1~@k   ^[  ^[  ::q
+/root/bin/poweroff.sh
+[root@master[~/kube/08/gateway]# vi /root/bin/kwatch.sh
+>4;2m"~/bin/kwatch.sh" [New]▽  zz0%m           >c  1
+~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           ~                                                                                                                                                           0,0-1All?12$p-- INSERT --0,1Allmkdir -p /root/bin
+  2   3 cat > /root/bin/kwatch.sh <<'EOF'  4 #!/bin/bash
+  5   6 watch -n "${1:-5}" '  7     echo "===== [노드 / 네임스페이스] ====="
+  8     kubectl get nodes,ns -o wide  9     echo
+ 10  11     echo "===== [워크로드] =====" 12     kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide
+ 13     echo 14  15     echo "===== [서비스 / 인그레스] ====="
+ 16     kubectl get svc,ingress -A -o wide
+ 17     echo 18  19     echo "===== [GatewayClass] =====" 20     kubectl get gatewayclass
+ 21     echo 22  23     echo "===== [Gateway / Route] ====="
+ 24     kubectl get gateway,httproute,grpcroute -A -o wide
+ 25     echo 26  27     echo "===== [스토리지] ====="
+ 28     kubectl ge(paste) --t storageclass,pv 29     kubectl get pvc -A -o wide
+ 30     echo
+ 31
+ 32     echo "===== [설정 / 자동 확장 / 네트워크 정책] =====" 33     kubectl get cm,hpa,pdb,networkpolicy -A
+ 34 '
+ 35 EOF
+ 36
+ 37 chmod +x /root/bin/kwatch.sh37,28Bot^[  ^[  dd
+~                                                                                                                                                           6,0-1^[  ^[  5,1  4~@k   321,0-1~@k   0,1  298~@k   76,0-15,1  ~@k   432,0-1~@k   1,1  019~@k   8,0-17,1  6~@k    10 15,1Bot  9     echo14,0-188%  8     kubectl get nodes,ns -o wide13,177%~@k     7     echo "===== [노드 / 네임스페이스] ====="12,166%  6 watch -n "${1:-5}" '11,155%  5 10,0-144%~@k     4 #!/bin/bash9,133%  3 cat > /root/bin/kwatch.sh <<'EOF'8,122%  2 7,111%~@k     1 mkdir -p /root/bin6,1Top5,0-14,1  ~@k   32,0-11,1  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,0-13,1  ~@k   45,0-16,1  ~@k   765,0-1~@k   4,1  32,0-1~@k   1,1  ~@k   ~@k   dd
+1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27     kubectl get storageclass,pv1,0-1Topdd
+1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27     kubectl get pvc -A -o wide1,1Topdd
+1#!/bin/bash2
+  3watch -n "${1:-5}" '
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27     echo1,1TopG  28
+ 29     echo "===== [설정 / 자동 확장 / 네트워크 정책] ====="
+ 30     kubectl get cm,hpa,pdb,networkpolicy -A
+ 31 '
+ 32 EOF
+ 33 33,0-1Botdd
+~                                                                                                                                                           2,1  dd
+>4;m"~/bin/kwatch.sh" [New] 31L, 743B written                                                                                                               1^[  ^[  ::wq
+>4;m[root@master[~/kube/08/gateway]# chmod +x /root/bin/kwatch.sh
+[root@master[~/kube/08/gateway]# cat > /root/bin/kwatch.sh <<'EOF'
+#!/bin/bash
+
+show_resources() {
+    echo "===== [노드 / 네임스페이스] ====="
+    kubectl get nodes,ns
+    echo
+
+    echo "===== [워크로드: 모든 네임스페이스] ====="
+    kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide
+    echo
+
+    echo "===== [서비스 / 인그레스: 모든 네임스페이스] ====="
+    kubectl get svc,ingress -A -o wide
+    echo
+
+    echo "===== [GatewayClass] ====="
+    kubectl get gatewayclass
+    echo
+
+    echo "===== [Gateway / Route: 모든 네임스페이스] ====="
+    kubectl get gateway,httproute,grpcroute -A -o wide
+    echo
+
+    echo "===== [스토리지] ====="
+    kubectl get storageclass,pv
+    kubectl get pvc -A -o wide
+chmokubectlogetbdeploy,rs,ds,sts,job,cj,pods -A책
+    echo
+
+    echo "===== [서비스 / 인그레스: 모든 네임스페이스] ====="
+    kubectl get svc,ingress -A -o wide
+    echo
+
+    echo "===== [GatewayClass] ====="
+    kubectl get gatewayclass
+    echo
+
+    echo "===== [Gateway / Route: 모든 네임스페이스] ====="
+    kubectl get gateway,httproute,grpcroute -A -o wide
+    echo
+
+    echo "===== [스토리지] ====="
+    kubectl get storageclass,pv
+    kubectl get pvc -A -o wide
+chmodr+xo/root/bin/kwatch.shStworkpolicy워
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]#  kubectl apply -f gateway.yml
+gateway.gateway.networking.k8s.io/lab-gateway created
+[root@master[~/kube/08/gateway]#  kubectl get gateway -n gateway-system
+NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+lab-gateway   eg      192.168.10.20   True         78s
+[root@master[~/kube/08/gateway]# kubectl get svc -n envoy-gateway-system
+NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                            AGE
+envoy-gateway                               ClusterIP      10.101.129.240   <none>          18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   11m
+envoy-gateway-system-lab-gateway-03a12405   LoadBalancer   10.101.169.188   192.168.10.20   80:30710/TCP                                       83s
+[root@master[~/kube/08/gateway]# cat > /root/bin/kwatch.sh <<'EOF'
+#!/bin/bash
+
+# 조회에서 제외할 시스템 네임스페이스
+SYSTEM_NS='^(kube-system|kube-public|kube-node-lease)$'
+
+filter_namespaced() {
+    awk -v excluded="$SYSTEM_NS" '
+        NR == 1 { print; next }
+        $1 ~ excluded { next }
+
+        # 네임스페이스마다 자동 생성되는 ConfigMap
+        $2 ~ /^(configmap\/)?kube-root-ca\.crt$/ { next }
+
+        # default 네임스페이스의 기본 API 서비스
+        $1 == "default" && $2 == "service/kubernetes" { next }
+
+        { print }
+    '
+}
+
+show_resources() {
+    echo "===== [네임스페이스: 시스템 제외] ====="
+    kubectl get ns |
+        awk -v excluded="$SYSTEM_NS" \
+            'NR == 1 || $1 !~ excluded'
+    echo
+
+chmodr+xo/root/bin/kwatch.shStworkpolicy워
+[root@master[~/kube/08/gateway]# c
+exportoGW_IP=$(k~getbsvc8-naenvoy-gateway-system=|(greptlab-gatewayo|-awke'{printt$4}')grep lab-gateway | awk '{print $4}')
+[root@master[~/kube/08/gateway]# echo "$GW_IP"
+192.168.10.20
+[root@master[~/kube/08/gateway]# c
+[root@master[~/kube/08/gateway]#yvi ~/.bashrc
+>4;2m"~/.bashrc" 67L, 1523B▽  zz0%m           >c  1 # .bashrc
+  2   3 # Source global definitions  4 if [ -f /etc/bashrc ]; then
+  5  . /etc/bashrc
+  6 fi
+  7
+  8 # User specific environment
+  9 if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+ 10 then
+ 11     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+ 12 fi
+ 13 export PATH
+ 14
+ 15 # Uncomment the following line if you don't like systemctl's auto-paging feaa    ture:
+ 16 # export SYSTEMD_PAGER=
+ 17
+ 18 # User specific aliases and functions
+ 19
+ 20 alias rm='rm -i'
+ 21 alias cp='cp -i'
+ 22 alias mv='mv -i'
+ 23 alias c="printf \n\n\n; clear"
+ 24
+ 25 #
+>4;m>4;m[root@master[~/kube/08/gateway]# vi /root/bin/kwatch.sh
+>4;2m"~/bin/kwatch.sh" 58L, 1539B▽  zz0%m           >c 10
+ 11         # 네임스페이스마다 자동 생성되는 ConfigMap 12         $2 ~ /^(configmap\/)?kube-root-ca\.crt$/ { next } 13
+ 14         # default 네임스페이스의 기본 API 서비스
+ 15         $1 == "default" && $2 == "service/kubernetes" { next }
+ 16
+ 17         { print }
+ 18     '
+ 19 }
+ 20
+ 21 show_resources() {
+ 22     echo "===== [네임스페이스: 시스템 제외] ====="
+ 23     kubectl get ns |
+ 24 awk -v excluded="$SYSTEM_NS" \
+ 25 'NR == 1 || $1 !~ excluded'
+ 26     echo
+ 27
+ 28     echo "===== [워크로드: 시스템 제외] ====="
+ 29     kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide |
+ 30 filter_namespaced
+ 31     echo
+ 32
+ 33     echo "===== [서비스 / 인그레스: 기본 리소스 제외] ====="
+ 34     kubectl get svc,ingress -A -o wide |
+ 35 filter_namespaced
+ 36     echo31,529%?12$p~@k
+ 37 32,0-132%~@k
+ 38     echo "===== [GatewayClass] ====="33,535%~@k
+ 39     kubectl get gatewayclass34,538%~@k   3~@k   2,0-11,5  0~@k   2987,0-1~@k   6,5  54~@k   321~@k   0,0-119,1  8,5~@k    12         $2 ~ /^(configmap\/)?kube-root-ca\.crt$/ { next }17,535% 11         # 네임스페이스마다 자동 생성되는 ConfigMap16,0-132% 10 15,529%~@k     9         $1 ~ excluded { next }14,525%  8         NR == 1 { print; next }13,0-122%  7     awk -v excluded="$SYSTEM_NS" '12,519%~@k     6 filter_namespaced() {11,516%  5 10,0-112%  4 SYSTEM_NS='^(kube-system|kube-public|kube-node-lease)$'9,59%~@k     3 # 조회에서 제외할 시스템 네임스페이스8,56%  2 7,53%  1 #!/bin/bash6,5Top~@k   5,0-14,5  3,6-5~@k   2,0-11,5  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2,0-13,6-5~@k   4,5  5,0-16,5  ~@k   789~@k   10,0-11,5  2~@k   3,0-14,5  5~@k   6,0-17,5  8~@k   {}9,1{}20,0-11,5  ~@k   2
+ 28     echo "===== [워크로드: 시스템 제외] ====="23,53%
+ 29     kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide |24,56%~@k
+ 30 filter_namespaced25,59%
+ 31     echo26,512%
+ 32 27,0-116%~@k
+ 33     echo "===== [서비스 / 인그레스: 기본 리소스 제외] ====="28,519%
+ 34     kubectl get svc,ingress -A -o wide |29,522%
+ 35 filter_namespaced30,525%~@k
+ 36     echo31,529%
+ 37 32,0-132%
+ 38     echo "===== [GatewayClass] ====="33,535%~@k
+ 39     kubectl get gatewayclass34,538%
+ 40     echo35,541%
+ 41 36,545%~@k
+ 42     echo "===== [Gateway / Route] ====="37,0-148%
+ 43     kubectl get gateway,httproute,grpcroute -A -o wide |38,551%
+ 44 filter_namespaced39,554%~@k
+ 45     echo40,558%
+ 46 41,0-161%
+ 47     echo "===== [스토리지] ====="42,564%~@k
+ 48     kubectl get storageclass,pv43,567%
+ 49     kubectl get pvc -A -o wide |44,570%
+ 50 filter_namespaced45,574%
+ 51     echo46,0-177%
+ 52 47,580%
+ 53     echo "===== [설정 / 자동 확장 / 네트워크 정책] ====="48,583%~@k
+ 54     kubectl get cm,hpa,pdb,networkpolicy -A |49,587%
+ 55 filter_namespaced50,590%
+ 56 }51,593%~@k
+ 57 52,0-196%
+ 58 show_resources 2>&1 | less -S53,5Bot456,17,0-1~@k   8,5  ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   7,0-16,1  ~@k   5,5432,0-11,5  0~@k   4987~@k   6,0-15,5  4~@k   321,0-1~@k   0,5  398~@k   7,0-1 31     echo36,596% 30 filter_namespaced35,593%~@k    29     kubectl get deploy,rs,ds,sts,job,cj,pods -A -o wide |34,590% 28     echo "===== [워크로드: 시스템 제외] ====="33,587% 27 32,0-183%~@k    26     echo31,580%2,0-13,5  ~@k   456~@k   7,0-16,5  5~@k   432,0-1~@k   1,5   25 'NR == 1 || $1 !~ excluded'30,577% 24 awk -v excluded="$SYSTEM_NS" \29,574%~@k    23     kubectl get ns |28,570%dd
+8
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49 filter_namespaced28,573%dd
+8
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49     echo28,975%dd
+8
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49 28,578%dd
+8
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49     echo "===== [설정 / 자동 확장 / 네트워크 정책] ====="28,0-181%o -- INSERT --29,178% 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 4929,178%82-5echo "===== [디플로이먼트] ====="
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49(paste) --kubectl get deploy -A -o wide |
+ 30 filter_namespac1
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49ed
+ 31     echo
+ 32
+ 33     echo "===== [파드] ====="
+ 34     kubectl g5
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49et pods -A -o wide |
+ 35 filter_namespaced
+ 36     echo
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49echo "===== [기타 워크로드] ====="
+ 39     kubectl get rs,40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49ds,sts,job,cj -A -o wide |
+ 40 filter_namespaced
+ 41     echo
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+>4;m"~/bin/kwatch.sh"468L,11731B8written "===== [디플로이먼트] ="5-echo "===== [디플로이먼트] ="4-echo "===== [디플로이먼트] ="3-echo "===== [디플로이먼트] =echo "===== [디플로이먼트] ===="1      echo "==== [디플로이먼트] ====="2-5^[  28,1-453%::wq
+>4;m[root@master[~/kube/08/gateway]# exitce
+exit
+
+Script done on 2026-10-16 21:54:45+09:00 [COMMAND_EXIT_CODE="0"]
