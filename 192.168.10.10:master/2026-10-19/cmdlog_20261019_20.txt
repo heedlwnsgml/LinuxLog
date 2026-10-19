@@ -1,0 +1,804 @@
+Script started on 2026-10-19 20:17:19+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="167" LINES="30"]
+[root@master[~]# cd kube/09/nodelabel/
+[root@master[~/kube/09/nodelabel]# c
+nnn[root@master[~/kube/09/nodelabel]# k describe pods pod
+Error from server (NotFound): pods "pod" not found
+[root@master[~/kube/09/nodelabel]# k describe podspodd
+Error from server (NotFound): pods "pod" not found
+[root@master[~/kube/09/nodelabel]#
+[root@master[~/kube/09/nodelabel]# c
+mkdiro-p@~/kube/09/annotationsl&&ecd#~/kube/09/annotationsnnotations && cd ~/kube/09/annotations
+[root@master[~/kube/09/annotations]# c
+nnn[root@master[~/kube/09/annotations]# vi pod-annotation.yml
+>4;2m"pod-annotation.yml" [New]▽  zz0%m           >c  1
+>4;m"pod-annotation.yml" [New] 0L, 0B written                                                                                                                          ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::wq
+>4;m[root@master[~/kube/09/annotations]# k apply -f pod-annotation.yml p
+pod/pod-annotation created
+[root@master[~/kube/09/annotations]# c
+nnn[root@master[~/kube/09/annotations]# k get pods
+NAME             READY   STATUS    RESTARTS   AGE
+pod-annotation   1/1     Running   0          4s
+[root@master[~/kube/09/annotations]# k describe pods pod-annotation | head -n 20
+Name:             pod-annotation
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node3/192.168.10.13
+Start Time:       Mon, 19 Oct 2026 20:20:20 +0900
+Labels:           <none>
+Annotations:      buildDate: 20261015
+                  builder: BSC(jang4sc@hanmail.net)
+                  cni.projectcalico.org/containerID: 8c5ade1cece88a2534a3ddc62847e64ef22dabf2e4a35b76fa1ad6dbaa6decfc
+                  cni.projectcalico.org/podIP: 10.10.135.46/32
+                  cni.projectcalico.org/podIPs: 10.10.135.46/32
+                  imageRegistry: https://hub.docker.com
+Status:           Running
+IP:               10.10.135.46
+IPs:
+  IP:  10.10.135.46
+Containers:
+  nginx:
+    Container ID:   containerd://dcb934447c636475268011df8ff8224c6e30b1dd52f2e0da86bd57f7bb059e8b
+cpo~/kube/06/deploy/rollingupdate-deploy2.ymlerollingupdate-deploy2.yml.STUDY2.yml rollingupdate-deploy2.yml.STUDY
+[root@master[~/kube/09/annotations]#
+[root@master[~/kube/09/annotations]#
+[root@master[~/kube/09/annotations]#
+[root@master[~/kube/09/annotations]# c
+nnn[root@master[~/kube/09/annotations]# catrrollingupdate-deploy2.yml.STUDY
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: app-deploy
+  annotations:
+    kubernetes.io/change-cause: version 1.27
+spec:
+  progressDeadlineSeconds: 600
+  revisionHistoryLimit: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webui
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
+[root@master[~/kube/09/annotations]# k delete pods pod-annotation
+pod "pod-annotation" deleted from default namespace
+[root@master[~/kube/09/annotations]# dockerrps -a
+[root@master[~/kube/09/annotations]#
+[root@master[~/kube/09/annotations]#
+[root@master[~/kube/09/annotations]# c
+nmkdiro-pm~/kube/09/canarya&&ocdt~/kube/09/canary ~/kube/09/canary && cd ~/kube/09/canary
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k get pods
+No resources found in default namespace.
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# vi mainui-stable.yml
+>4;2m"mainui-stable.yml" [New]▽  zz0%m           >c  1
+>4;m"mainui-stable.yml" [New] 0L, 0B written                                                                                                                           ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::wq
+>4;m[root@master[~/kube/09/canary]# k createpdeploy mainui-stable --image nginx:1.26 --port 80 --dry-run=client -o yaml > mainui-stable.yml
+[root@master[~/kube/09/canary]# k apply -f mainui-stable.yml
+deployment.apps/mainui-stable created
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k get pods
+NAME                             READY   STATUS    RESTARTS   AGE
+mainui-stable-7dd489d9cc-67llx   1/1     Running   0          5s
+mainui-stable-7dd489d9cc-7tdwp   1/1     Running   0          5s
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# vi mainui-stable.yml
+>4;2m"mainui-stable.yml" 21L, 360B▽  zz0%m           >c  1 apiVersion: apps/v1
+  2 kind: Deployment  3 metadata:  4   name: mainui-stable
+  5 spec:
+  6   replicas: 2
+  7   selector:
+  8     matchLabels:
+  9       app: mainui
+ 10       version: stable
+ 11   template:
+ 12     metadata:
+ 13       labels:
+ 14 app: mainui
+ 15 version: stable
+ 16     spec:
+ 17       containers:
+ 18       - name: mainui
+ 19 image: nginx:1.26
+ 20 ports:
+ 21 - containerPort: 80
+>4;m"mainui-stable.yml" 21L, 360B written                                                                                                                              ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p::wq
+>4;m[root@master[~/kube/09/canary]# k expose deployment mainu1@1@-1@-1@d1@r5@y-run1@=1@c1@l1@i11@\@n1@t1@1@-1@o1@1@y1@a1@m1@l1@P >> mainui-stable.yml
+[root@master[~/kube/09/canary]# k expose deployment mainui-stable  --port 80 --t\rget-port 80 --protocol TCP --dry-.ymlclient \-o yaml  >> mainui-stable.yml
+> --dry-run=client -o yaml > mainui-service.yml
+[root@master[~/kube/09/canary]# k apply -f mainui-service.yml
+service/mainui-svc created
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k get svc -o wide
+NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE    SELECTOR
+kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   7d4h   <none>
+mainui-svc   ClusterIP   10.98.170.123   <none>        80/TCP    8s     app=mainui
+[root@master[~/kube/09/canary]# k describe svc mainui-svc
+Name:                     mainui-svc
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=mainui
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.98.170.123
+IPs:                      10.98.170.123
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                10.10.135.47:80,10.10.166.166:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[root@master[~/kube/09/canary]# kuget endpointslices.discovery.k8s.io
+NAME               ADDRESSTYPE   PORTS   ENDPOINTS                    AGE
+kubernetes         IPv4          6443    192.168.10.10                7d4h
+mainui-svc-l26kr   IPv4          80      10.10.135.47,10.10.166.166   62s
+[root@master[~/kube/09/canary]# curl
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k get all
+NAME                                 READY   STATUS    RESTARTS   AGE
+pod/mainui-stable-7dd489d9cc-67llx   1/1     Running   0          5m36s
+pod/mainui-stable-7dd489d9cc-7tdwp   1/1     Running   0          5m36s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   7d4h
+service/mainui-svc   ClusterIP   10.98.170.123   <none>        80/TCP    90s
+
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/mainui-stable   2/2     2            2           5m36s
+
+NAME                                       DESIRED   CURRENT   READY   AGE
+replicaset.apps/mainui-stable-7dd489d9cc   2         2         2       5m36s
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k get all -o wide
+NAME                                 READY   STATUS    RESTARTS   AGE     IP              NODE    NOMINATED NODE   READINESS GATES
+pod/mainui-stable-7dd489d9cc-67llx   1/1     Running   0          5m55s   10.10.135.47    node3   <none>           <none>
+pod/mainui-stable-7dd489d9cc-7tdwp   1/1     Running   0          5m55s   10.10.166.166   node1   <none>           <none>
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE    SELECTOR
+service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   7d4h   <none>
+service/mainui-svc   ClusterIP   10.98.170.123   <none>        80/TCP    109s   app=mainui
+
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES       SELECTOR
+deployment.apps/mainui-stable   2/2     2            2           5m55s   mainui       nginx:1.26   app=mainui,version=stable
+
+NAME                                       DESIRED   CURRENT   READY   AGE     CONTAINERS   IMAGES       SELECTOR
+replicaset.apps/mainui-stable-7dd489d9cc   2         2         2       5m55s   mainui       nginx:1.26   app=mainui,pod-template-hash=7dd489d9cc,version=stable
+[root@master[~/kube/09/canary]# curl 10.10.135.47
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]# curl 10.98.170.123:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]# curl 10.98.170.123:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]# curl 10.98.170.123:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]# curl 10.98.170.123:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]# curl 10.98.170.123:80
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# cp mainui-stable.yml mainui-canary.yml
+[root@master[~/kube/09/canary]# vi mainui-canary.yml
+>4;2m"mainui-canary.yml" 22L, 361B▽  zz0%m           >c  1 apiVersion: apps/v1
+  2 kind: Deployment  3 metadata:  4   name: mainui-stable
+  5 spec:
+  6   replicas: 2
+  7   selector:
+  8     matchLabels:
+  9       app: mainui
+ 10       version: stable
+ 11   template:
+ 12     metadata:
+ 13       labels:
+ 14 app: mainui
+ 15 version: stable
+ 16     spec:
+ 17       containers:
+ 18       - name: mainui
+ 19 image: nginx:1.26
+ 20 ports:
+ 21 - containerPort: 80
+ 22
+>4;m"mainui-canary.yml" 22L, 361B written                                                                                                                              ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p::wq
+>4;m[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# k apply -f mainui-canary.yml
+deployment.apps/mainui-canary created
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k gettdeployments.apps -o wide
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE     CONTAINERS   IMAGES       SELECTOR
+mainui-canary   1/1     1            1           10s     mainui       nginx:1.27   app=mainui,version=canary
+mainui-stable   2/2     2            2           7m48s   mainui       nginx:1.26   app=mainui,version=stable
+[root@master[~/kube/09/canary]# k
+[root@master[~/kube/09/canary]# k describe service mainui-svc
+Name:                     mainui-svc
+Namespace:                default
+Labels:                   <none>
+Annotations:              <none>
+Selector:                 app=mainui
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.98.170.123
+IPs:                      10.98.170.123
+Port:                     <unset>  80/TCP
+TargetPort:               80/TCP
+Endpoints:                10.10.135.47:80,10.10.166.166:80,10.10.135.48:80
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>
+[root@master[~/kube/09/canary]# while true; do curl $(k get svc mainui-svc -o yaml | yq '.spec.clusterIP') ; sleep 2; done
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+^C
+[root@master[~/kube/09/canary]# k run -exec -it mainui-canary.yml -- /bin/bash
+error: unknown shorthand flag: 'e' in -exec
+See 'kubectl run --help' for usage.
+[root@master[~/kube/09/canary]# k run -exec -it mainui-canary.yml -- /bin/bash
+Error: flags cannot be placed before plugin name: -exec
+[root@master[~/kube/09/canary]# k 3@runc -it mainui-canary.yml -- /bin/bash
+Error from server (NotFound): pods "mainui-canary.yml" not found
+[root@master[~/kube/09/canary]# k exec -it 1@p1@o1@d1@ry.yml -- /bin/bash
+error: exec [POD] [COMMAND] is not supported anymore. Use exec [POD] -- [COMMAND] instead
+See 'kubectl exec -h' for help and examples
+[root@master[~/ks/mainui-canary-744864c77c-cg5c8a--u/bin/bashyml -- /bin/bash
+root@mainui-canary-744864c77c-cg5c8:/# echo VER01 > /usr/share/nginx/html/index.html
+root@mainui-canary-744864c77c-cg5c8:/# exit
+exit
+[root@master[~kkexec0-itapods/mainui-stable-7dd489d9cc-67llxy--4/bin/bashcg5c8 -- /bin/bash
+root@mainui-stable-7dd489d9cc-67llx:/# echo VER02 > /usr/share/nginx/html/index.html
+root@mainui-stable-7dd489d9cc-67llx:/# exit
+exit
+[root@master[~/kube/09/canary]# k exec -it pods/mainui-stable-7dd4891@74@tdwpx -- /bin/bash
+root@mainui-stable-7dd489d9cc-7tdwp:/# echo VER02 > /usr/share/nginx/html/index.html
+root@mainui-stable-7dd489d9cc-7tdwp:/# exit
+exit
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+curlr$(k@gettsvc~mainui-svca-oryamlc|ryq$'.spec.clusterIP')svc -o yaml | yq '.spec.clusterIP')
+VER02
+whilestrue;odorcurla$(kngetssvcemainui-svc7-oxyaml/|iyqb'.spec.clusterIP').;psleepu2;edone)
+VER02
+VER01
+VER01
+VER01
+VER02
+VER02
+VER01
+VER02
+VER02
+VER02
+VER02
+^C
+[root@master[~/kube/09/canary]# k scale deployment
+mainui-canary                                                   --replicas     (The new desired number of replicas. Required.)
+mainui-stable
+[root@master[~/kube/09/canary]# k scale deployment mainui-canary --replicas 2
+deployment.apps/mainui-canary scaled
+[root@master[~/kube/09/canary]# k scale deployment mainui-stable --replicas 1
+deployment.apps/mainui-stable scaled
+while$true;tdovcurli$(k-getrsvcymainui-svc.-oeyamlu|tyqI'.spec.clusterIP')s;2sleep 2; done
+VER02
+VER02
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+VER02
+VER02
+VER01
+VER01
+VER02
+VER01
+VER01
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+^C
+curot@master[~/kube/09/canary]# while true; do curl $(k get svc mainui-svc -o yaml | yq '.spec.clusterIP') ; sleep 2; done
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# kuget deployments.apps
+NAME            READY   UP-TO-DATE   AVAILABLE   AGE
+mainui-canary   2/2     2            2           6m57s
+mainui-stable   1/1     1            1           14m
+[root@master[~/kube/09/canary]# k scale deployment mainui-canary --replicas 3
+deployment.apps/mainui-canary scaled
+[root@master[~/kube/09/canary]# k scale deployment mainui-stable --replicas 0
+deployment.apps/mainui-stable scaled
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]#
+[root@master[~/kube/09/canary]# c
+nnn[root@master[~/kube/09/canary]# k delete deployments.apps mainui-canary
+deployment.apps "mainui-canary" deleted from default namespace
+[root@master[~/kube/09/canary]# k delete deployments.apps mainui-stable
+deployment.apps "mainui-stable" deleted from default namespace
+[root@master[~/kube/09/canary]# mkdir -p ~/kube/09/blue-green
+[root@master[~/kube/09/ccd~~/kube/09/blue-greenreenblue-green
+[root@master[~/kube/09/blue-green]# mkdir -p ~/kube/09/rolling
+[root@master[~/kube/09/blue-green]# ci Blu
+nnn[root@master[~/kube/09/blue-green]# k runabl1k@createedeployment1blue-deploy --image whatwant/node-web:2.=client--oyyaml > blue.yml
+[root@master[~/kube/09/blue-green]# vi blue.yml
+>4;2m"blue.yml" 24L, 416B▽  zz0%m           >c  1 apiVersion: apps/v1
+  2 kind: Deployment  3 metadata:  4   labels:
+  5     app: blue-deploy
+  6   name: blue-deploy
+  7 spec:
+  8   replicas: 1
+  9   selector:
+ 10     matchLabels:
+ 11       app: blue-deploy
+ 12   strategy: {}
+ 13   template:
+ 14     metadata:
+ 15       labels:
+ 16 app: blue-deploy
+ 17     spec:
+ 18       containers:
+ 19       - image: whatwant/node-web:2.0
+ 20 name: node-web
+ 21 ports:
+ 22 - containerPort: 8080
+ 23 resources: {}
+ 24 status: {}
+>4;m"blue.yml" 24L, 416B written                                                                                                                                       ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p::qwq
+>4;m[root@master[~/kube/09/blue-green]# cp blue.yml green.yml
+[root@master[~/kube/09/blue-green]# vi green.yml
+>4;2m"green.yml" 21L, 369B▽  zz0%m           >c  1 apiVersion: apps/v1
+  2 kind: Deployment  3 metadata:  4   name: blue-deploy
+  5 spec:
+  6   replicas: 3
+  7   selector:
+  8     matchLabels:
+  9       app: web
+ 10       version: blue
+ 11   template:
+ 12     metadata:
+ 13       labels:
+ 14 app: web
+ 15 version: blue
+ 16     spec:
+ 17       containers:
+ 18       - image: whatwant/node-web:2.0
+ 19 name: blue-container
+ 20 ports:
+ 21 - containerPort: 8080
+>4;m"green.yml" 21L, 369B written                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p::wq
+>4;m[root@master[~/kube/09/blue-green]# k create service blue-green-svc -opyaml ><blue-green-svc.yml
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl create service --help' for usage.
+[root@master[~/kube/09/blue-green]# c
+nnn[root@master[~/kube/09/blue-green]# vi blue-green-svc.yml
+>4;2m"blue-green-svc.yml" 0L, 0B▽  zz0%m           >c  1
+>4;m"blue-green-svc.yml"a0L, 0Bwwrittenlw ; ::wq                                                                                                                       ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::wqw
+>4;m[root@master[~/kube/09/blue-green]# k apply -f blue-green-svc.yml
+service/blue-green-svc created
+[root@master[~/kube/09/blue-green]# k apply -f blue-
+blue-green-svc.yml  blue.yml
+[root@master[~/kube/09/blue-green]# k apply -f blue.yml
+deployment.apps/blue-deploy created
+[root@master[~/kube/09/blue-green]# k apply -f green.yml
+deployment.apps/green-deploy created
+[root@master[~/kube/09/blue-green]# c
+nnn[root@master[~/kube/09/blue-green]# k get all
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/blue-deploy-86784fccf-22gtn     1/1     Running   0          44s
+pod/blue-deploy-86784fccf-2xv54     1/1     Running   0          44s
+pod/blue-deploy-86784fccf-kv894     1/1     Running   0          44s
+pod/green-deploy-67ff48767d-nkpxc   1/1     Running   0          30s
+pod/green-deploy-67ff48767d-qw2mk   1/1     Running   0          30s
+pod/green-deploy-67ff48767d-tr4jj   1/1     Running   0          30s
+
+NAME                     TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/blue-green-svc   ClusterIP   10.100.198.85   <none>        80/TCP    55s
+service/kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP   7d4h
+service/mainui-svc       ClusterIP   10.98.170.123   <none>        80/TCP    22m
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/blue-deploy    3/3     3            3           44s
+deployment.apps/green-deploy   3/3     3            3           30s
+
+NAME                                      DESIRED   CURRENT   READY   AGE
+replicaset.apps/blue-deploy-86784fccf     3         3         3       44s
+replicaset.apps/green-deploy-67ff48767d   3         3         3       30s
+[root@master[~/kube/09/blue-green]#
+[root@master[~/kube/09/blue-green]#
+[root@master[~/kube/09/blue-green]# k edit service
+serviceaccounts                 servicebgpstatuses.metallb.io   servicecidrs.networking.k8s.io  servicel2statuses.metallb.io    services
+[root@master[~/kube/09/blue-green]# k edit service/blue-green-svc
+>4;2m"/tmp/kubectl-edit-2354178097.yaml" 34L, 1029B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |{"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"blue-green-svc","namespace":"default"},"spec":{"ports":[{"port":80,"protocol":"TCP","tarrgetPort":8080}],"selector":{"app":"web","version":"blue"}}}
+  creationTimestamp: "2026-10-19T12:04:28Z"
+  name: blue-green-svc
+  namespace: default
+  resourceVersion: "261330"
+  uid: cfa1513d-ccba-4641-8985-e8e44c699d57
+spec:
+  clusterIP: 10.100.198.85
+  clusterIPs:
+  - 10.100.198.85
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:1,1Top?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   201~@k   2~@k   3~@k
+app: web24,116%~@k
+version: blue25,133%~@k
+sessionAffinity: None26,150%~@k
+type: ClusterIP27,166%
+status:28,183%~@k
+>4;m"/tmp/kubectl-edit-2354178097.yaml"~34L, 1030B written 29~@k   8~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   19~@k   87~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   2~@k   3~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   20~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   30~@k   1~@k   23~@k   4~@k   3~@k   2~@k   1~@k   0~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   i -- INSERT --30,17Boee54g5r6e7e8n9^[  30,18Bot::wq
+>4;mservice/blue-green-svc edited
+[root@master[~/kube/09/blue-green]# k apply -f blue-green-svc.yml
+service/blue-green-svc configured
+[root@master[~/kube/09/blue-green]# k get svc -o wide
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE    SELECTOR
+blue-green-svc   ClusterIP   10.100.198.85   <none>        80/TCP    99s    app=web,version=blue
+kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP   7d4h   <none>
+mainui-svc       ClusterIP   10.98.170.123   <none>        80/TCP    22m    app=mainui
+[root@master[~/kube/09/blue-green]# k edit service/blue-green-svcojectcalico.org
+>4;2m"/tmp/kubectl-edit-140582241.yaml" 34L, 1029B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |{"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"blue-green-svc","namespace":"default"},"spec":{"ports":[{"port":80,"protocol":"TCP","tarrgetPort":8080}],"selector":{"app":"web","version":"blue"}}}
+  creationTimestamp: "2026-10-19T12:04:28Z"
+  name: blue-green-svc
+  namespace: default
+  resourceVersion: "261653"
+  uid: cfa1513d-ccba-4641-8985-e8e44c699d57
+spec:
+  clusterIP: 10.100.198.85
+  clusterIPs:
+  - 10.100.198.85
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:1,1Top?12$p23~@k   456~@k   789~@k   10,112~@k   345~@k   678~@k   9201~@k   23
+app: web24,116%~@k
+version: blue25,133%
+sessionAffinity: None26,150%
+type: ClusterIP27,166%~@k
+status:28,183%
+>4;m"/tmp/kubectl-edit-140582241.yaml" 34L,k1030Bkwritten  ~@k   ~@k   32~@k   1~@k   0~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10~@k   1~@k   2i -- INSERT --30,12Bot3456787654g5r6e7e8n9:20w1019^[  30,18Bot::wq
+>4;mservice/blue-green-svc edited
+[root@master[~/kube/09/blue-green]# k getlsvcf-olwidereen-svc.yml
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+blue-green-svc   ClusterIP   10.100.198.85   <none>        80/TCP    2m11s   app=web,version=green
+kubernetes       ClusterIP   10.96.0.1       <none>        443/TCP   7d4h    <none>
+mainui-svc       ClusterIP   10.98.170.123   <none>        80/TCP    23m     app=mainui
+[root@master[~/kube/09/blue-green]# c
+nnn[root@master[~/kube/09/blue-green]# curl ^C
+curlt$(ksget[svcublue-green-svce-o#yamll|$yq '.spec.clusterIP')-svc -o yaml | yq '.spec.clusterIP')
+You've hit green-deploy-67ff48767d-nkpxc (Ver3.0)
+Data stored on this pod: No data posted yet
+[root@master[~/kube/09/blue-green]# curl $(k get svc blue-green-svc -o yaml | yq '.spec.clusterIP')
+You've hit green-deploy-67ff48767d-tr4jj (Ver3.0)
+Data stored on this pod: No data posted yet
+[root@master[~/kube/09/blue-green]# cat blue-green-svc.yml
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: blue-green-svc
+spec:
+  selector:
+    app: web
+    version: blue
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080[root@master[~/kube/09/blue-green]# k apply -f blue-green-svc.yml
+service/blue-green-svc configured
+[root@master[~/kube/09/blue-green]#
+[root@master[~/kube/09/blue-green]#
+[root@master[~/kube/09/blue-green]# c
+nnn[root@master[~/kube/09/blue-green]# k get svc-blue-green-svc -o wide
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+blue-green-svc   ClusterIP   10.100.198.85   <none>        80/TCP    3m14s   app=web,version=blue
+[root@master[~/kube/09/blue-green]#
+[root@master[~/kube/09/blue-green]#
+curlt$(ksget[svcublue-green-svce-o#yamll|$yq-'.spec.clusterIP')-svc -o yaml | yq '.spec.clusterIP')
+You've hit blue-deploy-86784fccf-kv894 (Ver2.0)
+[root@master[~/kube/09/blue-green]# k delete -f .
+service "blue-green-svc" deleted from default namespace
+deployment.apps "blue-deploy" deleted from default namespace
+deployment.apps "green-deploy" deleted from default namespace
+[root@master[~/kube/09/blue-green]# k delete svccmainui-svc
+service "mainui-svc" deleted from default namespace
+[root@master[~/kube/09/blue-green]# c
+nnn[root@master[~/kube/09/blue-green]# exit
+exit
+
+Script done on 2026-10-19 21:16:52+09:00 [COMMAND_EXIT_CODE="0"]
