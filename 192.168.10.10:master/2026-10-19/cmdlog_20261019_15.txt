@@ -1,0 +1,1853 @@
+Script started on 2026-10-19 15:34:58+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="167" LINES="31"]
+[root@master[~]# c
+nnn[root@master[~]# k get all -n envoy-gateway-system
+NAME                                                             READY   STATUS    RESTARTS      AGE
+pod/envoy-gateway-75b559cc4c-ls48z                               1/1     Running   1 (53m ago)   2d17h
+pod/envoy-gateway-system-lab-gateway-03a12405-7c4988884b-wnk5g   2/2     Running   2 (53m ago)   2d17h
+
+NAME                                                TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                            AGE
+service/envoy-gateway                               ClusterIP      10.101.129.240   <none>          18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   2d17h
+service/envoy-gateway-system-lab-gateway-03a12405   LoadBalancer   10.101.169.188   192.168.10.20   80:30710/TCP                                       2d17h
+
+NAME                                                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/envoy-gateway                               1/1     1            1           2d17h
+deployment.apps/envoy-gateway-system-lab-gateway-03a12405   1/1     1            1           2d17h
+
+NAME                                                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/envoy-gateway-75b559cc4c                               1         1         1       2d17h
+replicaset.apps/envoy-gateway-system-lab-gateway-03a12405-7c4988884b   1         1         1       2d17h
+[root@master[~]#
+[root@master[~]# k get gateway -A
+NAMESPACE        NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+gateway-system   lab-gateway   eg      192.168.10.20   True         2d17h
+[root@master[~]# cd kube/
+[root@master[~/kube]# ls
+00_test  03  04  05  06  07  08
+[root@master[~/kube]# cd 08/
+[root@master[~/kube/08]# ls
+gateway
+[root@master[~/kube/08]# c
+nnn[root@master[~/kube/08]# cd gateway/
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# vi web.yml
+>4;2m"web.yml" [New]▽  zz0%m           >c  1
+>4;m"web.yml" [New] 0L, 0B written                                                                                                                                     ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::wq
+>4;m[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# k apply -f web.yml
+deployment.apps/web created
+service/web created
+deployment.apps/web-app created
+service/web-app created
+deployment.apps/web-login created
+service/web-login created
+[root@master[~/kube/08/gateway]# kngetsgatewayt-oayamlu-Ar| less
+apiVersion: v1
+items:
+- apiVersion: gateway.networking.k8s.io/v1
+  kind: Gateway
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"gateway.networking.k8s.io/v1","kind":"Gateway","metadata":{"annotations":{},"name":"lab-gateway","namespace":"gateway-system"},"spec":{"gatewayClassName":"eg","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+    creationTimestamp: "2026-10-16T12:51:01Z"
+    generation: 1
+    name: lab-gateway
+    namespace: gateway-system
+    resourceVersion: "209936"
+    uid: 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+  spec:
+    gatewayClassName: eg
+    listeners:
+    - allowedRoutes:
+        namespaces:
+          from: All
+      name: http
+      port: 80
+      protocol: HTTP
+  status:
+    addresses:
+    - type: IPAddress
+      value: 192.168.10.20
+    conditions:
+    - lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOBmessage: The Gateway has been scheduled by Envoy Gateway
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Accepted
+:ESCOBstatus: "True"
+:ESCOBtype: Accepted
+:ESC-BlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOBmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Programmed
+:ESCOBstatus: "True"
+:ESCOBtype: Programmed
+:ESClisteners:
+:ESC-BattachedRoutes: 0
+:ESCOBconditions:
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCuid: 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+:ESCresourceVersion: "209936"
+:ESCnamespace: gateway-system
+:ESCname: lab-gateway
+:ESCgeneration: 1
+:ESCcreationTimestamp: "2026-10-16T12:51:01Z"
+lassName":"eg","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+:ESCOAkubectl.kubernetes.io/last-applied-configuration:i|d":"Gateway","metadata":{"annotations":{},"name":"lab-gateway","namespace":"gateway-system"},"spec":{"gatewayC
+:ESCannotations:
+:Emetadata:
+:Ekind: Gateway
+-EapiVersion: gateway.networking.k8s.io/v1
+items:
+apiVersion: v1
+:ESCOBmessage: The Gateway has been scheduled by Envoy Gateway
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Accepted
+:ESCOBstatus: "True"
+:ESCOBtype: Accepted
+:ESC-BlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOBmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Programmed
+:ESCOBstatus: "True"
+:ESCOBtype: Programmed
+:ESClisteners:
+:ESC-BattachedRoutes: 0
+:ESCOBconditions:
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Sending translated listener configuration to the data plane
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: Programmed
+:ESCOB  status: "True"
+:ESCOB  type: Programmed
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Listener has been successfully translated
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: Accepted
+:ESCOB  status: "True"
+:ESCOB  type: Accepted
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Listener references have been resolved
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: ResolvedRefs
+:ESCOB  status: "True"
+:ESCOB  type: ResolvedRefs
+:ESCOBname: http
+:ESCOBsupportedKinds:
+:ESCOB- group: gateway.networking.k8s.io
+:ESCOB  kind: HTTPRoute
+:ESCOB- group: gateway.networking.k8s.io
+:ESCOB  kind: GRPCRoute
+kind:BList
+metadata:
+:EresourceVersion: ""
+(ESCOAtype: Programmed
+:ESCOAstatus: "True"
+:ESCOAreason: Programmed
+:ESCOAobservedGeneration: 1
+:ESCOAmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESC-AlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOAtype: Accepted
+:ESCOAstatus: "True"
+:ESCOAreason: Accepted
+:ESCOAobservedGeneration: 1
+:ESCOAmessage: The Gateway has been scheduled by Envoy Gateway
+:ESC-AlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCconditions:
+:ESCOAvalue: 192.168.10.20
+:ESC-Atype: IPAddress
+:ESCaddresses:
+:Estatus:
+:ESCOAprotocol: HTTP
+:ESCOAport: 80
+:ESCOAname: http
+:ESCOA    from: All
+:ESCOA  namespaces:
+:ESC-AallowedRoutes:
+:ESClisteners:
+:ESCgatewayClassName: eg
+:Espec:
+:ESCuid: 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+:ESCresourceVersion: "209936"
+:ESCnamespace: gateway-system
+:ESCname: lab-gateway
+:ESCgeneration: 1
+:ESCcreationTimestamp: "2026-10-16T12:51:01Z"
+lassName":"eg","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+:ESCOAkubectl.kubernetes.io/last-applied-configuration:i|d":"Gateway","metadata":{"annotations":{},"name":"lab-gateway","namespace":"gateway-system"},"spec":{"gatewayC
+:ESCannotations:
+:Emetadata:
+:Ekind: Gateway
+-EapiVersion: gateway.networking.k8s.io/v1
+items:
+apiVersion: v1
+:ESCOBmessage: The Gateway has been scheduled by Envoy Gateway
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Accepted
+:ESCOBstatus: "True"
+:ESCOBtype: Accepted
+:ESC-BlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOBmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Programmed
+:ESCOBstatus: "True"
+:ESCOBtype: Programmed
+:ESClisteners:
+:ESCname: lab-gateway
+:ESCgeneration: 1
+:ESCcreationTimestamp: "2026-10-16T12:51:01Z"
+lassName":"eg","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+:ESCOAkubectl.kubernetes.io/last-applied-configuration:i|d":"Gateway","metadata":{"annotations":{},"name":"lab-gateway","namespace":"gateway-system"},"spec":{"gatewayC
+:ESCannotations:
+:Emetadata:
+:Ekind: Gateway
+-EapiVersion: gateway.networking.k8s.io/v1
+items:
+apiVersion: v1
+:ESCOBmessage: The Gateway has been scheduled by Envoy Gateway
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Accepted
+:ESCOBstatus: "True"
+:ESCOBtype: Accepted
+:ESC-BlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOBmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCOBobservedGeneration: 1
+:ESCOBreason: Programmed
+:ESCOBstatus: "True"
+:ESCOBtype: Programmed
+:ESClisteners:
+:ESC-BattachedRoutes: 0
+:ESCOBconditions:
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Sending translated listener configuration to the data plane
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: Programmed
+:ESCOB  status: "True"
+:ESCOB  type: Programmed
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Listener has been successfully translated
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: Accepted
+:ESCOB  status: "True"
+:ESCOB  type: Accepted
+:ESCOB- lastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOB  message: Listener references have been resolved
+:ESCOB  observedGeneration: 1
+:ESCOB  reason: ResolvedRefs
+:ESCOB  status: "True"
+:ESCOB  type: ResolvedRefs
+:ESCOBname: http
+:ESCOBsupportedKinds:
+:ESCOB- group: gateway.networking.k8s.io
+:ESCOB  kind: HTTPRoute
+:ESCOB- group: gateway.networking.k8s.io
+:ESCOB  kind: GRPCRoute
+kind:BList
+metadata:
+:EresourceVersion: ""
+(ESCOAtype: Programmed
+:ESCOAstatus: "True"
+:ESCOAreason: Programmed
+:ESCOAobservedGeneration: 1
+:ESCOAmessage: Address assigned to the Gateway, 1/1 envoy replicas available
+:ESC-AlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCOAtype: Accepted
+:ESCOAstatus: "True"
+:ESCOAreason: Accepted
+:ESCOAobservedGeneration: 1
+:ESCOAmessage: The Gateway has been scheduled by Envoy Gateway
+:ESC-AlastTransitionTime: "2026-10-19T05:42:51Z"
+:ESCconditions:
+:ESCOAvalue: 192.168.10.20
+:ESC-Atype: IPAddress
+:ESCaddresses:
+:Estatus:
+:ESCOAprotocol: HTTP
+:ESCOAport: 80
+:ESCOAname: http
+:ESCOA    from: All
+:ESCOA  namespaces:
+:ESC-AallowedRoutes:
+:ESClisteners:
+:ESCgatewayClassName: eg
+:Espec:
+:ESCuid: 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+:ESCresourceVersion: "209936"
+:ESCnamespace: gateway-system
+:ESCname: lab-gateway
+:ESCgeneration: 1
+:ESCcreationTimestamp: "2026-10-16T12:51:01Z"
+lassName":"eg","listeners":[{"allowedRoutes":{"namespaces":{"from":"All"}},"name":"http","port":80,"protocol":"HTTP"}]}}
+:ESCOAkubectl.kubernetes.io/last-applied-configuration:i|d":"Gateway","metadata":{"annotations":{},"name":"lab-gateway","namespace":"gateway-system"},"spec":{"gatewayC
+:ESCannotations:
+:Emetadata:
+:Ekind: Gateway
+-EapiVersion: gateway.networking.k8s.io/v1
+items:
+apiVersion: v1
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# vi path-router.yml
+>4;2m"path-router.yml" [New]▽  zz0%m           >c  1
+>4;m"path-router.yml" [New] 0L, 0B written                                                                                                                             ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::wq
+>4;m[root@master[~/kube/08/gateway]# k apply -f path-router.yml
+httproute.gateway.networking.k8s.io/path-route created
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k get httproute -n gateway-
+No resources found in gateway- namespace.
+[root@master[~/kube/08/gateway]# k get httproute -n gateway-lab
+NAME         HOSTNAMES                AGE
+path-route   ["gw.lab.example.com"]   8s
+[root@master[~/kube/08/gateway]# kagetagateway -
+Error from server (NotFound): gateways.gateway.networking.k8s.io "-" not found
+[root@master[~/kube/08/gateway]# k get gateway -A
+NAMESPACE        NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+gateway-system   lab-gateway   eg      192.168.10.20   True         2d18h
+[root@master[~/kube/08/gateway]# kmgetjhttproute -A
+NAMESPACE     NAME         HOSTNAMES                AGE
+gateway-lab   path-route   ["gw.lab.example.com"]   44s
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+curlt--resolve/"gw.lab.example.com:80:192.168.10.20"lhttp://gw.lab.example.comk10.20" http://gw.lab.example.com/
+main-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:192.168.10.20" http://gw.lab.example.com/app
+app-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:192.168.10.20" http://gw.lab.example.com/loging
+login-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:192.168.10.20" http://gw.lab.example.com/aaain
+main-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:192.168.10.20" http://gw.lab.example.com/9012y
+main-gateway
+[root@master[~/kube/08/gateway]# vi host-apps.yml
+>4;2m"host-apps.yml" [New]▽  zz0%m           >c  1
+>4;m"host-apps.yml" [New] 0L, 0B written                                                                                                                               ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p^[  ^[  ::wq
+>4;m[root@master[~/kube/08/gateway]# k apply -f host-apps.yml
+deployment.apps/web-blue created
+service/web-blue created
+deployment.apps/web-green created
+service/web-green created
+[root@master[~/kube/08/gateway]# vighost-route.yml
+>4;2m"host-route.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p^V1x1-- VISUAL BLOCK --1x10,0-1All^V   0,0-1All-- INSERT --0,1AllapiVersion: gateway.networking.k8s.io/v1
+  2 kind: HTTPRoute
+  3 metadata:  4   name: blue-host-route  5   namespace: gateway-lab  6 spec:
+  7   parentRefs:  8     - name: lab-gateway  9       namespace: gateway-system
+ 10       sectionName: http 11   hostnames: 12     - blue.lab.example.com
+ 13   rules: 14     - matches: 15         - path: 16             type: PathPrefix
+ 17             value: / 18       backendRefs: 19         - name: web-blue
+ 20           port: 80 21 --- 22 apiVersion: gateway.networking.k8s.io/v1
+ 23 kind: HTTPRoute 24 metadata: 25   name: green-host-route
+ 26   namespace: gateway-lab 27 spec: 28   parentRefs: 29     - name: lab-gateway
+ 30       namespace: gateway-system
+ 31       sectionN(paste) --sectionName: http 32   hostnames:
+ 33     - green.lab.example.com
+ 34   rules:
+ 35     - matches: 36 - path:
+ 37 type: PathPrefix
+ 38 value: / 39       backendRefs:
+ 40 - name: web-green
+ 41 port: 80
+>4;m"host-route.yml"@[New]942L,k826B5written321~@k   0298~@k   765~@k   432~@k   1019~@k   8 12     - blue.lab.example.com17,191% 11   hostnames:16,183%~@k    10       sectionName: http15,175%  9       namespace: gateway-system14,166%  8     - name: lab-gateway13,158%~@k     7   parentRefs:12,150%  6 spec:11,141%  5   namespace: gateway-lab10,133%  4   name: blue-host-route9,125%  3 metadata:8,116%  2 kind: HTTPRoute7,18%~@k     1 apiVersion: gateway.networking.k8s.io/v16,1Top54~@k   321~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ^[  ^[  ::wq
+>4;m[root@master[~/kube/08/gateway]# k apply -f host-route.yml
+httproute.gateway.networking.k8s.io/blue-host-route created
+httproute.gateway.networking.k8s.io/green-host-route created
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k get httproute -n gateway-lab
+NAME               HOSTNAMES                   AGE
+blue-host-route    ["blue.lab.example.com"]    12s
+green-host-route   ["green.lab.example.com"]   12s
+path-route         ["gw.lab.example.com"]      11m
+[root@master[~/kube/08/gateway]# k describe httproute -nugateway-labeblue-host-route | less
+Name:         blue-host-route
+Namespace:    gateway-lab
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         HTTPRoute
+Metadata:
+  Creation Timestamp:  2026-10-19T07:13:34Z
+  Generation:          1
+  Resource Version:    222096
+  UID:                 be3f9b75-c2c5-4347-a7b6-bc89fd406802
+Spec:
+  Hostnames:
+    blue.lab.example.com
+  Parent Refs:
+    Group:         gateway.networking.k8s.io
+    Kind:          Gateway
+    Name:          lab-gateway
+    Namespace:     gateway-system
+    Section Name:  http
+  Rules:
+    Backend Refs:
+      Group:
+      Kind:    Service
+      Name:    web-blue
+      Port:    80
+      Weight:  1
+    Matches:
+      Path:
+        Type:   PathPrefix
+:ESCOB  Value:  /
+Status:
+:EParents:
+:ESCConditions:
+:ESCOBLast Transition Time:  2026-10-19T07:13:34Z
+:ESCOBMessage:               Route is accepted
+:ESCOBObserved Generation:   1
+:ESCOBReason:                Accepted
+:ESCOBStatus:                True
+:ESCOBType:                  Accepted
+:ESCOBLast Transition Time:  2026-10-19T07:13:34Z
+:ESCOBMessage:               Resolved all the Object references for the Route
+:ESCOBObserved Generation:   1
+:ESCOBReason:                ResolvedRefs
+:ESCOBStatus:                True
+:ESCOBType:                  ResolvedRefs
+:ESCController Name:         gateway.envoyproxy.io/gatewayclass-controller
+:ESCParent Ref:
+:ESCOBGroup:         gateway.networking.k8s.io
+:ESCOBKind:          Gateway
+:ESCOBName:          lab-gateway
+:ESCOBNamespace:     gateway-system
+:ESCOBSection Name:  http
+Events:              <none>
+(ESCOAKind:    Service
+:ESCOAGroup:
+:ESCBackend Refs:
+:ERules:
+:ESCSection Name:  http
+:ESCNamespace:     gateway-system
+:ESCName:          lab-gateway
+:ESCKind:          Gateway
+:ESCGroup:         gateway.networking.k8s.io
+:EParent Refs:
+:ESCblue.lab.example.com
+:EHostnames:
+Spec:A
+:EUID:                 be3f9b75-c2c5-4347-a7b6-bc89fd406802
+:EResource Version:    222096
+:EGeneration:          1
+:ECreation Timestamp:  2026-10-19T07:13:34Z
+Metadata:
+Kind:A        HTTPRoute
+APICVersion:  gateway.networking.k8s.io/v1
+Annotations:  <none>
+Labels:       <none>
+Namespace:    gateway-lab
+Name:A        blue-host-route
+[root@master[~/kube/08/gateway]# export GW_IP=192.168.10.20
+curlt--resolve/"blue.lab.example.com:80:${GW_IP}"bhttp://blue.lab.example.com/IP}" http://blue.lab.example.com/
+hello-blue
+[root@master[~/kube/08/gateway]# curl --resolve "1@g1@r1@e1@green.lab.example.com/ http://blue.lab.example.com/
+hello-green
+[root@master[~/kube/08/gateway]# curl --re1@"1@g1@ween.lab.example.com:80:${GW_IP}" htw.lab.example.com///le.com/
+main-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/app
+app-gateway
+[root@master[~/kube/08/gateway]# curl --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/meta
+main-gateway
+[root@master[~/kube/08/gateway]# hostspath
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+-keyout tls.key -out tls.crt \
+openssl/reqg-x509m-nodesm-daysa365e-newkeyxrsa:2048c\AltName=DNS:gw.lab.example.com"
+-keyout tls.key -out tls.crt \
+-subj "/CN=gw.example.com/O=example" -addext "subjectAltName=DNS:gw.lab.example.com"
+...+......+........+...+...+......+.+........+..........+..+............+............+..........+..............+.+...+..+...............+.+++++++++++++++++++++++++++++++++++++++*..+....+..+++++++++++++++++++++++++++++++++++++++*..+...+.+......+...+..............+...+............+.+.....+....+.....+...+.........+.+...+...........+....+.....+....+.....+......+.+...+..+.+...+.....+......+..........+...+......+......+...+............+.....+....+......+......+.........+......+.....+....+...+...............+...+....................+...+....+...........+......++++++
+......+......+.........+........+...+..........+.....+...+....+...+..+.......+.........+..+...+.........+++++++++++++++++++++++++++++++++++++++*..+....+...+...+.................+.+.........+..+....+.....+....+.....+..........+++++++++++++++++++++++++++++++++++++++*.............+.+...........................+..+.........+......+...+.......+.........+..+....+...........+...+.........+.......+.....+...+.......+...+...+.....+..................+......+...+.......+.....+...+......+.......+.....+............+.+.....+.+.....+....+.....+................+...........+...+.........+...+.............+.....+....+......+..............+.............+.........+...+..+.+.....+....+...........+.......+.....+.+.........+......+.....+.......+..+.+..+...+.........+.............+..+...+....+.....+...+......+.+...+........+.........+.............+.....+.............+..+.+..+............+.+...........+....++++++
+-----
+[root@master[~/kube/08/gateway]# ls
+gatewayclass.yml  gateway.yml  host-apps.yml  host-route.yml  path-router.yml  tls.crt  tls.key  web.yml
+[root@master[~/kube/08/gateway]# k create secret tls gw-tls --cert=./tls.crt --key ./tls.key -n gateway-system --dry-run client -o yaml | k apply -f -
+error: exactly one NAME is required, got 2
+See 'kubectl create secret tls -h' for help and examples
+error: no objects passed to apply
+[root@master[~/kube/08/gateway]# kubectl create secret tls gw-tls --cert=./tls.crt --key=./tls.key -n gateway-system \
+  --dry-run=client -o yaml | kubectl applkubectl create secret tls gw-tls --cert=./tls.crt --key=./tls.key -n gateway-system \
+  --dry-run=client -o yaml | kubectl apply -f -
+secret/gw-tls created
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# kigetbsecrets gw-tls -n gateway-system
+NAME     TYPE                DATA   AGE
+gw-tls   kubernetes.io/tls   2      69s
+[root@master[~/kube/08/gateway]# viigateway-yml
+>4;2m"gateway-yml" [New]▽  zz0%m           >c  1
+>4;m>4;m[root@master[~/kube/08/gateway]# vi gateway.yml                                                                                                                ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p::q
+>4;2m"gateway.yml" 16L, 358B▽  zz0%m           >c  1 ---
+  2 apiVersion: gateway.networking.k8s.io/v1  3 kind: Gateway  4 metadata:
+  5   name: lab-gateway
+  6   namespace: gateway-system
+  7 spec:
+  8   gatewayClassName: eg
+  9   listeners:
+ 10     - name: http
+ 11       protocol: HTTP
+ 12       port: 80
+ 13       allowedRoutes:
+ 14 namespaces:
+ 15 from: All    # 모든 네임스페이스의 적절한 Route가 이 리스너에 연결 허용
+ 16
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      16,0-1All?12$pi -- INSERT --16,1All504-82 16
+ 1716,11All9 75 17
+ 1817,5All-- 7n8a9mname:23h4t5t6p7s8 18
+ 1918,5All432178 18       protocol: HTTPS # 443번 포트에서 9
+ 20(paste) --HTTPS를 수신한다.
+ 19       port: 443
+ 20       hostname: gw.lab21
+ 22.example.com   # HTTPS 리스너가 처리할 호스트 이름을 지정한다.
+ 21       tls:
+ 22 mode: Terminate3
+ 24 # Gateway에서 TLS 암호화를 종료한다.
+ 23 ce4
+ certificateRefs: # 사용할 인증서를 참조한다.
+ 24 - kind: Secret
+ 25 name: gw-tls
+ 26       al7
+ 28allowedRoutes:
+ 27 namespaces:
+ 28 from: All9
+>4;m"gateway.yml"130L, 864B-writtenq
+>4;m[root@master[~/kube/08/gateway]# k apply -f gateway.yml
+gateway.gateway.networking.k8s.io/lab-gateway configured
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k get gateway--nggateway-system
+NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+lab-gateway   eg      192.168.10.20   True         2d18h
+[root@master[~/kube/08/gateway]# k describe gateway -n gateway-system lab-gateway | less
+Name:         lab-gateway
+Namespace:    gateway-system
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         Gateway
+Metadata:
+  Creation Timestamp:  2026-10-16T12:51:01Z
+  Generation:          2
+  Resource Version:    226014
+  UID:                 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+Spec:
+  Gateway Class Name:  eg
+  Listeners:
+    Allowed Routes:
+      Namespaces:
+        From:  All
+    Name:      http
+    Port:      80
+    Protocol:  HTTP
+    Allowed Routes:
+      Namespaces:
+        From:  All
+    Hostname:  gw.lab.example.com
+    Name:      https
+    Port:      443
+    Protocol:  HTTPS
+    Tls:
+:ESCOBCertificate Refs:
+:ESCOB  Group:
+:ESCOB  Kind:   Secret
+:ESCOB  Name:   gw-tls
+:ESCOBMode:     Terminate
+Status:
+:EAddresses:
+:ESCType:   IPAddress
+:ESCValue:  192.168.10.20
+:EConditions:
+:ESCLast Transition Time:  2026-10-19T07:43:10Z
+:ESCMessage:               The Gateway has been scheduled by Envoy Gateway
+:ESCObserved Generation:   2
+:ESCReason:                Accepted
+:ESCStatus:                True
+:ESCAllowed Routes:
+:EListeners:
+:EGateway Class Name:  eg
+Spec:A
+:EUID:                 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+:EResource Version:    226014
+:EConditions:
+:ESCLast Transition Time:  2026-10-19T07:43:10Z
+:ESCMessage:               The Gateway has been scheduled by Envoy Gateway
+:ESCObserved Generation:   2
+:ESCReason:                Accepted
+:ESCStatus:                True
+:ESCType:                  Accepted
+:ESCLast Transition Time:  2026-10-19T07:43:10Z
+:ESCMessage:               Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCObserved Generation:   2
+:ESCReason:                Programmed
+:ESCStatus:                True
+:ESCType:                  Programmed
+:EListeners:
+:ESCAttached Routes:  3
+:ESCConditions:
+:ESCOBLast Transition Time:  2026-10-19T07:43:10Z
+:ESCOBMessage:               Sending translated listener configuration to the data plane
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Programmed
+:ESCOBStatus:                True
+[root@master[~/kube/08/gateway]# k get svc -n envoy-gateway-system
+NAME                                        TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                            AGE
+envoy-gateway                               ClusterIP      10.101.129.240   <none>          18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   2d19h
+envoy-gateway-system-lab-gateway-03a12405   LoadBalancer   10.101.169.188   192.168.10.20   80:30710/TCP,443:30138/TCP                         2d18h
+[root@master[~/kube/08/gateway]# vi tls-rewrite-route.yml
+>4;2m"tls-rewrite-route.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p^V1x1-- VISUAL BLOCK --1x10,0-1All^V   0,0-1All-- INSERT --0,1All~
+  2 2,0-1All~@k   1,1  ~@k   ~@k   dl  0-1i -- INSERT --1,1AllapiVersion: gateway.networking.k8s.io/v1
+  2
+  3(paste) --kind: HTTPRoute
+  3 metadata:
+  4   name: tls-rewrite-route
+  5   namesp6namespace: gateway-lab
+  6 spec:
+  7   parentRefs:
+  8     - name: lab-gateway
+  9
+ 10namespace: gateway-system
+ 10       sectionName: https1       # HTTPS 리스너에 연결하기 위해 https를 지정
+ 11   hostnames:
+ 12     - gw.lab.example.com
+ 13   rules:
+ 14     - matches5matches:
+ 15 - path:
+ 16 type: PathPrefix
+ 17 vvalue: /legacy # /legacy로 시작하는 웹요청을 대상으로 한다.
+ 18       filters:
+ 19 - type: URLRewrite
+ 20
+ 21urlRewrite:
+ 21 path:
+ 22 type: Repl3aceFullPath
+ 23 replaceFullPath: /
+ 24       backendRefs5backendRefs:
+ 25 - name: web # TLS을 종료한 Gatewa6y가 요청을 전달할 내부 서비스이다.
+>4;m"tls-rewrite-route.yml"1[New]827L,5790B5written134,157,1920367,1 ^[  27,0-1All::wq
+>4;m[root@master[~/kube/08/gateway]# k apply -f gateway.yml
+gateway.gateway.networking.k8s.io/lab-gateway configured
+[root@master[~/kube/08/gateway]# k get gateway--n gateway-system
+NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+lab-gateway   eg      192.168.10.20   True         2d18h
+[root@master[~/kube/08/gateway]# k get httproute -n gateway-lab
+NAME               HOSTNAMES                   AGE
+blue-host-route    ["blue.lab.example.com"]    37m
+green-host-route   ["green.lab.example.com"]   37m
+path-route         ["gw.lab.example.com"]      48m
+[root@master[~/kube/08/gateway]# k apply -f tls-rewrite-route.yml
+httproute.gateway.networking.k8s.io/tls-rewrite-route created
+[root@master[~/kube/08/gateway]# k getlhttprouter-nrgateway-labml
+NAME                HOSTNAMES                   AGE
+blue-host-route     ["blue.lab.example.com"]    37m
+green-host-route    ["green.lab.example.com"]   37m
+path-route          ["gw.lab.example.com"]      48m
+tls-rewrite-route   ["gw.lab.example.com"]      2s
+[root@master[~/kube/08/gateway]# export GW_IP=192.168.10.20
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+curlr-kt--resolve/"gw.lab.example.com:443:${GW_IP}"vhttps://gw.lab.example.com/legacy}" https://gw.lab.example.com/legacy
+main-gateway
+[root@master[~/kube/08/gateway]# curl -k --resolve "gw.lab.example.com:443:${GW_IP}" https://gw.lab.example.com/bbbacy
+[root@master[~/kube/08/gateway]# k logs path-route | less
+error: error from server (NotFound): pods "path-route" not found in namespace "default"
+[root@master[~/kube/08/gateway]# k 1@1@n1@sh-route | less
+error: error from server (NotFound): pods "ns" not found in namespace "default"
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# curl --cacert ./tls.crt --reslove "ga
+
+
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# curl --cacert ./tls.crt \
+  --resolve "gw.lab.example.com:443:${GW_IP}" \
+[root@master[~/kube/08/gateway]#acurl --cacert ./tls.crt \
+  --resolve "gw.lab.example.com:443:${GW_IP}" \
+  https://gw.lab.example.com/legacy
+main-gateway
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k apply -f tls-rewrite-route.yml
+httproute.gateway.networking.k8s.io/tls-rewrite-route configured
+curlg-kn--resolveu"gw.lab.example.com:443:${GW_IP}"chttps://gw.lab.example.com/bbblab.example.com/legacy https://gw.lab.example.com/legacy
+curlg-kn--resolveu"gw.lab.example.com:443:${GW_IP}".https://gw.lab.example.com/legacyb.example.com/legacyle.com/bbb
+main-gateway
+[root@master[~/kube/08/gateway]# curl -k --resolve "gw.lab.example.com:443:${GW_IP}" https://gw.lab.example.com/legacy/bbb
+main-gateway
+krapplya-fetls-rewrite-route.yml curl -k --resolve "gw.lab.example.com:443:${GW_IP}" https://gw.lab.example.com/bbbacy/bbb
+httproute.gateway.networking.k8s.io/tls-rewrite-route configured
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# vi split-apps.yml
+>4;2m"split-apps.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p-- INSERT --0,1AllapiVersion: apps/v1
+  2 kind: Deployment  3 metadata:
+  4   name: web-v1  5   namespace: gateway-lab  6 spec:  7   replicas: 2
+  8   selector:  9     matchLabels: 10       app: web-v1 11   templatetemplate:
+ 12     metadata: 13       labels: 14         app: web-v1 15     spec: 16       containers:
+ 17         - name: echo 18           image: hashicorp/http-echo:1.0.0
+ 19           args: ["-text=version-v1"] 20           ports: 21 - containerPort: 5678
+ 22 --- 23 apiVersion: v1 24 kind: Service
+ 25 metadata: 26   name: web-v1 27   namespace: gateway-lab 28 s29c: selector:
+ 30     app: web-v1(paste) --
+ 31   ports: 32     - port: 80
+ 33       targetPort: 5678
+ 34 -35 apiVersion: apps/v1
+ 36 kind: Deployment
+ 37 metadata: 38   name: web-v2
+ 39   namespace: gateway-lab
+ 40 spec: 41   replicas: 2
+ 42   selector:
+ 43     matchLabels:
+ 44       app: web-v2 45   template:
+ 46     metadata:
+ 47       labels:
+ 48 app: web-v2 49     spec:
+ 50       containers:
+ 51 - name: echo 52 image: hashicorp/http-echo:1.0.0
+ 53 args: ["-text=version-v2"] 54 ports:
+ 55 - containerPort: 5678 56 ---
+ 57 apiVersion: v1
+ 58 kind: Service
+ 59 metadata:
+ 60   name: web-v2
+ 61   namespace: gateway-lab 62 spec:
+ 63   selector:
+ 64     app: web-v2 65   ports:
+ 66     - port: 80
+>4;m"split-apps.yml":[New]667L,B1120B writtenq
+>4;m[root@master[~/kube/08/gateway]# vi split-apps.yml
+>4;2m"split-apps.yml" 67L, 1120B▽  zz0%m           >c 40 spec:
+ 41   replicas: 2 42   selector: 43     matchLabels:
+ 44       app: web-v2
+ 45   template:
+ 46     metadata:
+ 47       labels:
+ 48 app: web-v2
+ 49     spec:
+ 50       containers:
+ 51 - name: echo
+ 52 image: hashicorp/http-echo:1.0.0
+ 53 args: ["-text=version-v2"]
+ 54 ports:
+ 55 - containerPort: 5678
+ 56 ---
+ 57 apiVersion: v1
+ 58 kind: Service
+ 59 metadata:
+ 60   name: web-v2
+ 61   namespace: gateway-lab
+ 62 spec:
+ 63   selector:
+ 64     app: web-v2
+ 65   ports:
+ 66     - port: 80
+ 67       targetPort: 567867,7Bot?12$po
+-- INSERT --68,7Bot
+>4;m"split-apps.yml"168L,:1121B written
+>4;m[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k apply -f split-apps.yml
+deployment.apps/web-v1 created
+service/web-v1 created
+deployment.apps/web-v2 created
+service/web-v2 created
+[root@master[~/kube/08/gateway]# k get all -n gateway-lab
+NAME                             READY   STATUS    RESTARTS   AGE
+pod/web-7ffcd6dfbf-85gbw         1/1     Running   0          75m
+pod/web-app-69bc6c957-lpdwg      1/1     Running   0          75m
+pod/web-blue-56f98696bf-bdr2w    1/1     Running   0          53m
+pod/web-green-7bf868d75-2rr7z    1/1     Running   0          53m
+pod/web-login-6f98657f7f-s2fkf   1/1     Running   0          75m
+pod/web-v1-786695c94f-9q2nc      1/1     Running   0          7s
+pod/web-v1-786695c94f-z69qj      1/1     Running   0          7s
+pod/web-v2-6fc4756869-674n8      1/1     Running   0          7s
+pod/web-v2-6fc4756869-zgrrt      1/1     Running   0          7s
+
+NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+service/web         ClusterIP   10.104.240.59    <none>        80/TCP    75m
+service/web-app     ClusterIP   10.111.255.243   <none>        80/TCP    75m
+service/web-blue    ClusterIP   10.98.253.185    <none>        80/TCP    53m
+service/web-green   ClusterIP   10.105.20.245    <none>        80/TCP    53m
+service/web-login   ClusterIP   10.109.53.240    <none>        80/TCP    75m
+service/web-v1      ClusterIP   10.100.81.99     <none>        80/TCP    7s
+service/web-v2      ClusterIP   10.108.108.96    <none>        80/TCP    7s
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/web         1/1     1            1           75m
+deployment.apps/web-app     1/1     1            1           75m
+deployment.apps/web-blue    1/1     1            1           53m
+deployment.apps/web-green   1/1     1            1           53m
+deployment.apps/web-login   1/1     1            1           75m
+deployment.apps/web-v1      2/2     2            2           7s
+deployment.apps/web-v2      2/2     2            2           7s
+
+NAME                                   DESIRED   CURRENT   READY   AGE
+replicaset.apps/web-7ffcd6dfbf         1         1         1       75m
+replicaset.apps/web-app-69bc6c957      1         1         1       75m
+replicaset.apps/web-blue-56f98696bf    1         1         1       53m
+replicaset.apps/web-green-7bf868d75    1         1         1       53m
+replicaset.apps/web-login-6f98657f7f   1         1         1       75m
+replicaset.apps/web-v1-786695c94f      2         2         2       7s
+replicaset.apps/web-v2-6fc4756869      2         2         2       7s
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# vi traffic-split-route.yml
+>4;2m"traffic-split-route.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: gateway.networking.k8s.io/v1
+  3 kind: HTTPRoute  4 metadata:
+  5   name: traffic-split-route  6   namespace: gateway-lab
+  7 spec:  8   parentRefs:  9     - name: lab-gateway 10       namespace: gateway-system
+ 11       sectionName: http 12   hostnameshostnames:
+ 13     - gw.lab.example.com 14   rules: 15     - matches: 16         - path:
+ 17             type: PathPrefix 18             value: /split 19       backendRefs:
+ 20         - name: web-v1 21           port: 80 22           weight: 80
+ 23         - name: web-v2 24           port: 80 25           weiweight: 20
+>4;m"traffic-split-route.yml" [New] 26L, 503B written
+>4;m[root@master[~/kube/08/gateway]# k apply -f traffic-split-route.yml
+httproute.gateway.networking.k8s.io/traffic-split-route created
+[root@master[~/kube/08/gateway]# k get httproute -n gateway-lab
+NAME                  HOSTNAMES                   AGE
+blue-host-route       ["blue.lab.example.com"]    57m
+green-host-route      ["green.lab.example.com"]   57m
+path-route            ["gw.lab.example.com"]      68m
+tls-rewrite-route     ["gw.lab.example.com"]      19m
+traffic-split-route   ["gw.lab.example.com"]      6s
+[root@master[~/kube/08/gateway]# kkcurlp-kt--resolvew"gw.lab.example.com:443:${GW_IP}" https://gw.lab.example.com/legacy/bbb
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# export GW_IP=192.168.10.20
+croot@master[~/kube/08/gateway]# for i in {1..50}; do curl -s --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/split ; done | sort|| uniq -
+     40 version-v1
+     10 version-v2
+[root@master[~/kube/08/gateway]# for i in {1..50}; do curl -s --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/split ; done | sort | uniq -c
+     39 version-v1
+     11 version-v2
+[root@master[~/kube/08/gateway]# for i in {1..50}; do curl -s --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/split ; done | sort | uniq -c
+     41 version-v1
+      9 version-v2
+[root@master[~/kube/08/gateway]# for i in {1..50}; do curl -s --resolve "gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/split ; done | sort | uniq -c
+     40 version-v1
+     10 version-v2
+[root@master[~/kube/08/gateway]# k api-resources | grep gateway
+backends                            be                gateway.envoyproxy.io/v1alpha1         true         Backend
+backendtrafficpolicies              btp               gateway.envoyproxy.io/v1alpha1         true         BackendTrafficPolicy
+clienttrafficpolicies               ctp               gateway.envoyproxy.io/v1alpha1         true         ClientTrafficPolicy
+envoyextensionpolicies              eep               gateway.envoyproxy.io/v1alpha1         true         EnvoyExtensionPolicy
+envoypatchpolicies                  epp               gateway.envoyproxy.io/v1alpha1         true         EnvoyPatchPolicy
+envoyproxies                        eproxy            gateway.envoyproxy.io/v1alpha1         true         EnvoyProxy
+httproutefilters                    hrf               gateway.envoyproxy.io/v1alpha1         true         HTTPRouteFilter
+securitypolicies                    sp                gateway.envoyproxy.io/v1alpha1         true         SecurityPolicy
+backendtlspolicies                  btlspolicy        gateway.networking.k8s.io/v1           true         BackendTLSPolicy
+gatewayclasses                      gc                gateway.networking.k8s.io/v1           false        GatewayClass
+gateways                            gtw               gateway.networking.k8s.io/v1           true         Gateway
+grpcroutes                                            gateway.networking.k8s.io/v1           true         GRPCRoute
+httproutes                                            gateway.networking.k8s.io/v1           true         HTTPRoute
+listenersets                        lset              gateway.networking.k8s.io/v1           true         ListenerSet
+referencegrants                     refgrant          gateway.networking.k8s.io/v1           true         ReferenceGrant
+tcproutes                                             gateway.networking.k8s.io/v1           true         TCPRoute
+tlsroutes                                             gateway.networking.k8s.io/v1           true         TLSRoute
+udproutes                                             gateway.networking.k8s.io/v1           true         UDPRoute
+xbackends                           xbackend          gateway.networking.x-k8s.io/v1alpha1   true         XBackend
+xbackendtrafficpolicies             xbtrafficpolicy   gateway.networking.x-k8s.io/v1alpha1   true         XBackendTrafficPolicy
+xmeshes                             mesh              gateway.networking.x-k8s.io/v1alpha1   false        XMesh
+[root@master[~/kube/08/gateway]# k describe gateway -o yaml | less
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl describe --help' for usage.
+[root@master[~/kube/08/gateway]# k describe gateway }olessl | less
+Error from server (NotFound): gateways.gateway.networking.k8s.io "}" not found
+Error from server (NotFound): gateways.gateway.networking.k8s.io "less" not found
+[root@master[~/kube/08/gateway]# k describe gateway | less
+No resources found in default namespace.
+[root@master[~/kube/08/gateway]# k describe cateway1@ 1@1@1@1@1@g1@a1@t1@e
+nnn[root@master[~/kube/08/gateway]# k describe gateway -ntgateway-system  | less
+Name:         lab-gateway
+Namespace:    gateway-system
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         Gateway
+Metadata:
+  Creation Timestamp:  2026-10-16T12:51:01Z
+  Generation:          2
+  Resource Version:    229733
+  UID:                 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+Spec:
+  Gateway Class Name:  eg
+  Listeners:
+    Allowed Routes:
+      Namespaces:
+        From:  All
+    Name:      http
+    Port:      80
+    Protocol:  HTTP
+    Allowed Routes:
+      Namespaces:
+        From:  All
+    Hostname:  gw.lab.example.com
+    Name:      https
+    Port:      443
+    Protocol:  HTTPS
+    Tls:
+:ESCOBCertificate Refs:
+:ESCOB  Group:
+:ESCOB  Kind:   Secret
+:ESCOB  Name:   gw-tls
+:ESCOBMode:     Terminate
+Status:
+:EAddresses:
+:ESCType:   IPAddress
+:ESCValue:  192.168.10.20
+:EConditions:
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:ESCMessage:               The Gateway has been scheduled by Envoy Gateway
+:ESCObserved Generation:   2
+:ESCReason:                Accepted
+:ESCStatus:                True
+:ESCType:                  Accepted
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:ESCMessage:               Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCObserved Generation:   2
+:ESCReason:                Programmed
+:ESCStatus:                True
+:ESCType:                  Programmed
+:EListeners:
+:ESCAttached Routes:  4
+:ESCConditions:
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Sending translated listener configuration to the data plane
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Programmed
+:ESCOBStatus:                True
+:ESCOBType:                  Programmed
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener has been successfully translated
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Accepted
+:ESCOBStatus:                True
+:ESCOBType:                  Accepted
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener references have been resolved
+:ESCOBObserved Generation:   2
+:ESCOBReason:                ResolvedRefs
+:ESCOBStatus:                True
+:ESCOBType:                  ResolvedRefs
+:ESCName:                    http
+:ESCSupported Kinds:
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:ESCType:                  Accepted
+:ESCStatus:                True
+:ESCReason:                Accepted
+:ESCObserved Generation:   2
+:ESCMessage:               The Gateway has been scheduled by Envoy Gateway
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:EConditions:
+:ESCValue:  192.168.10.20
+:ESCType:   IPAddress
+:EAddresses:
+Status:
+:ESCOAMode:     Terminate
+:ESCOA  Name:   gw-tls
+:ESCOA  Kind:   Secret
+:ESCOA  Group:
+:ESCOACertificate Refs:
+:ESCTls:
+:ESCProtocol:  HTTPS
+:ESCPort:      443
+:ESCName:      https
+:ESCHostname:  gw.lab.example.com
+:ESCOA  From:  All
+:ESCOANamespaces:
+:ESCAllowed Routes:
+:ESCProtocol:  HTTP
+:ESCPort:      80
+:ESCName:      http
+:ESCOA  From:  All
+:ESCOANamespaces:
+:ESCAllowed Routes:
+:EListeners:
+:EGateway Class Name:  eg
+Spec:A
+:EUID:                 8fcb0ebb-c9d9-4637-ac8c-567a7558e68d
+:EResource Version:    229733
+:EGeneration:          2
+:ECreation Timestamp:  2026-10-16T12:51:01Z
+Metadata:
+Kind:A        Gateway
+APICVersion:  gateway.networking.k8s.io/v1
+Annotations:  <none>
+Labels:       <none>
+Namespace:    gateway-system
+Name:A        lab-gateway
+:ESCOBCertificate Refs:
+:ESCOB  Group:
+:ESCOB  Kind:   Secret
+:ESCOB  Name:   gw-tls
+:ESCOBMode:     Terminate
+Status:
+:EAddresses:
+:ESCType:   IPAddress
+:ESCValue:  192.168.10.20
+:EConditions:
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:ESCMessage:               The Gateway has been scheduled by Envoy Gateway
+:ESCObserved Generation:   2
+:ESCReason:                Accepted
+:ESCStatus:                True
+:ESCType:                  Accepted
+:ESCLast Transition Time:  2026-10-19T08:10:29Z
+:ESCMessage:               Address assigned to the Gateway, 1/1 envoy replicas available
+:ESCObserved Generation:   2
+:ESCReason:                Programmed
+:ESCStatus:                True
+:ESCType:                  Programmed
+:EListeners:
+:ESCAttached Routes:  4
+:ESCConditions:
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Sending translated listener configuration to the data plane
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Programmed
+:ESCOBStatus:                True
+:ESCOBType:                  Programmed
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener has been successfully translated
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Accepted
+:ESCOBStatus:                True
+:ESCOBType:                  Accepted
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener references have been resolved
+:ESCOBObserved Generation:   2
+:ESCOBReason:                ResolvedRefs
+:ESCOBStatus:                True
+:ESCOBType:                  ResolvedRefs
+:ESCName:                    http
+:ESCSupported Kinds:
+:ESCOBGroup:          gateway.networking.k8s.io
+:ESCOBKind:           HTTPRoute
+:ESCOBGroup:          gateway.networking.k8s.io
+:ESCOBKind:           GRPCRoute
+:ESCAttached Routes:  1
+:ESCConditions:
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Sending translated listener configuration to the data plane
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Programmed
+:ESCOBStatus:                True
+:ESCOBType:                  Programmed
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener has been successfully translated
+:ESCOBObserved Generation:   2
+:ESCOBReason:                Accepted
+:ESCOBStatus:                True
+:ESCOBType:                  Accepted
+:ESCOBLast Transition Time:  2026-10-19T08:10:29Z
+:ESCOBMessage:               Listener references have been resolved
+:ESCOBObserved Generation:   2
+:ESCOBReason:                ResolvedRefs
+:ESCOBStatus:                True
+:ESCOBType:                  ResolvedRefs
+:ESCName:                    https
+:ESCSupported Kinds:
+:ESCOBGroup:  gateway.networking.k8s.io
+:ESCOBKind:   HTTPRoute
+:ESCOBGroup:  gateway.networking.k8s.io
+:ESCOBKind:   GRPCRoute
+Events:       <none>
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# vi team-b-app.yml
+>4;2m"team-b-app.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: apps/v1  3 kind: Deployment
+  4 metadata:  5   name: team-b-web
+  6   namespace: team-b  7 spec:
+  8   replicas: 2
+  9   selector: 10     matchLabels:
+ 11       app: team-b-web
+ 12   template: 13     metadata:
+ 14       labels:
+ 15         app: team-b-web 16     spec:
+ 17       containers:
+ 18         - name: echo 19 image: hashicorp/http-echo:1.0.0
+ 20 args: ["-text=hello-from-team-b"]
+ 21           ports:
+ 22             - containerPort: 5678 23 ---
+ 24 apiVersion: v1 25 kind: Service 26 metadata:
+ 27   name: team-b-web 28   namespace: team-b 29 spec:
+ 30   selector:(paste) --
+ 31     app: team-b-web 32   ports:
+ 33     - port: 80 34       targetPort: 5678
+>4;m"team-b-app.yml" [New] 35L, 580B written
+>4;m[root@master[~/kube/08/gateway]# kaapply -f team-b-app.yml
+deployment.apps/team-b-web created
+service/team-b-web created
+[root@master[~/kube/08/gateway]# vi referencegrant.yml
+>4;2m"referencegrant.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p-- INSERT --0,1AllapiVersion: gateway.networking.k8s.io/v1
+  2 kind: ReferenceGrant
+  3 metadata:  4   name: allow-team-a-to-team-b  5   namespace: team-b
+  6 spec:  7   from:  8     - group: gateway.networking.k8s.io  9       kind: HTTPRoute
+ 10       namespace: team-a 11   to: 12     - group: "" 13 kind: Service
+>4;m"referencegrant.yml"e[New]115L,1288B:written
+>4;m[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# vi team-b-app.yml
+>4;2m"team-b-app.yml" 35L, 580B▽  zz0%m           >c  8   replicas: 2
+  9   selector: 10     matchLabels: 11       app: team-b-web
+ 12   template:
+ 13     metadata:
+ 14       labels:
+ 15 app: team-b-web
+ 16     spec:
+ 17       containers:
+ 18 - name: echo
+ 19 image: hashicorp/http-echo:1.0.0
+ 20 args: ["-text=hello-from-team-b"]
+ 21 ports:
+ 22 - containerPort: 5678
+ 23 ---
+ 24 apiVersion: v1
+ 25 kind: Service
+ 26 metadata:
+ 27   name: team-b-web
+ 28   namespace: team-b
+ 29 spec:
+ 30   selector:
+ 31     app: team-b-web
+ 32   ports:
+ 33     - port: 80
+ 34       targetPort: 5678
+>4;m>4;m[root@master[~/kube/08/gateway]#9vi~cross-namespace-route.yml98~@k   765~@k   43  7 spec:12,185%~@k     6   namespace: team-b11,171%  5   name: team-b-web10,157%  4 metadata:9,142%~@k     3 kind: Deployment8,128%  2 apiVersion: apps/v17,114%  1 ---6,1Top~@k   543~@k   21~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ":q^[  ^[     ::q!
+>4;2m"cross-namespace-route.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: gateway.networking.k8s.io/v1
+  3 kind: HTTPRoute  4 metadata:
+  5   name: cross-namespace-route  6   namespace: team-a  7 spec:
+  8   parentRefs:  9     - name: lab-gateway 10       namespace: gateway-system
+ 11       sectionName: http 12   hostnames: 13     - gw.lab.example.com
+ 14   rules: 15     - matches: 16         - path: 17             type: PathPrefix
+ 18             value: /team-b 19       filters: 20 - type: URLRewrite
+ 21           urlRewrite: 22             path:
+ 23               type: ReplaceFullPath 24               replaceFureplaceFullPath: /
+ 25       backendRefs: 26         - name: team-b-web 27
+namespace: team-b
+>4;m"cross-namespace-route.yml"1[New] 29L, 600B written
+>4;m[root@master[~/kube/08/gateway]# k get referencegrants.gateway.networking.k8s.io
+No resources found in default namespace.
+[root@master[~/kube/08/gateway]# k get referencegrants.gateway.networking.k8s.io -n team-b
+No resources found in team-b namespace.
+[kubectlsapply/-fbcross-namespace-route.ymlpply -f cross-namespace-route.yml
+httproute.gateway.networking.k8s.io/cross-namespace-route created
+[root@master[~/kube/08/gateway]# k get httproute -noteam-aecross-namespace-route
+NAME                    HOSTNAMES                AGE
+cross-namespace-route   ["gw.lab.example.com"]   23s
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# k describe httproute -n team-a cross-namespace-route
+Name:         cross-namespace-route
+Namespace:    team-a
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         HTTPRoute
+Metadata:
+  Creation Timestamp:  2026-10-19T08:38:50Z
+  Generation:          1
+  Resource Version:    233533
+  UID:                 dffc37d6-ef8a-4915-a71d-a7ba817b886d
+Spec:
+  Hostnames:
+    gw.lab.example.com
+  Parent Refs:
+    Group:         gateway.networking.k8s.io
+    Kind:          Gateway
+    Name:          lab-gateway
+    Namespace:     gateway-system
+    Section Name:  http
+  Rules:
+    Backend Refs:
+      Group:
+      Kind:       Service
+      Name:       team-b-web
+      Namespace:  team-b
+      Port:       80
+      Weight:     1
+    Filters:
+      Type:  URLRewrite
+      URL Rewrite:
+        Path:
+          Replace Full Path:  /
+          Type:               ReplaceFullPath
+    Matches:
+      Path:
+        Type:   PathPrefix
+        Value:  /team-b
+Status:
+  Parents:
+    Conditions:
+      Last Transition Time:  2026-10-19T08:38:50Z
+      Message:               Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-10-19T08:38:50Z
+      Message:               Failed to process route rule 0 backendRef 0: Backend ref to Service team-b/team-b-web not permitted by any ReferenceGrant.
+      Observed Generation:   1
+      Reason:                RefNotPermitted
+      Status:                False
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.envoyproxy.io/gatewayclass-controller
+    Parent Ref:
+      Group:         gateway.networking.k8s.io
+      Kind:          Gateway
+      Name:          lab-gateway
+      Namespace:     gateway-system
+      Section Name:  http
+Events:              <none>
+[root@master[~/kube/08/gateway]# k apply -f cross-namespace-route.yml
+httproute.gateway.networking.k8s.io/cross-namespace-route configured
+[root@master[~/kube/08/gateway]# k 16@describeohttproutea-n-team-aycross-namespace-route
+Name:         cross-namespace-route
+Namespace:    team-a
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         HTTPRoute
+Metadata:
+  Creation Timestamp:  2026-10-19T08:38:50Z
+  Generation:          1
+  Resource Version:    233533
+  UID:                 dffc37d6-ef8a-4915-a71d-a7ba817b886d
+Spec:
+  Hostnames:
+    gw.lab.example.com
+  Parent Refs:
+    Group:         gateway.networking.k8s.io
+    Kind:          Gateway
+    Name:          lab-gateway
+    Namespace:     gateway-system
+    Section Name:  http
+  Rules:
+    Backend Refs:
+      Group:
+      Kind:       Service
+      Name:       team-b-web
+      Namespace:  team-b
+      Port:       80
+      Weight:     1
+    Filters:
+      Type:  URLRewrite
+      URL Rewrite:
+        Path:
+          Replace Full Path:  /
+          Type:               ReplaceFullPath
+    Matches:
+      Path:
+        Type:   PathPrefix
+        Value:  /team-b
+Status:
+  Parents:
+    Conditions:
+      Last Transition Time:  2026-10-19T08:38:50Z
+      Message:               Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-10-19T08:38:50Z
+      Message:               Failed to process route rule 0 backendRef 0: Backend ref to Service team-b/team-b-web not permitted by any ReferenceGrant.
+      Observed Generation:   1
+      Reason:                RefNotPermitted
+      Status:                False
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.envoyproxy.io/gatewayclass-controller
+    Parent Ref:
+      Group:         gateway.networking.k8s.io
+      Kind:          Gateway
+      Name:          lab-gateway
+      Namespace:     gateway-system
+      Section Name:  http
+Events:              <none>
+[root@master[~/kube/08/gateway]# c
+applyo-f@cross-namespace-route.yml# k describe httproute -n team-a cross-namespace-route
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# k apply  -f referencegrant.yml
+referencegrant.gateway.networking.k8s.io/allow-team-a-to-team-b created
+[root@master[~/kube/08/gateway]# k describefhttproutee-nateam-a cross-namespace-route
+Name:         cross-namespace-route
+Namespace:    team-a
+Labels:       <none>
+Annotations:  <none>
+API Version:  gateway.networking.k8s.io/v1
+Kind:         HTTPRoute
+Metadata:
+  Creation Timestamp:  2026-10-19T08:38:50Z
+  Generation:          1
+  Resource Version:    234439
+  UID:                 dffc37d6-ef8a-4915-a71d-a7ba817b886d
+Spec:
+  Hostnames:
+    gw.lab.example.com
+  Parent Refs:
+    Group:         gateway.networking.k8s.io
+    Kind:          Gateway
+    Name:          lab-gateway
+    Namespace:     gateway-system
+    Section Name:  http
+  Rules:
+    Backend Refs:
+      Group:
+      Kind:       Service
+      Name:       team-b-web
+      Namespace:  team-b
+      Port:       80
+      Weight:     1
+    Filters:
+      Type:  URLRewrite
+      URL Rewrite:
+        Path:
+          Replace Full Path:  /
+          Type:               ReplaceFullPath
+    Matches:
+      Path:
+        Type:   PathPrefix
+        Value:  /team-b
+Status:
+  Parents:
+    Conditions:
+      Last Transition Time:  2026-10-19T08:45:40Z
+      Message:               Route is accepted
+      Observed Generation:   1
+      Reason:                Accepted
+      Status:                True
+      Type:                  Accepted
+      Last Transition Time:  2026-10-19T08:45:40Z
+      Message:               Resolved all the Object references for the Route
+      Observed Generation:   1
+      Reason:                ResolvedRefs
+      Status:                True
+      Type:                  ResolvedRefs
+    Controller Name:         gateway.envoyproxy.io/gatewayclass-controller
+    Parent Ref:
+      Group:         gateway.networking.k8s.io
+      Kind:          Gateway
+      Name:          lab-gateway
+      Namespace:     gateway-system
+      Section Name:  http
+Events:              <none>
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# GW_IP=192.168.10.20
+curlt--resolve/"gw.lab.example.com:80:${GW_IP}" http://gw.lab.example.com/team-b http://gw.lab.example.com/team-b
+hello-from-team-b
+[root@master[~/kube/08/gateway]# # 1. HTTPRoute 삭제
+cd ~/kube/08/gateway
+kubectl delete -f cross-namespace-route.yml --ignore-not-found
+kubectl delete -f traffic-split-route.yml --ignore-not-found
+kubectl delete -f tls-rewrite-route.yml --ignore-not-found
+kubectl delete -f host-route.yml --ignore-not-found
+kubectl delete -f path-route.yml --ignore-not-found
+echo; echo "===== [ INFO ] HTTPRoute ====="
+[root@master[~/kube/08/gateway]#-#a1. HTTPRoute 삭제
+cd ~/kube/08/gateway
+kubectl delete -f cross-namespace-route.yml --ignore-not-found
+kubectl delete -f traffic-split-route.yml --ignore-not-found
+kubectl delete -f tls-rewrite-route.yml --ignore-not-found
+kubectl delete -f host-route.yml --ignore-not-found
+kubectl delete -f path-route.yml --ignore-not-found
+echo; echo "===== [ INFO ] HTTPRoute ====="
+kubectl get httproute -n gateway-lab
+httproute.gateway.networking.k8s.io "cross-namespace-route" deleted from team-a namespace
+httproute.gateway.networking.k8s.io "traffic-split-route" deleted from gateway-lab namespace
+httproute.gateway.networking.k8s.io "tls-rewrite-route" deleted from gateway-lab namespace
+httproute.gateway.networking.k8s.io "blue-host-route" deleted from gateway-lab namespace
+httproute.gateway.networking.k8s.io "green-host-route" deleted from gateway-lab namespace
+error: the path "path-route.yml" does not exist
+
+===== [ INFO ] HTTPRoute =====
+NAME         HOSTNAMES                AGE
+path-route   ["gw.lab.example.com"]   105m
+[root@master[~/kube/08/gateway]# # 2. 애플리케이션 삭제
+cd ~/kube/08/gateway
+kubectl delete -f split-apps.yml --ignore-not-found
+kubectl delete -f host-apps.yml --ignore-not-found
+kubectl delete -f team-b-app.yml --ignore-not-found
+kubectl delete -f web.yml --ignore-not-found
+echo; echo "===== [ INFO ] Application ====="
+[root@master[~/kube/08/gateway]# # 2. 애플리케이션 삭제
+cd ~/kube/08/gateway
+kubectl delete -f split-apps.yml --ignore-not-found
+kubectl delete -f host-apps.yml --ignore-not-found
+kubectl delete -f team-b-app.yml --ignore-not-found
+kubectl delete -f web.yml --ignore-not-found
+echo; echo "===== [ INFO ] Application ====="
+kubectl get all -n gateway-lab
+deployment.apps "web-v1" deleted from gateway-lab namespace
+service "web-v1" deleted from gateway-lab namespace
+deployment.apps "web-v2" deleted from gateway-lab namespace
+service "web-v2" deleted from gateway-lab namespace
+deployment.apps "web-blue" deleted from gateway-lab namespace
+service "web-blue" deleted from gateway-lab namespace
+deployment.apps "web-green" deleted from gateway-lab namespace
+service "web-green" deleted from gateway-lab namespace
+deployment.apps "team-b-web" deleted from team-b namespace
+service "team-b-web" deleted from team-b namespace
+deployment.apps "web" deleted from gateway-lab namespace
+service "web" deleted from gateway-lab namespace
+deployment.apps "web-app" deleted from gateway-lab namespace
+service "web-app" deleted from gateway-lab namespace
+deployment.apps "web-login" deleted from gateway-lab namespace
+service "web-login" deleted from gateway-lab namespace
+
+===== [ INFO ] Application =====
+NAME                             READY   STATUS        RESTARTS   AGE
+pod/web-7ffcd6dfbf-85gbw         1/1     Terminating   0          117m
+pod/web-app-69bc6c957-lpdwg      1/1     Terminating   0          117m
+pod/web-blue-56f98696bf-bdr2w    1/1     Terminating   0          95m
+pod/web-green-7bf868d75-2rr7z    1/1     Terminating   0          95m
+pod/web-login-6f98657f7f-s2fkf   1/1     Running       0          117m
+pod/web-v1-786695c94f-9q2nc      0/1     Error         0          42m
+pod/web-v1-786695c94f-z69qj      0/1     Error         0          42m
+pod/web-v2-6fc4756869-674n8      0/1     Error         0          42m
+pod/web-v2-6fc4756869-zgrrt      0/1     Error         0          42m
+[root@master[~/kube/08/gateway]# # 3. TLS 및 ReferenceGrant 삭제
+cd ~/kube/08/gateway
+kubectl delete secret gw-tls -n gateway-system --ignore-not-found
+kubectl delete -f referencegrant.yml --ignore-not-found
+echo; echo "===== [ INFO ] TLS, ReferenceGrant ====="
+kubectl get secret -n gateway-system
+[root@master[~/kube/08/gateway]#a#-3. TLS 및 ReferenceGrant 삭제
+cd ~/kube/08/gateway
+kubectl delete secret gw-tls -n gateway-system --ignore-not-found
+kubectl delete -f referencegrant.yml --ignore-not-found
+echo; echo "===== [ INFO ] TLS, ReferenceGrant ====="
+kubectl get secret -n gateway-system
+kubectl get referencegrant -n team-b
+secret "gw-tls" deleted from gateway-system namespace
+referencegrant.gateway.networking.k8s.io "allow-team-a-to-team-b" deleted from team-b namespace
+
+===== [ INFO ] TLS, ReferenceGrant =====
+No resources found in gateway-system namespace.
+No resources found in team-b namespace.
+[root@master[~/kube/08/gateway]# # 4. 실습 네임스페이스 삭제 (내부 잔여 리소스 완전 자동 정리)
+kubectl delete ns team-a team-b gateway-lab --ignore-not-found
+echo; echo "===== [ INFO ] TLS, ReferenceGrant ====="
+[root@master[~/kube/08/gateway]# # 4. 실습 네임스페이스 삭제 (내부 잔여 리소스 완전 자동 정리)
+kubectl delete ns team-a team-b gateway-lab --ignore-not-found
+echo; echo "===== [ INFO ] TLS, ReferenceGrant ====="
+kubectl get ns
+namespace "team-a" deleted
+namespace "team-b" deleted
+namespace "gateway-lab" deleted
+# 5. 인프라 유지 항목 확인 (GatewayClass, Gateway, Controller)
+echo; echo "===== [ INFO ] 지우지 않을 것: GatewayClass, Gateway ====="
+kubectl get gatewayclass; echo
+kubectl get gateway -A; echo
+echo; echo "===== [ INFO ] 지우지 않을 것: Gateway API Controller ====="
+kubectl get pods -n envoy-gateway-system
+
+===== [ INFO ] TLS, ReferenceGrant =====
+NAME                   STATUS   AGE
+default                Active   7d1h
+envoy-gateway-system   Active   2d20h
+gateway-system         Active   2d20h
+kube-node-lease        Active   7d1h
+kube-public            Active   7d1h
+kube-system            Active   7d1h
+metallb-system         Active   3d
+prodns                 Active   4d23h
+[root@master[~/kube/08/gateway]# # 5. 인프라 유지 항목 확인 (GatewayClass, Gateway, Controller)
+[root@master[~/kube/08/gateway]# echo; echo "===== [ INFO ] 지우지 않을 것: GatewayClass, Gateway ====="
+
+===== [ INFO ] 지우지 않을 것: GatewayClass, Gateway =====
+[root@master[~/kube/08/gateway]# kubectl get gatewayclass; echo
+NAME   CONTROLLER                                      ACCEPTED   AGE
+eg     gateway.envoyproxy.io/gatewayclass-controller   True       2d20h
+
+[root@master[~/kube/08/gateway]# kubectl get gateway -A; echo
+NAMESPACE        NAME          CLASS   ADDRESS         PROGRAMMED   AGE
+gateway-system   lab-gateway   eg      192.168.10.20   True         2d19h
+
+[root@master[~/kube/08/gateway]# echo; echo "===== [ INFO ] 지우지 않을 것: Gateway API Controller ====="
+
+===== [ INFO ] 지우지 않을 것: Gateway API Controller =====
+[root@master[~/kube/08/gateway]# kubectl get pods -n envoy-gateway-system
+NAME                                                         READY   STATUS    RESTARTS       AGE
+envoy-gateway-75b559cc4c-ls48z                               1/1     Running   1 (3h6m ago)   2d20h
+envoy-gateway-system-lab-gateway-03a12405-7c4988884b-wnk5g   2/2     Running   2 (3h5m ago)   2d19h
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# # 1. HTTPRoute 삭제
+cd ~/kube/08/gateway
+kubectl delete -f cross-namespace-route.yml --ignore-not-found
+kubectl delete -f traffic-split-route.yml --ignore-not-found
+kubectl delete -f tls-rewrite-route.yml --ignore-not-found
+kubectl delete -f host-route.yml --ignore-not-found
+kubectl delete -f path-route.yml --ignore-not-found
+echo; echo "===== [ INFO ] HTTPRoute ====="
+[root@master[~/kube/08/gateway]#-#a1. HTTPRoute 삭제
+cd ~/kube/08/gateway
+kubectl delete -f cross-namespace-route.yml --ignore-not-found
+kubectl delete -f traffic-split-route.yml --ignore-not-found
+kubectl delete -f tls-rewrite-route.yml --ignore-not-found
+kubectl delete -f host-route.yml --ignore-not-found
+kubectl delete -f path-route.yml --ignore-not-found
+echo; echo "===== [ INFO ] HTTPRoute ====="
+kubectl get httproute -n gateway-lab
+error: the path "path-route.yml" does not exist
+
+===== [ INFO ] HTTPRoute =====
+No resources found in gateway-lab namespace.
+[root@master[~/kube/08/gateway]# c
+[root@master[~/kube/08/gateway]#yk#create ingress--h
+Create an ingress with the specified name.
+
+Aliases:
+ingress, ing
+
+Examples:
+  # Create a single ingress called 'simple' that directs requests to foo.com/bar to svc
+  # svc1:8080 with a TLS secret "my-cert"
+  kubectl create ingress simple --rule="foo.com/bar=svc1:8080,tls=my-cert"
+
+  # Create a catch all ingress of "/path" pointing to service svc:port and Ingress Class as "otheringress"
+  kubectl create ingress catch-all --class=otheringress --rule="/path=svc:port"
+
+  # Create an ingress with two annotations: ingress.annotation1 and ingress.annotations2
+  kubectl create ingress annotated --class=default --rule="foo.com/bar=svc:port" \
+  --annotation ingress.annotation1=foo \
+  --annotation ingress.annotation2=bla
+
+  # Create an ingress with the same host and multiple paths
+  kubectl create ingress multipath --class=default \
+  --rule="foo.com/=svc:port" \
+  --rule="foo.com/admin/=svcadmin:portadmin"
+
+  # Create an ingress with multiple hosts and the pathType as Prefix
+  kubectl create ingress ingress1 --class=default \
+  --rule="foo.com/path*=svc:8080" \
+  --rule="bar.com/admin*=svc2:http"
+
+  # Create an ingress with TLS enabled using the default ingress certificate and different path types
+  kubectl create ingress ingtls --class=default \
+  --rule="foo.com/=svc:https,tls" \
+  --rule="foo.com/path/subpath*=othersvc:8080"
+
+  # Create an ingress with TLS enabled using a specific secret and pathType as Prefix
+  kubectl create ingress ingsecret --class=default \
+  --rule="foo.com/*=svc:8080,tls=secret1"
+
+  # Create an ingress with a default backend
+  kubectl create ingress ingdefault --class=default \
+  --default-backend=defaultsvc:http \
+  --rule="foo.com/*=svc:8080,tls=secret1"
+
+Options:
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to
+        golang and jsonpath output formats.
+
+    --annotation=[]:
+        Annotation to insert in the ingress object, in the format annotation=value
+
+    --class='':
+        Ingress Class to be used
+
+    --default-backend='':
+        Default service for backend, in format of svcname:port
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without
+        sending it. If server strategy, submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-create':
+        Name of the manager used to track field ownership.
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile,
+        jsonpath, jsonpath-as-json, jsonpath-file).
+
+    --rule=[]:
+        Rule in format host/path=service:port[,tls=secretname]. Paths containing the leading character '*' are
+        considered pathType=Prefix. tls argument is optional.
+
+    --save-config=false:
+        If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will
+        be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML format.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format
+        is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+    --validate='strict':
+        Must be one of: strict (or true), warn, ignore (or false). "true" or "strict" will use a schema to validate
+        the input and fail the request if invalid. It will perform server side validation if ServerSideFieldValidation
+        is enabled on the api-server, but will fall back to less reliable client-side validation if not. "warn" will
+        warn about unknown or duplicate fields without blocking the request if server-side field validation is enabled
+        on the API server, and behave as "ignore" otherwise. "false" or "ignore" will not perform any schema
+        validation, silently dropping any unknown or duplicate fields.
+
+Usage:
+  kubectl create ingress NAME --rule=host/path=service:port[,tls[=secret]]  [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@master[~/kube/08/gateway]# k apply -f -h
+error: the path "-h" does not exist
+[root@master[~/kube/08/gateway]# k apply -h -h
+Apply a configuration to a resource by file name or stdin. The resource name must be specified. This resource will be
+created if it doesn't exist yet. To use 'apply', always create the resource initially with either 'apply' or 'create
+--save-config'.
+
+ JSON and YAML formats are accepted.
+
+ Alpha Disclaimer: the --prune functionality is not yet complete. Do not use unless you are aware of what the current
+state is. See https://issues.k8s.io/34274.
+
+Examples:
+  # Apply the configuration in pod.json to a pod
+  kubectl apply -f ./pod.json
+
+  # Apply resources from a directory containing kustomization.yaml - e.g. dir/kustomization.yaml
+  kubectl apply -k dir/
+
+  # Apply the JSON passed into stdin to a pod
+  cat pod.json | kubectl apply -f -
+
+  # Apply the configuration from all files that end with '.json'
+  kubectl apply -f '*.json'
+
+  # Note: --prune is still in Alpha
+  # Apply the configuration in manifest.yaml that matches label app=nginx and delete all other resources that are not in
+the file and match label app=nginx
+  kubectl apply --prune -f manifest.yaml -l app=nginx
+
+  # Apply the configuration in manifest.yaml and delete all the other config maps that are not in the file
+  kubectl apply --prune -f manifest.yaml --all --prune-allowlist=core/v1/ConfigMap
+
+Available Commands:
+  edit-last-applied   Edit latest last-applied-configuration annotations of a resource/object
+  set-last-applied    Set the last-applied-configuration annotation on a live object to match the contents of a file
+  view-last-applied   View the latest last-applied-configuration annotations of a resource/object
+
+Options:
+    --all=false:
+        Select all resources in the namespace of the specified resource types.
+
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to
+        golang and jsonpath output formats.
+
+    --cascade='background':
+        Must be "background", "orphan", or "foreground". Selects the deletion cascading strategy for the dependents
+        (e.g. Pods created by a ReplicationController). Defaults to background.
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without
+        sending it. If server strategy, submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-client-side-apply':
+        Name of the manager used to track field ownership.
+
+    -f, --filename=[]:
+        The files, directories or URLs that contain the configurations to apply.
+
+    --force=false:
+        If true, immediately remove resources from API and bypass graceful deletion. Note that immediate deletion of
+        some resources may result in inconsistency or data loss and requires confirmation.
+
+    --force-conflicts=false:
+        If true, server-side apply will force the changes against conflicts.
+
+    --grace-period=-1:
+        Period of time in seconds given to the resource to terminate gracefully. Ignored if negative. Set to 1 for
+        immediate shutdown. Can only be set to 0 when --force is true (force deletion).
+
+    -k, --kustomize='':
+        Process a kustomization directory. This flag can't be used together with -f or -R.
+
+    --openapi-patch=true:
+        If true, use openapi to calculate diff when the openapi presents and the resource can be found in the openapi
+        spec. Otherwise, fall back to use baked-in types.
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile,
+        jsonpath, jsonpath-as-json, jsonpath-file).
+
+    --overwrite=true:
+        Automatically resolve conflicts between the modified and live configuration by using values from the modified
+        configuration
+
+    --prune=false:
+        Automatically delete resource objects, that do not appear in the configs and are created by either apply or
+        create --save-config. Should be used with either -l or --all.
+
+    --prune-allowlist=[]:
+        Overwrite the default allowlist with <group/version/kind> for --prune
+
+    -R, --recursive=false:
+        Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests
+        organized within the same directory.
+
+    -l, --selector='':
+        Selector (label query) to filter on, supports '=', '==', '!=', 'in', 'notin'.(e.g. -l
+        key1=value1,key2=value2,key3 in (value3)). Matching objects must satisfy all of the specified label
+        constraints.
+
+    --server-side=false:
+        If true, apply runs in the server instead of the client.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML format.
+
+    --subresource='':
+        If specified, apply will operate on the subresource of the requested object.  Only allowed when using
+        --server-side.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format
+        is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+    --timeout=0s:
+        The length of time to wait before giving up on a delete, zero means determine a timeout from the size of the
+        object
+
+    --validate='strict':
+        Must be one of: strict (or true), warn, ignore (or false). "true" or "strict" will use a schema to validate
+        the input and fail the request if invalid. It will perform server side validation if ServerSideFieldValidation
+        is enabled on the api-server, but will fall back to less reliable client-side validation if not. "warn" will
+        warn about unknown or duplicate fields without blocking the request if server-side field validation is enabled
+        on the API server, and behave as "ignore" otherwise. "false" or "ignore" will not perform any schema
+        validation, silently dropping any unknown or duplicate fields.
+
+    --wait=false:
+        If true, wait for resources to be gone before returning. This waits for finalizers.
+
+Usage:
+  kubectl apply (-f FILENAME | -k DIRECTORY) [options]
+
+Use "kubectl apply <command> --help" for more information about a given command.
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@master[~/kube/08/gateway]# k autoscale -h
+Creates an autoscaler that automatically chooses and sets the number of pods that run in a Kubernetes cluster. The
+command will attempt to use the autoscaling/v2 API first, in case of an error, it will fall back to autoscaling/v1 API.
+
+ Looks up a deployment, replica set, stateful set, or replication controller by name and creates an autoscaler that uses
+the given resource as a reference. An autoscaler can automatically increase or decrease number of pods deployed within
+the system as needed.
+
+Examples:
+  # Auto scale a deployment "foo", with the number of pods between 2 and 10, no target CPU utilization specified so a
+default autoscaling policy will be used
+  kubectl autoscale deployment foo --min=2 --max=10
+
+  # Auto scale a replication controller "foo", with the number of pods between 1 and 5, target CPU utilization at 80%
+  kubectl autoscale rc foo --max=5 --cpu=80%
+
+  # Auto scale a deployment "bar", with the number of pods between 3 and 6, target average CPU of 500m and memory of
+200Mi
+  kubectl autoscale deployment bar --min=3 --max=6 --cpu=500m --memory=200Mi
+
+  # Auto scale a deployment "bar", with the number of pods between 2 and 8, target CPU utilization 60% and memory
+utilization 70%
+  kubectl autoscale deployment bar --min=2 --max=8 --cpu=60% --memory=70%
+
+Options:
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to
+        golang and jsonpath output formats.
+
+    --cpu='':
+        Target CPU utilization over all the pods. When specified as a percentage (e.g."70%" for 70% of requested CPU)
+        it will target average utilization. When specified as quantity (e.g."500m" for 500 milliCPU) it will target
+        average value. Value without units is treated as a quantity with miliCPU being the unit (e.g."500" is "500m").
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without
+        sending it. If server strategy, submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-autoscale':
+        Name of the manager used to track field ownership.
+
+    -f, --filename=[]:
+        Filename, directory, or URL to files identifying the resource to autoscale.
+
+    -k, --kustomize='':
+        Process the kustomization directory. This flag can't be used together with -f or -R.
+
+    --max=-1:
+        The upper limit for the number of pods that can be set by the autoscaler. Required.
+
+    --memory='':
+        Target memory utilization over all the pods. When specified  as a percentage (e.g."60%" for 60% of requested
+        memory) it will target average utilization. When specified as quantity (e.g."200Mi" for 200 MiB, "1Gi" for 1
+        GiB) it will target average value. Value without units is treated as a quantity with mebibytes being the unit
+        (e.g."200" is "200Mi").
+
+    --min=-1:
+        The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative,
+        the server will apply a default value.
+
+    --name='':
+        The name for the newly created object. If not specified, the name of the input resource will be used.
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile,
+        jsonpath, jsonpath-as-json, jsonpath-file).
+
+    -R, --recursive=false:
+        Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests
+        organized within the same directory.
+
+    --save-config=false:
+        If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will
+        be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML format.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format
+        is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+Usage:
+  kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS [--cpu=CPU] [--memory=MEMORY]
+[options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@master[~/kube/08/gateway]#
+[root@master[~/kube/08/gateway]# c
+nnn[root@master[~/kube/08/gateway]# exit
+exit
+
+Script done on 2026-10-19 18:24:09+09:00 [COMMAND_EXIT_CODE="0"]
