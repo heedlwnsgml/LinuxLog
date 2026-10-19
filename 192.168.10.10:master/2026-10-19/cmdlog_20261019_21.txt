@@ -1,0 +1,259 @@
+Script started on 2026-10-19 21:16:55+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="167" LINES="30"]
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+[root@master[~]#~cdckube/09/
+[root@master[~/kube/09]# ls
+annotations  blue-green  canary  label  nodelabel  rolling
+[root@master[~/kube/09]# cd ..
+[root@master[~/kube]# mkdir -p ./10/cm
+[root@master[~/kube]# cd 10/cm
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# mkdir -p config
+[root@master[~/kube/10/cm]# kicreate cm mycm --from-literal key1=value1 > test.txt
+[root@master[~/kube/10/cm]# vi test.txt
+>4;2m"test.txt" 1L, 23B▽  zz0%m           >c  1 configmap/mycm created
+>4;m>4;m[root@master[~/kube/10/cm]# rm -f test.txt                                                                                                                     ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p^[  ^[  ::q
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# cm-
+nnn[root@master[~/kube/10/cm]# vidconfig/nginx.conf
+>4;2m"config/nginx.conf" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$pi -- INSERT --0,1Allevents {}
+  2 server {  3     listen       80 ;  4     server_name  www.example.com;
+  5     location / {  6         root /usr/share/nginx/html;
+~ 7         index index.html index.hml;  8     }  9 }{}9,2{1                                                                                                           {}1,101s21e2v3e4n5t6s7events{{}9{8events78events {{}10
+  2 {}2,1 s2e3r4v5e6r78server {9
+  3     listen       80 ;  4     server_name  www.example.com;  5     location / {
+  6         root /usr/share/nginx/html;  7         index index.html index.hml;
+>4;m"config/nginx.conf"9[New]:9L, 172B written
+>4;m[root@master[~/kube/10/cm]# k create cm myconfigmap --from-literal=INTERVAL=2 --from-literal=OPTION=boy --from-file=config/
+configmap/myconfigmap created
+[root@master[~/kube/10/cm]# k get cm
+NAME               DATA   AGE
+kube-root-ca.crt   1      7d4h
+mycm               1      5m5s
+myconfigmap        3      5s
+[root@master[~/kube/10/cm]# k describe cmmmyconfigmap
+Name:         myconfigmap
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+INTERVAL:
+----
+2
+
+OPTION:
+----
+boy
+
+nginx.conf:
+----
+events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+
+
+
+BinaryData
+====
+
+Events:  <none>
+[root@master[~/kube/10/cm]# k delete cm mycm
+configmap "mycm" deleted from default namespace
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k describe cmtmyconfigmap
+Name:         myconfigmap
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+INTERVAL:
+----
+2
+
+OPTION:
+----
+boy
+
+nginx.conf:
+----
+events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+
+
+
+BinaryData
+====
+
+Events:  <none>
+[root@master[~/kube/10/cm]# k describe cm myconfigmap -o yaml
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl describe --help' for usage.
+[root@master[~/kube/10/cm]# k describe cm myconfigmap |oyqaml
+Error: bad file '-': yaml: while scanning a simple key at line 6: line 7: could not find expected ':'
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k get cm myconfigmap -o yaml
+apiVersion: v1
+data:
+  INTERVAL: "2"
+  OPTION: boy
+  nginx.conf: |
+    events {}
+    server {
+        listen       80 ;
+        server_name  www.example.com;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.hml;
+        }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-19T12:33:39Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "265397"
+  uid: d9f90c87-d8a5-4793-bfa2-22b8693dc466
+mkdir@-ps~/kube/10/cm/build &&[cd0~/kube/10/cm/build0/cm/build && cd ~/kube/10/cm/build~
+[root@master[~/kube/10/cm/build]# c
+nnn[root@master[~/kube/10/cm/build]# cd ..
+[root@master[~/kube/10/cm]# vi genid.yml
+>4;2m"genid.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      0,0-1All?12$p^V1x1-- VISUAL BLOCK --1x10,0-1All~@k1x1~@k1x1~@k1x1   INSERT --O0,1AllapiVersion: v1
+  2 kind: Pod  3 metadata:
+  4   name: genid-stone
+  5 spec:  6   containers:
+  7   - name: fakeid
+  8     image: smlinux/genid:env  9     env:
+ 10     - name: INTERVAL
+ 11       valueFrom:
+ 12         configMapKeyRef: 13 name: myconfigmap
+ 14 key: INTERVAL
+ 15     volumeMounts: 16     - name: html
+ 17       mountPath: /webdata
+ 18   - name: web-server
+ 19     image: nginx:1.24 20     volumeMounts:
+ 21     - name: html
+ 22       mountPath: /usr/share/nginx/html 23       readOnly: true
+ 24     ports: 25     - containerPort: 80
+ 26   volumes: 27   - name: html 28     emptyDir: {}28,16Al{}7,146,10~@k   5,164,103,16~@k   234,10~@k   5,166,107,14~@k  {}8,16~@k   ~@k   ~@k   ~@k   ~@k   ~@k   o
+>4;m"genid.yml"5[New]929L, 524B writtenAll::qwwq
+>4;m[root@master[~/kube/10/cm]# k apply -f genid.yml
+pod/genid-stone created
+[root@master[~/kube/10/cm]# k get pods
+NAME          READY   STATUS              RESTARTS   AGE
+genid-stone   0/2     ContainerCreating   0          5s
+[root@master[~/kube/10/cm]# k get pods -o wide
+NAME          READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE   READINESS GATES
+genid-stone   2/2     Running   0          17s   10.10.135.51   node3   <none>           <none>
+[root@master[~/kube/10/cm]# ^C
+[root@master[~/kube/10/cm]# curl 10.10.135.51
++-----------------------+
+| Patrica Neal          |
+| 170 Buncaneer Dr      |
+| Plainfield, NJ  07061 |
+| (908) xxx-xxxx        |
++-----------------------+
+[root@master[~/kube/10/cm]# whlie true; do curl 10.10.135.51 ; sleep 4;; done
+bash: syntax error near unexpected token `do'
+croot@master[~/kube/101@w1@h1@l1@i1@1@l1@i1@e1@ 10.10.135.51 ; sleep 4 ; done
+nnn[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k edit  cm myconfigmap
+>4;2m"/tmp/kubectl-edit-1671727214.yaml" 25L, 666B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+data:
+  INTERVAL: "2"
+  OPTION: boy
+  nginx.conf: |
+    events {}
+    server {listen80 ;server_name  www.example.com;location / {root /usr/share/nginx/html;index index.html index.hml;}
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-19T12:33:39Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "265397"
+  uid: d9f90c87-d8a5-4793-bfa2-22b8693dc466
+~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   2~@k   3~@k   6~@k   4~@k   5~@k   ~@k   ~@k   7~@k   6~@k   7~@k   8~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   4i -- INSERT --7,14All12"502"6~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      ~                                                                                                                                                                      25,3Bot# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  INTERVAL: "102"
+  OPTION: boy
+  nginx.conf: |
+    events {}
+    server {listen80 ;server_name  www.example.com;location / {root /usr/share/nginx/html;index index.html index.hml;}
+    }
+>4;m"/tmp/kubectl-edit-1671727214.yaml"825L,4667B"written  7,15All::wq
+>4;mconfigmap/myconfigmap edited
+[root@master[~/kube/10/cm]# k delete -ffgenid.yml
+pod "genid-stone" deleted from default namespace
+^C[root@master[~/kube/10/cm]# k delete -f genid.yml --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "genid-stone" force deleted from default namespace
+[root@master[~/kube/10/cm]# k apply  -f  genid.yml
+pod/genid-stone created
+[root@master[~/kube/10/cm]# while true ; do curl 10.96.0.1 ; sleep 4;; done
+curl: (7) Failed to connect to 10.96.0.1 port 80 after 12 ms: Could not connect to server
+^C
+kk7getlpods--ogwide.ymlc--forcele true ; do curl 10.96.0.1 ; sleep 4 ; done
+NAME          READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE   READINESS GATES
+genid-stone   2/2     Running   0          29s   10.10.135.52   node3   <none>           <none>
+[root@master[~/kube/10/cm]# while true ;odoicurl 101@11@01@.1@11@31@51@.1@1@51@2
++------------------+
+| Sung Dorsey      |
+| 674 Orrand Dr    |
+| Akron, OH  44309 |
+| (216) xxx-xxxx   |
++------------------+
++------------------+
+| Sung Dorsey      |
+| 674 Orrand Dr    |
+| Akron, OH  44309 |
+| (216) xxx-xxxx   |
++------------------+
++------------------+
+| Agnes Gay        |
+| 870 Tomkins Blcd |
+| Alton, IL  62002 |
+| (708) xxx-xxxx   |
++------------------+
+^C
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k delete -f genid.yml --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "genid-stone" force deleted from default namespace
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# exit
+exit
+
+Script done on 2026-10-19 21:51:52+09:00 [COMMAND_EXIT_CODE="0"]
