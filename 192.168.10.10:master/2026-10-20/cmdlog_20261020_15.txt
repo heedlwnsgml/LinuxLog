@@ -1,0 +1,978 @@
+Script started on 2026-10-20 15:39:28+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="82" LINES="30"]
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# cd ~/kube/10/cm/
+[root@master[~/kube/10/cm]# ls
+build  config  genid.yml
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# cp genid.yml genid-whole.yml
+[root@master[~/kube/10/cm]# vi genid-whole.yml
+>4;2m"genid-whole.yml" 29L, 524B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   name: genid-stone
+  5 spec:
+  6   containers:
+  7   - name: fakeid
+  8     image: smlinux/genid:env
+  9     env:
+ 10     - name: INTERVAL
+ 11       valueFrom:
+ 12 configMapKeyRef:
+ 13 name: myconfigmap
+ 14 key: INTERVAL
+ 15     volumeMounts:
+ 16     - name: html
+ 17       mountPath: /webdata
+ 18   - name: web-server
+ 19     image: nginx:1.24
+ 20     volumeMounts:
+ 21     - name: html
+ 22       mountPath: /usr/share/nginx/html
+ 23       readOnly: true
+ 24     ports:
+ 25     - containerPort: 80
+ 26   volumes:
+ 27   - name: html
+ 28     emptyDir: {}
+>4;m"genid-whole.yml" 29L, 524B written
+>4;m[root@master[~/kube/10/cm]# k apply -f genid-whole.yml
+pod/genid-stone created
+[root@master[~/kube/10/cm]# k get pods -o wide
+NAME          READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE   READINESS GATES
+genid-stone   2/2     Running   0          5s    10.10.135.54   node3   <none>           <none>
+[root@master[~/kube/10/cm]# ^C
+[root@master[~/kube/10/cm]# ^C
+[root@master[~/kube/10/cm]# k exec -it genid-stone -- env
+Defaulted container "fakeid" out of: fakeid, web-server
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=genid-stone
+INTERVAL=10
+OPTION=boy
+nginx.conf=events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+TERM=xterm
+HOME=/root
+[root@master[~/kube/10/cm]# k exec -it genid-1@1@-1@c1@1@w1@e8@b-server
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=genid-stone
+NGINX_VERSION=1.24.0
+NJS_VERSION=0.7.12
+PKG_RELEASE=1~bullseye
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+TERM=xterm
+HOME=/root
+[root@master[~/kube/10/cm]# kkexec -it genid-stone -c 1@g1@e1@n1@i- env
+Defaulted container "fakeid" out of: fakeid, web-server
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+HOSTNAME=genid-stone
+INTERVAL=10
+OPTION=boy
+nginx.conf=events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+
+KUBERNETES_SERVICE_HOST=10.96.0.1
+KUBERNETES_SERVICE_PORT=443
+KUBERNETES_SERVICE_PORT_HTTPS=443
+KUBERNETES_PORT=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443
+KUBERNETES_PORT_443_TCP_PROTO=tcp
+KUBERNETES_PORT_443_TCP_PORT=443
+KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1
+TERM=xterm
+HOME=/root
+[root@master[~/kube/10/cm]# k get pods genid-stone -oowidee
+NAME          READY   STATUS    RESTARTS   AGE     IP             NODE    NOMINATED NODE   READINESS GATES
+genid-stone   2/2     Running   0          3m18s   10.10.135.54   node3   <none>           <none>
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[done@master[~/kube/10/cm]# while true ; do curl 10.10.135.54 ; sleep 10 ;
+         .-"""-.
+        / .===. \
+        \/ 6 6 \/
+        ( \___/ )
+  __ooo__\_____/_______
+ /                     \
+| Summer Battle         |
+| 883 Orange West       |
+| Burlington, NC  27215 |
+| (919) xxx-xxxx        |
+ \________________ooo__/
+         |  |  |
+         |_ | _|
+         |  |  |
+         |__|__|
+         /-'Y'-\
+        (__/ \__)
+        .-"""-.
+       / .===. \
+       \/ 6 6 \/
+       ( \___/ )
+  _ooo__\_____/______
+ /                   \
+| Tia Mann            |
+| 493 Beley Rd        |
+| Coward, SC  29530   |
+| (843) xxx-xxxx      |
+ \_______________ooo_/
+        |  |  |
+        |_ | _|
+        |  |  |
+        |__|__|
+        /-'Y'-\
+       (__/ \__)
+         .-"""-.
+        / .===. \
+        \/ 6 6 \/
+        ( \___/ )
+  __ooo__\_____/______
+ /                    \
+| Nannie Petersen      |
+| 67 Cooper St         |
+| Arlington, TX  76010 |
+| (817) xxx-xxxx       |
+ \_______________ooo__/
+        |  |  |
+        |_ | _|
+        |  |  |
+        |__|__|
+        /-'Y'-\
+       (__/ \__)
+        .-"""-.
+       / .===. \
+       \/ 6 6 \/
+       ( \___/ )
+  _ooo__\_____/______
+ /                   \
+| Art Newton          |
+| 456 Bryant Blvd     |
+| Rome, GA  30161     |
+| (404) xxx-xxxx      |
+ \_______________ooo_/
+        |  |  |
+        |_ | _|
+        |  |  |
+        |__|__|
+        /-'Y'-\
+       (__/ \__)
+^C
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# k get cm -A
+NAMESPACE              NAME                                                   DATA   AGE
+default                kube-root-ca.crt                                       1      7d23h
+default                myconfigmap                                            3      18h
+envoy-gateway-system   envoy-gateway-config                                   1      3d18h
+envoy-gateway-system   envoy-gateway-system-lab-gateway-03a12405              2      3d18h
+envoy-gateway-system   kube-root-ca.crt                                       1      3d18h
+gateway-system         kube-root-ca.crt                                       1      3d18h
+kube-node-lease        kube-root-ca.crt                                       1      7d23h
+kube-public            cluster-info                                           1      7d23h
+kube-public            kube-root-ca.crt                                       1      7d23h
+kube-system            calico-config                                          4      7d22h
+kube-system            coredns                                                1      7d23h
+kube-system            extension-apiserver-authentication                     6      7d23h
+kube-system            kube-apiserver-legacy-service-account-token-tracking   1      7d23h
+kube-system            kube-proxy                                             2      7d23h
+kube-system            kube-root-ca.crt                                       1      7d23h
+kube-system            kubeadm-config                                         1      7d23h
+kube-system            kubelet-config                                         1      7d23h
+metallb-system         kube-root-ca.crt                                       1      3d22h
+metallb-system         metallb-excludel2                                      1      3d22h
+prodns                 kube-root-ca.crt                                       1      5d21h
+[root@master[~/kube/10/cm]# k get cm -A
+NAME               DATA   AGE
+kube-root-ca.crt   1      7d23h
+myconfigmap        3      18h
+[root@master[~/kube/10/cm]# k get cm myconfigmap -o wide
+NAME          DATA   AGE
+myconfigmap   3      18h
+[root@master[~/kube/10/cm]# k get cm myconfigmap -o yaml | less
+apiVersion: v1
+data:
+  INTERVAL: "10"
+  OPTION: boy
+  nginx.conf: |
+    events {}
+    server {
+        listen       80 ;
+        server_name  www.example.com;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.hml;
+        }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-19T12:33:39Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "267610"
+  uid: d9f90c87-d8a5-4793-bfa2-22b8693dc466
+...skipping...
+apiVersion: v1
+data:
+  INTERVAL: "10"
+  OPTION: boy
+  nginx.conf: |
+    events {}
+    server {
+        listen       80 ;
+        server_name  www.example.com;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.hml;
+        }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-19T12:33:39Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "267610"
+  uid: d9f90c87-d8a5-4793-bfa2-22b8693dc466
+~
+~
+~
+~
+~
+~
+~
+~
+[root@master[~/kube/10/cm]# k describe cm myconfigmap | less
+Name:         myconfigmap
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+INTERVAL:
+----
+10
+
+OPTION:
+----
+boy
+
+nginx.conf:
+----
+events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+
+
+
+[root@master[~/kube/10/cm]# 0.
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k delete pods genid-stone
+pod "genid-stone" deleted from default namespace
+^[[A^[[B^[[A^C[root@master[~/kube/10/cm]# k delete pods genid-stone  --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "genid-stone" force deleted from default namespace
+[root@master[~/kube/10/cm]# k delete pods testpod
+Error from server (NotFound): pods "testpod" not found
+[root@master[~/kube/10/cm]# k delete cmdmyconfigmap
+configmap "myconfigmap" deleted from default namespace
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# 아
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k explain Pod.spec.volumes
+KIND:       Pod
+VERSION:    v1
+
+FIELD: volumes <[]Volume>
+
+
+DESCRIPTION:
+    List of volumes that can be mounted by containers belonging to the pod. More
+    info: https://kubernetes.io/docs/concepts/storage/volumes
+    Volume represents a named volume in a pod that may be accessed by any
+    container in the pod.
+
+FIELDS:
+  awsElasticBlockStore  <AWSElasticBlockStoreVolumeSource>
+    awsElasticBlockStore represents an AWS Disk resource that is attached to a
+    kubelet's host machine and then exposed to the pod. Deprecated:
+    AWSElasticBlockStore is deprecated. All operations for the in-tree
+    awsElasticBlockStore type are redirected to the ebs.csi.aws.com CSI driver.
+    More info:
+    https://kubernetes.io/docs/concepts/storage/volumes#awselasticblockstore
+
+  azureDisk     <AzureDiskVolumeSource>
+    azureDisk represents an Azure Data Disk mount on the host and bind mount to
+    the pod. Deprecated: AzureDisk is deprecated. All operations for the in-tree
+    azureDisk type are redirected to the disk.csi.azure.com CSI driver.
+
+  azureFile     <AzureFileVolumeSource>
+    azureFile represents an Azure File Service mount on the host and bind mount
+    to the pod. Deprecated: AzureFile is deprecated. All operations for the
+    in-tree azureFile type are redirected to the file.csi.azure.com CSI driver.
+
+  cephfs        <CephFSVolumeSource>
+    cephFS represents a Ceph FS mount on the host that shares a pod's lifetime.
+    Deprecated: CephFS is deprecated and the in-tree cephfs type is no longer
+    supported.
+
+  cinder        <CinderVolumeSource>
+    cinder represents a cinder volume attached and mounted on kubelets host
+    machine. Deprecated: Cinder is deprecated. All operations for the in-tree
+    cinder type are redirected to the cinder.csi.openstack.org CSI driver. More
+    info: https://examples.k8s.io/mysql-cinder-pd/README.md
+
+  configMap     <ConfigMapVolumeSource>
+    configMap represents a configMap that should populate this volume
+
+  csi   <CSIVolumeSource>
+    csi (Container Storage Interface) represents ephemeral storage that is
+    handled by certain external CSI drivers.
+
+  downwardAPI   <DownwardAPIVolumeSource>
+    downwardAPI represents downward API about the pod that should populate this
+    volume
+
+  emptyDir      <EmptyDirVolumeSource>
+    emptyDir represents a temporary directory that shares a pod's lifetime. More
+    info: https://kubernetes.io/docs/concepts/storage/volumes#emptydir
+
+  ephemeral     <EphemeralVolumeSource>
+    ephemeral represents a volume that is handled by a cluster storage driver.
+    The volume's lifecycle is tied to the pod that defines it - it will be
+    created before the pod starts, and deleted when the pod is removed.
+
+    Use this if: a) the volume is only needed while the pod runs, b) features of
+    normal volumes like restoring from snapshot or capacity
+       tracking are needed,
+    c) the storage driver is specified through a storage class, and d) the
+    storage driver supports dynamic volume provisioning through
+       a PersistentVolumeClaim (see EphemeralVolumeSource for more
+       information on the connection between this volume type
+       and PersistentVolumeClaim).
+
+    Use PersistentVolumeClaim or one of the vendor-specific APIs for volumes
+    that persist for longer than the lifecycle of an individual pod.
+
+    Use CSI for light-weight local ephemeral volumes if the CSI driver is meant
+    to be used that way - see the documentation of the driver for more
+    information.
+
+    A pod can use both types of ephemeral volumes and persistent volumes at the
+    same time.
+
+  fc    <FCVolumeSource>
+    fc represents a Fibre Channel resource that is attached to a kubelet's host
+    machine and then exposed to the pod.
+
+  flexVolume    <FlexVolumeSource>
+    flexVolume represents a generic volume resource that is provisioned/attached
+    using an exec based plugin. Deprecated: FlexVolume is deprecated. Consider
+    using a CSIDriver instead.
+
+  flocker       <FlockerVolumeSource>
+    flocker represents a Flocker volume attached to a kubelet's host machine.
+    This depends on the Flocker control service being running. Deprecated:
+    Flocker is deprecated and the in-tree flocker type is no longer supported.
+
+  gcePersistentDisk     <GCEPersistentDiskVolumeSource>
+    gcePersistentDisk represents a GCE Disk resource that is attached to a
+    kubelet's host machine and then exposed to the pod. Deprecated:
+    GCEPersistentDisk is deprecated. All operations for the in-tree
+    gcePersistentDisk type are redirected to the pd.csi.storage.gke.io CSI
+    driver. More info:
+    https://kubernetes.io/docs/concepts/storage/volumes#gcepersistentdisk
+
+  gitRepo       <GitRepoVolumeSource>
+    gitRepo represents a git repository at a particular revision. Deprecated:
+    GitRepo is deprecated. To provision a container with a git repo, mount an
+    EmptyDir into an InitContainer that clones the repo using git, then mount
+    the EmptyDir into the Pod's container.
+
+  glusterfs     <GlusterfsVolumeSource>
+    glusterfs represents a Glusterfs mount on the host that shares a pod's
+    lifetime. Deprecated: Glusterfs is deprecated and the in-tree glusterfs type
+    is no longer supported.
+
+  hostPath      <HostPathVolumeSource>
+    hostPath represents a pre-existing file or directory on the host machine
+    that is directly exposed to the container. This is generally used for system
+    agents or other privileged things that are allowed to see the host machine.
+    Most containers will NOT need this. More info:
+    https://kubernetes.io/docs/concepts/storage/volumes#hostpath
+
+  image <ImageVolumeSource>
+    image represents an OCI object (a container image or artifact) pulled and
+    mounted on the kubelet's host machine. The volume is resolved at pod startup
+    depending on which PullPolicy value is provided:
+
+    - Always: the kubelet always attempts to pull the reference. Container
+    creation will fail If the pull fails. - Never: the kubelet never pulls the
+    reference and only uses a local image or artifact. Container creation will
+    fail if the reference isn't present. - IfNotPresent: the kubelet pulls if
+    the reference isn't already present on disk. Container creation will fail if
+    the reference isn't present and the pull fails.
+
+    The volume gets re-resolved if the pod gets deleted and recreated, which
+    means that new remote content will become available on pod recreation. A
+    failure to resolve or pull the image during pod startup will block
+    containers from starting and may add significant latency. Failures will be
+    retried using normal volume backoff and will be reported on the pod reason
+    and message. The types of objects that may be mounted by this volume are
+    defined by the container runtime implementation on a host machine and at
+    minimum must include all valid types supported by the container image field.
+    The OCI object gets mounted in a single directory
+    (spec.containers[*].volumeMounts.mountPath) by merging the manifest layers
+    in the same way as for container images. The volume will be mounted
+    read-only (ro). Sub path mounts for containers are not supported
+    (spec.containers[*].volumeMounts.subpath) before 1.33. The field
+    spec.securityContext.fsGroupChangePolicy has no effect on this volume type.
+
+  iscsi <ISCSIVolumeSource>
+    iscsi represents an ISCSI Disk resource that is attached to a kubelet's host
+    machine and then exposed to the pod. More info:
+    https://kubernetes.io/docs/concepts/storage/volumes/#iscsi
+
+  name  <string> -required-
+    name of the volume. Must be a DNS_LABEL and unique within the pod. More
+    info:
+    https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+
+  nfs   <NFSVolumeSource>
+    nfs represents an NFS mount on the host that shares a pod's lifetime More
+    info: https://kubernetes.io/docs/concepts/storage/volumes#nfs
+
+  persistentVolumeClaim <PersistentVolumeClaimVolumeSource>
+    persistentVolumeClaimVolumeSource represents a reference to a
+    PersistentVolumeClaim in the same namespace. More info:
+    https://kubernetes.io/docs/concepts/storage/persistent-volumes#persistentvolumeclaims
+
+  photonPersistentDisk  <PhotonPersistentDiskVolumeSource>
+    photonPersistentDisk represents a PhotonController persistent disk attached
+    and mounted on kubelets host machine. Deprecated: PhotonPersistentDisk is
+    deprecated and the in-tree photonPersistentDisk type is no longer supported.
+
+  portworxVolume        <PortworxVolumeSource>
+    portworxVolume represents a portworx volume attached and mounted on kubelets
+    host machine. Deprecated: PortworxVolume is deprecated. All operations for
+    the in-tree portworxVolume type are redirected to the pxd.portworx.com CSI
+    driver.
+
+  projected     <ProjectedVolumeSource>
+    projected items for all in one resources secrets, configmaps, and downward
+    API
+
+  quobyte       <QuobyteVolumeSource>
+    quobyte represents a Quobyte mount on the host that shares a pod's lifetime.
+    Deprecated: Quobyte is deprecated and the in-tree quobyte type is no longer
+    supported.
+
+  rbd   <RBDVolumeSource>
+    rbd represents a Rados Block Device mount on the host that shares a pod's
+    lifetime. Deprecated: RBD is deprecated and the in-tree rbd type is no
+    longer supported.
+
+  scaleIO       <ScaleIOVolumeSource>
+    scaleIO represents a ScaleIO persistent volume attached and mounted on
+    Kubernetes nodes. Deprecated: ScaleIO is deprecated and the in-tree scaleIO
+    type is no longer supported.
+
+  secret        <SecretVolumeSource>
+    secret represents a secret that should populate this volume. More info:
+    https://kubernetes.io/docs/concepts/storage/volumes#secret
+
+  storageos     <StorageOSVolumeSource>
+    storageOS represents a StorageOS volume attached and mounted on Kubernetes
+    nodes. Deprecated: StorageOS is deprecated and the in-tree storageos type is
+    no longer supported.
+
+  vsphereVolume <VsphereVirtualDiskVolumeSource>
+    vsphereVolume represents a vSphere volume attached and mounted on kubelets
+    host machine. Deprecated: VsphereVolume is deprecated. All operations for
+    the in-tree vsphereVolume type are redirected to the csi.vsphere.vmware.com
+    CSI driver.
+
+
+[root@master[~/kube/10/cm]# k explain Pod.spec.volumes.| grep -i "map"
+  configMap     <ConfigMapVolumeSource>
+    configMap represents a configMap that should populate this volume
+    projected items for all in one resources secrets, configmaps, and downward
+krexplaintPod.spec.volumes#|kgrepl-in"secre"ec.volumes | grep -i "map"
+    projected items for all in one resources secrets, configmaps, and downward
+  secret        <SecretVolumeSource>
+    secret represents a secret that should populate this volume. More info:
+    https://kubernetes.io/docs/concepts/storage/volumes#secret
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+L=10r--from-literaluOPTINO=boy --from-file ./config/*p --from-literal INTERVA
+configmap/myconfigmap created
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# k get cm myconfigmap -o yaml | less
+apiVersion: v1
+data:
+  INTERVAL: "10"
+  OPTINO: boy
+  nginx.conf: |
+    events {}
+    server {
+        listen       80 ;
+        server_name  www.example.com;
+        location / {
+            root /usr/share/nginx/html;
+            index index.html index.hml;
+        }
+    }
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2026-10-20T07:07:34Z"
+  name: myconfigmap
+  namespace: default
+  resourceVersion: "276622"
+  uid: d88ced29-4103-4a85-a757-daa9f07bb929
+[root@master[~/kube/10/cm]# =
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# kubectl apply -f - <<EOF
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mycontainer
+    image: nginx
+    ports:
+    - containerPort: 80
+#------------------------------
+    volumeMounts:
+    - name: configmap-volume
+      mountPath: /usr/share/nginx/html/cm
+  volumes:
+  - name: configmap-volume
+    configMap:
+      name: myconfigmap
+[root@master[~/kube/10/cm]# kubectl apply -f - <<EOF
+kind: Pod
+apiVersion: v1
+metadata:
+  name: mypod
+spec:
+  containers:
+  - name: mycontainer
+    image: nginx
+    ports:
+    - containerPort: 80
+#------------------------------
+    volumeMounts:
+    - name: configmap-volume
+      mountPath: /usr/share/nginx/html/cm
+  volumes:
+  - name: configmap-volume
+    configMap:
+      name: myconfigmap
+EOF
+pod/mypod created
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k get pods
+NAME    READY   STATUS              RESTARTS   AGE
+mypod   0/1     ContainerCreating   0          3s
+[root@master[~/kube/10/cm]# k get pods
+NAME    READY   STATUS    RESTARTS   AGE
+mypod   1/1     Running   0          18s
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# k describe pods mypod
+Name:             mypod
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node3/192.168.10.13
+Start Time:       Tue, 20 Oct 2026 16:08:49 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: b0665045e0c92cd894529c8be12e9c941315984b42f8c2e3b4f47c8f81663aad
+                  cni.projectcalico.org/podIP: 10.10.135.55/32
+                  cni.projectcalico.org/podIPs: 10.10.135.55/32
+Status:           Running
+IP:               10.10.135.55
+IPs:
+  IP:  10.10.135.55
+Containers:
+  mycontainer:
+    Container ID:   containerd://b3a65e30c42c04c57fb4781ca4af910779ceac0420e3503335b52f246f203971
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:bc4cad49969aaf95eb4eecec5572846f86e59f1e8332aba36ed64b91aff8b724
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Tue, 20 Oct 2026 16:08:56 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /usr/share/nginx/html/cm from configmap-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jzs68 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  configmap-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      myconfigmap
+    Optional:  false
+  kube-api-access-jzs68:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  23s   default-scheduler  Successfully assigned default/mypod to node3
+  Normal  Pulling    23s   kubelet            spec.containers{mycontainer}: Pulling image "nginx"
+  Normal  Pulled     16s   kubelet            spec.containers{mycontainer}: Successfully pulled image "nginx" in 6.506s (6.506s including waiting). Image size: 63899853 bytes.
+  Normal  Created    16s   kubelet            spec.containers{mycontainer}: Container created
+  Normal  Started    16s   kubelet            spec.containers{mycontainer}: Container started
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# k exec -it mypod -- /bin/bash
+root@mypod:/#
+root@mypod:/#
+root@mypod:/# c
+bash: c: command not found
+root@mypod:/# cd /usr/share/nginx/html/
+root@mypod:/usr/share/nginx/html# ls
+50x.html  cm  index.html
+root@mypod:/usr/share/nginx/html# cd cm/
+root@mypod:/usr/share/nginx/html/cm# ls
+INTERVAL  OPTINO  nginx.conf
+root@mypod:/usr/share/nginx/html/cm# c
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm# c
+bash: c: command not found
+root@mypod:/usr/share/nginx/html/cm# clear
+root@mypod:/usr/share/nginx/html/cm# ll
+bash: ll: command not found
+root@mypod:/usr/share/nginx/html/cm# ls -l
+total 0
+lrwxrwxrwx. 1 root root 15 Oct 20 07:08 INTERVAL -> ..data/INTERVAL
+lrwxrwxrwx. 1 root root 13 Oct 20 07:08 OPTINO -> ..data/OPTINO
+lrwxrwxrwx. 1 root root 17 Oct 20 07:08 nginx.conf -> ..data/nginx.conf
+root@mypod:/usr/share/nginx/html/cm# cat INTERVAL
+10root@mypod:/usr/share/nginx/html/cm# cat OPTINO
+boyroot@mypod:/usr/share/nginx/html/cm# cat nginx.conf
+events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+root@mypod:/usr/share/nginx/html/cm# exit
+exit
+[root@master[~/kube/10/cm]# k exec -it mypod -- /bin/bash
+root@mypod:/# cde/usr/share/nginx/html/
+root@mypod:/usr/share/nginx/html# ls
+50x.html  cm  index.html
+root@mypod:/usr/share/nginx/html# cd cm
+root@mypod:/usr/share/nginx/html/cm# ls
+INTERVAL  OPTINO  nginx.conf
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm#
+root@mypod:/usr/share/nginx/html/cm# c
+bash: c: command not found
+root@mypod:/usr/share/nginx/html/cm# ls -la
+total 0
+drwxrwxrwx. 3 root root 108 Oct 20 07:08 .
+drwxr-xr-x. 1 root root  16 Oct 20 07:08 ..
+drwxr-xr-x. 2 root root  54 Oct 20 07:08 ..2026_10_20_07_08_49.2085683544
+lrwxrwxrwx. 1 root root  32 Oct 20 07:08 ..data -> ..2026_10_20_07_08_49.2085683544
+lrwxrwxrwx. 1 root root  15 Oct 20 07:08 INTERVAL -> ..data/INTERVAL
+lrwxrwxrwx. 1 root root  13 Oct 20 07:08 OPTINO -> ..data/OPTINO
+lrwxrwxrwx. 1 root root  17 Oct 20 07:08 nginx.conf -> ..data/nginx.conf
+root@mypod:/usr/share/nginx/html/cm# cd ..
+root@mypod:/usr/share/nginx/html# ls -al
+total 8
+drwxr-xr-x. 1 root root  16 Oct 20 07:08 .
+drwxr-xr-x. 1 root root  18 Oct 14 18:41 ..
+-rw-r--r--. 1 root root 497 Oct  1 17:19 50x.html
+drwxrwxrwx. 3 root root 108 Oct 20 07:08 cm
+-rw-r--r--. 1 root root 896 Oct  1 17:19 index.html
+root@mypod:/usr/share/nginx/html# cd cm
+root@mypod:/usr/share/nginx/html/cm# cd ..data
+root@mypod:/usr/share/nginx/html/cm/..data# ls
+INTERVAL  OPTINO  nginx.conf
+root@mypod:/usr/share/nginx/html/cm/..data# cat I
+root@mypod:/usr/share/nginx/html/cm/..data#
+root@mypod:/usr/share/nginx/html/cm/..data#
+root@mypod:/usr/share/nginx/html/cm/..data#
+root@mypod:/usr/share/nginx/html/cm/..data#
+root@mypod:/usr/share/nginx/html/cm/..data# cat INTERVAL
+10root@mypod:/usr/share/nginx/html/cm/..data# cat OPTINO
+boyroot@mypod:/usr/share/nginx/html/cm/..data# cat nginx.conf
+events {}
+server {
+    listen       80 ;
+    server_name  www.example.com;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html index.hml;
+    }
+}
+root@mypod:/usr/share/nginx/html/cm/..data# ls -la
+total 12
+drwxr-xr-x. 2 root root  54 Oct 20 07:08 .
+drwxrwxrwx. 3 root root 108 Oct 20 07:08 ..
+-rw-r--r--. 1 root root   2 Oct 20 07:08 INTERVAL
+-rw-r--r--. 1 root root   3 Oct 20 07:08 OPTINO
+-rw-r--r--. 1 root root 172 Oct 20 07:08 nginx.conf
+root@mypod:/usr/share/nginx/html/cm/..data#
+root@mypod:/usr/share/nginx/html/cm/..data# root@mypod:/usr/share/nginx/html/cm/..data# exit
+exit
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# k get pods
+NAME    READY   STATUS    RESTARTS   AGE
+mypod   1/1     Running   0          4m8s
+[root@master[~/kube/10/cm]# k get cm myconfigmap
+NAME          DATA   AGE
+myconfigmap   3      5m27s
+[root@master[~/kube/10/cm]# k delete podsomypod
+pod "mypod" deleted from default namespace
+[root@master[~/kube/10/cm]# k delete cm myconfigmap
+configmap "myconfigmap" deleted from default namespace
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+nnn[root@master[~/kube/10/cm]# k create secret -h
+Create a secret with specified type.
+
+ A docker-registry type secret is for accessing a container registry.
+
+ A generic type secret indicate an Opaque secret type.
+
+ A tls type secret holds TLS certificate and its associated key.
+
+Available Commands:
+  docker-registry   Create a secret for use with a Docker registry
+  generic           Create a secret from a local file, directory, or literal
+value
+  tls               Create a TLS secret
+
+Usage:
+  kubectl create secret (docker-registry | generic | tls) [options]
+
+Use "kubectl create secret <command> --help" for more information about a given
+command.
+Use "kubectl options" for a list of global command-line options (applies to all
+commands).
+[root@master[~/kube/10/cm]# k create secret --help
+Create a secret with specified type.
+
+ A docker-registry type secret is for accessing a container registry.
+
+ A generic type secret indicate an Opaque secret type.
+
+ A tls type secret holds TLS certificate and its associated key.
+
+Available Commands:
+  docker-registry   Create a secret for use with a Docker registry
+  generic           Create a secret from a local file, directory, or literal
+value
+  tls               Create a TLS secret
+
+Usage:
+  kubectl create secret (docker-registry | generic | tls) [options]
+
+Use "kubectl create secret <command> --help" for more information about a given
+command.
+Use "kubectl options" for a list of global command-line options (applies to all
+commands).
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]#
+[root@master[~/kube/10/cm]# c
+tk-oeyamlcreate[secret/generic mysecret--from-literalcusername=admine--from-literal password='1f2d1e2e67df'--from-literal username=admin --from-literal password='1f2d1e2e67df' --dry-run=clien
+apiVersion: v1
+data:
+  password: MWYyZDFlMmU2N2Rm
+  username: YWRtaW4=
+kind: Secret
+metadata:
+  name: mysecret
+[root@master[~/kube/10/cm]# k create secret generic -hh
+Create a secret based on a file, directory, or specified literal value.
+
+ A single secret may package one or more key/value pairs.
+
+ When creating a secret based on a file, the key will default to the basename of
+the file, and the value will default to the file content. If the basename is an
+invalid key or you wish to chose your own, you may specify an alternate key.
+
+ When creating a secret based on a directory, each file whose basename is a
+valid key in the directory will be packaged into the secret. Any directory
+entries except regular files are ignored (e.g. subdirectories, symlinks,
+devices, pipes, etc).
+
+Examples:
+  # Create a new secret named my-secret with keys for each file in folder bar
+  kubectl create secret generic my-secret --from-file=path/to/bar
+
+  # Create a new secret named my-secret with specified keys instead of names on
+disk
+  kubectl create secret generic my-secret
+--from-file=ssh-privatekey=path/to/id_rsa
+--from-file=ssh-publickey=path/to/id_rsa.pub
+
+  # Create a new secret named my-secret with key1=supersecret and key2=topsecret
+  kubectl create secret generic my-secret --from-literal=key1=supersecret
+--from-literal=key2=topsecret
+
+  # Create a new secret named my-secret using a combination of a file and a
+literal
+  kubectl create secret generic my-secret
+--from-file=ssh-privatekey=path/to/id_rsa --from-literal=passphrase=topsecret
+
+  # Create a new secret named my-secret from env files
+  kubectl create secret generic my-secret --from-env-file=path/to/foo.env
+--from-env-file=path/to/bar.env
+
+Options:
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is
+        missing in the template. Only applies to golang and jsonpath output
+        formats.
+
+    --append-hash=false:
+        Append a hash of the secret to its name.
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print
+        the object that would be sent, without sending it. If server strategy,
+        submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-create':
+        Name of the manager used to track field ownership.
+
+    --from-env-file=[]:
+        Specify the path to a file to read lines of key=val pairs to create a
+        secret.
+
+    --from-file=[]:
+        Key files can be specified using their file path, in which case a
+        default name will be given to them, or optionally with a name and file
+        path, in which case the given name will be used.  Specifying a
+        directory will iterate each named file in the directory that is a
+        valid secret key.
+
+    --from-literal=[]:
+        Specify a key and literal value to insert in secret (i.e.
+        mykey=somevalue)
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template,
+        go-template-file, template, templatefile, jsonpath, jsonpath-as-json,
+        jsonpath-file).
+
+    --save-config=false:
+        If true, the configuration of current object will be saved in its
+        annotation. Otherwise, the annotation will be unchanged. This flag is
+        useful when you want to perform kubectl apply on this object in the
+        future.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML
+        format.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template,
+        -o=go-template-file. The template format is golang templates
+        [http://golang.org/pkg/text/template/#pkg-overview].
+
+    --type='':
+        The type of secret to create
+
+    --validate='strict':
+        Must be one of: strict (or true), warn, ignore (or false). "true" or
+        "strict" will use a schema to validate the input and fail the request
+        if invalid. It will perform server side validation if
+        ServerSideFieldValidation is enabled on the api-server, but will fall
+        back to less reliable client-side validation if not. "warn" will warn
+        about unknown or duplicate fields without blocking the request if
+        server-side field validation is enabled on the API server, and behave
+        as "ignore" otherwise. "false" or "ignore" will not perform any schema
+        validation, silently dropping any unknown or duplicate fields.
+
+Usage:
+  kubectl create secret generic NAME [--type=string] [--from-file=[key=]source]
+[--from-literal=key1=value1] [--dry-run=server|client|none] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all
+commands).
+[root@master[~/kube/10/cm]# kkubectl create secretcgeneric mysecret --from-literal username=admin --from-literal password='1f2d1e2e67df' --dry-run=client -o yaml >
+
+c
+nnn[root@master[~/kube/10/cm]# exit
+exit
+
+Script done on 2026-10-20 16:39:47+09:00 [COMMAND_EXIT_CODE="0"]
