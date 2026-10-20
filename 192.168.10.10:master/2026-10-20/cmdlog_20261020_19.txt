@@ -1,0 +1,1207 @@
+Script started on 2026-10-20 19:02:52+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="163" LINES="38"]
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# #u(master)
+# 웹페이지 설정
+for i in node1 node2 node3
+do
+    ssh $i "mkdir -p /webdata"
+    NODENAME=$(echo $i | tr '[a-z]' '[A-Z]')
+    ssh $i "echo $NODENAME > /webdata/index.html"
+done
+
+# 웹페이지 확인
+for i in node1 node2 node3
+do
+    echo; echo "----- $i:/webdata/index.html -----"
+    ssh "$i" cat /webdata/index.html
+done
+# (master)
+# 웹페이지 설정
+for i in node1 node2 node3
+do
+    ssh $i "mkdir -p /webdata"
+    NODENAME=$(echo $i | tr '[a-z]' '[A-Z]')
+    ssh $i "echo $NODENAME > /webdata/index.html"
+done
+
+# 웹페이지 확인
+for i in node1 node2 node3
+do
+    echo; echo "----- $i:/webdata/index.html -----"
+    ssh "$i" cat /webdata/index.html
+done
+
+
+----- node1:/webdata/index.html -----
+NODE1
+
+----- node2:/webdata/index.html -----
+NODE2
+
+----- node3:/webdata/index.html -----
+NODE3
+[root@master[~]#
+[root@master[~]# c
+nmkdiro-pm~/kube/12/storage-&&~cdu~/kube/12/storagecd ~/kube/12/storage
+[root@master[~/kube/12/storage]# vi hostpath.yml
+>4;2m"hostpath.yml" [New]▽  zz0%m           >c  1
+>4;m"hostpath.yml" [New] 0L, 0B written                                                                                                                            ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  ~                                                                                                                                                                  0,0-1All?12$p::wq
+>4;m[root@master[~/kube/12/storage]# k apply -f hostpath.yml hostpath.yml
+pod/web created
+[root@master[~/kube/12/storage]# kggetrpodsowebs-otwideetes
+NAME   READY   STATUS    RESTARTS   AGE   IP             NODE    NOMINATED NODE   READINESS GATES
+web    1/1     Running   0          40s   10.10.135.58   node3   <none>           <none>
+[root@master[~/kube/12/storage]# curl 10.10.135.58
+NODE3
+[root@master[~/kube/12/storage]# k delete -f hostpath.yml
+pod "web" deleted from default namespace
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]# c
+[root@master[~/kube/12/storage]#ek#get -h
+Display one or many resources.
+
+ Prints a table of the most important information about the specified resources.
+You can filter the list using a label selector and the --selector flag. If the
+desired resource type is namespaced you will only see results in the current
+namespace if you don't specify any namespace.
+
+ By specifying the output as 'template' and providing a Go template as the value
+of the --template flag, you can filter the attributes of the fetched resources.
+
+Use "kubectl api-resources" for a complete list of supported resources.
+
+Examples:
+  # List all pods in ps output format
+  kubectl get pods
+
+  # List all pods in ps output format with more information (such as node name)
+  kubectl get pods -o wide
+
+  # List a single replication controller with specified NAME in ps output format
+  kubectl get replicationcontroller web
+
+  # List deployments in JSON output format, in the "v1" version of the "apps"
+API group
+  kubectl get deployments.v1.apps -o json
+
+  # List a single pod in JSON output format
+  kubectl get -o json pod web-pod-13je7
+
+  # List a pod identified by type and name specified in "pod.yaml" in JSON
+output format
+  kubectl get -f pod.yaml -o json
+
+  # List resources from a directory with kustomization.yaml - e.g.
+dir/kustomization.yaml
+  kubectl get -k dir/
+
+  # Return only the phase value of the specified pod
+  kubectl get -o template pod/web-pod-13je7 --template={{.status.phase}}
+
+  # List resource information in custom columns
+  kubectl get pod test-pod -o
+custom-columns=CONTAINER:.spec.containers[0].name,IMAGE:.spec.containers[0].image
+
+  # List all replication controllers and services together in ps output format
+  kubectl get rc,services
+
+  # List one or more resources by their type and names
+  kubectl get rc/web service/frontend pods/web-pod-13je7
+
+  # List the 'status' subresource for a single pod
+  kubectl get pod web-pod-13je7 --subresource status
+
+  # List all deployments in namespace 'backend'
+  kubectl get deployments.apps --namespace backend
+
+  # List all pods existing in all namespaces
+  kubectl get pods --all-namespaces
+
+Options:
+    -A, --all-namespaces=false:
+        If present, list the requested object(s) across all namespaces.
+        Namespace in current context is ignored even if specified with
+        --namespace.
+
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is
+        missing in the template. Only applies to golang and jsonpath output
+        formats.
+
+    --chunk-size=500:
+        Return large lists in chunks rather than all at once. Pass 0 to
+        disable.
+
+    --field-selector='':
+        Selector (field query) to filter on, supports '=', '==', and
+        '!='.(e.g. --field-selector key1=value1,key2=value2). The server only
+        supports a limited number of field queries per type.
+
+    -f, --filename=[]:
+        Filename, directory, or URL to files identifying the resource to get
+        from a server.
+
+    --ignore-not-found=false:
+        If set to true, suppresses NotFound error for specific objects that do
+        not exist. Using this flag with commands that query for collections of
+        resources has no effect when no resources are found.
+
+    -k, --kustomize='':
+        Process the kustomization directory. This flag can't be used together
+        with -f or -R.
+
+    -L, --label-columns=[]:
+        Accepts a comma separated list of labels that are going to be
+        presented as columns. Names are case-sensitive. You can also use
+        multiple flag options like -L label1 -L label2...
+
+    --no-headers=false:
+        When using the default or custom-column output format, don't print
+        headers (default print headers).
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template,
+        go-template-file, template, templatefile, jsonpath, jsonpath-as-json,
+        jsonpath-file, custom-columns, custom-columns-file, wide). See custom
+        columns
+        [https://kubernetes.io/docs/reference/kubectl/#custom-columns], golang
+        template [http://golang.org/pkg/text/template/#pkg-overview] and
+        jsonpath template
+        [https://kubernetes.io/docs/reference/kubectl/jsonpath/].
+
+    --output-watch-events=false:
+        Output watch event objects when --watch or --watch-only is used.
+        Existing objects are output as initial ADDED events.
+
+    --raw='':
+        Raw URI to request from the server.  Uses the transport specified by
+        the kubeconfig file.
+
+    -R, --recursive=false:
+        Process the directory used in -f, --filename recursively. Useful when
+        you want to manage related manifests organized within the same
+        directory.
+
+    -l, --selector='':
+        Selector (label query) to filter on, supports '=', '==', '!=', 'in',
+        'notin'.(e.g. -l key1=value1,key2=value2,key3 in (value3)). Matching
+        objects must satisfy all of the specified label constraints.
+
+    --server-print=true:
+        If true, have the server return the appropriate table output. Supports
+        extension APIs and CRDs.
+
+    --show-kind=false:
+        If present, list the resource type for the requested object(s).
+
+    --show-labels=false:
+        When printing, show all labels as the last column (default hide labels
+        column)
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML
+        format.
+
+    --sort-by='':
+        If non-empty, sort list types using this field specification.  The
+        field specification is expressed as a JSONPath expression (e.g.
+        '{.metadata.name}'). The field in the API resource specified by this
+        JSONPath expression must be an integer or a string.
+
+    --subresource='':
+        If specified, gets the subresource of the requested object.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template,
+        -o=go-template-file. The template format is golang templates
+        [http://golang.org/pkg/text/template/#pkg-overview].
+
+    -w, --watch=false:
+        After listing/getting the requested object, watch for changes.
+
+    --watch-only=false:
+        Watch for changes to the requested object(s), without listing/getting
+        first.
+
+Usage:
+  kubectl get
+[(-o|--output=)json|yaml|kyaml|name|go-template|go-template-file|template|templatefile|jsonpath|jsonpath-as-json|jsonpath-file|custom-columns|custom-columns-file|wide]
+(TYPE[.VERSION][.GROUP] [NAME | -l label] | TYPE[.VERSION][.GROUP]/NAME ...)
+[flags] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all
+commands).
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# k get
+Display all 110 possibilities? (y or n)
+[root@master[~/kube/12/storage]# k get v
+validatingadmissionpolicies.admissionregistration.k8s.io
+validatingadmissionpolicybindings.admissionregistration.k8s.io
+validatingwebhookconfigurations.admissionregistration.k8s.io
+volumeattachments.storage.k8s.io
+volumeattributesclasses.storage.k8s.io
+[root@master[~/kube/12/storage]# c get v
+nnn[root@master[~/kube/12/storage]# cd /root/kube/12/storage
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]# vi empty.yml
+>4;2m"empty.yml" [New]▽  zz0%m           >c  1
+>4;m"empty.yml" [New] 0L, 0B written                                            ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               0,0-1All?12$p::wq
+>4;m[root@master[~/kube/12/storage]# k apply -fpempty.yml
+pod/empty-pod created
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# curl 10.10.135.59
+<html>
+<head><title>403 Forbidden</title></head>
+<body>
+<center><h1>403 Forbidden</h1></center>
+<hr><center>nginx/1.26.3</center>
+</body>
+</html>
+[root@master[~/kube/12/storage]# k exec -it empty-pod -- /bin/bash
+root@empty-pod:/# mount
+overlay on / type overlay (rw,relatime,seclabel,lowerdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/118/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/117/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/116/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/115/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/114/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/113/fs:/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/112/fs,upperdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/492/fs,workdir=/var/lib/containerd/io.containerd.snapshotter.v1.overlayfs/snapshots/492/work,uuid=on)
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /dev type tmpfs (rw,nosuid,seclabel,size=65536k,mode=755,inode64)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,seclabel,gid=5,mode=620,ptmxmode=666)
+mqueue on /dev/mqueue type mqueue (rw,nosuid,nodev,noexec,relatime,seclabel)
+sysfs on /sys type sysfs (ro,nosuid,nodev,noexec,relatime,seclabel)
+cgroup on /sys/fs/cgroup type cgroup2 (ro,nosuid,nodev,noexec,relatime,seclabel)
+/dev/mapper/cs-root on /etc/hosts type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/mapper/cs-root on /dev/termination-log type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/mapper/cs-root on /etc/hostname type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+/dev/mapper/cs-root on /etc/resolv.conf type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+shm on /dev/shm type tmpfs (rw,relatime,seclabel,size=65536k,inode64)
+/dev/mapper/cs-root on /usr/share/nginx/html type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+tmpfs on /run/secrets/kubernetes.io/serviceaccount type tmpfs (ro,relatime,seclabel,size=7729124k,inode64,noswap)
+proc on /proc/bus type proc (ro,nosuid,nodev,noexec,relatime)
+proc on /proc/fs type proc (ro,nosuid,nodev,noexec,relatime)
+proc on /proc/irq type proc (ro,nosuid,nodev,noexec,relatime)
+proc on /proc/sys type proc (ro,nosuid,nodev,noexec,relatime)
+proc on /proc/sysrq-trigger type proc (ro,nosuid,nodev,noexec,relatime)
+tmpfs on /proc/acpi type tmpfs (ro,relatime,seclabel,size=4k,nr_inodes=1,inode64)
+tmpfs on /proc/interrupts type tmpfs (rw,nosuid,seclabel,size=65536k,mode=755,inode64)
+tmpfs on /proc/kcore type tmpfs (rw,nosuid,seclabel,size=65536k,mode=755,inode64)
+tmpfs on /proc/keys type tmpfs (rw,nosuid,seclabel,size=65536k,mode=755,inode64)
+tmpfs on /proc/timer_list type tmpfs (rw,nosuid,seclabel,size=65536k,mode=755,inode64)
+tmpfs on /proc/scsi type tmpfs (ro,relatime,seclabel,size=4k,nr_inodes=1,inode64)
+tmpfs on /sys/firmware type tmpfs (ro,relatime,seclabel,size=4k,nr_inodes=1,inode64)
+root@empty-pod:/#
+root@empty-pod:/#
+root@empty-pod:/# mount | grep nginx
+/dev/mapper/cs-root on /usr/share/nginx/html type xfs (rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,noquota)
+root@empty-pod:/#
+root@empty-pod:/#
+root@empty-pod:/#
+root@empty-pod:/# cd /usr/share/nginx/html/
+root@empty-pod:/usr/share/nginx/html#
+root@empty-pod:/usr/share/nginx/html#
+root@empty-pod:/usr/share/nginx/html# clear
+root@empty-pod:/usr/share/nginx/html# ls
+root@empty-pod:/usr/share/nginx/html# echo 'hello world' >>index.html
+root@empty-pod:/usr/share/nginx/html# ls
+index.html
+root@empty-pod:/usr/share/nginx/html# eit
+bash: eit: command not found
+root@empty-pod:/usr/share/nginx/html# exit
+exit
+command terminated with exit code 127
+[root@master[~/kube/12/storage]# curle10.10.135.59pod -- /bin/bash
+hello world
+[root@master[~/kube/12/storage]# k delete -f
+empty.yml     hostpath.yml
+[root@master[~/kube/12/storage]# k delete -f empty.yml
+pod "empty-pod" deleted from default namespace
+[root@master[~/kube/12/storage]# c
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]# k get pods
+No resources found in default namespace.
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# $hostname
+[root@master[~/kube/12/storage]# echo $hostname
+
+[root@master[~/kube/12/storage]# echo $()ostname
+master
+[root@master[~/kube/12/storage]# "$hostname"ame")
+
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# # (master)
+# Worker Node 전체에 NFS 드라이버(nfs-utils 패키지) 설치 - CentOS 9버전부터 사용 하면 됨
+for i in node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i NFS 환경 구성 시작 ====="
+
+    # 1. nfs-utils 패키지 설치
+    ssh "$i" 'dnf -q -y install nfs-utils'
+
+    # 2. 부팅 시 자동 모듈 로드를 위한 modules-load.d 설정 등록 (최신 표준)
+    ssh "$i" 'echo -e "nfs\nnfsd\nrpcsec_gss_krb5" | sudo tee /etc/modules-load.d/nfs.conf > /dev/null'
+
+    # 3. 현재 시점에 커널 모듈 즉시 로드 (명시적 나열)
+    ssh "$i" 'modprobe nfs && modprobe nfsd && modprobe rpcsec_gss_krb5'
+
+    echo "===== [ INFO ] $i NFS 환경 구성 완료 ====="; echo
+done
+# (master)
+# Worker Node 전체에 NFS 드라이버(nfs-utils 패키지) 설치 - CentOS 9버전부터 사용 하면 됨
+for i in node1 node2 node3
+do
+    echo; echo "===== [ INFO ] $i NFS 환경 구성 시작 ====="
+
+    # 1. nfs-utils 패키지 설치
+    ssh "$i" 'dnf -q -y install nfs-utils'
+
+    # 2. 부팅 시 자동 모듈 로드를 위한 modules-load.d 설정 등록 (최신 표준)
+    ssh "$i" 'echo -e "nfs\nnfsd\nrpcsec_gss_krb5" | sudo tee /etc/modules-load.d/nfs.conf > /dev/null'
+
+    # 3. 현재 시점에 커널 모듈 즉시 로드 (명시적 나열)
+    ssh "$i" 'modprobe nfs && modprobe nfsd && modprobe rpcsec_gss_krb5'
+
+    echo "===== [ INFO ] $i NFS 환경 구성 완료 ====="; echo
+done
+
+
+===== [ INFO ] node1 NFS 환경 구성 시작 =====
+
+Installed:
+  gssproxy-0.9.2-10.el10.x86_64          libev-4.33-15.el10.x86_64
+  libnfsidmap-1:2.8.3-9.el10.x86_64      libverto-libev-0.3.2-10.el10.x86_64
+  nfs-utils-1:2.8.3-9.el10.x86_64        rpcbind-1.2.9-1.el10.x86_64
+  sssd-nfs-idmap-2.13.1-2.el10.x86_64
+
+===== [ INFO ] node1 NFS 환경 구성 완료 =====
+
+
+===== [ INFO ] node2 NFS 환경 구성 시작 =====
+
+Installed:
+  gssproxy-0.9.2-10.el10.x86_64          libev-4.33-15.el10.x86_64
+  libnfsidmap-1:2.8.3-9.el10.x86_64      libverto-libev-0.3.2-10.el10.x86_64
+  nfs-utils-1:2.8.3-9.el10.x86_64        rpcbind-1.2.9-1.el10.x86_64
+  sssd-nfs-idmap-2.13.1-2.el10.x86_64
+
+===== [ INFO ] node2 NFS 환경 구성 완료 =====
+
+
+===== [ INFO ] node3 NFS 환경 구성 시작 =====
+
+Installed:
+  gssproxy-0.9.2-10.el10.x86_64          libev-4.33-15.el10.x86_64
+  libnfsidmap-1:2.8.3-9.el10.x86_64      libverto-libev-0.3.2-10.el10.x86_64
+  nfs-utils-1:2.8.3-9.el10.x86_64        rpcbind-1.2.9-1.el10.x86_64
+  sssd-nfs-idmap-2.13.1-2.el10.x86_64
+
+===== [ INFO ] node3 NFS 환경 구성 완료 =====
+
+[root@master[~/kube/12/storage]# dnf install -y nfs-tuils
+Last metadata expiration check: 0:39:56 ago on Tue 20 Oct 2026 07:29:18 PM KST.
+No match for argument: nfs-tuilsB
+Error: Unable to find a match: nfs-tuils
+[root@master[~/kube/12/storage]# dnf install -y nfs-utils
+Last metadata expiration check: 0:40:00 ago on Tue 20 Oct 2026 07:29:18 PM KST.
+Dependencies resolved.
+================================================================================
+ Package               Architecture  Version                Repository     Size
+================================================================================
+Installing:
+ nfs-utils            B x86_64        1:2.8.3-9.el10         baseos        489 k
+Installing dependencies:
+ gssproxy             B x86_64        0.9.2-10.el10          baseos        114 k
+ libev                B x86_64        4.33-15.el10           baseos         52 k
+ libnfsidmap          B x86_64        1:2.8.3-9.el10         baseos         63 k
+ libverto-libev       B x86_64        0.3.2-10.el10          baseos         14 k
+ rpcbind              B x86_64        1.2.9-1.el10           baseos         58 k
+ sssd-nfs-idmap       B x86_64        2.13.1-2.el10          baseos         41 k
+
+Transaction Summary
+================================================================================
+Install  7 Packages
+
+Total download size: 831 k
+Installed size: 2.0 M
+Downloading Packages:
+(1/7):)libev-4.33-15.el10.x86_64.rpm          ] 137 kB/s |  52 kB     00:00 ETA
+(2/7):)libnfsidmap-2.8.3-9.el10.x86_64.rpm    ] 163 kB/s | 163 kB     00:00 ETA
+(3/7):)gssproxy-0.9.2-10.el10.x86_64.rpm      ] 234 kB/s | 114 kB     00:00 ETA
+(4/7):)libverto-libev-0.3.2-10.el10.x86_64.rpm] 294 kB/s | 214 kB     00:00 ETA
+(5/7):)rpcbind-1.2.9-1.el10.x86_64.rpm        ] 234 kB/s | 258 kB     00:00 ETA
+(6/7):)nfs-utils-2.8.3-9.el10.x86_64.rpm=-    ] 1.2 MB/s | 489 kB     00:00 ETA
+(7/7): sssd-nfs-idmap-2.13.1-2.el10.x86_64.rpm] 163 kB/s | 841 kB     00:00 ETA
+--------------------------------------------------------------------------------
+Total                                           360 kB/s | 831 kB     00:02
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :  [===========================================        ] 1/1
+  Installing       : libnfsidmap-1:2.8.3-9.el10.x86_64=================== ] 1/7
+  Running scriptlet: rpcbind-1.2.9-1.el10.x86_64                            2/7
+  Installing       : rpcbind-1.2.9-1.el10.x86_64========================= ] 2/7
+  Running scriptlet: rpcbind-1.2.9-1.el10.x86_64                            2/7
+  Installing       : libev-4.33-15.el10.x86_64 [========================= ] 3/7
+  Installing       : libverto-libev-0.3.2-10.el10.x86_64================= ] 4/7
+  Running scriptlet: gssproxy-0.9.2-10.el10.x86_64                          5/7
+  Installing       : gssproxy-0.9.2-10.el10.x86_64======================= ] 5/7
+  Running scriptlet: gssproxy-0.9.2-10.el10.x86_64                          5/7
+  Running scriptlet: nfs-utils-1:2.8.3-9.el10.x86_64                        6/7
+  Installing       : nfs-utils-1:2.8.3-9.el10.x86_64===================== ] 6/7
+  Running scriptlet: nfs-utils-1:2.8.3-9.el10.x86_64                        6/7
+Created symlink '/etc/systemd/system/multi-user.target.wants/nfs-client.target' → '/usr/lib/systemd/system/nfs-client.target'.
+Created symlink '/etc/systemd/system/remote-fs.target.wants/nfs-client.target' → '/usr/lib/systemd/system/nfs-client.target'.
+
+Warning: The unit file, source configuration file or drop-ins of gssproxy.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+Warning: The unit file, source configuration file or drop-ins of gssproxy.service changed on disk. Run 'systemctl daemon-reload' to reload units.
+
+  Installing       : sssd-nfs-idmap-2.13.1-2.el10.x86_64================= ] 7/7
+  Running scriptlet: sssd-nfs-idmap-2.13.1-2.el10.x86_64                    7/7
+
+Installed:
+  gssproxy-0.9.2-10.el10.x86_64          libev-4.33-15.el10.x86_64
+  libnfsidmap-1:2.8.3-9.el10.x86_64      libverto-libev-0.3.2-10.el10.x86_64
+  nfs-utils-1:2.8.3-9.el10.x86_64        rpcbind-1.2.9-1.el10.x86_64
+  sssd-nfs-idmap-2.13.1-2.el10.x86_64
+
+Complete!
+[root@master[~/kube/12/storage]# showmount -e 192.168.10.14
+Export list for 192.168.10.14:
+/nas/k8s *
+[root@master[~/kube/12/storage]# vi nfs.yml
+>4;2m"nfs.yml" [New]▽  zz0%m           >c  1
+>4;m"nfs.yml" [New] 0L, 0B written                                              ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               0,0-1All?12$p^[  ^[  ::wq
+>4;m[root@master[~/kube/12/storage]# k apply -f nfs.yml
+pod/web-nfs created
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# curl 10.10.135.60
+
+<pre>
+ _________
+< K8S-NAS >
+ ---------
+  \
+   \ ,   _ ___.--'''`--''//-,-_--_.
+      \`"' ` || \\ \ \\/ / // / ,-\\`,_
+     /'`  \ \ || Y  | \|/ / // / - |__ `-,
+    /@"\  ` \ `\ |  | ||/ // | \/  \  `-._`-,_.,
+   /  _.-. `.-\,___/\ _/|_/_\_\/|_/ |     `-._._)
+   `-'``/  /  |  // \__/\__  /  \__/ \
+        `-'  /-\/  | -|   \__ \   |-' |
+          __/\ / _/ \/ __,-'   ) ,' _|'
+         (((__/(((_.' ((___..-'((__,'
+</pre>
+
+'.status.podIP')ube/12/storage]# curl $(k get pods web-nfs -o yaml | yq
+
+<pre>
+ _________
+< K8S-NAS >
+ ---------
+  \
+   \ ,   _ ___.--'''`--''//-,-_--_.
+      \`"' ` || \\ \ \\/ / // / ,-\\`,_
+     /'`  \ \ || Y  | \|/ / // / - |__ `-,
+    /@"\  ` \ `\ |  | ||/ // | \/  \  `-._`-,_.,
+   /  _.-. `.-\,___/\ _/|_/_\_\/|_/ |     `-._._)
+   `-'``/  /  |  // \__/\__  /  \__/ \
+        `-'  /-\/  | -|   \__ \   |-' |
+          __/\ / _/ \/ __,-'   ) ,' _|'
+         (((__/(((_.' ((___..-'((__,'
+</pre>
+
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# k delete -f pods
+empty.yml     hostpath.yml  nfs.yml
+[root@master[~/kube/12/storage]# k delete -f nfs.yml
+pod "web-nfs" deleted from default namespace
+[root@master[~/kube/12/storage]# k apply -f nfs.yml
+pod/web-nfs created
+[root@master[~/kube/12/storage]# curl 10.10.135.61
+
+<pre>
+ _________
+< K8S-NAS >
+ ---------
+  \
+   \ ,   _ ___.--'''`--''//-,-_--_.
+      \`"' ` || \\ \ \\/ / // / ,-\\`,_
+     /'`  \ \ || Y  | \|/ / // / - |__ `-,
+    /@"\  ` \ `\ |  | ||/ // | \/  \  `-._`-,_.,
+   /  _.-. `.-\,___/\ _/|_/_\_\/|_/ |     `-._._)
+   `-'``/  /  |  // \__/\__  /  \__/ \
+        `-'  /-\/  | -|   \__ \   |-' |
+          __/\ / _/ \/ __,-'   ) ,' _|'
+         (((__/(((_.' ((___..-'((__,'
+</pre>
+
+[root@master[~/kube/12/storage]# k delete -f .
+pod "web-nfs" deleted from default namespace
+Error from server (NotFound): error when deleting "empty.yml": pods "empty-pod" not found
+Error from server (NotFound): error when deleting "hostpath.yml": pods "web" not found
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]#
+[root@master[~/kube/12/storage]# c
+nnn[root@master[~/kube/12/storage]# kmgetepvequequequequeque
+No resources found
+[root@master[~/kube/12/storage]# showmount -e 192.168.10.14
+Export list for 192.168.10.14:
+/nas/k8s *
+[root@master[~/kube/12/storage]# cd ..
+[root@master[~/kube/12]# mkdir pv
+[root@master[~/kube/12]# cd pv
+[root@master[~/kube/12/pv]# c
+nnn[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# vi pv.yml
+>4;2m"pv.yml" [New]▽  zz0%m           >c  1
+>4;m"pv.yml" [New] 0L, 0B written                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               0,0-1All?12$p::wq
+>4;m[root@master[~/kube/12/pv]# k apply -f pv.yml
+persistentvolume/pv1 created
+[root@master[~/kube/12/pv]# k get pv -o wide
+NAME   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS      CLAIM   STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE   VOLUMEMODE
+pv1    4Gi        RWO,ROX        Retain           Available           manual         <unset>                          31s   Filesystem
+[root@master[~/kube/12/pv]# vi pv.yml
+>4;2m"pv.yml" 20L, 503B▽  zz0%m           >c  1 ---
+  2 apiVersion: v1  3 kind: PersistentVolume  4 metadata:
+  5   name: pv1
+  6 spec:
+  7   # (ㄱ) 볼륨 정의
+  8   nfs:
+  9     server: 192.168.10.14
+ 10     path: /nas/k8s
+ 11   # (ㄴ) 볼륨 특성
+ 12   capacity:
+ 13     storage: 4Gi
+ 14   volumeMode: Filesystem   # 생략해도 된다.(default), Filesystem|Block
+ 15   accessModes:
+ 16   - ReadWriteOnce # ReadWriteOnce, ReadWriteMany, ReadOnlyMany, ... 17   - ReadOnlyMany
+ 18   storageClassName: manual
+ 19   persistentVolumeReclaimPolicy: Retain
+ 20
+~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   8~@k   7o -- INSERT --18,3All 18
+ 19
+ 20
+>4;m"pv.yml" 21L,7521BRwrittenr1i2t3e4M5a6n7t8y987y8^[  18,17All::wq
+>4;m[root@master[~/kube/12/pv]# kpapply -f pv.yml
+persistentvolume/pv1 configured
+[root@master[~/kube/12/pv]# vinpvc.ymltecemdgks tkdxo
+>4;2m"pvc.yml" [New]▽  zz0%m           >c  1
+>4;m"pvc.yml" [New] 0L, 0B written                                              ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               ~                                                                               0,0-1All?12$p::wq
+>4;m[root@master[~/kube/12/pv]# k apply -f pvc.yml
+persistentvolumeclaim/pvc-web created
+[root@master[~/kube/12/pv]# k get pvc
+NAME      STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+pvc-web   Bound    pv1      4Gi        RWO,ROX,RWX    manual         <unset>                 4s
+[root@master[~/kube/12/pv]# k get pv
+NAME   CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM             STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pv1    4Gi        RWO,ROX,RWX    Retain           Bound    default/pvc-web   manual         <unset>                          14m
+[root@master[~/kube/12/pv]# c
+[root@master[~/kube/12/pv]#vvi pvc-web-pod.yml
+>4;2m"pvc-web-pod.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        0,0-1All?12$p-- INSERT --0,1AllapiVersion: v1
+  2 kind: Pod  3 metadata:
+  4   name: web-pvc  5 spec:
+  6   containers:  7   - image: nginx:1.26  8     name: nginx  9     volumeMounts:
+ 10     - name: html 11       mountPath: /usr/share/nginx/html
+>4;m"pvc-web-pod.yml" [New] 15L, 261B writtenstentVolumeClaim: 15       claimName: pvc-web15,24All^[  ^[  ::wq
+>4;m[root@master[~/kube/12/pv]# k apply -f pvc-web-pod.yml
+pod/web-pvc created
+[root@master[~/kube/12/pv]# k describe pods web-pvc -o yaml | less
+error: unknown shorthand flag: 'o' in -o
+See 'kubectl describe --help' for usage.
+[root@master[~/kube/12/pv]# k describe pods web-pvc |olesml | less
+bash: les: command not found...
+[root@master[~/kube/12/pv]# k describe pods web-pvc | less
+Name:             web-pvc
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node3/192.168.10.13
+Start Time:       Tue, 20 Oct 2026 20:53:19 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: d9a493dc33cba4e94a64065b1bfb602bd1eb7cb364bb07e8454dd697cf7423c2
+                  cni.projectcalico.org/podIP: 10.10.135.62/32
+                  cni.projectcalico.org/podIPs: 10.10.135.62/32
+Status:           Running
+IP:               10.10.135.62
+IPs:
+  IP:  10.10.135.62
+Containers:
+  nginx:
+    Container ID:   containerd://a514032fff7d1033b9e20b324c50e544e9257ede87595d7d249302f248d3b874
+    Image:          nginx:1.26
+    Image ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Tue, 20 Oct 2026 20:53:20 +0900
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /usr/share/nginx/html from html (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ft5v9 (ro)
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Ehtml:
+:ESCType:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+:ESCClaimName:  pvc-web
+:ESCReadOnly:   false
+:Ekube-api-access-ft5v9:
+:ESCType:                    Projected (a volume that contains injected data from multiple sources)
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+:EType    Reason     Age   From               Message
+:ESCReady:          True
+:ESCOAStarted:      Tue, 20 Oct 2026 20:53:20 +0900
+:ESCState:          Running
+:ESCHost Port:      <none>
+:ESCPort:           <none>
+:ESCImage ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+:ESCImage:          nginx:1.26
+:ESCContainer ID:   containerd://a514032fff7d1033b9e20b324c50e544e9257ede87595d7d249302f248d3b874
+:Enginx:
+Containers:
+:EIP:A 10.10.135.62
+IPs:OA
+IP:COA            10.10.135.62
+Status:           Running
+:ESCOA            cni.projectcalico.org/podIPs: 10.10.135.62/32
+:ESCOA            cni.projectcalico.org/podIP: 10.10.135.62/32
+Annotations:      cni.projectcalico.org/containerID: d9a493dc33cba4e94a64065b1bfb602bd1eb7cb364bb07e8454dd697cf7423c2
+Labels:           <none>
+StartATime:       Tue, 20 Oct 2026 20:53:19 +0900
+Node:A            node3/192.168.10.13
+Service Account:  default
+Priority:         0
+Namespace:        default
+Name:A            web-pvc
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Ehtml:
+:ESCType:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+:ESCClaimName:  pvc-web
+:ESCReadOnly:   false
+:Ekube-api-access-ft5v9:
+:ESCType:                    Projected (a volume that contains injected data from multiple sources)
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+:EType    Reason     Age   From               Message
+:E----    ------     ----  ----               -------
+:ENormal  Scheduled  40s   default-scheduler  Successfully assigned default/web-pvc to node3
+hineOand canlbedaccessed bykthelpod           spec.containers{nginx}: Container image "nginx:1.26" already present on mac:
+:ENormal  Created    39s   kubelet            spec.containers{nginx}: Container created
+:ENormal  Started    39s   kubelet            spec.containers{nginx}: Container started
+Conditions:
+:ESCOA/var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ft5v9 (ro)
+:ESCOA/usr/share/nginx/html from html (rw)
+:ESCMounts:
+:ESCEnvironment:    <none>
+:ESCRestart Count:  0
+:ESCReady:          True
+:ESCOAStarted:      Tue, 20 Oct 2026 20:53:20 +0900
+:ESCState:          Running
+:ESCHost Port:      <none>
+:ESCPort:           <none>
+:ESCImage ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+:ESCImage:          nginx:1.26
+:ESCContainer ID:   containerd://a514032fff7d1033b9e20b324c50e544e9257ede87595d7d249302f248d3b874
+:Enginx:
+Containers:
+:EIP:A 10.10.135.62
+IPs:OA
+IP:COA            10.10.135.62
+Status:           Running
+:ESCOA            cni.projectcalico.org/podIPs: 10.10.135.62/32
+:ESCOA            cni.projectcalico.org/podIP: 10.10.135.62/32
+Annotations:      cni.projectcalico.org/containerID: d9a493dc33cba4e94a64065b1bfb602bd1eb7cb364bb07e8454dd697cf7423c2
+Labels:           <none>
+StartATime:       Tue, 20 Oct 2026 20:53:19 +0900
+Node:A            node3/192.168.10.13
+Service Account:  default
+Priority:         0
+Namespace:        default
+Name:A            web-pvc
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+Priority:         0
+Namespace:        default
+Name:A            web-pvc
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Ehtml:
+:ESCType:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+:ESCClaimName:  pvc-web
+:ESCReadOnly:   false
+:Ekube-api-access-ft5v9:
+:ESCType:                    Projected (a volume that contains injected data from multiple sources)
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+:EType    Reason     Age   From               Message
+:E----    ------     ----  ----               -------
+:ENormal  Scheduled  40s   default-scheduler  Successfully assigned default/web-pvc to node3
+:ESCMounts:ulled     39s   kubelet            spec.containers{nginx}: Container image "nginx:1.26" already present on mac:
+:ESCEnvironment:    <none>
+:ESCRestart Count:  0
+:ESCReady:          True
+:ESCOAStarted:      Tue, 20 Oct 2026 20:53:20 +0900
+:ESCState:          Running
+:ESCHost Port:      <none>
+:ESCPort:           <none>
+:ESCImage ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+:ESCImage:          nginx:1.26
+:ESCContainer ID:   containerd://a514032fff7d1033b9e20b324c50e544e9257ede87595d7d249302f248d3b874
+:Enginx:
+Containers:
+:EIP:A 10.10.135.62
+IPs:OA
+IP:COA            10.10.135.62
+Status:           Running
+:ESCOA            cni.projectcalico.org/podIPs: 10.10.135.62/32
+:ESCOA            cni.projectcalico.org/podIP: 10.10.135.62/32
+Annotations:      cni.projectcalico.org/containerID: d9a493dc33cba4e94a64065b1bfb602bd1eb7cb364bb07e8454dd697cf7423c2
+Labels:           <none>
+StartATime:       Tue, 20 Oct 2026 20:53:19 +0900
+Node:A            node3/192.168.10.13
+Service Account:  default
+Priority:         0
+Namespace:        default
+Name:A            web-pvc
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Ehtml:
+:ESCType:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+:ESCClaimName:  pvc-web
+:ESCReadOnly:   false
+:Ekube-api-access-ft5v9:
+:ESCType:                    Projected (a volume that contains injected data from multiple sources)
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+:EType    Reason     Age   From               Message
+:E----    ------     ----  ----               -------
+:ENormal  Scheduled  40s   default-scheduler  Successfully assigned default/web-pvc to node3
+hineOand canlbedaccessed bykthelpod           spec.containers{nginx}: Container image "nginx:1.26" already present on mac:
+:ENormal  Created    39s   kubelet            spec.containers{nginx}: Container created
+:ENormal  Started    39s   kubelet            spec.containers{nginx}: Container started
+Conditions:
+:ESCOA/var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ft5v9 (ro)
+:ESCOA/usr/share/nginx/html from html (rw)
+:ESCMounts:
+:ESCEnvironment:    <none>
+:ESCRestart Count:  0
+:ESCReady:          True
+:ESCOAStarted:      Tue, 20 Oct 2026 20:53:20 +0900
+:ESCState:          Running
+:ESCHost Port:      <none>
+:ESCPort:           <none>
+:ESCImage ID:       docker.io/library/nginx@sha256:41b194461e4bae16f9b25d68b0976ed4735b89ca625c89aad88e1c1c3b7e8860
+:ESCImage:          nginx:1.26
+:ESCContainer ID:   containerd://a514032fff7d1033b9e20b324c50e544e9257ede87595d7d249302f248d3b874
+:Enginx:
+Containers:
+:EIP:A 10.10.135.62
+IPs:OA
+IP:COA            10.10.135.62
+Status:           Running
+:ESCOA            cni.projectcalico.org/podIPs: 10.10.135.62/32
+:ESCOA            cni.projectcalico.org/podIP: 10.10.135.62/32
+Annotations:      cni.projectcalico.org/containerID: d9a493dc33cba4e94a64065b1bfb602bd1eb7cb364bb07e8454dd697cf7423c2
+Labels:           <none>
+StartATime:       Tue, 20 Oct 2026 20:53:19 +0900
+Node:A            node3/192.168.10.13
+Service Account:  default
+Priority:         0
+Namespace:        default
+Name:A            web-pvc
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Ehtml:
+:ESCType:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+:ESCClaimName:  pvc-web
+:ESCReadOnly:   false
+:Ekube-api-access-ft5v9:
+:ESCType:                    Projected (a volume that contains injected data from multiple sources)
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+:EType    Reason     Age   From               Message
+:E----    ------     ----  ----               -------
+:ENormal  Scheduled  40s   default-scheduler  Successfully assigned default/web-pvc to node3
+hineOand canlbedaccessed bykthelpod           spec.containers{nginx}: Container image "nginx:1.26" already present on mac:
+:ENormal  Created    39s   kubelet            spec.containers{nginx}: Container created
+:ENormal  Started    39s   kubelet            spec.containers{nginx}: Container started
+croot@master[~/kube/12/pv]# kubectl describe pods web-pvc | sed -n '/Mounts:/,$p'
+nnn[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# c
+kubectltdescribe~podseweb-pvc#|ksedc-n '/Mounts:/,$p'web-pvc | sed -n '/Mounts:/,$p'
+    Mounts:
+      /usr/share/nginx/html from html (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-ft5v9 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True
+  Initialized                 True
+  Ready                       True
+  ContainersReady             True
+  PodScheduled                True
+Volumes:
+  html:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  pvc-web
+    ReadOnly:   false
+  kube-api-access-ft5v9:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    Optional:                false
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  72s   default-scheduler  Successfully assigned default/web-pvc to node3
+  Normal  Pulled     71s   kubelet            spec.containers{nginx}: Container image "nginx:1.26" already present on machine and can be accessed by the pod
+  Normal  Created    71s   kubelet            spec.containers{nginx}: Container created
+  Normal  Started    71s   kubelet            spec.containers{nginx}: Container started
+[root@master[~/kube/12/pv]# curl 10.10.135.62
+
+<pre>
+ _________
+< K8S-NAS >
+ ---------
+  \
+   \ ,   _ ___.--'''`--''//-,-_--_.
+      \`"' ` || \\ \ \\/ / // / ,-\\`,_
+     /'`  \ \ || Y  | \|/ / // / - |__ `-,
+    /@"\  ` \ `\ |  | ||/ // | \/  \  `-._`-,_.,
+   /  _.-. `.-\,___/\ _/|_/_\_\/|_/ |     `-._._)
+   `-'``/  /  |  // \__/\__  /  \__/ \
+        `-'  /-\/  | -|   \__ \   |-' |
+          __/\ / _/ \/ __,-'   ) ,' _|'
+         (((__/(((_.' ((___..-'((__,'
+</pre>
+
+[root@master[~/kube/12/pv]# k edit pvc pvc-web
+>4;2m"/tmp/kubectl-edit-1818755194.yaml" 43L, 1361B▽  zz0%m           >c# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be# reopened with the relevant failures.#
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |{"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"pvc-web","namespace":"defaullt"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"2Gi"}},"storageClassName":"manual","volummeMode":"Filesystem"}}
+    pv.kubernetes.io/bind-completed: "yes"
+    pv.kubernetes.io/bound-by-controller: "yes"
+  creationTimestamp: "2026-10-20T11:51:49Z"
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: pvc-web
+  namespace: default
+  resourceVersion: "314725"
+  uid: 8755421e-ebea-494e-a53c-5b82bec8d939
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:storage: 2Gi
+  storageClassName: manual
+volumeName:epv15le^Mst2^M,13,3//storage,1Top~@k   //storage
+status:
+>4;m"/tmp/kubectl-edit-1818755194.yaml" 43L,@1362B~written@k   3~@k   4~@k   5~@k   6i -- INSERT --25,1618%12Gi702Gi8Gi^[  25,1718%L 7 ^[  ^[  ::wq
+>4;merror: persistentvolumeclaims "pvc-web" could not be patched: persistentvolumeclaims "pvc-web" is forbidden: only dynamically provisioned pvc can be resized and the storageclass that provisions the pvc must support resize
+You can run `kubectl replace -f /tmp/kubectl-edit-1818755194.yaml` to try this update again.
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# lsdelete -f
+pvc-web-pod.yml  pvc.yml  pv.yml
+[root@master[~/kube/12/pv]# k delete -f pvc.yml,pvc-web
+persistentvolumeclaim "pvc-web" deleted from default namespace
+^C[root@master[~/kube/12/pv]# k delete -f pvc.yml --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+persistentvolumeclaim "pvc-web" force deleted from default namespace
+^C[root@master[~/kube/12/pv]# k delete -f pvc.yml -ffpvc-web-pod.yml
+persistentvolumeclaim "pvc-web" deleted from default namespace
+pod "web-pvc" deleted from default namespace
+[root@master[~/kube/12/pv]# c
+nnn[root@master[~/kube/12/pv]# ls pvc-ym
+pvc-web-pod.yml  pvc.yml  pv.yml
+[root@master[~/kube/12/pv]# vi pvc.yml
+>4;2m"pvc.yml" [noeol] 13L, 211B▽  zz0%m           >c  1 ---
+  2 apiVersion: v1  3 kind: PersistentVolumeClaim  4 metadata:
+  5   name: pvc-web
+  6 spec:
+  7   accessModes:
+  8     - ReadWriteOnce
+  9   volumeMode: Filesystem
+ 10   resources:
+ 11     requests:
+ 12       storage: 2Gi
+ 13   storageClassName: manual
+>4;m"pvc.yml" 13L, 213B written                                                                                          ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        1,1All?12$p~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   1~@k   2~@k   3~@k   ~@k   ~@k   2~@@   8i -- INSERT --12,18All76storage:2Gi5storage: 2Gi612Gi702Gi8Gi^[  12,17All::wq
+>4;m[root@master[~/kube/12/pv]# k apply -f pvc.yml
+persistentvolumeclaim/pvc-web created
+[root@master[~/kube/12/pv]# k apply -f pvc-web-pod.yml
+pod/web-pvc created
+[root@master[~/kube/12/pv]# k delete -f .
+persistentvolume "pv1" deleted
+pod "web-pvc" deleted from default namespace
+persistentvolumeclaim "pvc-web" deleted from default namespace
+[root@master[~/kube/12/pv]# vi pvc.yml
+>4;2m"pvc.yml" 13L, 213B▽  zz0%m           >c  1 ---
+  2 apiVersion: v1  3 kind: PersistentVolumeClaim  4 metadata:
+  5   name: pvc-web
+  6 spec:
+  7   accessModes:
+  8     - ReadWriteOnce
+  9   volumeMode: Filesystem
+ 10   resources:
+ 11     requests:
+ 12       storage: 10Gi
+ 13   storageClassName: manual
+>4;m"pvc.yml" 13L, 212B written                                                                                          ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        ~                                                                                                                        12,7All?12$p~@k   1~@k   8~@k   2~@k   9~@k   10~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6x dl  0Gir2  ^[  ^[  ::wq
+>4;m[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# c
+nnn[root@master[~/kube/12/pv]# k api-resources | grep Storage
+csidrivers                                            storage.k8s.io/v1                      false        CSIDriver
+csinodes                                              storage.k8s.io/v1                      false        CSINode
+csistoragecapacities                                  storage.k8s.io/v1                      true         CSIStorageCapacity
+storageclasses                      sc                storage.k8s.io/v1                      false        StorageClass
+volumeattachments                                     storage.k8s.io/v1                      false        VolumeAttachment
+volumeattributesclasses             vac               storage.k8s.io/v1                      false        VolumeAttributesClass
+storageversionmigrations                              storagemigration.k8s.io/v1             false        StorageVersionMigration
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# dnf install -y helm
+Last metadata expiration check: 1:54:54 ago on Tue 20 Oct 2026 07:29:18 PM KST.
+Package helm-4.1.1-1.el10_2.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# which helm
+/usr/bin/helm
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# c
+[root@master[~/kube/12/pv]#vhttps://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/chartscsi/csi-driver-nfs/master/charts
+"csi-driver-nfs" has been added to your repositories
+[root@master[~/kube/12/pv]# helm repo update
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "csi-driver-nfs" chart repository
+Update Complete. ⎈Happy Helming!⎈
+[root@master[~/kube/12/pv]# helm search repo csi-driver-nfs
+NAME                            CHART VERSION   APP VERSION     DESCRIPTION
+csi-driver-nfs/csi-driver-nfs   4.13.5          4.13.5          CSI NFS Driver for Kubernetes
+[root@master[~/kube/12/pv]# k create ns nfs-storage
+namespace/nfs-storage created
+[root@master[~/kube/12/pv]# helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs -n nfs-storage
+NAME: csi-driver-nfs
+LAST DEPLOYED: Tue Oct 20 21:25:13 2026
+NAMESPACE: nfs-storage
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+NOTES:
+The CSI NFS Driver is getting deployed to your cluster.
+
+To check CSI NFS Driver pods status, please run:
+
+  kubectl --namespace=nfs-storage get pods --selector="app.kubernetes.io/instance=csi-driver-nfs" --watch
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# k get pods -l "app.kubernetes.io/instance=csi-driver-nfs" -n nfs-storage
+NAME                                  READY   STATUS              RESTARTS   AGE
+csi-nfs-controller-555b9cc7df-gwdmd   0/5     ContainerCreating   0          25s
+csi-nfs-node-ct4mw                    3/3     Running             0          25s
+csi-nfs-node-ffvfd                    0/3     ContainerCreating   0          25s
+csi-nfs-node-q4h6c                    3/3     Running             0          25s
+csi-nfs-node-skkrk                    0/3     ContainerCreating   0          25s
+[root@master[~/kube/12/pv]# k get pods -l "app.kubernetes.io/instance=csi-driver-nfs" -n nfs-storage
+NAME                                  READY   STATUS    RESTARTS     AGE
+csi-nfs-controller-555b9cc7df-gwdmd   5/5     Running   1 (7s ago)   42s
+csi-nfs-node-ct4mw                    3/3     Running   0            42s
+csi-nfs-node-ffvfd                    3/3     Running   0            42s
+csi-nfs-node-q4h6c                    3/3     Running   0            42s
+csi-nfs-node-skkrk                    3/3     Running   0            42s
+[root@master[~/kube/12/pv]# vi nfs-csi.yml
+>4;2m"nfs-csi.yml" [New]▽  zz0%m           >c  1
+~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    ~                                                                                    0,0-1All?12$p-- INSERT --0,1AllapiVersion: storage.k8s.io/v1
+  2 kind: StorageClass  3 metadatmetadata:
+  4   name: nfs-csi  5 provisioner: nfs.csi.k8s.io  6 parameters:  7   server: 192.168.10.14
+  8   share: /nas/csi  9 reclaimPolicy: Delete 10 vovolumeBindingMode: Immediate
+>4;m"nfs-csi.yml"p[New]n11L,u235B2written ^[  ::wq
+>4;m[root@master[~/kube/12/pv]# k apply -f
+nfs-csi.yml      pvc-web-pod.yml  pvc.yml          pv.yml
+[root@master[~/kube/12/pv]# k apply -f nfs-csi.yml
+storageclass.storage.k8s.io/nfs-csi created
+[root@master[~/kube/12/pv]# c
+nnn[root@master[~/kube/12/pv]# k get sc
+NAME      PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+nfs-csi   nfs.csi.k8s.io   Delete          Immediate           true                   6s
+[root@master[~/kube/12/pv]# # (master)
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nginx
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs-csi
+EOF
+
+echo; echo "======[ INFO ] PV, PVC 목록 확인 ========"
+
+# PV 생성 확인
+[root@master[~/kube/12/pv]# # (master)
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-nginx
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: nfs-csi
+EOF
+
+echo; echo "======[ INFO ] PV, PVC 목록 확인 ========"
+
+# PV 생성 확인
+kubectl get pv,pvc
+persistentvolumeclaim/pvc-nginx created
+
+======[ INFO ] PV, PVC 목록 확인 ========
+NAME                              STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/pvc-nginx   Pending                                      nfs-csi        <unset>                 0s
+[root@master[~/kube/12/pv]# kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myweb
+spec:
+  containers:
+  - name: mycontainer
+    image: nginx
+    volumeMounts:
+    - name: data
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: pvc-nginx
+[root@master[~/kube/12/pv]# kubectl apply -f - <<EOF
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myweb
+spec:
+  containers:
+  - name: mycontainer
+    image: nginx
+    volumeMounts:
+    - name: data
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: pvc-nginx
+EOF
+pod/myweb created
+[root@master[~/kube/12/pv]# kubectl get pods -o wide
+NAME    READY   STATUS              RESTARTS   AGE   IP       NODE    NOMINATED NODE   READINESS GATES
+myweb   0/1     ContainerCreating   0          4s    <none>   node1   <none>           <none>
+[root@master[~/kube/12/pv]# k exec -it myweb -- /bin/bash
+root@myweb:/# echo NFS-CSI > /usr/share/nginx/html/index.html
+root@myweb:/# exit
+exit
+[root@master[~/kube/12/pv]# tkghlrhdtksdml tksanf didqhr
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]#
+[root@master[~/kube/12/pv]# c
+nnn[root@master[~/kube/12/pv]# exit
+exit
+
+Script done on 2026-10-20 21:39:07+09:00 [COMMAND_EXIT_CODE="0"]
