@@ -1,0 +1,1485 @@
+Script started on 2026-10-21 19:04:31+09:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="115" LINES="30"]
+[root@master[~]# kaconfiguviewo|fgrep
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[~]# k4configixget-contexts t
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# k get sa
+NAME      AGE
+default   9d
+[root@master[~]# k run testpod --image nginx --port 80
+pod/testpod created
+[root@master[~]# k get pods testpod -o yaml | grep -i serviceaccount
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+  serviceAccount: default
+  serviceAccountName: default
+      - serviceAccountToken:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+[root@master[~]# k version test
+[root@master[~]# k version
+Client Version: v1.37.1
+Kustomize Version: v5.8.1
+Server Version: v1.37.1
+mkdir@-ps~/kube/15/useradd~&&ucd/~/kube/15/useradd~/kube/15/useradd
+[root@master[~/kube/15/useradd]# openssl genrsa -out myuser.key 2048
+[root@master[~/kube/15/useradd]# ls
+myuser.key
+opensslareqr-newu-key5myuser.key -outsmyuser.csrw-subj "/CN=myuser"out myuser.csr -subj "/CN=myuser"
+[root@master[~/kube/15/useradd]# file *
+myuser.csr: PEM certificate request
+myuser.key: OpenSSH private key (no password)
+[root@master[~/kube/15/useradd]# ls
+myuser.csr  myuser.key
+[root@master[~/kube/15/useradd]# cat myuser.csr
+-----BEGIN CERTIFICATE REQUEST-----
+MIICVjCCAT4CAQAwETEPMA0GA1UEAwwGbXl1c2VyMIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEArX0gaOet1joX3sWykV1Pt68UW4unETDnqc1SPYqbnKJN
+h2528eOevxGDuBt3Wd/vngUYwLSqN9mzNhmlsg63aXdC5N3e2jUFlAZmi45Ed08I
+GJVq7yAcbnLyO70qAXrOyZIpTJ4qNibz8R3PaOoqvxgAtnIHk4YMJrBS8O7+KM3j
+Gv8SX41xXm4+ib6tEa/OcPtRAN58gbo1cCpwcSuuWUWicPdUKi4eVqsjI2daoVPD
+AV6K9VjMTQg2cMhLOcheqw46P/eLM0LOjzKZ3J8OYzKRwqSF6fGOg22GybMi01pR
+WyO++6G9Aiuek+MF8q0aDUFhwOh2L68nZLnJlOFp4QIDAQABoAAwDQYJKoZIhvcN
+AQELBQADggEBAHZGgmP4ODpORaL7wbmjdbfdTl/KB/PlUqjU/ghnebEjUH9hP/fM
+frNyppgkSaLcX8Fj7W/m7B5ogz4NVVOjBt/hWugoaC/JAfu4PnSkCpAuZkOHzWFh
+lrxCbZ1yafklym3N6QZEWbx78cyA6ioJm3d6nrKLc3jnX6pYvxBKDeIvqUxniFUv
+alWAVBMCIcWqnWF2kVLoq6YHLBxuEIqbrRfv/9MgadLrVTQsp9cgd+WMf88k3LOO
+7zG/2FSgzIPoOntrm53eHpz46w+fPx1IJ9U3k79zXQB+aV9VFf8MxLvAONRVS4dd
+RIrMpH5SPMBC/wbHtHc7SW8jb/KPI4JN3Ww=
+-----END CERTIFICATE REQUEST-----
+[root@master[~/kube/15/useradd]# cat myuser.key
+-----BEGIN PRIVATE KEY-----
+MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCtfSBo563WOhfe
+xbKRXU+3rxRbi6cRMOepzVI9ipucok2Hbnbx456/EYO4G3dZ3++eBRjAtKo32bM2
+GaWyDrdpd0Lk3d7aNQWUBmaLjkR3TwgYlWrvIBxucvI7vSoBes7JkilMnio2JvPx
+Hc9o6iq/GAC2cgeThgwmsFLw7v4ozeMa/xJfjXFebj6Jvq0Rr85w+1EA3nyBujVw
+KnBxK65ZRaJw91QqLh5WqyMjZ1qhU8MBXor1WMxNCDZwyEs5yF6rDjo/94szQs6P
+Mpncnw5jMpHCpIXp8Y6DbYbJsyLTWlFbI777ob0CK56T4wXyrRoNQWHA6HYvrydk
+ucmU4WnhAgMBAAECggEAEJq/vdqivDS+MR+p2hjctt9mauagXFhaa9mPa/12rFSq
+Z/JuJvOar33dJgNW9n6k3/Jr7pG8EvFeoihtP/ABpPH5sI79s9PMT2EXcnbw3Zxu
+UXAHlpBzuCx/O7F8sjyPSyKWmlMvBhTPVz37qnZzFewVsWCTkg6L3i4VGiM9pyj4
+/KFYv9EC9wdfz2IST7vwi6HeOeWXb7wvC7ziqo/tkLPwZSiL4W3LIphLeb3sokqc
+crub+U+ElhIn89I8uxhvKAQujFscEEYsX0t5uLL8ZogPlPn4eIl3Q1yxlwW4INJh
+5fQumrpfP+fDi53utC4N3vylJu2VgKZqKoULqsRESwKBgQDlplsC9t7gYhpzRvEM
+86r+oqgci1R1br7OLBdT4GU/H0Rp/SljEVJRoB66FiYz+TS10lG63oGgUAsaGIDV
+I3I302Na3JSIuLl/RCn4FOqbGUJH2VIUiylNZ3y4dK+LeiA27mV0x6+WiOF2vBwW
+3iX196BWTIVfguE15czqtcKcCwKBgQDBZR5HpIYMQohJQsRqBwfhuE9VXTOc3X3Z
+1Ndn7dM5Y4gqOZt+x9uiQGr7SJST9zo5JVWNwDcQ/JyLyS5HCV8kB0MaTORuZKag
+wd4AhUCzTayymG2q1bGXQI0+lGJVJedyoOYuqGL1Yn65kiFnRSVpdwyaF+UfMgWP
+BDuHuRCZQwKBgH9qv5BzfNGuXNKdB92RzMwfX3sG60OEwKUP3ZmSJVrSdFkCN9ZZ
+o/zaBHJnG6c2m8JOAT7XecCC6MX/1mtrkVHcHYIqZNc+9tzf6xFUOZ74csf+kgYH
++FCUHKUTSNrwVbNkrjIPISM6qy3/zO37L8C7NeDr8AxAR8hpyjpnwqRlAoGAGRL0
+LxO8sYA6zUzTzG9m7TQJTScNVww8ke6PkxD5rtohwF/BsllVN58kf7n0UY7fRKN7
+iSpfuVsXLOSDlIA5jqFGaPWJNGrmU7dvAiBEuDqc5nbu2RRltxeOeIuiiCmm7WzB
+C1GXqvr/NS4mGI6VgCwIPT5V3YqNv/IribhL16MCgYBmwJ6Sayfm8mT9ZgpM8cdW
+bdMhlvBk5iMO/31e+JAyaS8IeobpnCUVYuMXqYQM8W4hI2M0vxKRcr+A4sWaA1yY
+PBv/h0MXIinJ/50PTYyUt6E2x5h7miHCHM+e2lPkONBhGI5TJ+ugRKQNmIqcn9LY
+bXZZUx5x5e9XwySBHFQChA==
+-----END PRIVATE KEY-----
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# cat myuser.csr | base64 | tr -d '\n'
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1ZqQ0NBVDRDQVFBd0VURVBNQTBHQTFVRUF3d0diWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRgpBQU9DQVE4QU1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDY4VVc0dW5FVERucWMxU1BZcWJuS0pOCmgyNTI4ZU9ldnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOEkKR0pWcTd5QWNibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zagpHdjhTWDQxeFhtNCtpYjZ0RWEvT2NQdFJBTjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBECkFWNks5VmpNVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZmR09nMjJHeWJNaTAxcFIKV3lPKys2RzlBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCb0FBd0RRWUpLb1pJaHZjTgpBUUVMQlFBRGdnRUJBSFpHZ21QNE9EcE9SYUw3d2JtamRiZmRUbC9LQi9QbFVxalUvZ2huZWJFalVIOWhQL2ZNCmZyTnlwcGdrU2FMY1g4Rmo3Vy9tN0I1b2d6NE5WVk9qQnQvaFd1Z29hQy9KQWZ1NFBuU2tDcEF1WmtPSHpXRmgKbHJ4Q2JaMXlhZmtseW0zTjZRWkVXYng3OGN5QTZpb0ptM2Q2bnJLTGMzam5YNnBZdnhCS0RlSXZxVXhuaUZVdgphbFdBVkJNQ0ljV3FuV0Yya1ZMb3E2WUhMQnh1RUlxYnJSZnYvOU1nYWRMclZUUXNwOWNnZCtXTWY4OGszTE9PCjd6Ry8yRlNneklQb09udHJtNTNlSHB6NDZ3K2ZQeDFJSjlVM2s3OXpYUUIrYVY5VkZmOE14THZBT05SVlM0ZGQKUklyTXBINVNQTUJDL3diSHRIYzdTVzhqYi9LUEk0Sk4zV3c9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# cat <<uEOF.>scsr-myuser.ymlr -d '\n'
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: myuser
+spec:
+  request: $(cat myuser.csr | base64 | tr -d '\n')
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 864000  # one day: 86400, 10 days: 864000
+  usages:
+  - client auth
+EOF
+cat << EOF > csr-myuser.yml
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: myuser
+spec:
+  request: $(cat myuser.csr | base64 | tr -d '\n')
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 864000  # one day: 86400, 10 days: 864000
+  usages:
+  - client auth
+EOF
+
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# cat csr-myuser.yml
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  name: myuser
+spec:
+  request: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1ZqQ0NBVDRDQVFBd0VURVBNQTBHQTFVRUF3d0diWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRgpBQU9DQVE4QU1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDY4VVc0dW5FVERucWMxU1BZcWJuS0pOCmgyNTI4ZU9ldnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOEkKR0pWcTd5QWNibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zagpHdjhTWDQxeFhtNCtpYjZ0RWEvT2NQdFJBTjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBECkFWNks5VmpNVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZmR09nMjJHeWJNaTAxcFIKV3lPKys2RzlBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCb0FBd0RRWUpLb1pJaHZjTgpBUUVMQlFBRGdnRUJBSFpHZ21QNE9EcE9SYUw3d2JtamRiZmRUbC9LQi9QbFVxalUvZ2huZWJFalVIOWhQL2ZNCmZyTnlwcGdrU2FMY1g4Rmo3Vy9tN0I1b2d6NE5WVk9qQnQvaFd1Z29hQy9KQWZ1NFBuU2tDcEF1WmtPSHpXRmgKbHJ4Q2JaMXlhZmtseW0zTjZRWkVXYng3OGN5QTZpb0ptM2Q2bnJLTGMzam5YNnBZdnhCS0RlSXZxVXhuaUZVdgphbFdBVkJNQ0ljV3FuV0Yya1ZMb3E2WUhMQnh1RUlxYnJSZnYvOU1nYWRMclZUUXNwOWNnZCtXTWY4OGszTE9PCjd6Ry8yRlNneklQb09udHJtNTNlSHB6NDZ3K2ZQeDFJSjlVM2s3OXpYUUIrYVY5VkZmOE14THZBT05SVlM0ZGQKUklyTXBINVNQTUJDL3diSHRIYzdTVzhqYi9LUEk0Sk4zV3c9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=
+  signerName: kubernetes.io/kube-apiserver-client
+  expirationSeconds: 864000  # one day: 86400, 10 days: 864000
+  usages:
+  - client auth
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k get csr
+No resources found
+[root@master[~/kube/15/useradd]# k apply -f csr-myuser.yml
+certificatesigningrequest.certificates.k8s.io/myuser created
+[root@master[~/kube/15/useradd]# k get csr
+NAME     AGE   SIGNERNAME                            REQUESTOR          REQUESTEDDURATION   CONDITION
+myuser   4s    kubernetes.io/kube-apiserver-client   kubernetes-admin   10d                 Pending
+[root@master[~/kube/15/useradd]# k certificate approve myuser.
+certificatesigningrequest.certificates.k8s.io/myuser approved
+[root@master[~/kube/15/useradd]# k get csr
+NAME     AGE   SIGNERNAME                            REQUESTOR          REQUESTEDDURATION   CONDITION
+myuser   60s   kubernetes.io/kube-apiserver-client   kubernetes-admin   10d                 Approved,Issued
+[root@master[~/kube/15/useradd]# k get csrmmyuser -o yaml | less
+apiVersion: certificates.k8s.io/v1
+kind: CertificateSigningRequest
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"certificates.k8s.io/v1","kind":"CertificateSigningRequest","metadata":{"annotations":{},"name":"myuser"},"spec":{"expirationSeconds":864000,"request":"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1ZqQ0NBVDRDQVFBd0VURVBNQTBHQTFVRUF3d0diWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRgpBQU9DQVE4QU1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDY4VVc0dW5FVERucWMxU1BZcWJuS0pOCmgyNTI4ZU9ldnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOEkKR0pWcTd5QWNibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zagpHdjhTWDQxeFhtNCtpYjZ0RWEvT2NQdFJBTjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBECkFWNks5VmpNVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZmR09nMjJHeWJNaTAxcFIKV3lPKys2RzlBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCb0FBd0RRWUpLb1pJaHZjTgpBUUVMQlFBRGdnRUJBSFpHZ21QNE9EcE9SYUw3d2JtamRiZmRUbC9LQi9QbFVxalUvZ2huZWJFalVIOWhQL2ZNCmZyTnlwcGdrU2FMY1g4Rmo3Vy9tN0I1b2d6NE5WVk9qQnQvaFd1Z29hQy9KQWZ1NFBuU2tDcEF1WmtPSHpXRmgKbHJ4Q2JaMXlhZmtseW0zTjZRWkVXYng3OGN5QTZpb0ptM2Q2bnJLTGMzam5YNnBZdnhCS0RlSXZxVXhuaUZVdgphbFdBVkJNQ0ljV3FuV0Yya1ZMb3E2WUhMQnh1RUlxYnJSZnYvOU1nYWRMclZUUXNwOWNnZCtXTWY4OGszTE9PCjd6Ry8yRlNneklQb09udHJtNTNlSHB6NDZ3K2ZQeDFJSjlVM2s3OXpYUUIrYVY5VkZmOE14THZBT05SVlM0ZGQKUklyTXBINVNQTUJDL3diSHRIYzdTVzhqYi9LUEk0Sk4zV3c9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=","signerName":"kubernetes.io/kube-apiserver-client","usages":["client auth"]}}
+  creationTimestamp: "2026-10-21T10:43:16Z"
+  name: myuser
+  resourceVersion: "370346"
+  uid: f124bd84-b3dd-40b3-9a6c-8dd1801be977
+spec:
+  expirationSeconds: 864000
+  extra:
+    authentication.kubernetes.io/credential-id:
+    - X509SHA256=ec86a4611f4d0c18eb04dd6e82d4608c94fd924ef97240e58d12e035dbf796d3
+  groups:
+  - kubeadm:cluster-admins
+  - system:authenticated
+NVNQTUJDL3diSHRIYzdTVzhqYi9LUEk0Sk4zV3c9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=VY5VkZmOE14THZBT05SVlM0ZGQKUklyTXBI:
+:EsignerName: kubernetes.io/kube-apiserver-client
+:Eusages:
+:E-Cclient auth
+:Eusername: kubernetes-admin
+status:
+N0VVJmZ245UkNML0F6WVZpUmlIRExkTGszWDBJbzNvY3VBUkJUd0d0M0dGaE1VdkU3c0V0eGx5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KEdqa1I0MlZmCj:
+:Econditions:
+:E-ClastTransitionTime: "2026-10-21T10:44:13Z"
+:ESClastUpdateTime: "2026-10-21T10:44:13Z"
+:ESCmessage: This CSR was approved by kubectl certificate approve.
+:ESCreason: KubectlApprove
+:ESCstatus: "True"
+:ESCtype: Approved
+:E-Csystem:authenticatediBDRVJUSUZJQ0FURSBSRVFVRVNULS0tLS0KTUlJQ1ZqQ0NBVDRDQVFBd0VURVBNQTBHQTFVRUF3d0diWGwxYzJWeU1JSUJJakFO
+:E-Ckubeadm:cluster-admins
+:Egroups:
+:ESC-AX509SHA256=ec86a4611f4d0c18eb04dd6e82d4608c94fd924ef97240e58d12e035dbf796d3
+:ESCauthentication.kubernetes.io/credential-id:
+:Eextra:
+:EexpirationSeconds: 864000
+spec:A
+:Euid: f124bd84-b3dd-40b3-9a6c-8dd1801be977
+:EresourceVersion: "370346"
+:Ename: myuser
+:EcreationTimestamp: "2026-10-21T10:43:16Z"
+Qo=","signerName":"kubernetes.io/kube-apiserver-client","usages":["client auth"]}}
+:ESCkubectl.kubernetes.io/last-applied-configuration:C|rtificateSigningRequest","metadata":{"annotations":{},"name":"myuser
+:Eannotations:
+metadata:
+kind:ACertificateSigningRequest
+apiVersion: certificates.k8s.io/v1
+NVNQTUJDL3diSHRIYzdTVzhqYi9LUEk0Sk4zV3c9Ci0tLS0tRU5EIENFUlRJRklDQVRFIFJFUVVFU1QtLS0tLQo=VY5VkZmOE14THZBT05SVlM0ZGQKUklyTXBI:
+:EsignerName: kubernetes.io/kube-apiserver-client
+:Eusages:
+:E-Cclient auth
+:Eusername: kubernetes-admin
+status:
+N0VVJmZ245UkNML0F6WVZpUmlIRExkTGszWDBJbzNvY3VBUkJUd0d0M0dGaE1VdkU3c0V0eGx5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0KEdqa1I0MlZmCj:
+:Econditions:
+:E-ClastTransitionTime: "2026-10-21T10:44:13Z"
+:ESClastUpdateTime: "2026-10-21T10:44:13Z"
+:ESCmessage: This CSR was approved by kubectl certificate approve.
+:ESCreason: KubectlApprove
+:ESCstatus: "True"
+:ESCtype: Approved
+[root@master[~/kube/15/useradd]# k get csr myuser -o yaml | grep certificate:>> test.txt
+[root@master[~/kube/15/useradd]# vi test.txt
+>4;2m"test.txt" 1L, 1464B▽  zz0%m           >c  1   certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM5akNDQWQ2Z0F3SUJBZ0lRVVZlNUQwd2ZjcHk1U2IwcnB0VEVzakFOQmdrcWhrr    aUc5dzBCQVFzRkFEQVYKTVJNd0VRWURWUVFERXdwcmRXSmxjbTVsZEdWek1CNFhEVEkyTVRBeU1URXdNemt4TTFvWERUSTJNVEF6TVRFdwpNemt4TTFvd0VV    URVBNQTBHQTFVRUF4TUdiWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBCk1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDD    Y4VVc0dW5FVERucWMxU1BZcWJuS0pOaDI1MjhlT2UKdnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOElHSS    lZxN3lBYwpibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zakd2OFNYNDF4ClhtNCtpYjZ0RWEvT2NQdFJBB    TjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBEQVY2SzlWak0KVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZZ    mR09nMjJHeWJNaTAxcFJXeU8rKzZHOQpBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCbzBZd1JEQVRCZ05WSFNVRUREQUtCZ2dyCkk    JnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbHdRTnYKcHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQQ    3dVQUE0SUJBUUE2S0lyeHVrUTZLZDJpSXY0dXBLZE5vdnp4Y2YxRwo3WVp0V0dJcUQ3WUlUZmZQQWJGRi9Od0E0MzcxYU9mRFdhcE9HUi9zeHJKU1pyYnY00    aFNtK1UzalNtRitENmFaCmxkdGhaTDJpZ3MzV2pJbEEzcm9ZRUZlWExRVFZYMWI4c1R6ejNxR1B1YlRqRkUxN0VYalVhbG91VitqaE1aOHgKSVRUL2Q3ZU99    pUlVWNWtrM2JUcEJvcVp1aGptUmVqTFRCQ1drNEFiekhxRmpkaFZvNmNjR3BjS0cwRXlyNllkNApjT3lXaFhqTmFybnBXNUxTRlgvZ0Ryb1E2ZmcyQ012UEE    RDckw2TmxnV2prYUFZOWU1NDJJTDc0SEdqa1I0MlZmCjN0VVJmZ245UkNML0F6WVZpUmlIRExkTGszWDBJbzNvY3VBUkJUd0d0M0dGaE1VdkU3c0V0eGx5CC    i0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+>4;m>4;m[root@master[~/kube/15/useradd]# k get                                                                             ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          1,3All?12$p^[  ^[  ::q
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k get csr myuser
+NAME     AGE     SIGNERNAME                            REQUESTOR          REQUESTEDDURATION   CONDITION
+myuser   3m20s   kubernetes.io/kube-apiserver-client   kubernetes-admin   10d                 Approved,Issued
+[root@master[~/kube/15/useradd]# k get csr myuser -o jsonpath='{.status.cetficate}''
+LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM5akNDQWQ2Z0F3SUJBZ0lRVVZlNUQwd2ZjcHk1U2IwcnB0VEVzakFOQmdrcWhraUc5dzBCQVFzRkFEQVYKTVJNd0VRWURWUVFERXdwcmRXSmxjbTVsZEdWek1CNFhEVEkyTVRBeU1URXdNemt4TTFvWERUSTJNVEF6TVRFdwpNemt4TTFvd0VURVBNQTBHQTFVRUF4TUdiWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBCk1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDY4VVc0dW5FVERucWMxU1BZcWJuS0pOaDI1MjhlT2UKdnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOElHSlZxN3lBYwpibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zakd2OFNYNDF4ClhtNCtpYjZ0RWEvT2NQdFJBTjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBEQVY2SzlWak0KVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZmR09nMjJHeWJNaTAxcFJXeU8rKzZHOQpBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCbzBZd1JEQVRCZ05WSFNVRUREQUtCZ2dyCkJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbHdRTnYKcHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUE2S0lyeHVrUTZLZDJpSXY0dXBLZE5vdnp4Y2YxRwo3WVp0V0dJcUQ3WUlUZmZQQWJGRi9Od0E0MzcxYU9mRFdhcE9HUi9zeHJKU1pyYnY0aFNtK1UzalNtRitENmFaCmxkdGhaTDJpZ3MzV2pJbEEzcm9ZRUZlWExRVFZYMWI4c1R6ejNxR1B1YlRqRkUxN0VYalVhbG91VitqaE1aOHgKSVRUL2Q3ZU9pUlVWNWtrM2JUcEJvcVp1aGptUmVqTFRCQ1drNEFiekhxRmpkaFZvNmNjR3BjS0cwRXlyNllkNApjT3lXaFhqTmFybnBXNUxTRlgvZ0Ryb1E2ZmcyQ012UERDckw2TmxnV2prYUFZOWU1NDJJTDc0SEdqa1I0MlZmCjN0VVJmZ245UkNML0F6WVZpUmlIRExkTGszWDBJbzNvY3VBUkJUd0d0M0dGaE1VdkU3c0V0eGx5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K[root@master[~/kube/15/useradd]# k get csr myuser -o jsonpath='{.status.certificate}' | base64 -d > myuser.crt
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# diff myuser.crt test.txt
+1,18c1
+< -----BEGIN CERTIFICATE-----
+< MIIC9jCCAd6gAwIBAgIQUVe5D0wfcpy5Sb0rptTEsjANBgkqhkiG9w0BAQsFADAV
+< MRMwEQYDVQQDEwprdWJlcm5ldGVzMB4XDTI2MTAyMTEwMzkxM1oXDTI2MTAzMTEw
+< MzkxM1owETEPMA0GA1UEAxMGbXl1c2VyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+< MIIBCgKCAQEArX0gaOet1joX3sWykV1Pt68UW4unETDnqc1SPYqbnKJNh2528eOe
+< vxGDuBt3Wd/vngUYwLSqN9mzNhmlsg63aXdC5N3e2jUFlAZmi45Ed08IGJVq7yAc
+< bnLyO70qAXrOyZIpTJ4qNibz8R3PaOoqvxgAtnIHk4YMJrBS8O7+KM3jGv8SX41x
+< Xm4+ib6tEa/OcPtRAN58gbo1cCpwcSuuWUWicPdUKi4eVqsjI2daoVPDAV6K9VjM
+< TQg2cMhLOcheqw46P/eLM0LOjzKZ3J8OYzKRwqSF6fGOg22GybMi01pRWyO++6G9
+< Aiuek+MF8q0aDUFhwOh2L68nZLnJlOFp4QIDAQABo0YwRDATBgNVHSUEDDAKBggr
+< BgEFBQcDAjAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFHbKDhuFRT/qN0MlwQNv
+< ptki6MxGMA0GCSqGSIb3DQEBCwUAA4IBAQA6KIrxukQ6Kd2iIv4upKdNovzxcf1G
+< 7YZtWGIqD7YITffPAbFF/NwA4371aOfDWapOGR/sxrJSZrbv4hSm+U3jSmF+D6aZ
+< ldthZL2igs3WjIlA3roYEFeXLQTVX1b8sTzz3qGPubTjFE17EXjUalouV+jhMZ8x
+< ITT/d7eOiRUV5kk3bTpBoqZuhjmRejLTBCWk4AbzHqFjdhVo6ccGpcKG0Eyr6Yd4
+< cOyWhXjNarnpW5LSFX/gDroQ6fg2CMvPDCrL6NlgWjkaAY9e542IL74HGjkR42Vf
+< 3tURfgn9RCL/AzYViRiHDLdLk3X0Io3ocuARBTwGt3GFhMUvE7sEtxly
+< -----END CERTIFICATE-----
+---
+>   certificate: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUM5akNDQWQ2Z0F3SUJBZ0lRVVZlNUQwd2ZjcHk1U2IwcnB0VEVzakFOQmdrcWhraUc5dzBCQVFzRkFEQVYKTVJNd0VRWURWUVFERXdwcmRXSmxjbTVsZEdWek1CNFhEVEkyTVRBeU1URXdNemt4TTFvWERUSTJNVEF6TVRFdwpNemt4TTFvd0VURVBNQTBHQTFVRUF4TUdiWGwxYzJWeU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBCk1JSUJDZ0tDQVFFQXJYMGdhT2V0MWpvWDNzV3lrVjFQdDY4VVc0dW5FVERucWMxU1BZcWJuS0pOaDI1MjhlT2UKdnhHRHVCdDNXZC92bmdVWXdMU3FOOW16TmhtbHNnNjNhWGRDNU4zZTJqVUZsQVptaTQ1RWQwOElHSlZxN3lBYwpibkx5TzcwcUFYck95WklwVEo0cU5pYno4UjNQYU9vcXZ4Z0F0bklIazRZTUpyQlM4TzcrS00zakd2OFNYNDF4ClhtNCtpYjZ0RWEvT2NQdFJBTjU4Z2JvMWNDcHdjU3V1V1VXaWNQZFVLaTRlVnFzakkyZGFvVlBEQVY2SzlWak0KVFFnMmNNaExPY2hlcXc0NlAvZUxNMExPanpLWjNKOE9ZektSd3FTRjZmR09nMjJHeWJNaTAxcFJXeU8rKzZHOQpBaXVlaytNRjhxMGFEVUZod09oMkw2OG5aTG5KbE9GcDRRSURBUUFCbzBZd1JEQVRCZ05WSFNVRUREQUtCZ2dyCkJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbHdRTnYKcHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUE2S0lyeHVrUTZLZDJpSXY0dXBLZE5vdnp4Y2YxRwo3WVp0V0dJcUQ3WUlUZmZQQWJGRi9Od0E0MzcxYU9mRFdhcE9HUi9zeHJKU1pyYnY0aFNtK1UzalNtRitENmFaCmxkdGhaTDJpZ3MzV2pJbEEzcm9ZRUZlWExRVFZYMWI4c1R6ejNxR1B1YlRqRkUxN0VYalVhbG91VitqaE1aOHgKSVRUL2Q3ZU9pUlVWNWtrM2JUcEJvcVp1aGptUmVqTFRCQ1drNEFiekhxRmpkaFZvNmNjR3BjS0cwRXlyNllkNApjT3lXaFhqTmFybnBXNUxTRlgvZ0Ryb1E2ZmcyQ012UERDckw2TmxnV2prYUFZOWU1NDJJTDc0SEdqa1I0MlZmCjN0VVJmZ245UkNML0F6WVZpUmlIRExkTGszWDBJbzNvY3VBUkJUd0d0M0dGaE1VdkU3c0V0eGx5Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# ls
+csr-myuser.yml  myuser.crt  myuser.csr  myuser.key  test.txt
+[root@master[~/kube/15/useradd]# k create sa pod-viewer
+serviceaccount/pod-viewer created
+[root@master[~/kube/15/useradd]# k get sa
+NAME         AGE
+default      9d
+pod-viewer   3s
+[root@master[~/kube/15/useradd]# k get pods testpod -o yaml > testpod.yml
+[root@master[~/kube/15/useradd]# ls
+csr-myuser.yml  myuser.crt  myuser.csr  myuser.key  testpod.yml  test.txt
+[root@master[~/kube/15/useradd]# rm test.txt
+rm: remove regular file 'test.txt'? y
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# vi testpod.yml
+>4;2m"testpod.yml" 133L, 3512B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   annotations:
+  5     cni.projectcalico.org/containerID: f2072d5c153c313939032c2b095a818944abf8864e3a5de6c96236112c1b4809
+  6     cni.projectcalico.org/podIP: 10.10.135.23/32
+  7     cni.projectcalico.org/podIPs: 10.10.135.23/32
+  8   creationTimestamp: "2026-10-21T10:27:09Z"
+  9   generation: 1
+ 10   labels:
+ 11     run: testpod
+ 12   name: testpod
+ 13   namespace: default
+ 14   resourceVersion: "367477"
+ 15   uid: cd219cb8-9daa-431f-84ff-a3c12f881241
+ 16 spec:
+ 17   containers:
+ 18   - image: nginx
+ 19     imagePullPolicy: Always
+ 20     name: testpod
+ 21     ports:
+ 22     - containerPort: 80
+ 23       protocol: TCP
+ 24     resources: {}
+ 25     terminationMessagePath: /dev/termination-log
+ 26     terminationMessagePolicy: File
+ 27     volumeMounts:
+ 28     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+>4;m>4;m[root@master[~/kube/15/useradd]#Tvi?testpod.yml
+>4;2m"testpod.yml" 133L, 3512B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   annotations:
+  5     cni.projectcalico.org/containerID: f2072d5c153c313939032c2b095a818944abf8864e3a5de6c96236112c1b4809
+  6     cni.projectcalico.org/podIP: 10.10.135.23/32
+  7     cni.projectcalico.org/podIPs: 10.10.135.23/32
+  8   creationTimestamp: "2026-10-21T10:27:09Z"
+  9   generation: 1
+ 10   labels:
+ 11     run: testpod
+ 12   name: testpod
+ 13   namespace: default
+ 14   resourceVersion: "367477"
+ 15   uid: cd219cb8-9daa-431f-84ff-a3c12f881241
+ 16 spec:
+ 17   containers:
+ 18   - image: nginx
+ 19     imagePullPolicy: Always
+ 20     name: testpod
+ 21     ports:
+ 22     - containerPort: 80
+ 23       protocol: TCP
+ 24     resources: {}
+ 25     terminationMessagePath: /dev/termination-log
+ 26     terminationMessagePolicy: File
+ 27     volumeMounts:
+ 28     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+ 29       name: kube-api-access-fll821,1Top?12$p~@k   2~@k   3~@k   4dd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29       readOnly: true4,5Topdd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   dnsPolicy: ClusterFirst4,5Topdd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   enableServiceLinks: true4,5Topdd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   imagePullSecrets:4,3Topdd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   - name: regcred4,3Top~@k   5~@k   6~@k   5~@k   4dd
+4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   nodeName: node34,3Top~@k   5~@k   6~@k   7~@k   8dd
+8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   preemptionPolicy: PreemptLowerPriority8,3Topdd
+8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29   priority: 08,1Top~@k   7~@k   6~@k   7~@k   8~@k   9~@k   10,1~@k   9,1 ~@k   10,1~@k   1~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8~@k   9~@k   20~@k   1~@k   2~@k   3~@k   4~@k
+ 30   restartPolicy: Always25,11%~@k
+ 31   schedulerName: default-scheduler26,12%~@k   5~@k   6~@k
+ 32   securityContext: {}27,13%~@k
+ 33   serviceAccount: default28,14%~@k   7~@k   6~@k   5~@k   4~@k   3~@k   2~@k   1~@k   0~@k   19~@k   8~@k   7~@k   6g gd  contacontaresourcesdG110 fewer lines
+~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          15,7Bot15,7Bot~@k   4~@k   3~@k   2~@k   1~@k   0~@k     4   labels:9,7Bot~@k     3 metadata:8,5Bot~@k     2 kind: Pod7,7Bot~@k     1 apiVersion: v16,7All~@k   5~@k   4~@k   3~@k   2~@k   1~@k   ~@k   ~@k   ~@k   ~@k   ~@k   2~@k   3~@k   4~@k   5~@k   6~@k   7~@k   8,5~@k   9,7~@k   10,7~@k   1~@k   2~@k   3~@k   4~@k   5~@k   ~@k   o -- INSERT --16,7All 16
+ 17       7
+>4;m"testpod.yml",18L,l240Bqwritten
+>4;m[root@master[~/kube/15/useradd]# vi testpod.yml
+>4;2m"testpod.yml" 18L, 240B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     run: testpod
+  6   name: testpod
+  7   namespace: default
+  8 spec:
+  9   containers:
+ 10   - image: nginx
+ 11     imagePullPolicy: Always
+ 12     name: testpod
+ 13     ports:
+ 14     - containerPort: 80
+ 15       protocol: TCP
+ 16
+ 17
+ 18
+>4;m"testpod.yml" 18L, 272B written                                                                                        ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          18,0-1All?12$p~@k   7~@k   6i -- INSERT --16,1All35753s4e5r6v7i8c9e10A1c2c3o4u5n6t7N8a9m20e1serviceAccountName:23p4o5d6-7v8i9e30w1e2r3^[  16,32All::wq
+>4;m[root@master[~/kube/15/useradd]# k delete-podsstestpodl
+pod "testpod" deleted from default namespace
+[root@master[~/kube/15/useradd]# k apply -f
+error: flag needs an argument: 'f' in -f
+See 'kubectl apply --help' for usage.
+[root@master[~/kube/15/useradd]# k apply -f testpod.yml
+pod/testpod created
+[root@master[~/kube/15/useradd]# k get pods testpod -o yaml | grep -i serviceaccount
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"run":"testpod"},"name":"testpod","namespace":"default"},"spec":{"containers":[{"image":"nginx","imagePullPolicy":"Always","name":"testpod","ports":[{"containerPort":80,"protocol":"TCP"}]}],"serviceAccountName":"pod-viewer"}}
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+  serviceAccount: pod-viewer
+  serviceAccountName: pod-viewer
+      - serviceAccountToken:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+[root@master[~/kube/15/useradd]# k exec--it testpod -- /bin/bash
+root@testpod:/# cd /var/run/secrets/kubernetes.io/serviceaccount/
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# ll
+bash: ll: command not found
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# ls -l
+total 0
+lrwxrwxrwx. 1 root root 13 Oct 21 11:14 ca.crt -> ..data/ca.crt
+lrwxrwxrwx. 1 root root 16 Oct 21 11:14 namespace -> ..data/namespace
+lrwxrwxrwx. 1 root root 12 Oct 21 11:14 token -> ..data/token
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# cattca.crt
+-----BEGIN CERTIFICATE-----
+MIIDBTCCAe2gAwIBAgIIEjw5L4J6lSAwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+AxMKa3ViZXJuZXRlczAeFw0yNjEwMTIwNzM3MDBaFw0zNjEwMDkwNzQyMDBaMBUx
+EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+AoIBAQC8rpdSow7KijnLaNnaIRi/YS+Q8SR2gqrvVPLFFiou6ddcWlh5AIv250s+
+kRWp4yzny5WX61HEWxOt6CH/VcXF6T4yMnqAN/XklILA6wE4icTL8+Ua9mQAKy0A
+ITwgwIlIKECXPRsnfOA1OvM/1VtlSXcch7K+TIy2q5+ZF07Z5+w5p+c2WgGzhUjo
+IIJdP74e23NOiu6UZlBvUapXwwbdA1l3ajlsHnvgWf2tCfWb92wqPC/UBRz5ghFI
+IvhzxDSBmeH8ym7I/qVfd/hMpJ2GTodoBSX9bhPhr+0hqaQf1awHeAPNzkNj4LxA
+Be/cg4QrME3xZfDbrSSCsh80lNg/AgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP
+BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBR2yg4bhUU/6jdDJcEDb6bZIujMRjAV
+BgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQAzS6Voghao
+mA/nEXbOsAJLsrDvvNd+KVAxVsbRagQT5p/DY2IjsIGa8a7/tKAVsDzXiiGhrSeI
+FHYtb5xqTbAbbFCrGzg6bBEpz0VDVazPZHfnWsXaj3nefdeq07adz7q341RdxGZE
+TkYThMW4Mncp4QRjHVGcELnzVEbjEljwU6sJ2lPlok398yuHP+m6eBXOyESKWDDP
+v30m56vjXXOSzU8LNGC55QfaG9mDv75aqniXlSkcmuMtHGKtiKSWZzaOmXsCoI4g
+3eJvQRYjCySWnN9cdXUupvV+Wv5Paheu0CXBCIK5apTOapIokD5R9O65L7Np87ng
+rzayn20C9k8h
+-----END CERTIFICATE-----
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# c
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount#
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# cattnamespace
+defaultroot@testpod:/var/run/secrets/kubernetes.io/serviceaccount#
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount#
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount#
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# cat namespace  ; echo ;
+default
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# cat token; echo
+eyJhbGciOiJSUzI1NiIsImtpZCI6InY5MDJMT2kxcE81ckphbnRjRU9KVDB6MmU2dXBCUXBwTU0zbmdKSTlOYnMifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxODI0MTE3MjcwLCJpYXQiOjE3OTI1ODEyNzAsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwianRpIjoiNjViZGI2M2MtM2E3ZS00YTQ1LWE5NTgtM2Q4NDhiNTkyZDY2Iiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJkZWZhdWx0Iiwibm9kZSI6eyJuYW1lIjoibm9kZTMiLCJ1aWQiOiI0ZjBmNGMyNS0xYzQxLTRjYzYtOWRhNS0zNGNmZTI0MjcwMWIifSwicG9kIjp7Im5hbWUiOiJ0ZXN0cG9kIiwidWlkIjoiZmRkNzAyZWQtOTNhYi00ODQ1LTliMjctM2YzYTVkZjYwZWNhIn0sInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJwb2Qtdmlld2VyIiwidWlkIjoiMmMyMTI0MDQtN2ZkOC00NDhiLTg5N2YtNjRjZTdmNmU0YmJmIn0sIndhcm5hZnRlciI6MTc5MjU4NDg3N30sIm5iZiI6MTc5MjU4MTI3MCwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6cG9kLXZpZXdlciJ9.jwHKxR_gDrMZN8BL5FcK1BeeS0MusMJLrtATX1oC4sRXnBfMBg3PwAKit3lCx9pyxPj95GwK7SwOt48SirtpREBSt5FEanU_JFlETRp9IR1ZEXfIy5cY8C-j6OaxOZLWTaFoAWtkLm0fpDI7FHGMs9EIywgFVuFK3eBipb-avorwJ3fxh_5w1f-S42Ipb-64yfH8TaCjMcTy-v6KV85yuybisBvFd2jOlz2rbdy-_rL9nzAOo6RkBZ5I5uLvvt2Uooym6IiHpPnSggP6vCN4ulojkDk6A9Ibqm_tRzHEdHhNqwDyJJ2X3srZa40MWDxJ-JXPTNaXYZRKh3C8MXPdvA
+root@testpod:/var/run/secrets/kubernetes.io/serviceaccount# exit
+exit
+[root@master[~/kube/15/useradd]# k api-resources | wc
+    120     527   14488
+[root@master[~/kube/15/useradd]# k api-resources | wc -l
+120
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k get role
+No resources found in default namespace.
+[root@master[~/kube/15/useradd]# k get rolebindings.rbac.authorization.k8s.io
+No resources found in default namespace.
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k getaroleo-A
+NAMESPACE              NAME                                             CREATED AT
+envoy-gateway-system   eg-gateway-helm-certgen                          2026-10-16T12:40:52Z
+envoy-gateway-system   eg-gateway-helm-infra-manager                    2026-10-16T12:41:04Z
+envoy-gateway-system   eg-gateway-helm-leader-election-role             2026-10-16T12:41:04Z
+kube-public            kubeadm:bootstrap-signer-clusterinfo             2026-10-12T07:42:29Z
+kube-public            system:controller:bootstrap-signer               2026-10-12T07:42:29Z
+kube-system            extension-apiserver-authentication-reader        2026-10-12T07:42:29Z
+kube-system            kube-proxy                                       2026-10-12T07:42:30Z
+kube-system            kubeadm:kubelet-config                           2026-10-12T07:42:29Z
+kube-system            kubeadm:nodes-kubeadm-config                     2026-10-12T07:42:29Z
+kube-system            system::leader-locking-kube-controller-manager   2026-10-12T07:42:29Z
+kube-system            system::leader-locking-kube-scheduler            2026-10-12T07:42:29Z
+kube-system            system:controller:bootstrap-signer               2026-10-12T07:42:29Z
+kube-system            system:controller:cloud-provider                 2026-10-12T07:42:29Z
+kube-system            system:controller:token-cleaner                  2026-10-12T07:42:29Z
+metallb-system         controller                                       2026-10-16T08:09:53Z
+metallb-system         pod-lister                                       2026-10-16T08:09:53Z
+[root@master[~/kube/15/useradd]# k create rolebinding
+csr-myuser.yml  myuser.crt      myuser.csr      myuser.key      testpod.yml
+[root@master[~/kube/15/useradd]# k create rolebinding
+csr-myuser.yml  myuser.crt      myuser.csr      myuser.key      testpod.yml
+[root@master[~/kube/15/ukecreate roles--helpdebinding
+Create a role with single rule.
+
+Examples:
+  # Create a role named "pod-reader" that allows user to perform "get", "watch" and "list" on pods
+  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods
+
+  # Create a role named "pod-reader" with ResourceName specified
+  kubectl create role pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+
+  # Create a role named "foo" with API Group specified
+  kubectl create role foo --verb=get,list,watch --resource=rs.apps
+
+  # Create a role named "foo" with SubResource specified
+  kubectl create role foo --verb=get,list,watch --resource=pods,pods/status
+
+Options:
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to
+        golang and jsonpath output formats.
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without
+        sending it. If server strategy, submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-create':
+        Name of the manager used to track field ownership.
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile,
+        jsonpath, jsonpath-as-json, jsonpath-file).
+
+    --resource=[]:
+        Resource that the rule applies to
+
+    --resource-name=[]:
+        Resource in the white list that the rule applies to, repeat this flag for multiple items
+
+    --save-config=false:
+        If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will
+        be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML format.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format
+        is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+    --validate='strict':
+        Must be one of: strict (or true), warn, ignore (or false). "true" or "strict" will use a schema to validate
+        the input and fail the request if invalid. It will perform server side validation if ServerSideFieldValidation
+        is enabled on the api-server, but will fall back to less reliable client-side validation if not. "warn" will
+        warn about unknown or duplicate fields without blocking the request if server-side field validation is enabled
+        on the API server, and behave as "ignore" otherwise. "false" or "ignore" will not perform any schema
+        validation, silently dropping any unknown or duplicate fields.
+
+    --verb=[]:
+        Verb that applies to the resources contained in the rule
+
+Usage:
+  kubectl create role NAME --verb=verb --resource=resource.group/subresource [--resource-name=resourcename]
+[--dry-run=server|client|none] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k create rolebinding -h
+Create a role binding for a particular role or cluster role.
+
+Examples:
+  # Create a role binding for user1, user2, and group1 using the admin cluster role
+  kubectl create rolebinding admin --clusterrole=admin --user=user1 --user=user2 --group=group1
+
+  # Create a role binding for service account monitoring:sa-dev using the admin role
+  kubectl create rolebinding admin-binding --role=admin --serviceaccount=monitoring:sa-dev
+
+Options:
+    --allow-missing-template-keys=true:
+        If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to
+        golang and jsonpath output formats.
+
+    --clusterrole='':
+        ClusterRole this RoleBinding should reference
+
+    --dry-run='none':
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without
+        sending it. If server strategy, submit server-side request without persisting the resource.
+
+    --field-manager='kubectl-create':
+        Name of the manager used to track field ownership.
+
+    --group=[]:
+        Groups to bind to the role. The flag can be repeated to add multiple groups.
+
+    -o, --output='':
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile,
+        jsonpath, jsonpath-as-json, jsonpath-file).
+
+    --role='':
+        Role this RoleBinding should reference
+
+    --save-config=false:
+        If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will
+        be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
+
+    --serviceaccount=[]:
+        Service accounts to bind to the role, in the format <namespace>:<name>. The flag can be repeated to add
+        multiple service accounts.
+
+    --show-managed-fields=false:
+        If true, keep the managedFields when printing objects in JSON or YAML format.
+
+    --template='':
+        Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format
+        is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+    --user=[]:
+        Usernames to bind to the role. The flag can be repeated to add multiple users.
+
+    --validate='strict':
+        Must be one of: strict (or true), warn, ignore (or false). "true" or "strict" will use a schema to validate
+        the input and fail the request if invalid. It will perform server side validation if ServerSideFieldValidation
+        is enabled on the api-server, but will fall back to less reliable client-side validation if not. "warn" will
+        warn about unknown or duplicate fields without blocking the request if server-side field validation is enabled
+        on the API server, and behave as "ignore" otherwise. "false" or "ignore" will not perform any schema
+        validation, silently dropping any unknown or duplicate fields.
+
+Usage:
+  kubectl create rolebinding NAME --clusterrole=NAME|--role=NAME [--user=username] [--group=groupname]
+[--serviceaccount=namespace:serviceaccountname] [--dry-run=server|client|none] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k api-resources
+NAME                                SHORTNAMES        APIVERSION                             NAMESPACED   KIND
+bindings                                              v1                                     true         Binding
+componentstatuses                   cs                v1                                     false        ComponentStatus
+configmaps                          cm                v1                                     true         ConfigMap
+endpoints                           ep                v1                                     true         Endpoints
+events                              ev                v1                                     true         Event
+limitranges                         limits            v1                                     true         LimitRange
+namespaces                          ns                v1                                     false        Namespace
+nodes                               no                v1                                     false        Node
+persistentvolumeclaims              pvc               v1                                     true         PersistentVolumeClaim
+persistentvolumes                   pv                v1                                     false        PersistentVolume
+pods                                po                v1                                     true         Pod
+podtemplates                                          v1                                     true         PodTemplate
+replicationcontrollers              rc                v1                                     true         ReplicationController
+resourcequotas                      quota             v1                                     true         ResourceQuota
+secrets                                               v1                                     true         Secret
+serviceaccounts                     sa                v1                                     true         ServiceAccount
+services                            svc               v1                                     true         Service
+mutatingadmissionpolicies                             admissionregistration.k8s.io/v1        false        MutatingAdmissionPolicy
+mutatingadmissionpolicybindings                       admissionregistration.k8s.io/v1        false        MutatingAdmissionPolicyBinding
+mutatingwebhookconfigurations                         admissionregistration.k8s.io/v1        false        MutatingWebhookConfiguration
+validatingadmissionpolicies                           admissionregistration.k8s.io/v1        false        ValidatingAdmissionPolicy
+validatingadmissionpolicybindings                     admissionregistration.k8s.io/v1        false        ValidatingAdmissionPolicyBinding
+validatingwebhookconfigurations                       admissionregistration.k8s.io/v1        false        ValidatingWebhookConfiguration
+customresourcedefinitions           crd,crds          apiextensions.k8s.io/v1                false        CustomResourceDefinition
+apiservices                                           apiregistration.k8s.io/v1              false        APIService
+controllerrevisions                                   apps/v1                                true         ControllerRevision
+daemonsets                          ds                apps/v1                                true         DaemonSet
+deployments                         deploy            apps/v1                                true         Deployment
+replicasets                         rs                apps/v1                                true         ReplicaSet
+statefulsets                        sts               apps/v1                                true         StatefulSet
+selfsubjectreviews                                    authentication.k8s.io/v1               false        SelfSubjectReview
+tokenreviews                                          authentication.k8s.io/v1               false        TokenReview
+localsubjectaccessreviews                             authorization.k8s.io/v1                true         LocalSubjectAccessReview
+selfsubjectaccessreviews                              authorization.k8s.io/v1                false        SelfSubjectAccessReview
+selfsubjectrulesreviews                               authorization.k8s.io/v1                false        SelfSubjectRulesReview
+subjectaccessreviews                                  authorization.k8s.io/v1                false        SubjectAccessReview
+horizontalpodautoscalers            hpa               autoscaling/v2                         true         HorizontalPodAutoscaler
+cronjobs                            cj                batch/v1                               true         CronJob
+jobs                                                  batch/v1                               true         Job
+certificatesigningrequests          csr               certificates.k8s.io/v1                 false        CertificateSigningRequest
+clustertrustbundles                                   certificates.k8s.io/v1                 false        ClusterTrustBundle
+podcertificaterequests                                certificates.k8s.io/v1                 true         PodCertificateRequest
+leases                                                coordination.k8s.io/v1                 true         Lease
+bgpconfigurations                                     crd.projectcalico.org/v1               false        BGPConfiguration
+bgppeers                                              crd.projectcalico.org/v1               false        BGPPeer
+blockaffinities                                       crd.projectcalico.org/v1               false        BlockAffinity
+caliconodestatuses                                    crd.projectcalico.org/v1               false        CalicoNodeStatus
+clusterinformations                                   crd.projectcalico.org/v1               false        ClusterInformation
+felixconfigurations                                   crd.projectcalico.org/v1               false        FelixConfiguration
+globalnetworkpolicies                                 crd.projectcalico.org/v1               false        GlobalNetworkPolicy
+globalnetworksets                                     crd.projectcalico.org/v1               false        GlobalNetworkSet
+hostendpoints                                         crd.projectcalico.org/v1               false        HostEndpoint
+ipamblocks                                            crd.projectcalico.org/v1               false        IPAMBlock
+ipamconfigs                                           crd.projectcalico.org/v1               false        IPAMConfig
+ipamhandles                                           crd.projectcalico.org/v1               false        IPAMHandle
+ippools                                               crd.projectcalico.org/v1               false        IPPool
+ipreservations                                        crd.projectcalico.org/v1               false        IPReservation
+kubecontrollersconfigurations                         crd.projectcalico.org/v1               false        KubeControllersConfiguration
+networkpolicies                                       crd.projectcalico.org/v1               true         NetworkPolicy
+networksets                                           crd.projectcalico.org/v1               true         NetworkSet
+endpointslices                                        discovery.k8s.io/v1                    true         EndpointSlice
+events                              ev                events.k8s.io/v1                       true         Event
+flowschemas                                           flowcontrol.apiserver.k8s.io/v1        false        FlowSchema
+prioritylevelconfigurations                           flowcontrol.apiserver.k8s.io/v1        false        PriorityLevelConfiguration
+backends                            be                gateway.envoyproxy.io/v1alpha1         true         Backend
+backendtrafficpolicies              btp               gateway.envoyproxy.io/v1alpha1         true         BackendTrafficPolicy
+clienttrafficpolicies               ctp               gateway.envoyproxy.io/v1alpha1         true         ClientTrafficPolicy
+envoyextensionpolicies              eep               gateway.envoyproxy.io/v1alpha1         true         EnvoyExtensionPolicy
+envoypatchpolicies                  epp               gateway.envoyproxy.io/v1alpha1         true         EnvoyPatchPolicy
+envoyproxies                        eproxy            gateway.envoyproxy.io/v1alpha1         true         EnvoyProxy
+httproutefilters                    hrf               gateway.envoyproxy.io/v1alpha1         true         HTTPRouteFilter
+securitypolicies                    sp                gateway.envoyproxy.io/v1alpha1         true         SecurityPolicy
+backendtlspolicies                  btlspolicy        gateway.networking.k8s.io/v1           true         BackendTLSPolicy
+gatewayclasses                      gc                gateway.networking.k8s.io/v1           false        GatewayClass
+gateways                            gtw               gateway.networking.k8s.io/v1           true         Gateway
+grpcroutes                                            gateway.networking.k8s.io/v1           true         GRPCRoute
+httproutes                                            gateway.networking.k8s.io/v1           true         HTTPRoute
+listenersets                        lset              gateway.networking.k8s.io/v1           true         ListenerSet
+referencegrants                     refgrant          gateway.networking.k8s.io/v1           true         ReferenceGrant
+tcproutes                                             gateway.networking.k8s.io/v1           true         TCPRoute
+tlsroutes                                             gateway.networking.k8s.io/v1           true         TLSRoute
+udproutes                                             gateway.networking.k8s.io/v1           true         UDPRoute
+xbackends                           xbackend          gateway.networking.x-k8s.io/v1alpha1   true         XBackend
+xbackendtrafficpolicies             xbtrafficpolicy   gateway.networking.x-k8s.io/v1alpha1   true         XBackendTrafficPolicy
+xmeshes                             mesh              gateway.networking.x-k8s.io/v1alpha1   false        XMesh
+bfdprofiles                                           metallb.io/v1beta1                     true         BFDProfile
+bgpadvertisements                                     metallb.io/v1beta1                     true         BGPAdvertisement
+bgppeers                                              metallb.io/v1beta2                     true         BGPPeer
+communities                                           metallb.io/v1beta1                     true         Community
+ipaddresspools                                        metallb.io/v1beta1                     true         IPAddressPool
+l2advertisements                                      metallb.io/v1beta1                     true         L2Advertisement
+servicebgpstatuses                                    metallb.io/v1beta1                     true         ServiceBGPStatus
+servicel2statuses                                     metallb.io/v1beta1                     true         ServiceL2Status
+nodes                                                 metrics.k8s.io/v1beta1                 false        NodeMetrics
+pods                                                  metrics.k8s.io/v1beta1                 true         PodMetrics
+ingressclasses                                        networking.k8s.io/v1                   false        IngressClass
+ingresses                           ing               networking.k8s.io/v1                   true         Ingress
+ipaddresses                         ip                networking.k8s.io/v1                   false        IPAddress
+networkpolicies                     netpol            networking.k8s.io/v1                   true         NetworkPolicy
+servicecidrs                                          networking.k8s.io/v1                   false        ServiceCIDR
+runtimeclasses                                        node.k8s.io/v1                         false        RuntimeClass
+poddisruptionbudgets                pdb               policy/v1                              true         PodDisruptionBudget
+clusterrolebindings                                   rbac.authorization.k8s.io/v1           false        ClusterRoleBinding
+clusterroles                                          rbac.authorization.k8s.io/v1           false        ClusterRole
+rolebindings                                          rbac.authorization.k8s.io/v1           true         RoleBinding
+roles                                                 rbac.authorization.k8s.io/v1           true         Role
+deviceclasses                                         resource.k8s.io/v1                     false        DeviceClass
+devicetaintrules                                      resource.k8s.io/v1                     false        DeviceTaintRule
+resourceclaims                                        resource.k8s.io/v1                     true         ResourceClaim
+resourceclaimtemplates                                resource.k8s.io/v1                     true         ResourceClaimTemplate
+resourceslices                                        resource.k8s.io/v1                     false        ResourceSlice
+priorityclasses                     pc                scheduling.k8s.io/v1                   false        PriorityClass
+csidrivers                                            storage.k8s.io/v1                      false        CSIDriver
+csinodes                                              storage.k8s.io/v1                      false        CSINode
+csistoragecapacities                                  storage.k8s.io/v1                      true         CSIStorageCapacity
+storageclasses                      sc                storage.k8s.io/v1                      false        StorageClass
+volumeattachments                                     storage.k8s.io/v1                      false        VolumeAttachment
+volumeattributesclasses             vac               storage.k8s.io/v1                      false        VolumeAttributesClass
+storageversionmigrations                              storagemigration.k8s.io/v1             false        StorageVersionMigration
+[root@master[~/kube/15/useradd]# k api-versions
+admissionregistration.k8s.io/v1
+apiextensions.k8s.io/v1
+apiregistration.k8s.io/v1
+apps/v1
+authentication.k8s.io/v1
+authorization.k8s.io/v1
+autoscaling/v1
+autoscaling/v2
+batch/v1
+certificates.k8s.io/v1
+coordination.k8s.io/v1
+crd.projectcalico.org/v1
+discovery.k8s.io/v1
+events.k8s.io/v1
+flowcontrol.apiserver.k8s.io/v1
+gateway.envoyproxy.io/v1alpha1
+gateway.networking.k8s.io/v1
+gateway.networking.k8s.io/v1alpha2
+gateway.networking.k8s.io/v1alpha3
+gateway.networking.k8s.io/v1beta1
+gateway.networking.x-k8s.io/v1alpha1
+metallb.io/v1beta1
+metallb.io/v1beta2
+metrics.k8s.io/v1beta1
+networking.k8s.io/v1
+node.k8s.io/v1
+policy/v1
+rbac.authorization.k8s.io/v1
+resource.k8s.io/v1
+scheduling.k8s.io/v1
+storage.k8s.io/v1
+storagemigration.k8s.io/v1
+v1
+[root@master[~/kube/15/useradd]# 10
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# core
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k create role -h | sed -n '1,/Options:/p'
+Create a role with single rule.
+
+Examples:
+  # Create a role named "pod-reader" that allows user to perform "get", "watch" and "list" on pods
+  kubectl create role pod-reader --verb=get --verb=list --verb=watch --resource=pods
+
+  # Create a role named "pod-reader" with ResourceName specified
+  kubectl create role pod-reader --verb=get --resource=pods --resource-name=readablepod --resource-name=anotherpod
+
+  # Create a role named "foo" with API Group specified
+  kubectl create role foo --verb=get,list,watch --resource=rs.apps
+
+  # Create a role named "foo" with SubResource specified
+  kubectl create role foo --verb=get,list,watch --resource=pods,pods/status
+
+Options:
+ry-run=client~-ouyaml5|uteeadeveloper-role.ymlf|ekeapply f--esource1@o,watch,list,update,delete --d
+error: Unexpected args: [f -]
+See 'kubectl apply -h' for help and examples
+[root@master[~/kube/15/useradd]# k create role developer --resource pods --verb create,watch,list,update,delete --dry-run=client -o yaml | tee developer-role.yml | k appl-hf|-sed -n '1,/Options:/p'
+[root@master[~/kube/15/useradd]#opods---verbrcreate,watch,list,update,deletet--dry-run=client--oyyamloper-role.yml | k apply f -
+
+bash: oper: command not found...
+error: Unexpected args: [f -]
+See 'kubectl apply -h' for help and examples
+
+
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+[root@master[~/kube/15/useradd]#oloper---resourceopods---verbrcreate,watch,list,update,delete---dr1@y-run=cl@ent@-o@yaml | tee developer-role.yml | k apply f -
+
+error: Unexpected args: [f -]
+See 'kubectl apply -h' for help and examples
+[root@master[~/kube/15/useradd]# k create role developer --resource pods --verb create,watch,list,update,delete --dry-run=client -o yaml | tee developer-role.yml | k apply 1@-
+role.rbac.authorization.k8s.io/developer created
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k describe roleddeveloper
+Name:         developer
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [create watch list update delete]
+[root@master[~/kube/15/useradd]# k createbroleldevelopere--resource pods --verb create,watch,list,update,delete --dry-run=client -o yaml | tee developer-rolc.yml | k apply -f -
+c describe role developer
+nnn[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# vi developer-role.yml
+>4;2m"developer-role.yml" 15L, 190B▽  zz0%m           >c  1 apiVersion: rbac.authorization.k8s.io/v1
+  2 kind: Role  3 metadata:  4   name: developer
+  5 rules:
+  6 - apiGroups:
+  7   - ""
+  8   resources:
+  9   - pods
+ 10   verbs:
+ 11   - create
+ 12   - watch
+ 13   - list
+ 14   - update
+ 15   - delete
+>4;m"developer-role.yml" 16L, 198B written                                                                                 ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          ~                                                                                                                          1,1All?12$pG 5,3o -- INSERT --16,3All 16   -- 5g6e7t8^[  16,7All; ::wq
+>4;m[root@master[~/kube/15/useradd]# k apply -f developer-role.yml
+role.rbac.authorization.k8s.io/developer configured
+[root@master[k/describeuroleddeveloperly -f developer-role.yml
+Name:         developer
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [create watch list update delete get]
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# kubectl create rolebinding developer-binding-myuser --role=developer --user=myuser \
+  --dry-run=client -o yaml | tee developekubectlicreateyrolebindingldeveloper-binding-myuser --role=developer --user=myuser \
+  --dry-run=client -o yaml | tee developer-rolebinding.yml | kubectl apply -f -
+rolebinding.rbac.authorization.k8s.io/developer-binding-myuser created
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k get rolebindings.rbac.authorization.k8s.io
+NAME                       ROLE             AGE
+developer-binding-myuser   Role/developer   7s
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k get rolebindings.rbac.authorization.k8s.io developer-binding-myuser v
+NAME                       ROLE             AGE
+developer-binding-myuser   Role/developer   17s
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k describe rolebindings.rbac.authorization.k8s.io developer-binding-myuser
+Name:         developer-binding-myuser
+Labels:       <none>
+Annotations:  <none>
+Role:
+  Kind:  Role
+  Name:  developer
+Subjects:
+  Kind  Name    Namespace
+  ----  ----    ---------
+  User  myuser
+[root@master[~/kube/15/useradd]# k config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# cate~/.kube/config
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJRWp3NUw0SjZsU0F3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHpOakV3TURrd056UXlNREJhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM4cnBkU293N0tpam5MYU5uYUlSaS9ZUytROFNSMmdxcnZWUExGRmlvdTZkZGNXbGg1QUl2MjUwcysKa1JXcDR5em55NVdYNjFIRVd4T3Q2Q0gvVmNYRjZUNHlNbnFBTi9Ya2xJTEE2d0U0aWNUTDgrVWE5bVFBS3kwQQpJVHdnd0lsSUtFQ1hQUnNuZk9BMU92TS8xVnRsU1hjY2g3SytUSXkycTUrWkYwN1o1K3c1cCtjMldnR3poVWpvCklJSmRQNzRlMjNOT2l1NlVabEJ2VWFwWHd3YmRBMWwzYWpsc0hudmdXZjJ0Q2ZXYjkyd3FQQy9VQlJ6NWdoRkkKSXZoenhEU0JtZUg4eW03SS9xVmZkL2hNcEoyR1RvZG9CU1g5YmhQaHIrMGhxYVFmMWF3SGVBUE56a05qNEx4QQpCZS9jZzRRck1FM3haZkRiclNTQ3NoODBsTmcvQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSMnlnNGJoVVUvNmpkREpjRURiNmJaSXVqTVJqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQXpTNlZvZ2hhbwptQS9uRVhiT3NBSkxzckR2dk5kK0tWQXhWc2JSYWdRVDVwL0RZMklqc0lHYThhNy90S0FWc0R6WGlpR2hyU2VJCkZIWXRiNXhxVGJBYmJGQ3JHemc2YkJFcHowVkRWYXpQWkhmbldzWGFqM25lZmRlcTA3YWR6N3EzNDFSZHhHWkUKVGtZVGhNVzRNbmNwNFFSakhWR2NFTG56VkViakVsandVNnNKMmxQbG9rMzk4eXVIUCttNmVCWE95RVNLV0REUAp2MzBtNTZ2alhYT1N6VThMTkdDNTVRZmFHOW1Edjc1YXFuaVhsU2tjbXVNdEhHS3RpS1NXWnphT21Yc0NvSTRnCjNlSnZRUllqQ3lTV25OOWNkWFV1cHZWK1d2NVBhaGV1MENYQkNJSzVhcFRPYXBJb2tENVI5TzY1TDdOcDg3bmcKcnpheW4yMEM5azhoCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURLVENDQWhHZ0F3SUJBZ0lJZjdjUkxhUmd6WnN3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpFd01USXdOek0zTURCYUZ3MHlOekV3TVRJd056UXlNREJhTUR3eApIekFkQmdOVkJBb1RGbXQxWW1WaFpHMDZZMngxYzNSbGNpMWhaRzFwYm5NeEdUQVhCZ05WQkFNVEVHdDFZbVZ5CmJtVjBaWE10WVdSdGFXNHdnZ0VpTUEwR0NTcUdTSWIzRFFFQkFRVUFBNElCRHdBd2dnRUtBb0lCQVFEVW5hLzcKaldtSlhQbjVIU21MRlBCMDJ5cVI2REYySk1EYlEyejBDRjV0WDQyeUZMYjZTVFBaVXpxZno3bU9hSlR3eUNkOQpQQlc1c2tvOUt0aVY1MzVGWXg1QlBtdkhxOTZmZ1lLcmdLS1JScFArTHhCaHJXaFlTZEtYdExIbW05MWN4bWZNCmRqNUw4UHRGcHpGZEhpSWJOQmdRay9zWjk3cDFaM1hoN0t4MmFyQ1lVUzdETkN1KytsbXlzUzFtRUVWRWQzMkIKanQ1eWdTRWtrWmxYZC9UWGluN2JhR2gydjZPNFQ3TWtUeVorODZvdG5PNkVVY29jeGdOUmIrWlNHM3hqc24yOAoyY1FEbFpEQ2ttcHcyMEtubnZSaEZQWGMvc1BvZTUvRUdjb243eFRkTkpPSDRuSzVBV21NdXMyYWFCcDQxeVdYCjNod0N5bEk0N1V1Q3IwRTFBZ01CQUFHalZqQlVNQTRHQTFVZER3RUIvd1FFQXdJRm9EQVRCZ05WSFNVRUREQUsKQmdnckJnRUZCUWNEQWpBTUJnTlZIUk1CQWY4RUFqQUFNQjhHQTFVZEl3UVlNQmFBRkhiS0RodUZSVC9xTjBNbAp3UU52cHRraTZNeEdNQTBHQ1NxR1NJYjNEUUVCQ3dVQUE0SUJBUUFjckxyWTBZS1R1QlE1ZjkrMWRJMHYyYXlsCjlTVWxlR1NQdkx2TG1MWGN2SEZqK3c5WkY4bHN2cTZkQ3VWUXd4WHJya2RBYTZMVnovcEJBWkxvRjRMUDBFVWMKUW5JYnhBdHRNTWpjUGxlYUdabGpzeTZvUS9CcnZBMzMxQTFKNTRicEtsRDVManI4SDJKRWlmYS90UWQ5RUQ0LworVXpMZ2tUOU5RRWZ1NTRtUmFiMnJvVDR4WVk2d2QzbEtUT1NKSHY1VExvMEFWYUIvSnlhNVF2ZkE5SVZVckFKCnpuWmlpVjZVcGJHc2VJaUE3WnREbmpuZWM3NDVuSGl2bFVyY2d2N1NsVG1Uay9JcFhtc0VRaytCdWNzQVRrWE4KbXpOYy9iblpzSnYzd1IzUEd3NnBhQ3k1MTl5ZG9CUVJ6d1BnY2cvWmF6ZU5aMWxHaXZpUWtnY2pHVWlMCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    client-key-data: LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQpNSUlFb3dJQkFBS0NBUUVBMUoydis0MXBpVno1K1IwcGl4VHdkTnNxa2VneGRpVEEyME5zOUFoZWJWK05zaFMyCitra3oyVk02bjgrNWptaVU4TWduZlR3VnViSktQU3JZbGVkK1JXTWVRVDVyeDZ2ZW40R0NxNENpa1VhVC9pOFEKWWExb1dFblNsN1N4NXB2ZFhNWm56SFkrUy9EN1JhY3hYUjRpR3pRWUVKUDdHZmU2ZFdkMTRleXNkbXF3bUZFdQp3elFydnZwWnNyRXRaaEJGUkhkOWdZN2Vjb0VoSkpHWlYzZjAxNHArMjJob2RyK2p1RSt6SkU4bWZ2T3FMWnp1CmhGSEtITVlEVVcvbVVodDhZN0o5dk5uRUE1V1F3cEpxY050Q3A1NzBZUlQxM1A3RDZIdWZ4Qm5LSis4VTNUU1QKaCtKeXVRRnBqTHJObW1nYWVOY2xsOTRjQXNwU09PMUxncTlCTlFJREFRQUJBb0lCQUFwb1RaejZweGZhUFVJOApjelFqcWtHT0dOOWJobEJLTEVhUFhsM3pxdXVmcWNmMXk1OGt4aXoxTGdGMG9aaWU5ZXR6WUx0NG5YZWhpcERECjhDWW1Wci8rd2hSZmdkY2NTcUYwTFhsSHFxMkJ6dXk2VVFyMitneVlVSDZza2FqQUtHM0tLSHFScnlyNGVOUkkKQXRxVUJ3ZGQzVyt5VHJCT3VBblhMcVlJZDhpMENXa0N4ZEMxM1RLSkIrM01WRlh0KzdlRC9VMHdjem4wSFFwegpmVXk2T0pOTk03b3FteVROMm51dVpGalpwQVNiNXI5S2t0bnd2TmFzc3UwM2FnUE1mL04vS1lSSy9DQ05CVXZUCkp5cU9FZTlnMWtSVTV6YTZLVGVoM3ZyaW9heTk2WnY4V1BXV3NlUmoxNURCTEpJQ2NtYU14VXFOWURzbW8vRTMKVnA0YTNXRUNnWUVBN1NlQTdDTkFHOTdxWi9LQTZYSFhDOHJHWWNHaEVpU0lpdFZTVW5sYWI4czEvYi8vRkpCVwpCTU5HcVF2c2d4RDhwZEVIczFoM2FhVDVLTUlFcmxXYkdWRm0rNXVma2pMMTVZQlU2akdUOFh2K1lEbVRCQklJCkFHcDNUL3VsbUdoTlJ2ZHozTC9LczR0SmR6c3p5L1RtVEVXNmk0RW9vK2FReXZhbDN5blVkS3NDZ1lFQTVZTCsKVWFzbXFiTGdnWHd0aXFMMkQ0cFFVekpoOUZVTDBjdXhraTZYcTR6VG44MEZVQjNmeUZTNTRBVmt6YlF5SHV0Ngo0cllaclIrVDZIUEgyVDhEbVZZSldrWGxRTnEvSDJGOGR0cWhuTFNwdEV6cm92cThDTzlvQTI3eTMzSEhtZ2tICkxxV2xnNCtUUGV2MlRWek9zMDZoRlZyT0pSTmdpeG5NT1hxU1laOENnWUFjYWRzOGI0ekN5aFp6bGM1MEtidUcKSWlsYWxRUmpWQlUzN1E4TDZwWTNScldWVFdlV1l5U3JOV3BGM3JQYmtERjAvSEpidm9Hd0dwL3ZqaTlaWTlCTgpYRDltYmVMVWRWNll2S052MjdqSitmMGtNa0cyL3lJT1NyTTQxZ0dsSFBvRlFxaVREamVQQTJVdDc5M28xZEt4CjJMamM5Z0NVZ285ZWdlYWxzakZPT1FLQmdEeXQ4RzFKTWRTbC9XTmVvRy9KL0FKSjBFamV4alVpRXhqcG9NNEUKVVlkQ21XVGpnS2NZN3VSNU9oZDNkWnBKTFFNdHdQU1ZycDR0L2gzMEZuOWlnS0lXdEN4UTFIYmNIckcrUlhqcQovdFYra211ZjlxREZaOWQ0N0dnVCtsU0hNWDJSSzN2eXdaclI1OXowT005bFhTVGRBZ3V5VVZST0ZqVlFvY1VFCm1oVURBb0dCQU4wd1hGRVFveFl5dWJybWc1ajN5Yjg0eGdFeUZIM3Baa1JpMFd1V2ZLWjZvWU9LeDJ1b3A0bmEKNWpWbzhhS0hDUXN3K1RFRGNpWkRldFdvMzJTM2l2dFhyK3YwdlpDd3JPSGhMYmdaanNpM1BoaHR2S1RxSlBuaApwYUZVTTZKUkNoaWpHZFBTYzgxbGRLOTF1dnJURk0xbmpQQkV2cjNPV1prVnJ6M0ZZYWNmCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0tCg==
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# kubectl config set-credentials myuser \
+--client-key=myuser.key \
+--client-certificate=myuser.crt \
+[root@master[~/kube/15/useradd]# kubectl config set-credentials myuser \
+--client-key=myuser.key \
+--client-certificate=myuser.crt \
+--embed-certs=true
+User "myuser" set.
+[root@master[~/kube/15/useradd]# ls
+csr-myuser.yml  developer-rolebinding.yml  developer-role.yml  myuser.crt  myuser.csr  myuser.key  testpod.yml
+[root@master[~/kube/15/useradd]# k config get-users
+NAME
+kubernetes-admin
+myuser
+[root@master[~/kube/15/useradd]# k config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+- name: myuser
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+r.crto--embed-certsutrue5/useradd]# k config set-credentials myuser --client-key myuser.key --client-certificate myuse
+Set a user entry in kubeconfig.
+
+ Specifying a name that already exists will merge new fields on top of existing values.
+
+        Client-certificate flags:
+        --client-certificate=certfile --client-key=keyfile
+
+        Bearer token flags:
+        --token=bearer_token
+
+        Basic auth flags:
+        --username=basic_user --password=basic_password
+
+ Bearer token and basic auth are mutually exclusive.
+
+Examples:
+  # Set only the "client-key" field on the "cluster-admin"
+  # entry, without touching other values
+  kubectl config set-credentials cluster-admin --client-key=~/.kube/admin.key
+
+  # Set basic auth for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --username=admin --password=uXFGweU9l35qcif
+
+  # Embed client certificate data in the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --client-certificate=~/.kube/admin.crt --embed-certs=true
+
+  # Enable the Google Compute Platform auth provider for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --auth-provider=gcp
+
+  # Enable the OpenID Connect auth provider for the "cluster-admin" entry with additional arguments
+  kubectl config set-credentials cluster-admin --auth-provider=oidc --auth-provider-arg=client-id=foo
+--auth-provider-arg=client-secret=bar
+
+  # Remove the "client-secret" config value for the OpenID Connect auth provider for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --auth-provider=oidc --auth-provider-arg=client-secret-
+
+  # Enable new exec auth plugin for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --exec-command=/path/to/the/executable
+--exec-api-version=client.authentication.k8s.io/v1beta1
+
+  # Enable new exec auth plugin for the "cluster-admin" entry with interactive mode
+  kubectl config set-credentials cluster-admin --exec-command=/path/to/the/executable
+--exec-api-version=client.authentication.k8s.io/v1beta1 --exec-interactive-mode=Never
+
+  # Define new exec auth plugin arguments for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --exec-arg=arg1 --exec-arg=arg2
+
+  # Create or update exec auth plugin environment variables for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --exec-env=key1=val1 --exec-env=key2=val2
+
+  # Remove exec auth plugin environment variables for the "cluster-admin" entry
+  kubectl config set-credentials cluster-admin --exec-env=var-to-remove-
+
+Options:
+    --auth-provider='':
+        Auth provider for the user entry in kubeconfig
+
+    --auth-provider-arg=[]:
+        'key=value' arguments for the auth provider
+
+    --client-certificate='':
+        Path to client-certificate file for the user entry in kubeconfig
+
+    --client-key='':
+        Path to client-key file for the user entry in kubeconfig
+
+    --embed-certs=false:
+        Embed client cert/key for the user entry in kubeconfig
+
+    --exec-api-version='':
+        API version of the exec credential plugin for the user entry in kubeconfig
+
+    --exec-arg=[]:
+        New arguments for the exec credential plugin command for the user entry in kubeconfig
+
+    --exec-command='':
+        Command for the exec credential plugin for the user entry in kubeconfig
+
+    --exec-env=[]:
+        'key=value' environment values for the exec credential plugin
+
+    --exec-interactive-mode='':
+        InteractiveMode of the exec credentials plugin for the user entry in kubeconfig
+
+    --exec-provide-cluster-info=false:
+        ProvideClusterInfo of the exec credentials plugin for the user entry in kubeconfig
+
+    --password='':
+        password for the user entry in kubeconfig
+
+    --token='':
+        token for the user entry in kubeconfig
+
+    --username='':
+        username for the user entry in kubeconfig
+
+Usage:
+  kubectl config set-credentials NAME [--client-certificate=path/to/certfile] [--client-key=path/to/keyfile]
+[--token=bearer_token] [--username=basic_user] [--password=basic_password] [--auth-provider=provider_name]
+[--auth-provider-arg=key=value] [--exec-command=exec_command] [--exec-api-version=exec_api_version] [--exec-arg=arg]
+[--exec-env=key=value] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+error: unexpected args: [myuser true]
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k config get-c
+error: unknown command "get-c"
+See 'kubectl config -h' for help and examples
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+[root@master[~/kube/15/useradd]# k config viewcontext myuser ---
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+- name: myuser
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[~/kube/15/useradd]# k config set-context myuser --cluster=kubernetes --user=myuser
+Context "myuser" created.
+[root@master[~/kube/15/useradd]# k config
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]# k config vie
+error: unknown command "vie"
+See 'kubectl config -h' for help and examples
+[root@master[~/kube/15/useradd]# k config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: DATA+OMITTED
+    server: https://192.168.10.10:6443
+  name: kubernetes
+contexts:
+- context:
+    cluster: kubernetes
+    namespace: default
+    user: kubernetes-admin
+  name: kubernetes-admin@kubernetes
+- context:
+    cluster: kubernetes
+    user: myuser
+  name: myuser
+current-context: kubernetes-admin@kubernetes
+kind: Config
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+- name: myuser
+  user:
+    client-certificate-data: DATA+OMITTED
+    client-key-data: DATA+OMITTED
+[root@master[~/kube/15/useradd]# k config use-context
+Set the current-context in a kubeconfig file.
+
+Aliases:
+use-context, use
+
+Examples:
+  # Use the context for the minikube cluster
+  kubectl config use-context minikube
+
+Usage:
+  kubectl config use-context CONTEXT_NAME [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+error: Unexpected args: []
+[root@master[~/kube/15/useradd]# k config use-context myuser
+Switched to context "myuser".
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+*         myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# ^C
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+*         myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]# k confignuse-context kubernetes-admin@kubernetes
+Switched to context "kubernetes-admin@kubernetes".
+[root@master[~/kube/15/useradd]# k config 27@use-contexmyuserrnetes-admin@kubernete
+Switched to context "myuser".
+[root@master[~/kube/15/useradd]# k get svc
+Error from server (Forbidden): services is forbidden: User "myuser" cannot list resource "services" in API group "" in the namespace "default"
+[root@master[~/kube/15/useradd]# k get pvc
+Error from server (Forbidden): persistentvolumeclaims is forbidden: User "myuser" cannot list resource "persistentvolumeclaims" in API group "" in the namespace "default"
+[root@master[~/kube/15/useradd]# k get noc
+Error from server (Forbidden): nodes is forbidden: User "myuser" cannot list resource "nodes" in API group "" at the cluster scope
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# k get pods
+NAME      READY   STATUS    RESTARTS   AGE
+testpod   1/1     Running   0          41m
+[root@master[~/kube/15/useradd]# k delete pods testpod
+pod "testpod" deleted from default namespace
+[root@master[~/kube/15/useradd]# k run myweb --image nginx --port 80
+pod/myweb created
+[root@master[~/kube/15/useradd]# k get pods
+NAME    READY   STATUS    RESTARTS   AGE
+myweb   1/1     Running   0          3s
+[root@master[~/kube/15/useradd]# k delete mutating
+error: the server doesn't have a resource type "mutating"
+[root@master[~/kube/15/useradd]# k delete pods myweb
+pod "myweb" deleted from default namespace
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+*         myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]# k config set-context mycontext --cluster=kubernetes --user=kubernetes-admin
+Context "mycontext" created.
+[root@master[~/kube/15/useradd]# k config use-context kubernetes-admin@kubernetes
+Switched to context "kubernetes-admin@kubernetes".
+[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+          myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]# k confignsuse-context my
+mycontext  myuser
+[root@master[~/kube/15/useradd]# k config  use-context mycontext
+Switched to context "mycontext".
+[root@master[~/kube/15/useradd]# k get all -AA
+NAMESPACE              NAME                                                             READY   STATUS    RESTARTS        AGE
+envoy-gateway-system   pod/envoy-gateway-75b559cc4c-ls48z                               1/1     Running   3 (5h38m ago)   4d23h
+envoy-gateway-system   pod/envoy-gateway-system-lab-gateway-03a12405-7c4988884b-wnk5g   2/2     Running   6 (5h38m ago)   4d23h
+kube-system            pod/calico-kube-controllers-57f7f4cc78-hzsdm                     1/1     Running   4 (5h38m ago)   6d4h
+kube-system            pod/calico-node-gdd6m                                            1/1     Running   9 (5h38m ago)   9d
+kube-system            pod/calico-node-gpw9k                                            1/1     Running   4 (5h38m ago)   6d3h
+kube-system            pod/calico-node-w5tqt                                            1/1     Running   8 (5h38m ago)   9d
+kube-system            pod/calico-node-xxrpg                                            1/1     Running   8 (5h38m ago)   9d
+kube-system            pod/coredns-559f6c778d-fbzfj                                     1/1     Running   4 (5h38m ago)   6d4h
+kube-system            pod/coredns-559f6c778d-x2pvc                                     1/1     Running   4 (5h38m ago)   6d4h
+kube-system            pod/etcd-master                                                  1/1     Running   9 (5h38m ago)   9d
+kube-system            pod/kube-apiserver-master                                        1/1     Running   9 (5h38m ago)   9d
+kube-system            pod/kube-controller-manager-master                               1/1     Running   9 (5h38m ago)   9d
+kube-system            pod/kube-proxy-2tfqd                                             1/1     Running   3 (5h38m ago)   5d3h
+kube-system            pod/kube-proxy-69rxb                                             1/1     Running   5 (5h38m ago)   5d3h
+kube-system            pod/kube-proxy-pcc5f                                             1/1     Running   3 (5h38m ago)   5d3h
+kube-system            pod/kube-proxy-wtbfg                                             1/1     Running   3 (5h38m ago)   5d3h
+kube-system            pod/kube-scheduler-master                                        1/1     Running   9 (5h38m ago)   9d
+kube-system            pod/metrics-server-84c99cb944-w6hmg                              1/1     Running   0               161m
+metallb-system         pod/controller-6c57b67fd4-kk8lk                                  1/1     Running   0               161m
+metallb-system         pod/speaker-9mltx                                                1/1     Running   6 (5h38m ago)   5d3h
+metallb-system         pod/speaker-brfkh                                                1/1     Running   6 (5h38m ago)   5d3h
+metallb-system         pod/speaker-jz74t                                                1/1     Running   6 (5h38m ago)   5d3h
+metallb-system         pod/speaker-vdds2                                                1/1     Running   6 (5h38m ago)   5d3h
+nfs-storage            pod/csi-nfs-controller-555b9cc7df-p67l8                          5/5     Running   0               161m
+nfs-storage            pod/csi-nfs-node-ct4mw                                           3/3     Running   3 (5h38m ago)   23h
+nfs-storage            pod/csi-nfs-node-ffvfd                                           3/3     Running   3 (5h38m ago)   23h
+nfs-storage            pod/csi-nfs-node-q4h6c                                           3/3     Running   3 (5h38m ago)   23h
+nfs-storage            pod/csi-nfs-node-skkrk                                           3/3     Running   3 (5h38m ago)   23h
+
+NAMESPACE              NAME                                                TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)                                            AGE
+default                service/kubernetes                                  ClusterIP      10.96.0.1        <none>          443/TCP                                            9d
+envoy-gateway-system   service/envoy-gateway                               ClusterIP      10.101.129.240   <none>          18000/TCP,18001/TCP,18002/TCP,19001/TCP,9443/TCP   4d23h
+envoy-gateway-system   service/envoy-gateway-system-lab-gateway-03a12405   LoadBalancer   10.101.169.188   192.168.10.20   80:30710/TCP                                       4d23h
+kube-system            service/kube-dns                                    ClusterIP      10.96.0.10       <none>          53/UDP,53/TCP,9153/TCP                             9d
+kube-system            service/metrics-server                              ClusterIP      10.107.182.195   <none>          443/TCP                                            5h11m
+metallb-system         service/metallb-webhook-service                     ClusterIP      10.109.236.23    <none>          443/TCP                                            5d3h
+
+NAMESPACE        NAME                          DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE
+kube-system      daemonset.apps/calico-node    4         4         4       4            4           kubernetes.io/os=linux   9d
+kube-system      daemonset.apps/kube-proxy     4         4         4       4            4           kubernetes.io/os=linux   9d
+metallb-system   daemonset.apps/speaker        4         4         4       4            4           kubernetes.io/os=linux   5d3h
+nfs-storage      daemonset.apps/csi-nfs-node   4         4         4       4            4           kubernetes.io/os=linux   23h
+
+NAMESPACE              NAME                                                        READY   UP-TO-DATE   AVAILABLE   AGE
+envoy-gateway-system   deployment.apps/envoy-gateway                               1/1     1            1           4d23h
+envoy-gateway-system   deployment.apps/envoy-gateway-system-lab-gateway-03a12405   1/1     1            1           4d23h
+kube-system            deployment.apps/calico-kube-controllers                     1/1     1            1           9d
+kube-system            deployment.apps/coredns                                     2/2     2            2           9d
+kube-system            deployment.apps/metrics-server                              1/1     1            1           5h11m
+metallb-system         deployment.apps/controller                                  1/1     1            1           5d3h
+nfs-storage            deployment.apps/csi-nfs-controller                          1/1     1            1           23h
+
+NAMESPACE              NAME                                                                   DESIRED   CURRENT   READY   AGE
+envoy-gateway-system   replicaset.apps/envoy-gateway-75b559cc4c                               1         1         1       4d23h
+envoy-gateway-system   replicaset.apps/envoy-gateway-system-lab-gateway-03a12405-7c4988884b   1         1         1       4d23h
+kube-system            replicaset.apps/calico-kube-controllers-57f7f4cc78                     1         1         1       9d
+kube-system            replicaset.apps/coredns-559f6c778d                                     2         2         2       9d
+kube-system            replicaset.apps/metrics-server-84c99cb944                              1         1         1       5h11m
+metallb-system         replicaset.apps/controller-6c57b67fd4                                  1         1         1       5d3h
+nfs-storage            replicaset.apps/csi-nfs-controller-555b9cc7df                          1         1         1       23h
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k config use-context kubernetes-admin@kubernetes
+Switched to context "kubernetes-admin@kubernetes".
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k get role
+NAME        CREATED AT
+developer   2026-10-21T11:43:12Z
+[root@master[~/kube/15/useradd]# k get rolebindings.rbac.authorization.k8s.io
+NAME                       ROLE             AGE
+developer-binding-myuser   Role/developer   11m
+[root@master[~/kube/15/useradd]# k delete role developer
+role.rbac.authorization.k8s.io "developer" deleted from default namespace
+[root@master[~/kube/15/useradd]# k delete rolebindings.rbac.authorization.k8s.io developer-binding-myuser
+rolebinding.rbac.authorization.k8s.io "developer-binding-myuser" deleted from default namespace
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]#
+[root@master[~/kube/15/useradd]# c
+nnn[root@master[~/kube/15/useradd]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+          myuser                        kubernetes   myuser
+[root@master[~/kube/15/useradd]# exit
+exit
+
+Script done on 2026-10-21 21:00:09+09:00 [COMMAND_EXIT_CODE="0"]
