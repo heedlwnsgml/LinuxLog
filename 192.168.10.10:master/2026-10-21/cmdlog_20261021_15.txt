@@ -1,0 +1,1207 @@
+Script started on 2026-10-21 15:34:46+09:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="91" LINES="30"]
+[root@master[~]# c
+nnn[root@master[~]# k top node
+error: Metrics API not available
+[mkdirm-pt~/tools/metricsp&&/cdo~/tools/metricsd ~/tools/metrics
+[root@master[~/tools/metrics]# wget \
+https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+wget \
+https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+--2026-10-21 15:43:37--  https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+Resolving github.com (github.com)... 20.200.245.247
+Connecting to github.com (github.com)|20.200.245.247|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.9.0/components.yaml [following]
+--2026-10-21 15:43:38--  https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.9.0/components.yaml
+Reusing existing connection to github.com:443.
+HTTP request sent, awaiting response... 302 Found
+Location: https://release-assets.githubusercontent.com/github-production-release-asset/92132038/2600f1ad-a865-447c-9674-6c1ec0659431?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-21T07%3A30%3A35Z&rscd=attachment%3B+filename%3Dcomponents.yaml&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-21T06%3A30%3A27Z&ske=2026-10-21T07%3A30%3A35Z&sks=b&skv=2018-11-09&sig=wjLP0NNm5%2FdNSzrTzvseeFpWmLiD9EQO%2FXgSOtCAP7M%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MjU2NTIwMSwibmJmIjoxNzkyNTY0OTAxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.SQA__4SgEAuG0LBZmo7oPO48KkfSECwbu0fgh83hLzw&response-content-disposition=attachment%3B%20filename%3Dcomponents.yaml&response-content-type=application%2Foctet-stream [following]
+--2026-10-21 15:43:38--  https://release-assets.githubusercontent.com/github-production-release-asset/92132038/2600f1ad-a865-447c-9674-6c1ec0659431?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-10-21T07%3A30%3A35Z&rscd=attachment%3B+filename%3Dcomponents.yaml&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-10-21T06%3A30%3A27Z&ske=2026-10-21T07%3A30%3A35Z&sks=b&skv=2018-11-09&sig=wjLP0NNm5%2FdNSzrTzvseeFpWmLiD9EQO%2FXgSOtCAP7M%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MjU2NTIwMSwibmJmIjoxNzkyNTY0OTAxLCJwYXRoIjoicmVsZWFzZWFzc2V0cHJvZHVjdGlvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.SQA__4SgEAuG0LBZmo7oPO48KkfSECwbu0fgh83hLzw&response-content-disposition=attachment%3B%20filename%3Dcomponents.yaml&response-content-type=application%2Foctet-stream
+Resolving release-assets.githubusercontent.com (release-assets.githubusercontent.com)... 185.199.109.133, 185.199.110.133, 185.199.108.133, ...
+Connecting to release-assets.githubusercontent.com (release-assets.githubusercontent.com)|185.199.109.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4330 (4.2K) [application/octet-stream]
+Saving to: ‘components.yaml’
+
+components.yaml        100%[===========================>]   4.23K  --.-KB/s    in 0s
+
+2026-10-21 15:43:38 (21.7 MB/s) - ‘components.yaml’ saved [4330/4330]
+
+[root@master[~/tools/metrics]# c
+nnn[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]# vi components.yaml
+>4;2m"components.yaml" 202L, 4330B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: ServiceAccount  3 metadata:  4   labels:
+  5     k8s-app: metrics-server
+  6   name: metrics-server
+  7   namespace: kube-system
+  8 ---
+  9 apiVersion: rbac.authorization.k8s.io/v1
+ 10 kind: ClusterRole
+ 11 metadata:
+ 12   labels:
+ 13     k8s-app: metrics-server
+ 14     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+ 15     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+ 16     rbac.authorization.k8s.io/aggregate-to-view: "true"
+ 17   name: system:aggregated-metrics-reader
+ 18 rules:
+ 19 - apiGroups:
+ 20   - metrics.k8s.io
+ 21   resources:
+ 22   - pods
+ 23   - nodes
+ 24   verbs:
+ 25   - get
+ 26   - list
+ 27   - watch
+ 28 ---
+>4;m>4;m[root@master[~/tools/metrics]#.vi/components.yaml@k    ::q
+>4;2m"components.yaml" 202L, 4330B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: ServiceAccount  3 metadata:  4   labels:
+  5     k8s-app: metrics-server
+  6   name: metrics-server
+  7   namespace: kube-system
+  8 ---
+  9 apiVersion: rbac.authorization.k8s.io/v1
+ 10 kind: ClusterRole
+ 11 metadata:
+ 12   labels:
+ 13     k8s-app: metrics-server
+ 14     rbac.authorization.k8s.io/aggregate-to-admin: "true"
+ 15     rbac.authorization.k8s.io/aggregate-to-edit: "true"
+ 16     rbac.authorization.k8s.io/aggregate-to-view: "true"
+ 17   name: system:aggregated-metrics-reader
+ 18 rules:
+ 19 - apiGroups:
+ 20   - metrics.k8s.io
+ 21   resources:
+ 22   - pods
+ 23   - nodes
+ 24   verbs:
+ 25   - get
+ 26   - list
+ 27   - watch
+ 28 ---
+E486:hPatternTnot,found:nkublet-ins1,1Top//1,1Top//cceAccccccccccccccc2,12TopoceAccoccccccccccccc2,16Topn1201,name:1metrics-server,1Topi1,1Topn1,1Tops1,1Top
+121  amespace: kube-system
+122spec:123selector:
+124matchLabels:125    k8s-app: metrics-server
+126strategy:127    rollingUpdate:
+128      maxUnavailable: 0129  template:130    metadata:
+131    abels:
+132    k8s-app: metrics-server
+133spe:134  containers:135  - args:136      - --cert-dir=/tmp137        - --secure-port=10250
+138        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+139      - --kubelet-use-node-status-port
+140      - --metric-resolution=15s
+141      image: registry.k8s.io/metrics-server/metrics-server:v0.9.0
+142      imagePullPolicy: IfNotPresent
+143      livenessProbe:
+144        failureThreshold: 3
+145        httpGet:
+146          path: /livez
+147   port: https
+141apiVersion: v1he2kind:TServiceAccount4,3metadata:768%ii134,768%nn134,768%ee134,768%rr134,768%ss134,768%
+  4labels:  5k8s-app: metrics-server
+  6name: metrics-server  7namespace: kube-system
+  8---  9apiVersion: rbac.authorization.k8s.io/v1
+ 10kind: ClusterRole
+ 11metada: 12labels: 13k8s-app: metrics-server 14rbac.authorization.k8s.io/aggregate-to-admin: "true"
+ 15rbac.authorization.k8s.io/aggregate-to-edit: "true"
+ 16rbac.authorization.k8s.io/aggregate-to-view: "true"
+ 17name: system:aggregated-metrics-reader
+ 18rules: 19 - apiGroups: 20   - metrics.k8s.io 21resources: 22   - pods 23   - nodes 24verbs: 25   - get 26   - list 27   - watch 28--- 29apiVersion: rbac.authorization.k8s.io/v11,1Top//cceAccccccccccccccc2,12TopoceAccoccccccccccccc2,16Topn120  name: metrics-server
+121  amespace: kube-system
+122spec:123selector:
+124matchLabels:125    k8s-app: metrics-server
+126strategy:127    rollingUpdate:
+128      maxUnavailable: 0129  template:130    metadata:
+131    abels:
+132    k8s-app: metrics-server
+133spe:134  containers:135  - args:136      - --cert-dir=/tmp137        - --secure-port=10250
+138        - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+139      - --kubelet-use-node-status-port
+140      - --metric-resolution=15s
+141      image: registry.k8s.io/metrics-server/metrics-server:v0.9.0
+142      imagePullPolicy: IfNotPresent
+143      livenessProbe:
+144        failureThreshold: 3
+145        httpGet:
+146          path: /livez
+147   port: https
+conta134,768%~@kche5~@kHTT6~@k4,77~@kt138~@k8%a9~@k,7640~@@   33o -- INSERT --141,968%141
+142
+143
+144
+145
+146
+147
+>4;m"components.yaml"3203L,64363B9writtenn3s4e5c6u7r8e9-30t1l2s3^[  141,3268%::wq
+>4;m[root@master[~/tools/metrics]# k apply -f components.yaml
+serviceaccount/metrics-server created
+clusterrole.rbac.authorization.k8s.io/system:aggregated-metrics-reader created
+clusterrole.rbac.authorization.k8s.io/system:metrics-server created
+rolebinding.rbac.authorization.k8s.io/metrics-server-auth-reader created
+clusterrolebinding.rbac.authorization.k8s.io/metrics-server:system:auth-delegator created
+clusterrolebinding.rbac.authorization.k8s.io/system:metrics-server created
+service/metrics-server created
+deployment.apps/metrics-server created
+apiservice.apiregistration.k8s.io/v1beta1.metrics.k8s.io created
+[root@master[~/tools/metrics]# k get pods -n kube-system
+NAME                                       READY   STATUS    RESTARTS      AGE
+calico-kube-controllers-57f7f4cc78-hzsdm   1/1     Running   4 (27m ago)   5d22h
+calico-node-gdd6m                          1/1     Running   9 (27m ago)   8d
+calico-node-gpw9k                          1/1     Running   4 (27m ago)   5d22h
+calico-node-w5tqt                          1/1     Running   8 (27m ago)   8d
+calico-node-xxrpg                          1/1     Running   8 (27m ago)   8d
+coredns-559f6c778d-fbzfj                   1/1     Running   4 (27m ago)   5d22h
+coredns-559f6c778d-x2pvc                   1/1     Running   4 (27m ago)   5d22h
+etcd-master                                1/1     Running   9 (27m ago)   8d
+kube-apiserver-master                      1/1     Running   9 (27m ago)   8d
+kube-controller-manager-master             1/1     Running   9 (27m ago)   8d
+kube-proxy-2tfqd                           1/1     Running   3 (27m ago)   4d22h
+kube-proxy-69rxb                           1/1     Running   5 (27m ago)   4d22h
+kube-proxy-pcc5f                           1/1     Running   3 (27m ago)   4d22h
+kube-proxy-wtbfg                           1/1     Running   3 (27m ago)   4d22h
+kube-scheduler-master                      1/1     Running   9 (27m ago)   8d
+metrics-server-84c99cb944-vpwrw            1/1     Running   0             26s
+[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]# c
+nnn[root@master[~/tools/metrics]# dnf install -y epel-release
+Last metadata expiration check: 0:13:40 ago on Wed 21 Oct 2026 03:34:43 PM KST.
+Package epel-release-10-9.el10_3.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@master[~/tools/metrics]# dnf install -y sl
+Last metadata expiration check: 0:13:44 ago on Wed 21 Oct 2026 03:34:43 PM KST.
+Dependencies resolved.
+===========================================================================================
+ Package         Architecture        Version                       Repository         Size
+===========================================================================================
+Installing:
+ sl             B x86_64              5.02-1.el10_1                 epel               16 k
+
+Transaction Summary
+===========================================================================================
+Install  1 Package
+
+Total download size: 16 k
+Installed size: 21 k
+Downloading Packages:
+sl-5.02-1.el10_1.x86_64.rpm 0% [======                   ] 260 kB/s |  16 kB     00:00 ETA
+-------------------------------------------------------------------------------------------
+Total                                                       12 kB/s |  16 kB     00:01
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                   1/1
+  Installing       : sl-5.02-1.el10_1.x86_64 [====================================== ] 1/1
+  Running scriptlet: sl-5.02-1.el10_1.x86_64                                           1/1
+
+Installed:
+  sl-5.02-1.el10_1.x86_64
+
+Complete!
+[root@master[~/tools/metrics]# time for i in {1..6} ; do clear ; sl ; done
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/ |||o||__/H||_|___H|/_|  ||-__/(=|(o@|=-~~\|/-=|___|=O=====
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/)|||o||__/H||_|___H|/_|__||-__/(=|(o@|=-~~\|/-=|___|=O=====_|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/)|||o||__/H||_|___H|/_|__||-__/(=|(o@|=-~~\|/-=|___|=O=====_|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/)|||o||__/H||_|___H|/_|__||-__/(=|(o@|=-~~\|/-=|___|=O=====_|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/)|||o||__/H||_|___H|/_|__||-__/(=|(o@|=-~~\|/-=|___|=O=====_|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+|D_|_|/||_|/|-__/|=|_o/|=-O==|/-=|___|=-=|_|_D/_|-_|_|(_)---|_||_|H/|_|__||||(_|H|||/)|||o||__/H||_|___H|/_|__||-__/(=|(o@|=-~~\|/-=|___|=O=====_|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+_____)@O|@O@O)@O|@O@O)@O@@O|O/@|@_O@O=@O@/O@O__O@=O@@O=O=@(O(@)@)(@@)()(@@@@)@@)(_o_|)(@@@)==O=====O=====O_\_____Y_|__|__|/~\-|_||/_|__D|-I______|___/_=||oD|=-~~\__/~~\|_/~~\|\/~~|/-=|___|=O=====O=====O=====O_|__|_||/-=|___|=||H||||||_||@@|@||||\__|@|_||||_O__||\___|=_O(/==)(@@@@)(_|/=)(@@@)I_____I|[][]O[]==DO==|=|(_)-=|____|___//=|_o_|=-O=====O=====O=====O_\_____Y_|__|_|/-=|___|==_/=||====||__I_||____|_____/~\___/-|_D__D__D_||@|_D__D_/|/~\_|/ |=|_H__|__|/   H||  | ||_|||_||  |  _|  |_||_|||\_| ||  /|  |  |H\_|__-|_[___]=|||_|___H__/__|_____/[][]~\_||=-|__| /~~\=|||/\|/-||-I_____I|[][]=[]=|D==||=@@) (==|__/ =|@o@|=-~O=====O=====O=====O\ ____Y_     __||/-=|___|=    ||    ||    ||
+real    0m42.367s
+user    0m0.020s
+sys     0m0.193s
+[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]# k top node
+NAME     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+master   246m         3%       4712Mi          62%
+node1    64m          0%       1379Mi          18%
+node2    74m          0%       1533Mi          20%
+node3    67m          0%       1529Mi          20%
+[root@master[~/tools/metrics]# k top pods -n kube-system
+NAME                                       CPU(cores)   MEMORY(bytes)
+calico-kube-controllers-57f7f4cc78-hzsdm   2m           77Mi
+calico-node-gdd6m                          18m          152Mi
+calico-node-gpw9k                          27m          156Mi
+calico-node-w5tqt                          18m          156Mi
+calico-node-xxrpg                          18m          154Mi
+coredns-559f6c778d-fbzfj                   1m           94Mi
+coredns-559f6c778d-x2pvc                   2m           95Mi
+etcd-master                                21m          104Mi
+kube-apiserver-master                      51m          757Mi
+kube-controller-manager-master             12m          155Mi
+kube-proxy-2tfqd                           1m           71Mi
+kube-proxy-69rxb                           1m           72Mi
+kube-proxy-pcc5f                           1m           73Mi
+kube-proxy-wtbfg                           1m           75Mi
+kube-scheduler-master                      5m           78Mi
+metrics-server-84c99cb944-vpwrw            2m           25Mi
+[root@master[~/tools/metrics]# cdd-d
+/root
+[root@master[~]# c
+nnn[root@master[~]# cd tools/met
+bash: cd: tools/met: No such file or directory
+[root@master[~]# cd tools/metrics/
+[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]#
+[root@master[~/tools/metrics]# c
+nnn[root@master[~/tools/metrics]# vi deploy-web.yml
+>4;2m"deploy-web.yml" [New]▽  zz0%m           >c  1
+~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          0,0-1All?12$p-- INSERT --0,1All---
+  2 # 다음 내용은 예시이다.  3 apiVersion: apps/v1
+  4 kind: Deployment  5 metadata:  6   name: deploy-web
+  7 spec:
+  8   replicas: 1
+  9   selector:
+ 10     matchLabels: 11       app: web 12   template: 13     metadata:
+ 14       labels: 15         app: web 16     spec: 17       containers:
+ 18       - name: hpa-example 19         image: leejunhee021210/hpa-example:v1
+ 20         ports: 21         - containerPort: 80 22  resources:
+ 23           requests: 24             cpu: 200m     # HPA 임계값 계산 기준 (0.2 Core)
+ 25           limits: 26    cpu: 500m
+ 27 --- 28 apiVersion: v1 29 kind: Service 30 metadata:
+ 31 (paste) --  name: svc-web 32 spec:
+ 33   type: ClusterIP
+ 34   ports:
+ 35   - port: 80
+ 36     targetPort: 80
+ 37   selector:
+ 38     app: web
+>4;m"deploy-web.yml" [New] 39L, 663B written
+>4;m[root@master[~/tools/metrics]# k apply  -f deploy-web.yml
+deployment.apps/deploy-web created
+service/svc-web created
+[root@master[~/tools/metrics]# k delete -f deploy-web.yml
+deployment.apps "deploy-web" deleted from default namespace
+service "svc-web" deleted from default namespace
+[root@master[~/tools/metrics]#  mkdir -p ~/kube/13/hpa && cd ~/kube/13/hpa
+ mkdir -p ~/kube/13/hpa && cd ~/kube/13/hpa
+
+[root@master[~/kube/13/hpa]# vi deploy-web.yml
+>4;2m"deploy-web.yml" [New]▽  zz0%m           >c  1
+~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: apps/v1  3 kind: Deployment  4 metadata:  5   name: deploy-web
+  6 spec:  7   replicas: 1  8   selector:  9     matchLabels:
+ 10       app: web 11   template: 12     metadata: 13       labels: 14         app: web
+ 15     spec: 16       containers: 17         - name: web 18 image: leejunhee021210/hpa-example:v1  # <-- 자신의 이미지로 변경한다.
+ 19           ports: 20             - containerPort: 80
+ 21           resources: 22             requests: 23       cpu: 200m   # 200 밀리코어 보다 많은 요청을 하면 컨테이너 멈춤/느려짐
+ 24 --- 25 apiVersion: v1 26 kind: Service
+ 27 metadata: 28   name: svc-web 29 spec: 30   type: ClusterIP
+ 31   s(paste) -selector:      32     app: web
+ 33   ports:
+ 34     - port: 80
+ 35       targetPort: 80
+>4;m"deploy-web.yml" [New] 36L, 683B written
+>4;m[root@master[~/kube/13/hpa]# k apply -f deploy-web.yml
+deployment.apps/deploy-web created
+service/svc-web created
+[root@master[~/kube/13/hpa]# k api-versionss| grep auto
+autoscaling/v1
+autoscaling/v2
+[root@master[~/kube/13/hpa]# vi hpa-web.yml
+>4;2m"hpa-web.yml" [New]▽  zz0%m           >c  1
+~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          0,0-1All?12$p-- INSERT --0,1AllapiVersion: autoscaling/v2
+  2 kind: HorizontalPodAutoscaler
+  3 metadata:  4   name: hpa-web  5 spec:  6   minReplicas: 1
+  7   maxReplicas: 10  8   scaleTargetRef:
+  9     apiVersion: apps/v1 10     kind: Deployment
+ 11     name: deploy-web 12   metrics: 13   - type: Resource
+ 14     resource: 15       name: cpu 16       target: 17         type: Utilization
+>4;m"hpa-web.yml"g[New]i18L,o339B0writtenl^[  ^[  ::wq
+>4;m[root@master[~/kube/13/hpa]# k apply -f hpa-web.yml
+horizontalpodautoscaler.autoscaling/hpa-web created
+[root@master[~/kube/13/hpa]# k get hpa
+NAME      REFERENCE               TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+hpa-web   Deployment/deploy-web   cpu: 0%/50%   1         10        1          8s
+[root@master[~/kube/13/hpa]# for i in {1..5} ; do clear; sl -F ; done
+[root@master[~/kube/13/hpa]#Dk_getDsvc_/_/_\_/_/_I\_/_/_\_/__||_\()___]\_/@___\_O(__)_@@@))@@)|(_)__(@)__(|_@@===_O__|-O_____@|(_)-@--||_O/H\______\__I_I_____===__|_|_@O__|_O|_____/[][]~\_|I|I__=|_===__|_||/_|---|-I_____I_[][]/[])(D|@@|=|__@-__/_=|_o||=-~~\==/~~\=)/~~\O=/~~\=____Y_|__|_|_|_|/-=|___|=@_D_||__|_||_/__||_|__|_____/~\___/=__\_/\O|||_\_O=====O=====O=====O/_/|||H\_/__-|_[|_D__D__D_|_O|_D__D__D_|H\_/__|\_/__/[\_/~\_\_/(@@@@)/|)(@@)-(__)(_IO[)(@)[](~)(@@@)|@@_-|_()====o_|_-~@_D__|~\|_/~\__I_I_____===__|_|_|__|/O=|___@|(_)---|_|_||H\_/|||||||=|___/___|_O____\_/]~\_@|\_/__||=O\_/|||/=||_D__D__D_|I |_D__D__DD\_/|=_\_/@==|\_/(=|\====-_O__D=_|==|_/O\__I_I_____===__|_||(_)---|_|_|=H\_/||   ||=|___|___|
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   8d
+svc-web      ClusterIP   10.106.112.121   <none>        80/TCP    7m59s
+[root@master[~/kube/13/hpa]# k get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   8d
+svc-web      ClusterIP   10.106.112.121   <none>        80/TCP    8m2s
+[root@master[~/kube/13/hpa]# curl 10.106.112.121
+<h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br>[root@master[~/kube/13/hpa]# curl 10.106.112.121
+<h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br>[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]# SVC_IP=$(kubectl get svc svc-web -o yaml | yq '.spec.clusterIP')
+[root@master[~/kube/13/hpa]# while true ; do culr $SVC_IP ; sleep 5 ; done &
+[1] 67252
+[root@master[~/kube/13/hpa]# bash: culr: command not found...
+Similar command is: 'curl'
+bash: culr: command not found...
+Similar command is: 'curl'
+^C
+[root@master[~/kube/13/hpa]# while true ; do culr $SVC_IP ; sleep bash:oculr: command not found...
+Similar command is: 'curl'
+^C
+[root@master[~/kube/13/hpa]# while true ; do cubash:Vculr:;command5notdfound...
+Similar command is: 'curl'
+1@r1@c
+[2] 67711
+[root@master[~/kube/13/hpa]# bash: cc: command not found...
+Install package 'gcc' to provide command 'cc'? [N/y] bash: culr: command not found...
+Similar command is: 'curl'
+c
+nnn
+[2]+  Stopped                 while true; do
+    cc $SVC_IP; sleep 5;
+done
+[root@master[~/kube/13/hpa]# ^C
+[root@master[~/kube/13/hpa]# jobs
+[1]-  Running                 while true; do
+    culr $SVC_IP; sleep 5;
+done &
+[2]+  Stopped                 while true; do
+    cc $SVC_IP; sleep 5;
+done
+[root@master[~/kube/13/hpa]# bash: culr: command not found...
+Similar command is: 'curl'
+^C
+[root@master[~/kube/13/hpa]# kill 1
+[root@master[~/kube/13/hpa]# bash: culr: command not found...
+Similar command is: 'curl'
+jobs
+[1]-  Running                 while true; do
+    culr $SVC_IP; sleep 5;
+done &
+[2]+  Stopped                 while true; do
+    cc $SVC_IP; sleep 5;
+done
+[root@master[~/kube/13/hpa]# kill %1
+[root@master[~/kube/13/hpa]# kill %2
+[1]-  Terminated              while true; do
+    culr $SVC_IP; sleep 5;
+done
+
+[2]+  Stopped                 while true; do
+    cc $SVC_IP; sleep 5;
+done
+[root@master[~/kube/13/hpa]# jobs
+[2]+  Terminated              while true; do
+    cc $SVC_IP; sleep 5;
+done
+[root@master[~/kube/13/hpa]# kill %2
+bash: kill: %2: no such job
+[root@master[~/kube/13/hpa]# kill %1
+bash: kill: %1: no such job
+[root@master[~/kube/13/hpa]# cill %1
+nnn[root@master[~/kube/13/hpa]# jobss
+bash: jobss: command not found...
+Similar command is: 'jobs'
+[root@master[~/kube/13/hpa]# jobss
+[root@master[~/kube/13/hpa]# SVC_IP=$(kubectl get svc svc-web -o yaml | yq '.spec.clusterIP')
+while true ; do curll$SVC_IP ; sleep 4 ; done &
+[1] 69283
+[root@master[~/kube/13/hpa]# <h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br>^C
+[root@master[~/kube/13/hpa]# k top node
+NAME     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+master   245m         3%       3661Mi          48%
+node1    85m          1%       1449Mi          19%
+node2    119m         1%       1612Mi          21%
+node3    547m         6%       1568Mi          20%
+[root@master[~/kube/13/hpa]# <h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br><h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br>
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]# <h1>소수 계산 시작</h1><h1>소수 개수: 9592</h1><br><br>jobs
+[1]+  Running                 while true; do
+    curl $SVC_IP; sleep 4;
+done &
+[root@master[~/kube/13/hpa]# kill %1
+[root@master[~/kube/13/hpa]#
+[1]+  Terminated              while true; do
+    curl $SVC_IP; sleep 4;
+done
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]# c
+nnn[root@master[~/kube/13/hpa]# jobs
+[root@master[~/kube/13/hpa]# k get pods
+NAME                          READY   STATUS    RESTARTS      AGE
+deploy-web-5465b768dc-28qhf   1/1     Running   0             4m41s
+deploy-web-5465b768dc-c42nv   1/1     Running   0             101s
+deploy-web-5465b768dc-f49tb   1/1     Running   0             86s
+deploy-web-5465b768dc-nvtsj   1/1     Running   0             86s
+deploy-web-5465b768dc-s2jfn   1/1     Running   0             13m
+deploy-web-5465b768dc-sgr9b   1/1     Running   0             4m41s
+myweb                         1/1     Running   1 (60m ago)   18h
+[root@master[~/kube/13/hpa]# k delete -f hpa-web.yml -ffdeploy-web.yml
+horizontalpodautoscaler.autoscaling "hpa-web" deleted from default namespace
+deployment.apps "deploy-web" deleted from default namespace
+service "svc-web" deleted from default namespace
+[root@master[~/kube/13/hpa]# k delete -f .
+Error from server (NotFound): error when deleting "deploy-web.yml": deployments.apps "deploy-web" not found
+Error from server (NotFound): error when deleting "deploy-web.yml": services "svc-web" not found
+Error from server (NotFound): error when deleting "hpa-web.yml": horizontalpodautoscalers.autoscaling "hpa-web" not found
+[root@master[~/kube/13/hpa]# c
+nnn[root@master[~/kube/13/hpa]# k describe pods myweb | less
+Name:             myweb
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             node1/192.168.10.11
+Start Time:       Tue, 20 Oct 2026 21:33:53 +0900
+Labels:           <none>
+Annotations:      cni.projectcalico.org/containerID: 950c3dbb00530ab966beb3940e96697151500b62450993e416a6ccaeb487ac94
+                  cni.projectcalico.org/podIP: 10.10.166.175/32
+                  cni.projectcalico.org/podIPs: 10.10.166.175/32
+Status:           Running
+IP:               10.10.166.175
+IPs:
+  IP:  10.10.166.175
+Containers:
+  mycontainer:
+    Container ID:   containerd://a31d36715f59be12106c625eaf9ff00204a5ffa51ec3df1c349031413f3e2976
+    Image:          nginx
+    Image ID:       docker.io/library/nginx@sha256:8632b3314d74c61f0e27f59055bab13f7793b988c94c090154d867bc29e0f39b
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Wed, 21 Oct 2026 15:20:10 +0900
+    Last State:     Terminated
+      Reason:       Unknown
+      Exit Code:    255
+:ESCOBStarted:      Tue, 20 Oct 2026 21:33:59 +0900
+:ESCOBFinished:     Wed, 21 Oct 2026 15:19:31 +0900
+:ESCReady:          True
+:ESCRestart Count:  1
+:ESCEnvironment:    <none>
+:ESCMounts:
+:ESCOB/usr/share/nginx/html from data (rw)
+:ESCOB/var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tkwd9 (ro)
+Conditions:
+:EType                        Status
+:EPodReadyToStartContainers   True
+:EInitialized                 True
+:EReady                       True
+:EContainersReady             True
+:EPodScheduled                True
+Volumes:
+:Edata:
+amespace)       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same n:
+:ESCClaimName:  pvc-nginx
+:ESCReadOnly:   false
+:Ekube-api-access-tkwd9:
+sources):                    Projected (a volume that contains injected data from multiple :
+:ESCTokenExpirationSeconds:  3607
+:ESCConfigMapName:           kube-root-ca.crt
+:ESCOptional:                false
+:ESCDownwardAPI:             true
+QoSCClass:                   BestEffort
+Node-Selectors:              <none>
+Tolerations:                 node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+:ESCOB                       node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:                      <none>
+(ESCRestart Count:  1
+:ESCReady:          True
+:ESCOAFinished:     Wed, 21 Oct 2026 15:19:31 +0900
+:ESCOAStarted:      Tue, 20 Oct 2026 21:33:59 +0900
+:ESCOAExit Code:    255
+:ESCOAReason:       Unknown
+:ESCLast State:     Terminated
+:ESCOAStarted:      Wed, 21 Oct 2026 15:20:10 +0900
+:ESCState:          Running
+:ESCHost Port:      <none>
+:ESCPort:           <none>
+c94c090154d867bc29e0f39b
+:ESCImage:ID:       nginxr.io/library/nginx@sha256:8632b3314d74c61f0e27f59055bab13f7793b988
+3e2976
+:Emycontainer:ID:   containerd://a31d36715f59be12106c625eaf9ff00204a5ffa51ec3df1c349031413f
+Containers:
+:EIP:A 10.10.166.175
+IPs:OA
+IP:COA            10.10.166.175
+Status:           Running
+:ESCOA            cni.projectcalico.org/podIPs: 10.10.166.175/32
+:ESCOA            cni.projectcalico.org/podIP: 10.10.166.175/32
+62450993e416a6ccaeb487ac94
+Labels:ions:      <none>ojectcalico.org/containerID: 950c3dbb00530ab966beb3940e96697151500b
+StartATime:       Tue, 20 Oct 2026 21:33:53 +0900
+Node:A            node1/192.168.10.11
+Service Account:  default
+Priority:         0
+Namespace:        default
+Name:A            myweb
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]# c
+nnn[root@master[~/kube/13/hpa]# c
+nnn[root@master[~/kube/13/hpa]# k delete npodswmyweb
+pod "myweb" deleted from default namespace
+[root@master[~/kube/13/hpa]#
+[root@master[~/kube/13/hpa]# c
+nnn[root@master[~/kube/13/hpa]# k labelnnode node{2,3} gpu=true
+node/node2 labeled
+node/node3 labeled
+[root@master[~/kube/13/hpa]# mkdir -p ~/kube/14/nodeSelector && cd ~/kube/14/nodeSelector
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]# c
+nnn[root@master[~/kube/14/nodeSelector]# vi tensorflow-gpu.yml
+>4;2m"tensorflow-gpu.yml" [New]▽  zz0%m           >c  1
+~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          0,0-1All?12$p-- INSERT --0,1All---
+  2 kind: Pod  3 apiVersion: v1  4 metadata:  5   name: tensorflow-gpu
+  6 spec:  7   containers:  8   - name: tensorflow  9     image: tensorflow/tensorflow:nightly-jupyter
+ 10     ports: 11     - containerPorcontainerPort: 8888
+>4;m"tensorflow-gpu.yml"1[New]o15L,l242Brwritten  gpu: "true" 15 15,0-1All^[  ^[  ::wq
+>4;m[root@master[~/kube/14/nodeSelector]# klapplyi-f tensorflow-gpu.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeSelector]# kubectl logs tensorflow-gpu
+Error from server (BadRequest): container "tensorflow" in pod "tensorflow-gpu" is waiting to start: ContainerCreating
+[root@master[~/kube/14/nodeSelector]# kubectl logs tensorflow-gpu
+[I 2026-10-21 07:56:52.449 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2026-10-21 07:56:52.451 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2026-10-21 07:56:52.454 ServerApp] jupyterlab | extension was successfully linked.
+[I 2026-10-21 07:56:52.456 ServerApp] notebook | extension was successfully linked.
+[I 2026-10-21 07:56:52.457 ServerApp] Writing Jupyter server cookie secret to /root/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2026-10-21 07:56:52.491 ServerApp] notebook_shim | extension was successfully linked.
+[I 2026-10-21 07:56:52.505 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2026-10-21 07:56:52.506 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2026-10-21 07:56:52.507 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2026-10-21 07:56:52.508 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.11/dist-packages/jupyterlab
+[I 2026-10-21 07:56:52.508 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
+[I 2026-10-21 07:56:52.509 LabApp] Extension Manager is 'pypi'.
+[I 2026-10-21 07:56:52.559 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2026-10-21 07:56:52.562 ServerApp] notebook | extension was successfully loaded.
+[I 2026-10-21 07:56:52.562 ServerApp] Serving notebooks from local directory: /tf
+[I 2026-10-21 07:56:52.562 ServerApp] Jupyter Server 2.21.1 is running at:
+[I 2026-10-21 07:56:52.562 ServerApp] http://0.0.0.0:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+[I 2026-10-21 07:56:52.562 ServerApp]     http://127.0.0.1:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+[I 2026-10-21 07:56:52.562 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2026-10-21 07:56:52.565 ServerApp]
+
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-1-open.html
+    Or copy and paste one of these URLs:
+        http://tensorflow-gpu:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+        http://127.0.0.1:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+    The server is listening on all interfaces, so any hostname or IP of this machine will work.
+[I 2026-10-21 07:56:52.576 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[root@master[~/kube/14/nodeSelector]# k events
+LAST SEEN   TYPE     REASON              OBJECT                             MESSAGE
+53m         Normal   ScalingReplicaSet   Deployment/deploy-web              Scaled up replica set deploy-web-64f848df68 from 0 to 1
+53m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-64f848df68   Created pod: deploy-web-64f848df68-sdwts
+53m         Normal   Scheduled           Pod/deploy-web-64f848df68-sdwts    Successfully assigned default/deploy-web-64f848df68-sdwts to node1
+53m         Normal   Pulling             Pod/deploy-web-64f848df68-sdwts    Pulling image "leejunhee021210/hpa-example:v1"
+53m         Normal   Pulled              Pod/deploy-web-64f848df68-sdwts    Successfully pulled image "leejunhee021210/hpa-example:v1" in 11.996s (11.996s including waiting). Image size: 163275059 bytes.
+53m         Normal   Created             Pod/deploy-web-64f848df68-sdwts    Container created
+53m         Normal   Started             Pod/deploy-web-64f848df68-sdwts    Container started
+51m         Normal   Killing             Pod/deploy-web-64f848df68-sdwts    Stopping container hpa-example
+51m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-s2jfn
+51m         Normal   ScalingReplicaSet   Deployment/deploy-web              Scaled up replica set deploy-web-5465b768dc from 0 to 1
+51m         Normal   Started             Pod/deploy-web-5465b768dc-s2jfn    Container started
+51m         Normal   Created             Pod/deploy-web-5465b768dc-s2jfn    Container created
+51m         Normal   Pulled              Pod/deploy-web-5465b768dc-s2jfn    Container image "leejunhee021210/hpa-example:v1" already present on machine and can be accessed by the pod
+51m         Normal   Scheduled           Pod/deploy-web-5465b768dc-s2jfn    Successfully assigned default/deploy-web-5465b768dc-s2jfn to node1
+42m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-sgr9b
+42m         Normal   Pulling             Pod/deploy-web-5465b768dc-28qhf    Pulling image "leejunhee021210/hpa-example:v1"
+42m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-28qhf
+42m         Normal   Scheduled           Pod/deploy-web-5465b768dc-sgr9b    Successfully assigned default/deploy-web-5465b768dc-sgr9b to node3
+42m         Normal   Scheduled           Pod/deploy-web-5465b768dc-28qhf    Successfully assigned default/deploy-web-5465b768dc-28qhf to node2
+42m         Normal   Pulling             Pod/deploy-web-5465b768dc-sgr9b    Pulling image "leejunhee021210/hpa-example:v1"
+42m         Normal   SuccessfulRescale   HorizontalPodAutoscaler/hpa-web    New size: 3; reason: cpu resource utilization (percentage of request) above target
+42m         Normal   ScalingReplicaSet   Deployment/deploy-web              Scaled up replica set deploy-web-5465b768dc from 1 to 3
+42m         Normal   Pulled              Pod/deploy-web-5465b768dc-28qhf    Successfully pulled image "leejunhee021210/hpa-example:v1" in 10.906s (10.906s including waiting). Image size: 163275059 bytes.
+42m         Normal   Created             Pod/deploy-web-5465b768dc-28qhf    Container created
+42m         Normal   Started             Pod/deploy-web-5465b768dc-28qhf    Container started
+42m         Normal   Pulled              Pod/deploy-web-5465b768dc-sgr9b    Successfully pulled image "leejunhee021210/hpa-example:v1" in 11.503s (11.503s including waiting). Image size: 163275059 bytes.
+42m         Normal   Created             Pod/deploy-web-5465b768dc-sgr9b    Container created
+42m         Normal   Started             Pod/deploy-web-5465b768dc-sgr9b    Container started
+39m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-c42nv
+39m         Normal   SuccessfulRescale   HorizontalPodAutoscaler/hpa-web    New size: 4; reason: cpu resource utilization (percentage of request) above target
+39m         Normal   ScalingReplicaSet   Deployment/deploy-web              Scaled up replica set deploy-web-5465b768dc from 3 to 4
+39m         Normal   Scheduled           Pod/deploy-web-5465b768dc-c42nv    Successfully assigned default/deploy-web-5465b768dc-c42nv to node3
+39m         Normal   Pulled              Pod/deploy-web-5465b768dc-c42nv    Container image "leejunhee021210/hpa-example:v1" already present on machine and can be accessed by the pod
+39m         Normal   Created             Pod/deploy-web-5465b768dc-c42nv    Container created
+39m         Normal   Started             Pod/deploy-web-5465b768dc-c42nv    Container started
+39m         Normal   Scheduled           Pod/deploy-web-5465b768dc-f49tb    Successfully assigned default/deploy-web-5465b768dc-f49tb to node1
+39m         Normal   Scheduled           Pod/deploy-web-5465b768dc-nvtsj    Successfully assigned default/deploy-web-5465b768dc-nvtsj to node2
+39m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-nvtsj
+39m         Normal   SuccessfulRescale   HorizontalPodAutoscaler/hpa-web    New size: 6; reason: cpu resource utilization (percentage of request) above target
+39m         Normal   ScalingReplicaSet   Deployment/deploy-web              Scaled up replica set deploy-web-5465b768dc from 4 to 6
+39m         Normal   SuccessfulCreate    ReplicaSet/deploy-web-5465b768dc   Created pod: deploy-web-5465b768dc-f49tb
+39m         Normal   Created             Pod/deploy-web-5465b768dc-nvtsj    Container created
+39m         Normal   Started             Pod/deploy-web-5465b768dc-nvtsj    Container started
+39m         Normal   Started             Pod/deploy-web-5465b768dc-f49tb    Container started
+39m         Normal   Pulled              Pod/deploy-web-5465b768dc-f49tb    Container image "leejunhee021210/hpa-example:v1" already present on machine and can be accessed by the pod
+39m         Normal   Pulled              Pod/deploy-web-5465b768dc-nvtsj    Container image "leejunhee021210/hpa-example:v1" already present on machine and can be accessed by the pod
+39m         Normal   Created             Pod/deploy-web-5465b768dc-f49tb    Container created
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-28qhf    Stopping container web
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-sgr9b    Stopping container web
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-c42nv    Stopping container web
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-s2jfn    Stopping container web
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-nvtsj    Stopping container web
+37m         Normal   Killing             Pod/deploy-web-5465b768dc-f49tb    Stopping container web
+3m52s       Normal   Killing             Pod/myweb                          Stopping container mycontainer
+90s         Normal   Scheduled           Pod/tensorflow-gpu                 Successfully assigned default/tensorflow-gpu to node3
+90s         Normal   Pulling             Pod/tensorflow-gpu                 Pulling image "tensorflow/tensorflow:nightly-jupyter"
+36s         Normal   Pulled              Pod/tensorflow-gpu                 Successfully pulled image "tensorflow/tensorflow:nightly-jupyter" in 53.422s (53.422s including waiting). Image size: 798206291 bytes.
+36s         Normal   Created             Pod/tensorflow-gpu                 Container created
+36s         Normal   Started             Pod/tensorflow-gpu                 Container started
+[root@master[~/kube/14/nodeSelector]# c
+nnn[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]# c
+[root@master[~/kube/14/nodeSelector]#rIP=$(kubectlcgetgpodsotensorflow-gpug-o jsonpath='{.status.podIP}')}')
+[root@master[~/kube/14/nodeSelector]# k logs tensorflow-gpu
+[I 2026-10-21 07:56:52.449 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2026-10-21 07:56:52.451 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2026-10-21 07:56:52.454 ServerApp] jupyterlab | extension was successfully linked.
+[I 2026-10-21 07:56:52.456 ServerApp] notebook | extension was successfully linked.
+[I 2026-10-21 07:56:52.457 ServerApp] Writing Jupyter server cookie secret to /root/.local/share/jupyter/runtime/jupyter_cookie_secret
+[I 2026-10-21 07:56:52.491 ServerApp] notebook_shim | extension was successfully linked.
+[I 2026-10-21 07:56:52.505 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2026-10-21 07:56:52.506 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2026-10-21 07:56:52.507 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2026-10-21 07:56:52.508 LabApp] JupyterLab extension loaded from /usr/local/lib/python3.11/dist-packages/jupyterlab
+[I 2026-10-21 07:56:52.508 LabApp] JupyterLab application directory is /usr/local/share/jupyter/lab
+[I 2026-10-21 07:56:52.509 LabApp] Extension Manager is 'pypi'.
+[I 2026-10-21 07:56:52.559 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2026-10-21 07:56:52.562 ServerApp] notebook | extension was successfully loaded.
+[I 2026-10-21 07:56:52.562 ServerApp] Serving notebooks from local directory: /tf
+[I 2026-10-21 07:56:52.562 ServerApp] Jupyter Server 2.21.1 is running at:
+[I 2026-10-21 07:56:52.562 ServerApp] http://0.0.0.0:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+[I 2026-10-21 07:56:52.562 ServerApp]     http://127.0.0.1:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+[I 2026-10-21 07:56:52.562 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2026-10-21 07:56:52.565 ServerApp]
+
+    To access the server, open this file in a browser:
+        file:///root/.local/share/jupyter/runtime/jpserver-1-open.html
+    Or copy and paste one of these URLs:
+        http://tensorflow-gpu:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+        http://127.0.0.1:8888/tree?token=1f7b11187d19cc5e4c4776a2959d739c772a66f29dcaf1d7
+    The server is listening on all interfaces, so any hostname or IP of this machine will work.
+[I 2026-10-21 07:56:52.576 ServerApp] Skipped non-installed server(s): basedpyright, bash-language-server, dockerfile-language-server-nodejs, javascript-typescript-langserver, jedi-language-server, julia-language-server, pyrefly, pyright, python-language-server, python-lsp-server, r-languageserver, sql-language-server, texlab, typescript-language-server, unified-language-server, vscode-css-languageserver-bin, vscode-html-languageserver-bin, vscode-json-languageserver-bin, yaml-language-server
+[I 2026-10-21 07:59:29.309 ServerApp] 302 GET / (@10.10.219.64) 0.60ms
+[I 2026-10-21 07:59:30.088 JupyterNotebookApp] 302 GET /tree? (@10.10.219.64) 0.79ms
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]# c
+nnn[root@master[~/kube/14/nodeSelector]# k delete -f tensorflow-gpu.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeSelector]# k apply -f tensorflow-gpu.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeSelector]# k 1@delete tensorflow-gpu.yml
+pod "tensorflow-gpu" deleted from default namespace
+^[kAlogs[tensorflow-gpuku1@deletedeSelector]# k applye -f tensorflow-gpu.yml
+error: error from server (NotFound): pods "tensorflow-gpu" not found in namespace "default"
+apply@master[~/kub1@deleteeSelector]# k 9applytes-fftensorflow-gpu.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeSelector]# k9@deleten-frtensorflow-gpu.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeSelector]# k applye -f tensorflow-gpu.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeSelector]# k 1@delete tensorflow-gpu.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeSelector]# k applye -f tensorflow-gpu.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeSelector]# k topsnodes
+NAME     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+master   321m         4%       4113Mi          54%
+node1    78m          0%       1411Mi          18%
+node2    95m          1%       1582Mi          20%
+node3    316m         3%       1618Mi          21%
+[root@master[~/kube/14/nodeSelector]# k 1@deletestensorflow-gpu.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeSelector]# k topenodes tensorflow-gpu.yml
+NAME     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+master   288m         3%       4100Mi          54%
+node1    67m          0%       1409Mi          18%
+node2    87m          1%       1580Mi          20%
+node3    285m         3%       1618Mi          21%
+[root@master[~/kube/14/nodeSelector]# k top nodes
+NAME     CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)
+master   274m         3%       4100Mi          54%
+node1    79m          0%       1411Mi          18%
+node2    89m          1%       1581Mi          20%
+node3    143m         1%       1548Mi          20%
+[root@master[~/kube/14/nodeSelector]# c
+nnn[root@master[~/kube/14/nodeSelector]#
+
+[root@master[~/kube/14/nodeSelector]# c
+nnn[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]#
+[root@master[~/kube/14/nodeSelector]# c
+[root@master[~/kube/14/nodeSelector]#rmkdird-p ~/kube/14/nodeAffinityi&& cd ~/kube/14/nodeAffinityity
+[root@master[~/kube/14/nodeAffinity]# k label node node{1,2} disk=ssd
+node/node1 labeled
+node/node2 labeled
+[root@master[~/kube/14/nodeAffinity]# vi tenssorflow-gpu-ssd.yml
+>4;2m"tenssorflow-gpu-ssd.yml" [New]▽  zz0%m           >c  1
+~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          ~                                                                                          0,0-1All?12$p-- INSERT --0,1All---
+  2 apiVersion: v1  3 kind: Pod
+  4 metadata:
+  5   name: tensorflow-gpu
+  6 spec:
+  7   containers:  8   - name: tensorflow
+  9     image: tensorflow/tensorflow:nightly-jupyter
+ 10     ports: 11     - containerPort: 8888
+ 12       protocol: TCP
+ 13   affinity:
+ 14     nodeAffinity: 15       # [필수 조건] disk 레이블이 반드시 존재해야 함 (node1, node2 통과 / node3 탈락)
+ 16       requiredDuringScrequiredDuringSchedulingIgnoredDuringExecution:
+ 17 nodeSelectorTerms:
+ 18         - matchExpressionsmatchExpressions:
+ 19           - key: disk 20             operator: Exists 21       # [선호 조건] gpu=true(10점), disk=ssd(10점)
+ 22       preferredDuringSchedulingIgnoredDuringExecution:
+ 23       - weight: 10
+ 24         preference: 25           matchExpressions: 26 - key: gpu
+ 27 operator: In
+ 28             values: ["true"] 29       - weight: 10
+ 30 preference:(paste) -- 31 matchExpressions:
+ 32 - key: disk
+ 33 operator: In  34 values: ["ssd"]
+>4;m"tenssorflow-gpu-ssd.yml" [New] 35L, 902B written
+>4;m[root@master[~/kube/14/nodeAffinity]# k apply -f tenssorflow-gpu-ssd.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeAffinity]# k label nodesnode2 disk -
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k label node node2 dis -
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k delete -f tenssorflow-gpu-ssd.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeAffinity]# k labelenodetnode2rdisw-gpu-ssd.yml
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k labelenodetnode2rdisk--pu-ssd.yml
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k label node node2 disk--
+node/node2 unlabeled
+[root@master[~/kube/14/nodeAffinity]# k label node node2 disk-ssd
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k label node node2 disk-ssd
+error: at least one label update is required
+[root@master[~/kube/14/nodeAffinity]# k label node node2 disk=ssd
+The Node "node2" is invalid: metadata.labels: Invalid value: "disk-": name part must consist of alphanumeric characters, '-', '_' or '.', and must start and end with an alphanumeric character (e.g. 'MyName',  or 'my.name',  or '123-abc', regex used for validation is '([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9]')
+[root@master[~/kube/14/nodeAffinity]# c
+nnn[root@master[~/kube/14/nodeAffinity]# k label nod nod2 disk=ssd
+error: the server doesn't have a resource type "nod"
+[root@master[~/kube/14/nodeAffinity]# k label nod 1@e2 disk=ssd
+error: the server doesn't have a resource type "nod"
+[root@master[~/kube/14/nodeAffinity]# k label 2@es1@ee2 disk=ssd
+node/node2 labeled
+[root@master[~/kube/14/nodeAffinity]# c
+nnn[root@master[~/kube/14/nodeAffinity]# k apply -f tenssorflow-gpu-ssd.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeAffinity]# k label node node2 disk-
+node/node2 unlabeled
+[root@master[~/kube/14/nodeAffinity]# k apply -fdtenssorflow-gpu-ssd.yml
+pod/tensorflow-gpu unchanged
+[root@master[~/kube/14/nodeAffinity]# k deletee-fetenssorflow-gpu-ssd.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeAffinity]# k apply -f tenssorflow-gpu-ssd.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeAffinity]# k delete -f tenssorflow-gpu-ssd.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeAffinity]# k label nodes noe3 disk=ssd
+Error from server (NotFound): nodes "noe3" not found
+[root@master[~/kube/14/nodeAffinity]# k label nodes no1@ddisk=ssd
+node/node3 labeled
+[root@master[~/kube/14/nodeAffinity]# k apply -f tenssorflow-gpu-ssd.yml
+pod/tensorflow-gpu created
+[root@master[~/kube/14/nodeAffinity]# k delete -f tenssorflow-gpu-ssd.yml
+pod "tensorflow-gpu" deleted from default namespace
+[root@master[~/kube/14/nodeAffinity]# k label nodes node{1..3} disk-
+node/node1 unlabeled
+label "disk" not found.
+node/node2 not labeled
+node/node3 unlabeled
+[root@master[~/kube/14/nodeAffinity]# k label nodes node{1..3} gpu--
+label "gpu" not found.
+node/node1 not labeled
+node/node2 unlabeled
+node/node3 unlabeled
+[root@master[~/kube/14/nodeAffinity]# c
+[root@master[~/kube/14/nodeAffinity]#ymkdird-p ~/kube/14/podAffinityi&& cd ~/kube/14/podAffinityity
+-rsleepa1der[~/kube/14/podAffinity]# k run backend --image=busybox -l app=backend -
+pod/backend created
+[root@master[~/kube/14/podAffinity]#
+[root@master[~/kube/14/podAffinity]#
+[root@master[~/kube/14/podAffinity]# c
+nnn[root@master[~/kube/14/podAffinity]# vi pod-affinity.yml
+>4;2m"pod-affinity.yml" [New]▽  zz0%m           >c  1
+>4;m>4;m[root@master[~/kube/14/podAffinity]# vi pod-affinity.yml                                                   ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  0,0-1All?12$p::q
+>4;2m"pod-affinity.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  0,0-1All?12$p-- INSERT --0,1Allkind: Deployment
+  2 apiVersion: apps/v1  3 metadata:
+  4   name: frontend
+  5 spec:
+  6   replicas: 5
+  7   selector:  8     matchLabels:
+  9       app: frontend
+ 10   template: 11     metadata:
+ 12       labels:
+ 13         app: frontend 14     spec:
+ 15       containers:
+ 16       - name: main 17 image: busybox
+ 18         args:  19 - sleep
+ 20 - 1d
+ 21       affinity: 22 podAffinity:
+ 23 requiredDuringSchedulingIgnoredDuringExecution:
+ 24           - labelSelector:
+ 25               matchLabels: 26                 app: backend
+>4;m"pod-affinity.yml"g[New] 28L,r536Bswrittentname 28 28,0-1All^[  ^[  ::wq
+--;sleept1da>tbackend.yml4/podAffinity]# k runlbackendd--image=busybox -l app=backend --dry-run=client -o yaml
+[root@master[~/kube/14/podAffinity]# vi backend.yml
+>4;2m"backend.yml" 17L, 245B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   labels:
+  5     app: backend
+  6   name: backend
+  7 spec:
+  8   containers:
+  9   - args:
+ 10     - sleep
+ 11     - 1d
+ 12     image: busybox
+ 13     name: backend
+ 14     resources: {}
+ 15   dnsPolicy: ClusterFirst
+ 16   restartPolicy: Always
+ 17 status: {}
+>4;m>4;m[root@master[~/kube/14/podAffinity]# k apply -f pod-affinity.yml                                           ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  1,1All?12$p^[  ^[  ::q
+deployment.apps/frontend created
+[root@master[~/kube/14/podAffinity]# k delete -f pod-affinity.yml o
+deployment.apps "frontend" deleted from default namespace
+[root@master[~/kube/14/podAffinity]#yvixpod-affinity.yml--dry-run=client -o yaml -- sleep 1d > backend.yml
+[root@master[~/kube/14/podAffinity]#=vicpod-affinity.ymllient -o yaml -- sleep 1d > backend.yml
+k run backend --image=busybox -l app=backend -- sleep 1d
+Error from server (AlreadyExists): pods "backend" already exists
+[root@master[~/kube/14/podAffinity]# k run bnodend --image=busybox -l app=backend -- sleep 1d
+Error from server (AlreadyExists): pods "backend" already exists
+[root@master[~/kube/14/podAffinity]# k run backend1@2image=busybox -l app=backend -- sleep 1d
+pod/backend2 created
+[root@master[~/kube/14/podAffinity]# k run1@3ckend2 --image=busybox -l app=backend -- sleep 1d
+pod/backend3 created
+[root@master[~/kube/14/podAffinity]# k delete pods backend2
+pod "backend2" deleted from default namespace
+[root@master[~/kube/14/podAffinity]# k apply -f pod-affinity.yml
+deployment.apps/frontend created
+[root@master[~/kube/14/podAffinity]# k delete -f .
+pod "backend" deleted from default namespace
+deployment.apps "frontend" deleted from default namespace
+[root@master[~/kube/14/podAffinity]# vi pod-affinity.yml
+>4;2m"pod-affinity.yml" 28L, 536B▽  zz0%m           >c  1 kind: Deployment
+  2 apiVersion: apps/v1  3 metadata:  4   name: frontend
+  5 spec:
+  6   replicas: 5
+  7   selector:
+  8     matchLabels:
+  9       app: frontend
+ 10   template:
+ 11     metadata:
+ 12       labels:
+ 13 app: frontend
+ 14     spec:
+ 15       containers:
+ 16       - name: main
+ 17 image: busybox
+ 18 args:
+ 19 - sleep
+ 20 - 1d
+ 21       affinity:
+ 22 podAffinity:
+ 23 requiredDuringSchedulingIgnoredDuringExecution:
+ 24 - labelSelector:
+ 25 matchLabels:
+ 26 app: backend
+ 27 topologyKey: kubernetes.io/hostname
+ 28
+>4;m>4;m[root@master[~/kube/14/podAffinity]# vi pod-antiaffinity.yml                                               28,0-1All?12$p~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ^[  ^[  ::q
+>4;2m"pod-antiaffinity.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  0,0-1All?12$p-- INSERT --0,1Allkind: Deployment
+  2 apiVersion: apps/v1
+  3 metadata:  4   name: frontend  5 spec:  6   replicas: 5
+  7   selector:  8     matchLabels:  9       app: frontend
+ 10   template: 11     metadata: 12       labels: 13         app: frontend
+ 14     spec: 15       containers: 16       - name: main 17         image: busybox
+ 18         args:  19         - sleep 20         - 1d 21       affinity:
+ 22         podAntiAffinity: 23           requiredDurrequiredDuringSchedulingIgnoredDuringExecution:
+ 24           - labelSelectorlabelSelector:
+ 25               matchLabels: 26                 app: backend 27      topologyKey: kubernetes.io/hostname
+>4;m"pod-antiaffinity.yml" [New] 28L, 540B written
+>4;m[root@master[~/kube/14/podAffinity]# k apply -f pod-antiaffinity.yml
+deployment.apps/frontend created
+[root@master[~/kube/14/podAffinity]# k delete -f . --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+deployment.apps "frontend" force deleted from default namespace
+Error from server (NotFound): error when deleting "backend.yml": pods "backend" not found
+Error from server (NotFound): error when deleting "pod-antiaffinity.yml": deployments.apps "frontend" not found
+[root@master[~/kube/14/podAffinity]# k delete pods backend3
+pod "backend3" deleted from default namespace
+[root@master[~/kube/14/podAffinity]#
+[root@master[~/kube/14/podAffinity]#
+[root@master[~/kube/14/podAffinity]# c
+nnn[root@master[~/kube/14/podAffinity]# k describe nodes
+nodes                 nodes.metrics.k8s.io
+[root@master[~/kube/14/podAffinity]# k describe nodes master | less
+Name:               master
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=master
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        csi.volume.kubernetes.io/nodeid: {"nfs.csi.k8s.io":"master"}
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.10.10/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 10.10.219.64
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Mon, 12 Oct 2026 16:42:28 +0900
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  master
+  AcquireTime:     <unset>
+  RenewTime:       Wed, 21 Oct 2026 17:53:12 +0900
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Wed, 21 Oct 2026 15:19:48 +0900   Wed, 21 Oct 2026 15:19:48 +0900   CalicoIsUp                   Calico is running on this node
+ientMemoryesskubelet hasasufficient memory available8:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSuffic:
+Pressureessurkubelet hasanoediskepressuret 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasNoDisk:
+ientPIDessurekubelet hasasufficient PIDOavailable7:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSuffic:
+:ESCOBy      kubelet isTpostingWready1status026 17:48:58 +0900   Mon, 12 Oct 2026 17:21:28 +0900   KubeletReady    :
+Addresses:
+:EInternalIP:  192.168.10.10
+:EHostname:    master
+Capacity:
+:Ecpu:                8
+:Eephemeral-storage:  37027315712
+:Ehugepages-1Gi:      0
+:Ehugepages-2Mi:      0
+:Ememory:             7831516Ki
+:Epods:               110
+Allocatable:
+:Ecpu:                8
+:Eephemeral-storage:  33324584086
+:Ehugepages-1Gi:      0
+:Ehugepages-2Mi:      0
+:Ememory:             7729116Ki
+:Epods:               110
+:ESCOA       Message
+Conditions:            Status  LastHeartbeatTime                 LastTransitionTime                Reason
+:ERenewTime:       Wed, 21 Oct 2026 17:53:12 +0900
+:EAcquireTime:     <unset>
+:EHolderIdentity:  master
+Lease:
+Unschedulable:      false
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+CreationTimestamp:  Mon, 12 Oct 2026 16:42:28 +0900
+:ESCOA              volumes.kubernetes.io/controller-managed-attach-detach: true
+:ESCOA              projectcalico.org/IPv4IPIPTunnelAddr: 10.10.219.64
+:ESCOA              projectcalico.org/IPv4Address: 192.168.10.10/24
+:ESCOA              node.alpha.kubernetes.io/ttl: 0
+Annotations:        csi.volume.kubernetes.io/nodeid: {"nfs.csi.k8s.io":"master"}
+:ESCOA              node.kubernetes.io/exclude-from-external-load-balancers=
+:ESCOA              node-role.kubernetes.io/control-plane=
+:ESCOA              kubernetes.io/os=linux
+:ESCOA              kubernetes.io/hostname=master
+:ESCOA              kubernetes.io/arch=amd64
+:ESCOA              beta.kubernetes.io/os=linux
+Labels:             beta.kubernetes.io/arch=amd64
+Roles:              control-plane
+Name:A              master
+ientMemory   kubelet has sufficient memory available
+Pressureessurkubelet hasanoediskepressuret 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasNoDisk:
+ientPIDessurekubelet hasasufficient PIDOavailable7:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSuffic:
+:ESCOBy      kubelet isTpostingWready1status026 17:48:58 +0900   Mon, 12 Oct 2026 17:21:28 +0900   KubeletReady    :
+Addresses:
+:EInternalIP:  192.168.10.10
+:ESCOA              node.kubernetes.io/exclude-from-external-load-balancers=
+:ESCOA              node-role.kubernetes.io/control-plane=
+:ESCOA              kubernetes.io/os=linux
+:ESCOA              kubernetes.io/hostname=master
+:ESCOA              kubernetes.io/arch=amd64
+:ESCOA              beta.kubernetes.io/os=linux
+Labels:             beta.kubernetes.io/arch=amd64
+Roles:              control-plane
+Name:A              master
+ientMemory   kubelet has sufficient memory available
+Pressureessurkubelet hasanoediskepressuret 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasNoDisk:
+ientPIDessurekubelet hasasufficient PIDOavailable7:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSuffic:
+:ESCOBy      kubelet isTpostingWready1status026 17:48:58 +0900   Mon, 12 Oct 2026 17:21:28 +0900   KubeletReady    :
+Addresses:
+:EInternalIP:  192.168.10.10
+:EHostname:    master
+Capacity:
+:Ecpu:                8
+:Eephemeral-storage:  37027315712
+:Ehugepages-1Gi:      0
+:Ehugepages-2Mi:      0
+:Ememory:             7831516Ki
+:Epods:               110
+Allocatable:
+:Ecpu:                8
+:Eephemeral-storage:  33324584086
+:Ehugepages-1Gi:      0
+:Ehugepages-2Mi:      0
+:Ememory:             7729116Ki
+:Epods:               110
+System Info:
+:EMachine ID:                 7c4282ebed1c45c093712226b030688a
+:ESystem UUID:                750c4d56-60b7-6509-8ad0-35085f81a7d4
+:ESCOAorkUnav-------   False   Wed, 21 Oct 2026 15:19:48 +0900   Wed, 21 Oct 2026 15:19:48 +0900   CalicoIsUp
+:ESCOA       Message   ------  -----------------                 ------------------                ------
+Conditions:            Status  LastHeartbeatTime                 LastTransitionTime                Reason
+:ERenewTime:       Wed, 21 Oct 2026 17:53:12 +0900
+:EAcquireTime:     <unset>
+:EHolderIdentity:  master
+Lease:
+Unschedulable:      false
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+CreationTimestamp:  Mon, 12 Oct 2026 16:42:28 +0900
+:ESCOA              volumes.kubernetes.io/controller-managed-attach-detach: true
+:ESCOA              projectcalico.org/IPv4IPIPTunnelAddr: 10.10.219.64
+:ESCOA              projectcalico.org/IPv4Address: 192.168.10.10/24
+:ESCOA              node.alpha.kubernetes.io/ttl: 0
+Annotations:        csi.volume.kubernetes.io/nodeid: {"nfs.csi.k8s.io":"master"}
+:                   node.kubernetes.io/exclude-from-external-load-balancers=
+:                   node-role.kubernetes.io/control-plane=
+                    kubernetes.io/os=linux
+                    kubernetes.io/hostname=master
+                    kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+Labels:             beta.kubernetes.io/arch=amd64
+Roles:              control-plane
+Name:               master
+ientMemory   kubelet has sufficient memory available
+:oDiskPressurepress RETFalse   Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 17:21:28 +0900   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.10.10
+  Hostname:    master
+Capacity:
+  cpu:                8
+  ephemeral-storage:  37027315712
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7831516Ki
+  pods:               110
+Allocatable:
+  cpu:                8
+  ephemeral-storage:  33324584086
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7729116Ki
+  pods:               110
+System Info:
+  Machine ID:                 7c4282ebed1c45c093712226b030688a
+  System UUID:                750c4d56-60b7-6509-8ad0-35085f81a7d4
+  Boot ID:                    16f05faa-af57-4ed5-a8af-802afc8d1f5c
+  Kernel Version:             6.12.0-257.el10.x86_64
+  OS Image:                   CentOS Stream 10 (Coughlan)
+...skipping...
+  DiskPressure         False   Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 17:21:28 +0900   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.10.10
+  Hostname:    master
+Capacity:
+  cpu:                8
+  ephemeral-storage:  37027315712
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7831516Ki
+  pods:               110
+Allocatable:
+  cpu:                8
+  ephemeral-storage:  33324584086
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             7729116Ki
+  pods:               110
+System Info:
+  Machine ID:                 7c4282ebed1c45c093712226b030688a
+  System UUID:                750c4d56-60b7-6509-8ad0-35085f81a7d4
+  Boot ID:                    16f05faa-af57-4ed5-a8af-802afc8d1f5c
+  Kernel Version:             6.12.0-257.el10.x86_64
+  OS Image:                   CentOS Stream 10 (Coughlan)
+ientMemory   kubelet has sufficient memory available
+  MemoryPressure       False   Wed, 21 Oct 2026 17:48:58 +0900   Mon, 12 Oct 2026 16:42:26 +0900   KubeletHasSuffic             Calico is running on this node
+  NetworkUnavailable   False   Wed, 21 Oct 2026 15:19:48 +0900   Wed, 21 Oct 2026 15:19:48 +0900   CalicoIsUp                   -------
+  ----                 ------  -----------------                 ------------------                ------                       Message
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason          Conditions:
+  RenewTime:       Wed, 21 Oct 2026 17:53:12 +0900
+  AcquireTime:     <unset>
+  HolderIdentity:  master
+Lease:
+Unschedulable:      false
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Nomemory:ag r(press RE7831516Ki (press RETURN)
+Finishing logfile...g(interruptptotabort)[root@master[~/kube/14/podAffinity]#
+[root@master[~/kube/14/podAffinity]# kubectl run testpod --image=nginx --port=80
+pod/testpod created
+[root@master[~/kube/14/podAffinity]# c
+kubectltgetspods~testpod4-ooyamli|igrep tolerations -Ad4 testpod -o yaml | grep tolerations -A 4
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-zsr9q
+    projected:
+      defaultMode: 420
+[root@master[~/kube/14/podAffinity]# k delete pods testpod
+pod "testpod" deleted from default namespace
+[root@master[~/kube/14/podAffinity]# c
+nnn[root@master[~/kube/14/podAffinity]# mkdir -p ~/kube/14/taint_toleration && cd ~/kube/14/taint_toleration
+mkdir -p ~/kube/14/taint_toleration && cd ~/kube/14/taint_toleration
+
+[root@master[~/kube/14/taint_toleration]#
+[root@master[~/kube/14/taint_toleration]#
+[root@master[~/kube/14/taint_toleration]# c
+nnn[root@master[~/kube/14/taint_toleration]# k taint nodes node1 role=web:NoSchedule
+node/node1 tainted
+[root@master[~/kube/14/taint_toleration]# kubectl taint nodes node2 role=web:NoSchedule
+node/node2 tainted
+kubectladescribeunodes/node{1..3}r|tgrep#-Au1e-iltaintribe nodes node{1..3} | grep -A 1 -i taint
+Taints:             role=web:NoSchedule
+Unschedulable:      false
+--
+Taints:             role=web:NoSchedule
+Unschedulable:      false
+--
+Taints:             <none>
+Unschedulable:      false
+[root@master[~/kube/14/taint_toleration]# vi nginx-deploy.yml
+>4;2m"nginx-deploy.yml" [New]▽  zz0%m           >c  1
+~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  ~                                                                                                                  0,0-1All?12$p-- INSERT --0,1Allkind: Deployment
+  2 apiVersion: apps/v1  3 metadata:
+  4   name: webui
+  5 spec:
+  6   replicas: 4  7   selector:
+  8     matchLabels:  9       app: webui
+ 10   template:
+ 11     metadata: 12       name: nginx-pod
+ 13       labels:
+ 14         app: webui 15     spec:
+ 16       containers: 17 - name: nginx-container
+>4;m"nginx-deploy.yml"n[New]719L,1293B1written^[  ::wq
+>4;m[root@master[~/kube/14/taint_toleration]# k apply -f nginx-deploy.yml n
+deployment.apps/webui created
+[root@master[~/kube/14/taint_toleration]# k delete -f nginx-deploy.yml
+deployment.apps "webui" deleted from default namespace
+[root@master[~/kube/14/taint_toleration]# cp nginx-deploy.yml nginx1@t1@o1@l1@e1@r1@a1@t1@i1@o1@n1@-
+[root@master[~/kube/14/taint_toleration]# vi nginx-toleration-deploy.yml
+>4;2m"nginx-toleration-dep
