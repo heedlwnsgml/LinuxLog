@@ -1,0 +1,507 @@
+Script started on 2026-10-21 21:19:34+09:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="123" LINES="30"]
+[root@master[~]# kubectx -h
+Manage and switch between kubectl contexts.
+
+USAGE:
+  kubectl ctx                       : list the contexts
+  kubectl ctx <NAME>                : switch to context <NAME>
+  kubectl ctx -                     : switch to the previous context
+  kubectl ctx -c, --current         : show the current context name
+  kubectl ctx <NEW_NAME>=<NAME>     : rename context <NAME> to <NEW_NAME>
+  kubectl ctx <NEW_NAME>=.          : rename current-context to <NEW_NAME>
+  kubectl ctx -d <NAME> [<NAME...>] : delete context <NAME> ('.' for current-context)
+                                  (this command won't delete the user/cluster entry
+                                  that is used by the context)
+  kubectl ctx -u, --unset           : unset the current context
+
+  kubectl ctx -h,--help             : show this message
+
+  (This executable is the legacy bash-based implementation, consider upgrading to Go-based implementation.)
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]#
+[root@master[~]# k getarolelusterroleddevelo
+No resources found in default namespace.
+[root@master[~]# k get rolebindings.rbac.authorization.k8s.io
+No resources found in default namespace.
+[root@master[~]# k get rolebindings.rbac.authorization.k8s.io
+[root@master[~]# c
+nnn[root@master[~]# k get clusterrole | grepddeve
+[root@master[~]# k createuclusterrolegdeveloper --resource=pods --verb=create,get,list,watch,update,delete
+clusterrole.rbac.authorization.k8s.io/developer created
+[root@master[~]# k describe clusterrole developer
+Name:         developer
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [create get list watch update delete]
+[root@master[~]# k create clusterrolebinding developer-
+[root@master[~]#
+kubectlacreate]clusterrolebindingldeveloper-binding-myusere--clusterrole=developert--user=myuserper --user=myuser
+clusterrolebinding.rbac.authorization.k8s.io/developer-binding-myuser created
+[root@master[~]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+          myuser                        kubernetes   myuser
+[root@master[~]# k config use-context myuser
+Switched to context "myuser".
+[root@master[~]# k config get-contextsmyuser
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+*         myuser                        kubernetes   myuser
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# k get pods
+No resources found in default namespace.
+[root@master[~]# k get svcs
+Error from server (Forbidden): services is forbidden: User "myuser" cannot list resource "services" in API group "" in the namespace "default"
+[root@master[~]# k get pvc
+Error from server (Forbidden): persistentvolumes is forbidden: User "myuser" cannot list resource "persistentvolumes" in API group "" at the cluster scope
+[root@master[~]# k get pvc
+Error from server (Forbidden): persistentvolumeclaims is forbidden: User "myuser" cannot list resource "persistentvolumeclaims" in API group "" in the namespace "default"
+[root@master[~]# k config  get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+          kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+*         myuser                        kubernetes   myuser
+[root@master[~]# k config use-context kubernetes-admin@kubernetes
+Switched to context "kubernetes-admin@kubernetes".
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# k getfclusterrole | grepo-i dev
+developer                                                               2026-10-21T12:22:53Z
+system:controller:device-taint-eviction-controller                      2026-10-12T07:42:28Z
+[root@master[~]# k delete clusterrolede
+error: the server doesn't have a resource type "clusterrolede"
+[root@master[~]# k delete clusterroleddeveloper
+clusterrole.rbac.authorization.k8s.io "developer" deleted
+[root@master[~]# k geteclusterrolebindings.rbac.authorization.k8s.io  | grep -i dev
+developer-binding-myuser                                                ClusterRole/developer                                                               2m19s
+system:controller:device-taint-eviction-controller                      ClusterRole/system:controller:device-taint-eviction-controller                      9d
+[root@master[~]# k delete clusterrolebindings.rbac.authorization.k8s.io developer-binding-myuser
+clusterrolebinding.rbac.authorization.k8s.io "developer-binding-myuser" deleted
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# k config get-contexts
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          mycontext                     kubernetes   kubernetes-admin
+          myuser                        kubernetes   myuser
+[root@master[~]# k config delete-context mycontext
+deleted context mycontext from /root/.kube/config
+[root@master[~]#ck config get-contextsxt mycontext
+nnn[root@master[~]# k config get-contextsxt mycontext
+CURRENT   NAME                          CLUSTER      AUTHINFO           NAMESPACE
+*         kubernetes-admin@kubernetes   kubernetes   kubernetes-admin   default
+          myuser                        kubernetes   myuser
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# k delete pods -all
+error: unknown shorthand flag: 'a' in -all
+See 'kubectl delete --help' for usage.
+[root@master[~]# c
+nnn[root@master[~]# k describe clusterrolevview
+Name:         view
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+              rbac.authorization.k8s.io/aggregate-to-edit=true
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                    Non-Resource URLs  Resource Names  Verbs
+  ---------                                    -----------------  --------------  -----
+  bindings                                     []                 []              [get list watch]
+  configmaps                                   []                 []              [get list watch]
+  endpoints                                    []                 []              [get list watch]
+  events                                       []                 []              [get list watch]
+  limitranges                                  []                 []              [get list watch]
+  namespaces/status                            []                 []              [get list watch]
+  namespaces                                   []                 []              [get list watch]
+  persistentvolumeclaims/status                []                 []              [get list watch]
+  persistentvolumeclaims                       []                 []              [get list watch]
+  pods/log                                     []                 []              [get list watch]
+  pods/status                                  []                 []              [get list watch]
+  pods                                         []                 []              [get list watch]
+  replicationcontrollers/scale                 []                 []              [get list watch]
+  replicationcontrollers/status                []                 []              [get list watch]
+  replicationcontrollers                       []                 []              [get list watch]
+  resourcequotas/status                        []                 []              [get list watch]
+  resourcequotas                               []                 []              [get list watch]
+  serviceaccounts                              []                 []              [get list watch]
+  services/status                              []                 []              [get list watch]
+  services                                     []                 []              [get list watch]
+  controllerrevisions.apps                     []                 []              [get list watch]
+  daemonsets.apps/status                       []                 []              [get list watch]
+  daemonsets.apps                              []                 []              [get list watch]
+  deployments.apps/scale                       []                 []              [get list watch]
+  deployments.apps/status                      []                 []              [get list watch]
+  deployments.apps                             []                 []              [get list watch]
+  replicasets.apps/scale                       []                 []              [get list watch]
+  replicasets.apps/status                      []                 []              [get list watch]
+  replicasets.apps                             []                 []              [get list watch]
+  statefulsets.apps/scale                      []                 []              [get list watch]
+  statefulsets.apps/status                     []                 []              [get list watch]
+  statefulsets.apps                            []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling/status  []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling         []                 []              [get list watch]
+  cronjobs.batch/status                        []                 []              [get list watch]
+  cronjobs.batch                               []                 []              [get list watch]
+  jobs.batch/status                            []                 []              [get list watch]
+  jobs.batch                                   []                 []              [get list watch]
+  endpointslices.discovery.k8s.io              []                 []              [get list watch]
+  events.events.k8s.io                         []                 []              [get list watch]
+  daemonsets.extensions/status                 []                 []              [get list watch]
+  daemonsets.extensions                        []                 []              [get list watch]
+  deployments.extensions/scale                 []                 []              [get list watch]
+  deployments.extensions/status                []                 []              [get list watch]
+  deployments.extensions                       []                 []              [get list watch]
+  ingresses.extensions/status                  []                 []              [get list watch]
+  ingresses.extensions                         []                 []              [get list watch]
+  networkpolicies.extensions                   []                 []              [get list watch]
+  replicasets.extensions/scale                 []                 []              [get list watch]
+  replicasets.extensions/status                []                 []              [get list watch]
+  replicasets.extensions                       []                 []              [get list watch]
+  replicationcontrollers.extensions/scale      []                 []              [get list watch]
+  nodes.metrics.k8s.io                         []                 []              [get list watch]
+  pods.metrics.k8s.io                          []                 []              [get list watch]
+  ingresses.networking.k8s.io/status           []                 []              [get list watch]
+  ingresses.networking.k8s.io                  []                 []              [get list watch]
+  networkpolicies.networking.k8s.io            []                 []              [get list watch]
+  poddisruptionbudgets.policy/status           []                 []              [get list watch]
+  poddisruptionbudgets.policy                  []                 []              [get list watch]
+  resourceclaims.resource.k8s.io/status        []                 []              [get list watch]
+  resourceclaims.resource.k8s.io               []                 []              [get list watch]
+  resourceclaimtemplates.resource.k8s.io       []                 []              [get list watch]
+[root@master[~]# k get clusterrole
+NAME                                                                    CREATED AT
+admin                                                                   2026-10-12T07:42:28Z
+calico-kube-controllers                                                 2026-10-12T08:20:51Z
+calico-node                                                             2026-10-12T08:20:51Z
+cluster-admin                                                           2026-10-12T07:42:28Z
+edit                                                                    2026-10-12T07:42:28Z
+eg-gateway-helm-certgen:envoy-gateway-system                            2026-10-16T12:40:52Z
+eg-gateway-helm-envoy-gateway-role                                      2026-10-16T12:41:04Z
+kubeadm:get-nodes                                                       2026-10-12T07:42:29Z
+metallb-system:controller                                               2026-10-16T08:09:53Z
+metallb-system:speaker                                                  2026-10-16T08:09:53Z
+nfs-external-provisioner-role                                           2026-10-20T12:25:13Z
+nfs-external-resizer-role                                               2026-10-20T12:25:13Z
+system:aggregate-to-admin                                               2026-10-12T07:42:28Z
+system:aggregate-to-edit                                                2026-10-12T07:42:28Z
+system:aggregate-to-view                                                2026-10-12T07:42:28Z
+system:aggregated-metrics-reader                                        2026-10-21T06:46:23Z
+system:auth-delegator                                                   2026-10-12T07:42:28Z
+system:basic-user                                                       2026-10-12T07:42:28Z
+system:certificates.k8s.io:certificatesigningrequests:nodeclient        2026-10-12T07:42:28Z
+system:certificates.k8s.io:certificatesigningrequests:selfnodeclient    2026-10-12T07:42:28Z
+system:certificates.k8s.io:kube-apiserver-client-approver               2026-10-12T07:42:28Z
+system:certificates.k8s.io:kube-apiserver-client-kubelet-approver       2026-10-12T07:42:28Z
+system:certificates.k8s.io:kubelet-serving-approver                     2026-10-12T07:42:28Z
+system:certificates.k8s.io:legacy-unknown-approver                      2026-10-12T07:42:28Z
+system:cluster-trust-bundle-discovery                                   2026-10-12T07:42:28Z
+system:controller:attachdetach-controller                               2026-10-12T07:42:28Z
+system:controller:certificate-controller                                2026-10-12T07:42:28Z
+system:controller:clusterrole-aggregation-controller                    2026-10-12T07:42:28Z
+system:controller:cronjob-controller                                    2026-10-12T07:42:28Z
+system:controller:daemon-set-controller                                 2026-10-12T07:42:28Z
+system:controller:deployment-controller                                 2026-10-12T07:42:28Z
+system:controller:device-taint-eviction-controller                      2026-10-12T07:42:28Z
+system:controller:disruption-controller                                 2026-10-12T07:42:28Z
+system:controller:endpoint-controller                                   2026-10-12T07:42:28Z
+system:controller:endpointslice-controller                              2026-10-12T07:42:28Z
+system:controller:endpointslicemirroring-controller                     2026-10-12T07:42:28Z
+system:controller:ephemeral-volume-controller                           2026-10-12T07:42:28Z
+system:controller:expand-controller                                     2026-10-12T07:42:28Z
+system:controller:generic-garbage-collector                             2026-10-12T07:42:28Z
+system:controller:horizontal-pod-autoscaler                             2026-10-12T07:42:28Z
+system:controller:job-controller                                        2026-10-12T07:42:28Z
+system:controller:kube-apiserver-serving-clustertrustbundle-publisher   2026-10-12T07:42:28Z
+system:controller:legacy-service-account-token-cleaner                  2026-10-12T07:42:28Z
+system:controller:namespace-controller                                  2026-10-12T07:42:28Z
+system:controller:node-controller                                       2026-10-12T07:42:28Z
+system:controller:persistent-volume-binder                              2026-10-12T07:42:28Z
+system:controller:pod-garbage-collector                                 2026-10-12T07:42:28Z
+system:controller:podcertificaterequestcleaner                          2026-10-12T07:42:28Z
+system:controller:pv-protection-controller                              2026-10-12T07:42:28Z
+system:controller:pvc-protection-controller                             2026-10-12T07:42:28Z
+system:controller:replicaset-controller                                 2026-10-12T07:42:28Z
+system:controller:replication-controller                                2026-10-12T07:42:28Z
+system:controller:resource-claim-controller                             2026-10-12T07:42:28Z
+system:controller:resourcequota-controller                              2026-10-12T07:42:28Z
+system:controller:root-ca-cert-publisher                                2026-10-12T07:42:28Z
+system:controller:route-controller                                      2026-10-12T07:42:28Z
+system:controller:selinux-warning-controller                            2026-10-12T07:42:28Z
+system:controller:service-account-controller                            2026-10-12T07:42:28Z
+system:controller:service-cidrs-controller                              2026-10-12T07:42:28Z
+system:controller:service-controller                                    2026-10-12T07:42:28Z
+system:controller:statefulset-controller                                2026-10-12T07:42:28Z
+system:controller:storage-version-migrator-controller                   2026-10-12T07:42:28Z
+system:controller:ttl-after-finished-controller                         2026-10-12T07:42:28Z
+system:controller:ttl-controller                                        2026-10-12T07:42:28Z
+system:controller:validatingadmissionpolicy-status-controller           2026-10-12T07:42:28Z
+system:controller:volumeattributesclass-protection-controller           2026-10-12T07:42:28Z
+system:coredns                                                          2026-10-12T07:42:30Z
+system:discovery                                                        2026-10-12T07:42:28Z
+system:heapster                                                         2026-10-12T07:42:28Z
+system:kube-aggregator                                                  2026-10-12T07:42:28Z
+system:kube-controller-manager                                          2026-10-12T07:42:28Z
+system:kube-dns                                                         2026-10-12T07:42:28Z
+system:kube-scheduler                                                   2026-10-12T07:42:28Z
+system:kubelet-api-admin                                                2026-10-12T07:42:28Z
+system:metrics-server                                                   2026-10-21T06:46:23Z
+system:monitoring                                                       2026-10-12T07:42:28Z
+system:node                                                             2026-10-12T07:42:28Z
+system:node-bootstrapper                                                2026-10-12T07:42:28Z
+system:node-problem-detector                                            2026-10-12T07:42:28Z
+system:node-proxier                                                     2026-10-12T07:42:28Z
+system:persistent-volume-provisioner                                    2026-10-12T07:42:28Z
+system:public-info-viewer                                               2026-10-12T07:42:28Z
+system:service-account-issuer-discovery                                 2026-10-12T07:42:28Z
+system:volume-scheduler                                                 2026-10-12T07:42:28Z
+view                                                                    2026-10-12T07:42:28Z
+[root@master[~]# k describe clusterrolevview
+Name:         view
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+              rbac.authorization.k8s.io/aggregate-to-edit=true
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                    Non-Resource URLs  Resource Names  Verbs
+  ---------                                    -----------------  --------------  -----
+  bindings                                     []                 []              [get list watch]
+  configmaps                                   []                 []              [get list watch]
+  endpoints                                    []                 []              [get list watch]
+  events                                       []                 []              [get list watch]
+  limitranges                                  []                 []              [get list watch]
+  namespaces/status                            []                 []              [get list watch]
+  namespaces                                   []                 []              [get list watch]
+  persistentvolumeclaims/status                []                 []              [get list watch]
+  persistentvolumeclaims                       []                 []              [get list watch]
+  pods/log                                     []                 []              [get list watch]
+  pods/status                                  []                 []              [get list watch]
+  pods                                         []                 []              [get list watch]
+  replicationcontrollers/scale                 []                 []              [get list watch]
+  replicationcontrollers/status                []                 []              [get list watch]
+  replicationcontrollers                       []                 []              [get list watch]
+  resourcequotas/status                        []                 []              [get list watch]
+  resourcequotas                               []                 []              [get list watch]
+  serviceaccounts                              []                 []              [get list watch]
+  services/status                              []                 []              [get list watch]
+  services                                     []                 []              [get list watch]
+  controllerrevisions.apps                     []                 []              [get list watch]
+  daemonsets.apps/status                       []                 []              [get list watch]
+  daemonsets.apps                              []                 []              [get list watch]
+  deployments.apps/scale                       []                 []              [get list watch]
+  deployments.apps/status                      []                 []              [get list watch]
+  deployments.apps                             []                 []              [get list watch]
+  replicasets.apps/scale                       []                 []              [get list watch]
+  replicasets.apps/status                      []                 []              [get list watch]
+  replicasets.apps                             []                 []              [get list watch]
+  statefulsets.apps/scale                      []                 []              [get list watch]
+  statefulsets.apps/status                     []                 []              [get list watch]
+  statefulsets.apps                            []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling/status  []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling         []                 []              [get list watch]
+  cronjobs.batch/status                        []                 []              [get list watch]
+  cronjobs.batch                               []                 []              [get list watch]
+  jobs.batch/status                            []                 []              [get list watch]
+  jobs.batch                                   []                 []              [get list watch]
+  endpointslices.discovery.k8s.io              []                 []              [get list watch]
+  events.events.k8s.io                         []                 []              [get list watch]
+  daemonsets.extensions/status                 []                 []              [get list watch]
+  daemonsets.extensions                        []                 []              [get list watch]
+  deployments.extensions/scale                 []                 []              [get list watch]
+  deployments.extensions/status                []                 []              [get list watch]
+  deployments.extensions                       []                 []              [get list watch]
+  ingresses.extensions/status                  []                 []              [get list watch]
+  ingresses.extensions                         []                 []              [get list watch]
+  networkpolicies.extensions                   []                 []              [get list watch]
+  replicasets.extensions/scale                 []                 []              [get list watch]
+  replicasets.extensions/status                []                 []              [get list watch]
+  replicasets.extensions                       []                 []              [get list watch]
+  replicationcontrollers.extensions/scale      []                 []              [get list watch]
+  nodes.metrics.k8s.io                         []                 []              [get list watch]
+  pods.metrics.k8s.io                          []                 []              [get list watch]
+  ingresses.networking.k8s.io/status           []                 []              [get list watch]
+  ingresses.networking.k8s.io                  []                 []              [get list watch]
+  networkpolicies.networking.k8s.io            []                 []              [get list watch]
+  poddisruptionbudgets.policy/status           []                 []              [get list watch]
+  poddisruptionbudgets.policy                  []                 []              [get list watch]
+  resourceclaims.resource.k8s.io/status        []                 []              [get list watch]
+  resourceclaims.resource.k8s.io               []                 []              [get list watch]
+  resourceclaimtemplates.resource.k8s.io       []                 []              [get list watch]
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# k describe clusterroleccluster-admin
+Name:         cluster-admin
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  *.*        []                 []              [*]
+             [*]                []              [*]
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]#
+[root@master[~]# c
+nnn[root@master[~]# # 실습 디렉터리 생성 및 이동
+mkdir -p ~/kube/15/sa && cd ~/kube/15/sa
+
+# pod-viewer 서비스 계정이 존재하는지 확인 (없으면 생성)
+#u실
+mkdir -p ~/kube/15/sa && cd ~/kube/15/sa
+
+# pod-viewer 서비스 계정이 존재하는지 확인 (없으면 생성)
+kubectl get sa pod-viewer 2>/dev/null || kubectl create sa pod-viewer
+NAME         AGE
+pod-viewer   101m
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]# k get sa
+NAME         AGE
+default      9d
+pod-viewer   101m
+[root@master[~/kube/15/sa]# kkcreatekroleppod-reader --resource=pods --verb=get,watch,list
+role.rbac.authorization.k8s.io/pod-reader created
+[root@master[~/kube/15/sa]# k get role pod-reader
+NAME         CREATED AT
+pod-reader   2026-10-21T12:34:22Z
+[root@master[~/kube/15/sa]# k describe role pod-reader
+Name:         pod-reader
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [get watch list]
+efault:pod-viewerbe/15/sa]# k create rolebinding pod-reader-binding-pod-viewer --role=pod-reader --serviceaccount=d
+rolebinding.rbac.authorization.k8s.io/pod-reader-binding-pod-viewer created
+[root@master[~/kube/15/sa]# kubectl get rolebinding pod-reader-binding-pod-viewer
+kubectl get rolebinding pod-reader-binding-pod-viewer
+
+NAME                            ROLE              AGE
+pod-reader-binding-pod-viewer   Role/pod-reader   6s
+kubectladescribeurolebindingkpod-reader-binding-pod-viewerod-reader-binding-pod-viewer
+Name:         pod-reader-binding-pod-viewer
+Labels:       <none>
+Annotations:  <none>
+Role:
+  Kind:  Role
+  Name:  pod-reader
+Subjects:
+  Kind            Name        Namespace
+  ----            ----        ---------
+  ServiceAccount  pod-viewer  default
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+kurunt-hr|nservtpod/--image=bitnami/kubectlt--restart=Nevern-nidefaultl--serverea=Never -n default
+bash: serv: command not found...
+[root@master[~/kube/15/sa]# k run -h | grep serv
+        Must be "none", "server", or "client". If client strategy, only print the object that would be sent, without sending it. If server strategy, submit server-side request without persisting the resource.
+        If true, create a ClusterIP service associated with the pod.  Requires `--port`.
+        The image pull policy for the container.  If left empty, this value will not be specified by the client and defaulted by the server.
+  kubectl run NAME --image=image [--env="key=value"] [--port=port] [--dry-run=server|client] [--overrides=inline-json] [--command] -- [COMMAND] [args...] [options]
+[root@master[~/kube/15/sa]# k run -h | grep name
+  # Start a hazelcast pod and set environment variables "DNS_DOMAIN=cluster" and "POD_NAMESPACE=default" in the container
+  kubectl run hazelcast --image=hazelcast/hazelcast --env="DNS_DOMAIN=cluster" --env="POD_NAMESPACE=default"
+        Name of the manager used to track field ownership.
+        Output format. One of: (json, yaml, kyaml, name, go-template, go-template-file, template, templatefile, jsonpath, jsonpath-as-json, jsonpath-file).
+        Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
+  kubectl run NAME --image=image [--env="key=value"] [--port=port] [--dry-run=server|client] [--overrides=inline-json] [--command] -- [COMMAND] [args...] [options]
+[root@master[~/kube/15/sa]# c
+nnn[root@master[~/kube/15/sa]# kubectl run testpod --image=bitnami/kubectl --restart=Never -n default \
+  --overrides='{"spec":{"serviceAccountName":"pod-viewer"}}'\
+[root@master[~/kube/15/sa]# kubectl run testpod --image=bitnami/kubectl --restart=Never -n default \
+  --overrides='{"spec":{"serviceAccountName":"pod-viewer"}}'\
+  -- sleep 3600
+pod/testpod created
+[root@master[~/kube/15/sa]# pod-viewer
+bash: pod-viewer: command not found...
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]# c
+nnn[root@master[~/kube/15/sa]# kubectl get pod testpod -o yaml | grep serviceAccountName
+kubectl get pod testpod -o yaml | grep serviceAccountName
+
+  serviceAccountName: pod-viewer
+[root@master[~/kube/15/sa]# k exec -it testpod -n default -- sh
+error: cannot exec into a container in a completed pod; current phase is Failed
+[root@master[~/kube/15/sa]# k delete pods testpod
+pod "testpod" deleted from default namespace
+[root@master[~/kube/15/sa]# kubectl run testpod --image=bitnami/kubectl --restart=Never -n default \
+  --overrides='{"spec":{"serviceAccountName":"pod-viewer"}}' \
+[root@master[~/kube/15/sa]# kubectl run testpod --image=bitnami/kubectl --restart=Never -n default \
+  --overrides='{"spec":{"serviceAccountName":"pod-viewer"}}' \
+  --command -- sleep 3600
+pod/testpod created
+[root@master[~/kube/15/sa]# kubectl run testpod --image=bitnami/kubectl --restart=Never -n default   --overrides='{"spec":{"serviceAccountName":"pod-viewdelete podsctestpod-- sleep 3600
+exec -it testpod -n default -- sh
+sh-5.3$ which kubeclt
+which: no kubeclt in (/opt/bitnami/common/bin:/opt/bitnami/kubectl/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin)
+sh-5.3$ which kubectl
+/opt/bitnami/kubectl/bin/kubectl
+sh-5.3$
+sh-5.3$
+sh-5.3$ kubectl get pods
+NAME      READY   STATUS    RESTARTS   AGE
+testpod   1/1     Running   0          27s
+sh-5.3$
+sh-5.3$
+sh-5.3$ kubectl get nodes
+Error from server (Forbidden): nodes is forbidden: User "system:serviceaccount:default:pod-viewer" cannot list resource "nodes" in API group "" at the cluster scope
+sh-5.3$ kubectl get pods
+NAME      READY   STATUS    RESTARTS   AGE
+testpod   1/1     Running   0          48s
+sh-5.3$ kubectl runctest1o--image=nginx --port=80
+Error from server (Forbidden): pods is forbidden: User "system:serviceaccount:default:pod-viewer" cannot create resource "pods" in API group "" in the namespace "default"
+sh-5.3$ exitctl
+exit
+command terminated with exit code 1
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]# k get sa
+NAME         AGE
+default      9d
+pod-viewer   109m
+[root@master[~/kube/15/sa]# k get role
+NAME         CREATED AT
+pod-reader   2026-10-21T12:34:22Z
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]# k describe role pod-reader
+Name:         pod-reader
+Labels:       <none>
+Annotations:  <none>
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  pods       []                 []              [get watch list]
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]#
+[root@master[~/kube/15/sa]# k delete pods testpod -n default
+pod "testpod" deleted from default namespace
+[root@master[~/kube/15/sa]# k delete role pod-reader -n default
+role.rbac.authorization.k8s.io "pod-reader" deleted from default namespace
+[root@master[~/kube/15/sa]# k delete rolebindings.rbac.authorization.k8s.io pod-reader-binding-pod-viewer -n default
+rolebinding.rbac.authorization.k8s.io "pod-reader-binding-pod-viewer" deleted from default namespace
+[root@master[~/kube/15/sa]# k delete sa pod-viewer -n default
+serviceaccount "pod-viewer" deleted from default namespace
+[root@master[~/kube/15/sa]# exit
+exit
+
+Script done on 2026-10-21 21:45:37+09:00 [COMMAND_EXIT_CODE="0"]
