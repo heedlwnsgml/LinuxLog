@@ -1,0 +1,5 @@
+Script started on 2026-10-29 15:55:49+09:00 [TERM="xterm" TTY="/dev/pts/2" COLUMNS="87" LINES="31"]
+[root@master[~]# exit
+exit
+
+Script done on 2026-10-29 15:57:39+09:00 [COMMAND_EXIT_CODE="0"]
