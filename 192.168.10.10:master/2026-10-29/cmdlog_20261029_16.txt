@@ -1,0 +1,174 @@
+Script started on 2026-10-29 16:18:11+09:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="82" LINES="28"]
+[root@master[~]# cd kube/18/helm/
+[root@master[~/kube/18/helm]# kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+Forwarding from 127.0.0.1:8443 -> 8443
+Forwarding from [::1]:8443 -> 8443
+Handling connection for 8443
+^C[root@master[~/kube/18/helm]#
+[root@master[~/kube/18/helm]#
+[root@master[~/kube/18/helm]# c
+nnn[root@master[~/kube/18/helm]# cat <<EOF > dashboard-admin-binding.yml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-admin-binding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin       # k8s 내장 최상위 관리자 ClusterRole 사용
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+# 권한 바인딩 적용
+kubectl apply -f dashboard-admin-binding.yml
+cat <<EOF > dashboard-admin-binding.yml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: default-admin-binding
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin       # k8s 내장 최상위 관리자 ClusterRole 사용
+  apiGroup: rbac.authorization.k8s.io
+EOF
+
+# 권한 바인딩 적용
+kubectl apply -f dashboard-admin-binding.yml
+
+clusterrolebinding.rbac.authorization.k8s.io/default-admin-binding created
+[root@master[~/kube/18/helm]# kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8kubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+Forwarding from 127.0.0.1:8443 -> 8443
+Forwarding from [::1]:8443 -> 8443
+Handling connection for 8443
+^C[root@master[~/kube/18/helm]# k getldeployments.apps
+No resources found in default namespace.
+[root@master[~/kube/18/helm]# k get deployments.apps
+No resources found in default namespace.
+[root@master[~/kube/18/helm]# k get deployments
+No resources found in default namespace.
+[root@master[~/kube/18/helm]# k get pods
+No resources found in default namespace.
+[root@master[~/kube/18/helm]# k apply -f dashboard-admin-binding.yml
+clusterrolebinding.rbac.authorization.k8s.io/default-admin-binding unchanged
+-nokubernetes-dashboardhport-forwardlsvc/kubernetes-dashboard-kong-proxyr8443:443applyt-f-dashboard-admin-binding.yml43apply -f dashboard-admin-binding.yml
+Forwarding from 127.0.0.1:8443 -> 8443
+Forwarding from [::1]:8443 -> 8443
+Handling connection for 8443
+Handling connection for 8443
+^C[root@master[~/kube/18/helm]#mlvi cluster-role-rolebinding.yaml
+>4;2m"cluster-role-rolebinding.yaml" [New]▽  zz0%m           >c  1
+~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 ~                                                                                 0,0-1All?12$p-- INSERT --0,1AllapiVersion: rbac.authorization.k8s.io/v1
+  2 kind: ClusterRole
+  3 metadata:  4   name: cluster-admin-role  5 rules:  6   - apiGroups: ["*"]  # 모든 API 그룹
+  7     resources: ["*"]  # 모든 리소스
+  8     verbs: ["*"]      # 모든 동작(get, list, create, delete 등)
+  9 --- 10 apiVersion: rbac.authorization.k8s.io/v1 11 kind: ClusterRoleBinding
+ 12 metadata: 13   name: cluster-admin-binding 14 subjects:
+ 15   - kind: ServiceAccount 16     name: default 17     namespace: default
+<uster-role-rolebinding.yaml".[New] 21L, 535B:writtenr-admin-role 21   apiGroup: rbac.authorization.k8s.io21,37All^[  ^[  L  ::wq
+>4;m[root@master[~/kube/18/helm]# k apply -f cluster-role-rolebinding.yaml
+clusterrole.rbac.authorization.k8s.io/cluster-admin-role created
+clusterrolebinding.rbac.authorization.k8s.io/cluster-admin-binding created
+[root@master[~/kube/18/helm]# k delete podsoyments.clus
+pods                 pods.metrics.k8s.io
+[root@master[~/kube/18/helm]# k delete -fdcluster-role-rolebinding.yaml
+clusterrole.rbac.authorization.k8s.io "cluster-admin-role" deleted
+clusterrolebinding.rbac.authorization.k8s.io "cluster-admin-binding" deleted
+kubectls-nrkubernetes-dashboardmport-forwardusvc/kubernetes-dashboard-kong-proxy 844apply -f dashboard-admin-binding.yml
+ubectl -n kubernetes-dashboard port-forward svc/kubernetes-dashboard-kong-proxy 844apply -f dashboard-admin-binding.yml
+ubectl--ndkubernetes-dashboardnport-forward svc/kubernetes-dashboard-kong-proxy 8443:443
+Forwarding from 127.0.0.1:8443 -> 8443
+Forwarding from [::1]:8443 -> 8443
+Handling connection for 8443
+^C[root@master[~/kube/18/helm]# helm list -A
+NAME                    NAMESPACE               REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+csi-driver-nfs          nfs-storage             1               2026-10-20 21:25:13.142290883 +0900 KST deployed        csi-driver-nfs-4.13.5           4.13.5
+eg                      envoy-gateway-system    1               2026-10-16 21:40:51.401466373 +0900 KST deployed        gateway-helm-v1.9.2             v1.9.2
+kubernetes-dashboard    kubernetes-dashboard    2               2026-10-29 16:11:29.712288455 +0900 KST deployed        kubernetes-dashboard-7.14.0
+[root@master[~/kube/18/helm]# helm list -A
+NAME                    NAMESPACE               REVISION        UPDATED                                 STATUS          CHART                           APP VERSION
+csi-driver-nfs          nfs-storage             1               2026-10-20 21:25:13.142290883 +0900 KST deployed        csi-driver-nfs-4.13.5           4.13.5
+eg                      envoy-gateway-system    1               2026-10-16 21:40:51.401466373 +0900 KST deployed        gateway-helm-v1.9.2             v1.9.2
+kubernetes-dashboard    kubernetes-dashboard    2               2026-10-29 16:11:29.712288455 +0900 KST deployed        kubernetes-dashboard-7.14.0
+helmtuninstall/kubernetes-dashboardu-nnkubernetes-dashboardhboard -n kubernetes-dashboard
+release "kubernetes-dashboard" uninstalled
+[root@master[~/kube/18/helm]# k get ns
+NAME                   STATUS   AGE
+default                Active   16d
+envoy-gateway-system   Active   12d
+gateway-system         Active   12d
+kube-node-lease        Active   16d
+kube-public            Active   16d
+kube-system            Active   16d
+kubernetes-dashboard   Active   20m
+metallb-system         Active   12d
+newns                  Active   2m
+nfs-storage            Active   8d
+prodns                 Active   14d
+[root@master[~/kube/18/helm]# k delete newns
+error: the server doesn't have a resource type "newns"
+[root@master[~/kube/18/helm]# k delete nswnewns
+namespace "newns" deleted
+[root@master[~/kube/18/helm]#
+[root@master[~/kube/18/helm]#
+[root@master[~/kube/18/helm]# c
+nnn[root@master[~/kube/18/helm]# clear
+[root@master[~/kube/18/helm]# k get pods -A
+NAMESPACE              NAME                                                         READY   STATUS    RESTARTS       AGE
+default                mydeploy-79bd66fcb4-b5777                                    1/1     Running   0              4m29s
+default                mydeploy-79bd66fcb4-nwzmn                                    1/1     Running   0              4m29s
+default                mydeploy-79bd66fcb4-z5lhj                                    1/1     Running   0              4m29s
+envoy-gateway-system   envoy-gateway-75b559cc4c-9h4px                               1/1     Running   1 (14m ago)    6d19h
+envoy-gateway-system   envoy-gateway-system-lab-gateway-03a12405-7c4988884b-wnk5g   2/2     Running   8 (66m ago)    12d
+kube-system            calico-kube-controllers-57f7f4cc78-hzsdm                     1/1     Running   6 (14m ago)    13d
+kube-system            calico-node-gdd6m                                            1/1     Running   12 (13m ago)   16d
+kube-system            calico-node-gpw9k                                            1/1     Running   5 (66m ago)    13d
+kube-system            calico-node-w5tqt                                            1/1     Running   9 (66m ago)    16d
+kube-system            calico-node-xxrpg                                            1/1     Running   9 (66m ago)    16d
+kube-system            coredns-559f6c778d-fbzfj                                     1/1     Running   5 (66m ago)    13d
+kube-system            coredns-559f6c778d-fh4cb                                     1/1     Running   2 (13m ago)    6d19h
+kube-system            etcd-master                                                  1/1     Running   12 (13m ago)   16d
+kube-system            kube-apiserver-master                                        1/1     Running   12 (13m ago)   16d
+kube-system            kube-controller-manager-master                               1/1     Running   12 (13m ago)   16d
+kube-system            kube-proxy-2tfqd                                             1/1     Running   6 (13m ago)    12d
+kube-system            kube-proxy-69rxb                                             1/1     Running   6 (66m ago)    12d
+kube-system            kube-proxy-pcc5f                                             1/1     Running   4 (66m ago)    12d
+kube-system            kube-proxy-wtbfg                                             1/1     Running   4 (66m ago)    12d
+kube-system            kube-scheduler-master                                        1/1     Running   12 (13m ago)   16d
+kube-system            metrics-server-84c99cb944-k8l45                              1/1     Running   0              6d19h
+metallb-system         controller-6c57b67fd4-l6xgx                                  1/1     Running   0              6d19h
+metallb-system         speaker-9mltx                                                1/1     Running   12 (13m ago)   12d
+metallb-system         speaker-brfkh                                                1/1     Running   8 (66m ago)    12d
+metallb-system         speaker-jz74t                                                1/1     Running   8 (66m ago)    12d
+metallb-system         speaker-vdds2                                                1/1     Running   8 (66m ago)    12d
+nfs-storage            csi-nfs-controller-555b9cc7df-5k7qf                          5/5     Running   10 (13m ago)   6d19h
+nfs-storage            csi-nfs-node-ct4mw                                           3/3     Running   6 (66m ago)    8d
+nfs-storage            csi-nfs-node-ffvfd                                           3/3     Running   6 (66m ago)    8d
+nfs-storage            csi-nfs-node-q4h6c                                           3/3     Running   6 (66m ago)    8d
+nfs-storage            csi-nfs-node-skkrk                                           3/3     Running   12 (13m ago)   8d
+[root@master[~/kube/18/helm]# c
+nnn[root@master[~/kube/18/helm]# k get deployments.apps -A
+NAMESPACE              NAME                                        READY   UP-TO-DATE   AVAILABLE   AGE
+default                mydeploy                                    3/3     3            3           4m37s
+envoy-gateway-system   envoy-gateway                               1/1     1            1           12d
+envoy-gateway-system   envoy-gateway-system-lab-gateway-03a12405   1/1     1            1           12d
+kube-system            calico-kube-controllers                     1/1     1            1           16d
+kube-system            coredns                                     2/2     2            2           16d
+kube-system            metrics-server                              1/1     1            1           8d
+metallb-system         controller                                  1/1     1            1           12d
+nfs-storage            csi-nfs-controller                          1/1     1            1           8d
+[root@master[~/kube/18/helm]# scㅛㅇㅁ노ㅠㅐㅊc
+bash: sc: command not found...
+Similar command is: 'ss'
+[root@master[~/kube/18/helm]# c
+nnn[root@master[~/kube/18/helm]# exit
+exit
+
+Script done on 2026-10-29 17:00:00+09:00 [COMMAND_EXIT_CODE="0"]
