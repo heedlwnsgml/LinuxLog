@@ -1,0 +1,7 @@
+Script started on 2026-10-29 15:56:12+09:00 [TERM="xterm" TTY="/dev/pts/0" COLUMNS="8" LINES="31"]
+[root@minikube ~]# eixt
+bash: eixt: command not found...
+e[root@minikube ~]# exit
+exit
+
+Script done on 2026-10-29 17:27:13+09:00 [COMMAND_EXIT_CODE="127"]
