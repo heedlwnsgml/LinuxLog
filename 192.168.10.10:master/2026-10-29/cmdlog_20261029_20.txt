@@ -1,0 +1,683 @@
+Script started on 2026-10-29 20:21:42+09:00 [TERM="xterm" TTY="/dev/pts/1" COLUMNS="173" LINES="30"]
+[root@master[~]# c
+nnn[root@master[~]# cs
+nnn[root@master[~]# k create ns np-test
+namespace/np-test created
+[root@master[~]# k get ns
+NAME                   STATUS   AGE
+default                Active   17d
+envoy-gateway-system   Active   12d
+gateway-system         Active   12d
+kube-node-lease        Active   17d
+kube-public            Active   17d
+kube-system            Active   17d
+kubernetes-dashboard   Active   5h1m
+metallb-system         Active   13d
+monitoring             Active   4h8m
+nfs-storage            Active   8d
+np-test                Active   2s
+prodns                 Active   15d
+[root@master[~]# k run backend --image nginx
+[root@master[~]# cd kube/18/
+10/ 11/ 12/ 13/ 14/ 15/ 18/ 19/
+[root@master[~]# cd kube/19/
+[root@master[~/kube/19]# ls
+NetworkConnection
+[root@master[~/kube/19]# mkdir -p ../20/networkpolicy
+[root@master[~/kube/19]# cd ../net
+[root@master[~/kube]# cd 20
+[root@master[~/kube/20]# cd networkpolicy/
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# k run backend --image=nginx -n np-test --labels role=backend -o yaml > backend.yaml
+[root@master[~/kube/20/networkpolicy]# lsapply
+backend.yaml
+[kubectlsrun[frontend0--image=busybox#-nknp-testr--labelserole=frontends--commandp--esleepl3600s>rfrontend.yaml
+[root@master[~/kube/20/networkpolicy]# vi backend.yaml
+>4;2m"backend.yaml" 64L, 1575B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Pod  3 metadata:  4   creationTimestamp: "2026-10-29T12:13:40Z"
+  5   generation: 1
+  6   labels:
+  7     role: backend
+  8   name: backend
+  9   namespace: np-test
+ 10   resourceVersion: "448459"
+ 11   uid: fd83729d-e777-4022-8758-1a7f14b8fcfd
+ 12 spec:
+ 13   containers:
+ 14   - image: nginx
+ 15     imagePullPolicy: Always
+ 16     name: backend
+ 17     resources: {}
+ 18     terminationMessagePath: /dev/termination-log
+ 19     terminationMessagePolicy: File
+ 20     volumeMounts:
+ 21     - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+ 22       name: kube-api-access-wfz8j
+ 23       readOnly: true
+ 24   dnsPolicy: ClusterFirst
+ 25   enableServiceLinks: true
+ 26   preemptionPolicy: PreemptLowerPriority
+ 27   priority: 0
+ 28   restartPolicy: Always
+ 29   schedulerName: default-scheduler1,1Top?12$p23~@k   456~@k   789~@k   10,112~@k   345~@k   678~@k   9201~@k   234~@k
+ 30   securityContext: {}25,12%
+ 31   serviceAccount: default26,15%
+ 32   serviceAccountName: default27,18%~@k
+ 33   terminationGracePeriodSeconds: 3028,111%
+ 34   tolerations:29,114%
+ 35   - effect: NoExecute30,117%~@k
+ 36     key: node.kubernetes.io/not-ready31,120%
+ 37     operator: Exists32,122%
+ 38     tolerationSeconds: 30033,125%~@k
+ 39   - effect: NoExecute34,128%
+ 40     key: node.kubernetes.io/unreachable35,131%
+ 41     operator: Exists36,134%
+ 42     tolerationSeconds: 30037,137%
+ 43   volumes:38,140%
+ 44   - name: kube-api-access-wfz8j39,142%~@k
+ 45     projected:40,145%
+ 46       defaultMode: 42041,148%
+ 47       sources:42,151%
+ 48       - serviceAccountToken:43,154%
+ 49 expirationSeconds: 360744,157%
+ 50 path: token45,160%~@k
+ 51       - configMap:46,162%
+ 52 items:47,165%
+ 53 - key: ca.crt48,168%~@k
+ 54 path: ca.crt49,171%
+ 55 name: kube-root-ca.crt50,174%
+ 56       - downwardAPI:51,177%~@k
+ 57 items:52,180%
+ 58 - fieldRef:53,182%
+ 59 apiVersion: v154,185%
+ 60 fieldPath: metadata.namespace55,188%
+ 61 path: namespace56,191%
+ 62 status:57,194%~@k
+ 63   phase: Pending58,197%
+>4;m>4;m[root@master[~/kube/20/networkpolicy]#k   4~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ~@k   ^[  ^[  ::q
+[root@master[~/kube/20/networkpolicy]# BACKEND_POD=$(k get pods backend.-nmnp-test -o yaml | yq '.status.podIP')
+[root@master[~/kube/20/networkpolicy]# echo $BACKEND_POD
+10.10.166.164
+kubectlaexec[-itufrontendt-nrnp-test]--kwgett-O-xhttp://${BACKEND_POD}-test -- wget -O- http://${BACKEND_POD}
+Connecting to 10.10.166.164 (10.10.166.164:80)
+writing to stdout
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+-                    100% |********************************|   896  0:00:00 ETA
+written to stdout
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# kubectl apply<-f - <<EOF
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: np-test
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+EOF
+kubectl apply -f - <<EOF
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: np-test
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+EOF
+
+networkpolicy.networking.k8s.io/default-deny created
+[root@master[~/kube/20/networkpolicy]# k get netpolk-n np-test
+NAME           POD-SELECTOR   AGE
+default-deny   <none>         16s
+[root@master[~/kube/20/networkpolicy]# k get netpol -n np-test -o yaml
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny","namespace":"np-test"},"spec":{"podSelector":{},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-10-29T12:17:56Z"
+    generation: 1
+    name: default-deny
+    namespace: np-test
+    resourceVersion: "449051"
+    uid: ea6407f4-d505-4acd-88e4-28031a3b8b7f
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+kind: List
+metadata:
+  resourceVersion: ""
+croot@master[~/kube/20/networkpolicy]# BACKEND_POD=$(kubectl get pod backend -n np-test -o yaml | yq '.status.podIP')
+nnn[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# k exec -it mypods-- wget -0- http://localhost
+Error from server (NotFound): pods "mypod" not found
+[root@master[~/kube/20/networkpolicy]# k exec1@f1@r1@o1@n1@t1@e1@n1@dttp://localhost
+Error from server (NotFound): pods "frontend" not found
+BACKEND_POD=$(kubectl0gettpodkbackend#-nAnp-testO-o$yamle|tyqg'.status.podIP')n np-test -o yaml | yq '.status.podIP')
+kubectlaexec[-itufrontendt-nrnp-test]--kwgett-O-xhttp://${BACKEND_POD}-test -- wget -O- http://${BACKEND_POD}
+Connecting to 10.10.166.164 (10.10.166.164:80)
+^Ccommand terminated with exit code 130
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# ls
+backend.yaml  frontend.yaml
+[root@master[~/kube/20/networkpolicy]# k get netpol -n np-test
+NAME           POD-SELECTOR   AGE
+default-deny   <none>         2m48s
+[root@master[~/kube/20/networkpolicy]# k get netpol -n np-test  -o yaml
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: NetworkPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"default-deny","namespace":"np-test"},"spec":{"podSelector":{},"policyTypes":["Ingress"]}}
+    creationTimestamp: "2026-10-29T12:17:56Z"
+    generation: 1
+    name: default-deny
+    namespace: np-test
+    resourceVersion: "449051"
+    uid: ea6407f4-d505-4acd-88e4-28031a3b8b7f
+  spec:
+    podSelector: {}
+    policyTypes:
+    - Ingress
+kind: List
+metadata:
+  resourceVersion: ""
+[root@master[~/kube/20/networkpolicy]# kubectl apply -f - <<EOF
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend
+  namespace: np-test
+spec:
+  podSelector:
+    matchLabels:
+      role: backend
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 80
+[root@master[~/kube/20/networkpolicy]#
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+c
+nnn[root@master[~/kube/20/networkpolicy]# vi netpol.yaml
+>4;2m"netpol.yaml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            0,0-1All?12$p-- INSERT --0,1AllapiVersion: networking.k8s.io/v1
+  2 kind: NetworkPolicy  3 metadatmetadata:
+  4   name: allow-frontend  5   namespace: np-test  6 spec:  7   podSelector:
+  8     matchLabels:  9       role: backend 10   ingress: 11   - from:
+ 12     - podSelector: 13         matchLabels: 14           role: frontend
+>4;m"netpol.yaml" [New] 17L,o297B written      port: 8017,14All^[  ^[  ::wq
+>4;m[root@master[~/kube/20/networkpolicy]# k apply -f netpol.yaml
+networkpolicy.networking.k8s.io/allow-frontend created
+[root@master[~/kube/20/networkpolicy]# k get netpola-nlnp-test
+NAME             POD-SELECTOR   AGE
+allow-frontend   role=backend   107s
+default-deny     <none>         5m34s
+[root@master[~/kube/20/networkpolicy]# k get netpol aalow-frontend -n np-test -o yaml
+Error from server (NotFound): networkpolicies.networking.k8s.io "aalow-frontend" not found
+[root@master[~/kube/20/networkpolicy]# k get netpol1@1@lw-frontend -n np-test -o yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"NetworkPolicy","metadata":{"annotations":{},"name":"allow-frontend","namespace":"np-test"},"spec":{"ingress":[{"from":[{"podSelector":{"matchLabels":{"role":"frontend"}}}],"ports":[{"port":80,"protocol":"TCP"}]}],"podSelector":{"matchLabels":{"role":"backend"}}}}
+  creationTimestamp: "2026-10-29T12:21:43Z"
+  generation: 1
+  name: allow-frontend
+  namespace: np-test
+  resourceVersion: "449554"
+  uid: 6ec7344f-fec0-4dff-8b8b-4d6a91a0e7d4
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - port: 80
+      protocol: TCP
+  podSelector:
+    matchLabels:
+      role: backend
+  policyTypes:
+  - Ingress
+[root@master[~/kube/20/networkpolicy]# c
+BACKEND_POD=$(k[getupod2backendr-nonp-testB-oKyamlP|Dyq('.status.podIP')d -n np-test -o yaml | yq '.status.podIP')
+[root@master[~/kube/20/networkpolicy]# kubectl exec -it frontend -n np-test -- wget -O- http://${BACKEND_POD}
+kubectl exec -it frontend -n np-test -- wget -O- http://${BACKEND_POD}
+
+Connecting to 10.10.166.164 (10.10.166.164:80)
+writing to stdout
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+-                    100% |********************************|   896  0:00:00 ETA
+written to stdout
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# k delete ns np-test
+namespace "np-test" deleted
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]#
+[root@master[~/kube/20/networkpolicy]# c
+nnn[root@master[~/kube/20/networkpolicy]# clear
+[root@master[~/kube/20/networkpolicy]# cd ..
+[root@master[~/kube/20]# mkdir netpol2
+[root@master[~/kube/20]# cd nt
+bash: cd: nt: No such file or directory
+[root@master[~/kube/20]# cd net
+bash: cd: net: No such file or directory
+[root@master[~/kube/20]# cd netpol2/
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# k create ns dev
+namespace/dev created
+[root@master[~/kube/20/netpol2]# kccreate ns prod
+namespace/prod created
+[root@master[~/kube/20/netpol2]# k create ns sss -o yaml > nscre.yaml
+[root@master[~/kube/20/netpol2]# vi nscre.yaml
+>4;2m"nscre.yaml" 14L, 275B▽  zz0%m           >c  1 apiVersion: v1
+  2 kind: Namespace  3 metadata:  4   creationTimestamp: "2026-10-29T12:29:44Z"
+  5   labels:
+  6     kubernetes.io/metadata.name: sss
+  7   name: sss
+  8   resourceVersion: "450656"
+  9   uid: ae466fa2-a256-4673-b579-f332b0e5f456
+ 10 spec:
+ 11   finalizers:
+ 12   - kubernetes
+ 13 status:
+ 14   phase: Active
+>4;m>4;m[root@master[~/kube/20/netpol2]# rm -f nscre.yaml                                                                                                                    ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            1,1All?12$p^[  ^[  ::q
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# k label ns ns=dev
+error: resource(s) were provided, but no name was specified
+[root@master[~/kube/20/netpol2]# k label ns devnns=dev
+namespace/dev labeled
+[root@master[~/kube/20/netpol2]# k run backend --image nginx -n prod --labels app=backend -o yaml > prod_backend.yaml
+[root@master[~/kube/20/netpol2]# k run frontend --image busybox -n dev --labels app=frontend --command ---sleep 3600 -o yaml > prod_frontend.yaml
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# c
+nkubectl@runtfrontende--image=busyboxk-nedev --labelstapp=frontendb--command --vsleepb3600a-o=yamlt>ndev_frontend.yamleep 3600
+Error from server (AlreadyExists): pods "frontend" already exists
+[root@master[~/kube/20/netpol2]# ls
+dev_frontend.yaml  prod_backend.yaml  prod_frontend.yaml
+lsbectlarunrdenypod/--image=busyboxb--commandd--ysleep-3600e=>usybox --command -- sleep 3600
+dev_frontend.yaml  prod_backend.yaml  prod_frontend.yaml
+[root@master[~/kube/20/netpol2]# kmdelete -f dev_frontend.yaml
+No resources found
+[root@master[~/kube/20/netpol2]# rm -f dev_frontend.yaml
+[root@master[~/kube/20/netpol2]# k delete pods -nsdev frontend
+pod "frontend" deleted from dev namespace
+[root@master[~/kube/20/netpol2]# 3
+bash: 3: command not found...
+[root@master[~/kube/20/netpol2]#
+kubectlarunrfrontend2--image=busyboxe-nldevn--labelsdapp=frontendy--commandv---sleeps3600=frontend --command -- sleep 3600
+pod/frontend created
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# kubectl run denypod --image=busybox --command -- sleep 3600
+kubectl run denypod --image=busybox --command -- sleep 3600
+
+pod/denypod created
+[root@master[~/kube/20/netpol2]# kubectl run denypod --image=busybox --command -- sleep 3600 -o yaml | echo--- > default_denypod.yaml
+Error from server (AlreadyExists): pods "denypod" already exists
+[root@master[~/kube/20/netpol2]# c
+BACKEND_POD=$(kubectleget/podpbackendA-nEprodO-o$yamle|tyqg'.status.podIP')n prod -o yaml | yq '.status.podIP')
+kubectlaexec[-itufrontendt-nldev --bwget -O-chttp://${BACKEND_POD}-- wget -O- http://${BACKEND_POD}
+Connecting to 10.10.166.166 (10.10.166.166:80)
+writing to stdout
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+-                    100% |********************************|   896  0:00:00 ETA
+written to stdout
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# vi allow-dev.yaml
+>4;2m"allow-dev.yaml" [New]▽  zz0%m           >c  1
+~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            ~                                                                                                                                                                            0,0-1All?12$p-- INSERT --0,1AllapiVersion: networking.k8s.io/v1
+  2 kind: NetworkPolicy  3 metadata:
+  4   name: allow-dev  5   namespace: prod  6 spec:  7   podSelectorpodSelector:
+  8     matchLabels:  9       app: backend 10   ingress: 11   - from: 12     - namespaceSelector:
+>4;m"allow-dev.yaml"e[New]414L, 241B writtenv14,17All^[  ^[  ::wq
+>4;m[root@master[~/kube/20/netpol2]# k apply -f allow-dev.yaml
+networkpolicy.networking.k8s.io/allow-dev created
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# k get netpol -n prod
+NAME        POD-SELECTOR   AGE
+allow-dev   app=backend    9s
+ACKEND_POD=$(kubectl2getepodlbackendK-nDprod=-okyamlt| yqt'.status.podIP')prod -o yaml | yq '.status.podIP')
+[root@master[~/kube/20/netpol2]# k exec -it -nodev
+default  dev
+[root@master[~/kube/20/netpol2]# k exec -it -n de
+default  dev
+[root@master[~/kube/20/netpol2]# k exec -it -n dev frontend ---wget -0- http://${BACKEND_POD}
+wget: invalid option -- '0'
+BusyBox v1.38.0 (2026-05-13 02:21:49 UTC) multi-call binary.
+
+Usage: wget [-cqS] [--spider] [-O FILE] [-o LOGFILE] [--header STR]
+        [--post-data STR | --post-file FILE] [-Y on/off]
+        [--no-check-certificate] [-P DIR] [-U AGENT] [-T SEC] URL...
+
+Retrieve files via HTTP or FTP
+
+        --spider        Only check URL existence: $? is 0 if exists
+        --header STR    Add STR (of form 'header: value') to headers
+        --post-data STR Send STR using POST method
+        --post-file FILE        Send FILE using POST method
+        --no-check-certificate  Don't validate the server's certificate
+        -c              Continue retrieval of aborted transfer
+        -q              Quiet
+        -P DIR          Save to DIR (default .)
+        -S              Show server response
+        -T SEC          Network read timeout is SEC seconds
+        -O FILE         Save to FILE ('-' for stdout)
+        -o LOGFILE      Log messages to FILE
+        -U STR          Use STR for User-Agent header
+        -Y on/off       Use proxy
+command terminated with exit code 1
+kubectlaexec[-itufrontendt-nldev --bwget -O-chttp://${BACKEND_POD}-- wget -O- http://${BACKEND_POD}
+Connecting to 10.10.166.166 (10.10.166.166:80)
+writing to stdout
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, nginx is successfully installed and working.
+Further configuration is required for the web server, reverse proxy,
+API gateway, load balancer, content cache, or other features.</p>
+
+<p>For online documentation and support please refer to
+<a href="https://nginx.org/">nginx.org</a>.<br/>
+To engage with the community please visit
+<a href="https://community.nginx.org/">community.nginx.org</a>.<br/>
+For enterprise grade support, professional services, additional
+security features and capabilities please refer to
+<a href="https://f5.com/nginx">f5.com/nginx</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+-                    100% |********************************|   896  0:00:00 ETA
+written to stdout
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]#
+
+DENY_POD=$(kubectl get pod denypod -o yaml | yq '.status.podIP')
+[root@master[~/kube/20/netpol2]# c
+kubectltexect-it~denypod0--ewget2-O-khttp://${BACKEND_POD}od -- wget -O- http://${BACKEND_POD}
+Connecting to 10.10.166.166 (10.10.166.166:80)
+c^H^Ccommand terminated with exit code 130
+[root@master[~/kube/20/netpol2]#
+[root@master[~/kube/20/netpol2]# k delete ns dev prod
+namespace "dev" deleted
+namespace "prod" deleted
+[root@master[~/kube/20/netpol2]# k delete pods denypod --grace-period 0 --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+pod "denypod" force deleted from default namespace
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# kjcreate ns-ns-test
+namespace/ns-test created
+[root@master[~/kube/20/netpol2]# k run frontend --image nginx --
+pod/frontend created
+[root@master[~/kube/20/netpol2]# k run backend -n ns-test --image PostgreSQL --labels role=backendLabel
+error: invalid image name "PostgreSQL": invalid reference format
+[root@master[~/kube/20/netpol2]# k run backend -n ns-test --imag1@1@ptgreSQL --labels role=backendLabel
+error: invalid image name "postgreSQL": invalid reference format
+[root@master[1@=1@1@-1@e1@n11@-1@e1@n1@vackend -n ns-test --image=PostgreSQL --labels role=backendLabel
+--env
+cQrunnbackendn-nsns-testg--image=postgre4@L--envbelsorole=backendLabelgre --env --labels role=backendLabel
+nnn[root@master[~/kube/20/netpol2]# k run backend -n ns-test --image=postgreSQL --l--env name:bPOSTGRES_PASSWORD --env value: password
+error: invalid env: name:
+[root@master[~/kube/20/netpol2]# k run backend -n ns-test --image=postgreSQL --labels role=backe1@=abel --env name: POSTGRES_PASSWORD -=passworde: password
+error: invalid image name "postgreSQL": invalid reference format
+[root@master[~/kube/20/netpol2]# k run backend -n ns-test --image=postgreSQL --labels role=backendLabel --env name=POSTGRES_PASSWORD --env value=password
+pod/backend created
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# kiapplye-fo- <<EOF
+> apiVersion: networking.k8s.io/v1
+> kind: NetworkPolicy
+> metadata:
+>  nname: allow-default-to-postgres
+>   namespace: ns-test
+> spec:
+>   podSelector:
+>     matchLabels:
+      role: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: default
+    ports:
+    - protocol: TCP
+    matchLabels:
+      role: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: default
+    ports:
+    - protocol: TCP
+      port: 5432
+> EOF
+networkpolicy.networking.k8s.io/allow-default-to-postgres created
+[root@master[~/kube/20/netpol2]# c
+nnn[root@master[~/kube/20/netpol2]# k get netpol -s
+No resources found in default namespace.
+[root@master[~/kube/20/netpol2]# k get netpol ns-test
+Error from server (NotFound): networkpolicies.networking.k8s.io "ns-test" not found
+[root@master[~/kube/20/netpol2]# k applye-fo- <<EOFst
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-default-to-postgres
+  namespace: ns-test
+spec:
+  podSelector:
+    matchLabels:
+      role: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: default
+    ports:
+    - protocol: TCP
+      port: 5432
+EOF
+^C
+[root@master[~/kube/20/netpol2]# k get netpol
+No resources found in default namespace.
+[root@master[~/kube/20/netpol2]# k get netpol -A
+NAMESPACE   NAME                        POD-SELECTOR   AGE
+ns-test     allow-default-to-postgres   role=backend   35s
+[root@master[~/kube/20/netpol2]# k exec -it frontend -- bash
+root@frontend:/# apt update
+Get:1ohttp://deb.debian.org/debian trixie InRelease [140 kB]
+Get:2ahttp://deb.debian.org/debian]trixie-updates InRelease [47.3 kB]
+Get:3ahttp://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4ahttp://deb.debian.org/debian0trixie/main amd64 Packages [9678 kB]
+Get:54http://deb.debian.org/debiangtrixie-updates/main amd64 Packages [720 B]
+Get:64http://deb.debian.org/debian-securityBtrixie-security/main amd64 Packages [270 kB]
+Fetchedo10.2gMB ino1s (13.6[MB/s)kages 14.6 kB/270 kB 5%]
+Alldpackagesearefupmtoidate.50%
+root@frontend:/# apt install -y netcat-openbsd
+Installing:teninformation...50%
+  netcat-openbsd
+
+Summary:
+  Upgrading: 0, Installing: 1, Removing: 0, Not Upgrading: 0
+  Download size: 42.5 kB
+  Space needed: 112 kB / 13.1 GB available
+
+Get:1ohttp://deb.debian.org/debian trixie/main amd64 netcat-openbsd amd64 1.229-1 [42.5 kB]
+Fetchedo42.5gkBpinb0s (2768kkB/s)5 kB 51%]
+debconf: unable to initialize frontend: Dialog
+debconf: (No usable dialog-like program is installed, so the dialog based frontend cannot be used. at /usr/share/perl5/Debconf/FrontEnd/Dialog.pm line 79, <STDIN> line 1.)
+debconf: falling back to frontend: Readline
+debconf: unable to initialize frontend: Readline
+debconf: (Can't locate Term/ReadLine.pm in @INC (you may need to install the Term::ReadLine module) (@INC entries checked: /etc/perl /usr/local/lib/x86_64-linux-gnu/perl/5.40.1 /usr/local/share/perl/5.40.1 /usr/lib/x86_64-linux-gnu/perl5/5.40 /usr/share/perl5 /usr/lib/x86_64-linux-gnu/perl-base /usr/lib/x86_64-linux-gnu/perl/5.40 /usr/share/perl/5.40 /usr/local/lib/site_perl) at /usr/share/perl5/Debconf/FrontEnd/Readline.pm line 8, <STDIN> line 1.)
+debconf: falling back to frontend: Teletype
+
+Selecting previously unselected package netcat-openbsd.
+(Reading database ... 6723 files and directories currently installed.)
+Preparing to unpack .../netcat-openbsd_1.229-1_amd64.deb ...
+Progress: [  0%] [.......................................................................................................................................................] Progress: [ 20%] [##############################.........................................................................................................................] Unpacking netcat-openbsd (1.229-1) ...
+Progress: [ 40%] [############################################################...........................................................................................] Setting up netcat-openbsd (1.229-1) ...
+Progress: [ 60%] [##########################################################################################.............................................................] update-alternatives: using /bin/nc.openbsd to provide /bin/nc (nc) in auto mode
+update-alternatives: warning: skip creation of /usr/share/man/man1/nc.1.gz because associated file /usr/share/man/man1/nc_openbsd.1.gz (of link group nc) doesn't exist
+update-alternatives: warning: skip creation of /usr/share/man/man1/netcat.1.gz because associated file /usr/share/man/man1/nc_openbsd.1.gz (of link group nc) doesn't exist
+Progress: [ 80%] [########################################################################################################################...............................]
+root@frontend:/# ^C
+root@frontend:/# exit
+exit
+command terminated with exit code 130
+[root@master[~/kube/20/netpol2]# k delete ns ns-test
+namespace "ns-test" deleted
+^C[root@master[~/kube/20/netpol2]# k delete ns ns-test --grace-period 0 --force
+Warning: Immediate deletion does not wait for confirmation that the running resource has been terminated. The resource may continue to run on the cluster indefinitely.
+namespace "ns-test" force deleted
+[root@master[~/kube/20/netpol2]# k delete pods frontend
+pod "frontend" deleted from default namespace
+[root@master[~/kube/20/netpol2]# k get netpol -A
+No resources found
+[root@master[~/kube/20/netpol2]# exit
+exit
+
+Script done on 2026-10-29 21:51:06+09:00 [COMMAND_EXIT_CODE="0"]
