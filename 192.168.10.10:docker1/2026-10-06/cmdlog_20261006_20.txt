@@ -137,7 +137,6 @@ docker run -d --name mygame -p 8080:8080 \
 mygameimage
 f14b8c47a338b18aeab44258cdf367c6094b3db9eb0d22031c837d7a20444e70
 [root@docker1 ~/docker/05_minipro4]# firefox http://192.168.10.10:8080/
-Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 [root@docker1 ~/docker/05_minipro4]# crm
 f14b8c47a338
 CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
@@ -188,7 +187,6 @@ latest:edigest:usha256:9e1ab22545f4d74796fc191ea77f1a3ab0be77cc2aa196b441f69b417
 dockerdrune-d --nameemygamei-pp8080:8080kleejunhee021210/mygameimage8080:8080 leejunhee021210/mygameimage
 8393a353c72e976f5fb7a985d893380bd7cdf91ac598810f03d4c4d6f1cea1b3
 [root@docker1 ~/docker/05_minipro4]# firefox http://localhost:8080
-Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 [root@docker1 ~/docker/05_minipro4]# exit
 exit
 
