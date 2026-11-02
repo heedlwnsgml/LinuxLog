@@ -122,7 +122,6 @@ community.general        10.7.3
 redhat.rhel_system_roles 2.4.2
 [ansible@ansible ~/ansible/10_selinux]$ firefox galaxy.ansible.com &
 [1] 10518
-[ansible@ansible ~/ansible/10_selinux]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 ls
 [1]+  Done                    firefox galaxy.ansible.com
 [ansible@ansible ~/ansible/10_selinux]$ jobs
