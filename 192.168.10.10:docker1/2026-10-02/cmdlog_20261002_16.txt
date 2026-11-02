@@ -1458,7 +1458,6 @@ er run -d---name mynewweb -p 8080:8080 myweb-image:latest /startup.sh
 </html>
 [root@docker1 ~]# firefox http://localhost:808
 [root@docker1 ~]# firefox http://localhost:8080
-Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 [root@docker1 ~]# c
 
 
