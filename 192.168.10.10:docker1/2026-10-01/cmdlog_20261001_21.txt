@@ -495,7 +495,6 @@ fox http://192.168.10.10:80 *&
 firefoxrhttp://192.168.10.10:80-&&ink1mysql:mysql -e WORDPRESS_DB_PASSWORD=wordpress -p 80:80 wordpress:4
 [2] 26743
 [1]   Done                    firefox http://192.168.10.10:80 *
-[root@docker1 ~]# Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 
 [2]+  Done                    firefox http://192.168.10.10:80
 [root@docker1 ~]# docker top wordpress
