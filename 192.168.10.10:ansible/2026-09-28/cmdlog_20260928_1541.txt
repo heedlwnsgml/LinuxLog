@@ -430,7 +430,6 @@ Created symlink '/etc/systemd/system/multi-user.target.wants/httpd.service' → 
 inactive
 firefoxehttps://galaxy.ansible.com/ui/repo/published/ansible/posix/l&xy.ansible.com/ui/repo/published/ansible/posix/ &
 [1] 7518
-[ansible@ansible ~/ansible/09_role-collections]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
 
 [ansible@ansible ~/ansible/09_role-collections]$ POSIX_NAME=ansible-posix-2.2.2.tar.gz
 [[n-db~/Downloads~]a&&isudo0/bin/cpc~/Downloads/$POSIX_NAMEw/var/www/htmludo /bin/cp ~/Downloads/$POSIX_NAME /var/www/html
