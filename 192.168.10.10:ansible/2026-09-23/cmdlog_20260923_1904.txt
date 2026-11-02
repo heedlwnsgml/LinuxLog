@@ -548,8 +548,6 @@ pkgs:
 [ansible@ansible ~/ansible/09_roles_create/roles]$ c
 https://galaxy.ansible.com &
 [1] 18766
-[ansible@ansible ~/ansible/09_roles_create/roles]$ Safe Browsing server returned a 400 during update:request url = https://safebrowsing.googleapis.com/v4/threatListUpdates:fetch?$ct=application/x-protobuf&key=AIzaSyBPGXa4AYD4FC3HJK7LnIKxm4fDusVuuco&$httpMethod=POST, payload = ChUKE25hdmNsaWVudC1hdXRvLWZmb3gaCggFEAIiAiACKAEaCggBEAIiAiACKAEaCggDEAIiAiACKAEaCggHEAIiAiACKAEaCggJEAIiAiACKAE=
-^C
 [1]+  Done                    firefox https://galaxy.ansible.com
 [ansible@ansible ~/ansible/09_roles_create/roles]$ ansible --
 myfirewall/  myvhost/     rollbacksvc/
